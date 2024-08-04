@@ -20,7 +20,11 @@
 ### Soll
 - Punktesystem
 - Battle mit anderen Studenten
-- Battle in der Vorlesung
 - Leaderboard
 
 ### Kann
+- Chat-Bot Helfer
+- Breiten- Tiefensuche
+- Accounts
+- Battle in der Vorlesung
+- AuD2 Dynamic Programming
