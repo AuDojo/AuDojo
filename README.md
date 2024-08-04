@@ -23,6 +23,8 @@
 ### Soll
 - Punktesystem
 - Battle mit anderen Studenten
+  - one v. one
+  - Team v. Team
 - Leaderboard
 - Generierte Anweisungen / Anleitungen zur Hilfe 
 
