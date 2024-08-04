@@ -25,6 +25,5 @@
 ### Kann
 - Chat-Bot Helfer
 - Breiten- Tiefensuche
-- Accounts
-- Battle in der Vorlesung
+- Battle in der Vorlesung + Accounts
 - AuD2 Dynamic Programming
