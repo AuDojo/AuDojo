@@ -10,3 +10,17 @@
 - Bis nächste Woche Sonntag Gedanken über Ordnerstruktur des Projekts machen
 - Soll / Kann Kriterien formulieren
 - Software-Architektur modellieren 
+
+### Muss
+- TreeTutor 
+- SortSensei
+- Verlinkung auf AuD Anleitungen 
+- Möglichkeit den jeweiligen Code mit anzusehen
+
+### Soll
+- Punktesystem
+- Battle mit anderen Studenten
+- Battle in der Vorlesung
+- Leaderboard
+
+### Kann
