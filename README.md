@@ -18,7 +18,7 @@
 - "Single-Player"
 - Zufallsgenerierte Trees und Arrays
 - Verlinkung auf AuD Anleitungen 
-- Möglichkeit den jeweiligen Code mit anzusehen
+- Möglichkeit den jeweiligen Pseudo-Code mit anzusehen
 
 ### Soll
 - Punktesystem
