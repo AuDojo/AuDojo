@@ -13,6 +13,8 @@
 - Software-Architektur modellieren 
 
 ### Muss
+- Docker einrichten
+- Tests
 - TreeTutor 
 - SortSensei
 - "Single-Player"
