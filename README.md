@@ -11,7 +11,7 @@
 - **An**: Test Frameworks, Github action, ci/cd, HTML Kurs anfangen
 - **Jan**: Github Milestones/Issues, Ordnerstruktur für backend
 - **Maximo**: Technischer Entwurf anfangen, Latex gitignore, Dokumentenordner
-- **Trang**: HTML Kurs anfangen
+- **Trang**: HTML Kurs anfangen, git command informieren
 
 
 ### Technischer Entwurf
