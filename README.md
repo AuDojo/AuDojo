@@ -7,6 +7,13 @@
 - Fragen ob wir ein eigenes Github-Repository erstellen dürfen, oder ob wir eins gestellt bekommen (Wem gehört das Projekt)? ✅
 - Fragen, ob es ok ist Hausaufgaben verifizieren können ✅
 
+## Aufgaben
+- **An**: Test Frameworks, Github action, ci/cd, HTML Kurs anfangen
+- **Jan**: Github Milestones/Issues, Ordnerstruktur für backend
+- **Maximo**: Technischer Entwurf anfangen, Latex gitignore, Dokumentenordner
+- **Trang**: HTML Kurs anfangen
+
+
 ### Technischer Entwurf
 - Bis nächste Woche Sonntag Gedanken über Ordnerstruktur des Projekts machen
 - Soll / Kann Kriterien formulieren
