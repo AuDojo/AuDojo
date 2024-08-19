@@ -1,11 +1,6 @@
 # AuDojo
 
 ## Todo
-### Organisatorisches
-- Mittlung über Technologien und Architektur ✅
-- Fragen was wir gestellt bekommen (Server, Räumlichkeiten) etc. ✅
-- Fragen ob wir ein eigenes Github-Repository erstellen dürfen, oder ob wir eins gestellt bekommen (Wem gehört das Projekt)? ✅
-- Fragen, ob es ok ist Hausaufgaben verifizieren können ✅
 
 ### Aufgaben
 - **An**: HTML/CSS Kurs beenden, Protokoll für Donnerstag 
@@ -14,10 +9,7 @@
 - **Trang**: HTML/CSS Kurs beenden
 - **Minseo**: Javascript lernen
 
-### Technischer Entwurf
-- Bis nächste Woche Sonntag Gedanken über Ordnerstruktur des Projekts machen
-- Soll / Kann Kriterien formulieren
-- Software-Architektur modellieren 
+## Kriterien
 
 ### Muss
 - Docker einrichten
