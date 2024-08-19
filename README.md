@@ -8,11 +8,11 @@
 - Fragen, ob es ok ist Hausaufgaben verifizieren können ✅
 
 ### Aufgaben
-- **An**: Test Frameworks für Frontend, Github action, ci/cd, HTML Kurs anfangen
-- **Jan**: Github Milestones/Issues, Ordnerstruktur für backend
-- **Maximo**: Technischer Entwurf anfangen, Latex gitignore, Dokumentenordner
-- **Trang**: HTML Kurs anfangen, git command informieren
-- **Minseo**: Test Frameworks für Backend, Github Action
+- **An**: HTML/CSS Kurs beenden, Protokoll für Donnerstag 
+- **Jan**: Javascript lernen
+- **Maximo**: Discussions
+- **Trang**: HTML/CSS Kurs beenden
+- **Minseo**: Javascript lernen
 
 ### Technischer Entwurf
 - Bis nächste Woche Sonntag Gedanken über Ordnerstruktur des Projekts machen
