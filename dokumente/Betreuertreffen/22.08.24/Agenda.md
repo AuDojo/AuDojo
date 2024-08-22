@@ -10,17 +10,17 @@
         - AVL- Insert
         - AVL restructure etc.
     - Sort Sensei
-        - Anwendung der in AUD behandelten Sortieralgorithmen mit Visualisierugn
-    - Integration mit dem AUD Knowledge Space
+        - Anwendung der in AUD behandelten Sortieralgorithmen mit Visualisierungen
+    - Integration des AUD Knowledge Space
 
 ### 2.2 Soll-Kriterien
     - Punktesystem (unterstützung von Accounts)
     - Battle mit anderen Studenten (Synchron / Asychron)
     - Leaderboard
-    - Eingebaute Tips 
+    - Eingebaute Hilfestellungen
 
 ### 2.3 Kann-Kriterien
-    - Breiten-Tiefensuche
+    - Breiten/-Tiefensuche
     - Battle in der Vorlesung (Ergänzung/Ersetzen des AUD-Livequiz)
     - AuD2 Dynamic Programming
     - Story Mode
