@@ -34,4 +34,5 @@
     2. Gibt es von Seite des Instituts Deadlines (vgl. SEP) für Dokumente/Prototypen etc.?
     3. Gibt es regelmäßige Code Reviews, Updates zum Entwicklungsstand, Möglichkeiten unseren Fortschritt zu diskutieren?
     4. Bekommen wir Zugriff auf Räumlichkeiten des Instituts HiWi raum etc.
+    5. Wie wird das Projekt benotet?
 
