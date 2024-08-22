@@ -1,7 +1,7 @@
 # Protokoll 22.08.24
 
 ### 0. Muss-/Kann-/Soll-Kriterien vorstellen
-  - Zuallererst Single-Player-Modus entwockeln
+  - Zuallererst Single-Player-Modus entwickeln
   - User-Encryption ist herausfordernd, muss alles vernünftig sein, ist nicht so trivial
   - Nur Webapp interaktiv Singeplayer wäre schon super (Dominik)
   - Die Soll-/Kannkriterien erst ganz ans Ende stellen
