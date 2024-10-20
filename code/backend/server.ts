@@ -14,12 +14,13 @@ app.get("/", (req: Request, res: Response) => {
 app.listen(PORT, () => console.log(`Server Running on port ${PORT}`));
 */
 
-import express from "express";
-const app = express();
+import express, {Express, Request, Response} from "express";
+
+const app: Express = express();
 const port = 5001;
 console.log("Heeeeeelo");
 
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
   console.log("Heeelo");
   res.send("Hello from Express!");
 });
