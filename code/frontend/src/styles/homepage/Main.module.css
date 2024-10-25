@@ -14,6 +14,7 @@ main {
 .main-welcome-message {
   color: black;
   margin-bottom: 12px;
+  text-align: center;
 }
 
 .home-buttons-container {
@@ -31,10 +32,11 @@ main {
   align-items: center;
   justify-content: space-between;
   width: 300px;
-  transition: box-shadow 0.15s;
+  transition: box-shadow 0.15s, transform 0.15s;
 }
 .home-button-link:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+  transform: translateY(-3px);
 }
 
 .home-button-header {
