@@ -14,16 +14,21 @@ app.get("/", (req: Request, res: Response) => {
 app.listen(PORT, () => console.log(`Server Running on port ${PORT}`));
 */
 
-import express, {Express, Request, Response} from "express";
+import express, { Express, Request, Response } from "express";
+import path from "path";
 
 const app: Express = express();
 const port = 5001;
-console.log("Heeeeeelo");
+const bodyParser = require("body-parser");
+const sortingRouting = require("./sortingRouting.ts");
+
+app.use(bodyParser.json());
+app.use("/sorting", sortingRouting);
 
 app.get("/", (req: Request, res: Response) => {
-  console.log("Heeelo");
-  res.send("Hello from Express!");
+  res.sendFile(path.join(__dirname, "..", "frontend", "index.html")); //our main page frontend/index.html is loaded
 });
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
