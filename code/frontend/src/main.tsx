@@ -5,9 +5,9 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-
 import "./index.css";
-import Home from "./pages/index.tsx";
+import Home from "./pages/Home.tsx";
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Home />}>
