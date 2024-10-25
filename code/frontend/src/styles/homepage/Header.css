@@ -52,6 +52,7 @@ header {
   display: inline-flex;
   column-gap: 100px;
   height: 100%;
+  transition: all 0.3s ease-in-out;
 }
 
 .no-underline {
@@ -66,8 +67,12 @@ header {
 @media (max-width: 900px) {
   .header-nav-list {
     font-size: 16px;
-    transition: 0.6s ease-in-out;
+    transition: 0.3s ease-in-out;
     column-gap: 50px;
+  }
+  .header-nav{
+    margin-left: 10px;
+    transition: all 0.3s ease-in-out;
   }
 }
 

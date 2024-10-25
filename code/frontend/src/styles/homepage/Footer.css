@@ -8,9 +8,13 @@
   padding: 1px 20px;
   justify-content: space-between;
   color: #003f57;
-
 }
 .footer-audojo-logo {
   display: flex;
-  align-items: inherit;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.no-underline{
+  text-decoration: none;
 }
