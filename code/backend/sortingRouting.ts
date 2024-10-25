@@ -94,6 +94,7 @@ router.post("/bubblesort", (req: Request, res: Response) => {
 });
 
 router.post("/selectionsort", (req: Request, res: Response) => {
+  //Test Case: [7,1,8,2,3,5], Lösung in AuD1 Skript Seite 83
 
   let startArray: number[] = parse_array(req);
   let sortedArray: number[][] = selectionSort(startArray);

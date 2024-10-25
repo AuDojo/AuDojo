@@ -27,6 +27,8 @@ localhost:5001/
    ...
    "n":[Schritte n]
 }
+key ist ein Index für Schritten beim Algorithmus
+
 \*\*Falls startArray mehr als 20 Elemente hat, gibt Backend leeres Array "[]" zurück. In dem Fall ist JSON Datei leer: {}
 
 Falls es eine Veränderung bei Namen/Struktur vorkommt, passe diese README.md dementsprechend bitte an.
