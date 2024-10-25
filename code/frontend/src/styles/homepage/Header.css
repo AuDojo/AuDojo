@@ -16,6 +16,7 @@ header {
 .header-nav {
   flex-direction: row;
   flex: 1 1 auto;
+  margin-left: 100px;
 }
 
 .header-logo-container {
@@ -37,9 +38,9 @@ header {
   margin-left: 15px;
 }
 .header-logo-text {
-  font-size: 19px;
+  font-size: 18px;
   color: white;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 25px;
 }
 
@@ -49,7 +50,7 @@ header {
   font-weight: 600;
   list-style: none;
   display: inline-flex;
-  column-gap: 80px;
+  column-gap: 100px;
   height: 100%;
 }
 
@@ -70,7 +71,6 @@ header {
   }
 }
 
-
 .hamburger-button {
   display: none;
   cursor: pointer;
@@ -84,24 +84,23 @@ header {
   transition: all 0.3s ease-in-out;
   background-color: white;
 }
-.hamburger{
-    position: fixed;
-    margin: 0;
+.hamburger {
+  position: fixed;
+  margin: 0;
 
-    right: 10px;
-    width: 60px;
-
+  right: 10px;
+  width: 60px;
 }
-.hamburger-icon{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.hamburger-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 @media (max-width: 710px) {
-    .header-nav-list {
-      display: none;
-    }
-    .hamburger-button{
-        display: block;
-    }
+  .header-nav-list {
+    display: none;
   }
+  .hamburger-button {
+    display: block;
+  }
+}
