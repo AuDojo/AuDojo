@@ -2,7 +2,9 @@ body {
   margin: 0;
   font-family: "Open Sans", Helvetica, Verdana, Arial, sans-serif;
 }
-
+a {
+  text-decoration: none;
+}
 /*:root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
