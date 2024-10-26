@@ -1,14 +1,14 @@
 import Footer from "../components/homepage/Footer";
 import Header from "../components/homepage/Header";
 import HomeButtonList from "../components/homepage/HomeButtonList";
-import "../styles/homepage/Footer.css";
-import "../styles/homepage/Header.css";
+// import "../styles/homepage/Footer.css";
+// import "../styles/homepage/Header.css";
 import mainStyles from "../styles/homepage/Main.module.css";
-
+import headerStyles from "../styles/homepage/Header.module.css";
 const Home = () => {
   return (
     <>
-      <header>
+      <header className={headerStyles.header}>
         <Header />
       </header>
       <main className={mainStyles.main}>

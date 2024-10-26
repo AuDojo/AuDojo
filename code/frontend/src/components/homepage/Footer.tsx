@@ -1,24 +1,23 @@
-import React from "react";
 import audoLogo from "../../assets/logo-audojo.png";
-import "../../styles/homepage/Footer.css";
+import footerStyles from "../../styles/homepage/Footer.module.css";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <div className="footer-content">
+    <div className={footerStyles["footer-content"]}>
       <div>
-        <Link className="no-underline" to="">
+        <Link className="Link" to="">
           Impressum
         </Link>
       </div>
       <div>
-        <Link className="no-underline" to="">
+        <Link className="Link" to="">
           Datenschutz
         </Link>
       </div>
-      <Link className="no-underline" to="">
-        <div className="footer-audojo-logo">
-          <div>designed by</div>
-          <img style={{ height: "50px", borderRadius: "50%" }} src={audoLogo} alt="logo of audojo" />
+      <Link className="Link" to="">
+        <div className={footerStyles["footer-audojo"]}>
+          <div>Created by </div>
+          <img className={footerStyles["footer-audojo-logo"]} src={audoLogo} alt="logo of audojo" />
         </div>
       </Link>
     </div>
