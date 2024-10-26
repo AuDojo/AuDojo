@@ -1,5 +1,5 @@
 body {
-  margin: 110px 0 0 0;
+  margin: 110px 0 50px 0;
   font-family: "Open Sans", Helvetica, Verdana, Arial, sans-serif;
 }
 
@@ -10,6 +10,13 @@ a {
 p {
   margin: 0;
 }
+
+.Link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
 /*:root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
