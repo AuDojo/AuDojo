@@ -1,47 +1,29 @@
-import { Link } from "react-router-dom";
-import tubsLogo from "../../assets/tu-logo.png";
-// import "../../styles/homepage/Header.css";
+import { useState } from "react";
+import HeaderLogo from "./HeaderLogo";
+import HeaderNavItem from "./HeaderNavItem";
+
 const Header = () => {
+  const [isOpen, setOpen] = useState<boolean>(false);
+  const toogleMenu = () => {
+    setOpen(!isOpen);
+  };
+
   return (
     <div className="header-content">
-      <a href={"https://aud.ibr.cs.tu-bs.de"}>
-        <div className="header-logo-container">
-          <img
-            className="header-logo-image"
-            src={tubsLogo}
-            alt="logo of TU Braunssweig"
-          />
-          <div className="header-logo-text">
-            Algorithmen und Datenstrukturen
-          </div>
-        </div>
-      </a>
+      <HeaderLogo />
 
       <div className="header-nav">
-        <ul className="header-nav-list">
-          <li className="header-nav-item">
-            <Link className="no-underline" to="">
-              TreeTutor
-            </Link>
-          </li>
-          <li className="header-nav-item">
-            <Link className="no-underline" to="">
-              SortSensei ▼
-            </Link>
-          </li>
-          <li className="header-nav-item">
-            <Link className="no-underline" to="">
-              Kontakt
-            </Link>
-          </li>
-        </ul>
+        <div className={`header-nav-list ${isOpen ? "open" : ""}`}>
+          <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="TreeTutor" />
+          <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="SortSensei ▼" />
+          <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="Kontakt" />
+        </div>
 
-        {/* <div className="hamburger"> 
-          <img className="hamburger-icon" src={hamburger} alt="hamburger icon" />
-          <span className="bar">TreeTutor</span>
-          <span className="bar">SortSensei</span>
-          <span className="bar">Kontakt</span>
-        </div> */}
+        <div className={`hamburger ${isOpen ? "change" : ""}`} onClick={toogleMenu}>
+          <div className="bar1"></div>
+          <div className="bar2"></div>
+          <div className="bar3"></div>
+        </div>
       </div>
     </div>
   );
