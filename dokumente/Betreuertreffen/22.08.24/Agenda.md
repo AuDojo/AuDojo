@@ -16,7 +16,7 @@
 ### 2.2 Soll-Kriterien
     - Punktesystem (unterstützung von Accounts)
     - Battle mit anderen Studenten (Synchron / Asychron)
-    - Leaderboard
+    - Leaderboard  
     - Eingebaute Hilfestellungen
 
 ### 2.3 Kann-Kriterien
