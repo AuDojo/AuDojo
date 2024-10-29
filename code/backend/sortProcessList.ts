@@ -6,37 +6,21 @@ export class SortProcessList {
 
   constructor(startList: number[]) {
     this.#columnsLength = startList.length;
-    this.#processList[0] = startList;
+    this.#processList[0] = startList.slice(0);
   }
 
   pushList(list: number[]): void {
-    //this.#processList = this.#processList.concat(list);
-
     let index = this.#processList.length;
 
     this.#processList[index] = list.slice(0); // slice sorgt dafür dass pass by value anstatt von pass by reference verwendet wird.
 
-    console.log("New List: \n");
-    console.log(this.#processList);
+    // console.log("New List: \n");
+    // console.log(this.#processList);
   }
 
   public get processList(): number[][] {
     return this.#processList;
   }
-
-  /*
-  create2DList(): number[][] {
-    let returnList: number[][] = [];
-    let rowsLength: number = this.#processList.length / this.#columnsLength;
-    for (let i = 0; i < rowsLength; i++) {
-      returnList[i] = [];
-      for (let k = 0; k < this.#columnsLength; k++) {
-        returnList[i][k] = this.#processList[k + i * this.#columnsLength];
-      }
-    }
-    return returnList;
-  }
-    */
 
   //TODO: Methode vervollständigen
   createJson(): string {
