@@ -14,9 +14,9 @@ export class SortSensei {
 
   /**
    * This Method is managing the callingprocess of the different Sort-Methods
-   * @param list
-   * @param sortType
-   * @returns
+   * @param list Starting list, that should be sorted
+   * @param sortType The name of the sorting algorithm that should be used
+   * @returns All the sorting steps in a 2D-list as a json-string in the following format: `{"processList": [[startList], [sortStep1], [sortStep2], ...]}`
    */
   static createSortProcessList(list: number[], sortType: SortType): string {
     this.#processList = new SortProcessList(list);
@@ -47,6 +47,7 @@ export class SortSensei {
   }
 
   // ------------- MergeSort -------------
+  //TODO: Find a way to return the splitting Index, so that it can be shown in the frontend
 
   static #mergeSort(list: number[], p: number, r: number) {
     if (p < r) {
@@ -86,6 +87,8 @@ export class SortSensei {
   }
 
   // ------------- QuickSort -------------
+  //TODO: Find a way to use a certain method to determine the pivot-element
+  //TODO: Find a way to return the pivot-element, so that it can be shown in the frontend
 
   static #quickSort(list: number[], p: number, r: number) {
     if (p < r) {
