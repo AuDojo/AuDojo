@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import Footer from "../components/homepage/Footer";
 import Header from "../components/homepage/Header";
 import HomeButtonList from "../components/homepage/HomeButtonList";
