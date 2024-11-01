@@ -1,4 +1,3 @@
-import audoLogo from "../../assets/logo-audojo.png";
 import footerStyles from "../../styles/homepage/Footer.module.css";
 import { Link } from "react-router-dom";
 const Footer = () => {
@@ -14,12 +13,12 @@ const Footer = () => {
           Datenschutz
         </Link>
       </div>
-      <Link className="Link" to="">
+      {/* <Link className="Link" to="">
         <div className={footerStyles["footer-audojo"]}>
           <div>Created by </div>
           <img className={footerStyles["footer-audojo-logo"]} src={audoLogo} alt="logo of audojo" />
         </div>
-      </Link>
+      </Link> */}
     </div>
   );
 };
