@@ -1,10 +1,11 @@
 import { SortProcessList } from "./sortProcessList";
 
-enum SortType {
+export enum SortType {
   MergeSort,
   QuickSort,
   BubbleSort,
   SelectionSort,
+  UNDEFINED
 }
 
 export class SortSensei {
@@ -38,7 +39,8 @@ export class SortSensei {
         //this.#selectionSort();
         break;
 
-      default:
+      default: //SortType = UNDEFINED -> gibt ein leeres Array zurück
+        this.#processList = new SortProcessList([]);
         break;
     }
 

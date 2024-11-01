@@ -1,6 +1,4 @@
-Author:Minseo
-
-Angenommene Softwarearchitektur:
+Softwarearchitektur von Backend:
 
 1. Austausch der Daten zwischen Frontend und Backend soll durch JSON format erfolgen. Dieser wird durch POST-Methode von beiden
    Seite erfolgt.
@@ -22,6 +20,17 @@ Angenommene Softwarearchitektur:
 5. Von Backend gesendetes JSON Objekt ist wie Folgendes:
    `{"processList": [[startList], [sortStep1], [sortStep2], ...]}`
 
-\*\*Falls startArray mehr als 20 Elemente hat, gibt Backend leeres Array "[]" zurück. In dem Fall ist JSON Datei leer: {}
+Edge Cases:
+Falls 
+a. startArray mehr als 20 Elemente hat 
+
+oder
+
+b. POST-Methode für falsches Link aufgerufen wurde (z.B POST-Methode für Link localhost:5001/sorting/sldkjsdlkf)
+
+,gibt Backend JSON Datei { "processList": [ [] ] } mit Array ohne Elemente
+
+
+
 
 Falls es eine Veränderung bei Namen/Struktur vorkommt, passe diese README.md dementsprechend bitte an.
