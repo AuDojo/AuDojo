@@ -36,7 +36,7 @@ export class SortSensei {
         //this.#bubbleSort();
         break;
       case SortType.SelectionSort:
-        //this.#selectionSort();
+        this.#selectionSort(list);
         break;
 
       default: //SortType = UNDEFINED -> gibt ein leeres Array zurück
@@ -123,6 +123,28 @@ export class SortSensei {
   // ------------- BubbleSort -------------
 
   // ------------- SelectionSort -------------
+  static #selectionSort(list:number[]) {
+
+    for(let i=0;i<list.length-1;i++) {
+      let min = list[i];
+      let minIndex = i;
+  
+      //Finde Minimum in Teilarray
+      for(let j= i+1;j<list.length;j++) {
+        if(min > list[j]) {
+          min = list[j];
+          minIndex = j;
+        }
+      }
+      //mit min Element vertauschen
+      let temp = list[i];
+      list[i] = min;
+      list[minIndex] = temp;
+  
+      //Zwischenarray in processList reinstecken 
+      this.#processList?.pushList(list);
+    }
+  }
 
   /**
    * Simple test method for the SortSensei class.
