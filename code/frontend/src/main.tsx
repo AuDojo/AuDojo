@@ -8,12 +8,14 @@ import {
 import "./index.css";
 import Home from "./pages/Home.tsx";
 import MergeSort from "./pages/MergeSort.tsx";
+import QuickSort from "./pages/QuickSort.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<Home />} />
       <Route path="mergesort" element={<MergeSort />} />
+      <Route path="quicksort" element={<QuickSort />} />
       {/* <Route path="sortsensei/mergesort" element={<Home />} /> */}
       {/* Nested route */}
     </>

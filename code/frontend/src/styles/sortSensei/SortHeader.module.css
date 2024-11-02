@@ -68,7 +68,10 @@
 }
 
 .header-nav-list-item.header-nav-list-item-active{
-  background-color: rgb(58, 45, 93);
+  /* background-color: rgb(58, 45, 93); */
+  background-color: rgb(238, 224, 226);
+  color: rgb(58, 45, 93);
+
 }
 
 
