@@ -17,7 +17,7 @@
   right: 0;
   top: 100px;
   width: 350px;
-  height: 500px;
+  height: 280px;
   background-color: rgb(150, 104, 44);
   border-radius: 15px 0 0 15px;
   transition: transform 0.4s ease-in-out; /* Smooth transition */
