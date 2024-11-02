@@ -15,7 +15,7 @@
 .pseudocode-container {
   position: fixed;
   right: 0;
-  top: 100px;
+  top: 45px;
   width: 350px;
   height: 280px;
   background-color: rgb(150, 104, 44);
@@ -30,10 +30,11 @@
 .side-button {
   position: fixed;
   right: 0;
-  top: 45px;
+  top: 0;
   padding: 10px;
   width: 100px;
-  height: 50px;
+  height: 45px;
+  z-index: 300;
 }
 
 @media (max-width: 850px) {
