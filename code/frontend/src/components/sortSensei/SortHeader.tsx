@@ -1,8 +1,8 @@
 import { useState } from "react";
-import tubsLogo from "../../assets/tu-logo.png";
-// import HeaderNavItem from "../homepage/HeaderNavItem";
+// import tubsLogo from "../../assets/tu-logo.png";
+import audojoLogo from "../../assets/logo-audojo.png";
 import { Link } from "react-router-dom";
-import headerStyles from "../../styles/sortSensei/Header.module.css";
+import headerStyles from "../../styles/sortSensei/SortHeader.module.css";
 const HeaderNavItem = ({ to, text }: { to: string; text: string }) => {
   return (
     <Link className="Link" to={to}>
@@ -10,7 +10,7 @@ const HeaderNavItem = ({ to, text }: { to: string; text: string }) => {
     </Link>
   );
 };
-const Header = () => {
+const SortHeader = () => {
   const [isOpen, setOpen] = useState<boolean>(false);
   const toogleMenu = () => {
     setOpen(!isOpen);
@@ -20,7 +20,7 @@ const Header = () => {
     <div className={headerStyles["header-container"]}>
       <a href={"https://aud.ibr.cs.tu-bs.de"} target="_blank">
         <div className={headerStyles["header-logo-container"]}>
-          <img className={headerStyles["header-logo-image"]} src={tubsLogo} alt="logo of TU Braunssweig" />
+          <img className={headerStyles["header-logo-image"]} src={audojoLogo} alt="audojo logo" />
           <div className={headerStyles["header-logo-text"]}>Algorithmen und Datenstrukturen</div>
         </div>
       </a>
@@ -42,4 +42,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default SortHeader;

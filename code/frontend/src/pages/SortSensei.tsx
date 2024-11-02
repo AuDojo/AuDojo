@@ -1,16 +1,13 @@
 import { Outlet } from "react-router-dom";
-import Header from "../components/sortSensei/Header";
-import { SortProvider } from "../contexts/SortContext";
+import SortHeader from "../components/sortSensei/SortHeader";
 import styles from "../styles/sortSensei/general.module.css";
 
 const SortSensei = () => {
   return (
-    <SortProvider>
-      <div className={styles.container}>
-        <Header />
-        <Outlet />
-      </div>
-    </SortProvider>
+    <div className={styles.container}>
+      <SortHeader />
+      <Outlet />
+    </div>
   );
 };
 export default SortSensei;
