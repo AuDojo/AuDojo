@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import Home from "./pages/Home.tsx";
+import MergeSort from "./pages/MergeSort.tsx";
 import SortSensei from "./pages/SortSensei.tsx";
 
 const router = createBrowserRouter(

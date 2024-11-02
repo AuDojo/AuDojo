@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
-import AnimationSort from "../components/sortSensei/AnimationSort";
-import Header from "../components/sortSensei/Header";
-import "../styles/sortSensei/general.css";
-const SortSensei = () => {
+
+const MergeSort = () => {
   const [stepsList, setStepsList] = useState<number[][]>([]);
 
   useEffect(() => {
@@ -24,12 +21,7 @@ const SortSensei = () => {
     fetchStepsList();
   }, []);
 
-  return (
-    <>
-      <Header />
-      <AnimationSort />
-      <Outlet />
-    </>
-  );
+  return <div>MergeSort</div>;
 };
-export default SortSensei;
+
+export default MergeSort;
