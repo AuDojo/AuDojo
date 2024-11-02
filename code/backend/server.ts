@@ -20,8 +20,9 @@ import path from "path";
 const app: Express = express();
 const port = 5001;
 const bodyParser = require("body-parser");
-const sortingRouting = require("./sortingRouting.ts");
+const sortingRouting = require("./sortingRouting");
 
+app.use(express.static(path.join(__dirname, '..', 'frontend', 'public')));
 app.use(bodyParser.json());
 app.use("/sorting", sortingRouting);
 
