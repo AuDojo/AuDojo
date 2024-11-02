@@ -1,4 +1,5 @@
 import AnimationSort from "../components/sortSensei/AnimationSort";
+import SolveButton from "../components/sortSensei/SolveButton";
 import SortingTable from "../components/sortSensei/SortingTable";
 
 const MergeSort = () => {
@@ -14,7 +15,9 @@ const MergeSort = () => {
         <div></div>
       </div>
       {/* Solve buttons */}
-      <div></div>
+      <div>
+        <SolveButton />
+      </div>
     </>
   );
 };
