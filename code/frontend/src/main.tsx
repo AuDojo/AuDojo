@@ -13,7 +13,11 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<Home />} />
-      <Route path="sortsensei" element={<SortSensei />} />
+      <Route path="sortsensei" element={<SortSensei />}>
+        <Route path="mergesort" element={<MergeSort />} />
+      </Route>
+      {/* <Route path="sortsensei/mergesort" element={<Home />} /> */}
+      {/* Nested route */}
     </>
   )
 );

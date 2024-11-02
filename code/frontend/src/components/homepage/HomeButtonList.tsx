@@ -8,11 +8,13 @@ const HomeButtonList = () => {
     <>
       <div className={mainStyles["home-buttons-container"]}>
         <HomeButton
+          link="/sortsensei/mergesort"
           header="Sort Sensei"
           img={sortingPng}
           text="Sortier-Algorithmen"
         />
         <HomeButton
+          link="/"
           header="Tree Tutor"
           img={treePng}
           text="AVL-Baum-Operationen"
