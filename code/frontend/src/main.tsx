@@ -11,13 +11,10 @@ import SortSensei from "./pages/SortSensei.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<SortSensei />}>
-      {/* <Route index element={<Home />} /> */}
-      {/* <Route path="login" element={<Login />} />
-      <Route path="register" element={<Register />} /> */}
-      <Route path="sortsensei" element={<Home />} />
-    </Route>
-    
+    <>
+      <Route path="/" element={<Home />} />
+      <Route path="sortsensei" element={<SortSensei />} />
+    </>
   )
 );
 createRoot(document.getElementById("root")!).render(
