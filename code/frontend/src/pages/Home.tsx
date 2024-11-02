@@ -2,12 +2,13 @@ import audoLogo from "../assets/logo-audojo.png";
 import Footer from "../components/homepage/Footer";
 import Header from "../components/homepage/Header";
 import HomeButtonList from "../components/homepage/HomeButtonList";
+import generalStyles from "../styles/homepage/general.module.css";
 import headerStyles from "../styles/homepage/Header.module.css";
 import mainStyles from "../styles/homepage/Main.module.css";
 
 const Home = () => {
   return (
-    <>
+    <div className={generalStyles.container}>
       <header className={headerStyles.header}>
         <Header />
       </header>
@@ -28,7 +29,7 @@ const Home = () => {
       <footer>
         <Footer />
       </footer>
-    </>
+    </div>
   );
 };
 
