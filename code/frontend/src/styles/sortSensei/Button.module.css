@@ -1,0 +1,21 @@
+.solve-button {
+  display: flex;
+  justify-content: right;
+}
+.solve-button button {
+  background-color: white;
+  border-radius: 4px;
+  padding: 8px 16px;
+  color: rgb(190, 30, 60);
+  font-size: 16px;
+  font-weight: 800;
+  border: 1px solid rgb(190, 30, 60);
+  cursor: pointer;
+  margin: 10px;
+}
+.solve-button button:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+.solve-button button:active {
+  opacity: 0.8;
+}
