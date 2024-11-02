@@ -1,36 +1,15 @@
-import { useEffect, useState } from "react";
 import AnimationSort from "../components/sortSensei/AnimationSort";
+import SortingTable from "../components/sortSensei/SortingTable";
 
 const MergeSort = () => {
-  const [stepsList, setStepsList] = useState<number[][]>([]);
-  const [step, setStep] = useState<number>(0);
-
-  useEffect(() => {
-    async function fetchStepsList() {
-      const response = await fetch("/api/sorting/mergesort", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          startArray: [7, 13, 5, 9, 10, 12, 1, 3, 2, 6, 25, 30, 40, 38, 32],
-        }),
-      });
-      const data = await response.json();
-      setStepsList(JSON.parse(data).processList);
-    }
-
-    fetchStepsList();
-  }, []);
-
   return (
     <>
       <div>
         <AnimationSort />
       </div>
-      <div>
+      <div style={{ marginTop: "20px" }}>
         {/* Table */}
-        <div></div>
+        <SortingTable />
         {/* right buttons */}
         <div></div>
       </div>
