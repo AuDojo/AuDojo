@@ -16,7 +16,7 @@ const Header = () => {
       <div className={headerStyles["header-nav"]}>
         <div className={`${headerStyles["header-nav-list"]} ${isOpen ? headerStyles.open : ""}`}>
           <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="TreeTutor" />
-          <HeaderNavItem to="/sortsensei" text="SortSensei ▼" />
+          <HeaderNavItem to="sortsensei/mergesort" text="SortSensei ▼" />
           <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="Kontakt" />
         </div>
 
