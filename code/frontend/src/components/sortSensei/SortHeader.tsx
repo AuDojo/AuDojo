@@ -12,7 +12,7 @@ const HeaderNavItem = ({ to, text, activeSort, onClick }: { to: string; text: st
 };
 
 const SortHeader = () => {
-  const [activeSort, setActiveSort] = useState<string>("sortsensei/mergesort");
+  const [activeSort, setActiveSort] = useState<string>("mergesort");
 
   return (
     <div className={headerStyles["header-container"]}>
@@ -26,23 +26,23 @@ const SortHeader = () => {
       <div className={headerStyles["header-nav"]}>
         <div className={`${headerStyles["header-nav-list"]}`}>
           <HeaderNavItem 
-            activeSort={activeSort === "sortsensei/mergesort"} 
-            onClick={() => setActiveSort("sortsensei/mergesort")} 
-            to="/sortsensei/mergesort" 
+            activeSort={activeSort === "mergesort"} 
+            onClick={() => setActiveSort("mergesort")} 
+            to="/mergesort" 
             text="Mergesort" 
           />
 
           <HeaderNavItem 
-            activeSort={activeSort === "sortsensei/quicksort"} 
-            onClick={() => setActiveSort("sortsensei/quicksort")} 
-            to="/sortsensei/quicksort" 
+            activeSort={activeSort === "quicksort"} 
+            onClick={() => setActiveSort("quicksort")} 
+            to="/quicksort" 
             text="Quicksort" 
           />
 
           <HeaderNavItem 
-            activeSort={activeSort === "sortsensei/bubblesort"} 
-            onClick={() => setActiveSort("sortsensei/bubblesort")} 
-            to="/sortsensei/mergesort" 
+            activeSort={activeSort === "bubblesort"} 
+            onClick={() => setActiveSort("bubblesort")} 
+            to="/mergesort" 
             text="Bubblesort" 
           />
         </div>
