@@ -22,7 +22,10 @@ const port = 5001;
 const bodyParser = require("body-parser");
 const sortingRouting = require("./sortingRouting");
 
-app.use(express.static(path.join(__dirname, '..', 'frontend', 'public')));
+// make express deliver static frontend pages
+app.use(express.static(path.join(__dirname, '..', '..', 'frontend', 'public')));
+app.use(express.static(path.join(__dirname, '..', '..', 'frontend', 'dist')));
+
 app.use(bodyParser.json());
 app.use("/sorting", sortingRouting);
 
