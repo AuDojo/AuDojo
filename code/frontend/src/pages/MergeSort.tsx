@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import AnimationSort from "../components/sortSensei/AnimationSort";
 
 const MergeSort = () => {
   const [stepsList, setStepsList] = useState<number[][]>([]);
+  const [step, setStep] = useState<number>(0);
 
   useEffect(() => {
     async function fetchStepsList() {
@@ -21,7 +23,17 @@ const MergeSort = () => {
     fetchStepsList();
   }, []);
 
-  return <div>MergeSort</div>;
+  return (
+    <>
+      <div>
+        <AnimationSort />
+      </div>
+      {/* Tabel and right buttons*/}
+      <div></div>
+      {/* Solve buttons */}
+      <div></div>
+    </>
+  );
 };
 
 export default MergeSort;
