@@ -1,4 +1,40 @@
-.container {
-  margin-top: 20px;
+.table-container {
+  background-color: rgb(240, 240, 240);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   overflow: auto;
+  height: 345px;
+  padding-top: 1rem;
+  padding-right: 1rem;
+  height: calc(100vh - 335px); /* Subtract header, total 335px */
+  width: fit-content;
+  max-width: 100%;
+  margin: auto;
+}
+
+@media (max-width: 800px) {
+  .table-container {
+  }
+}
+
+.row-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.row-index {
+  width: 2.5rem; /* Adjust this width based on your needs */
+  text-align: right; /* Align the number to the right */
+  padding-right: 0.5rem; /* Add space between the index and the input cells */
+  font-size: 1.3rem;
+}
+
+.cell-input {
+  /* Styles for your cell input */
+  width: 3rem; /* Adjust width as needed */
+  height: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
 }
