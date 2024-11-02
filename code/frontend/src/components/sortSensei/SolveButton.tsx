@@ -1,13 +1,29 @@
-
+import { useSortContext } from "../../contexts/SortContext";
 import buttonStyles from "../../styles/sortSensei/Button.module.css";
 const SolveButton = () => {
+  const { setStep, step, stepsList } = useSortContext();
+
+  const handleSolveLine = () => {
+    if (step < stepsList.length) {
+      setStep(step + 1);
+    }
+  };
+
+  const handleSolveAll = () => {
+    setStep(stepsList.length);
+  };
+
+  const handleTryAgain = () => {
+    setStep(1);
+  };
+
   return (
     <div className={buttonStyles["solve-button"]}>
-        <button >Solve All</button>
-        <button>Solve Line</button>
-        <button>Try Again</button>
+      <button onClick={handleSolveAll}>Solve All</button>
+      <button onClick={handleSolveLine}>Solve Line</button>
+      <button onClick={handleTryAgain}>Try Again</button>
     </div>
-  )
-}
+  );
+};
 
-export default SolveButton
+export default SolveButton;
