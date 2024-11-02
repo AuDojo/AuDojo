@@ -12,7 +12,7 @@ interface SortContextProps {
 const SortContext = createContext<SortContextProps | undefined>(undefined);
 
 // Custom hook for using the context
-export const useSortContext = () => {
+export const useSortContext = (): SortContextProps => {
   const context = useContext(SortContext);
   if (!context) {
     throw new Error("useSortContext must be used within a SortProvider");
@@ -24,7 +24,7 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [stepsList, setStepsList] = useState<number[][]>([]);
-  const [step, setStep] = useState<number>(0);
+  const [step, setStep] = useState<number>(1);
 
   useEffect(() => {
     async function fetchStepsList() {
