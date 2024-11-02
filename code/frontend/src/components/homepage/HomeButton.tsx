@@ -2,14 +2,15 @@ import { Link } from "react-router-dom";
 import mainStyles from "../../styles/homepage/Main.module.css";
 
 interface HomeButtonProps {
+  link: string;
   header: string;
   img: string;
   text: string;
 }
 
-const HomeButton = ({ header, img, text }: HomeButtonProps) => {
+const HomeButton = ({ link, header, img, text }: HomeButtonProps) => {
   return (
-    <Link to="/" className={mainStyles["home-button-link"]}>
+    <Link to={link} className={mainStyles["home-button-link"]}>
       <div className={mainStyles["home-button-header"]}>{header}</div>
       <img
         className={mainStyles["home-button-img"]}

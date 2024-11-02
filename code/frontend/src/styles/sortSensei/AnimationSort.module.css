@@ -33,6 +33,11 @@
   top: 45px;
   padding: 10px;
   width: 100px;
-  height: 50px
+  height: 50px;
+}
 
+@media (max-width: 850px) {
+  .animation-container {
+    width: 80%;
+  }
 }
