@@ -1,6 +1,5 @@
-import React, { useState } from "react";
 import animationStyles from "../../styles/sortSensei/AnimationSort.module.css";
-
+import { useState } from "react";
 const AnimationSort = () => {
   const [isPseudocodeVisible, setPseudocodeVisible] = useState(false);
 
