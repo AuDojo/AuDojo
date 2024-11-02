@@ -28,8 +28,12 @@ const MergeSort = () => {
       <div>
         <AnimationSort />
       </div>
-      {/* Tabel and right buttons*/}
-      <div></div>
+      <div>
+        {/* Table */}
+        <div></div>
+        {/* right buttons */}
+        <div></div>
+      </div>
       {/* Solve buttons */}
       <div></div>
     </>
