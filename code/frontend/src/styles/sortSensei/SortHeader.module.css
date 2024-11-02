@@ -15,19 +15,19 @@
 }
 .header-logo-container {
   display: flex;
-  justify-content: left;
+  justify-content: right;
   align-items: center;
   width: 150px;
   height: 100%;
   background-color: rgb(238, 224, 226);
-  padding: 0 5px 0 10px;
   border-radius: 0 75px 75px 0;
   transition: all 0.2s ease-in-out;
 }
 
 .header-logo-image {
   height: 100%;
-  margin-right: 10px;
+  margin-left: 13px;
+  border-radius: 50%;
 }
 
 .header-logo-text {
@@ -45,7 +45,6 @@
   display: flex;
   list-style: none;
   height: 100%;
-  /* transition: all 0.2s ease-in-out; */
 }
 
 .header-nav-list-item {
@@ -68,10 +67,7 @@
 }
 
 .header-nav-list-item.header-nav-list-item-active{
-  /* background-color: rgb(58, 45, 93); */
-  background-color: rgb(238, 224, 226);
-  color: rgb(58, 45, 93);
-
+  background-color: rgb(58, 45, 93);
 }
 
 

@@ -18,8 +18,8 @@ const SortHeader = () => {
     <div className={headerStyles["header-container"]}>
       <Link to={"/"}>
         <div className={headerStyles["header-logo-container"]}>
-          <img className={headerStyles["header-logo-image"]} src={audojoLogo} alt="audojo logo" />
           <div className={headerStyles["header-logo-text"]}>AUDOJO</div>
+          <img className={headerStyles["header-logo-image"]} src={audojoLogo} alt="audojo logo" />
         </div>
       </Link>
 
