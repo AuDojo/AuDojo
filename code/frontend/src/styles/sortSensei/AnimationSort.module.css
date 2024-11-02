@@ -1,0 +1,38 @@
+.animation-container {
+  display: block;
+  border: 5px solid rgb(0, 63, 87);
+  height: 250px;
+  width: 800px; /* Full width minus the fixed div and some margin */
+  border-radius: 15px;
+  margin: 0 auto 0 auto;
+  transition: transform 0.4s ease-in-out; /* Smooth transition */
+}
+
+.move-left {
+  transform: translate(-180px, 0);
+}
+
+.pseudocode-container {
+  position: fixed;
+  right: 0;
+  top: 100px;
+  width: 350px;
+  height: 500px;
+  background-color: rgb(150, 104, 44);
+  border-radius: 15px 0 0 15px;
+  transition: transform 0.4s ease-in-out; /* Smooth transition */
+}
+
+.hidden {
+  transform: translateX(100%); /* Move out of view */
+}
+
+.side-button {
+  position: fixed;
+  right: 0;
+  top: 45px;
+  padding: 10px;
+  width: 100px;
+  height: 50px
+
+}
