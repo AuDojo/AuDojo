@@ -8,6 +8,7 @@
   padding-top: 1rem;
   padding-right: 1rem;
   height: calc(100vh - 335px); /* Subtract header, total 335px */
+  max-height: 621px;
   width: fit-content;
   max-width: 100%;
   margin: auto;

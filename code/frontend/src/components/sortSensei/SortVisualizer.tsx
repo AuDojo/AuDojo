@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useSortContext } from "../../contexts/SortContext";
+import { useSortContext } from "../../hooks/sortContextHooks";
 import vizStyles from "../../styles/sortSensei/SortVisualizer.module.css";
 const SortVisualizer = () => {
   const { stepsList, step } = useSortContext();
@@ -10,7 +9,10 @@ const SortVisualizer = () => {
         stepsList[step - 1] &&
         stepsList[step - 1].map((number, index) => (
           <div key={index} className={vizStyles["bar-container"]}>
-            <div className={vizStyles["bar"]} style={{ height: `${number * 5}px` }}></div>
+            <div
+              className={vizStyles["bar"]}
+              style={{ height: `${number * 5}px` }}
+            ></div>
             <div>{number}</div>
           </div>
         ))}

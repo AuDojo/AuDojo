@@ -1,4 +1,4 @@
-import { useSortContext } from "../../contexts/SortContext";
+import { useSortContext } from "../../hooks/sortContextHooks";
 import styles from "../../styles/sortSensei/SortingTable.module.css";
 import TableRow from "./TableRow";
 

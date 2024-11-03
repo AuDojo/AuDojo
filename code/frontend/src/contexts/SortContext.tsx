@@ -1,7 +1,7 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 // Define types for our context state
-interface SortContextProps {
+export interface SortContextProps {
   stepsList: number[][];
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
@@ -9,16 +9,9 @@ interface SortContextProps {
 }
 
 // Create context with default values
-const SortContext = createContext<SortContextProps | undefined>(undefined);
-
-// Custom hook for using the context
-export const useSortContext = (): SortContextProps => {
-  const context = useContext(SortContext);
-  if (!context) {
-    throw new Error("useSortContext must be used within a SortProvider");
-  }
-  return context;
-};
+export const SortContext = createContext<SortContextProps | undefined>(
+  undefined
+);
 
 export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
   children,

@@ -1,4 +1,4 @@
-import { useSortContext } from "../../contexts/SortContext";
+import { useSortContext } from "../../hooks/sortContextHooks";
 import buttonStyles from "../../styles/sortSensei/Button.module.css";
 const SolveButton = () => {
   const { setStep, step, stepsList } = useSortContext();
