@@ -1,8 +1,17 @@
-.solve-button {
+.buttons-container {
+  position: absolute;
+  right: 50px; /* Align to the right edge of the container */
+  bottom: 0px; /* Align vertically with the middle-div */
+  /* transform: translateY(-50%); Center vertically */
+}
+.solve-button,
+.generate-buttons {
   display: flex;
+  flex-direction: column;
   justify-content: right;
 }
-.solve-button button {
+.solve-button button,
+.generate-buttons button {
   background-color: white;
   border-radius: 4px;
   padding: 8px 16px;
@@ -13,9 +22,18 @@
   cursor: pointer;
   margin: 10px;
 }
+.solve-button{
+  margin-top: 100px;
+}
 .solve-button button:hover {
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 .solve-button button:active {
+  opacity: 0.8;
+}
+.generate-buttons button:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+.generate-buttons button:active {
   opacity: 0.8;
 }
