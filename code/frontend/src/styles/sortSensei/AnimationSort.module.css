@@ -33,5 +33,11 @@
   .animation-container {
     width: 80%;
   }
+  .pseudocode-container {
+    display: none;
+  }
+  .move-left{
+    transform: none;
+  }
 }
 

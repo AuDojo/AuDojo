@@ -48,3 +48,9 @@
 .generate-buttons button:active {
   opacity: 0.8;
 }
+
+@media (max-width: 850px) {
+  .pseudo-button{
+    display: none;
+  }
+}
