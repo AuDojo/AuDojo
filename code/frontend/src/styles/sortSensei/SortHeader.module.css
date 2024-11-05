@@ -71,7 +71,7 @@
 }
 
 
-@media (max-width: 900px) {
+@media (max-width: 940px) {
   .header-nav {
     margin-left: 60px;
   }
@@ -83,7 +83,7 @@
 
 @media (max-width: 710px) {
   .header-nav {
-    margin-left: 15px;
+    margin-left: 20px;
   }
   .header-nav-list-item{
     width: 100px;
