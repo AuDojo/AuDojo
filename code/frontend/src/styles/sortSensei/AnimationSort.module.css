@@ -27,31 +27,7 @@
   transform: translateX(100%); /* Move out of view */
 }
 
-.side-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  right: 0;
-  z-index: 300;
-  top: 0;
-  width: 120px;
-  height: 45px;
-  background-color: rgb(238, 224, 226);
-  border-radius: 4px;
-  color: rgb(190, 30, 60);
-  font-size: 16px;
-  font-weight: 800;
-  border: 1px solid rgb(190, 30, 60);
-  cursor: pointer;
-  transition: all 0.15s ease-in-out;
-}
-.side-button:hover {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-}
-.side-button:active {
-  opacity: 0.8;
-}
+
 
 @media (max-width: 850px) {
   .animation-container {
