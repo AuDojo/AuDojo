@@ -1,3 +1,15 @@
+.pseudo-button {
+  display: inline-flex; 
+  justify-content: center;
+  align-items: center; 
+  position: fixed;
+  right: 0;
+  z-index: 300;
+  top: 0;
+  width: 120px;
+  height: 45px;
+}
+
 .buttons-container {
   position: absolute;
   right: -220px; /* Align to the right edge of the container */
@@ -9,9 +21,11 @@
   display: flex;
   flex-direction: column;
   justify-content: right;
+  row-gap: 20px;
 }
 .solve-button button,
-.generate-buttons button {
+.generate-buttons button,
+.pseudo-button {
   background-color: white;
   border-radius: 4px;
   padding: 8px 16px;
@@ -20,20 +34,17 @@
   font-weight: 800;
   border: 1px solid rgb(190, 30, 60);
   cursor: pointer;
-  margin: 10px;
 }
 .solve-button {
   margin-top: 100px;
 }
-.solve-button button:hover {
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-}
-.solve-button button:active {
-  opacity: 0.8;
-}
+.solve-button button:hover,
+.pseudo-button:hover,
 .generate-buttons button:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
+.solve-button button:active,
+.pseudo-button:active,
 .generate-buttons button:active {
   opacity: 0.8;
 }
