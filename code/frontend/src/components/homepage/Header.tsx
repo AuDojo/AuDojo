@@ -16,7 +16,15 @@ const Header = () => {
       <div className={headerStyles["header-nav"]}>
         <div className={`${headerStyles["header-nav-list"]} ${isOpen ? headerStyles.open : ""}`}>
           <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="TreeTutor" />
-          <HeaderNavItem to="/mergesort" text="SortSensei ▼" />
+          <div className={headerStyles["dropdown"]}>
+            <HeaderNavItem to="/mergesort" text="SortSensei ▼" />
+            <div className={headerStyles["dropdown-content"]}>
+              <HeaderNavItem to="/mergesort" text="Mergesort" />
+              <HeaderNavItem to="/quicksort" text="Quicksort" />
+              <HeaderNavItem to="/bubblesort" text="Bubblesort" />
+              <HeaderNavItem to="/selectionsort" text="Selectionsort" />
+            </div>
+          </div>
           <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="Kontakt" />
         </div>
 
