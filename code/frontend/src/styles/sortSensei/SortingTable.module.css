@@ -1,34 +1,23 @@
 .inner-table-buttons-container {
   margin-top: 20px;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   max-width: 1300px;
 }
 
 .outer-table-buttons-container {
   display: flex;
   justify-content: center;
+  overflow-x: auto; /* Enable horizontal scrolling */
 }
 
 .table-container {
   background-color: rgb(240, 240, 240);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   overflow: auto;
   height: 345px;
   padding-top: 1rem;
   padding-right: 1rem;
   height: calc(100vh - 335px); /* Subtract header, total 335px */
   max-height: 621px;
-  width: fit-content;
-}
-
-@media (max-width: 800px) {
-  .table-container {
-  }
 }
 
 .row-container {
