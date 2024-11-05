@@ -1,6 +1,6 @@
 .buttons-container {
   position: absolute;
-  right: 50px; /* Align to the right edge of the container */
+  right: -220px; /* Align to the right edge of the container */
   bottom: 0px; /* Align vertically with the middle-div */
   /* transform: translateY(-50%); Center vertically */
 }
@@ -22,7 +22,7 @@
   cursor: pointer;
   margin: 10px;
 }
-.solve-button{
+.solve-button {
   margin-top: 100px;
 }
 .solve-button button:hover {

@@ -1,3 +1,17 @@
+.inner-table-buttons-container {
+  margin-top: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1300px;
+}
+
+.outer-table-buttons-container {
+  display: flex;
+  justify-content: center;
+}
+
 .table-container {
   background-color: rgb(240, 240, 240);
   display: flex;
@@ -10,8 +24,6 @@
   height: calc(100vh - 335px); /* Subtract header, total 335px */
   max-height: 621px;
   width: fit-content;
-  max-width: 100%;
-  margin: auto;
 }
 
 @media (max-width: 800px) {
