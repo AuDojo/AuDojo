@@ -9,10 +9,7 @@ const SortVisualizer = () => {
         stepsList[step - 1] &&
         stepsList[step - 1].map((number, index) => (
           <div key={index} className={vizStyles["bar-container"]}>
-            <div
-              className={vizStyles["bar"]}
-              style={{ height: `${number * 5}px` }}
-            ></div>
+            <div className={vizStyles["bar"]} style={{ height: `${number * 5}px` }}></div>
             <div>{number}</div>
           </div>
         ))}
