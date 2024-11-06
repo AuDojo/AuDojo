@@ -13,9 +13,9 @@
 .buttons-container {
   position: absolute;
   right: -220px; /* Align to the right edge of the container */
-  bottom: 0px; /* Align vertically with the middle-div */
+  bottom: 0;
   overflow-y: auto;
-  height: calc(100vh - 360px);
+  height: calc(100%)
   /* transform: translateY(-50%); Center vertically */
 }
 .solve-button,
