@@ -23,16 +23,17 @@
   display: none;
 }
 
-.custom-array-input {
+input {
   height: 30px;
   font-size: 15px;
   width: 100%;
+  margin: 0 auto;
   border: 1px solid rgba(190, 30, 59, 0.87);
 }
-.custom-array-input:focus {
+input:focus {
   outline: 1px solid rgb(91, 133, 191);
 }
-.custom-array-input::placeholder {
+input::placeholder {
   font-size: 13px;
 }
 
@@ -90,7 +91,11 @@
 .generate-buttons {
   /* margin-top: 130px; */
   /* margin-top: clamp(20px, 10vh, 130px); */
-  margin-bottom: calc(20vh - 50px);
+  margin-bottom: calc(20vh - 80px);
+}
+
+.array-length-container input{
+  width: 50px;
 }
 
 @media (max-width: 850px) {
