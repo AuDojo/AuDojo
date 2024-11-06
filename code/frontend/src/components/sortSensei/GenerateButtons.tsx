@@ -5,6 +5,11 @@ import { useSortContext } from "../../hooks/sortContextHooks";
 const GenerateButtons = () => {
   const [customArray, setCustomArray] = useState<string>("");
   const { setStep, fetchStepsList } = useSortContext();
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+  const toggleSubmit = ()=>{
+    setIsSubmitting(!isSubmitting);
+  }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCustomArray(event.target.value);
@@ -49,18 +54,19 @@ const GenerateButtons = () => {
 
   return (
     <div className={buttonStyles["generate-buttons"]}>
-      <button>
-        New custom array
+      <button onClick={toggleSubmit} className={` ${buttonStyles[isSubmitting? "close-button":""]}`}>
+        {isSubmitting? "Close editing":"New custom array"}
       </button>
 
       <input 
         type="text" 
-        placeholder="4 10 7 20 15 30 25" 
+        placeholder=" 4 10 7 20 15 30 25 (Enter)" 
         value={customArray} 
         onChange={handleInputChange} 
-        className={buttonStyles["custom-array-input"]}
+        className={`${buttonStyles["custom-array-input"]} ${!isSubmitting? buttonStyles["no-submitting"]: ""}`}
         onKeyDown={(e) => e.key === "Enter" && submitCustomArray()}
       />
+      <button className={`${buttonStyles["submit-button"]} ${!isSubmitting? buttonStyles["no-submitting"]: ""}`} onClick={submitCustomArray}>Submit</button>
 
       <button onClick={handleRandomArray}>
         New random array
