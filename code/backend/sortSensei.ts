@@ -33,7 +33,7 @@ export class SortSensei {
 
       //TODO: Kommentare in den Cases entfernen, sobald die dazugehörigen Methoden fertig sind
       case SortType.BubbleSort:
-        //this.#bubbleSort();
+        this.#bubbleSort(list);
         break;
       case SortType.SelectionSort:
         this.#selectionSort(list);
@@ -121,17 +121,29 @@ export class SortSensei {
   }
 
   // ------------- BubbleSort -------------
+  static #bubbleSort(list: number[]) {
+    for (let i = 0; i < list.length; i++) {
+      for (let j = 0; j < list.length - i; j++) {
+        if (list[j] > list[j + 1]) {
+          let temp = list[j + 1]
+          list[j + 1] = list[j]
+          list[j] = temp;
+          this.#processList?.pushList(list);
+        }
+      }
+    }
+  }
 
   // ------------- SelectionSort -------------
-  static #selectionSort(list:number[]) {
+  static #selectionSort(list: number[]) {
 
-    for(let i=0;i<list.length-1;i++) {
+    for (let i = 0; i < list.length - 1; i++) {
       let min = list[i];
       let minIndex = i;
-  
+
       //Finde Minimum in Teilarray
-      for(let j= i+1;j<list.length;j++) {
-        if(min > list[j]) {
+      for (let j = i + 1; j < list.length; j++) {
+        if (min > list[j]) {
           min = list[j];
           minIndex = j;
         }
@@ -140,7 +152,7 @@ export class SortSensei {
       let temp = list[i];
       list[i] = min;
       list[minIndex] = temp;
-  
+
       //Zwischenarray in processList reinstecken 
       this.#processList?.pushList(list);
     }
@@ -151,14 +163,14 @@ export class SortSensei {
    * @param list list of numbers to sort
    * Logs the sorted list to the console.
    */
-  static test(list: number[]) {
-    console.log(this.createSortProcessList(list, SortType.QuickSort));
+  static test(list: number[], sortMode: SortType) {
+    console.log(this.createSortProcessList(list, sortMode));
   }
 }
 
-// SortSensei.test([11, 13, 4, 9, 3, 5, 16, 2, 29, 21, 1]);
-SortSensei.test([2, 8, 7, 1, 3, 5, 6, 4]);
+// SortSensei.test([11, 13, 4, 9, 3, 5, 16, 2, 29, 21, 1],SortType.QuickSort);
+SortSensei.test([7, 1, 8, 2, 3, 5], SortType.BubbleSort);
 
-// SortSensei.test([8, 7, 6, 5, 4, 3, 2, 1]);
-// SortSensei.test([1, 2, 3, 4, 5, 6, 7, 8]);
-// SortSensei.test([4, 2, 1, 3, 8, 6, 7, 5]);
+// SortSensei.test([8, 7, 6, 5, 4, 3, 2, 1],SortType.QuickSort);
+// SortSensei.test([1, 2, 3, 4, 5, 6, 7, 8],SortType.QuickSort);
+// SortSensei.test([4, 2, 1, 3, 8, 6, 7, 5],SortType.QuickSort);
