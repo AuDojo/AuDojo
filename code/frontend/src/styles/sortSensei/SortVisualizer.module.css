@@ -9,7 +9,7 @@
 .bar-container {
   display: flex;
   flex-direction: column;
-  width: calc(100% / 10);
+  width: calc(100% / 13);
   justify-content: end;
   text-align: center;
 }
