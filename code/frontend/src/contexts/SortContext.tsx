@@ -16,9 +16,10 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [stepsList, setStepsList] = useState<number[][]>([]);
   const [step, setStep] = useState<number>(1);
 
-  async function fetchStepsList(array: number[] = [7, 13, 5, 9, 10, 12, 1, 3, 2, 6, 25, 30, 40, 38, 32]) {
-    try {
-      const sortType:string = location.pathname.split("/")[1] || "mergesort";
+  useEffect(() => {
+    async function fetchStepsList() {
+      const sortType:string = location.pathname.split("/")[1] || "mergesort"; //listens to current path
+
       const response = await fetch("/api/sorting/" + sortType, {
         method: "POST",
         headers: {
