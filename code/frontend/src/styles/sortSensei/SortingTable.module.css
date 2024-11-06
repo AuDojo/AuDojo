@@ -11,7 +11,7 @@
 }
 
 .table-container {
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(245, 245, 245);
   overflow: auto;
   height: 345px;
   padding-top: 1rem;
@@ -31,6 +31,7 @@
   text-align: right; /* Align the number to the right */
   padding-right: 0.5rem; /* Add space between the index and the input cells */
   font-size: 1.3rem;
+  font-weight: 600;
 }
 
 .cell-input {
@@ -38,5 +39,17 @@
   width: 3rem; /* Adjust width as needed */
   height: 2rem;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+
+  border: 1px solid rgb(220, 220, 220);
+  border-left-width: 0.5px;
+  border-right-width: 0.5px;
+
+  outline: none;
+}
+.cell-input:hover:not(:focus):not(:disabled) {
+  background-color: rgb(234, 234, 234);
+}
+.cell-input:focus {
+  border-color: rgb(59, 130, 246);
 }
