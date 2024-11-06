@@ -18,7 +18,7 @@ const SolveButton = () => {
   };
 
   return (
-    <div className={buttonStyles["solve-button"]}>
+    <div className={buttonStyles["solve-buttons"]}>
       <button onClick={handleSolveAll}>Solve All</button>
       <button onClick={handleSolveLine}>Solve Line</button>
       <button onClick={handleTryAgain}>Try Again</button>
