@@ -14,6 +14,8 @@
   position: absolute;
   right: -220px; /* Align to the right edge of the container */
   bottom: 0px; /* Align vertically with the middle-div */
+  overflow-y: auto;
+  height: calc(100vh - 360px);
   /* transform: translateY(-50%); Center vertically */
 }
 .solve-button,
@@ -21,7 +23,7 @@
   display: flex;
   flex-direction: column;
   justify-content: right;
-  row-gap: 20px;
+  row-gap: 15px;
 }
 .solve-button button,
 .generate-buttons button,
@@ -52,5 +54,10 @@
 @media (max-width: 850px) {
   .pseudo-button{
     display: none;
+  }
+}
+@media(max-height: 700px){
+  .solve-button{
+    margin-top: 30px;
   }
 }
