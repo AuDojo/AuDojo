@@ -18,7 +18,7 @@ const TableRow = ({ stepList: stepList, index }: RowProps) => {
   // Handle change for editable inputs
   const handleChange = (value: string, i: number) => {
     // Check if the input value is either empty or a valid number
-    if (Number(value) || value === "") {
+    if (Number(value) <= 40 || value === "") {
       const updatedValues = [...inputValues];
       updatedValues[i] = value; // Update the specific index with new value
       setInputValues(updatedValues); // Update the state
