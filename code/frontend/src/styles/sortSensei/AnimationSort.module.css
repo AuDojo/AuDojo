@@ -27,8 +27,6 @@
   transform: translateX(100%); /* Move out of view */
 }
 
-
-
 @media (max-width: 850px) {
   .animation-container {
     width: 80%;
