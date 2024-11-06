@@ -1,4 +1,5 @@
-import { useState } from "react";
+import classNames from "classnames";
+import React, { useEffect, useRef, useState } from "react";
 import { useSortContext } from "../../hooks/sortContextHooks";
 import styles from "../../styles/sortSensei/SortingTable.module.css";
 
@@ -14,6 +15,15 @@ const TableRow = ({ stepList: stepList, index }: RowProps) => {
   const [inputValues, setInputValues] = useState<string[]>(
     index < step ? stepList.map(String) : Array(stepList.length).fill("")
   );
+  // Create an array of refs for each input in the row
+  const inputRefs = useRef<HTMLInputElement[]>([]);
+
+  useEffect(() => {
+    // Initialize refs array to match the number of inputs
+    inputRefs.current = Array(stepList.length)
+      .fill(null)
+      .map((_, i) => inputRefs.current[i] || React.createRef());
+  }, [stepList.length]);
 
   // Handle change for editable inputs
   const handleChange = (value: string, i: number) => {
@@ -25,20 +35,55 @@ const TableRow = ({ stepList: stepList, index }: RowProps) => {
     }
   };
 
+  //TODO: Ugly DOM, use something with react, maybe ref
+  const handleKeyDown = (
+    event: React.KeyboardEvent<HTMLInputElement>,
+    i: number
+  ) => {
+    if ((event.key === "Enter" && event.shiftKey) || event.key === "a") {
+      // Move to previous input field
+      const prevInput = document.querySelectorAll<HTMLInputElement>(
+        `.${styles["cell-input"]}`
+      )[index * stepList.length + i - 1];
+      if (prevInput) prevInput.focus();
+    } else if (
+      (event.key === "Enter" && !event.shiftKey) ||
+      event.key === "d"
+    ) {
+      // Move to the next input field
+      const nextInput = document.querySelectorAll<HTMLInputElement>(
+        `.${styles["cell-input"]}`
+      )[index * stepList.length + i + 1];
+      if (nextInput) nextInput.focus();
+    } else if (event.key === "s" || event.key === "ArrowDown") {
+      const lowerInput = document.querySelector<HTMLInputElement>(
+        `.row${index + 1}col${i}`
+      );
+      if (lowerInput) lowerInput.focus();
+    } else if (event.key === "w" || event.key === "ArrowUp") {
+      const lowerInput = document.querySelector<HTMLInputElement>(
+        `.row${index - 1}col${i}`
+      );
+      if (lowerInput) lowerInput.focus();
+    } else if (event.key === "Escape") {
+      // Unfocus the input field
+      (event.target as HTMLInputElement).blur();
+    }
+  };
+
   return (
     <div className={styles["row-container"]}>
       <span className={styles["row-index"]}>{index}</span>
       {stepList.map((num, i) => (
         <input
           key={i}
-          className={styles["cell-input"]}
+          className={classNames(styles["cell-input"], `row${index}col${i}`)}
           value={index < step ? num : inputValues[i]} // Show number for index 0, or value from state otherwise
           readOnly={index < step} // Make read-only if index is 0
-          onChange={(event) => {
-            if (index >= step) {
-              handleChange(event.target.value, i); // Update value if index is not 0
-            }
-          }}
+          onChange={
+            (event) => index >= step && handleChange(event.target.value, i) // Update value if index is not 0
+          }
+          onKeyDown={(event) => handleKeyDown(event, i)}
         />
       ))}
     </div>
