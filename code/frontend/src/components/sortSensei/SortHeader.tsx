@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import audojoLogo from "../../assets/logo-audojo.png";
 import headerStyles from "../../styles/sortSensei/SortHeader.module.css";
 
@@ -12,7 +12,9 @@ const HeaderNavItem = ({ to, text, activeSort, onClick }: { to: string; text: st
 };
 
 const SortHeader = () => {
-  const [activeSort, setActiveSort] = useState<string>("mergesort");
+  const location = useLocation();
+  const currentSort = location.pathname.replace("/", "") || "mergesort"; // get the current path name
+  const [activeSort, setActiveSort] = useState<string>(currentSort);
 
   return (
     <div className={headerStyles["header-container"]}>
@@ -36,15 +38,23 @@ const SortHeader = () => {
             activeSort={activeSort === "quicksort"} 
             onClick={() => setActiveSort("quicksort")} 
             to="/quicksort" 
-            text="Quicksort" 
+            text="QuickSort" 
           />
-
+          
           <HeaderNavItem 
             activeSort={activeSort === "bubblesort"} 
             onClick={() => setActiveSort("bubblesort")} 
-            to="/mergesort" 
-            text="Bubblesort" 
+            to="/bubblesort" 
+            text="BubbleSort" 
           />
+
+          <HeaderNavItem 
+            activeSort={activeSort === "selectionsort"} 
+            onClick={() => setActiveSort("bubblesort")} 
+            to="/selectionsort" 
+            text="SelectionSort" 
+          />
+          
         </div>
       </div>
     </div>

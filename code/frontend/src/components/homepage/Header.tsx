@@ -19,10 +19,10 @@ const Header = () => {
           <div className={headerStyles["dropdown"]}>
             <HeaderNavItem to="/mergesort" text="SortSensei ▼" />
             <div className={headerStyles["dropdown-content"]}>
-              <HeaderNavItem to="/mergesort" text="Mergesort" />
-              <HeaderNavItem to="/quicksort" text="Quicksort" />
-              <HeaderNavItem to="/bubblesort" text="Bubblesort" />
-              <HeaderNavItem to="/selectionsort" text="Selectionsort" />
+              <HeaderNavItem to="/mergesort" text="MergeSort" />
+              <HeaderNavItem to="/quicksort" text="QuickSort" />
+              <HeaderNavItem to="/bubblesort" text="BubbleSort" />
+              <HeaderNavItem to="/selectionsort" text="SelectionSort" />
             </div>
           </div>
           <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="Kontakt" />
