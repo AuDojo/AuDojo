@@ -4,14 +4,18 @@
   padding: 0 10px 0 10px;
   height: 100%;
   column-gap: 10px;
+  justify-content: center;
 }
 .bar-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: calc(100% / 10);
   justify-content: end;
   text-align: center;
 }
 .bar {
   background-color: rgb(0, 63, 87);
+  margin: 0 auto;
+  width: 100%;
+  max-width: 50px;
 }
