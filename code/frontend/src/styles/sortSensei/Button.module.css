@@ -1,7 +1,7 @@
 .pseudo-button {
-  display: inline-flex; 
+  display: inline-flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   position: fixed;
   right: 0;
   z-index: 300;
@@ -10,22 +10,61 @@
   height: 45px;
 }
 
+.generate-buttons .submit-button,
+.generate-buttons .close-button {
+  background-color: rgb(190, 30, 60);
+  color: white;
+}
+
+.submit-button {
+  margin-bottom: 20px;
+}
+.no-submitting {
+  display: none;
+}
+
+.custom-array-input {
+  height: 30px;
+  font-size: 15px;
+  width: 100%;
+  border: 1px solid rgba(190, 30, 59, 0.87);
+}
+.custom-array-input:focus {
+  outline: 1px solid rgb(91, 133, 191);
+}
+.custom-array-input::placeholder {
+  font-size: 13px;
+}
+
 .buttons-container {
   position: absolute;
-  right: -220px; /* Align to the right edge of the container */
-  bottom: 0;
+  right: -215px; /* Align to the right edge of the container */
+  top: 0px;
+  height: 100%;
   overflow-y: auto;
-  height: calc(100%)
-  /* transform: translateY(-50%); Center vertically */
+  max-width: 190px;
+  scrollbar-width: auto;
+  padding-right: 5px;
 }
-.solve-button,
+
+/* .buttons-container::-webkit-scrollbar{
+  width: 3px;
+}
+
+.buttons-container::-webkit-scrollbar-thumb{
+  background-color: rgb(197, 197, 197);
+} */
+
+.solve-buttons,
 .generate-buttons {
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: right;
   row-gap: 15px;
 }
-.solve-button button,
+
+.solve-buttons button,
 .generate-buttons button,
 .pseudo-button {
   background-color: white;
@@ -37,27 +76,25 @@
   border: 1px solid rgb(190, 30, 60);
   cursor: pointer;
 }
-.solve-button {
-  margin-top: 100px;
-}
-.solve-button button:hover,
+.solve-buttons button:hover,
 .pseudo-button:hover,
 .generate-buttons button:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
-.solve-button button:active,
+.solve-buttons button:active,
 .pseudo-button:active,
 .generate-buttons button:active {
   opacity: 0.8;
 }
 
-@media (max-width: 850px) {
-  .pseudo-button{
-    display: none;
-  }
+.generate-buttons {
+  /* margin-top: 130px; */
+  /* margin-top: clamp(20px, 10vh, 130px); */
+  margin-bottom: calc(20vh - 50px);
 }
-@media(max-height: 700px){
-  .solve-button{
-    margin-top: 30px;
+
+@media (max-width: 850px) {
+  .pseudo-button {
+    display: none;
   }
 }
