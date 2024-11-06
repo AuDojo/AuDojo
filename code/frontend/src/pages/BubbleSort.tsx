@@ -7,7 +7,7 @@ import styles from "../styles/sortSensei/general.module.css";
 import buttonsStyles from "../styles/sortSensei/Button.module.css";
 import GenerateButtons from "../components/sortSensei/GenerateButtons";
 
-const QuickSort = () => {
+const BubbleSort = () => {
   return (
     <SortProvider>
     <SortHeader />
@@ -28,7 +28,7 @@ const QuickSort = () => {
       <div></div>
     </div>
   </SortProvider>
-  )
-}
+  );
+};
 
-export default QuickSort;
+export default BubbleSort;

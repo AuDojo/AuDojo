@@ -21,7 +21,9 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     async function fetchStepsList() {
-      const response = await fetch("/api/sorting/mergesort", {
+      const sortType:string = location.pathname.split("/")[1] || "mergesort"; //listens to current path
+
+      const response = await fetch("/api/sorting/" + sortType, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

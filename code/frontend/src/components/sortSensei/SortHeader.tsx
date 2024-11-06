@@ -42,8 +42,15 @@ const SortHeader = () => {
           <HeaderNavItem 
             activeSort={activeSort === "bubblesort"} 
             onClick={() => setActiveSort("bubblesort")} 
-            to="/mergesort" 
+            to="/bubblesort" 
             text="Bubblesort" 
+          />
+
+          <HeaderNavItem 
+            activeSort={activeSort === "selectionsort"} 
+            onClick={() => setActiveSort("selectionsort")} 
+            to="/selectionsort" 
+            text="Selectionsort" 
           />
         </div>
       </div>
