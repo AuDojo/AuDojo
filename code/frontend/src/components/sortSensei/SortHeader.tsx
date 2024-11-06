@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import audojoLogo from "../../assets/logo-audojo.png";
 import headerStyles from "../../styles/sortSensei/SortHeader.module.css";
