@@ -15,14 +15,8 @@ const TableRow = ({ stepList, index, sortType }: RowProps) => {
   const mergeRange = mergeRanges[index];
   // State to hold the values for editable cells, initialize with empty strings for non-zero indexes
   const [inputValues, setInputValues] = useState<string[]>(
-    stepList.map(String)
+    index < step ? stepList.map(String) : Array(stepList.length).fill("")
   );
-
-  useEffect(() => {
-    // Sync inputValues with stepList whenever stepList changes
-    setInputValues(stepList.map(String));
-  }, [stepList]);
-
   // Create an array of refs for each input in the row
   const inputRefs = useRef<HTMLInputElement[]>([]);
 
