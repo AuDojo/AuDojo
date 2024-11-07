@@ -7,6 +7,7 @@ const GenerateButtons = () => {
   const { setStep, fetchStepsList } = useSortContext();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [arrayLength, setArrayLength] = useState<number>(7);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const toggleSubmit = () => {
     setIsSubmitting(!isSubmitting);
@@ -26,17 +27,23 @@ const GenerateButtons = () => {
     const outOfRangeNumbers = array.filter((num) => num <= 0 || num > 40);
 
     if (outOfRangeNumbers.length > 0) {
-      alert("Please enter numbers only in the range 1 to 40.");
+      setErrorMessage("Please enter numbers only in the range 1 to 40.");
+      setTimeout(() => setErrorMessage(""), 1500);
       return;
     }
 
     if (array.length < 2) {
       //! min array length
-      alert("Please enter at least 2 numbers.");
+      setIsSubmitting(false);
+      setErrorMessage("Please enter at least 2 numbers.");
+      setCustomArray("");
+      setTimeout(() => setErrorMessage(""), 1500);
       return;
     }
     if (array.length > 15) {
-      alert("Please enter at most 15 numbers");
+      // alert("Please enter at most 15 numbers");
+      setErrorMessage("Please enter at most 15 numbers.");
+      setTimeout(() => setErrorMessage(""), 1500);
       return;
     }
 
@@ -45,7 +52,7 @@ const GenerateButtons = () => {
   };
 
   const generateRandomArray = (length = 7, max = 40) => {
-    return Array.from({ length }, () => Math.floor(Math.random() * (max + 1) + 1));
+    return Array.from({ length }, () => Math.floor(Math.random() * max + 1));
   };
 
   const handleRandomArray = () => {
@@ -70,7 +77,6 @@ const GenerateButtons = () => {
       <button onClick={toggleSubmit} className={` ${buttonStyles[isSubmitting ? "close-button" : ""]}`}>
         {isSubmitting ? "Close editing" : "New custom array"}
       </button>
-
       <input
         type="text"
         placeholder=" 4 10 7 20 15 30 25 (Enter)"
@@ -79,6 +85,7 @@ const GenerateButtons = () => {
         className={`${!isSubmitting ? buttonStyles["no-submitting"] : ""}`}
         onKeyDown={(e) => e.key === "Enter" && submitCustomArray()}
       />
+      {errorMessage && <div style={{ color: "red", fontSize: "12px" }}>{errorMessage}</div>}
       <button
         className={`${buttonStyles["submit-button"]} ${!isSubmitting ? buttonStyles["no-submitting"] : ""}`}
         onClick={submitCustomArray}
