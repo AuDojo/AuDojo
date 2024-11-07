@@ -22,7 +22,7 @@ const AnimationSort = () => {
         </div>
         
       </div>
-      <button className={animationStyles["side-button"]} onClick={togglePseudocode}>
+      <button className={buttonStyles["pseudo-button"]} onClick={togglePseudocode}>
         {isPseudocodeVisible ? "CLOSE" : "Show pseudocode"}
       </button>
     </>

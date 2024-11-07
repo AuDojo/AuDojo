@@ -56,8 +56,7 @@ const SortHeader = () => {
             to="/quicksort"
             text="QuickSort"
           />
-
-<HeaderNavItem
+          <HeaderNavItem
             activeSort={activeSort === "bubblesort"}
             onClick={() => setActiveSort("bubblesort")}
             to="/bubblesort"
@@ -69,13 +68,6 @@ const SortHeader = () => {
             onClick={() => setActiveSort("bubblesort")}
             to="/selectionsort"
             text="SelectionSort"
-          />
-
-          <HeaderNavItem 
-            activeSort={activeSort === "selectionsort"} 
-            onClick={() => setActiveSort("selectionsort")} 
-            to="/selectionsort" 
-            text="Selectionsort" 
           />
         </div>
       </div>
