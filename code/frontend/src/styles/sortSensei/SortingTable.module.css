@@ -51,5 +51,17 @@
   background-color: rgb(234, 234, 234);
 }
 .cell-input:focus {
+  outline: none;
   border-color: rgb(59, 130, 246);
+}
+
+.in-merge-range {
+  background-color: rgba(86, 207, 0, 0.911);
+  border: none;
+}
+.in-merge-range:hover:not(:focus):not(:disabled) {
+  background-color: rgb(94, 219, 4);
+}
+.in-merge-range:focus {
+  border: 1px solid rgb(38, 112, 1);
 }

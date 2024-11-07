@@ -18,9 +18,10 @@ const MergeSort = () => {
         </div>
         <div className={tableStyles["outer-table-buttons-container"]}>
           <div className={tableStyles["inner-table-buttons-container"]}>
+            {/* Left Tips */}
             <SortTips />
             {/* Table */}
-            <SortingTable />
+            <SortingTable sortType="mergesort" />
             {/* right buttons */}
             <div className={buttonsStyles["buttons-container"]}>
               <GenerateButtons />
