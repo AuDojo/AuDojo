@@ -6,15 +6,23 @@ import styles from "../../styles/sortSensei/SortingTable.module.css";
 interface RowProps {
   stepList: number[];
   index: number;
+  sortType: string;
 }
 
-const TableRow = ({ stepList: stepList, index }: RowProps) => {
+const TableRow = ({ stepList, index, sortType }: RowProps) => {
   // Access the context values
-  const { step } = useSortContext();
+  const { step, mergeRanges } = useSortContext();
+  const mergeRange = mergeRanges[index];
   // State to hold the values for editable cells, initialize with empty strings for non-zero indexes
   const [inputValues, setInputValues] = useState<string[]>(
-    index < step ? stepList.map(String) : Array(stepList.length).fill("")
+    stepList.map(String)
   );
+
+  useEffect(() => {
+    // Sync inputValues with stepList whenever stepList changes
+    setInputValues(stepList.map(String));
+  }, [stepList]);
+
   // Create an array of refs for each input in the row
   const inputRefs = useRef<HTMLInputElement[]>([]);
 
@@ -71,13 +79,26 @@ const TableRow = ({ stepList: stepList, index }: RowProps) => {
     }
   };
 
+  const isInMergeRange = (i: number) => {
+    return i >= mergeRange[0] && i <= mergeRange[1];
+  };
+
   return (
     <div className={styles["row-container"]}>
       <span className={styles["row-index"]}>{index}</span>
       {stepList.map((num, i) => (
         <input
           key={i}
-          className={classNames(styles["cell-input"], `row${index}col${i}`)}
+          className={classNames(
+            styles["cell-input"],
+            `row${index}col${i}`,
+            `${
+              sortType === "mergesort" &&
+              isInMergeRange(i) &&
+              index < step &&
+              styles["in-merge-range"]
+            }`
+          )}
           value={index < step ? num : inputValues[i]} // Show number for index 0, or value from state otherwise
           readOnly={index < step} // Make read-only if index is 0
           onChange={
