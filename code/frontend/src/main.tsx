@@ -4,8 +4,9 @@ import "./index.css";
 import Home from "./pages/Home.tsx";
 import MergeSort from "./pages/MergeSort.tsx";
 import QuickSort from "./pages/QuickSort.tsx";
-import SelectionSort from "./pages/SelectionSort.tsx";
 import BubbleSort from "./pages/BubbleSort.tsx";
+import SelectionSort from "./pages/SelectionSort.tsx";
+import Tutorial from "./pages/Tutorial.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -13,8 +14,9 @@ const router = createBrowserRouter(
       <Route path="/" element={<Home />} />
       <Route path="mergesort" element={<MergeSort />} />
       <Route path="quicksort" element={<QuickSort />} />
-      <Route path="selectionsort" element={<SelectionSort />} />
       <Route path="bubblesort" element={<BubbleSort />} />
+      <Route path="selectionsort" element={<SelectionSort />} />
+      <Route path="tutorial" element={<Tutorial />}/>
       {/* <Route path="sortsensei/mergesort" element={<Home />} /> */}
       {/* Nested route */}
     </>
