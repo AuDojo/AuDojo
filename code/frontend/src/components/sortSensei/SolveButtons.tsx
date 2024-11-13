@@ -1,7 +1,7 @@
 import { useSortContext } from "../../hooks/sortContextHooks";
 import buttonStyles from "../../styles/sortSensei/Button.module.css";
 const SolveButton = () => {
-  const { setStep, step, stepsList } = useSortContext();
+  const { setStep, step, stepsList, setInputCellValues } = useSortContext();
 
   const handleSolveLine = () => {
     if (step < stepsList.length) {
@@ -15,6 +15,9 @@ const SolveButton = () => {
 
   const handleTryAgain = () => {
     setStep(1);
+    setInputCellValues(
+      stepsList.map((step) => new Array(step.length).fill(""))
+    );
   };
 
   return (

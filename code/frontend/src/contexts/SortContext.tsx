@@ -5,8 +5,10 @@ export interface SortContextProps {
   stepsList: number[][];
   mergeRanges: [number, number][];
   step: number;
+  inputCellValues: string[][];
   setStep: React.Dispatch<React.SetStateAction<number>>;
   setStepsList: React.Dispatch<React.SetStateAction<number[][]>>;
+  setInputCellValues: React.Dispatch<React.SetStateAction<string[][]>>;
   fetchStepsList: (array: number[]) => Promise<void>;
   inputCellsRef: React.MutableRefObject<HTMLInputElement[][]>;
 }
@@ -38,6 +40,7 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
   const [stepsList, setStepsList] = useState<number[][]>([]);
   const [step, setStep] = useState<number>(1);
   const [mergeRanges, setMergeRanges] = useState<[number, number][]>([]);
+  const [inputCellValues, setInputCellValues] = useState<string[][]>([]);
   const inputCellsRef = useRef<HTMLInputElement[][]>([]);
 
   async function fetchStepsList(
@@ -65,6 +68,12 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
       inputCellsRef.current = fetchedStepsList.map((step) =>
         new Array(step.length).fill(null)
       );
+
+      // Initialize the inputCellValues with correct dimensions
+      setInputCellValues(
+        fetchedStepsList.map((step) => new Array(step.length).fill(""))
+      );
+
       //TODO: Into Backend
       const ranges: [number, number][] = [];
       getMergeRanges(ranges, 0, array.length - 1);
@@ -84,8 +93,10 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
         stepsList,
         mergeRanges,
         step,
+        inputCellValues,
         setStep,
         setStepsList,
+        setInputCellValues,
         fetchStepsList,
         inputCellsRef,
       }}

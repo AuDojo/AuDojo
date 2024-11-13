@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { useSortContext } from "../../hooks/sortContextHooks";
 import styles from "../../styles/sortSensei/SortingTable.module.css";
 
@@ -17,35 +17,28 @@ interface RowProps {
  */
 const TableRow = ({ stepList, rowIndex, sortType }: RowProps) => {
   // Access the context values
-  const { step, mergeRanges, inputCellsRef } = useSortContext();
+  const {
+    step,
+    mergeRanges,
+    inputCellsRef,
+    inputCellValues,
+    setInputCellValues,
+  } = useSortContext();
   const mergeRange = mergeRanges[rowIndex];
-  // State to hold the values for editable cells, initialize with empty strings for non-zero indexes
-  const [inputValues, setInputValues] = useState<string[]>(
-    rowIndex < step ? stepList.map(String) : Array(stepList.length).fill("")
-  );
-  // Create an array of refs for each input in the row
-  const inputRefs = useRef<HTMLInputElement[]>([]);
-
-  useEffect(() => {
-    // Initialize refs array to match the number of inputs
-    inputRefs.current = Array(stepList.length)
-      .fill(null)
-      .map((_, i) => inputRefs.current[i] || React.createRef());
-  }, [stepList.length]);
 
   /**
    * Updates the state of the input values in the row when a user types in a new value.
    * Checks if the input value is either empty or a valid number (less than or equal to 40)
    * and only updates the state if the input passes this check.
    * @param value The new value of the input
-   * @param rowIndex The index of the input in the row
+   * @param columnIndex The index of the input in the row
    */
-  const handleChange = (value: string, rowIndex: number): void => {
+  const handleChange = (value: string, columnIndex: number): void => {
     // Check if the input value is either empty or a valid number
     if (Number(value) <= 40 || value === "") {
-      const updatedValues = [...inputValues];
-      updatedValues[rowIndex] = value; // Update the specific index with new value
-      setInputValues(updatedValues); // Update the state
+      const updatedValues = [...inputCellValues];
+      updatedValues[rowIndex][columnIndex] = value; // Update the specific index with new value
+      setInputCellValues(updatedValues); // Update the state
     }
   };
 
@@ -122,7 +115,9 @@ const TableRow = ({ stepList, rowIndex, sortType }: RowProps) => {
               styles["in-merge-range"]
             }`
           )}
-          value={rowIndex < step ? num : inputValues[columnIndex]} // Show number for index below step, or value from state otherwise
+          value={
+            rowIndex < step ? num || "" : inputCellValues[rowIndex][columnIndex]
+          } // Show number for index below step, or value from state otherwise
           readOnly={rowIndex < step} // Make read-only if index is below current step
           ref={(el) => {
             // Assign the input element to the appropriate cell in the ref
