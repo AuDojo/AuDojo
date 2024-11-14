@@ -1,18 +1,8 @@
 # AuDojo
 
-Wir sind überzeugt, dass viele Studierende von einem interaktiven Lernwerkzeug für AuD pro-
-fitieren würden. Daher möchten wir eine Website erstellen mit folgenden Funktionen:
-- Schrittweise Übungen zu AVL-Tree-Operationen und Sortieralgorithmen mit detaillierten Erklärungen
-- Sofortige Überprüfung zu eigenen Lösungsansätzen
-- Gamifizierung des Lernprozesses durch ein Punktesystem für gelöste Aufgaben und ein
-motivierendes Leaderboard.
+Viele Studierende wünschen sich eine Möglichkeit, um AVL-Bäume und Sortieralgorithmen selbst zu üben und besser zu verstehen. AuDojo ergänzt die normalen Vorlesungen und Übungen mit einer Website, auf der man Schritt für Schritt lernen und direkt sehen kann, ob man auf dem richtigen Weg ist. Durch das spielerische Üben macht das Lernen mehr Spaß, die Studierenden verstehen die Themen besser und trauen sich mehr zu.
 
-Unser übergeordnetes Ziel ist es, den Lernprozess für AuD-Studierende effizienter und ange-
-nehmer zu gestalten. Wir streben danach, mit diesem Tool Unsicherheiten abzubauen und
-das Selbstvertrauen der Studierenden im Umgang mit diesen fundamentalen Konzepten zu
-stärken.
-
-# Start Backend and Frontend
+## Start Backend and Frontend
 
 ### Setup
 
