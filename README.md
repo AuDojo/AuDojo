@@ -1,15 +1,12 @@
-# AuDojo
+# AuDojo ⛩️
 
-Viele Studierende wünschen sich eine Möglichkeit, um AVL-Bäume und Sortieralgorithmen selbst zu üben und besser zu verstehen. 
+- AVL-Bäume und Sortieralgorithmen selbstständig üben und verstehen 📚
+- Interaktive Website mit Schritt-für-Schritt-Lernen und direktem Feedback ✅
+- Spielerisches Üben für mehr Verständnis und Selbstvertrauen 💪
 
-AuDojo ergänzt die normalen Vorlesungen und Übungen mit einer Website, auf der man Schritt für Schritt lernen und direkt sehen kann, ob man auf dem richtigen Weg ist. 
+## Start Backend and Frontend ⚡
 
-Durch das spielerische Üben macht das Lernen mehr Spaß, die Studierenden verstehen die Themen besser und trauen sich mehr zu.
-:wink:
-
-## Start Backend and Frontend
-
-### Setup
+### Installation
 
 ```bash
 cd code/
@@ -18,7 +15,7 @@ cd frontend/
 npm i # Install frontend dependencies
 ```
 
-### Run
+### Run 🏃‍♂️
 
 ```bash
 cd code/
@@ -27,34 +24,30 @@ cd frontend/
 npm run dev # Run frontend server on some localhost (look at terminal)
 
 ```
+    
+## ✨ Kriterien ✨
+### 🔥 Muss
+  - 🐳 Docker-Unterstützung
+  - ✅ Tests für Stabilität
+  - 🌳 TreeTutor: Übungstool für AVL-Bäume
+  - 🔄 SortSensei: Sortieralgorithmen trainieren
+  - 🎮 Single-Player-Modus
+  - 🎲 Zufällig generierte Trees und Arrays
+  - 📖 Verlinkung auf AuD-Anleitungen
+  - 📜 Einsehen von Pseudo-Code der Algorithmen
 
-## Kriterien
+### 💡 Soll
+  - ⭐ Punktesystem für mehr Motivation
+  - ⚔️ Battles:
+        1v1
+        Team vs. Team
+  - 🏆 Leaderboard für den Wettbewerb
+  - 📚 Generierte Anleitungen zur Hilfe
 
-### Muss
-
-- Docker einrichten
-- Tests
-- TreeTutor
-- SortSensei
-- "Single-Player"
-- Zufallsgenerierte Trees und Arrays
-- Verlinkung auf AuD Anleitungen
-- Möglichkeit den jeweiligen Pseudo-Code mit anzusehen
-
-### Soll
-
-- Punktesystem
-- Battle mit anderen Studenten
-  - one v. one
-  - Team v. Team
-- Leaderboard
-- Generierte Anweisungen / Anleitungen zur Hilfe
-
-### Kann
-
-- Chat-Bot Helfer
-- Breiten- Tiefensuche
-- Accounts
-- Battle in der Vorlesung
-- AuD2 Dynamic Programming
-- Story-Mode
+### 🌟 Kann
+  - 🤖 Chat-Bot-Helfer für Unterstützung
+  - 🔍 Übungen zur Breiten- und Tiefensuche
+  - 🧑‍💼 Benutzerkonten erstellen
+  - 📚 Battle in der Vorlesung für ein interaktives Lernerlebnis
+  - 🧩 AuD2: Üben von dynamischer Programmierung
+  - 📜 Story-Mode für eine immersive Lernerfahrung
