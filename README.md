@@ -1,27 +1,23 @@
 # AuDojo ⛩️
 
+- AVL-Bäume und Sortieralgorithmen selbstständig üben und verstehen 📚
+- Interaktive Website mit Schritt-für-Schritt-Lernen und direktem Feedback ✅
+- Spielerisches Üben für mehr Verständnis und Selbstvertrauen 💪
+
 <table style="">
   <tr>
     <th>Homepage</th>
+    <th>SortSensei</th>
   </tr>
   <tr>
     <td>
       <img src="code/frontend/src/assets/homepage.png" />
     </td>
-  </tr>
-  <tr>
-    <th>SortSensei</th>
-  </tr>
-  <tr>
     <td>
       <img src="code/frontend/src/assets/sortsensei-page.png" />
     </td>
   </tr>
 </table>
-
-- AVL-Bäume und Sortieralgorithmen selbstständig üben und verstehen 📚
-- Interaktive Website mit Schritt-für-Schritt-Lernen und direktem Feedback ✅
-- Spielerisches Üben für mehr Verständnis und Selbstvertrauen 💪
 
 ## Start Backend and Frontend ⚡
 
