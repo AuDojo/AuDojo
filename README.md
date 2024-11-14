@@ -1,7 +1,9 @@
 # AuDojo
 
 Viele Studierende wünschen sich eine Möglichkeit, um AVL-Bäume und Sortieralgorithmen selbst zu üben und besser zu verstehen. 
+
 AuDojo ergänzt die normalen Vorlesungen und Übungen mit einer Website, auf der man Schritt für Schritt lernen und direkt sehen kann, ob man auf dem richtigen Weg ist. 
+
 Durch das spielerische Üben macht das Lernen mehr Spaß, die Studierenden verstehen die Themen besser und trauen sich mehr zu.
 
 ## Start Backend and Frontend
