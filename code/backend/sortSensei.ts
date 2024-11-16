@@ -104,6 +104,8 @@ export class SortSensei {
 
       let pivot_index = this.#partition(list, start, end);
 
+      // console.log("q: ", pivot_index);
+      this.#processList?.pushPivotElement(pivot_index);
       this.#processList?.pushList(list);
 
       this.#quickSort(list, start, pivot_index - 1);
