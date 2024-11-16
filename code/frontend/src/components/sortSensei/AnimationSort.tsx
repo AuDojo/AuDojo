@@ -1,7 +1,7 @@
 import animationStyles from "../../styles/sortSensei/AnimationSort.module.css";
 import buttonStyles from "../../styles/sortSensei/Button.module.css";
 import { useState } from "react";
-import SortVisualizer from "./SortVisualizer";
+// import SortVisualizer from "./SortVisualizer";
 import { Link } from "react-router-dom";
 import D3SortVisualizer from "./D3SortVisualizer";
 
