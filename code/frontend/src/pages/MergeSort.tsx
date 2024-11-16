@@ -9,6 +9,7 @@ import buttonsStyles from "../styles/sortSensei/Button.module.css";
 import styles from "../styles/sortSensei/general.module.css";
 import tableStyles from "../styles/sortSensei/SortingTable.module.css";
 import { MergeSortGuide } from "../components/sortSensei/guide/MergeSortGuide";
+import {SortType} from '../constants/sorting';
 const MergeSort = () => {
   return (
     <SortProvider>
@@ -23,7 +24,7 @@ const MergeSort = () => {
             {/* Left Tips */}
             <SortTips />
             {/* Table */}
-            <SortingTable sortType="mergesort" />
+            <SortingTable sortType={SortType.MergeSort}/>
             {/* right buttons */}
             <div className={buttonsStyles["buttons-container"]}>
               <GenerateButtons />
