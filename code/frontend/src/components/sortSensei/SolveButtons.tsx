@@ -1,5 +1,6 @@
 import { useSortContext } from "../../hooks/sortContextHooks";
 import buttonStyles from "../../styles/sortSensei/Button.module.css";
+
 const SolveButton = () => {
   const {
     step,
@@ -11,11 +12,11 @@ const SolveButton = () => {
     setCellValidation,
   } = useSortContext();
 
-  const handleSolveLine = () => {
-    if (step < stepsList.length) {
-      const correctValues = stepsList[step];
-      const userValues = inputCellValues[step];
-      const currentMergeRange = mergeRanges[step];
+  const validateLine = (currentStep: number) => {
+    if (currentStep < stepsList.length) {
+      const correctValues = stepsList[currentStep];
+      const userValues = inputCellValues[currentStep];
+      const currentMergeRange = mergeRanges[currentStep];
 
       // Validate the user input
       const validationResult = userValues.map((value, index) => {
@@ -32,17 +33,26 @@ const SolveButton = () => {
       // Update validation state
       setCellValidation((prev) => {
         const updated = [...prev];
-        updated[step] = validationResult;
+        updated[currentStep] = validationResult;
         return updated;
       });
 
-      // Move to next step
-      setStep(step + 1);
+      setStep(currentStep + 1);
     }
   };
 
+  const handleSolveLine = () => {
+    validateLine(step);
+  };
+
   const handleSolveAll = () => {
-    setStep(stepsList.length);
+    for (
+      let currentStep = step;
+      currentStep < stepsList.length;
+      currentStep++
+    ) {
+      validateLine(currentStep);
+    }
   };
 
   const handleTryAgain = () => {
