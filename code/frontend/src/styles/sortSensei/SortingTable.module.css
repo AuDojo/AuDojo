@@ -65,3 +65,26 @@
 .in-merge-range:focus {
   border: 1px solid rgb(38, 112, 1);
 }
+
+/* Correct User input */
+.correct {
+  background-color: rgb(212, 237, 218); /* Light green for correct cells */
+}
+.correct:hover:not(:focus):not(:disabled) {
+  background-color: rgba(86, 207, 0, 0.712);
+  border: 1px solid rgb(38, 112, 1);
+}
+.correct:focus {
+  border: 1px solid rgb(38, 112, 1);
+}
+
+/* Incorrect User input */
+.incorrect {
+  background-color: rgb(248, 215, 218); /* Light red for incorrect cells */
+  /*color: rgb(114, 28, 36); /* Darker red for text to indicate error */
+}
+/* Hover effect for incorrect cells */
+.incorrect:hover:not(:focus):not(:disabled) {
+  background-color: rgb(241, 193, 198); /* Slightly darker red on hover */
+  border-color: rgb(200, 35, 51); /* Darker red border on hover */
+}
