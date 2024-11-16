@@ -6,5 +6,4 @@ export enum SortType {
   QuickSort,
   BubbleSort,
   SelectionSort,
-  UNDEFINED,
 }
