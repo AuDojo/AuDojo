@@ -19,3 +19,12 @@
   width: 100%;
   max-width: 50px;
 }
+
+text {
+  font-size: 12px;
+  fill: #495057;
+}
+
+rect {
+  transition: fill 0.3s ease;
+}
