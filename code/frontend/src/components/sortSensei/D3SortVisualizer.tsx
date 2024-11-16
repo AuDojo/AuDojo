@@ -190,7 +190,6 @@ const D3SortVisualizer = () => {
         width={dimensions.width}
         height={dimensions.height}
         style={{ 
-          backgroundColor: '#f8f9fa',
           display: 'block',
           margin: '0 auto'
         }}
