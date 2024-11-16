@@ -29,7 +29,6 @@ const TableRow = ({ rowIndex, sortType }: RowProps) => {
     setInputCellValues,
   } = useSortContext();
   const mergeRange = mergeRanges[rowIndex];
-  console.log(mergeRange);
   const stepList = stepsList[rowIndex];
   const validation = cellValidation[rowIndex];
 
