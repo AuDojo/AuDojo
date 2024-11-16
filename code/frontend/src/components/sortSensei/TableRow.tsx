@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import React from "react";
+import { INPUT_NUMBER_RANGE } from "../../constants";
 import { useSortContext } from "../../hooks/sortContextHooks";
 import styles from "../../styles/sortSensei/SortingTable.module.css";
 
@@ -35,7 +36,11 @@ const TableRow = ({ stepList, rowIndex, sortType }: RowProps) => {
    */
   const handleChange = (value: string, columnIndex: number): void => {
     // Check if the input value is either empty or a valid number
-    if (Number(value) <= 40 || value === "") {
+    if (
+      (Number(value) >= INPUT_NUMBER_RANGE.min &&
+        Number(value) <= INPUT_NUMBER_RANGE.max) ||
+      value === ""
+    ) {
       const updatedValues = [...inputCellValues];
       updatedValues[rowIndex][columnIndex] = value; // Update the specific index with new value
       setInputCellValues(updatedValues); // Update the state
@@ -106,15 +111,12 @@ const TableRow = ({ stepList, rowIndex, sortType }: RowProps) => {
       {stepList.map((num, columnIndex) => (
         <input
           key={columnIndex}
-          className={classNames(
-            styles["cell-input"],
-            `${
+          className={classNames(styles["cell-input"], {
+            [styles["in-merge-range"]]:
               sortType === "mergesort" &&
               isInMergeRange(columnIndex) &&
-              rowIndex < step &&
-              styles["in-merge-range"]
-            }`
-          )}
+              rowIndex < step,
+          })}
           value={
             rowIndex < step ? num || "" : inputCellValues[rowIndex][columnIndex]
           } // Show number for index below step, or value from state otherwise
