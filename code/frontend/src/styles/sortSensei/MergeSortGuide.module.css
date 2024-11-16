@@ -1,0 +1,25 @@
+/* MergeSortGuide.module.css */
+.guide {
+  width: 250px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.step {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: white;
+  border-left: 4px solid #74c0fc;
+  border-radius: 4px;
+}
+
+/* Update existing styles */
+.sorting-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px;
+  gap: 20px;
+}
