@@ -8,6 +8,7 @@ import buttonsStyles from "../styles/sortSensei/Button.module.css";
 import styles from "../styles/sortSensei/general.module.css";
 import tableStyles from "../styles/sortSensei/SortingTable.module.css";
 import { BubbleSortGuide } from "../components/sortSensei/guide/BubbleSortGuide";
+import { SortType } from "../constants";
 
 const BubbleSort = () => {
   return (
@@ -22,7 +23,7 @@ const BubbleSort = () => {
           <div className={tableStyles["inner-table-buttons-container"]}>
             <SortTips />
             {/* Table */}
-            <SortingTable sortType="bubblesort" />
+            <SortingTable sortType={SortType.BubbleSort} />
             {/* right buttons */}
             <div className={buttonsStyles["buttons-container"]}>
               <GenerateButtons />
