@@ -45,11 +45,12 @@ Softwarearchitektur von Backend:
 
 Edge Cases:
 Falls
-a. startArray mehr als 20 Elemente hat
+
+- a. startArray mehr als 20 Elemente hat
 
 oder
 
-b. POST-Methode für falsches Link aufgerufen wurde (z.B POST-Methode für Link localhost:5001/sorting/sldkjsdlkf)
+- b. POST-Methode für falsches Link aufgerufen wurde (z.B POST-Methode für Link localhost:5001/sorting/sldkjsdlkf)
 
 ,gibt Backend JSON Datei { "processList": [ [] ] } mit Array ohne Elemente
 
