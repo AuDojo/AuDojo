@@ -42,51 +42,51 @@ export class SortSensei {
         break;
     }
 
-    console.log(this.#processList.processList);
+    // console.log(this.#processList.processList);
     return this.#processList.createJson();
   }
 
   // ------------- MergeSort -------------
   //TODO: Find a way to return the splitting Index, so that it can be shown in the frontend
 
-  static #mergeSort(list: number[], p: number, r: number) {
-    if (p < r) {
+  static #mergeSort(list: number[], start: number, end: number) {
+    if (start < end) {
       // if (this.#processList?.checkIfSolved()) {
       //   return;
       // }
 
-      let q: number = Math.floor((p + r) / 2);
-      this.#mergeSort(list, p, q);
-      this.#mergeSort(list, q + 1, r);
-      list = this.#merge(list, p, q, r);
+      let middle: number = Math.floor((start + end) / 2);
+      this.#mergeSort(list, start, middle);
+      this.#mergeSort(list, middle + 1, end);
+      list = this.#merge(list, start, middle, end);
 
-      this.#processList?.pushMergeRange(p, r);
+      this.#processList?.pushMergeRange(start, end);
       this.#processList?.pushList(list);
     }
   }
 
-  static #merge(list: number[], p: number, q: number, r: number): number[] {
-    let n1: number = q - p + 1;
-    let n2: number = r - q;
+  static #merge(list: number[], start: number, middle: number, end: number): number[] {
+    let index1: number = middle - start + 1;
+    let index2: number = end - middle;
 
     let listLeft: number[] = [];
-    for (let i = 0; i < n1; i++) {
-      listLeft[i] = list[p + i];
+    for (let i = 0; i < index1; i++) {
+      listLeft[i] = list[start + i];
     }
     let listRight: number[] = [];
-    for (let i = 0; i < n2; i++) {
-      listRight[i] = list[q + i + 1];
+    for (let i = 0; i < index2; i++) {
+      listRight[i] = list[middle + i + 1];
     }
 
-    let i = 0;
-    let j = 0;
-    for (let k = p; k <= r; k++) {
-      if ((listLeft[i] <= listRight[j] && i != n1) || j == n2) {
-        list[k] = listLeft[i];
-        i++;
+    let counter1 = 0;
+    let counter2 = 0;
+    for (let k = start; k <= end; k++) {
+      if ((listLeft[counter1] <= listRight[counter2] && counter1 != index1) || counter2 == index2) {
+        list[k] = listLeft[counter1];
+        counter1++;
       } else {
-        list[k] = listRight[j];
-        j++;
+        list[k] = listRight[counter2];
+        counter2++;
       }
     }
     return list;
