@@ -70,13 +70,14 @@
 /* Correct User input */
 .correct {
   color: rgb(21, 87, 36); /* Darker green for text to indicate success */
-  background-color: rgb(212, 237, 218); /* Light green for correct cells */
+  background-color: rgba(40, 167, 69, 0.1); /* Hellerer Grünton */
 }
 .correct:hover:not(:focus):not(:disabled) {
-  background-color: rgba(86, 207, 0, 0.712);
+  background-color: rgba(40, 167, 70, 0.301);
   border: 1px solid rgb(38, 112, 1);
 }
 .correct:focus {
+  background-color: rgba(40, 167, 70, 0.35);
   border: 1px solid rgb(38, 112, 1);
 }
 
@@ -88,11 +89,11 @@
 /* Hover effect for incorrect cells */
 .incorrect:hover:not(:focus):not(:disabled) {
   background-color: rgb(241, 193, 198); /* Slightly darker red on hover */
-  border-color: rgb(200, 35, 51); /* Darker red border on hover */
+  border: 1px solid rgba(200, 35, 51, 0.726); /* Darker red border on hover */
 }
 /* Focus effect for incorrect cells */
 .incorrect:focus {
   background-color: rgb(236, 181, 186); /* Even darker red when focused */
   border: 1px solid rgb(172, 16, 33); /* Stronger border color on focus */
-  box-shadow: 0 0 3px rgba(172, 16, 33, 0.5); /* More pronounced shadow when focused */
+  /*box-shadow: 0 0 3px rgba(172, 16, 33, 0.5); /* More pronounced shadow when focused */
 }
