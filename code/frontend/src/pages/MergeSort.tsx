@@ -8,12 +8,14 @@ import { SortProvider } from "../contexts/SortContext";
 import buttonsStyles from "../styles/sortSensei/Button.module.css";
 import styles from "../styles/sortSensei/general.module.css";
 import tableStyles from "../styles/sortSensei/SortingTable.module.css";
+import { MergeSortGuide } from "../components/sortSensei/guide/MergeSortGuide";
 const MergeSort = () => {
   return (
     <SortProvider>
       <SortHeader />
       <div className={styles.container}>
-        <div>
+        <div style={{ display: "flex" }}>
+          <MergeSortGuide />
           <AnimationSort />
         </div>
         <div className={tableStyles["outer-table-buttons-container"]}>

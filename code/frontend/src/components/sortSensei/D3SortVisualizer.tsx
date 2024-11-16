@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import { useSortContext } from '../../hooks/sortContextHooks';
 
@@ -14,40 +14,75 @@ interface BarData {
 const D3SortVisualizer = () => {
   const { stepsList, step, mergeRanges } = useSortContext();
   const svgRef = useRef<SVGSVGElement | null>(null);
-  const initialPositionsRef = useRef<Map<string, number>>(new Map()); 
+  const containerRef = useRef<HTMLDivElement>(null);
+  const initialPositionsRef = useRef<Map<string, number>>(new Map());
+  
+  // State to track container dimensions
+  const [dimensions, setDimensions] = useState({ 
+    width: 790,
+    height: 240 
+  });
+  
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      if (containerRef.current) {
+        const containerWidth = containerRef.current.clientWidth;
+        setDimensions({
+          width: Math.min(790, containerWidth - 20), // 20px for padding
+          height: 240
+        });
+      }
+    };
 
-  const width = 790;
-  const height = 240;
-  const margin = { top: 20, right: 20, bottom: 10, left: 10 };
-  const maxBarWidth = 50; 
+    // Initial size
+    handleResize();
 
+    // Add resize listener
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Visualization effect
   useEffect(() => {
     if (!stepsList.length || !svgRef.current) return;
 
-    if (initialPositionsRef.current.size === 0 && stepsList.length > 0) {
+    const margin = { top: 20, right: 20, bottom: 10, left: 10 };
+    const maxBarWidth = 50;
+
+    // Calculate responsive bar width
+    const availableWidth = dimensions.width - margin.left - margin.right;
+    const currentArray = stepsList[step - 1];
+    const minBarWidth = 20; // Minimum width for bars
+    
+    // Calculate bar width based on available space and number of elements
+    const calculatedBarWidth = Math.min(
+      maxBarWidth,
+      Math.max(
+        minBarWidth,
+        availableWidth / currentArray.length
+      )
+    );
+    
+    // Calculate total width needed for bars
+    const totalBarsWidth = calculatedBarWidth * currentArray.length;
+    
+    // Center bars
+    const adjustedMarginLeft = margin.left + (availableWidth - totalBarsWidth) / 2;
+
+    // Initialize positions map on first render
+    if (initialPositionsRef.current.size === 0) {
       stepsList[0].forEach((value, index) => {
         const key = `${value}-${stepsList[0].slice(0, index).filter(v => v === value).length}`;
         initialPositionsRef.current.set(key, index);
       });
     }
 
-
-    const currentArray = stepsList[step - 1];
     const previousArray = step > 1 ? stepsList[step - 2] : currentArray;
     
-    // Calculate actual bar width based on container width and number of bars
-    const calculatedBarWidth = Math.min(
-      maxBarWidth,
-      (width - margin.left - margin.right) / currentArray.length
-    );
-    
-    // Calculate total width needed for bars
-    const totalBarsWidth = calculatedBarWidth * currentArray.length;
-    
-    // Calculate left margin to center the bars
-    const adjustedMarginLeft = margin.left + (width - totalBarsWidth) / 2;
-
-    // Create bar data with additional properties
+    // Create bar data
     const barData: BarData[] = currentArray.map((value, index) => {
       // Create unique key based on value and occurrence count
       const occurrenceCount = currentArray.slice(0, index).filter(v => v === value).length;
@@ -91,7 +126,7 @@ const D3SortVisualizer = () => {
 
     const yScale = d3.scaleLinear()
       .domain([0, d3.max(currentArray) || 0])
-      .range([height - margin.bottom, margin.top]);
+      .range([dimensions.height - margin.bottom, margin.top]);
 
     // Create and update bars
     const bars = svg
@@ -109,7 +144,7 @@ const D3SortVisualizer = () => {
     bars
       .append('rect')
       .attr('y', (d) => yScale(d.value))
-      .attr('height', (d) => height - margin.bottom - yScale(d.value))
+      .attr('height', (d) => dimensions.height - margin.bottom - yScale(d.value))
       .attr('width', xScale.bandwidth())
       .attr('fill', '#74c0fc') // Start with default color
       .attr('opacity', 1);
@@ -120,6 +155,7 @@ const D3SortVisualizer = () => {
       .attr('x', xScale.bandwidth() / 2)
       .attr('y', (d) => yScale(d.value) - 5)
       .attr('text-anchor', 'middle')
+      .style('font-size', `${Math.min(14, calculatedBarWidth / 2)}px`) // Responsive font size
       .text((d) => d.value);
 
     // Animation sequence
@@ -138,7 +174,6 @@ const D3SortVisualizer = () => {
       .duration(700) // Same duration as the color transition
       .attr('transform', (d) => `translate(${xScale(String(d.index))}, 0)`);
 
-    // Update colors for non-active bars
     bars
       .filter(d => !d.isActive)
       .select('rect')
@@ -146,19 +181,21 @@ const D3SortVisualizer = () => {
       .duration(700)
       .attr('fill', d => d.isSorted ? '#51cf66' : '#74c0fc');
 
-  }, [stepsList, step, mergeRanges]);
+  }, [stepsList, step, mergeRanges, dimensions]); // Add dimensions to dependencies
 
   return (
-    <svg
-      ref={svgRef}
-      width={width}
-      height={height}
-      style={{ 
-        backgroundColor: '#f8f9fa',
-        display: 'block',
-        margin: '0 auto'
-      }}
-    />
+    <div ref={containerRef} style={{ width: '100%' }}>
+      <svg
+        ref={svgRef}
+        width={dimensions.width}
+        height={dimensions.height}
+        style={{ 
+          backgroundColor: '#f8f9fa',
+          display: 'block',
+          margin: '0 auto'
+        }}
+      />
+    </div>
   );
 };
 
