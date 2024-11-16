@@ -25,6 +25,19 @@ export class SortProcessList {
     this.#processList[index] = list.slice(0); // slice sorgt dafür dass pass by value anstatt von pass by reference verwendet wird.
   }
 
+  checkIfSolved(): boolean {
+    let lastList = this.#processList[this.#processList.length - 1];
+
+    for (let index = 0; index < lastList.length - 1; index++) {
+      const element = lastList[index];
+      if (lastList[index] > lastList[index + 1]) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   /**
    * Returns the 2D-list with all the steps of a sorting algorithm so far recorded.
    * @returns processList

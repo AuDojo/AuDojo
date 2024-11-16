@@ -51,6 +51,10 @@ export class SortSensei {
 
   static #mergeSort(list: number[], p: number, r: number) {
     if (p < r) {
+      // if (this.#processList?.checkIfSolved()) {
+      //   return;
+      // }
+
       let q: number = Math.floor((p + r) / 2);
       this.#mergeSort(list, p, q);
       this.#mergeSort(list, q + 1, r);
@@ -92,6 +96,10 @@ export class SortSensei {
 
   static #quickSort(list: number[], p: number, r: number) {
     if (p < r) {
+      // if (this.#processList?.checkIfSolved()) {
+      //   return;
+      // }
+
       let q = this.#partition(list, p, r);
       this.#processList?.pushList(list);
       this.#quickSort(list, p, q - 1);
@@ -122,6 +130,10 @@ export class SortSensei {
 
   static #bubbleSort(list: number[]) {
     for (let i = 0; i < list.length; i++) {
+      if (this.#processList?.checkIfSolved()) {
+        return;
+      }
+
       for (let j = 0; j < list.length - i; j++) {
         if (list[j] > list[j + 1]) {
           let temp = list[j + 1];
@@ -129,6 +141,7 @@ export class SortSensei {
           list[j] = temp;
         }
       }
+
       this.#processList?.pushList(list);
     }
   }
@@ -136,6 +149,10 @@ export class SortSensei {
   // ------------- SelectionSort -------------
   static #selectionSort(list: number[]) {
     for (let i = 0; i < list.length - 1; i++) {
+      if (this.#processList?.checkIfSolved()) {
+        return;
+      }
+
       let min = list[i];
       let minIndex = i;
 
