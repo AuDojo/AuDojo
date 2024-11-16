@@ -2,14 +2,16 @@ import React, { createContext, useEffect, useRef, useState } from "react";
 
 // Define types for our context state
 export interface SortContextProps {
-  stepsList: number[][];
-  mergeRanges: [number, number][];
-  step: number;
-  inputCellValues: string[][];
+  stepsList: number[][]; // solution list from the backend
+  mergeRanges: [number, number][]; // For Mergesort
+  step: number; // Current step we are on (1 to stepsList.length)
+  inputCellValues: string[][]; // Holds the values in the input cells as strings
+  cellValidation: (boolean | null)[][]; // True for correct, false for incorrect, null for neutral
   setStep: React.Dispatch<React.SetStateAction<number>>;
   setStepsList: React.Dispatch<React.SetStateAction<number[][]>>;
   setInputCellValues: React.Dispatch<React.SetStateAction<string[][]>>;
-  fetchStepsList: (array: number[]) => Promise<void>;
+  setCellValidation: React.Dispatch<React.SetStateAction<(boolean | null)[][]>>;
+  fetchStepsList: (array: number[]) => Promise<void>; // Fetch the solution from the backend
   inputCellsRef: React.MutableRefObject<HTMLInputElement[][]>;
 }
 
@@ -42,6 +44,9 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
   const [mergeRanges, setMergeRanges] = useState<[number, number][]>([]);
   const [inputCellValues, setInputCellValues] = useState<string[][]>([]);
   const inputCellsRef = useRef<HTMLInputElement[][]>([]);
+  const [cellValidation, setCellValidation] = useState<(boolean | null)[][]>(
+    []
+  );
 
   async function fetchStepsList(
     array: number[] = [7, 13, 5, 9, 10, 12, 1, 3, 2, 6, 25, 30, 40, 38, 32]
@@ -74,6 +79,11 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
         fetchedStepsList.map((step) => new Array(step.length).fill(""))
       );
 
+      // Initialize validation state
+      setCellValidation(
+        fetchedStepsList.map((step) => new Array(step.length).fill(null))
+      );
+
       //TODO: Into Backend
       const ranges: [number, number][] = [];
       getMergeRanges(ranges, 0, array.length - 1);
@@ -94,9 +104,11 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
         mergeRanges,
         step,
         inputCellValues,
+        cellValidation,
         setStep,
         setStepsList,
         setInputCellValues,
+        setCellValidation,
         fetchStepsList,
         inputCellsRef,
       }}
