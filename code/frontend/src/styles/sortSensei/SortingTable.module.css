@@ -57,16 +57,28 @@
 }
 
 .in-merge-range {
-  background-color: rgba(86, 207, 0, 0.911);
   border: none;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  font-weight: 500;
 }
-.in-merge-range:hover:not(:focus):not(:disabled) {
+/* .in-merge-range:hover:not(:focus):not(:disabled) {
   background-color: rgb(94, 219, 4);
 }
 .in-merge-range:focus {
   border: 1px solid rgb(38, 112, 1);
-}
+} */
 
+.merge-range-start {
+  border-left: 1px solid black;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.merge-range-end {
+  border-right: 1px solid black;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
 /* Correct User input */
 .correct {
   color: rgb(21, 87, 36); /* Darker green for text to indicate success */
