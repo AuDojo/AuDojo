@@ -1,6 +1,7 @@
 import buttonStyles from "../../styles/sortSensei/Button.module.css";
 import { useState } from "react";
 import { useSortContext } from "../../hooks/sortContextHooks";
+import { INPUT_NUMBER_RANGE, MAX_ARRAY_SIZE, MIN_ARRAY_SIZE } from "../../constants/sorting";
 
 const GenerateButtons = () => {
   const [customArray, setCustomArray] = useState<string>("");
@@ -24,25 +25,24 @@ const GenerateButtons = () => {
       .map((num) => parseInt(num, 10)) // convert the string to an Integer number
       .filter((num) => !isNaN(num));
     console.log(array);
-    const outOfRangeNumbers = array.filter((num) => num <= 0 || num > 40);
+    const outOfRangeNumbers = array.filter((num) => num < INPUT_NUMBER_RANGE.min || num > INPUT_NUMBER_RANGE.max);
 
     if (outOfRangeNumbers.length > 0) {
-      setErrorMessage("Please enter numbers only in the range 1 to 40.");
+      setErrorMessage(`Please enter numbers only in the range ${INPUT_NUMBER_RANGE.min} to ${INPUT_NUMBER_RANGE.max}.`);
       setTimeout(() => setErrorMessage(""), 1500);
       return;
     }
 
-    if (array.length < 2) {
+    if (array.length < MIN_ARRAY_SIZE) {
       //! min array length
       setIsSubmitting(false);
-      setErrorMessage("Please enter at least 2 numbers.");
+      setErrorMessage(`Please enter at least ${INPUT_NUMBER_RANGE.min} numbers.`);
       setCustomArray("");
       setTimeout(() => setErrorMessage(""), 1500);
       return;
     }
-    if (array.length > 15) {
-      // alert("Please enter at most 15 numbers");
-      setErrorMessage("Please enter at most 15 numbers.");
+    if (array.length > MAX_ARRAY_SIZE) {
+      setErrorMessage(`Please enter at most ${MAX_ARRAY_SIZE} numbers.`);
       setTimeout(() => setErrorMessage(""), 1500);
       return;
     }
@@ -51,7 +51,7 @@ const GenerateButtons = () => {
     setCustomArray("");
   };
 
-  const generateRandomArray = (length = 7, max = 40) => {
+  const generateRandomArray = (length = 7, max = INPUT_NUMBER_RANGE.max) => {
     return Array.from({ length }, () => Math.floor(Math.random() * max + 1));
   };
 
@@ -67,7 +67,7 @@ const GenerateButtons = () => {
   };
 
   const handleArrayLengthKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter" && arrayLength >= 2 && arrayLength <= 15) {
+    if (event.key === "Enter" && arrayLength >= MIN_ARRAY_SIZE && arrayLength <= MAX_ARRAY_SIZE) {
       handleRandomArray();
     }
   };
@@ -102,13 +102,12 @@ const GenerateButtons = () => {
             color: "gray",
           }}
         >
-          Random array length: (2-15){" "}
+          Random array length: ({MIN_ARRAY_SIZE}-{MAX_ARRAY_SIZE})
         </div>
         <input
           type="number"
-          placeholder="Enter array length"
-          min={2}
-          max={15}
+          min={MIN_ARRAY_SIZE}
+          max={MAX_ARRAY_SIZE}
           value={arrayLength}
           onChange={handleArrayLengthChange}
           onKeyDown={handleArrayLengthKeyDown}
