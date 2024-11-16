@@ -5,7 +5,7 @@ export enum SortType {
   QuickSort,
   BubbleSort,
   SelectionSort,
-  UNDEFINED
+  UNDEFINED,
 }
 
 export class SortSensei {
@@ -120,12 +120,12 @@ export class SortSensei {
 
   // ------------- BubbleSort -------------
 
-  static #bubbleSort(list:number[]) {
-    for(let i=0;i<list.length;i++) {
-      for(let j=0;j<list.length-i;j++) {
-        if(list[j]>list[j+1]) {
-          let temp = list[j+1]
-          list[j+1] = list[j]
+  static #bubbleSort(list: number[]) {
+    for (let i = 0; i < list.length; i++) {
+      for (let j = 0; j < list.length - i; j++) {
+        if (list[j] > list[j + 1]) {
+          let temp = list[j + 1];
+          list[j + 1] = list[j];
           list[j] = temp;
         }
       }
@@ -135,7 +135,6 @@ export class SortSensei {
 
   // ------------- SelectionSort -------------
   static #selectionSort(list: number[]) {
-
     for (let i = 0; i < list.length - 1; i++) {
       let min = list[i];
       let minIndex = i;
@@ -152,7 +151,7 @@ export class SortSensei {
       list[i] = min;
       list[minIndex] = temp;
 
-      //Zwischenarray in processList reinstecken 
+      //Zwischenarray in processList reinstecken
       this.#processList?.pushList(list);
     }
   }
@@ -162,13 +161,13 @@ export class SortSensei {
    * @param list list of numbers to sort
    * Logs the sorted list to the console.
    */
-  static test(list: number[],sortMode:SortType) {
+  static test(list: number[], sortMode: SortType) {
     console.log(this.createSortProcessList(list, sortMode));
   }
 }
 
 // SortSensei.test([11, 13, 4, 9, 3, 5, 16, 2, 29, 21, 1],SortType.QuickSort);
-SortSensei.test([7,1,8,2,3,5],SortType.BubbleSort);
+SortSensei.test([7, 1, 8, 2, 3, 5], SortType.BubbleSort);
 
 // SortSensei.test([8, 7, 6, 5, 4, 3, 2, 1],SortType.QuickSort);
 // SortSensei.test([1, 2, 3, 4, 5, 6, 7, 8],SortType.QuickSort);
