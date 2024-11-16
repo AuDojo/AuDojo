@@ -4,7 +4,7 @@
   height: 250px;
   width: 800px; /* Full width minus the fixed div and some margin */
   border-radius: 15px;
-  margin: 0 auto 0 auto;
+  margin: 0 auto 0 10px;
   transition: transform 0.4s ease-in-out; /* Smooth transition */
 }
 

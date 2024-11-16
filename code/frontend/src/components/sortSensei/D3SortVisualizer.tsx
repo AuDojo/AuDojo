@@ -8,12 +8,14 @@ interface BarData {
   previousIndex: number;
   isSorted: boolean;
   isActive: boolean;
+  uniqueId: string; // Add this to handle duplicate values
 }
 
 const D3SortVisualizer = () => {
   const { stepsList, step, mergeRanges } = useSortContext();
   const svgRef = useRef<SVGSVGElement | null>(null);
-  
+  const initialPositionsRef = useRef<Map<string, number>>(new Map()); 
+
   const width = 790;
   const height = 240;
   const margin = { top: 20, right: 20, bottom: 10, left: 10 };
@@ -21,6 +23,14 @@ const D3SortVisualizer = () => {
 
   useEffect(() => {
     if (!stepsList.length || !svgRef.current) return;
+
+    if (initialPositionsRef.current.size === 0 && stepsList.length > 0) {
+      stepsList[0].forEach((value, index) => {
+        const key = `${value}-${stepsList[0].slice(0, index).filter(v => v === value).length}`;
+        initialPositionsRef.current.set(key, index);
+      });
+    }
+
 
     const currentArray = stepsList[step - 1];
     const previousArray = step > 1 ? stepsList[step - 2] : currentArray;
@@ -39,23 +49,34 @@ const D3SortVisualizer = () => {
 
     // Create bar data with additional properties
     const barData: BarData[] = currentArray.map((value, index) => {
+      // Create unique key based on value and occurrence count
+      const occurrenceCount = currentArray.slice(0, index).filter(v => v === value).length;
+      const uniqueId = `${value}-${occurrenceCount}`;
+      
+      // Get initial position from ref
+      const initialPos = initialPositionsRef.current.get(uniqueId) ?? index;
+      
+      // Find position in previous array using the same uniqueId logic
+      const previousIndex = previousArray.findIndex((v, i) => {
+        const prevOccurrences = previousArray.slice(0, i).filter(v2 => v2 === value).length;
+        return v === value && prevOccurrences === occurrenceCount;
+      });
+
       const currentMergeRange = mergeRanges[step - 1];
       const isSorted = currentMergeRange && 
         index >= currentMergeRange[0] && 
         index <= currentMergeRange[1];
-      
-      // Find previous position of this value
-      const previousIndex = previousArray.indexOf(value);
-      const isActive = previousIndex !== index;
 
       return {
         value,
         index,
-        previousIndex: previousIndex === -1 ? index : previousIndex,
+        previousIndex: previousIndex === -1 ? initialPos : previousIndex,
         isSorted,
-        isActive
+        isActive: previousIndex !== index && previousIndex !== -1,
+        uniqueId
       };
     });
+
 
     const svg = d3.select(svgRef.current);
     
@@ -75,7 +96,7 @@ const D3SortVisualizer = () => {
     // Create and update bars
     const bars = svg
       .selectAll('g')
-      .data(barData)
+      .data(barData, (d: any) => d.uniqueId)
       .enter()
       .append('g');
 
