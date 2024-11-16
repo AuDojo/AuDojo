@@ -49,6 +49,7 @@
 }
 .cell-input:hover:not(:focus):not(:disabled) {
   background-color: rgb(234, 234, 234);
+  cursor: pointer;
 }
 .cell-input:focus {
   outline: none;
@@ -68,6 +69,7 @@
 
 /* Correct User input */
 .correct {
+  color: rgb(21, 87, 36); /* Darker green for text to indicate success */
   background-color: rgb(212, 237, 218); /* Light green for correct cells */
 }
 .correct:hover:not(:focus):not(:disabled) {
@@ -81,10 +83,16 @@
 /* Incorrect User input */
 .incorrect {
   background-color: rgb(248, 215, 218); /* Light red for incorrect cells */
-  /*color: rgb(114, 28, 36); /* Darker red for text to indicate error */
+  color: rgb(114, 28, 36); /* Darker red for text to indicate error */
 }
 /* Hover effect for incorrect cells */
 .incorrect:hover:not(:focus):not(:disabled) {
   background-color: rgb(241, 193, 198); /* Slightly darker red on hover */
   border-color: rgb(200, 35, 51); /* Darker red border on hover */
+}
+/* Focus effect for incorrect cells */
+.incorrect:focus {
+  background-color: rgb(236, 181, 186); /* Even darker red when focused */
+  border: 1px solid rgb(172, 16, 33); /* Stronger border color on focus */
+  box-shadow: 0 0 3px rgba(172, 16, 33, 0.5); /* More pronounced shadow when focused */
 }
