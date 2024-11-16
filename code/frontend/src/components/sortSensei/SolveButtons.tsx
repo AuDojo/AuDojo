@@ -45,6 +45,7 @@ const SolveButton = () => {
     validateLine(step);
   };
 
+  // TODO: Set Time Intervals for Solve All Lines
   const handleSolveAll = () => {
     for (
       let currentStep = step;
