@@ -6,6 +6,7 @@ import { json } from "express";
 export class SortProcessList {
   #columnsLength: number = 0;
   #processList: number[][] = [];
+  #mergeRange: [number, number][] = []; // Array of Tuples
 
   /**
    * Creates an object in which the single steps of a sorting algorithm can be stored.
@@ -23,6 +24,12 @@ export class SortProcessList {
   pushList(list: number[]): void {
     let index = this.#processList.length;
     this.#processList[index] = list.slice(0); // slice sorgt dafür dass pass by value anstatt von pass by reference verwendet wird.
+  }
+
+  pushMergeRange(start: number, end: number) {
+    let index = this.#processList.length;
+    this.#mergeRange[index] = [start, end];
+    // console.log("start, end: ", this.#mergeRange[index]);
   }
 
   checkIfSolved(): boolean {
@@ -51,7 +58,15 @@ export class SortProcessList {
    * @returns json-string in following Format: {"processList": [[startList], [sortStep1], [sortStep2], ...]}
    */
   createJson(): string {
-    let obj = { processList: this.#processList };
+    let mergeRange = this.#mergeRange.length == 0 ? null : this.#mergeRange;
+
+    let obj = {
+      processList: this.#processList,
+      mergeRange: mergeRange,
+    };
+
+    console.log(obj);
+
     return JSON.stringify(obj);
   }
 

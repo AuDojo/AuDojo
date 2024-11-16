@@ -59,6 +59,8 @@ export class SortSensei {
       this.#mergeSort(list, p, q);
       this.#mergeSort(list, q + 1, r);
       list = this.#merge(list, p, q, r);
+
+      this.#processList?.pushMergeRange(p, r);
       this.#processList?.pushList(list);
     }
   }
