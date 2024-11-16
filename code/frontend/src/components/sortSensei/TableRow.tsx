@@ -1,31 +1,36 @@
-import classNames from "classnames";
+import classNames from "classnames/bind";
 import React from "react";
-import { INPUT_NUMBER_RANGE } from "../../constants";
+import { INPUT_NUMBER_RANGE, SortType } from "../../constants";
 import { useSortContext } from "../../hooks/sortContextHooks";
 import styles from "../../styles/sortSensei/SortingTable.module.css";
 
 interface RowProps {
-  stepList: number[];
   rowIndex: number;
-  sortType: string;
+  sortType: SortType;
 }
+
+// Bind styles to classNames
+const cx = classNames.bind(styles);
 
 /**
  * A component to render a single row of the sorting table.
- * @param stepList The list of numbers to render in the row
  * @param rowIndex The index of the row
- * @param sortType The type of sorting algorithm, e.g. "bubblesort" or "mergesort"
+ * @param sortType The type of sorting algorithm, e.g. bubblesort or mergesort
  */
-const TableRow = ({ stepList, rowIndex, sortType }: RowProps) => {
+const TableRow = ({ rowIndex, sortType }: RowProps) => {
   // Access the context values
   const {
+    stepsList,
     step,
     mergeRanges,
     inputCellsRef,
     inputCellValues,
+    cellValidation,
     setInputCellValues,
   } = useSortContext();
   const mergeRange = mergeRanges[rowIndex];
+  const stepList = stepsList[rowIndex];
+  const validation = cellValidation[rowIndex];
 
   /**
    * Updates the state of the input values in the row when a user types in a new value.
@@ -106,16 +111,26 @@ const TableRow = ({ stepList, rowIndex, sortType }: RowProps) => {
   };
 
   return (
-    <div className={styles["row-container"]}>
-      <span className={styles["row-index"]}>{rowIndex}</span>
+    <div className={cx("row-container")}>
+      <span className={cx("row-index")}>{rowIndex}</span>
       {stepList.map((num, columnIndex) => (
         <input
           key={columnIndex}
-          className={classNames(styles["cell-input"], {
-            [styles["in-merge-range"]]:
-              sortType === "mergesort" &&
+          className={cx("cell-input", {
+            "in-merge-range":
+              sortType === SortType.MergeSort &&
               isInMergeRange(columnIndex) &&
               rowIndex < step,
+            "merge-range-start":
+              sortType === SortType.MergeSort &&
+              columnIndex === mergeRange[0] &&
+              rowIndex < step,
+            "merge-range-end":
+              sortType === SortType.MergeSort &&
+              columnIndex === mergeRange[1] &&
+              rowIndex < step,
+            correct: validation[columnIndex] === true, // Correct user input
+            incorrect: validation[columnIndex] === false, // Incorrect user input
           })}
           value={
             rowIndex < step ? num || "" : inputCellValues[rowIndex][columnIndex]
