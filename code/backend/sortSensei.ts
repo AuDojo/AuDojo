@@ -96,36 +96,38 @@ export class SortSensei {
   //TODO: Find a way to use a certain method to determine the pivot-element
   //TODO: Find a way to return the pivot-element, so that it can be shown in the frontend
 
-  static #quickSort(list: number[], p: number, r: number) {
-    if (p < r) {
+  static #quickSort(list: number[], start: number, end: number) {
+    if (start < end) {
       // if (this.#processList?.checkIfSolved()) {
       //   return;
       // }
 
-      let q = this.#partition(list, p, r);
+      let pivot_index = this.#partition(list, start, end);
+
       this.#processList?.pushList(list);
-      this.#quickSort(list, p, q - 1);
-      this.#quickSort(list, q + 1, r);
+
+      this.#quickSort(list, start, pivot_index - 1);
+      this.#quickSort(list, pivot_index + 1, end);
     }
   }
 
-  static #partition(list: number[], p: number, r: number): number {
-    let x = list[r];
-    let i = p - 1;
-    for (let j = p; j < r; j++) {
-      if (list[j] <= x) {
-        i++;
-        let temp = list[i];
-        list[i] = list[j];
+  static #partition(list: number[], start: number, end: number): number {
+    let pivot_element = list[end];
+    let partition_index = start;
+
+    for (let j = start; j < end; j++) {
+      if (list[j] <= pivot_element) {
+        let temp = list[partition_index];
+        list[partition_index] = list[j];
         list[j] = temp;
+        partition_index++;
       }
     }
 
-    i++;
-    let temp = list[i];
-    list[i] = list[r];
-    list[r] = temp;
-    return i;
+    let temp = list[partition_index];
+    list[partition_index] = list[end];
+    list[end] = temp;
+    return partition_index;
   }
 
   // ------------- BubbleSort -------------
