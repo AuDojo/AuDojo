@@ -45,14 +45,16 @@ const SolveButton = () => {
     validateLine(step);
   };
 
-  // TODO: Set Time Intervals for Solve All Lines
-  const handleSolveAll = () => {
+  const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  const handleSolveAll = async () => {
     for (
       let currentStep = step;
       currentStep < stepsList.length;
       currentStep++
     ) {
       validateLine(currentStep);
+      await sleep(800); // wait for 1 second
     }
   };
 
