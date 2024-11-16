@@ -1,6 +1,6 @@
 // MergeSortGuide.tsx
-import { useSortContext } from '../../hooks/sortContextHooks';
-import styles from '../../styles/sortSensei/MergeSortGuide.module.css';
+import { useSortContext } from "../../../hooks/sortContextHooks";
+import styles from "../../../styles/sortSensei/MergeSortGuide.module.css";
 
 export const MergeSortGuide: React.FC = () => {
   const { step, mergeRanges } = useSortContext();
@@ -8,7 +8,7 @@ export const MergeSortGuide: React.FC = () => {
   const getCurrentGuideText = () => {
     const currentRange = mergeRanges[step - 1];
     if (!currentRange || currentRange[0] === -1) {
-      return "Starting merge sort! \nSplit array into two halves.";
+      return "Starting Merge Sort! \nSplit array into two halves.";
     }
 
     const [start, end] = currentRange;

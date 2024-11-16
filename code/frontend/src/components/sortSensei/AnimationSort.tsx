@@ -4,7 +4,6 @@ import { useState } from "react";
 import SortVisualizer from "./SortVisualizer";
 import { Link } from "react-router-dom";
 import D3SortVisualizer from "./D3SortVisualizer";
-import { MergeSortGuide } from "./MergeSortGuide";
 
 const AnimationSort = () => {
   const [isPseudocodeVisible, setPseudocodeVisible] = useState(false);
@@ -15,16 +14,13 @@ const AnimationSort = () => {
 
   return (
     <>
-      <div style={{ display: "flex" }}>
-        <MergeSortGuide />
       <div
         className={`${animationStyles["animation-container"]} ${animationStyles["viz-container"]} ${
           !isPseudocodeVisible ? "" : animationStyles["move-left"]
         }`}
-        >
+      >
         {/* <SortVisualizer /> */}
         <D3SortVisualizer />
-        </div>
       </div>
       <div
         className={`${animationStyles["pseudocode-container"]} ${isPseudocodeVisible ? "" : animationStyles["hidden"]}`}
