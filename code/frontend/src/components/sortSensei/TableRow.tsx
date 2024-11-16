@@ -29,6 +29,7 @@ const TableRow = ({ rowIndex, sortType }: RowProps) => {
     setInputCellValues,
   } = useSortContext();
   const mergeRange = mergeRanges[rowIndex];
+  console.log(mergeRange);
   const stepList = stepsList[rowIndex];
   const validation = cellValidation[rowIndex];
 
@@ -120,6 +121,14 @@ const TableRow = ({ rowIndex, sortType }: RowProps) => {
             "in-merge-range":
               sortType === SortType.MergeSort &&
               isInMergeRange(columnIndex) &&
+              rowIndex < step,
+            "merge-range-start":
+              sortType === SortType.MergeSort &&
+              columnIndex === mergeRange[0] &&
+              rowIndex < step,
+            "merge-range-end":
+              sortType === SortType.MergeSort &&
+              columnIndex === mergeRange[1] &&
               rowIndex < step,
             correct: validation[columnIndex] === true, // Correct user input
             incorrect: validation[columnIndex] === false, // Incorrect user input
