@@ -13,24 +13,44 @@ Softwarearchitektur von Backend:
 
 3. Von Frontend gesendetes JSON Objekt ist wie Folgendes:
 
-{ "startArray": [1,2,3,4,5,6,7,8,9] } (zum Beispiel)
+   ```json
+   { "startArray": [1, 2, 3, 4, 5, 6, 7, 8, 9] }
+   ```
+
+   (zum Beispiel)
 
 4. Es wird nur startArray gesendet, egal ob man "check" oder "check All" klickt.
 
 5. Von Backend gesendetes JSON Objekt ist wie Folgendes:
-   `{"processList": [[startList], [sortStep1], [sortStep2], ...]}`
+
+   - Wenn mergeSort verwendet wird:
+
+   ```json
+   {
+      "processList": [[startList], [sortStep1], [sortStep2], ...],
+      "mergeRange": [null, [start1, end1], [start2, end2], ...],
+      "pivotElement": null
+   }
+   ```
+
+   - oder, wenn QuickSort verwendet wird:
+
+   ```json
+   {
+      "processList": [[startList], [sortStep1], [sortStep2], ...],
+      "mergeRange": null,
+      "pivotElement": [null, pivot1, pivot2, ...]
+   }
+   ```
 
 Edge Cases:
-Falls 
-a. startArray mehr als 20 Elemente hat 
+Falls
+a. startArray mehr als 20 Elemente hat
 
 oder
 
 b. POST-Methode für falsches Link aufgerufen wurde (z.B POST-Methode für Link localhost:5001/sorting/sldkjsdlkf)
 
 ,gibt Backend JSON Datei { "processList": [ [] ] } mit Array ohne Elemente
-
-
-
 
 Falls es eine Veränderung bei Namen/Struktur vorkommt, passe diese README.md dementsprechend bitte an.
