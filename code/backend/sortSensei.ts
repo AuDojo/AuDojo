@@ -127,10 +127,9 @@ export class SortSensei {
           let temp = list[j+1]
           list[j+1] = list[j]
           list[j] = temp;
-
-          this.#processList?.pushList(list);
         }
       }
+      this.#processList?.pushList(list);
     }
   }
 
