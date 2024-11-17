@@ -54,7 +54,7 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
     try {
       // POST Request to the backend to get the processList
       const sortType: string = location.pathname.split("/")[1] || "mergesort";
-      const response = await fetch("/api/sorting/" + sortType, {
+      const response = await fetch("sorting/" + sortType, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
