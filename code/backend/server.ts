@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, '..', '..', 'frontend', 'public')));
 app.use(express.static(path.join(__dirname, '..', '..', 'frontend', 'dist')));
 
 app.use(bodyParser.json());
-app.use("/sorting", sortingRouting);
+app.use("/api/sorting", sortingRouting);
 
 app.get("*", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname,".." ,".." , "frontend","dist", "index.html")); //our main page frontend/index.html is loaded
