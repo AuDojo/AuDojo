@@ -1,16 +1,24 @@
 import { useSortContext } from "../../hooks/sortContextHooks";
 import buttonStyles from "../../styles/sortSensei/Button.module.css";
+import { useState, useRef, useEffect } from "react";
+
+const DEFAULT_SPEED = 1.0;
+const BASE_TIMEOUT = 1000; // 1 second base timeout
+const SPEED_VALUES = ["0.4", "0.7", "1.0", "2.0"];
 
 const SolveButton = () => {
-  const {
-    step,
-    stepsList,
-    inputCellValues,
-    mergeRanges,
-    setStep,
-    setInputCellValues,
-    setCellValidation,
-  } = useSortContext();
+  const { step, stepsList, inputCellValues, mergeRanges, setStep, setInputCellValues, setCellValidation } =
+    useSortContext();
+
+  const [selectedSpeed, setSelectedSpeed] = useState(DEFAULT_SPEED);
+  const [solveAllStatus, setSolveAllStatus] = useState<"solve" | "stop" | "continue">("solve");
+  const isSolvingRef = useRef<boolean>(false);
+  const currentStepRef = useRef<number>(step);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const speedRef = useRef<number>(DEFAULT_SPEED);
+
+  // Convert speed multiplier to actual timeout (e.g., 2.0 -> 500ms, 0.5 -> 2000ms)
+  const getTimeoutFromSpeed = (multiplier: number) => BASE_TIMEOUT / multiplier;
 
   const validateLine = (currentStep: number) => {
     if (currentStep < stepsList.length) {
@@ -18,10 +26,8 @@ const SolveButton = () => {
       const userValues = inputCellValues[currentStep];
       const currentMergeRange = mergeRanges[currentStep];
 
-      // Validate the user input
       const validationResult = userValues.map((value, index) => {
-        const isInMergeRange =
-          index >= currentMergeRange[0] && index <= currentMergeRange[1];
+        const isInMergeRange = index >= currentMergeRange[0] && index <= currentMergeRange[1];
 
         if (isInMergeRange) {
           return Number(value) === correctValues[index];
@@ -30,7 +36,6 @@ const SolveButton = () => {
         }
       });
 
-      // Update validation state
       setCellValidation((prev) => {
         const updated = [...prev];
         updated[currentStep] = validationResult;
@@ -38,44 +43,126 @@ const SolveButton = () => {
       });
 
       setStep(currentStep + 1);
+      currentStepRef.current = currentStep + 1;
     }
   };
 
   const handleSolveLine = () => {
+    if (isSolvingRef.current) {
+      stopSolving();
+      setSolveAllStatus("continue");
+    }
     validateLine(step);
   };
 
-  const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+  const stopSolving = () => {
+    isSolvingRef.current = false;
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  };
 
-  const handleSolveAll = async () => {
-    for (
-      let currentStep = step;
-      currentStep < stepsList.length;
-      currentStep++
-    ) {
-      validateLine(currentStep);
-      await sleep(800); // wait for 1 second
+  const solveNextStep = () => {
+    if (!isSolvingRef.current || currentStepRef.current >= stepsList.length) {
+      if (currentStepRef.current >= stepsList.length) {
+        setSolveAllStatus("solve");
+        isSolvingRef.current = false;
+      }
+      return;
+    }
+
+    validateLine(currentStepRef.current);
+
+    if (currentStepRef.current < stepsList.length && isSolvingRef.current) {
+      const currentTimeout = getTimeoutFromSpeed(speedRef.current);
+      timeoutRef.current = setTimeout(solveNextStep, currentTimeout);
+    }
+  };
+
+  const handleSolveAll = () => {
+    switch (solveAllStatus) {
+      case "solve":
+        isSolvingRef.current = true;
+        setSolveAllStatus("stop");
+        currentStepRef.current = step;
+        solveNextStep();
+        break;
+      case "stop":
+        stopSolving();
+        setSolveAllStatus("continue");
+        break;
+      case "continue":
+        isSolvingRef.current = true;
+        setSolveAllStatus("stop");
+        solveNextStep();
+        break;
     }
   };
 
   const handleTryAgain = () => {
+    stopSolving();
     setStep(1);
-
-    // Reset states
-    setInputCellValues(
-      stepsList.map((step) => new Array(step.length).fill(""))
-    );
-    setCellValidation(
-      stepsList.map((step) => new Array(step.length).fill(null))
-    );
+    currentStepRef.current = 1;
+    setSolveAllStatus("solve");
+    setSelectedSpeed(DEFAULT_SPEED);
+    speedRef.current = DEFAULT_SPEED;
+    setInputCellValues(stepsList.map((step) => new Array(step.length).fill("")));
+    setCellValidation(stepsList.map((step) => new Array(step.length).fill(null)));
   };
 
+  const handleSpeedChange = (newSpeed: number) => {
+    setSelectedSpeed(newSpeed);
+    speedRef.current = newSpeed;
+
+    if (isSolvingRef.current) {
+      // Clear current timeout and restart with new speed
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(solveNextStep, getTimeoutFromSpeed(newSpeed));
+    }
+  };
+
+  const getSolveAllButtonText = () => {
+    switch (solveAllStatus) {
+      case "solve":
+        return "Solve All";
+      case "stop":
+        return "Stop";
+      case "continue":
+        return "Continue";
+    }
+  };
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
   return (
-    <div className={buttonStyles["solve-buttons"]}>
-      <button onClick={handleSolveAll}>Solve All</button>
-      <button onClick={handleSolveLine}>Solve Line</button>
-      <button onClick={handleTryAgain}>Try Again</button>
-    </div>
+    <>
+      <div className={buttonStyles["speed-buttons-container"]}>
+        {SPEED_VALUES.map((speedValue) => (
+          <button
+            key={speedValue}
+            onClick={() => handleSpeedChange(parseFloat(speedValue))}
+            className={`${parseFloat(speedValue) === selectedSpeed ? buttonStyles["selected-speed"] : ""}`}
+          >
+            x{speedValue}
+          </button>
+        ))}
+      </div>
+      <div className={buttonStyles["solve-buttons"]}>
+        <button onClick={handleSolveAll}>{getSolveAllButtonText()}</button>
+        <button onClick={handleSolveLine}>Solve Line</button>
+        <button onClick={handleTryAgain}>Try Again</button>
+      </div>
+    </>
   );
 };
 

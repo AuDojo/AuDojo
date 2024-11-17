@@ -1,3 +1,7 @@
+button {
+  cursor: pointer;
+}
+
 .pseudo-button {
   display: inline-flex;
   justify-content: center;
@@ -48,21 +52,12 @@ input::placeholder {
   padding-right: 5px;
 }
 
-/* .buttons-container::-webkit-scrollbar{
-  width: 3px;
-}
-
-.buttons-container::-webkit-scrollbar-thumb{
-  background-color: rgb(197, 197, 197);
-} */
-
 .solve-buttons,
 .generate-buttons {
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: right;
-  row-gap: 15px;
+  row-gap: 13px;
 }
 
 .solve-buttons button,
@@ -75,7 +70,6 @@ input::placeholder {
   font-size: 16px;
   font-weight: 800;
   border: 1px solid rgb(190, 30, 60);
-  cursor: pointer;
 }
 .solve-buttons button:hover,
 .pseudo-button:hover,
@@ -91,11 +85,37 @@ input::placeholder {
 .generate-buttons {
   /* margin-top: 130px; */
   /* margin-top: clamp(20px, 10vh, 130px); */
-  margin-bottom: calc(20vh - 80px);
+  margin-bottom: calc(20vh - 95px);
 }
 
-.array-length-container input{
+.array-length-container input {
   width: 50px;
+}
+.speed-buttons-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.speed-buttons-container button {
+  font-size: 12px;
+  font-weight: 400;
+  padding: 3px;
+  margin: 5px;
+  text-align: center;
+  border: 1px solid lightgray;
+  background-color: white;
+}
+.speed-buttons-container button:hover {
+  opacity: 0.7;
+}
+.speed-buttons-container button.selected-speed {
+  background-color: rgb(190, 30, 60);
+  color: white;
+}
+.speed-buttons-container button.selected-speed:hover {
+  cursor: default;
+  opacity: 1;
 }
 
 @media (max-width: 850px) {
