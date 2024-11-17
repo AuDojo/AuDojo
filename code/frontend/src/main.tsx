@@ -10,7 +10,6 @@ import "./index.css";
 import BubbleSort from "./pages/BubbleSort.tsx";
 import Home from "./pages/Home.tsx";
 import MergeSort from "./pages/MergeSort.tsx";
-import SortSensei from "./pages/SortSensei.tsx";
 import QuickSort from "./pages/QuickSort.tsx";
 import SelectionSort from "./pages/SelectionSort.tsx";
 import Tutorial from "./pages/Tutorial.tsx";
