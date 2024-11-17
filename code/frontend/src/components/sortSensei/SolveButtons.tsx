@@ -144,6 +144,24 @@ const SolveButton = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "l") {
+        handleSolveLine();
+      } else if (event.key === "L") {
+        handleSolveAll();
+      } else if (event.key === "t") {
+        handleTryAgain();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleSolveLine, handleSolveAll, handleTryAgain]);
+
   return (
     <>
       <div className={buttonStyles["speed-buttons-container"]}>
@@ -158,9 +176,9 @@ const SolveButton = () => {
         ))}
       </div>
       <div className={buttonStyles["solve-buttons"]}>
-        <button onClick={handleSolveAll}>{getSolveAllButtonText()}</button>
-        <button onClick={handleSolveLine}>Solve Line</button>
-        <button onClick={handleTryAgain}>Try Again</button>
+        <button onClick={handleSolveAll}>{getSolveAllButtonText()} (L)</button>
+        <button onClick={handleSolveLine}>Solve Line (l)</button>
+        <button onClick={handleTryAgain}>Try Again (t)</button>
       </div>
     </>
   );
