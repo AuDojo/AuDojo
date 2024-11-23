@@ -6,7 +6,6 @@ import styles from "../../styles/sortSensei/SortingTable.module.css";
 
 interface RowProps {
   rowIndex: number;
-  sortType: SortType;
 }
 
 // Bind styles to classNames
@@ -17,18 +16,32 @@ const cx = classNames.bind(styles);
  * @param rowIndex The index of the row
  * @param sortType The type of sorting algorithm, e.g. bubblesort or mergesort
  */
-const TableRow = ({ rowIndex, sortType }: RowProps) => {
+const TableRow = ({ rowIndex }: RowProps) => {
   // Access the context values
   const {
     stepsList,
     step,
     mergeRanges,
     inputCellsRef,
+    sortTypeRef,
     inputCellValues,
     cellValidation,
     setInputCellValues,
   } = useSortContext();
-  const mergeRange = mergeRanges[rowIndex];
+
+  const sortType = sortTypeRef.current;
+  let mergeRange: [number, number];
+  switch (sortType) {
+    case SortType.MergeSort: {
+      if (mergeRanges) {
+        mergeRange = mergeRanges[rowIndex] || [-1, -1];
+      }
+      break;
+    }
+    case SortType.QuickSort:
+    case SortType.BubbleSort:
+    case SortType.SelectionSort:
+  }
   const stepList = stepsList[rowIndex];
   const validation = cellValidation[rowIndex];
 
@@ -107,6 +120,7 @@ const TableRow = ({ rowIndex, sortType }: RowProps) => {
    * @returns True if the column index is within the merge range, false otherwise
    */
   const isInMergeRange = (columnIndex: number): boolean => {
+    if (!mergeRange) return false;
     return columnIndex >= mergeRange[0] && columnIndex <= mergeRange[1];
   };
 
