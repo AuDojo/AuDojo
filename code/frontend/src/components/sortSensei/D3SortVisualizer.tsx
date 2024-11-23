@@ -177,11 +177,10 @@ const D3SortVisualizer = () => {
   }, [stepsList, step, mergeRanges, dimensions]); // Add dimensions to dependencies
 
   return (
-    // <div style={{display: "block", border: "5px solid rgb(0, 63, 87)", width: "100%"}}>
-      <div ref={containerRef} style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+      <div ref={containerRef} style={{ display: "flex", justifyContent: "center" }}>
         <svg
           ref={svgRef}
-          width={dimensions.width}
+          width={dimensions.width} 
           height={dimensions.height}
           style={{
             display: "block",
@@ -190,7 +189,6 @@ const D3SortVisualizer = () => {
           }}
         />
       </div>
-    // </div>
   );
 };
 
