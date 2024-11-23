@@ -29,26 +29,27 @@ const GenerateButtons = () => {
 
     if (outOfRangeNumbers.length > 0) {
       setErrorMessage(`Please enter numbers only in the range ${INPUT_NUMBER_RANGE.min} to ${INPUT_NUMBER_RANGE.max}.`);
-      setTimeout(() => setErrorMessage(""), 1500);
+      setTimeout(() => setErrorMessage(""), 3000);
       return;
     }
 
     if (array.length < MIN_ARRAY_SIZE) {
       //! min array length
       setIsSubmitting(false);
-      setErrorMessage(`Please enter at least ${INPUT_NUMBER_RANGE.min} numbers.`);
+      setErrorMessage(`Please enter at least ${MIN_ARRAY_SIZE} numbers.`);
       setCustomArray("");
-      setTimeout(() => setErrorMessage(""), 1500);
+      setTimeout(() => setErrorMessage(""), 2200);
       return;
     }
     if (array.length > MAX_ARRAY_SIZE) {
       setErrorMessage(`Please enter at most ${MAX_ARRAY_SIZE} numbers.`);
-      setTimeout(() => setErrorMessage(""), 1500);
+      setTimeout(() => setErrorMessage(""), 2200);
       return;
     }
 
     fetchStepsList(array);
     setCustomArray("");
+    setIsSubmitting(false);
   };
 
   const generateRandomArray = (length = 7, max = INPUT_NUMBER_RANGE.max) => {
@@ -85,7 +86,7 @@ const GenerateButtons = () => {
         className={`${!isSubmitting ? buttonStyles["no-submitting"] : ""}`}
         onKeyDown={(e) => e.key === "Enter" && submitCustomArray()}
       />
-      {errorMessage && <div style={{ color: "red", fontSize: "12px" }}>{errorMessage}</div>}
+      {errorMessage && <div style={{ color: "red", fontSize: "12px"}}>{errorMessage}</div>}
       <button
         className={`${buttonStyles["submit-button"]} ${!isSubmitting ? buttonStyles["no-submitting"] : ""}`}
         onClick={submitCustomArray}
