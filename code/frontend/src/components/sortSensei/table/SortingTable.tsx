@@ -19,14 +19,14 @@ const SortingTable = (): JSX.Element => {
   }
 
   return (
-    <div>
+    <>
       <StartRow />
       <div className={styles["table-container"]}>
         {stepsList.slice(1).map((_, index) => (
           <TableRow key={index + 1} rowIndex={index + 1} />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

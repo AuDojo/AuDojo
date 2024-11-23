@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { SortType } from "../../../constants";
 import { useSortContext } from "../../../hooks/sortContextHooks";
 import buttonStyles from "../../../styles/sortSensei/Button.module.css";
@@ -12,8 +12,16 @@ const SPEED_VALUES = ["0.4", "0.7", "1.0", "2.0"];
 const getTimeoutFromSpeed = (multiplier: number) => BASE_TIMEOUT / multiplier;
 
 const SolveButton = () => {
-  const { step, stepsList, inputCellValues, mergeRanges, sortTypeRef, setStep, setInputCellValues, setCellValidation } =
-    useSortContext();
+  const {
+    step,
+    stepsList,
+    inputCellValues,
+    mergeRanges,
+    sortTypeRef,
+    setStep,
+    setInputCellValues,
+    setCellValidation,
+  } = useSortContext();
 
   const { timeoutRef, solveAllStatus, setSolveAllStatus } = useButtonContext();
 
@@ -38,12 +46,17 @@ const SolveButton = () => {
 
       const correctValues = stepsList[currentStep];
       const userValues = inputCellValues[currentStep];
-      const currentMergeRange = mergeRanges ? mergeRanges[currentStep] : [-1, -1];
+      const currentMergeRange = mergeRanges
+        ? mergeRanges[currentStep]
+        : [-1, -1];
       const sortType = sortTypeRef.current;
 
       // TODO: Clean up this code, maybe own validateMergeSortLine
       const validationResult = userValues.map((value, index) => {
-        const isInMergeRange = currentMergeRange && index >= currentMergeRange[0] && index <= currentMergeRange[1];
+        const isInMergeRange =
+          currentMergeRange &&
+          index >= currentMergeRange[0] &&
+          index <= currentMergeRange[1];
 
         if (sortType !== SortType.MergeSort || isInMergeRange) {
           return Number(value) === correctValues[index];
@@ -61,7 +74,14 @@ const SolveButton = () => {
       setStep(currentStep + 1);
       currentStepRef.current = currentStep + 1;
     },
-    [inputCellValues, mergeRanges, stepsList, sortTypeRef, setCellValidation, setStep]
+    [
+      inputCellValues,
+      mergeRanges,
+      stepsList,
+      sortTypeRef,
+      setCellValidation,
+      setStep,
+    ]
   );
 
   const stopSolving = useCallback(() => {
@@ -127,9 +147,22 @@ const SolveButton = () => {
     setStep(1);
     currentStepRef.current = 1;
     setSolveAllStatus("solve");
-    setInputCellValues(stepsList.map((step) => new Array(step.length).fill("")));
-    setCellValidation(stepsList.map((step) => new Array(step.length).fill(null)));
-  }, [stepsList, setStep, setInputCellValues, setCellValidation, stopSolving, setSolveAllStatus]);
+    setInputCellValues(
+      stepsList.map((step, index) =>
+        index === 0 ? [...step] : new Array(step.length).fill("")
+      )
+    );
+    setCellValidation(
+      stepsList.map((step) => new Array(step.length).fill(null))
+    );
+  }, [
+    stepsList,
+    setStep,
+    setInputCellValues,
+    setCellValidation,
+    stopSolving,
+    setSolveAllStatus,
+  ]);
 
   const handleSpeedChange = (newSpeed: number) => {
     setSelectedSpeed(newSpeed);
@@ -140,7 +173,10 @@ const SolveButton = () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-      timeoutRef.current = setTimeout(solveNextStep, getTimeoutFromSpeed(newSpeed));
+      timeoutRef.current = setTimeout(
+        solveNextStep,
+        getTimeoutFromSpeed(newSpeed)
+      );
     }
   };
 
@@ -183,7 +219,11 @@ const SolveButton = () => {
           <button
             key={speedValue}
             onClick={() => handleSpeedChange(parseFloat(speedValue))}
-            className={`${parseFloat(speedValue) === selectedSpeed ? buttonStyles["selected-speed"] : ""}`}
+            className={`${
+              parseFloat(speedValue) === selectedSpeed
+                ? buttonStyles["selected-speed"]
+                : ""
+            }`}
           >
             x{speedValue}
           </button>
