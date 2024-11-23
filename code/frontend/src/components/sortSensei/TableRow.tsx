@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import React from "react";
-import { INPUT_NUMBER_RANGE, SortType } from "../../constants";
+import { MAX_INPUT_RANGE, MIN_INPUT_RANGE, SortType } from "../../constants";
 import { useSortContext } from "../../hooks/sortContextHooks";
 import styles from "../../styles/sortSensei/SortingTable.module.css";
 
@@ -14,7 +14,6 @@ const cx = classNames.bind(styles);
 /**
  * A component to render a single row of the sorting table.
  * @param rowIndex The index of the row
- * @param sortType The type of sorting algorithm, e.g. bubblesort or mergesort
  */
 const TableRow = ({ rowIndex }: RowProps) => {
   // Access the context values
@@ -55,8 +54,7 @@ const TableRow = ({ rowIndex }: RowProps) => {
   const handleChange = (value: string, columnIndex: number): void => {
     // Check if the input value is either empty or a valid number
     if (
-      (Number(value) >= INPUT_NUMBER_RANGE.min &&
-        Number(value) <= INPUT_NUMBER_RANGE.max) ||
+      (Number(value) >= MIN_INPUT_RANGE && Number(value) <= MAX_INPUT_RANGE) ||
       value === ""
     ) {
       const updatedValues = [...inputCellValues];

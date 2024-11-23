@@ -79,7 +79,7 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   async function fetchStepsList(
-    array: number[] = [7, 13, 5, 9, 10, 12, 1, 3, 2, 6, 25, 30, 40, 38, 32]
+    array: number[] = [7, 13, 5, 9, 10, 12, 1, 3, 2, 6, 25, 40]
   ) {
     try {
       // POST Request to the backend to get the processList
