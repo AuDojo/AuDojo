@@ -2,16 +2,25 @@ button {
   cursor: pointer;
 }
 
-.pseudo-button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  right: 0;
-  z-index: 300;
-  top: 0;
-  width: 120px;
-  height: 45px;
+.generate-buttons,
+.solve-speed-buttons {
+  position: absolute;
+  height: auto;
+}
+.generate-buttons {
+  top: 0px;
+  left: -205px; /* Align to the right edge of the container */
+}
+.solve-speed-buttons {
+  top: max(0px, min(70%, calc(100vh - 550px)));
+  right: -200px;
+}
+
+.solve-buttons,
+.generate-buttons {
+  display: flex;
+  flex-direction: column;
+  row-gap: 13px;
 }
 
 .generate-buttons .submit-button,
@@ -41,24 +50,6 @@ input::placeholder {
   font-size: 13px;
 }
 
-.buttons-container {
-  position: absolute;
-  right: -215px; /* Align to the right edge of the container */
-  top: 0px;
-  height: 100%;
-  overflow-y: auto;
-  max-width: 190px;
-  scrollbar-width: auto;
-  padding-right: 5px;
-}
-
-.solve-buttons,
-.generate-buttons {
-  display: flex;
-  flex-direction: column;
-  justify-content: right;
-  row-gap: 13px;
-}
 
 .solve-buttons button,
 .generate-buttons button,
@@ -82,17 +73,12 @@ input::placeholder {
   opacity: 0.8;
 }
 
-.generate-buttons {
-  /* margin-top: 130px; */
-  /* margin-top: clamp(20px, 10vh, 130px); */
-  margin-bottom: calc(20vh - 95px);
-}
-
 .array-length-container input {
   width: 50px;
 }
 .speed-buttons-container {
   width: 100%;
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,6 +102,18 @@ input::placeholder {
 .speed-buttons-container button.selected-speed:hover {
   cursor: default;
   opacity: 1;
+}
+
+.pseudo-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  right: 0;
+  z-index: 300;
+  top: 0;
+  width: 120px;
+  height: 45px;
 }
 
 @media (max-width: 850px) {
