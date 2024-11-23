@@ -11,21 +11,11 @@ const SPEED_VALUES = ["0.4", "0.7", "1.0", "2.0"];
 const getTimeoutFromSpeed = (multiplier: number) => BASE_TIMEOUT / multiplier;
 
 const SolveButton = () => {
-  const {
-    step,
-    stepsList,
-    inputCellValues,
-    mergeRanges,
-    sortTypeRef,
-    setStep,
-    setInputCellValues,
-    setCellValidation,
-  } = useSortContext();
+  const { step, stepsList, inputCellValues, mergeRanges, sortTypeRef, setStep, setInputCellValues, setCellValidation } =
+    useSortContext();
 
   const [selectedSpeed, setSelectedSpeed] = useState(DEFAULT_SPEED);
-  const [solveAllStatus, setSolveAllStatus] = useState<
-    "solve" | "stop" | "continue"
-  >("solve");
+  const [solveAllStatus, setSolveAllStatus] = useState<"solve" | "stop" | "continue">("solve");
   const isSolvingRef = useRef<boolean>(false);
   const currentStepRef = useRef<number>(step);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -38,38 +28,37 @@ const SolveButton = () => {
    *
    * @param {number} currentStep - The index of the current step in the sorting process.
    */
-  const validateLine = useCallback((currentStep: number) => {
-    if (currentStep >= stepsList.length) return;
+  const validateLine = useCallback(
+    (currentStep: number) => {
+      if (currentStep >= stepsList.length) return;
 
-    const correctValues = stepsList[currentStep];
-    const userValues = inputCellValues[currentStep];
-    const currentMergeRange = mergeRanges ? mergeRanges[currentStep] : [-1, -1];
-    const sortType = sortTypeRef.current;
+      const correctValues = stepsList[currentStep];
+      const userValues = inputCellValues[currentStep];
+      const currentMergeRange = mergeRanges ? mergeRanges[currentStep] : [-1, -1];
+      const sortType = sortTypeRef.current;
 
-    // TODO: Clean up this code, maybe own validateMergeSortLine
-    const validationResult = userValues.map((value, index) => {
-      const isInMergeRange =
-        currentMergeRange &&
-        index >= currentMergeRange[0] &&
-        index <= currentMergeRange[1];
+      // TODO: Clean up this code, maybe own validateMergeSortLine
+      const validationResult = userValues.map((value, index) => {
+        const isInMergeRange = currentMergeRange && index >= currentMergeRange[0] && index <= currentMergeRange[1];
 
-      if (sortType !== SortType.MergeSort || isInMergeRange) {
-        return Number(value) === correctValues[index];
-      } else {
-        return value === "" ? true : Number(value) === correctValues[index];
-      }
-    });
+        if (sortType !== SortType.MergeSort || isInMergeRange) {
+          return Number(value) === correctValues[index];
+        } else {
+          return value === "" ? true : Number(value) === correctValues[index];
+        }
+      });
 
-    setCellValidation((prev) => {
-      const updated = [...prev];
-      updated[currentStep] = validationResult;
-      return updated;
-    });
+      setCellValidation((prev) => {
+        const updated = [...prev];
+        updated[currentStep] = validationResult;
+        return updated;
+      });
 
-    setStep(currentStep + 1);
-    currentStepRef.current = currentStep + 1;
-  },[inputCellValues, mergeRanges, stepsList, sortTypeRef, setCellValidation, setStep] );
-
+      setStep(currentStep + 1);
+      currentStepRef.current = currentStep + 1;
+    },
+    [inputCellValues, mergeRanges, stepsList, sortTypeRef, setCellValidation, setStep]
+  );
   const handleSolveLine = useCallback(() => {
     if (isSolvingRef.current) {
       stopSolving();
@@ -91,6 +80,7 @@ const SolveButton = () => {
       if (currentStepRef.current >= stepsList.length) {
         setSolveAllStatus("solve");
         isSolvingRef.current = false;
+        stopSolving();
       }
       return;
     }
@@ -129,12 +119,8 @@ const SolveButton = () => {
     currentStepRef.current = 1;
     setSolveAllStatus("solve");
     speedRef.current = DEFAULT_SPEED;
-    setInputCellValues(
-      stepsList.map((step) => new Array(step.length).fill(""))
-    );
-    setCellValidation(
-      stepsList.map((step) => new Array(step.length).fill(null))
-    );
+    setInputCellValues(stepsList.map((step) => new Array(step.length).fill("")));
+    setCellValidation(stepsList.map((step) => new Array(step.length).fill(null)));
   }, [stepsList, setStep, setInputCellValues, setCellValidation]);
 
   const handleSpeedChange = (newSpeed: number) => {
@@ -146,10 +132,7 @@ const SolveButton = () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-      timeoutRef.current = setTimeout(
-        solveNextStep,
-        getTimeoutFromSpeed(newSpeed)
-      );
+      timeoutRef.current = setTimeout(solveNextStep, getTimeoutFromSpeed(newSpeed));
     }
   };
 
@@ -198,11 +181,7 @@ const SolveButton = () => {
           <button
             key={speedValue}
             onClick={() => handleSpeedChange(parseFloat(speedValue))}
-            className={`${
-              parseFloat(speedValue) === selectedSpeed
-                ? buttonStyles["selected-speed"]
-                : ""
-            }`}
+            className={`${parseFloat(speedValue) === selectedSpeed ? buttonStyles["selected-speed"] : ""}`}
           >
             x{speedValue}
           </button>
