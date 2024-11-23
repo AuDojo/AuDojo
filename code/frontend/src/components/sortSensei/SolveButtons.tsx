@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { SortType } from "../../constants";
 import { useSortContext } from "../../hooks/sortContextHooks";
 import buttonStyles from "../../styles/sortSensei/Button.module.css";
+import { useButtonContext } from "./useButtonContext";
 
 const DEFAULT_SPEED = 1.0;
 const BASE_TIMEOUT = 1000; // 1 second base timeout
@@ -14,11 +15,13 @@ const SolveButton = () => {
   const { step, stepsList, inputCellValues, mergeRanges, sortTypeRef, setStep, setInputCellValues, setCellValidation } =
     useSortContext();
 
+  const { timeoutRef , solveAllStatus, setSolveAllStatus} = useButtonContext();
+
   const [selectedSpeed, setSelectedSpeed] = useState(DEFAULT_SPEED);
-  const [solveAllStatus, setSolveAllStatus] = useState<"solve" | "stop" | "continue">("solve");
+  // const [solveAllStatus, setSolveAllStatus] = useState<"solve" | "stop" | "continue">("solve");
   const isSolvingRef = useRef<boolean>(false);
   const currentStepRef = useRef<number>(step);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  // const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const speedRef = useRef<number>(DEFAULT_SPEED);
   const [buttonText, setButtonText] = useState("Sort All");
 
@@ -60,29 +63,28 @@ const SolveButton = () => {
     },
     [inputCellValues, mergeRanges, stepsList, sortTypeRef, setCellValidation, setStep]
   );
-  const handleSolveLine = useCallback(() => {
-    if (isSolvingRef.current) {
-      stopSolving();
-      setSolveAllStatus("continue");
-      setButtonText("Continue");
-    }
-    validateLine(step);
-  }, [step, validateLine]);
 
-  const stopSolving = () => {
+  const stopSolving = useCallback(() => {
     isSolvingRef.current = false;
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
     }
-  };
+  }, [timeoutRef]);
+
+  const handleSolveLine = useCallback(() => {
+    if (isSolvingRef.current) {
+      stopSolving();
+      setSolveAllStatus("continue");
+    }
+    validateLine(step);
+  }, [step, validateLine, stopSolving, setSolveAllStatus]);
 
   const solveNextStep = useCallback(() => {
     if (!isSolvingRef.current || step >= stepsList.length) {
       if (currentStepRef.current >= stepsList.length - 1) {
         isSolvingRef.current = false;
         setSolveAllStatus("solve");
-        setButtonText("Sort All");
       }
       return;
     }
@@ -92,47 +94,42 @@ const SolveButton = () => {
       const currentTimeout = getTimeoutFromSpeed(speedRef.current);
       timeoutRef.current = setTimeout(solveNextStep, currentTimeout);
     }
-  }, [stepsList, validateLine, step]);
+  }, [stepsList, validateLine, step, timeoutRef, setSolveAllStatus]);
 
   useEffect(() => {
     if (step >= stepsList.length) {
       setSolveAllStatus("solve");
-      setButtonText("Sort All");
     }
-  }, [step, stepsList]);
+  }, [step, stepsList, setSolveAllStatus]);
 
   const handleSolveAll = useCallback(() => {
     switch (solveAllStatus) {
       case "solve":
         isSolvingRef.current = true;
         setSolveAllStatus("stop");
-        setButtonText("Stop");
         currentStepRef.current = step;
         solveNextStep();
         break;
       case "stop":
         stopSolving();
         setSolveAllStatus("continue");
-        setButtonText("Continue");
         break;
       case "continue":
         isSolvingRef.current = true;
         setSolveAllStatus("stop");
-        setButtonText("Stop");
         solveNextStep();
         break;
     }
-  }, [solveAllStatus, step, solveNextStep]);
+  }, [solveAllStatus, step, solveNextStep, stopSolving, setSolveAllStatus]);
 
   const handleTryAgain = useCallback(() => {
     stopSolving();
     setStep(1);
     currentStepRef.current = 1;
     setSolveAllStatus("solve");
-    setButtonText("Sort All");
     setInputCellValues(stepsList.map((step) => new Array(step.length).fill("")));
     setCellValidation(stepsList.map((step) => new Array(step.length).fill(null)));
-  }, [stepsList, setStep, setInputCellValues, setCellValidation]);
+  }, [stepsList, setStep, setInputCellValues, setCellValidation, stopSolving, setSolveAllStatus]);
 
   const handleSpeedChange = (newSpeed: number) => {
     setSelectedSpeed(newSpeed);
@@ -147,25 +144,19 @@ const SolveButton = () => {
     }
   };
 
-  // const getSolveAllButtonText = () => {
-  //   switch (solveAllStatus) {
-  //     case "solve":
-  //       return "Sort All";
-  //     case "stop":
-  //       return "Stop";
-  //     case "continue":
-  //       return "Continue";
-  //   }
-  // };
-
-  // Cleanup on unmount
   useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, []);
+    switch (solveAllStatus) {
+      case "solve":
+        setButtonText("Sort All");
+        break;
+      case "stop":
+        setButtonText("Stop");
+        break;
+      case "continue":
+        setButtonText("Continue");
+        break;
+    }
+  }, [solveAllStatus]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {

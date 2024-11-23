@@ -2,13 +2,15 @@ import { useState } from "react";
 import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE } from "../../constants/sorting";
 import { useSortContext } from "../../hooks/sortContextHooks";
 import buttonStyles from "../../styles/sortSensei/Button.module.css";
-
+import { useButtonContext } from "./useButtonContext";
 const GenerateButtons = () => {
   const [customArray, setCustomArray] = useState<string>("");
   const { setStep, fetchStepsList } = useSortContext();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [arrayLength, setArrayLength] = useState<number>(12);
   const [errorMessage, setErrorMessage] = useState("");
+
+  const { timeoutRef, setSolveAllStatus } = useButtonContext();
 
   const toggleSubmit = () => {
     setIsSubmitting(!isSubmitting);
@@ -19,11 +21,15 @@ const GenerateButtons = () => {
   };
 
   const submitCustomArray = () => {
+    setSolveAllStatus("solve");
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
     const array = customArray
       .split(/[,\s]+/) // split by (many) commas, #;- or whitespace
       .map((num) => parseInt(num, 10)) // convert the string to an Integer number
       .filter((num) => !isNaN(num));
-    console.log(array);
     const outOfRangeNumbers = array.filter((num) => num < MIN_INPUT_RANGE || num > MAX_INPUT_RANGE);
 
     if (outOfRangeNumbers.length > 0) {
@@ -47,7 +53,7 @@ const GenerateButtons = () => {
     }
     setStep(1);
     fetchStepsList(array);
-    setCustomArray("");
+    // setCustomArray("");
     setIsSubmitting(false);
   };
 
@@ -57,8 +63,14 @@ const GenerateButtons = () => {
 
   const handleRandomArray = () => {
     setStep(1);
+    setSolveAllStatus("solve");
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
     const array = generateRandomArray(arrayLength);
     fetchStepsList(array);
+    setIsSubmitting(false);
   };
 
   const handleArrayLengthChange = (event: React.ChangeEvent<HTMLInputElement>) => {

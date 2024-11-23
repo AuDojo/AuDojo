@@ -10,6 +10,7 @@ import D3SortVisualizer from "../components/sortSensei/D3SortVisualizer";
 import { MergeSortGuide } from "../components/sortSensei/guide/MergeSortGuide";
 import styles from "../styles/sortSensei/general.module.css";
 import tableStyles from "../styles/sortSensei/SortingTable.module.css";
+import { ButtonContextProvider } from "../components/sortSensei/ButtonContext";
 
 const MergeSort = () => {
   return (
@@ -29,8 +30,10 @@ const MergeSort = () => {
             <SortingTable />
             {/* right buttons */}
             <div>
-              <GenerateButtons />
-              <SolveButtons />
+              <ButtonContextProvider>
+                <GenerateButtons />
+                <SolveButtons />
+              </ButtonContextProvider>
             </div>
           </div>
         </div>
