@@ -10,6 +10,7 @@ import D3SortVisualizer from "../components/sortSensei/D3SortVisualizer";
 import { QuickSortGuide } from "../components/sortSensei/guide/QuickSortGuide";
 import styles from "../styles/sortSensei/general.module.css";
 import tableStyles from "../styles/sortSensei/SortingTable.module.css";
+import { ButtonContextProvider } from "../components/sortSensei/buttons/ButtonContext";
 
 const QuickSort = () => {
   return (
@@ -27,10 +28,10 @@ const QuickSort = () => {
             {/* Table */}
             <SortingTable />
             {/* right buttons */}
-            <div>
+            <ButtonContextProvider>
               <GenerateButtons />
               <SolveButtons />
-            </div>
+            </ButtonContextProvider>
           </div>
         </div>
       </div>

@@ -10,6 +10,7 @@ import D3SortVisualizer from "../components/sortSensei/D3SortVisualizer";
 import { SelectionSortGuide } from "../components/sortSensei/guide/SelectionSortGuide";
 import styles from "../styles/sortSensei/general.module.css";
 import tableStyles from "../styles/sortSensei/SortingTable.module.css";
+import { ButtonContextProvider } from "../components/sortSensei/buttons/ButtonContext";
 const SelectionSort = () => {
   return (
     <SortProvider>
@@ -26,10 +27,12 @@ const SelectionSort = () => {
             {/* Table */}
             <SortingTable />
             {/* right buttons */}
-            <div>
+
+            <ButtonContextProvider>
               <GenerateButtons />
               <SolveButtons />
-            </div>
+            </ButtonContextProvider>
+
           </div>
         </div>
       </div>
