@@ -6,11 +6,11 @@ import SortingTable from "../components/sortSensei/SortingTable";
 import SortTips from "../components/sortSensei/SortTips";
 import { SortProvider } from "../contexts/SortContext";
 // import buttonsStyles from "../styles/sortSensei/Button.module.css";
+import D3SortVisualizer from "../components/sortSensei/D3SortVisualizer";
+import { MergeSortGuide } from "../components/sortSensei/guide/MergeSortGuide";
 import styles from "../styles/sortSensei/general.module.css";
 import tableStyles from "../styles/sortSensei/SortingTable.module.css";
-import { MergeSortGuide } from "../components/sortSensei/guide/MergeSortGuide";
-import { SortType } from "../constants/sorting";
-import D3SortVisualizer from "../components/sortSensei/D3SortVisualizer";
+
 const MergeSort = () => {
   return (
     <SortProvider>
@@ -26,7 +26,7 @@ const MergeSort = () => {
             {/* Left Tips */}
             <SortTips />
             {/* Table */}
-            <SortingTable sortType={SortType.MergeSort} />
+            <SortingTable />
             {/* right buttons */}
             <div>
               <GenerateButtons />

@@ -139,7 +139,7 @@ const SolveButton = () => {
   const getSolveAllButtonText = () => {
     switch (solveAllStatus) {
       case "solve":
-        return "Solve All";
+        return "Sort All";
       case "stop":
         return "Stop";
       case "continue":
@@ -189,7 +189,7 @@ const SolveButton = () => {
       </div>
       <div className={buttonStyles["solve-buttons"]}>
         <button onClick={handleSolveAll}>{getSolveAllButtonText()} (L)</button>
-        <button onClick={handleSolveLine}>Solve Line (l)</button>
+        <button onClick={handleSolveLine}>Sort Line (l)</button>
         <button onClick={handleTryAgain}>Try Again (t)</button>
       </div>
     </div>
