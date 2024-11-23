@@ -20,6 +20,7 @@ const SolveButton = () => {
   const currentStepRef = useRef<number>(step);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const speedRef = useRef<number>(DEFAULT_SPEED);
+  const [buttonText, setButtonText] = useState("Sort All");
 
   /**
    * Validates the user's input values against the correct step values for a given sorting step.
@@ -63,6 +64,7 @@ const SolveButton = () => {
     if (isSolvingRef.current) {
       stopSolving();
       setSolveAllStatus("continue");
+      setButtonText("Continue");
     }
     validateLine(step);
   }, [step, validateLine]);
@@ -76,38 +78,47 @@ const SolveButton = () => {
   };
 
   const solveNextStep = useCallback(() => {
-    if (!isSolvingRef.current || currentStepRef.current >= stepsList.length) {
-      if (currentStepRef.current >= stepsList.length) {
-        setSolveAllStatus("solve");
+    if (!isSolvingRef.current || step >= stepsList.length) {
+      if (currentStepRef.current >= stepsList.length - 1) {
         isSolvingRef.current = false;
-        stopSolving();
+        setSolveAllStatus("solve");
+        setButtonText("Sort All");
       }
       return;
     }
-
     validateLine(currentStepRef.current);
 
     if (currentStepRef.current < stepsList.length && isSolvingRef.current) {
       const currentTimeout = getTimeoutFromSpeed(speedRef.current);
       timeoutRef.current = setTimeout(solveNextStep, currentTimeout);
     }
-  }, [stepsList, validateLine]);
+  }, [stepsList, validateLine, step]);
+
+  useEffect(() => {
+    if (step >= stepsList.length) {
+      setSolveAllStatus("solve");
+      setButtonText("Sort All");
+    }
+  }, [step, stepsList]);
 
   const handleSolveAll = useCallback(() => {
     switch (solveAllStatus) {
       case "solve":
         isSolvingRef.current = true;
         setSolveAllStatus("stop");
+        setButtonText("Stop");
         currentStepRef.current = step;
         solveNextStep();
         break;
       case "stop":
         stopSolving();
         setSolveAllStatus("continue");
+        setButtonText("Continue");
         break;
       case "continue":
         isSolvingRef.current = true;
         setSolveAllStatus("stop");
+        setButtonText("Stop");
         solveNextStep();
         break;
     }
@@ -118,7 +129,7 @@ const SolveButton = () => {
     setStep(1);
     currentStepRef.current = 1;
     setSolveAllStatus("solve");
-    speedRef.current = DEFAULT_SPEED;
+    setButtonText("Sort All");
     setInputCellValues(stepsList.map((step) => new Array(step.length).fill("")));
     setCellValidation(stepsList.map((step) => new Array(step.length).fill(null)));
   }, [stepsList, setStep, setInputCellValues, setCellValidation]);
@@ -136,16 +147,16 @@ const SolveButton = () => {
     }
   };
 
-  const getSolveAllButtonText = () => {
-    switch (solveAllStatus) {
-      case "solve":
-        return "Sort All";
-      case "stop":
-        return "Stop";
-      case "continue":
-        return "Continue";
-    }
-  };
+  // const getSolveAllButtonText = () => {
+  //   switch (solveAllStatus) {
+  //     case "solve":
+  //       return "Sort All";
+  //     case "stop":
+  //       return "Stop";
+  //     case "continue":
+  //       return "Continue";
+  //   }
+  // };
 
   // Cleanup on unmount
   useEffect(() => {
@@ -188,7 +199,7 @@ const SolveButton = () => {
         ))}
       </div>
       <div className={buttonStyles["solve-buttons"]}>
-        <button onClick={handleSolveAll}>{getSolveAllButtonText()} (L)</button>
+        <button onClick={handleSolveAll}>{buttonText} (L)</button>
         <button onClick={handleSolveLine}>Sort Line (l)</button>
         <button onClick={handleTryAgain}>Try Again (t)</button>
       </div>
