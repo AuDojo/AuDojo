@@ -6,6 +6,7 @@ button {
 .solve-speed-buttons {
   position: absolute;
   height: auto;
+  max-width: 190px;
 }
 .generate-buttons {
   top: 0px;
