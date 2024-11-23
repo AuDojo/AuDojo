@@ -1,10 +1,5 @@
 import { useState } from "react";
-import {
-  MAX_ARRAY_SIZE,
-  MAX_INPUT_RANGE,
-  MIN_ARRAY_SIZE,
-  MIN_INPUT_RANGE,
-} from "../../constants/sorting";
+import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE } from "../../constants/sorting";
 import { useSortContext } from "../../hooks/sortContextHooks";
 import buttonStyles from "../../styles/sortSensei/Button.module.css";
 
@@ -24,20 +19,15 @@ const GenerateButtons = () => {
   };
 
   const submitCustomArray = () => {
-    setStep(1);
     const array = customArray
       .split(/[,\s]+/) // split by (many) commas, #;- or whitespace
       .map((num) => parseInt(num, 10)) // convert the string to an Integer number
       .filter((num) => !isNaN(num));
     console.log(array);
-    const outOfRangeNumbers = array.filter(
-      (num) => num < MIN_INPUT_RANGE || num > MAX_INPUT_RANGE
-    );
+    const outOfRangeNumbers = array.filter((num) => num < MIN_INPUT_RANGE || num > MAX_INPUT_RANGE);
 
     if (outOfRangeNumbers.length > 0) {
-      setErrorMessage(
-        `Please enter numbers only in the range ${MIN_INPUT_RANGE} to ${MAX_INPUT_RANGE}.`
-      );
+      setErrorMessage(`Please enter numbers only in the range ${MIN_INPUT_RANGE} to ${MAX_INPUT_RANGE}.`);
       setTimeout(() => setErrorMessage(""), 3000);
       return;
     }
@@ -55,7 +45,7 @@ const GenerateButtons = () => {
       setTimeout(() => setErrorMessage(""), 2200);
       return;
     }
-
+    setStep(1);
     fetchStepsList(array);
     setCustomArray("");
     setIsSubmitting(false);
@@ -71,31 +61,20 @@ const GenerateButtons = () => {
     fetchStepsList(array);
   };
 
-  const handleArrayLengthChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleArrayLengthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value, 10);
     setArrayLength(value);
   };
 
-  const handleArrayLengthKeyDown = (
-    event: React.KeyboardEvent<HTMLInputElement>
-  ) => {
-    if (
-      event.key === "Enter" &&
-      arrayLength >= MIN_ARRAY_SIZE &&
-      arrayLength <= MAX_ARRAY_SIZE
-    ) {
+  const handleArrayLengthKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter" && arrayLength >= MIN_ARRAY_SIZE && arrayLength <= MAX_ARRAY_SIZE) {
       handleRandomArray();
     }
   };
 
   return (
     <div className={buttonStyles["generate-buttons"]}>
-      <button
-        onClick={toggleSubmit}
-        className={` ${buttonStyles[isSubmitting ? "close-button" : ""]}`}
-      >
+      <button onClick={toggleSubmit} className={` ${buttonStyles[isSubmitting ? "close-button" : ""]}`}>
         {isSubmitting ? "Close editing" : "New custom array"}
       </button>
       <input
@@ -106,13 +85,9 @@ const GenerateButtons = () => {
         className={`${!isSubmitting ? buttonStyles["no-submitting"] : ""}`}
         onKeyDown={(e) => e.key === "Enter" && submitCustomArray()}
       />
-      {errorMessage && (
-        <div style={{ color: "red", fontSize: "12px" }}>{errorMessage}</div>
-      )}
+      {errorMessage && <div style={{ color: "red", fontSize: "12px" }}>{errorMessage}</div>}
       <button
-        className={`${buttonStyles["submit-button"]} ${
-          !isSubmitting ? buttonStyles["no-submitting"] : ""
-        }`}
+        className={`${buttonStyles["submit-button"]} ${!isSubmitting ? buttonStyles["no-submitting"] : ""}`}
         onClick={submitCustomArray}
       >
         Submit
