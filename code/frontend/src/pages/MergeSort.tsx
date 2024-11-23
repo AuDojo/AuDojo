@@ -5,7 +5,7 @@ import SortHeader from "../components/sortSensei/SortHeader";
 import SortingTable from "../components/sortSensei/SortingTable";
 import SortTips from "../components/sortSensei/SortTips";
 import { SortProvider } from "../contexts/SortContext";
-import buttonsStyles from "../styles/sortSensei/Button.module.css";
+// import buttonsStyles from "../styles/sortSensei/Button.module.css";
 import styles from "../styles/sortSensei/general.module.css";
 import tableStyles from "../styles/sortSensei/SortingTable.module.css";
 import { MergeSortGuide } from "../components/sortSensei/guide/MergeSortGuide";
@@ -28,7 +28,7 @@ const MergeSort = () => {
             {/* Table */}
             <SortingTable sortType={SortType.MergeSort} />
             {/* right buttons */}
-            <div className={buttonsStyles["buttons-container"]}>
+            <div>
               <GenerateButtons />
               <SolveButtons />
             </div>
