@@ -1,5 +1,6 @@
-import { useSortContext } from "../../hooks/sortContextHooks";
-import styles from "../../styles/sortSensei/SortingTable.module.css";
+import { useSortContext } from "../../../hooks/sortContextHooks";
+import styles from "../../../styles/sortSensei/SortingTable.module.css";
+import StartRow from "./StartRow";
 import TableRow from "./TableRow";
 
 /**
@@ -9,13 +10,17 @@ import TableRow from "./TableRow";
  * @return {JSX.Element} A table component with a TableRow for each step of the
  *  given sorting algorithm
  */
-const SortingTable = () => {
+const SortingTable = (): JSX.Element => {
   const { stepsList } = useSortContext();
   return (
     <div className={styles["table-container"]}>
-      {stepsList.map((_, index) => (
-        <TableRow key={index} rowIndex={index} />
-      ))}
+      {stepsList.map((_, index) =>
+        index === 0 ? (
+          <StartRow key={index} />
+        ) : (
+          <TableRow key={index} rowIndex={index} />
+        )
+      )}
     </div>
   );
 };

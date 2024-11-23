@@ -2,8 +2,8 @@
 import GenerateButtons from "../components/sortSensei/GenerateButtons";
 import SolveButtons from "../components/sortSensei/SolveButtons";
 import SortHeader from "../components/sortSensei/SortHeader";
-import SortingTable from "../components/sortSensei/SortingTable";
 import SortTips from "../components/sortSensei/SortTips";
+import SortingTable from "../components/sortSensei/table/SortingTable";
 import { SortProvider } from "../contexts/SortContext";
 // import buttonsStyles from "../styles/sortSensei/Button.module.css";
 import D3SortVisualizer from "../components/sortSensei/D3SortVisualizer";
