@@ -105,7 +105,6 @@ const SolveButton = () => {
     setStep(1);
     currentStepRef.current = 1;
     setSolveAllStatus("solve");
-    setSelectedSpeed(DEFAULT_SPEED);
     speedRef.current = DEFAULT_SPEED;
     setInputCellValues(stepsList.map((step) => new Array(step.length).fill("")));
     setCellValidation(stepsList.map((step) => new Array(step.length).fill(null)));
@@ -163,7 +162,7 @@ const SolveButton = () => {
   }, [handleSolveLine, handleSolveAll, handleTryAgain]);
 
   return (
-    <>
+    <div className={buttonStyles["solve-speed-buttons"]}>
       <div className={buttonStyles["speed-buttons-container"]}>
         {SPEED_VALUES.map((speedValue) => (
           <button
@@ -180,7 +179,7 @@ const SolveButton = () => {
         <button onClick={handleSolveLine}>Solve Line (l)</button>
         <button onClick={handleTryAgain}>Try Again (t)</button>
       </div>
-    </>
+    </div>
   );
 };
 
