@@ -1,35 +1,38 @@
-import AnimationSort from "../components/sortSensei/AnimationSort";
-import GenerateButtons from "../components/sortSensei/GenerateButtons";
-import SolveButtons from "../components/sortSensei/SolveButtons";
+// import AnimationSort from "../components/sortSensei/AnimationSort";
+import GenerateButtons from "../components/sortSensei/buttons/GenerateButtons";
+import SolveButtons from "../components/sortSensei/buttons/SolveButtons";
 import SortHeader from "../components/sortSensei/SortHeader";
-import SortingTable from "../components/sortSensei/SortingTable";
 import SortTips from "../components/sortSensei/SortTips";
+import SortingTable from "../components/sortSensei/table/SortingTable";
 import { SortProvider } from "../contexts/SortContext";
-import buttonsStyles from "../styles/sortSensei/Button.module.css";
+// import buttonsStyles from "../styles/sortSensei/Button.module.css";
+import D3SortVisualizer from "../components/sortSensei/D3SortVisualizer";
+import { MergeSortGuide } from "../components/sortSensei/guide/MergeSortGuide";
 import styles from "../styles/sortSensei/general.module.css";
 import tableStyles from "../styles/sortSensei/SortingTable.module.css";
-import { MergeSortGuide } from "../components/sortSensei/guide/MergeSortGuide";
-import {SortType} from '../constants/sorting';
+import { ButtonContextProvider } from "../components/sortSensei/buttons/ButtonContext";
+
 const MergeSort = () => {
   return (
     <SortProvider>
       <SortHeader />
       <div className={styles.container}>
-        <div style={{ display: "flex" }}>
+        <div>
+          {/* <AnimationSort /> */}
+          <D3SortVisualizer />
           <MergeSortGuide />
-          <AnimationSort />
         </div>
         <div className={tableStyles["outer-table-buttons-container"]}>
           <div className={tableStyles["inner-table-buttons-container"]}>
             {/* Left Tips */}
             <SortTips />
             {/* Table */}
-            <SortingTable sortType={SortType.MergeSort}/>
+            <SortingTable />
             {/* right buttons */}
-            <div className={buttonsStyles["buttons-container"]}>
-              <GenerateButtons />
-              <SolveButtons />
-            </div>
+              <ButtonContextProvider>
+                <GenerateButtons />
+                <SolveButtons />
+              </ButtonContextProvider>
           </div>
         </div>
       </div>

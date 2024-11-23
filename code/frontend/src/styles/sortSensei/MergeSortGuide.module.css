@@ -5,8 +5,26 @@
   background-color: #f8f9fa;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  right: 0;
+  top: 70px;
 }
 
+@media (max-width: 1260px){
+  .guide{
+    width: 200px;
+  }
+}
+@media (max-width: 1190px){
+  .guide{
+    width: 160px;
+  }
+}
+@media (max-width: 1120px){
+  .guide{
+    display: none;
+  }
+}
 .step {
   margin: 10px 0;
   padding: 10px;
