@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { SortType } from "../../constants";
 import { useSortContext } from "../../hooks/sortContextHooks";
 import buttonStyles from "../../styles/sortSensei/Button.module.css";
@@ -38,7 +38,7 @@ const SolveButton = () => {
    *
    * @param {number} currentStep - The index of the current step in the sorting process.
    */
-  const validateLine = (currentStep: number) => {
+  const validateLine = useCallback((currentStep: number) => {
     if (currentStep >= stepsList.length) return;
 
     const correctValues = stepsList[currentStep];
@@ -68,15 +68,15 @@ const SolveButton = () => {
 
     setStep(currentStep + 1);
     currentStepRef.current = currentStep + 1;
-  };
+  },[inputCellValues, mergeRanges, stepsList, sortTypeRef, setCellValidation, setStep] );
 
-  const handleSolveLine = () => {
+  const handleSolveLine = useCallback(() => {
     if (isSolvingRef.current) {
       stopSolving();
       setSolveAllStatus("continue");
     }
     validateLine(step);
-  };
+  }, [step, validateLine]);
 
   const stopSolving = () => {
     isSolvingRef.current = false;
@@ -86,7 +86,7 @@ const SolveButton = () => {
     }
   };
 
-  const solveNextStep = () => {
+  const solveNextStep = useCallback(() => {
     if (!isSolvingRef.current || currentStepRef.current >= stepsList.length) {
       if (currentStepRef.current >= stepsList.length) {
         setSolveAllStatus("solve");
@@ -101,9 +101,9 @@ const SolveButton = () => {
       const currentTimeout = getTimeoutFromSpeed(speedRef.current);
       timeoutRef.current = setTimeout(solveNextStep, currentTimeout);
     }
-  };
+  }, [stepsList, validateLine]);
 
-  const handleSolveAll = () => {
+  const handleSolveAll = useCallback(() => {
     switch (solveAllStatus) {
       case "solve":
         isSolvingRef.current = true;
@@ -121,9 +121,9 @@ const SolveButton = () => {
         solveNextStep();
         break;
     }
-  };
+  }, [solveAllStatus, step, solveNextStep]);
 
-  const handleTryAgain = () => {
+  const handleTryAgain = useCallback(() => {
     stopSolving();
     setStep(1);
     currentStepRef.current = 1;
@@ -135,7 +135,7 @@ const SolveButton = () => {
     setCellValidation(
       stepsList.map((step) => new Array(step.length).fill(null))
     );
-  };
+  }, [stepsList, setStep, setInputCellValues, setCellValidation]);
 
   const handleSpeedChange = (newSpeed: number) => {
     setSelectedSpeed(newSpeed);
