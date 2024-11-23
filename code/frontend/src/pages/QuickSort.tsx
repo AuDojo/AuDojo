@@ -6,11 +6,10 @@ import SortingTable from "../components/sortSensei/SortingTable";
 import SortTips from "../components/sortSensei/SortTips";
 import { SortProvider } from "../contexts/SortContext";
 // import buttonsStyles from "../styles/sortSensei/Button.module.css";
+import D3SortVisualizer from "../components/sortSensei/D3SortVisualizer";
+import { QuickSortGuide } from "../components/sortSensei/guide/QuickSortGuide";
 import styles from "../styles/sortSensei/general.module.css";
 import tableStyles from "../styles/sortSensei/SortingTable.module.css";
-import { QuickSortGuide } from "../components/sortSensei/guide/QuickSortGuide";
-import { SortType } from "../constants";
-import D3SortVisualizer from "../components/sortSensei/D3SortVisualizer";
 
 const QuickSort = () => {
   return (
@@ -26,7 +25,7 @@ const QuickSort = () => {
           <div className={tableStyles["inner-table-buttons-container"]}>
             <SortTips />
             {/* Table */}
-            <SortingTable sortType={SortType.QuickSort} />
+            <SortingTable />
             {/* right buttons */}
             <div>
               <GenerateButtons />

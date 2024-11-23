@@ -88,24 +88,24 @@ const TableRow = ({ rowIndex }: RowProps) => {
     columnIndex: number
   ): void => {
     const { key, shiftKey } = event;
-    if ((key === "Enter" && shiftKey) || key === "a") {
+    if ((key === "Enter" && shiftKey) || key === "ArrowLeft") {
       // Move to the previous field
       if (columnIndex === 0) {
         focusCell(rowIndex - 1, stepList.length - 1);
       } else {
         focusCell(rowIndex, columnIndex - 1);
       }
-    } else if ((key === "Enter" && !shiftKey) || key === "d") {
+    } else if ((key === "Enter" && !shiftKey) || key === "ArrowRight") {
       // Move to the next input field
       if (columnIndex === stepList.length - 1) {
         focusCell(rowIndex + 1, 0);
       } else {
         focusCell(rowIndex, columnIndex + 1);
       }
-    } else if (key === "s" || key === "ArrowDown") {
+    } else if (key === "ArrowDown") {
       // Move down
       focusCell(rowIndex + 1, columnIndex);
-    } else if (key === "w" || key === "ArrowUp") {
+    } else if (key === "ArrowUp") {
       // Move up
       focusCell(rowIndex - 1, columnIndex);
     } else if (key === "Escape") {
