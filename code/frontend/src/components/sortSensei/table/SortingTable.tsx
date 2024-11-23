@@ -12,15 +12,20 @@ import TableRow from "./TableRow";
  */
 const SortingTable = (): JSX.Element => {
   const { stepsList } = useSortContext();
+
+  // If stepsList is empty, just return null
+  if (!stepsList || stepsList.length === 0) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className={styles["table-container"]}>
-      {stepsList.map((_, index) =>
-        index === 0 ? (
-          <StartRow key={index} />
-        ) : (
-          <TableRow key={index} rowIndex={index} />
-        )
-      )}
+    <div>
+      <StartRow />
+      <div className={styles["table-container"]}>
+        {stepsList.slice(1).map((_, index) => (
+          <TableRow key={index + 1} rowIndex={index + 1} />
+        ))}
+      </div>
     </div>
   );
 };

@@ -44,7 +44,11 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
     mergeRange: [number, number][] | null
   ) => {
     setStepsList(steps);
-    setInputCellValues(steps.map((step) => new Array(step.length).fill("")));
+    setInputCellValues(
+      steps.map((step, index) =>
+        index === 0 ? [...step] : new Array(step.length).fill("")
+      )
+    );
     setCellValidation(steps.map((step) => new Array(step.length).fill(null)));
     inputCellsRef.current = steps.map((step) =>
       new Array(step.length).fill(null)

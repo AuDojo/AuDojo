@@ -75,13 +75,14 @@ const StartRow = () => {
   };
 
   return (
-    <div className={cx("row-container")}>
-      <span className={cx("row-index")}>StartArray</span>
-      {stepsList[0].map((num, index) => (
+    <div className={cx("start-row-container")}>
+      <span className={cx("list-index")}>List</span>
+      {stepsList[0].map((_, index) => (
         <input
           key={index}
           className={cx("cell-input")}
-          value={num}
+          value={inputCellValues[0][index]}
+          readOnly={true}
           ref={(el) => {
             // Assign the input element to the appropriate cell in the ref
             if (inputCellsRef.current[0]) {

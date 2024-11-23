@@ -14,24 +14,39 @@
   background-color: rgb(245, 245, 245);
   overflow: auto;
   height: 345px;
-  padding-top: 1rem;
+  padding-top: 0.8rem;
   padding-right: 1rem;
-  height: calc(100vh - 335px); /* Subtract header, total 335px */
+  height: calc(100vh - 380px); /* Subtract header, total 335px */
   max-height: 621px;
+  border-radius: 10px;
 }
 
+/*----------------- Table rows -----------------*/
+.start-row-container,
 .row-container {
   display: flex;
   align-items: center;
   margin-bottom: 0.5rem;
 }
 
+.start-row-container {
+  background-color: rgb(230, 230, 230);
+  padding: 0.5rem 0;
+  border-radius: 10px;
+}
+
+.list-index,
 .row-index {
   width: 2.5rem; /* Adjust this width based on your needs */
   text-align: right; /* Align the number to the right */
   padding-right: 0.5rem; /* Add space between the index and the input cells */
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.list-index {
   font-weight: 600;
+  padding-right: 0.2rem;
 }
 
 .cell-input {
@@ -40,6 +55,7 @@
   height: 2rem;
   text-align: center;
   font-size: 1.3rem;
+  margin: 0;
 
   border: 1px solid rgb(220, 220, 220);
   border-left-width: 0.5px;
