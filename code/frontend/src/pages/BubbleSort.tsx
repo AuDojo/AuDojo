@@ -1,4 +1,4 @@
-import AnimationSort from "../components/sortSensei/AnimationSort";
+// import AnimationSort from "../components/sortSensei/AnimationSort";
 import GenerateButtons from "../components/sortSensei/GenerateButtons";
 import SolveButtons from "../components/sortSensei/SolveButtons";
 import SortHeader from "../components/sortSensei/SortHeader";
@@ -10,6 +10,7 @@ import styles from "../styles/sortSensei/general.module.css";
 import tableStyles from "../styles/sortSensei/SortingTable.module.css";
 import { BubbleSortGuide } from "../components/sortSensei/guide/BubbleSortGuide";
 import { SortType } from "../constants";
+import D3SortVisualizer from "../components/sortSensei/D3SortVisualizer";
 
 const BubbleSort = () => {
   return (
@@ -18,7 +19,8 @@ const BubbleSort = () => {
       <div className={styles.container}>
         <div style={{ display: "flex" }}>
           <BubbleSortGuide />
-          <AnimationSort />
+          <D3SortVisualizer />
+          {/* <AnimationSort /> */}
         </div>
         <div className={tableStyles["outer-table-buttons-container"]}>
           <div className={tableStyles["inner-table-buttons-container"]}>

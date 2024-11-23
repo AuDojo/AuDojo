@@ -1,3 +1,4 @@
+// import AnimationSort from "../components/sortSensei/AnimationSort";
 import GenerateButtons from "../components/sortSensei/GenerateButtons";
 import SolveButtons from "../components/sortSensei/SolveButtons";
 import SortHeader from "../components/sortSensei/SortHeader";
