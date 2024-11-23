@@ -29,12 +29,10 @@ const MergeSort = () => {
             {/* Table */}
             <SortingTable />
             {/* right buttons */}
-            <div>
               <ButtonContextProvider>
                 <GenerateButtons />
                 <SolveButtons />
               </ButtonContextProvider>
-            </div>
           </div>
         </div>
       </div>

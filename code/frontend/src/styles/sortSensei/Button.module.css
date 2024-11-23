@@ -6,11 +6,11 @@ button {
 .solve-speed-buttons {
   position: absolute;
   height: auto;
-  max-width: 190px;
+  max-width: 220px;
 }
 .generate-buttons {
   top: 0px;
-  left: -205px; /* Align to the right edge of the container */
+  left: -230px; /* Align to the right edge of the container */
 }
 .solve-speed-buttons {
   top: max(0px, min(70%, calc(100vh - 550px)));
@@ -50,7 +50,6 @@ input:focus {
 input::placeholder {
   font-size: 13px;
 }
-
 
 .solve-buttons button,
 .generate-buttons button,
