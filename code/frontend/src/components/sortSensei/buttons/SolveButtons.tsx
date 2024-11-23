@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
-import { SortType } from "../../constants";
-import { useSortContext } from "../../hooks/sortContextHooks";
-import buttonStyles from "../../styles/sortSensei/Button.module.css";
+import { SortType } from "../../../constants";
+import { useSortContext } from "../../../hooks/sortContextHooks";
+import buttonStyles from "../../../styles/sortSensei/Button.module.css";
 import { useButtonContext } from "./useButtonContext";
 
 const DEFAULT_SPEED = 1.0;
@@ -15,7 +15,7 @@ const SolveButton = () => {
   const { step, stepsList, inputCellValues, mergeRanges, sortTypeRef, setStep, setInputCellValues, setCellValidation } =
     useSortContext();
 
-  const { timeoutRef , solveAllStatus, setSolveAllStatus} = useButtonContext();
+  const { timeoutRef, solveAllStatus, setSolveAllStatus } = useButtonContext();
 
   const [selectedSpeed, setSelectedSpeed] = useState(DEFAULT_SPEED);
   // const [solveAllStatus, setSolveAllStatus] = useState<"solve" | "stop" | "continue">("solve");

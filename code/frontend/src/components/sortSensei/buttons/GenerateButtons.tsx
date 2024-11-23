@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE } from "../../constants/sorting";
-import { useSortContext } from "../../hooks/sortContextHooks";
-import buttonStyles from "../../styles/sortSensei/Button.module.css";
+import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE } from "../../../constants/sorting";
+import { useSortContext } from "../../../hooks/sortContextHooks";
+import buttonStyles from "../../../styles/sortSensei/Button.module.css";
 import { useButtonContext } from "./useButtonContext";
 const GenerateButtons = () => {
   const [customArray, setCustomArray] = useState<string>("");
