@@ -131,7 +131,7 @@ const D3SortVisualizer = () => {
     // Create and update bars
     const bars = svg
       .selectAll('g')
-      .data(barData, (d: any) => d.uniqueId)
+      .data(barData)
       .enter()
       .append('g');
 
