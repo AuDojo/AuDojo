@@ -1,13 +1,27 @@
-.pseudo-button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  right: 0;
-  z-index: 300;
-  top: 0;
-  width: 120px;
-  height: 45px;
+button {
+  cursor: pointer;
+}
+
+.generate-buttons,
+.solve-speed-buttons {
+  position: absolute;
+  height: auto;
+  max-width: 220px;
+}
+.generate-buttons {
+  top: 0px;
+  left: -230px; /* Align to the right edge of the container */
+}
+.solve-speed-buttons {
+  top: max(0px, min(70%, calc(100vh - 550px)));
+  right: -200px;
+}
+
+.solve-buttons,
+.generate-buttons {
+  display: flex;
+  flex-direction: column;
+  row-gap: 13px;
 }
 
 .generate-buttons .submit-button,
@@ -37,34 +51,6 @@ input::placeholder {
   font-size: 13px;
 }
 
-.buttons-container {
-  position: absolute;
-  right: -215px; /* Align to the right edge of the container */
-  top: 0px;
-  height: 100%;
-  overflow-y: auto;
-  max-width: 190px;
-  scrollbar-width: auto;
-  padding-right: 5px;
-}
-
-/* .buttons-container::-webkit-scrollbar{
-  width: 3px;
-}
-
-.buttons-container::-webkit-scrollbar-thumb{
-  background-color: rgb(197, 197, 197);
-} */
-
-.solve-buttons,
-.generate-buttons {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: right;
-  row-gap: 15px;
-}
-
 .solve-buttons button,
 .generate-buttons button,
 .pseudo-button {
@@ -75,7 +61,6 @@ input::placeholder {
   font-size: 16px;
   font-weight: 800;
   border: 1px solid rgb(190, 30, 60);
-  cursor: pointer;
 }
 .solve-buttons button:hover,
 .pseudo-button:hover,
@@ -88,14 +73,47 @@ input::placeholder {
   opacity: 0.8;
 }
 
-.generate-buttons {
-  /* margin-top: 130px; */
-  /* margin-top: clamp(20px, 10vh, 130px); */
-  margin-bottom: calc(20vh - 80px);
+.array-length-container input {
+  width: 50px;
+}
+.speed-buttons-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.speed-buttons-container button {
+  font-size: 12px;
+  font-weight: 400;
+  padding: 3px;
+  margin: 5px;
+  text-align: center;
+  border: 1px solid lightgray;
+  background-color: white;
+}
+.speed-buttons-container button:hover {
+  opacity: 0.7;
+}
+.speed-buttons-container button.selected-speed {
+  background-color: rgb(190, 30, 60);
+  color: white;
+}
+.speed-buttons-container button.selected-speed:hover {
+  cursor: default;
+  opacity: 1;
 }
 
-.array-length-container input{
-  width: 50px;
+.pseudo-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  right: 0;
+  z-index: 300;
+  top: 0;
+  width: 120px;
+  height: 45px;
 }
 
 @media (max-width: 850px) {

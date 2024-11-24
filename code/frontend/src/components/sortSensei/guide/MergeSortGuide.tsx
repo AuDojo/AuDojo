@@ -30,9 +30,9 @@ export const MergeSortGuide: React.FC = () => {
   };
 
   return (
-    <div className={styles.guide}>
+    <div className={styles["guide"]}>
       <h3>Merge Sort Guide</h3>
-      <div className={styles.step}>
+      <div className={styles["step"]}>
         <p>{getCurrentGuideText()}</p>
       </div>
     </div>

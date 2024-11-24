@@ -1,12 +1,11 @@
 import classNames from "classnames/bind";
 import React from "react";
-import { INPUT_NUMBER_RANGE, SortType } from "../../constants";
-import { useSortContext } from "../../hooks/sortContextHooks";
-import styles from "../../styles/sortSensei/SortingTable.module.css";
+import { MAX_INPUT_RANGE, MIN_INPUT_RANGE, SortType } from "../../../constants";
+import { useSortContext } from "../../../hooks/sortContextHooks";
+import styles from "../../../styles/sortSensei/SortingTable.module.css";
 
 interface RowProps {
   rowIndex: number;
-  sortType: SortType;
 }
 
 // Bind styles to classNames
@@ -15,20 +14,33 @@ const cx = classNames.bind(styles);
 /**
  * A component to render a single row of the sorting table.
  * @param rowIndex The index of the row
- * @param sortType The type of sorting algorithm, e.g. bubblesort or mergesort
  */
-const TableRow = ({ rowIndex, sortType }: RowProps) => {
+const TableRow = ({ rowIndex }: RowProps) => {
   // Access the context values
   const {
     stepsList,
     step,
     mergeRanges,
     inputCellsRef,
+    sortTypeRef,
     inputCellValues,
     cellValidation,
     setInputCellValues,
   } = useSortContext();
-  const mergeRange = mergeRanges[rowIndex];
+
+  const sortType = sortTypeRef.current;
+  let mergeRange: [number, number];
+  switch (sortType) {
+    case SortType.MergeSort: {
+      if (mergeRanges) {
+        mergeRange = mergeRanges[rowIndex] || [-1, -1];
+      }
+      break;
+    }
+    case SortType.QuickSort:
+    case SortType.BubbleSort:
+    case SortType.SelectionSort:
+  }
   const stepList = stepsList[rowIndex];
   const validation = cellValidation[rowIndex];
 
@@ -42,8 +54,7 @@ const TableRow = ({ rowIndex, sortType }: RowProps) => {
   const handleChange = (value: string, columnIndex: number): void => {
     // Check if the input value is either empty or a valid number
     if (
-      (Number(value) >= INPUT_NUMBER_RANGE.min &&
-        Number(value) <= INPUT_NUMBER_RANGE.max) ||
+      (Number(value) >= MIN_INPUT_RANGE && Number(value) <= MAX_INPUT_RANGE) ||
       value === ""
     ) {
       const updatedValues = [...inputCellValues];
@@ -75,24 +86,24 @@ const TableRow = ({ rowIndex, sortType }: RowProps) => {
     columnIndex: number
   ): void => {
     const { key, shiftKey } = event;
-    if ((key === "Enter" && shiftKey) || key === "a") {
+    if ((key === "Enter" && shiftKey) || key === "ArrowLeft") {
       // Move to the previous field
       if (columnIndex === 0) {
         focusCell(rowIndex - 1, stepList.length - 1);
       } else {
         focusCell(rowIndex, columnIndex - 1);
       }
-    } else if ((key === "Enter" && !shiftKey) || key === "d") {
+    } else if ((key === "Enter" && !shiftKey) || key === "ArrowRight") {
       // Move to the next input field
       if (columnIndex === stepList.length - 1) {
         focusCell(rowIndex + 1, 0);
       } else {
         focusCell(rowIndex, columnIndex + 1);
       }
-    } else if (key === "s" || key === "ArrowDown") {
+    } else if (key === "ArrowDown") {
       // Move down
       focusCell(rowIndex + 1, columnIndex);
-    } else if (key === "w" || key === "ArrowUp") {
+    } else if (key === "ArrowUp") {
       // Move up
       focusCell(rowIndex - 1, columnIndex);
     } else if (key === "Escape") {
@@ -107,6 +118,7 @@ const TableRow = ({ rowIndex, sortType }: RowProps) => {
    * @returns True if the column index is within the merge range, false otherwise
    */
   const isInMergeRange = (columnIndex: number): boolean => {
+    if (!mergeRange) return false;
     return columnIndex >= mergeRange[0] && columnIndex <= mergeRange[1];
   };
 

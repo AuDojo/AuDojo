@@ -6,6 +6,8 @@ import { json } from "express";
 export class SortProcessList {
   #columnsLength: number = 0;
   #processList: number[][] = [];
+  #mergeRange: [number, number][] = []; // Array of Tuples
+  #pivotElement: number[] = [];
 
   /**
    * Creates an object in which the single steps of a sorting algorithm can be stored.
@@ -25,6 +27,33 @@ export class SortProcessList {
     this.#processList[index] = list.slice(0); // slice sorgt dafür dass pass by value anstatt von pass by reference verwendet wird.
   }
 
+  pushMergeRange(start: number, end: number) {
+    let index = this.#processList.length;
+    this.#mergeRange[index] = [start, end];
+
+    console.log("start, end: ", this.#mergeRange[index]);
+  }
+
+  pushPivotElement(pivot: number) {
+    let index = this.#processList.length;
+    this.#pivotElement[index] = pivot;
+
+    console.log("pivot: ", this.#pivotElement[index]);
+  }
+
+  checkIfSolved(): boolean {
+    let lastList = this.#processList[this.#processList.length - 1];
+
+    for (let index = 0; index < lastList.length - 1; index++) {
+      const element = lastList[index];
+      if (lastList[index] > lastList[index + 1]) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   /**
    * Returns the 2D-list with all the steps of a sorting algorithm so far recorded.
    * @returns processList
@@ -38,7 +67,17 @@ export class SortProcessList {
    * @returns json-string in following Format: {"processList": [[startList], [sortStep1], [sortStep2], ...]}
    */
   createJson(): string {
-    let obj = { processList: this.#processList };
+    let mergeRange = this.#mergeRange.length == 0 ? null : this.#mergeRange;
+    let pivotElement = this.#pivotElement.length == 0 ? null : this.#pivotElement;
+
+    let obj = {
+      processList: this.#processList,
+      mergeRange: mergeRange,
+      pivotElement: pivotElement,
+    };
+
+    console.log(obj);
+
     return JSON.stringify(obj);
   }
 

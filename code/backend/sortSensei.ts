@@ -5,7 +5,7 @@ export enum SortType {
   QuickSort,
   BubbleSort,
   SelectionSort,
-  UNDEFINED
+  UNDEFINED,
 }
 
 export class SortSensei {
@@ -42,45 +42,51 @@ export class SortSensei {
         break;
     }
 
-    console.log(this.#processList.processList);
+    // console.log(this.#processList.processList);
     return this.#processList.createJson();
   }
 
   // ------------- MergeSort -------------
   //TODO: Find a way to return the splitting Index, so that it can be shown in the frontend
 
-  static #mergeSort(list: number[], p: number, r: number) {
-    if (p < r) {
-      let q: number = Math.floor((p + r) / 2);
-      this.#mergeSort(list, p, q);
-      this.#mergeSort(list, q + 1, r);
-      list = this.#merge(list, p, q, r);
+  static #mergeSort(list: number[], start: number, end: number) {
+    if (start < end) {
+      // if (this.#processList?.checkIfSolved()) {
+      //   return;
+      // }
+
+      let middle: number = Math.floor((start + end) / 2);
+      this.#mergeSort(list, start, middle);
+      this.#mergeSort(list, middle + 1, end);
+      list = this.#merge(list, start, middle, end);
+
+      this.#processList?.pushMergeRange(start, end);
       this.#processList?.pushList(list);
     }
   }
 
-  static #merge(list: number[], p: number, q: number, r: number): number[] {
-    let n1: number = q - p + 1;
-    let n2: number = r - q;
+  static #merge(list: number[], start: number, middle: number, end: number): number[] {
+    let index1: number = middle - start + 1;
+    let index2: number = end - middle;
 
     let listLeft: number[] = [];
-    for (let i = 0; i < n1; i++) {
-      listLeft[i] = list[p + i];
+    for (let i = 0; i < index1; i++) {
+      listLeft[i] = list[start + i];
     }
     let listRight: number[] = [];
-    for (let i = 0; i < n2; i++) {
-      listRight[i] = list[q + i + 1];
+    for (let i = 0; i < index2; i++) {
+      listRight[i] = list[middle + i + 1];
     }
 
-    let i = 0;
-    let j = 0;
-    for (let k = p; k <= r; k++) {
-      if ((listLeft[i] <= listRight[j] && i != n1) || j == n2) {
-        list[k] = listLeft[i];
-        i++;
+    let counter1 = 0;
+    let counter2 = 0;
+    for (let k = start; k <= end; k++) {
+      if ((listLeft[counter1] <= listRight[counter2] && counter1 != index1) || counter2 == index2) {
+        list[k] = listLeft[counter1];
+        counter1++;
       } else {
-        list[k] = listRight[j];
-        j++;
+        list[k] = listRight[counter2];
+        counter2++;
       }
     }
     return list;
@@ -90,54 +96,69 @@ export class SortSensei {
   //TODO: Find a way to use a certain method to determine the pivot-element
   //TODO: Find a way to return the pivot-element, so that it can be shown in the frontend
 
-  static #quickSort(list: number[], p: number, r: number) {
-    if (p < r) {
-      let q = this.#partition(list, p, r);
+  static #quickSort(list: number[], start: number, end: number) {
+    if (start < end) {
+      // if (this.#processList?.checkIfSolved()) {
+      //   return;
+      // }
+
+      let pivot_index = this.#partition(list, start, end);
+
+      // console.log("q: ", pivot_index);
+      this.#processList?.pushPivotElement(pivot_index);
       this.#processList?.pushList(list);
-      this.#quickSort(list, p, q - 1);
-      this.#quickSort(list, q + 1, r);
+
+      this.#quickSort(list, start, pivot_index - 1);
+      this.#quickSort(list, pivot_index + 1, end);
     }
   }
 
-  static #partition(list: number[], p: number, r: number): number {
-    let x = list[r];
-    let i = p - 1;
-    for (let j = p; j < r; j++) {
-      if (list[j] <= x) {
-        i++;
-        let temp = list[i];
-        list[i] = list[j];
+  static #partition(list: number[], start: number, end: number): number {
+    let pivot_element = list[end];
+    let partition_index = start;
+
+    for (let j = start; j < end; j++) {
+      if (list[j] <= pivot_element) {
+        let temp = list[partition_index];
+        list[partition_index] = list[j];
         list[j] = temp;
+        partition_index++;
       }
     }
 
-    i++;
-    let temp = list[i];
-    list[i] = list[r];
-    list[r] = temp;
-    return i;
+    let temp = list[partition_index];
+    list[partition_index] = list[end];
+    list[end] = temp;
+    return partition_index;
   }
 
   // ------------- BubbleSort -------------
 
-  static #bubbleSort(list:number[]) {
-    for(let i=0;i<list.length;i++) {
-      for(let j=0;j<list.length-i;j++) {
-        if(list[j]>list[j+1]) {
-          let temp = list[j+1]
-          list[j+1] = list[j]
-          list[j] = temp;
+  static #bubbleSort(list: number[]) {
+    for (let i = 0; i < list.length; i++) {
+      if (this.#processList?.checkIfSolved()) {
+        return;
+      }
 
-          this.#processList?.pushList(list);
+      for (let j = 0; j < list.length - i; j++) {
+        if (list[j] > list[j + 1]) {
+          let temp = list[j + 1];
+          list[j + 1] = list[j];
+          list[j] = temp;
         }
       }
+
+      this.#processList?.pushList(list);
     }
   }
 
   // ------------- SelectionSort -------------
   static #selectionSort(list: number[]) {
-
     for (let i = 0; i < list.length - 1; i++) {
+      if (this.#processList?.checkIfSolved()) {
+        return;
+      }
+
       let min = list[i];
       let minIndex = i;
 
@@ -153,7 +174,7 @@ export class SortSensei {
       list[i] = min;
       list[minIndex] = temp;
 
-      //Zwischenarray in processList reinstecken 
+      //Zwischenarray in processList reinstecken
       this.#processList?.pushList(list);
     }
   }
@@ -163,13 +184,13 @@ export class SortSensei {
    * @param list list of numbers to sort
    * Logs the sorted list to the console.
    */
-  static test(list: number[],sortMode:SortType) {
+  static test(list: number[], sortMode: SortType) {
     console.log(this.createSortProcessList(list, sortMode));
   }
 }
 
 // SortSensei.test([11, 13, 4, 9, 3, 5, 16, 2, 29, 21, 1],SortType.QuickSort);
-SortSensei.test([7,1,8,2,3,5],SortType.BubbleSort);
+SortSensei.test([7, 1, 8, 2, 3, 5], SortType.BubbleSort);
 
 // SortSensei.test([8, 7, 6, 5, 4, 3, 2, 1],SortType.QuickSort);
 // SortSensei.test([1, 2, 3, 4, 5, 6, 7, 8],SortType.QuickSort);
