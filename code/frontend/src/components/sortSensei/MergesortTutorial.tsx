@@ -4,11 +4,11 @@ import tutorialContent from "../../styles/sortSensei/TutorialContent.module.css"
 
 const MergesortTutorial = () => {
     return (
-         
-         <div className={tutorialContent["content-container"]}> <h1>Anleitung zum Mergesort!</h1>
-         <img src={mergesortPseudo} alt="mergesort pseudocode"/>
-         <img src={mergePseudo} alt="merge pseudocode"/>
-         </div>
+    <div className={tutorialContent["content-container"]}> 
+        <h1>Anleitung zum Mergesort!</h1>
+        <img src={mergesortPseudo} alt="mergesort pseudocode"/>
+        <img src={mergePseudo} alt="merge pseudocode"/>
+    </div>
         
         );
 };
