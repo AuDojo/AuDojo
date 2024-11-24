@@ -69,6 +69,11 @@ const SortHeader = () => {
             to="/selectionsort"
             text="SelectionSort"
           />
+          <Link to={"/tutorial"}>
+          <div className={headerStyles["header-nav-list-item"]}>
+            Hilfe & Beispiele </div>
+          </Link>
+
         </div>
       </div>
     </div>
