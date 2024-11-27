@@ -164,7 +164,7 @@ const TableRow = ({ rowIndex }: RowProps) => {
             }
             onKeyDown={(event) => handleKeyDown(event, columnIndex)}
             placeholder={rowIndex === 1 && columnIndex === 0 ? "Edit" : ""}
-          />
+          ></input>
         </td>
       ))}
     </tr>
