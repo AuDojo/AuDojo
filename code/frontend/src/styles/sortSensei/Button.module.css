@@ -14,8 +14,13 @@ button {
 }
 
 .solve-speed-buttons {
-  bottom: 10px;
+  bottom: 0;
   right: -200px;
+}
+@media (max-height: 550px) {
+  .solve-speed-buttons {
+    top: 0;
+  }
 }
 
 .solve-buttons,
@@ -86,6 +91,11 @@ input::placeholder {
 .generate-buttons .close-button {
   background-color: rgb(190, 30, 60);
   color: white;
+}
+
+.solve-buttons .try-again-button {
+  color: rgb(190, 30, 60);
+  background-color: white;
 }
 
 .pseudo-button {
