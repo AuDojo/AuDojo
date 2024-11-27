@@ -63,7 +63,7 @@
   height: 40px;
   width: 120px;
   color: rgb(144, 144, 144);
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
   text-underline-offset: 5px;
   transition: all 0.2s ease-in-out;
@@ -77,6 +77,7 @@
 .sort-nav-list-item.sort-nav-list-item-active {
   /* background-color: rgb(58, 45, 93); */
   color: rgb(190, 30, 60);
+  font-size: 20px;
 }
 
 .restyle div {
