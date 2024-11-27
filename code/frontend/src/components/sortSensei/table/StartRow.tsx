@@ -75,10 +75,10 @@ const StartRow = () => {
   };
 
   return (
-    <tr className={cx("start-row-container")}>
-      <th className={cx("list-index")}>List</th>
+    <div className={cx("start-row-container")}>
+      <span className={cx("list-index")}>List</span>
       {stepsList[0].map((_, index) => (
-        <td key={index}>
+        <div key={index}>
           <input
             key={index}
             className={cx("cell-input")}
@@ -95,9 +95,9 @@ const StartRow = () => {
             }
             onKeyDown={(event) => handleKeyDown(event, index)}
           />
-        </td>
+        </div>
       ))}
-    </tr>
+    </div>
   );
 };
 

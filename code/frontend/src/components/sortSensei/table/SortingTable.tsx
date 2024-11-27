@@ -24,18 +24,20 @@ const SortingTable = (): JSX.Element => {
   const maxHeight = `${(stepsList.length + 1) * rowHeight}rem`;
 
   return (
-    <table>
-      {/* <caption>Iterations</caption> */}
-      <tbody>
-        <StartRow />
-        <div className={styles["table-container"]} style={{ maxHeight }}>
-          <IndexRow />
-          {stepsList.slice(1).map((_, index) => (
-            <TableRow key={index + 1} rowIndex={index + 1} />
-          ))}
-        </div>
-      </tbody>
-    </table>
+    <>
+      <StartRow />
+      <div className={styles["table-container"]} style={{ maxHeight }}>
+        <table>
+          {/* <caption>Iterations</caption> */}
+          <tbody>
+            <IndexRow />
+            {stepsList.slice(1).map((_, index) => (
+              <TableRow key={index + 1} rowIndex={index + 1} />
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };
 
