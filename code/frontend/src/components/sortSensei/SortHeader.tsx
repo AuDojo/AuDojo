@@ -37,7 +37,11 @@ const SortHeader = () => {
       <Link to={"/"}>
         <div className={headerStyles["header-logo-container"]}>
           <div className={headerStyles["header-logo-text"]}>AUDOJO</div>
-          <img className={headerStyles["header-logo-image"]} src={audojoLogo} alt="audojo logo" />
+          <img
+            className={headerStyles["header-logo-image"]}
+            src={audojoLogo}
+            alt="audojo logo"
+          />
         </div>
       </Link>
 
@@ -47,7 +51,7 @@ const SortHeader = () => {
             activeSort={activeSort === "mergesort"}
             onClick={() => setActiveSort("mergesort")}
             to="/mergesort"
-            text="Mergesort"
+            text="MergeSort"
           />
 
           <HeaderNavItem
@@ -70,10 +74,10 @@ const SortHeader = () => {
             text="SelectionSort"
           />
           <Link to={"/tutorial"}>
-          <div className={headerStyles["header-nav-list-item"]}>
-            Hilfe & Beispiele </div>
+            <div className={headerStyles["header-nav-list-item"]}>
+              Hilfe & Beispiele{" "}
+            </div>
           </Link>
-
         </div>
       </div>
     </div>
