@@ -26,14 +26,14 @@ const SortingTable = (): JSX.Element => {
   return (
     <table>
       {/* <caption>Iterations</caption> */}
-      <thead>
+      <tbody>
         <StartRow />
-      </thead>
-      <tbody className={styles["table-container"]} style={{ maxHeight }}>
-        <IndexRow />
-        {stepsList.slice(1).map((_, index) => (
-          <TableRow key={index + 1} rowIndex={index + 1} />
-        ))}
+        <div className={styles["table-container"]} style={{ maxHeight }}>
+          <IndexRow />
+          {stepsList.slice(1).map((_, index) => (
+            <TableRow key={index + 1} rowIndex={index + 1} />
+          ))}
+        </div>
       </tbody>
     </table>
   );

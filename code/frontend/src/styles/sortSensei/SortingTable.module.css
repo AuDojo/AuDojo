@@ -27,10 +27,9 @@ td {
   border-radius: 10px;
 
   overflow: auto;
-  scrollbar-gutter: stable;
 }
 
-/*solve problem with scrollbar is too big in safari*/ 
+/*solve problem with scrollbar is too big in safari*/
 .table-container::-webkit-scrollbar {
   width: 3px;
   background-color: lightgray;
