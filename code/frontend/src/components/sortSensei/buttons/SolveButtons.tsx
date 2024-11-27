@@ -183,7 +183,7 @@ const SolveButton = () => {
       <div className={buttonStyles["solve-buttons"]}>
         <button onClick={handleSolveAll}>{buttonText} (A)</button>
         <button onClick={handleSolveLine}>Sort Line (L)</button>
-        <button onClick={handleTryAgain}>Try Again (T)</button>
+        <button className={buttonStyles["try-again-button"]} onClick={handleTryAgain}>Try Again (T)</button>
       </div>
     </div>
   );

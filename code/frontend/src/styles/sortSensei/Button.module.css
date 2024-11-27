@@ -88,6 +88,11 @@ input::placeholder {
   color: white;
 }
 
+.solve-buttons .try-again-button {
+  color: rgb(190, 30, 60);
+  background-color: white;
+}
+
 .pseudo-button {
   display: inline-flex;
   justify-content: center;
