@@ -1,5 +1,6 @@
 import { useSortContext } from "../../../hooks/sortContextHooks";
 import styles from "../../../styles/sortSensei/SortingTable.module.css";
+import IndexRow from "./IndexRow";
 import StartRow from "./StartRow";
 import TableRow from "./TableRow";
 
@@ -18,15 +19,21 @@ const SortingTable = (): JSX.Element => {
     return <div>Loading...</div>;
   }
 
+  // Set row height (2.5rem) and calc max height
+  const rowHeight = 2.5;
+  const maxHeight = `${(stepsList.length + 1) * rowHeight}rem`;
+
   return (
-    <>
+    <table>
+      {/* <caption>Iterations</caption> */}
       <StartRow />
-      <div className={styles["table-container"]}>
+      <div className={styles["table-container"]} style={{ maxHeight }}>
+        <IndexRow />
         {stepsList.slice(1).map((_, index) => (
           <TableRow key={index + 1} rowIndex={index + 1} />
         ))}
       </div>
-    </>
+    </table>
   );
 };
 

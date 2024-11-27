@@ -75,27 +75,29 @@ const StartRow = () => {
   };
 
   return (
-    <div className={cx("start-row-container")}>
-      <span className={cx("list-index")}>List</span>
+    <tr className={cx("start-row-container")}>
+      <th className={cx("list-index")}>List</th>
       {stepsList[0].map((_, index) => (
-        <input
-          key={index}
-          className={cx("cell-input")}
-          value={inputCellValues[0][index]}
-          readOnly={true}
-          ref={(el) => {
-            // Assign the input element to the appropriate cell in the ref
-            if (inputCellsRef.current[0]) {
-              inputCellsRef.current[0][index] = el!;
+        <td>
+          <input
+            key={index}
+            className={cx("cell-input")}
+            value={inputCellValues[0][index]}
+            readOnly={true}
+            ref={(el) => {
+              // Assign the input element to the appropriate cell in the ref
+              if (inputCellsRef.current[0]) {
+                inputCellsRef.current[0][index] = el!;
+              }
+            }}
+            onChange={
+              (event) => handleChange(event.target.value, index) // Update value
             }
-          }}
-          onChange={
-            (event) => handleChange(event.target.value, index) // Update value
-          }
-          onKeyDown={(event) => handleKeyDown(event, index)}
-        />
+            onKeyDown={(event) => handleKeyDown(event, index)}
+          />
+        </td>
       ))}
-    </div>
+    </tr>
   );
 };
 
