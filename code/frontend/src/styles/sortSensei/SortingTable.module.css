@@ -30,6 +30,15 @@ td {
   scrollbar-gutter: stable;
 }
 
+/*solve problem with scrollbar is too big in safari*/ 
+.table-container::-webkit-scrollbar {
+  width: 3px;
+  background-color: lightgray;
+}
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
 /*----------------- Table rows -----------------*/
 .index-row-container,
 .start-row-container,
