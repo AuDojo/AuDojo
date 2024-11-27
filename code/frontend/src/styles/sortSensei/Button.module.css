@@ -17,6 +17,11 @@ button {
   bottom: 10px;
   right: -200px;
 }
+@media (max-height: 550px) {
+  .solve-speed-buttons {
+    top: 0;
+  }
+}
 
 .solve-buttons,
 .generate-buttons {
