@@ -123,12 +123,11 @@ const TableRow = ({ rowIndex }: RowProps) => {
   };
 
   return (
-    <tr className={cx("row-container")}>
+    <tr className={cx("row-container")} key={rowIndex}>
       <th className={cx("row-index")}>{rowIndex}</th>
       {stepList.map((num, columnIndex) => (
-        <td>
+        <td key={columnIndex}>
           <input
-            key={columnIndex}
             className={cx("cell-input", {
               "in-merge-range":
                 sortType === SortType.MergeSort &&

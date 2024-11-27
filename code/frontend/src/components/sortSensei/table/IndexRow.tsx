@@ -11,7 +11,9 @@ const IndexRow = () => {
     <tr className={cx("index-row-container")}>
       <th className={cx("index-row-index")}></th>
       {stepsList[0].map((_, index) => (
-        <td className={cx("column-index")}>{index}</td>
+        <td key={index} className={cx("column-index")}>
+          {index}
+        </td>
       ))}
     </tr>
   );

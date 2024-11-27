@@ -78,7 +78,7 @@ const StartRow = () => {
     <tr className={cx("start-row-container")}>
       <th className={cx("list-index")}>List</th>
       {stepsList[0].map((_, index) => (
-        <td>
+        <td key={index}>
           <input
             key={index}
             className={cx("cell-input")}
