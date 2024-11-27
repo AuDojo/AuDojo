@@ -4,33 +4,19 @@ import { useSortContext } from "../../../hooks/sortContextHooks";
 import buttonStyles from "../../../styles/sortSensei/Button.module.css";
 import { useButtonContext } from "./useButtonContext";
 
-const DEFAULT_SPEED = 1.0;
-const BASE_TIMEOUT = 1000; // 1 second base timeout
-const SPEED_VALUES = ["0.4", "0.7", "1.0", "2.0"];
-
-// Convert speed multiplier to actual timeout (e.g., 2.0 -> 500ms, 0.5 -> 2000ms)
-const getTimeoutFromSpeed = (multiplier: number) => BASE_TIMEOUT / multiplier;
+const SPEED_VALUES = [4000, 3000, 2000, 1500, 1000, 500, 100];
+const DEFAULT_SPEED_INDEX = 3;
+const SPEED_DISPLAY = ["0.25", "0.5", "0.75", "1.0", "1.5", "1.75", "2.0"];
 
 const SolveButton = () => {
-  const {
-    step,
-    stepsList,
-    inputCellValues,
-    mergeRanges,
-    sortTypeRef,
-    setStep,
-    setInputCellValues,
-    setCellValidation,
-  } = useSortContext();
+  const { step, stepsList, inputCellValues, mergeRanges, sortTypeRef, setStep, setInputCellValues, setCellValidation } =
+    useSortContext();
 
   const { timeoutRef, solveAllStatus, setSolveAllStatus } = useButtonContext();
-
-  const [selectedSpeed, setSelectedSpeed] = useState(DEFAULT_SPEED);
-  // const [solveAllStatus, setSolveAllStatus] = useState<"solve" | "stop" | "continue">("solve");
   const isSolvingRef = useRef<boolean>(false);
   const currentStepRef = useRef<number>(step);
-  // const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const speedRef = useRef<number>(DEFAULT_SPEED);
+  const [selectedSpeedIndex, setSelectedSpeedIndex] = useState<number>(DEFAULT_SPEED_INDEX);
+  const speedIndexRef = useRef<number>(DEFAULT_SPEED_INDEX);
   const [buttonText, setButtonText] = useState("Sort All");
 
   /**
@@ -46,17 +32,12 @@ const SolveButton = () => {
 
       const correctValues = stepsList[currentStep];
       const userValues = inputCellValues[currentStep];
-      const currentMergeRange = mergeRanges
-        ? mergeRanges[currentStep]
-        : [-1, -1];
+      const currentMergeRange = mergeRanges ? mergeRanges[currentStep] : [-1, -1];
       const sortType = sortTypeRef.current;
 
       // TODO: Clean up this code, maybe own validateMergeSortLine
       const validationResult = userValues.map((value, index) => {
-        const isInMergeRange =
-          currentMergeRange &&
-          index >= currentMergeRange[0] &&
-          index <= currentMergeRange[1];
+        const isInMergeRange = currentMergeRange && index >= currentMergeRange[0] && index <= currentMergeRange[1];
 
         if (sortType !== SortType.MergeSort || isInMergeRange) {
           return Number(value) === correctValues[index];
@@ -74,14 +55,7 @@ const SolveButton = () => {
       setStep(currentStep + 1);
       currentStepRef.current = currentStep + 1;
     },
-    [
-      inputCellValues,
-      mergeRanges,
-      stepsList,
-      sortTypeRef,
-      setCellValidation,
-      setStep,
-    ]
+    [inputCellValues, mergeRanges, stepsList, sortTypeRef, setCellValidation, setStep]
   );
 
   const stopSolving = useCallback(() => {
@@ -100,35 +74,35 @@ const SolveButton = () => {
     validateLine(step);
   }, [step, validateLine, stopSolving, setSolveAllStatus]);
 
-  const solveNextStep = useCallback(() => {
-    if (!isSolvingRef.current || step >= stepsList.length) {
-      if (currentStepRef.current >= stepsList.length - 1) {
-        isSolvingRef.current = false;
-        setSolveAllStatus("solve");
-      }
+  const continueSolving = useCallback(() => {
+    if (!isSolvingRef.current || currentStepRef.current >= stepsList.length) {
       return;
     }
-    validateLine(currentStepRef.current);
-
-    if (currentStepRef.current < stepsList.length && isSolvingRef.current) {
-      const currentTimeout = getTimeoutFromSpeed(speedRef.current);
-      timeoutRef.current = setTimeout(solveNextStep, currentTimeout);
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
     }
-  }, [stepsList, validateLine, step, timeoutRef, setSolveAllStatus]);
+    timeoutRef.current = setTimeout(continueSolving, SPEED_VALUES[speedIndexRef.current]);
+    validateLine(currentStepRef.current);
+  }, [validateLine, timeoutRef, currentStepRef, stepsList, speedIndexRef]);
 
+  // Finish solving
   useEffect(() => {
     if (step >= stepsList.length) {
       setSolveAllStatus("solve");
+      stopSolving();
     }
-  }, [step, stepsList, setSolveAllStatus]);
+  }, [step, stepsList, setSolveAllStatus, stopSolving]);
 
   const handleSolveAll = useCallback(() => {
+    if (step >= stepsList.length) {
+      return;
+    }
     switch (solveAllStatus) {
       case "solve":
         isSolvingRef.current = true;
         setSolveAllStatus("stop");
         currentStepRef.current = step;
-        solveNextStep();
+        continueSolving();
         break;
       case "stop":
         stopSolving();
@@ -137,49 +111,28 @@ const SolveButton = () => {
       case "continue":
         isSolvingRef.current = true;
         setSolveAllStatus("stop");
-        solveNextStep();
+        continueSolving();
         break;
     }
-  }, [solveAllStatus, step, solveNextStep, stopSolving, setSolveAllStatus]);
+  }, [solveAllStatus, step, stepsList, continueSolving, stopSolving, setSolveAllStatus]);
 
   const handleTryAgain = useCallback(() => {
     stopSolving();
     setStep(1);
     currentStepRef.current = 1;
     setSolveAllStatus("solve");
-    setInputCellValues(
-      stepsList.map((step, index) =>
-        index === 0 ? [...step] : new Array(step.length).fill("")
-      )
-    );
-    setCellValidation(
-      stepsList.map((step) => new Array(step.length).fill(null))
-    );
-  }, [
-    stepsList,
-    setStep,
-    setInputCellValues,
-    setCellValidation,
-    stopSolving,
-    setSolveAllStatus,
-  ]);
+    setInputCellValues(stepsList.map((step, index) => (index === 0 ? [...step] : new Array(step.length).fill(""))));
+    setCellValidation(stepsList.map((step) => new Array(step.length).fill(null)));
+  }, [stepsList, setStep, setInputCellValues, setCellValidation, stopSolving, setSolveAllStatus]);
 
-  const handleSpeedChange = (newSpeed: number) => {
-    setSelectedSpeed(newSpeed);
-    speedRef.current = newSpeed;
-
-    if (isSolvingRef.current) {
-      // Clear current timeout and restart with new speed
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-      timeoutRef.current = setTimeout(
-        solveNextStep,
-        getTimeoutFromSpeed(newSpeed)
-      );
+  const handleSpeedChange = (newSpeedIndex: number) => {
+    setSelectedSpeedIndex(newSpeedIndex);
+    speedIndexRef.current = newSpeedIndex;
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
     }
+    timeoutRef.current = setTimeout(continueSolving, SPEED_VALUES[speedIndexRef.current]);
   };
-
   useEffect(() => {
     switch (solveAllStatus) {
       case "solve":
@@ -214,20 +167,18 @@ const SolveButton = () => {
 
   return (
     <div className={buttonStyles["solve-speed-buttons"]}>
+      <div style={{ fontSize: "12px", fontStyle: "italic", color: "gray" }}>
+        Current speed: x{SPEED_DISPLAY[selectedSpeedIndex]}
+      </div>
       <div className={buttonStyles["speed-buttons-container"]}>
-        {SPEED_VALUES.map((speedValue) => (
-          <button
-            key={speedValue}
-            onClick={() => handleSpeedChange(parseFloat(speedValue))}
-            className={`${
-              parseFloat(speedValue) === selectedSpeed
-                ? buttonStyles["selected-speed"]
-                : ""
-            }`}
-          >
-            x{speedValue}
-          </button>
-        ))}
+        <input
+          type="range"
+          min="0"
+          max={SPEED_VALUES.length - 1}
+          step="1"
+          value={selectedSpeedIndex}
+          onChange={(event) => handleSpeedChange(parseInt(event.target.value))}
+        />
       </div>
       <div className={buttonStyles["solve-buttons"]}>
         <button onClick={handleSolveAll}>{buttonText} (A)</button>
