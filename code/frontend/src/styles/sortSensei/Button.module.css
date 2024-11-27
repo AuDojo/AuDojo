@@ -14,7 +14,7 @@ button {
 }
 
 .solve-speed-buttons {
-  bottom: 10px;
+  bottom: 0;
   right: -200px;
 }
 @media (max-height: 550px) {
