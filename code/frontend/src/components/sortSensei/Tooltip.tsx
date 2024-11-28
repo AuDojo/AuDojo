@@ -5,6 +5,7 @@ import styles from "../../styles/sortSensei/Tooltip.module.css";
 interface TooltipProps {
   delay?: number;
   direction?: "top" | "right" | "bottom" | "left"; // Tooltip direction options
+  hidden?: boolean; // Tooltip visibility
   content: React.ReactNode; // Content of the tooltip
   children: React.ReactElement; // Child element that triggers the tooltip
 }
@@ -12,6 +13,7 @@ interface TooltipProps {
 const Tooltip: React.FC<TooltipProps> = ({
   delay = 200,
   direction = "top",
+  hidden = false,
   content,
   children,
 }) => {
@@ -29,9 +31,13 @@ const Tooltip: React.FC<TooltipProps> = ({
     setActive(false);
   };
 
+  if (hidden) {
+    return <>{children}</>;
+  }
+
   return (
     <div
-      className={styles["Tooltip"]} // When to show the tooltip
+      className={styles["Tooltip-Wrapper"]} // When to show the tooltip
       onMouseEnter={showTip}
       onMouseLeave={hideTip}
     >

@@ -3,6 +3,7 @@ import React from "react";
 import { MAX_INPUT_RANGE, MIN_INPUT_RANGE, SortType } from "../../../constants";
 import { useSortContext } from "../../../hooks/sortContextHooks";
 import styles from "../../../styles/sortSensei/SortingTable.module.css";
+import Tooltip from "../Tooltip";
 
 interface RowProps {
   rowIndex: number;
@@ -127,43 +128,54 @@ const TableRow = ({ rowIndex }: RowProps) => {
       <th className={cx("row-index")}>{rowIndex}</th>
       {stepList.map((num, columnIndex) => (
         <td key={columnIndex}>
-          <input
-            className={cx("cell-input", {
-              "in-merge-range":
-                sortType === SortType.MergeSort &&
-                isInMergeRange(columnIndex) &&
-                rowIndex < step,
-              "merge-range-start":
-                sortType === SortType.MergeSort &&
-                columnIndex === mergeRange[0] &&
-                rowIndex < step,
-              "merge-range-end":
-                sortType === SortType.MergeSort &&
-                columnIndex === mergeRange[1] &&
-                rowIndex < step,
-              correct: validation[columnIndex] === true, // Correct user input
-              incorrect: validation[columnIndex] === false, // Incorrect user input
-            })}
-            value={
-              rowIndex < step
-                ? num || ""
-                : inputCellValues[rowIndex][columnIndex]
-            } // Show number for index below step, or value from state otherwise
-            readOnly={rowIndex < step} // Make read-only if index is below current step
-            ref={(el) => {
-              // Assign the input element to the appropriate cell in the ref
-              if (inputCellsRef.current[rowIndex]) {
-                inputCellsRef.current[rowIndex][columnIndex] = el!;
-              }
-            }}
-            onChange={
-              (event) =>
-                rowIndex >= step &&
-                handleChange(event.target.value, columnIndex) // Update value
+          <Tooltip
+            delay={0}
+            direction="top"
+            content={
+              inputCellValues[rowIndex][columnIndex]
+                ? `Invalid: ${inputCellValues[rowIndex][columnIndex]}`
+                : "Missing input"
             }
-            onKeyDown={(event) => handleKeyDown(event, columnIndex)}
-            placeholder={rowIndex === 1 && columnIndex === 0 ? "Edit" : ""}
-          ></input>
+            hidden={validation[columnIndex] !== false}
+          >
+            <input
+              className={cx("cell-input", {
+                "in-merge-range":
+                  sortType === SortType.MergeSort &&
+                  isInMergeRange(columnIndex) &&
+                  rowIndex < step,
+                "merge-range-start":
+                  sortType === SortType.MergeSort &&
+                  columnIndex === mergeRange[0] &&
+                  rowIndex < step,
+                "merge-range-end":
+                  sortType === SortType.MergeSort &&
+                  columnIndex === mergeRange[1] &&
+                  rowIndex < step,
+                correct: validation[columnIndex] === true, // Correct user input
+                incorrect: validation[columnIndex] === false, // Incorrect user input
+              })}
+              value={
+                rowIndex < step
+                  ? num || ""
+                  : inputCellValues[rowIndex][columnIndex]
+              } // Show number for index below step, or value from state otherwise
+              readOnly={rowIndex < step} // Make read-only if index is below current step
+              ref={(el) => {
+                // Assign the input element to the appropriate cell in the ref
+                if (inputCellsRef.current[rowIndex]) {
+                  inputCellsRef.current[rowIndex][columnIndex] = el!;
+                }
+              }}
+              onChange={
+                (event) =>
+                  rowIndex >= step &&
+                  handleChange(event.target.value, columnIndex) // Update value
+              }
+              onKeyDown={(event) => handleKeyDown(event, columnIndex)}
+              placeholder={rowIndex === 1 && columnIndex === 0 ? "Edit" : ""}
+            />
+          </Tooltip>
         </td>
       ))}
     </tr>
