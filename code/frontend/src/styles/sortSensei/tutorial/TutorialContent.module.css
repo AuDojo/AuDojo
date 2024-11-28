@@ -1,0 +1,16 @@
+.content-container {
+    box-sizing: border-box;
+    margin: 10px;
+  }
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.image {
+  max-width: 45%;
+  height: auto;
+  vertical-align: middle;
+}
