@@ -1,0 +1,9 @@
+.points-container {
+  position: absolute;
+  right: -150px;
+  top: 130px;
+  font-weight: bold;
+
+  border: 1px solid green;
+  padding: 2px 8px;
+}

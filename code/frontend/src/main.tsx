@@ -6,6 +6,7 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
+import { SortProvider } from "./contexts/SortContext.tsx";
 import "./index.css";
 import BubbleSort from "./pages/BubbleSort.tsx";
 import Home from "./pages/Home.tsx";
@@ -28,8 +29,11 @@ const router = createBrowserRouter(
     </>
   )
 );
+
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <SortProvider>
+      <RouterProvider router={router} />
+    </SortProvider>
   </React.StrictMode>
 );

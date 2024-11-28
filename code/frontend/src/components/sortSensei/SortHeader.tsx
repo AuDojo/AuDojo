@@ -3,7 +3,44 @@ import { Link, useLocation } from "react-router-dom";
 import audojoLogo from "../../assets/logo-audojo.png";
 import headerStyles from "../../styles/sortSensei/SortHeader.module.css";
 
-const HeaderNavItem = ({
+const HeaderNavItem = ({ to, text }: { to: string; text: string }) => {
+  return (
+    <Link className="Link" to={to}>
+      <div className={headerStyles["header-nav-list-item"]}>{text}</div>
+    </Link>
+  );
+};
+const HeaderNavItems = () => {
+  const [isOpen, setOpen] = useState<boolean>(false);
+  const toogleMenu = () => {
+    setOpen(!isOpen);
+  };
+  return (
+    <div className={headerStyles["header-nav"]}>
+      <div className={`${headerStyles["header-nav-list"]} ${isOpen ? headerStyles.open : ""}`}>
+        <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="TreeTutor" />
+        <div className={headerStyles["dropdown"]}>
+          <HeaderNavItem to="/mergesort" text="SortSensei ▼" />
+          <div className={headerStyles["dropdown-content"]}>
+            <HeaderNavItem to="/mergesort" text="MergeSort" />
+            <HeaderNavItem to="/quicksort" text="QuickSort" />
+            <HeaderNavItem to="/bubblesort" text="BubbleSort" />
+            <HeaderNavItem to="/selectionsort" text="SelectionSort" />
+          </div>
+        </div>
+        <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="Kontakt" />
+        <HeaderNavItem to="/tutorial" text="Hilfe & Beispiele" />
+      </div>
+
+      <div className={`${headerStyles["hamburger"]} ${isOpen ? headerStyles.change : ""}`} onClick={toogleMenu}>
+        <div className={headerStyles["bar1"]}></div>
+        <div className={headerStyles["bar2"]}></div>
+        <div className={headerStyles["bar3"]}></div>
+      </div>
+    </div>
+  );
+};
+const SortHeaderNavItem = ({
   to,
   text,
   activeSort,
@@ -17,8 +54,8 @@ const HeaderNavItem = ({
   return (
     <Link className="Link" to={to} onClick={onClick}>
       <div
-        className={`${headerStyles["header-nav-list-item"]} ${
-          activeSort ? headerStyles["header-nav-list-item-active"] : ""
+        className={`${headerStyles["sort-nav-list-item"]} ${
+          activeSort ? headerStyles["sort-nav-list-item-active"] : ""
         }`}
       >
         {text}
@@ -33,50 +70,48 @@ const SortHeader = () => {
   const [activeSort, setActiveSort] = useState<string>(currentSort);
 
   return (
-    <div className={headerStyles["header-container"]}>
-      <Link to={"/"}>
-        <div className={headerStyles["header-logo-container"]}>
-          <div className={headerStyles["header-logo-text"]}>AUDOJO</div>
-          <img className={headerStyles["header-logo-image"]} src={audojoLogo} alt="audojo logo" />
-        </div>
-      </Link>
+    <>
+      <div className={headerStyles["header-container"]}>
+        <Link to={"/"}>
+          <div className={headerStyles["header-logo-container"]}>
+            <div className={headerStyles["header-logo-text"]}>AUDOJO</div>
+            <img className={headerStyles["header-logo-image"]} src={audojoLogo} alt="audojo logo" />
+          </div>
+        </Link>
+        <HeaderNavItems />
+      </div>
 
-      <div className={headerStyles["header-nav"]}>
-        <div className={`${headerStyles["header-nav-list"]}`}>
-          <HeaderNavItem
+      <div className={headerStyles["sort-nav"]}>
+        <div className={`${headerStyles["sort-nav-list"]}`}>
+          <SortHeaderNavItem
             activeSort={activeSort === "mergesort"}
             onClick={() => setActiveSort("mergesort")}
             to="/mergesort"
-            text="Mergesort"
+            text="MergeSort"
           />
 
-          <HeaderNavItem
+          <SortHeaderNavItem
             activeSort={activeSort === "quicksort"}
             onClick={() => setActiveSort("quicksort")}
             to="/quicksort"
             text="QuickSort"
           />
-          <HeaderNavItem
+          <SortHeaderNavItem
             activeSort={activeSort === "bubblesort"}
             onClick={() => setActiveSort("bubblesort")}
             to="/bubblesort"
             text="BubbleSort"
           />
 
-          <HeaderNavItem
+          <SortHeaderNavItem
             activeSort={activeSort === "selectionsort"}
-            onClick={() => setActiveSort("bubblesort")}
+            onClick={() => setActiveSort("selectionsort")}
             to="/selectionsort"
             text="SelectionSort"
           />
-          <Link to={"/tutorial"}>
-          <div className={headerStyles["header-nav-list-item"]}>
-            Hilfe & Beispiele </div>
-          </Link>
-
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

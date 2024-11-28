@@ -1,5 +1,13 @@
+caption {
+  caption-side: bottom;
+}
+td {
+  margin: 0;
+  padding: 0;
+}
+
 .inner-table-buttons-container {
-  margin-top: 20px;
+  margin-top: 0.6rem;
   position: relative;
   max-width: 1300px;
 }
@@ -12,16 +20,26 @@
 
 .table-container {
   background-color: rgb(248, 248, 248);
-  overflow: auto;
-  height: 345px;
-  padding-top: 0.8rem;
+  padding-top: 0.4rem;
   padding-right: 1rem;
   height: calc(100vh - 380px); /* Subtract header, total 335px */
   max-height: 621px;
   border-radius: 10px;
+
+  overflow: auto;
 }
 
+/*solve problem with scrollbar is too big in safari*/
+.table-container::-webkit-scrollbar {
+  width: 3px;
+  background-color: lightgray;
+}
+.table-container::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
 /*----------------- Table rows -----------------*/
+.index-row-container,
 .start-row-container,
 .row-container {
   display: flex;
@@ -35,6 +53,11 @@
   border-radius: 10px;
 }
 
+.index-row-container {
+  margin-bottom: 1px;
+}
+
+.index-row-index,
 .list-index,
 .row-index {
   width: 2.5rem; /* Adjust this width based on your needs */
@@ -44,11 +67,20 @@
   font-weight: 500;
 }
 
-.list-index {
-  font-weight: 600;
+.index-row-index {
+  font-weight: 400;
+  font-size: 0.8rem;
+  font-style: italic;
   padding-right: 0.3rem;
+  color: rgb(98, 98, 98);
 }
 
+.list-index {
+  font-weight: 600;
+  padding-right: 0.2rem;
+}
+
+.column-index,
 .cell-input {
   /* Styles for your cell input */
   width: 3rem; /* Adjust width as needed */
@@ -70,6 +102,13 @@
 .cell-input:focus {
   outline: none;
   border-color: rgb(59, 130, 246);
+}
+
+.column-index {
+  border: none;
+  height: auto;
+  font-size: 1rem;
+  color: rgb(98, 98, 98);
 }
 
 .in-merge-range {

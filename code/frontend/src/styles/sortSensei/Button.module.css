@@ -12,9 +12,15 @@ button {
   top: 0px;
   left: -230px; /* Align to the right edge of the container */
 }
+
 .solve-speed-buttons {
-  top: max(0px, min(70%, calc(100vh - 550px)));
+  bottom: 0;
   right: -200px;
+}
+@media (max-height: 550px) {
+  .solve-speed-buttons {
+    top: 0;
+  }
 }
 
 .solve-buttons,
@@ -22,12 +28,6 @@ button {
   display: flex;
   flex-direction: column;
   row-gap: 13px;
-}
-
-.generate-buttons .submit-button,
-.generate-buttons .close-button {
-  background-color: rgb(190, 30, 60);
-  color: white;
 }
 
 .submit-button {
@@ -76,32 +76,26 @@ input::placeholder {
 .array-length-container input {
   width: 50px;
 }
+
 .speed-buttons-container {
   width: 100%;
   height: auto;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  margin-bottom: 10px;
 }
-.speed-buttons-container button {
-  font-size: 12px;
-  font-weight: 400;
-  padding: 3px;
-  margin: 5px;
-  text-align: center;
-  border: 1px solid lightgray;
-  background-color: white;
-}
-.speed-buttons-container button:hover {
-  opacity: 0.7;
-}
-.speed-buttons-container button.selected-speed {
+
+.solve-buttons button,
+.generate-buttons .submit-button,
+.generate-buttons .close-button {
   background-color: rgb(190, 30, 60);
   color: white;
 }
-.speed-buttons-container button.selected-speed:hover {
-  cursor: default;
-  opacity: 1;
+
+.solve-buttons .try-again-button {
+  color: rgb(190, 30, 60);
+  background-color: white;
 }
 
 .pseudo-button {
