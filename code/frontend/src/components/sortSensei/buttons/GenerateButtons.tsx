@@ -121,7 +121,7 @@ const GenerateButtons = () => {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (!event.ctrlKey) {
+      if (!event.ctrlKey && !event.metaKey) {
         if (event.key === "Escape" && isSubmitting) {
           setIsSubmitting(false);
         } else if (event.key === "c" || event.key === "C") {
