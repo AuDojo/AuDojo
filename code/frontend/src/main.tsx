@@ -1,11 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import {
-  Route,
-  RouterProvider,
-  createBrowserRouter,
-  createRoutesFromElements,
-} from "react-router-dom";
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import "./index.css";
 import BubbleSort from "./pages/BubbleSort.tsx";
 import Home from "./pages/Home.tsx";
@@ -13,6 +8,7 @@ import MergeSort from "./pages/MergeSort.tsx";
 import QuickSort from "./pages/QuickSort.tsx";
 import SelectionSort from "./pages/SelectionSort.tsx";
 import Tutorial from "./pages/Tutorial.tsx";
+import { SortProvider } from "./contexts/SortContext.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,8 +24,11 @@ const router = createBrowserRouter(
     </>
   )
 );
+
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <SortProvider>
+      <RouterProvider router={router} />
+    </SortProvider>
   </React.StrictMode>
 );

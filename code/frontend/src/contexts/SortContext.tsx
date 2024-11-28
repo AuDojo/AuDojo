@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useRef, useState } from "react";
+import React, { createContext, useCallback, useEffect, useRef, useState } from "react";
 import { SortType } from "../constants";
 
 // Define types for our context state
@@ -15,44 +15,40 @@ export interface SortContextProps {
   fetchStepsList: (array: number[]) => Promise<void>; // Fetch the solution from the backend
   inputCellsRef: React.MutableRefObject<HTMLInputElement[][]>;
   sortTypeRef: React.MutableRefObject<SortType>;
+  sharedArray: number[];
+  setSharedArray: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
 // Create context with default values
-export const SortContext = createContext<SortContextProps | undefined>(
-  undefined
-);
-
-export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const SortContext = createContext<SortContextProps | undefined>(undefined);
+const defaultArray = [7, 13, 5, 9, 10, 12, 1, 3, 2, 6, 25, 40];
+export const SortProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // State management
   const [stepsList, setStepsList] = useState<number[][]>([]);
   const [step, setStep] = useState<number>(1);
   const [mergeRanges, setMergeRanges] = useState<[number, number][]>([]);
   const [inputCellValues, setInputCellValues] = useState<string[][]>([]);
-  const [cellValidation, setCellValidation] = useState<(boolean | null)[][]>(
-    []
-  );
+  const [cellValidation, setCellValidation] = useState<(boolean | null)[][]>([]);
+  const [sharedArray, setSharedArray] = useState<number[]>(() => {
+    const storedArray = localStorage.getItem("sharedArray");
+    return storedArray != undefined ? JSON.parse(storedArray) : defaultArray;
+  });
+  
 
   // References
   const inputCellsRef = useRef<HTMLInputElement[][]>([]);
   const sortTypeRef = useRef<SortType>(SortType.MergeSort);
 
+  useEffect(() => {
+    localStorage.setItem("sharedArray", JSON.stringify(sharedArray));
+  }, [sharedArray]);
+
   // Helper: Initialize state for fetched data
-  const initializeStates = (
-    steps: number[][],
-    mergeRange: [number, number][] | null
-  ) => {
+  const initializeStates = (steps: number[][], mergeRange: [number, number][] | null) => {
     setStepsList(steps);
-    setInputCellValues(
-      steps.map((step, index) =>
-        index === 0 ? [...step] : new Array(step.length).fill("")
-      )
-    );
+    setInputCellValues(steps.map((step, index) => (index === 0 ? [...step] : new Array(step.length).fill(""))));
     setCellValidation(steps.map((step) => new Array(step.length).fill(null)));
-    inputCellsRef.current = steps.map((step) =>
-      new Array(step.length).fill(null)
-    );
+    inputCellsRef.current = steps.map((step) => new Array(step.length).fill(null));
 
     // Initialize merge ranges if applicable
     if (mergeRange) {
@@ -62,7 +58,8 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   // Helper: Set the sort type based on the route or default to MergeSort
-  const determineSortType = (sortType: string) => {
+  const determineSortType = () => {
+    const sortType = location.pathname.split("/")[1];
     switch (sortType) {
       case "mergesort": {
         sortTypeRef.current = SortType.MergeSort;
@@ -82,34 +79,40 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  async function fetchStepsList(
-    array: number[] = [7, 13, 5, 9, 10, 12, 1, 3, 2, 6, 25, 40]
-  ) {
-    try {
-      // POST Request to the backend to get the processList
-      const sortType: string = location.pathname.split("/")[1] || "mergesort";
-      const response = await fetch("/api/sorting/" + sortType, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          startArray: array,
-        }),
-      });
-      const data = await response.json();
-      const { processList, mergeRange, pivotElement } = JSON.parse(data);
-      const fetchedStepsList: number[][] = processList;
+  const fetchStepsList = useCallback(
+    async (array: number[] = sharedArray) => {
+      setSharedArray(array); // Update shared array
+      try {
+        // POST Request to the backend to get the processList
+        const sortType: string = location.pathname.split("/")[1] || "mergesort";
+        const response = await fetch("/api/sorting/" + sortType, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            startArray: array,
+          }),
+        });
 
-      determineSortType(sortType);
-      initializeStates(fetchedStepsList, mergeRange);
-    } catch (error) {
-      console.log("Error fetching sorting steps: ", error);
-    }
-  }
+        const data = await response.json();
+        const { processList, mergeRange, pivotElement } = JSON.parse(data);
+        const fetchedStepsList: number[][] = processList;
+
+        determineSortType();
+        initializeStates(fetchedStepsList, mergeRange);
+      } catch (error) {
+        console.log("Error fetching sorting steps: ", error);
+      }
+    },
+    [sharedArray]
+  );
+
+  // Fetch on mount or location change
   useEffect(() => {
+    determineSortType();
     fetchStepsList();
-  }, []);
+  }, [fetchStepsList]);
 
   return (
     <SortContext.Provider
@@ -126,6 +129,8 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
         fetchStepsList,
         inputCellsRef,
         sortTypeRef,
+        sharedArray,
+        setSharedArray,
       }}
     >
       {children}
