@@ -1,5 +1,10 @@
 /* Wrapping */
 .Tooltip-Wrapper {
+  --tooltip-text-color: white;
+  --tooltip-background-color: black;
+  --tooltip-margin: 30px;
+  --tooltip-arrow-size: 6px;
+
   position: relative;
   background-color: aliceblue;
 }
