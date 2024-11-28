@@ -133,7 +133,7 @@ const TableRow = ({ rowIndex }: RowProps) => {
             direction="top"
             content={
               inputCellValues[rowIndex][columnIndex]
-                ? `Invalid: ${inputCellValues[rowIndex][columnIndex]}`
+                ? `Wrong: ${inputCellValues[rowIndex][columnIndex]}`
                 : "Missing input"
             }
             hidden={validation[columnIndex] !== false}
