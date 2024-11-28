@@ -1,4 +1,10 @@
-import React, { createContext, useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { SortType } from "../constants";
 
 // Define types for our context state
@@ -20,20 +26,25 @@ export interface SortContextProps {
 }
 
 // Create context with default values
-export const SortContext = createContext<SortContextProps | undefined>(undefined);
+export const SortContext = createContext<SortContextProps | undefined>(
+  undefined
+);
 const defaultArray = [7, 13, 5, 9, 10, 12, 1, 3, 2, 6, 25, 40];
-export const SortProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   // State management
   const [stepsList, setStepsList] = useState<number[][]>([]);
   const [step, setStep] = useState<number>(1);
   const [mergeRanges, setMergeRanges] = useState<[number, number][]>([]);
   const [inputCellValues, setInputCellValues] = useState<string[][]>([]);
-  const [cellValidation, setCellValidation] = useState<(boolean | null)[][]>([]);
+  const [cellValidation, setCellValidation] = useState<(boolean | null)[][]>(
+    []
+  );
   const [sharedArray, setSharedArray] = useState<number[]>(() => {
     const storedArray = localStorage.getItem("sharedArray");
     return storedArray != undefined ? JSON.parse(storedArray) : defaultArray;
   });
-  
 
   // References
   const inputCellsRef = useRef<HTMLInputElement[][]>([]);
@@ -44,11 +55,20 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [sharedArray]);
 
   // Helper: Initialize state for fetched data
-  const initializeStates = (steps: number[][], mergeRange: [number, number][] | null) => {
+  const initializeStates = (
+    steps: number[][],
+    mergeRange: [number, number][] | null
+  ) => {
     setStepsList(steps);
-    setInputCellValues(steps.map((step, index) => (index === 0 ? [...step] : new Array(step.length).fill(""))));
+    setInputCellValues(
+      steps.map((step, index) =>
+        index === 0 ? [...step] : new Array(step.length).fill("")
+      )
+    );
     setCellValidation(steps.map((step) => new Array(step.length).fill(null)));
-    inputCellsRef.current = steps.map((step) => new Array(step.length).fill(null));
+    inputCellsRef.current = steps.map((step) =>
+      new Array(step.length).fill(null)
+    );
 
     // Initialize merge ranges if applicable
     if (mergeRange) {
@@ -110,9 +130,8 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Fetch on mount or location change
   useEffect(() => {
-    determineSortType();
     fetchStepsList();
-  }, [fetchStepsList]);
+  }, []);
 
   return (
     <SortContext.Provider
