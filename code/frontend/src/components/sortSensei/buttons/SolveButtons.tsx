@@ -4,9 +4,9 @@ import { useSortContext } from "../../../hooks/sortContextHooks";
 import buttonStyles from "../../../styles/sortSensei/Button.module.css";
 import { useButtonContext } from "./useButtonContext";
 
-const SPEED_VALUES = [4000, 3000, 2000, 1500, 1000, 500, 100];
+const SPEED_VALUES = [5000, 4000, 2500, 1500, 1000, 500, 5];
 const DEFAULT_SPEED_INDEX = 3;
-const SPEED_DISPLAY = ["0.25", "0.5", "0.75", "1.0", "1.5", "1.75", "2.0"];
+const SPEED_DISPLAY = ["0.25", "0.5", "0.75", "1.0", "1.25", "1.5", "15"];
 
 const SolveButton = () => {
   const { step, stepsList, inputCellValues, mergeRanges, sortTypeRef, setStep, setInputCellValues, setCellValidation } =
@@ -116,15 +116,26 @@ const SolveButton = () => {
     }
   }, [solveAllStatus, step, stepsList, continueSolving, stopSolving, setSolveAllStatus]);
 
+  /**
+   * Resets the state of the sorting animation to the initial state.
+   * Called when the user clicks the "Try Again" button.
+   */
   const handleTryAgain = useCallback(() => {
     stopSolving();
     setStep(1);
     currentStepRef.current = 1;
     setSolveAllStatus("solve");
+    // Reset the input cell values to the initial values
     setInputCellValues(stepsList.map((step, index) => (index === 0 ? [...step] : new Array(step.length).fill(""))));
+    // Reset the cell validation to null
     setCellValidation(stepsList.map((step) => new Array(step.length).fill(null)));
   }, [stepsList, setStep, setInputCellValues, setCellValidation, stopSolving, setSolveAllStatus]);
 
+  /**
+   * Changes the speed of the animation by clearing the current timeout and
+   * starting a new one with the new speed.
+   * @param newSpeedIndex The new speed index
+   */
   const handleSpeedChange = (newSpeedIndex: number) => {
     setSelectedSpeedIndex(newSpeedIndex);
     speedIndexRef.current = newSpeedIndex;
