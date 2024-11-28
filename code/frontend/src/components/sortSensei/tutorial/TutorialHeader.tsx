@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import audojoLogo from "../../../assets/logo-audojo.png";
-import headerStyles from "../../../styles/sortSensei/TutorialHeader.module.css";
+import headerStyles from "../../../styles/sortSensei/tutorial/TutorialHeader.module.css";
 
 const TutorialHeader = () => {
     const navigate = useNavigate();

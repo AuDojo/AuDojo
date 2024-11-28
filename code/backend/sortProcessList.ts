@@ -7,7 +7,7 @@ export class SortProcessList {
   #columnsLength: number = 0;
   #processList: number[][] = [];
   #mergeRange: [number, number][] = []; // Array of Tuples
-  #pivotElement: number[] = [];
+  #pivotElement: [number, number | null][] = [];
 
   /**
    * Creates an object in which the single steps of a sorting algorithm can be stored.
@@ -34,11 +34,27 @@ export class SortProcessList {
     console.log("start, end: ", this.#mergeRange[index]);
   }
 
-  pushPivotElement(pivot: number) {
+  /**
+   * Adds the index before the sorting step
+   * @param pivot_index The Index of the pivot-Element
+   */
+  pushPivotElementBefore(pivot_index: number) {
     let index = this.#processList.length;
-    this.#pivotElement[index] = pivot;
+    this.#pivotElement[index] = [pivot_index, null];
+    // this.#pivotElement[index][0] = pivot_index;
 
-    console.log("pivot: ", this.#pivotElement[index]);
+    console.log("pivot_index: ", this.#pivotElement[index][0]);
+  }
+
+  /**
+   * Adds the index after the sorting step
+   * @param pivot_index The Index of the pivot-Element
+   */
+  pushPivotElementAfter(pivot_index: number) {
+    let index = this.#processList.length;
+    this.#pivotElement[index][1] = pivot_index;
+
+    console.log("pivot_index: ", this.#pivotElement[index][1]);
   }
 
   checkIfSolved(): boolean {

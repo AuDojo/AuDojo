@@ -39,11 +39,11 @@ Softwarearchitektur von Backend:
    {
       "processList": [[startList], [sortStep1], [sortStep2], ...],
       "mergeRange": null,
-      "pivotElement": [null, pivot1, pivot2, ...]
+      "pivotElement": [null, [pivot-before1, pivot-after1], [pivot-before2, pivot-after2], ...]
    }
    ```
 
-   dabei gibt `[start1, end1]` den Start- und End-Index der Elemente an, die in dem ersten Merge-Schritt gemerged werden und `pivot1` den Index des Pivot-Elements nach dem ersten sortier Schritt an.
+   dabei gibt `[start1, end1]` den Start- und End-Index der Elemente an, die in dem ersten Merge-Schritt gemerged werden und `[pivot-before1, pivot-after1]` den Index des Pivot-Elements vor und nach dem ersten sortier Schritt an.
 
    Wenn "mergeRange" und "pivotElement" den Wert null besitzen heißt das, dass ein anderer Sortiealgorithmus benutzt wurde.
 
