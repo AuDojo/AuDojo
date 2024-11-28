@@ -20,10 +20,6 @@
   white-space: nowrap;
 }
 
-.Tooltip-Tip {
-  opacity: 1;
-}
-
 /* CSS border triangles */
 .Tooltip-Tip::before {
   content: " ";
