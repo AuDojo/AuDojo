@@ -14,15 +14,15 @@ export interface SortContextProps {
   step: number; // Current step we are on (1 to stepsList.length)
   inputCellValues: string[][]; // Holds the values in the input cells as strings
   cellValidation: (boolean | null)[][]; // True for correct, false for incorrect, null for neutral
+  sharedArray: number[];
   setStep: React.Dispatch<React.SetStateAction<number>>;
   setStepsList: React.Dispatch<React.SetStateAction<number[][]>>;
   setInputCellValues: React.Dispatch<React.SetStateAction<string[][]>>;
   setCellValidation: React.Dispatch<React.SetStateAction<(boolean | null)[][]>>;
+  setSharedArray: React.Dispatch<React.SetStateAction<number[]>>;
   fetchStepsList: (array: number[]) => Promise<void>; // Fetch the solution from the backend
   inputCellsRef: React.MutableRefObject<HTMLInputElement[][]>;
   sortTypeRef: React.MutableRefObject<SortType>;
-  sharedArray: number[];
-  setSharedArray: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
 // Create context with default values

@@ -7,7 +7,7 @@ interface TooltipProps {
   direction?: "top" | "right" | "bottom" | "left"; // Tooltip direction options
   hidden?: boolean; // Tooltip visibility
   content: React.ReactNode; // Content of the tooltip
-  children: React.ReactElement; // Child element that triggers the tooltip
+  children: React.ReactElement | string; // Child element that triggers the tooltip
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
