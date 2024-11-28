@@ -3,15 +3,17 @@ import GenerateButtons from "../components/sortSensei/buttons/GenerateButtons";
 import SolveButtons from "../components/sortSensei/buttons/SolveButtons";
 import D3SortVisualizer from "../components/sortSensei/D3SortVisualizer";
 import { SelectionSortGuide } from "../components/sortSensei/guide/SelectionSortGuide";
+import Points from "../components/sortSensei/Points";
 import SortHeader from "../components/sortSensei/SortHeader";
 import SortTips from "../components/sortSensei/SortTips";
 import SortingTable from "../components/sortSensei/table/SortingTable";
+import { SortProvider } from "../contexts/SortContext";
 import styles from "../styles/sortSensei/general.module.css";
 import tableStyles from "../styles/sortSensei/SortingTable.module.css";
 
 const SelectionSort = () => {
   return (
-    <>
+    <SortProvider>
       <SortHeader />
       <div className={styles.container}>
         <div>
@@ -28,10 +30,11 @@ const SelectionSort = () => {
               <GenerateButtons />
               <SolveButtons />
             </ButtonContextProvider>
+            <Points />
           </div>
         </div>
       </div>
-    </>
+    </SortProvider>
   );
 };
 

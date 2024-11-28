@@ -2,11 +2,11 @@
 .Tooltip-Wrapper {
   --tooltip-text-color: white;
   --tooltip-background-color: black;
-  --tooltip-margin: 10px;
+  --tooltip-margin: 30px;
   --tooltip-arrow-size: 6px;
 
   position: relative;
-  display: inline-flex;
+  display: inline-block;
 }
 
 .Tooltip-Wrapper > button {

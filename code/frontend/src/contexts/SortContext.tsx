@@ -29,7 +29,9 @@ export interface SortContextProps {
 export const SortContext = createContext<SortContextProps | undefined>(
   undefined
 );
+
 const defaultArray = [7, 13, 5, 9, 10, 12, 1, 3, 2, 6, 25, 40];
+
 export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
