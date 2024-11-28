@@ -4,10 +4,10 @@ import { useSortContext } from "../../../hooks/sortContextHooks";
 import buttonStyles from "../../../styles/sortSensei/Button.module.css";
 import { useButtonContext } from "./useButtonContext";
 const GenerateButtons = () => {
-  const { setStep, fetchStepsList, stepsList } = useSortContext();
+  const { setStep, fetchStepsList, stepsList, sharedArray } = useSortContext();
   const [customArray, setCustomArray] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [arrayLength, setArrayLength] = useState<number>(12);
+  const [arrayLength, setArrayLength] = useState<number>(sharedArray.length);
   const [errorMessage, setErrorMessage] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
