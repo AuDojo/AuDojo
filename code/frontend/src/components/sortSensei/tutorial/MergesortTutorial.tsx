@@ -3,6 +3,7 @@ import mergePseudo from "../../../assets/mergepseudo.png";
 import tutorialContent from "../../../styles/sortSensei/tutorial/TutorialContent.module.css";
 import TutorialSidebar from "../../../components/sortSensei/tutorial/TutorialSidebar";
 import Visualizer from "./StepVisualizer";
+import { merge_steps } from "./tutorialData/mergeSortData";
 
 const MergesortTutorial = () => {
     return (
@@ -14,11 +15,9 @@ const MergesortTutorial = () => {
                     <img src={mergePseudo} className = {tutorialContent["image"]} alt="merge pseudocode"/>
                 </div>
             </TutorialSidebar>
-            <Visualizer/>
+            <Visualizer steps = {merge_steps}/>
     </div>
-    
-        
-        );
+    );
 };
 
 export default MergesortTutorial;
