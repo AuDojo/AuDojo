@@ -1,11 +1,9 @@
-// import AnimationSort from "../components/sortSensei/AnimationSort";
 import GenerateButtons from "../components/sortSensei/buttons/GenerateButtons";
 import SolveButtons from "../components/sortSensei/buttons/SolveButtons";
 import SortHeader from "../components/sortSensei/SortHeader";
 import SortTips from "../components/sortSensei/SortTips";
 import SortingTable from "../components/sortSensei/table/SortingTable";
 import { SortProvider } from "../contexts/SortContext";
-// import buttonsStyles from "../styles/sortSensei/Button.module.css";
 import D3SortVisualizer from "../components/sortSensei/D3SortVisualizer";
 import { MergeSortGuide } from "../components/sortSensei/guide/MergeSortGuide";
 import styles from "../styles/sortSensei/general.module.css";
@@ -18,7 +16,6 @@ const MergeSort = () => {
       <SortHeader />
       <div className={styles.container}>
         <div>
-          {/* <AnimationSort /> */}
           <D3SortVisualizer />
           <MergeSortGuide />
         </div>
@@ -29,10 +26,10 @@ const MergeSort = () => {
             {/* Table */}
             <SortingTable />
             {/* right buttons */}
-              <ButtonContextProvider>
-                <GenerateButtons />
-                <SolveButtons />
-              </ButtonContextProvider>
+            <ButtonContextProvider>
+              <GenerateButtons />
+              <SolveButtons />
+            </ButtonContextProvider>
           </div>
         </div>
       </div>
