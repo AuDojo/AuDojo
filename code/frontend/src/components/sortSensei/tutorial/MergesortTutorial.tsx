@@ -7,8 +7,8 @@ import { merge_steps } from "./tutorialData/mergeSortData";
 
 const MergesortTutorial = () => {
     return (
-    <div className={tutorialContent["content-container"]}> 
-        <h1>Beispiele zum Mergesort!</h1>
+    <div className={tutorialContent["content-container"]}>
+        <div className={tutorialContent["title"]}> Anleitung zum Mergesort!</div> 
             <TutorialSidebar title="Aufklappen für Pseudocode">
                 <div className={tutorialContent["image-container"]}>
                     <img src={mergesortPseudo} className = {tutorialContent["image"]} alt="mergesort pseudocode"/>

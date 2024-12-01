@@ -70,6 +70,23 @@
   cursor: pointer;
 }
 
+.help-button {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  height: 40px;
+  width: 250px;
+  color: rgb(78, 66, 255);
+  font-size: 25px;
+  font-weight: 600;
+  text-underline-offset: 5px;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+.help-button:hover {
+  text-decoration: underline;
+}
+
 .sort-nav-list-item:hover {
   text-decoration: underline;
 }
