@@ -12,7 +12,7 @@ interface BarData {
 }
 
 const D3SortVisualizer = () => {
-  const { stepsList, step, mergeRanges } = useSortContext();
+  const { stepsList, step, mergeRanges, sharedArray } = useSortContext();
   const svgRef = useRef<SVGSVGElement | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const initialPositionsRef = useRef<Map<string, number>>(new Map());
@@ -35,7 +35,7 @@ const D3SortVisualizer = () => {
         // Set the dimensions state with new width and height values
         // Width is the lesser of 790px or the container's width minus 20px for padding
         setDimensions({
-          width: Math.min(790, containerWidth - 20), // Ensure width does not exceed 790px
+          width: Math.min(sharedArray.length * 50 + 50, containerWidth - 20), // Ensure width does not exceed 790px
           height: 240, // Set a fixed height of 240px
         });
       }
@@ -49,7 +49,7 @@ const D3SortVisualizer = () => {
 
     // Cleanup
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, );
 
   // Visualization effect
   useEffect(() => {
@@ -196,10 +196,7 @@ const D3SortVisualizer = () => {
   }, [stepsList, step, mergeRanges, dimensions]); // Add dimensions to dependencies
 
   return (
-    <div
-      ref={containerRef}
-      style={{ display: "flex", justifyContent: "center" }}
-    >
+    <div ref={containerRef} style={{ display: "flex", justifyContent: "center" }}>
       <svg
         ref={svgRef}
         width={dimensions.width}

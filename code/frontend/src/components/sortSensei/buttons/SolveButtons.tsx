@@ -224,6 +224,10 @@ const SolveButton = () => {
     };
   }, [handleSolveLine, handleSolveAll, handleTryAgain]);
 
+  if (!stepsList || stepsList.length === 0) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className={buttonStyles["solve-speed-buttons"]}>
       <Points />

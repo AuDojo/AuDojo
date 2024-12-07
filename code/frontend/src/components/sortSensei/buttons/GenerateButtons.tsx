@@ -138,6 +138,10 @@ const GenerateButtons = () => {
     };
   }, [isSubmitting, toggleSubmit, handleRandomArray]);
 
+  if (!stepsList || stepsList.length === 0) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className={buttonStyles["generate-buttons"]}>
       <Tooltip direction="left" content="C">
