@@ -55,7 +55,7 @@
 
 /* Absolute positioning */
 .right {
-  left: calc(100% + var(--tooltip-margin));
+  left: calc(90% + var(--tooltip-margin));
   top: 50%;
   transform: translateX(0) translateY(-50%);
 }
@@ -80,7 +80,7 @@
 /* Absolute positioning */
 .left {
   left: auto;
-  right: calc(100% + var(--tooltip-margin));
+  right: calc(90% + var(--tooltip-margin));
   top: 50%;
   transform: translateX(0) translateY(-50%);
 }

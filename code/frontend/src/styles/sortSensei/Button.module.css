@@ -6,45 +6,30 @@ button {
 .solve-speed-buttons {
   position: absolute;
   height: auto;
-  max-width: 220px;
+  width: auto;
+  min-width: 140px;
+  max-width: 200px;
 }
 .generate-buttons {
   top: 0px;
-  left: -230px;
-}
-@media (max-width: 1100px) {
-  .generate-buttons {
-    right: -230px;
-    left: auto;
-  }
+  left: -220px;
 }
 
 .solve-speed-buttons {
   bottom: 0px;
-  right: -200px;
+  right: -190px;
 }
-@media (max-height: 550px) {
+@media (max-height: 550px){
   .solve-speed-buttons {
     top: 0px;
   }
-}
-@media (max-width: 1100px) and (max-height: 700px) {
-  .solve-speed-buttons {
-    top: 160px;
-  }
-}
+} 
+
 .solve-buttons,
 .generate-buttons {
   display: flex;
   flex-direction: column;
   row-gap: 13px;
-}
-
-.submit-button {
-  margin-bottom: 20px;
-}
-.no-submitting {
-  display: none;
 }
 
 input {
