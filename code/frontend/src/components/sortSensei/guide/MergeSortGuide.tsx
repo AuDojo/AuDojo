@@ -1,8 +1,8 @@
 // MergeSortGuide.tsx
-import { useSortContext } from "../../../hooks/sortContextHooks";
-import styles from "../../../styles/sortSensei/MergeSortGuide.module.css";
+import { useSortContext } from "@hooks/index";
+import styles from "@styles/sortSensei/MergeSortGuide.module.css";
 
-export const MergeSortGuide: React.FC = () => {
+const MergeSortGuide: React.FC = () => {
   const { step, mergeRanges, stepsList } = useSortContext();
 
   const getCurrentGuideText = () => {
@@ -38,3 +38,5 @@ export const MergeSortGuide: React.FC = () => {
     </div>
   );
 };
+
+export default MergeSortGuide;

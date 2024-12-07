@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useSortContext } from "@hooks/index";
 import * as d3 from "d3";
-import { useSortContext } from "../../hooks/sortContextHooks";
+import { useEffect, useRef, useState } from "react";
 
 interface BarData {
   value: number;
@@ -64,18 +64,24 @@ const D3SortVisualizer = () => {
     const minBarWidth = 20; // Minimum width for bars
 
     // Calculate bar width based on available space and number of elements
-    const calculatedBarWidth = Math.min(maxBarWidth, Math.max(minBarWidth, availableWidth / currentArray.length));
+    const calculatedBarWidth = Math.min(
+      maxBarWidth,
+      Math.max(minBarWidth, availableWidth / currentArray.length)
+    );
 
     // Calculate total width needed for bars
     const totalBarsWidth = calculatedBarWidth * currentArray.length;
 
     // Center bars
-    const adjustedMarginLeft = margin.left + (availableWidth - totalBarsWidth) / 2;
+    const adjustedMarginLeft =
+      margin.left + (availableWidth - totalBarsWidth) / 2;
 
     // Initialize positions map on first render
     if (initialPositionsRef.current.size === 0) {
       stepsList[0].forEach((value, index) => {
-        const key = `${value}-${stepsList[0].slice(0, index).filter((v) => v === value).length}`;
+        const key = `${value}-${
+          stepsList[0].slice(0, index).filter((v) => v === value).length
+        }`;
         initialPositionsRef.current.set(key, index);
       });
     }
@@ -85,7 +91,9 @@ const D3SortVisualizer = () => {
     // Create bar data
     const barData: BarData[] = currentArray.map((value, index) => {
       // Create unique key based on value and occurrence count
-      const occurrenceCount = currentArray.slice(0, index).filter((v) => v === value).length;
+      const occurrenceCount = currentArray
+        .slice(0, index)
+        .filter((v) => v === value).length;
       const uniqueId = `${value}-${occurrenceCount}`;
 
       // Get initial position from ref
@@ -93,12 +101,17 @@ const D3SortVisualizer = () => {
 
       // Find position in previous array using the same uniqueId logic
       const previousIndex = previousArray.findIndex((v, i) => {
-        const prevOccurrences = previousArray.slice(0, i).filter((v2) => v2 === value).length;
+        const prevOccurrences = previousArray
+          .slice(0, i)
+          .filter((v2) => v2 === value).length;
         return v === value && prevOccurrences === occurrenceCount;
       });
 
       const currentMergeRange = mergeRanges[step - 1];
-      const isSorted = currentMergeRange && index >= currentMergeRange[0] && index <= currentMergeRange[1];
+      const isSorted =
+        currentMergeRange &&
+        index >= currentMergeRange[0] &&
+        index <= currentMergeRange[1];
 
       return {
         value,
@@ -131,13 +144,19 @@ const D3SortVisualizer = () => {
     const bars = svg.selectAll("g").data(barData).enter().append("g");
 
     // Initial position based on previous index
-    bars.attr("transform", (d) => `translate(${xScale(String(d.previousIndex))}, 0)`);
+    bars.attr(
+      "transform",
+      (d) => `translate(${xScale(String(d.previousIndex))}, 0)`
+    );
 
     // Add rectangles
     bars
       .append("rect")
       .attr("y", (d) => yScale(d.value))
-      .attr("height", (d) => dimensions.height - margin.bottom - yScale(d.value))
+      .attr(
+        "height",
+        (d) => dimensions.height - margin.bottom - yScale(d.value)
+      )
       .attr("width", xScale.bandwidth())
       .attr("fill", "#74c0fc") // Start with default color
       .attr("opacity", 1);
@@ -177,18 +196,21 @@ const D3SortVisualizer = () => {
   }, [stepsList, step, mergeRanges, dimensions]); // Add dimensions to dependencies
 
   return (
-      <div ref={containerRef} style={{ display: "flex", justifyContent: "center" }}>
-        <svg
-          ref={svgRef}
-          width={dimensions.width} 
-          height={dimensions.height}
-          style={{
-            display: "block",
-            border: "3px solid rgb(0, 63, 87)",
-            borderRadius: "15px",
-          }}
-        />
-      </div>
+    <div
+      ref={containerRef}
+      style={{ display: "flex", justifyContent: "center" }}
+    >
+      <svg
+        ref={svgRef}
+        width={dimensions.width}
+        height={dimensions.height}
+        style={{
+          display: "block",
+          border: "3px solid rgb(0, 63, 87)",
+          borderRadius: "15px",
+        }}
+      />
+    </div>
   );
 };
 

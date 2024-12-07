@@ -1,8 +1,8 @@
+import { MAX_INPUT_RANGE, MIN_INPUT_RANGE, SortType } from "@constants/index";
+import { useSortContext } from "@hooks/index";
+import styles from "@styles/sortSensei/SortingTable.module.css";
 import classNames from "classnames/bind";
 import React from "react";
-import { MAX_INPUT_RANGE, MIN_INPUT_RANGE, SortType } from "../../../constants";
-import { useSortContext } from "../../../hooks/sortContextHooks";
-import styles from "../../../styles/sortSensei/SortingTable.module.css";
 import Tooltip from "../Tooltip";
 
 interface RowProps {

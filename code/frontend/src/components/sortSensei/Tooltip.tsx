@@ -1,6 +1,6 @@
+import styles from "@styles/sortSensei/Tooltip.module.css";
 import classNames from "classnames";
 import React, { useState } from "react";
-import styles from "../../styles/sortSensei/Tooltip.module.css";
 
 interface TooltipProps {
   delay?: number;
