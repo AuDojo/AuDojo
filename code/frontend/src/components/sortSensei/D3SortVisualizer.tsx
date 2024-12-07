@@ -23,24 +23,23 @@ const D3SortVisualizer = () => {
     height: 240,
   });
 
+  // Function to handle the resizing of the container
+  const handleResize = () => {
+    // Check if containerRef is assigned to a DOM element
+    if (containerRef.current) {
+      // Get the current width of the container element
+      const containerWidth = containerRef.current.clientWidth;
+
+      // Set the dimensions state with new width and height values
+      // Width is the lesser of 790px or the container's width minus 20px for padding
+      setDimensions({
+        width: Math.min(sharedArray.length * 50 + 50, containerWidth - 20), // Ensure width does not exceed 790px
+        height: 240, // Set a fixed height of 240px
+      });
+    }
+  };
   // Handle window resize
   useEffect(() => {
-    // Function to handle the resizing of the container
-    const handleResize = () => {
-      // Check if containerRef is assigned to a DOM element
-      if (containerRef.current) {
-        // Get the current width of the container element
-        const containerWidth = containerRef.current.clientWidth;
-
-        // Set the dimensions state with new width and height values
-        // Width is the lesser of 790px or the container's width minus 20px for padding
-        setDimensions({
-          width: Math.min(sharedArray.length * 50 + 50, containerWidth - 20), // Ensure width does not exceed 790px
-          height: 240, // Set a fixed height of 240px
-        });
-      }
-    };
-
     // Initial size
     handleResize();
 
@@ -49,7 +48,18 @@ const D3SortVisualizer = () => {
 
     // Cleanup
     return () => window.removeEventListener("resize", handleResize);
-  }, );
+  }, []);
+  
+  useEffect(() => {
+    // Initial size
+    handleResize();
+
+    // Add resize listener
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, [sharedArray.length]);
 
   // Visualization effect
   useEffect(() => {
@@ -64,24 +74,18 @@ const D3SortVisualizer = () => {
     const minBarWidth = 20; // Minimum width for bars
 
     // Calculate bar width based on available space and number of elements
-    const calculatedBarWidth = Math.min(
-      maxBarWidth,
-      Math.max(minBarWidth, availableWidth / currentArray.length)
-    );
+    const calculatedBarWidth = Math.min(maxBarWidth, Math.max(minBarWidth, availableWidth / currentArray.length));
 
     // Calculate total width needed for bars
     const totalBarsWidth = calculatedBarWidth * currentArray.length;
 
     // Center bars
-    const adjustedMarginLeft =
-      margin.left + (availableWidth - totalBarsWidth) / 2;
+    const adjustedMarginLeft = margin.left + (availableWidth - totalBarsWidth) / 2;
 
     // Initialize positions map on first render
     if (initialPositionsRef.current.size === 0) {
       stepsList[0].forEach((value, index) => {
-        const key = `${value}-${
-          stepsList[0].slice(0, index).filter((v) => v === value).length
-        }`;
+        const key = `${value}-${stepsList[0].slice(0, index).filter((v) => v === value).length}`;
         initialPositionsRef.current.set(key, index);
       });
     }
@@ -91,9 +95,7 @@ const D3SortVisualizer = () => {
     // Create bar data
     const barData: BarData[] = currentArray.map((value, index) => {
       // Create unique key based on value and occurrence count
-      const occurrenceCount = currentArray
-        .slice(0, index)
-        .filter((v) => v === value).length;
+      const occurrenceCount = currentArray.slice(0, index).filter((v) => v === value).length;
       const uniqueId = `${value}-${occurrenceCount}`;
 
       // Get initial position from ref
@@ -101,17 +103,12 @@ const D3SortVisualizer = () => {
 
       // Find position in previous array using the same uniqueId logic
       const previousIndex = previousArray.findIndex((v, i) => {
-        const prevOccurrences = previousArray
-          .slice(0, i)
-          .filter((v2) => v2 === value).length;
+        const prevOccurrences = previousArray.slice(0, i).filter((v2) => v2 === value).length;
         return v === value && prevOccurrences === occurrenceCount;
       });
 
       const currentMergeRange = mergeRanges[step - 1];
-      const isSorted =
-        currentMergeRange &&
-        index >= currentMergeRange[0] &&
-        index <= currentMergeRange[1];
+      const isSorted = currentMergeRange && index >= currentMergeRange[0] && index <= currentMergeRange[1];
 
       return {
         value,
@@ -144,19 +141,13 @@ const D3SortVisualizer = () => {
     const bars = svg.selectAll("g").data(barData).enter().append("g");
 
     // Initial position based on previous index
-    bars.attr(
-      "transform",
-      (d) => `translate(${xScale(String(d.previousIndex))}, 0)`
-    );
+    bars.attr("transform", (d) => `translate(${xScale(String(d.previousIndex))}, 0)`);
 
     // Add rectangles
     bars
       .append("rect")
       .attr("y", (d) => yScale(d.value))
-      .attr(
-        "height",
-        (d) => dimensions.height - margin.bottom - yScale(d.value)
-      )
+      .attr("height", (d) => dimensions.height - margin.bottom - yScale(d.value))
       .attr("width", xScale.bandwidth())
       .attr("fill", "#74c0fc") // Start with default color
       .attr("opacity", 1);
