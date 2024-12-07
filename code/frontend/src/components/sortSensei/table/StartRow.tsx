@@ -1,7 +1,7 @@
+import { MAX_INPUT_RANGE, MIN_INPUT_RANGE } from "@constants/index";
+import { useSortContext } from "@hooks/index";
+import styles from "@styles/sortSensei/SortingTable.module.css";
 import classNames from "classnames/bind";
-import { MAX_INPUT_RANGE, MIN_INPUT_RANGE } from "../../../constants";
-import { useSortContext } from "../../../hooks/sortContextHooks";
-import styles from "../../../styles/sortSensei/SortingTable.module.css";
 
 // Bind styles to classNames
 const cx = classNames.bind(styles);

@@ -6,14 +6,16 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from "react-router-dom";
-import { SortProvider } from "./contexts/SortContext.tsx";
+import { SortProvider } from "./contexts/SortContext";
 import "./index.css";
-import BubbleSort from "./pages/BubbleSort.tsx";
-import Home from "./pages/Home.tsx";
-import MergeSort from "./pages/MergeSort.tsx";
-import QuickSort from "./pages/QuickSort.tsx";
-import SelectionSort from "./pages/SelectionSort.tsx";
-import Tutorial from "./pages/Tutorial.tsx";
+import {
+  BubbleSort,
+  Home,
+  MergeSort,
+  QuickSort,
+  SelectionSort,
+  Tutorial,
+} from "./pages";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

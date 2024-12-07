@@ -1,8 +1,7 @@
+import { SortType } from "@constants/index";
+import { useButtonContext, useSortContext } from "@hooks/index";
+import buttonStyles from "@styles/sortSensei/Button.module.css";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { SortType } from "../../../constants";
-import { useSortContext } from "../../../hooks/sortContextHooks";
-import buttonStyles from "../../../styles/sortSensei/Button.module.css";
-import { useButtonContext } from "./useButtonContext";
 import Points from "../Points";
 import Tooltip from "../Tooltip";
 
@@ -11,13 +10,22 @@ const DEFAULT_SPEED_INDEX = 3;
 const SPEED_DISPLAY = ["0.25", "0.5", "0.75", "1.0", "1.25", "1.5", "15"];
 
 const SolveButton = () => {
-  const { step, stepsList, inputCellValues, mergeRanges, sortTypeRef, setStep, setInputCellValues, setCellValidation } =
-    useSortContext();
+  const {
+    step,
+    stepsList,
+    inputCellValues,
+    mergeRanges,
+    sortTypeRef,
+    setStep,
+    setInputCellValues,
+    setCellValidation,
+  } = useSortContext();
 
   const { timeoutRef, solveAllStatus, setSolveAllStatus } = useButtonContext();
   const isSolvingRef = useRef<boolean>(false);
   const currentStepRef = useRef<number>(step);
-  const [selectedSpeedIndex, setSelectedSpeedIndex] = useState<number>(DEFAULT_SPEED_INDEX);
+  const [selectedSpeedIndex, setSelectedSpeedIndex] =
+    useState<number>(DEFAULT_SPEED_INDEX);
   const speedIndexRef = useRef<number>(DEFAULT_SPEED_INDEX);
   const [buttonText, setButtonText] = useState("Sort All");
 
@@ -34,12 +42,17 @@ const SolveButton = () => {
 
       const correctValues = stepsList[currentStep];
       const userValues = inputCellValues[currentStep];
-      const currentMergeRange = mergeRanges ? mergeRanges[currentStep] : [-1, -1];
+      const currentMergeRange = mergeRanges
+        ? mergeRanges[currentStep]
+        : [-1, -1];
       const sortType = sortTypeRef.current;
 
       // TODO: Clean up this code, maybe own validateMergeSortLine
       const validationResult = userValues.map((value, index) => {
-        const isInMergeRange = currentMergeRange && index >= currentMergeRange[0] && index <= currentMergeRange[1];
+        const isInMergeRange =
+          currentMergeRange &&
+          index >= currentMergeRange[0] &&
+          index <= currentMergeRange[1];
 
         if (sortType !== SortType.MergeSort || isInMergeRange) {
           return Number(value) === correctValues[index];
@@ -57,7 +70,14 @@ const SolveButton = () => {
       setStep(currentStep + 1);
       currentStepRef.current = currentStep + 1;
     },
-    [inputCellValues, mergeRanges, stepsList, sortTypeRef, setCellValidation, setStep]
+    [
+      inputCellValues,
+      mergeRanges,
+      stepsList,
+      sortTypeRef,
+      setCellValidation,
+      setStep,
+    ]
   );
 
   const stopSolving = useCallback(() => {
@@ -83,7 +103,10 @@ const SolveButton = () => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
-    timeoutRef.current = setTimeout(continueSolving, SPEED_VALUES[speedIndexRef.current]);
+    timeoutRef.current = setTimeout(
+      continueSolving,
+      SPEED_VALUES[speedIndexRef.current]
+    );
     validateLine(currentStepRef.current);
   }, [validateLine, timeoutRef, currentStepRef, stepsList, speedIndexRef]);
 
@@ -116,7 +139,14 @@ const SolveButton = () => {
         continueSolving();
         break;
     }
-  }, [solveAllStatus, step, stepsList, continueSolving, stopSolving, setSolveAllStatus]);
+  }, [
+    solveAllStatus,
+    step,
+    stepsList,
+    continueSolving,
+    stopSolving,
+    setSolveAllStatus,
+  ]);
 
   /**
    * Resets the state of the sorting animation to the initial state.
@@ -128,10 +158,23 @@ const SolveButton = () => {
     currentStepRef.current = 1;
     setSolveAllStatus("solve");
     // Reset the input cell values to the initial values
-    setInputCellValues(stepsList.map((step, index) => (index === 0 ? [...step] : new Array(step.length).fill(""))));
+    setInputCellValues(
+      stepsList.map((step, index) =>
+        index === 0 ? [...step] : new Array(step.length).fill("")
+      )
+    );
     // Reset the cell validation to null
-    setCellValidation(stepsList.map((step) => new Array(step.length).fill(null)));
-  }, [stepsList, setStep, setInputCellValues, setCellValidation, stopSolving, setSolveAllStatus]);
+    setCellValidation(
+      stepsList.map((step) => new Array(step.length).fill(null))
+    );
+  }, [
+    stepsList,
+    setStep,
+    setInputCellValues,
+    setCellValidation,
+    stopSolving,
+    setSolveAllStatus,
+  ]);
 
   /**
    * Changes the speed of the animation by clearing the current timeout and
@@ -144,7 +187,10 @@ const SolveButton = () => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
-    timeoutRef.current = setTimeout(continueSolving, SPEED_VALUES[speedIndexRef.current]);
+    timeoutRef.current = setTimeout(
+      continueSolving,
+      SPEED_VALUES[speedIndexRef.current]
+    );
   };
   useEffect(() => {
     switch (solveAllStatus) {
@@ -202,7 +248,10 @@ const SolveButton = () => {
           <button onClick={handleSolveLine}>Sort Line</button>
         </Tooltip>
         <Tooltip direction="right" content="T">
-          <button className={buttonStyles["try-again-button"]} onClick={handleTryAgain}>
+          <button
+            className={buttonStyles["try-again-button"]}
+            onClick={handleTryAgain}
+          >
             Try Again
           </button>
         </Tooltip>
