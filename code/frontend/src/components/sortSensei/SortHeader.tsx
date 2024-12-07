@@ -18,7 +18,7 @@ const HeaderNavItems = () => {
   return (
     <div className={headerStyles["header-nav"]}>
       <div className={`${headerStyles["header-nav-list"]} ${isOpen ? headerStyles.open : ""}`}>
-        <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="TreeTutor" />
+        
         <div className={headerStyles["dropdown"]}>
           <HeaderNavItem to="/mergesort" text="SortSensei ▼" />
           <div className={headerStyles["dropdown-content"]}>
@@ -28,8 +28,8 @@ const HeaderNavItems = () => {
             <HeaderNavItem to="/selectionsort" text="SelectionSort" />
           </div>
         </div>
+        <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="TreeTutor" />
         <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="Kontakt" />
-        <HeaderNavItem to="/tutorial" text="Hilfe & Beispiele" />
       </div>
 
       <div className={`${headerStyles["hamburger"]} ${isOpen ? headerStyles.change : ""}`} onClick={toogleMenu}>
@@ -64,6 +64,23 @@ const SortHeaderNavItem = ({
   );
 };
 
+const HilfeButton = ({
+  to,
+  text
+}: {
+  to: string;
+  text: string;
+}) => {
+  return (
+    <Link className="Link" to={to}>
+      <div
+        className={headerStyles["help-button"]}>
+        {text}
+      </div>
+    </Link>
+  );
+};
+
 const SortHeader = () => {
   const location = useLocation();
   const currentSort = location.pathname.replace("/", "") || "mergesort"; // get the current path name
@@ -83,6 +100,12 @@ const SortHeader = () => {
 
       <div className={headerStyles["sort-nav"]}>
         <div className={`${headerStyles["sort-nav-list"]}`}>
+         
+         <HilfeButton
+          to="/tutorial"
+          text="Hilfe & Beispiele"
+          />
+
           <SortHeaderNavItem
             activeSort={activeSort === "mergesort"}
             onClick={() => setActiveSort("mergesort")}

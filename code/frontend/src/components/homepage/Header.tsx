@@ -17,7 +17,6 @@ const HeaderNavItems = () => {
   return (
     <div className={headerStyles["header-nav"]}>
       <div className={`${headerStyles["header-nav-list"]} ${isOpen ? headerStyles.open : ""}`}>
-        <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="TreeTutor" />
         <div className={headerStyles["dropdown"]}>
           <HeaderNavItem to="/mergesort" text="SortSensei ▼" />
           <div className={headerStyles["dropdown-content"]}>
@@ -27,6 +26,7 @@ const HeaderNavItems = () => {
             <HeaderNavItem to="/selectionsort" text="SelectionSort" />
           </div>
         </div>
+        <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="TreeTutor" />
         <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="Kontakt" />
       </div>
 
