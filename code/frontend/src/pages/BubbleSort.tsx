@@ -3,7 +3,6 @@ import GenerateButtons from "../components/sortSensei/buttons/GenerateButtons";
 import SolveButtons from "../components/sortSensei/buttons/SolveButtons";
 import D3SortVisualizer from "../components/sortSensei/D3SortVisualizer";
 import { BubbleSortGuide } from "../components/sortSensei/guide/BubbleSortGuide";
-import Points from "../components/sortSensei/Points";
 import SortHeader from "../components/sortSensei/SortHeader";
 import SortTips from "../components/sortSensei/SortTips";
 import SortingTable from "../components/sortSensei/table/SortingTable";
@@ -30,7 +29,6 @@ const BubbleSort = () => {
               <GenerateButtons />
               <SolveButtons />
             </ButtonContextProvider>
-            <Points />
           </div>
         </div>
       </div>

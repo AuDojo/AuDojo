@@ -3,7 +3,6 @@ import GenerateButtons from "../components/sortSensei/buttons/GenerateButtons";
 import SolveButtons from "../components/sortSensei/buttons/SolveButtons";
 import D3SortVisualizer from "../components/sortSensei/D3SortVisualizer";
 import { QuickSortGuide } from "../components/sortSensei/guide/QuickSortGuide";
-import Points from "../components/sortSensei/Points";
 import SortHeader from "../components/sortSensei/SortHeader";
 import SortTips from "../components/sortSensei/SortTips";
 import SortingTable from "../components/sortSensei/table/SortingTable";
@@ -30,7 +29,6 @@ const QuickSort = () => {
               <GenerateButtons />
               <SolveButtons />
             </ButtonContextProvider>
-            <Points />
           </div>
         </div>
       </div>

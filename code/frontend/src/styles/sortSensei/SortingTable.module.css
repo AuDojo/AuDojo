@@ -13,6 +13,7 @@ td {
 }
 
 .outer-table-buttons-container {
+  min-height: 250px;
   display: flex;
   justify-content: center;
   overflow-x: auto; /* Enable horizontal scrolling */

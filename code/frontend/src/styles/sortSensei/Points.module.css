@@ -1,6 +1,7 @@
 .points-container {
-  position: absolute;
-  right: -150px;
+  /* position: absolute; */
+  /* right: -150px; */
+  margin-bottom: 20px;
   top: 130px;
   font-weight: bold;
 

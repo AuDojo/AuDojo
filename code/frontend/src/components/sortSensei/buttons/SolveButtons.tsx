@@ -3,6 +3,7 @@ import { SortType } from "../../../constants";
 import { useSortContext } from "../../../hooks/sortContextHooks";
 import buttonStyles from "../../../styles/sortSensei/Button.module.css";
 import { useButtonContext } from "./useButtonContext";
+import Points from "../Points";
 
 const SPEED_VALUES = [5000, 4000, 2500, 1500, 1000, 500, 5];
 const DEFAULT_SPEED_INDEX = 3;
@@ -178,6 +179,7 @@ const SolveButton = () => {
 
   return (
     <div className={buttonStyles["solve-speed-buttons"]}>
+            <Points />
       <div style={{ fontSize: "12px", fontStyle: "italic", color: "gray" }}>
         Current speed: x{SPEED_DISPLAY[selectedSpeedIndex]}
       </div>
