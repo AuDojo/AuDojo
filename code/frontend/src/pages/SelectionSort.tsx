@@ -1,14 +1,10 @@
-import { ButtonContextProvider } from "../components/sortSensei/buttons/ButtonContext";
-import GenerateButtons from "../components/sortSensei/buttons/GenerateButtons";
-import SolveButtons from "../components/sortSensei/buttons/SolveButtons";
-import D3SortVisualizer from "../components/sortSensei/D3SortVisualizer";
-import { SelectionSortGuide } from "../components/sortSensei/guide/SelectionSortGuide";
-import SortHeader from "../components/sortSensei/SortHeader";
-import SortTips from "../components/sortSensei/SortTips";
-import SortingTable from "../components/sortSensei/table/SortingTable";
-import { SortProvider } from "../contexts/SortContext";
-import styles from "../styles/sortSensei/general.module.css";
-import tableStyles from "../styles/sortSensei/SortingTable.module.css";
+import { D3SortVisualizer, SortHeader, SortTips } from "@components/sortSensei";
+import { GenerateButtons, SolveButtons } from "@components/sortSensei/buttons";
+import { SelectionSortGuide } from "@components/sortSensei/guide";
+import { SortingTable } from "@components/sortSensei/table";
+import { ButtonContextProvider, SortProvider } from "@contexts/index";
+import styles from "@styles/sortSensei/general.module.css";
+import tableStyles from "@styles/sortSensei/SortingTable.module.css";
 
 const SelectionSort = () => {
   return (

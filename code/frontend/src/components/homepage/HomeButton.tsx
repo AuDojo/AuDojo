@@ -1,5 +1,5 @@
+import mainStyles from "@styles/homepage/Main.module.css";
 import { Link } from "react-router-dom";
-import mainStyles from "../../styles/homepage/Main.module.css";
 
 interface HomeButtonProps {
   link: string;

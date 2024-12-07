@@ -1,13 +1,12 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import {
   MAX_ARRAY_SIZE,
   MAX_INPUT_RANGE,
   MIN_ARRAY_SIZE,
   MIN_INPUT_RANGE,
-} from "../../../constants/sorting";
-import { useSortContext } from "../../../hooks/sortContextHooks";
-import buttonStyles from "../../../styles/sortSensei/Button.module.css";
-import { useButtonContext } from "./useButtonContext";
+} from "@constants/index";
+import { useButtonContext, useSortContext } from "@hooks/index";
+import buttonStyles from "@styles/sortSensei/Button.module.css";
+import { useCallback, useEffect, useRef, useState } from "react";
 const GenerateButtons = () => {
   const { setStep, fetchStepsList, stepsList, sharedArray } = useSortContext();
   const [customArray, setCustomArray] = useState<string>("");

@@ -1,7 +1,7 @@
+import headerStyles from "@styles/homepage/Header.module.css";
 import { useState } from "react";
-import HeaderLogo from "./HeaderLogo";
 import { Link } from "react-router-dom";
-import headerStyles from "../../styles/homepage/Header.module.css";
+import HeaderLogo from "./HeaderLogo";
 const HeaderNavItem = ({ to, text }: { to: string; text: string }) => {
   return (
     <Link className="Link" to={to}>
@@ -16,7 +16,11 @@ const HeaderNavItems = () => {
   };
   return (
     <div className={headerStyles["header-nav"]}>
-      <div className={`${headerStyles["header-nav-list"]} ${isOpen ? headerStyles.open : ""}`}>
+      <div
+        className={`${headerStyles["header-nav-list"]} ${
+          isOpen ? headerStyles.open : ""
+        }`}
+      >
         <div className={headerStyles["dropdown"]}>
           <HeaderNavItem to="/mergesort" text="SortSensei ▼" />
           <div className={headerStyles["dropdown-content"]}>
@@ -30,7 +34,12 @@ const HeaderNavItems = () => {
         <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="Kontakt" />
       </div>
 
-      <div className={`${headerStyles["hamburger"]} ${isOpen ? headerStyles.change : ""}`} onClick={toogleMenu}>
+      <div
+        className={`${headerStyles["hamburger"]} ${
+          isOpen ? headerStyles.change : ""
+        }`}
+        onClick={toogleMenu}
+      >
         <div className={headerStyles["bar1"]}></div>
         <div className={headerStyles["bar2"]}></div>
         <div className={headerStyles["bar3"]}></div>

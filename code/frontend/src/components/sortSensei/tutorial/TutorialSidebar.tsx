@@ -1,5 +1,5 @@
+import tutorialsidebar from "@styles/sortSensei/tutorial/TutorialSidebar.module.css";
 import React, { useState } from "react";
-import tutorialsidebar from "../../../styles/sortSensei/tutorial/TutorialSidebar.module.css";
 
 const TutorialSidebar = ({
   title,

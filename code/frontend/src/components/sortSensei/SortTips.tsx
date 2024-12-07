@@ -1,4 +1,4 @@
-import styles from "../../styles/sortSensei/SortTips.module.css";
+import styles from "@styles/sortSensei/SortTips.module.css";
 
 const SortTips = () => {
   return (
