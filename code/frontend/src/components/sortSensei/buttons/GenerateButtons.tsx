@@ -7,11 +7,8 @@ import {
 import { useButtonContext, useSortContext } from "@hooks/index";
 import buttonStyles from "@styles/sortSensei/Button.module.css";
 import { useCallback, useEffect, useRef, useState } from "react";
-<<<<<<< HEAD
 import Tooltip from "../Tooltip";
 
-=======
->>>>>>> refs/remotes/origin/feat/cleanup
 const GenerateButtons = () => {
   const { setStep, fetchStepsList, stepsList, sharedArray } = useSortContext();
   const [customArray, setCustomArray] = useState<string>("");
