@@ -1,13 +1,11 @@
-import { useSortContext } from "@hooks/sortContextHooks";
+import { useSortContext } from "@src/hooks/useSortContext";
 import styles from "@styles/sortSensei/Points.module.css";
 
 const Points = () => {
   const { cellValidation, step, stepsList } = useSortContext();
 
   // Filter correct inputs
-  const currentPoints = cellValidation
-    .flat()
-    .filter((value) => value === true).length;
+  const currentPoints = cellValidation.flat().filter((value) => value === true).length;
 
   const totalPoints = cellValidation.slice(1).flat().length;
 
