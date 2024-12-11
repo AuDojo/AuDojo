@@ -3,19 +3,18 @@ import tutorialContent from "../../../styles/sortSensei/tutorial/TutorialContent
 
 export interface Step {
     description: string;
-    data: {array: number[],colored:boolean}[];
+    data: {array: number[],color:string}[];
 }
 
 type VisualizerProps = {
     steps: Step[]; // Define the type of the step prop
+    mergesort:boolean
 };
 
-const Visualizer:React.FC<VisualizerProps> = ({ steps }) => {
+const Visualizer:React.FC<VisualizerProps> = ({ steps,mergesort }) => {
 
-  // Step index state
   const [currentStep, setCurrentStep] = useState(0);
 
-  // Handlers for navigation
   const goToNextStep = () => {
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
@@ -28,6 +27,14 @@ const Visualizer:React.FC<VisualizerProps> = ({ steps }) => {
     }
   };
 
+  const goToFirstStep = () => {
+    setCurrentStep(0);
+  };
+
+  const goToLaststep = () => {
+    setCurrentStep(steps.length-1);
+  }
+
     return (
         <div className={tutorialContent["visualiser-container"]}>
             <h3>{steps[currentStep].description}</h3>
@@ -35,26 +42,43 @@ const Visualizer:React.FC<VisualizerProps> = ({ steps }) => {
             <div className={tutorialContent["array-container"]}>
               {
                 steps[currentStep].data.map((component, index) => (
-                    <div key={index} className={tutorialContent["array"]}>
-                      {component.array.map((num, i) => (
-                        <span key={i} className={tutorialContent["box"]} style={{ background: component.colored == false ? "#f4f4f9":"rgb(248, 215, 218)"}}>
+
+                    <div key={index} className={tutorialContent[mergesort === false ? "array":"array-merge"]}>
+
+                     {
+                      component.array.map((num, i) => (
+
+                        <span key={i} 
+                        className={tutorialContent["box"]} 
+                        style={{ background: component.color }}>
                           {num}
                         </span>
-                      ))}
+
+                      ))
+                      }
+
                     </div>
+
                   ))
+
                 }
             </div>
     
           {/* Step Navigation */}
           <div>
-            <button onClick={goToPrevStep} disabled={currentStep === 0} className={tutorialContent["button-style"]}>
+          <button onClick={goToFirstStep} disabled= {currentStep === 0} className={tutorialContent["button-style"]}>
               {"<<"}
+            </button>
+            <button onClick={goToPrevStep} disabled={currentStep === 0} className={tutorialContent["button-style"]}>
+              {"<"}
             </button>
             <span style={{ margin: "0 20px" }}>
               Step {currentStep + 1} / {steps.length}
             </span>
             <button onClick={goToNextStep} disabled={currentStep === steps.length - 1} className={tutorialContent["button-style"]}>
+              {">"}
+            </button>
+            <button onClick={goToLaststep} disabled= {currentStep === steps.length -1 } className={tutorialContent["button-style"]}>
               {">>"}
             </button>
           </div>

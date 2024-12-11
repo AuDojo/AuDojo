@@ -18,7 +18,6 @@ const HeaderNavItems = () => {
   return (
     <div className={headerStyles["header-nav"]}>
       <div className={`${headerStyles["header-nav-list"]} ${isOpen ? headerStyles.open : ""}`}>
-        
         <div className={headerStyles["dropdown"]}>
           <HeaderNavItem to="/mergesort" text="SortSensei ▼" />
           <div className={headerStyles["dropdown-content"]}>
@@ -64,19 +63,10 @@ const SortHeaderNavItem = ({
   );
 };
 
-const HilfeButton = ({
-  to,
-  text
-}: {
-  to: string;
-  text: string;
-}) => {
+const HilfeButton = ({ to, text }: { to: string; text: string }) => {
   return (
     <Link className="Link" to={to}>
-      <div
-        className={headerStyles["help-button"]}>
-        {text}
-      </div>
+      <div className={headerStyles["help-button"]}>{text}</div>
     </Link>
   );
 };
@@ -100,11 +90,7 @@ const SortHeader = () => {
 
       <div className={headerStyles["sort-nav"]}>
         <div className={`${headerStyles["sort-nav-list"]}`}>
-         
-         <HilfeButton
-          to="/tutorial"
-          text="Hilfe & Beispiele"
-          />
+          <HilfeButton to="/tutorial" text="Hilfe & Beispiele" />
 
           <SortHeaderNavItem
             activeSort={activeSort === "mergesort"}
