@@ -47,23 +47,18 @@ input::placeholder {
 }
 
 .solve-buttons button,
-.generate-buttons button,
-.pseudo-button {
-  background-color: white;
+.generate-buttons button {
   border-radius: 4px;
   padding: 8px 16px;
-  color: rgb(190, 30, 60);
   font-size: 16px;
   font-weight: 800;
   border: 1px solid rgb(190, 30, 60);
 }
 .solve-buttons button:hover,
-.pseudo-button:hover,
 .generate-buttons button:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 .solve-buttons button:active,
-.pseudo-button:active,
 .generate-buttons button:active {
   opacity: 0.8;
 }
@@ -79,6 +74,11 @@ input::placeholder {
   flex-direction: row;
   align-items: center;
   margin-bottom: 10px;
+}
+
+.generate-buttons button {
+  color: rgb(190, 30, 60);
+  background-color: rgba(239, 213, 213, 0.4);
 }
 
 .solve-buttons button,
