@@ -19,7 +19,6 @@ const TableCell: React.FC<TableCellProps> = ({ rowIndex, columnIndex }): JSX.Ele
     useSortContext();
 
   const { handleCellChange, handleCellKeyDown } = useTableUtils();
-  console.log(pivotElement);
 
   // Memoize derived values to prevent unnecessary re-renders
   const cellData = useMemo(() => {
