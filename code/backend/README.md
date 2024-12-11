@@ -29,21 +29,38 @@ Softwarearchitektur von Backend:
    {
       "processList": [[startList], [sortStep1], [sortStep2], ...],
       "mergeRange": [null, [start1, end1], [start2, end2], ...],
-      "pivotElement": null
+      "pivotElement": null,
+      "selectedElement": null
    }
    ```
 
-   - oder, wenn QuickSort verwendet wird:
+   `[start1, end1]` gibt den Start- und End-Index der Elemente an, die in dem ersten Merge-Schritt gemerged werden.
+
+   - Wenn QuickSort verwendet wird:
 
    ```json
    {
       "processList": [[startList], [sortStep1], [sortStep2], ...],
       "mergeRange": null,
-      "pivotElement": [null, [pivot-before1, pivot-after1], [pivot-before2, pivot-after2], ...]
+      "pivotElement": [null, [pivot-before1, pivot-after1], [pivot-before2, pivot-after2], ...],
+      "selectedElement": null
    }
    ```
 
-   dabei gibt `[start1, end1]` den Start- und End-Index der Elemente an, die in dem ersten Merge-Schritt gemerged werden und `[pivot-before1, pivot-after1]` den Index des Pivot-Elements vor und nach dem ersten sortier Schritt an.
+   `[pivot-before1, pivot-after1]` gibt den Index des Pivot-Elements vor und nach dem ersten sortier Schritt an.
+
+   - Wenn SelectionSort verwendet wird:
+
+   ```json
+   {
+      "processList": [[startList], [sortStep1], [sortStep2], ...],
+      "mergeRange": null,
+      "pivotElement": null,
+      "selectedElement": [selected1, selected2, selected3, ...]
+   }
+   ```
+
+   `selected1` gibt den Index an, an welchen das jeweilig noch nicht sortierte Element mit dem derzeit kleinsten Element gewechselt wird.
 
    Wenn "mergeRange" und "pivotElement" den Wert null besitzen heißt das, dass ein anderer Sortiealgorithmus benutzt wurde.
 

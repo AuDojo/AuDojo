@@ -176,6 +176,7 @@ export class SortSensei {
       list[i] = min;
       list[minIndex] = temp;
 
+      this.#processList?.pushSelectedElement(minIndex);
       //Zwischenarray in processList reinstecken
       this.#processList?.pushList(list);
     }
