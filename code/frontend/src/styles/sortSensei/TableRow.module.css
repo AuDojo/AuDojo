@@ -1,0 +1,42 @@
+/*----------------- Table rows -----------------*/
+.index-row-container,
+.start-row-container,
+.row-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  color: rgb(98, 98, 98);
+}
+
+.start-row-container {
+  background-color: rgb(230, 230, 230);
+  padding: 0.5rem 0;
+  border-radius: 10px;
+}
+
+.index-row-container {
+  margin-bottom: 1px;
+}
+
+.index-row-index,
+.list-index,
+.row-index {
+  width: 2.5rem; /* Adjust this width based on your needs */
+  text-align: right; /* Align the number to the right */
+  padding-right: 0.5rem; /* Add space between the index and the input cells */
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.index-row-index {
+  font-weight: 400;
+  font-size: 0.8rem;
+  font-style: italic;
+  padding-right: 0.3rem;
+  color: rgb(98, 98, 98);
+}
+
+.list-index {
+  font-weight: 600;
+  padding-right: 0.2rem;
+}
