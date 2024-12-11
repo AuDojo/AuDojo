@@ -195,7 +195,7 @@ const SolveButton = () => {
   useEffect(() => {
     switch (solveAllStatus) {
       case "solve":
-        setButtonText("Sort All");
+        setButtonText("Check All");
         break;
       case "stop":
         setButtonText("Stop");
@@ -212,7 +212,7 @@ const SolveButton = () => {
         handleSolveAll();
       } else if (event.key === "l" || event.key === "L") {
         handleSolveLine();
-      } else if (event.key === "t" || event.key === "T") {
+      } else if (event.key === "s" || event.key === "S") {
         handleTryAgain();
       }
     };
@@ -249,14 +249,14 @@ const SolveButton = () => {
           <button onClick={handleSolveAll}>{buttonText}</button>
         </Tooltip>
         <Tooltip direction="right" content={`L`}>
-          <button onClick={handleSolveLine}>Sort Line</button>
+          <button onClick={handleSolveLine}>Check Line</button>
         </Tooltip>
-        <Tooltip direction="right" content="T">
+        <Tooltip direction="right" content="S">
           <button
             className={buttonStyles["try-again-button"]}
             onClick={handleTryAgain}
           >
-            Try Again
+             Reset ↺ 
           </button>
         </Tooltip>
       </div>
