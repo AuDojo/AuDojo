@@ -1,37 +1,19 @@
 import { useSortContext } from "@hooks/index";
-import { useTableUtils } from "@src/hooks/useTableUtils";
-import styles from "@styles/sortSensei/SortingTable.module.css";
+import styles from "@styles/sortSensei/TableRow.module.css";
 import classNames from "classnames/bind";
+import TableCell from "./TableCell";
 
 // Bind styles to classNames
 const cx = classNames.bind(styles);
 
 const StartRow = () => {
-  const { stepsList, inputCellsRef, inputCellValues } = useSortContext();
-  const { handleCellChange, handleCellKeyDown } = useTableUtils();
+  const { stepsList } = useSortContext();
 
   return (
     <div className={cx("start-row-container")}>
       <span className={cx("list-index")}>List</span>
       {stepsList[0].map((_, index) => (
-        <div key={index}>
-          <input
-            key={index}
-            className={cx("cell-input")}
-            value={inputCellValues[0][index]}
-            readOnly={true}
-            ref={(el) => {
-              // Assign the input element to the appropriate cell in the ref
-              if (inputCellsRef.current[0]) {
-                inputCellsRef.current[0][index] = el!;
-              }
-            }}
-            onChange={
-              (event) => handleCellChange(event.target.value, 0, index) // Update value
-            }
-            onKeyDown={(event) => handleCellKeyDown(event, 0, index)}
-          />
-        </div>
+        <TableCell rowIndex={0} columnIndex={index} key={index} />
       ))}
     </div>
   );
