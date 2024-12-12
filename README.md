@@ -58,7 +58,6 @@ Das Dojo ist nun unter http://localhost:5001/ erreichbar
   ```
 
   (3) Laufende Container anzeigen 👓
-  Solltest du vergessen haben den Container zu stoppen, oder vergessen haben wie du ihn genannt hast, kannst du dir mit folgendem Befehl die derzeit laufenden Container       anzeigen
   ```bash
   docker ps
   ```
@@ -74,7 +73,6 @@ Das Dojo ist nun unter http://localhost:5001/ erreichbar
   ```
 
   (6) Images anzeigen 👓
-  Die Images unserer Anwendungen sind relativ groß. Da bei jedem Build ein neues image erstellt wird, würde ich empfehlen die alten images regelmäßig zu löschen.
   ```bash
   docker image ls
   ```
