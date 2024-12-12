@@ -77,7 +77,7 @@ npm run start
 
   Images anzeigen:
   ```bash
-  docker image
+  docker image ls
   ```
 
   Images löschen:
