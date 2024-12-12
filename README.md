@@ -28,14 +28,14 @@ cd code/
 npm i
 ```
 
-### Run (devmode)🏃‍♂️
+### Run in Devmode 🥽
 
 ```bash
 cd code/
 npm run dev # catch vite address from programm output
 ```
 
-### Build 🏗️ && Start 🚗
+### Build 🏗️ && Run 🏃🏻
 ```bash
 cd code/
 npm run build
