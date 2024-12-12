@@ -34,7 +34,6 @@ npm i
 cd code/
 npm run dev # catch vite address from programm output
 ```
-Das Dojo ist nun unter http://localhost:5001/ erreichbar
 
 ### Build 🏗️ && Run 🏃🏻
 ```bash
@@ -42,45 +41,45 @@ cd code/
 npm run build
 npm run start
 ```
+Das Dojo ist nun unter http://localhost:5001/ erreichbar
 
 ## Run AuDoJo in a Docker Container 🐋📦
 
 ### Via Terminal 📟
-  Zuerst muss das Image (die Blaupause) für den individuellen Container generiert werden
+  (1) Image erzeugen 🌱
   ```bash
   cd code/
   docker build -t AuDojo_Image .
   ```
 
-  Als nächstes wollen wir das Image zum leben erwecken, in dem wir eine konkrete Instanz (einen Container) starten
+  (2) Container starten 🛫
   ```bash
   docker run -p 5001:5001 AuDojo_Image 
   ```
-  Zugriff auf den Container
+
+  (3) Laufende Container anzeigen 👓
   Solltest du vergessen haben den Container zu stoppen, oder vergessen haben wie du ihn genannt hast, kannst du dir mit folgendem Befehl die derzeit laufenden Container       anzeigen
   ```bash
   docker ps
   ```
-  Um jetzt Zugriff auf den gewünschten Container zu bekommen, mache folgendes 
 
+  (4) Auf Container zugreifen 🤚
   ```bash
   docker exec -it <container_name> /bin/bash
   ```
 
-  Container löschen
+  (5) Container löschen 🗑️
   ```bash
   docker rm <container_name>
   ```
 
-  Images anzeigen und löschen
+  (6) Images anzeigen 👓
   Die Images unserer Anwendungen sind relativ groß. Da bei jedem Build ein neues image erstellt wird, würde ich empfehlen die alten images regelmäßig zu löschen.
-
-  Images anzeigen:
   ```bash
   docker image ls
   ```
 
-  Images löschen:
+(7) Images löschen 🗑️
    ```bash
   docker rmi <image_name>
   ```
