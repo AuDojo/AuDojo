@@ -25,19 +25,21 @@
 
 ```bash
 cd code/
-npm i # Install backend dependencies
-cd frontend/
-npm i # Install frontend dependencies
+npm i
 ```
 
-### Run 🏃‍♂️
+### Run (devmode)🏃‍♂️
 
 ```bash
 cd code/
-npm run dev # Run express server on http://localhost:5001
-cd frontend/
-npm run dev # Run frontend server on some localhost (look at terminal)
+npm run dev # catch vite address from programm output
+```
 
+### Build 🏗️ && Start 🚗
+```bash
+cd code/
+npm run build
+npm run start
 ```
 
 ## ✨ Kriterien ✨
