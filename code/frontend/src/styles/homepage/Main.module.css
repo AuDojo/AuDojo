@@ -70,6 +70,38 @@ main {
   padding: 5px 0;
 }
 
+.bureaucratic-heading {
+  color: rgb(0, 63, 87);
+  align-items: left;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.bureaucratic-container {
+  flex-direction: column ;
+  margin-top: 150px;
+  margin-left: 30px;
+  width: 1fr;
+  display: flex;
+  align-self: left;
+}
+
+.bureaucratic-subheading{
+  color: rgb(0, 63, 87);
+  align-items: left;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-top: 20px;
+}
+.bureaucratic-address-container{
+  padding-left: 10px;
+  margin-top: 10px;
+}
+.bureaucratic-paragraph-container{
+  padding-left: 28px;
+}
+
+
 @media (max-width: 720px) {
   .home-buttons-container {
     width: 100%;

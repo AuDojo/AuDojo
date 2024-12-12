@@ -1,21 +1,9 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import {
-  Route,
-  RouterProvider,
-  createBrowserRouter,
-  createRoutesFromElements,
-} from "react-router-dom";
+import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
 import { SortProvider } from "./contexts/SortContext";
 import "./index.css";
-import {
-  BubbleSort,
-  Home,
-  MergeSort,
-  QuickSort,
-  SelectionSort,
-  Tutorial,
-} from "./pages";
+import { BubbleSort, Datenschutz, Home, Impressum, MergeSort, QuickSort, SelectionSort, Tutorial } from "./pages";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,6 +14,8 @@ const router = createBrowserRouter(
       <Route path="bubblesort" element={<BubbleSort />} />
       <Route path="selectionsort" element={<SelectionSort />} />
       <Route path="tutorial" element={<Tutorial />} />
+      <Route path="datenschutz" element={<Datenschutz />} />
+      <Route path="impressum" element={<Impressum />} />
       {/* <Route path="sortsensei/mergesort" element={<Home />} /> */}
       {/* Nested route */}
     </>
