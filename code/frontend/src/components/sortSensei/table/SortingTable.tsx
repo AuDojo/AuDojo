@@ -1,6 +1,7 @@
 import { useSortContext } from "@hooks/index";
 import styles from "@styles/sortSensei/SortingTable.module.css";
 import { IndexRow, StartRow, TableRow } from "./";
+import { JSX } from "react";
 /**
  * A table component that displays a list of steps for the given sorting
  * algorithm. Each step is represented by a TableRow component.

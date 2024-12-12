@@ -3,7 +3,7 @@ import { useSortContext } from "@hooks/index";
 import { useTableUtils } from "@src/hooks/useTableUtils";
 import styles from "@styles/sortSensei/TableCell.module.css";
 import classNames from "classnames/bind";
-import { useMemo } from "react";
+import { JSX, useMemo } from "react";
 import Tooltip from "../Tooltip";
 
 interface TableCellProps {
