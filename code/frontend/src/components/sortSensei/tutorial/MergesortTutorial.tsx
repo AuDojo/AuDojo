@@ -3,7 +3,7 @@ import mergesortPseudo from "@assets/pseudocode/mergeSortpseudo.png";
 import mergePseudo from "@assets/pseudocode/mergepseudo.png";
 import tutorialContent from "@styles/sortSensei/tutorial/TutorialContent.module.css";
 import { StepVisualizer, TutorialSidebar } from "./";
-import { merge_steps } from "./tutorialData/mergeSortData";
+import { mergeSortSteps } from "./tutorialData";
 
 const MergesortTutorial = () => {
   return (
@@ -29,7 +29,7 @@ const MergesortTutorial = () => {
                 </div>
             </TutorialSidebar>
 
-            <StepVisualizer steps = {merge_steps} mergesort={true}/>
+            <StepVisualizer steps = {mergeSortSteps} mergesort={true}/>
 
     </div>
   );

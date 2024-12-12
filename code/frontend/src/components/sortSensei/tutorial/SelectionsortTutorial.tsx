@@ -1,7 +1,7 @@
 import selectionPseudo from "@assets/pseudocode/selectionsortpseudo.jpg";
 import tutorialContent from "@styles/sortSensei/tutorial/TutorialContent.module.css";
 import { StepVisualizer, TutorialSidebar } from "./";
-import { selection_steps } from "./tutorialData/selectionSortData";
+import { selectionSortSteps } from "./tutorialData";
 
 const SelectionsortTutorial = () => {
   return (
@@ -19,7 +19,7 @@ const SelectionsortTutorial = () => {
                 </div>
             </TutorialSidebar>
 
-            <StepVisualizer steps = {selection_steps} mergesort={false}/>
+            <StepVisualizer steps = {selectionSortSteps} mergesort={false}/>
     </div>
     );
 };
@@ -28,9 +28,10 @@ const SelectionsortTutorial = () => {
 const SelectionsortText = () => {
     return (
         <div className={tutorialContent["text-container"]}>
-            Der Algorithmus ist <span className={tutorialContent["font-highlight"]}> iterativ</span>. Die Idee ist, dass wir kleinstes Element in (Teil)array ganz am links von diesem Array verschieben. Der betrachtete Array wird sich um 1 Element verkleinern. Das Ergebnis wird es so, dass das kleinste Element ganzes Arrays ganz link stehen, und nächstkleinstes rechts von dem, und so weiter<br/><br/>
+            Der Algorithmus arbeitet <span className={tutorialContent["font-highlight"]}> iterativ</span>. Die Grundidee besteht darin, das kleinste Element im (Teil-)Array zu finden und es ganz nach links zu verschieben. Anschließend wird der betrachtete Bereich des Arrays um ein Element verkleinert. Das Ergebnis ist, dass das kleinste Element des gesamten Arrays ganz links steht, das zweitkleinste rechts davon und so weiter.
+            <br/><br/>
 
-            In jedem Teilarray wird das kleinste Element gesucht. Das Suchen von solchem Element beträgt O(n) und wir haben O(n) viele Teilarray. Die Laufzeit ist insgesamt <span className={tutorialContent["font-highlight"]}> O(n^2)</span>.
+            In jedem Teilarray wird das kleinste Element gesucht, was O(n) Zeit benötigt. Da es O(n) Teilarrays gibt, beträgt die Gesamtlaufzeit des Algorithmus <span className={tutorialContent["font-highlight"]}> O(n<sup>2</sup>) </span>.
         </div>
     );
 };

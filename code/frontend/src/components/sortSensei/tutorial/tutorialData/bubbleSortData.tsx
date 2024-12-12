@@ -9,7 +9,7 @@ function redcolor(): string {
 }
 
 
-export const bubble_steps:Step[] = [
+const bubble_steps:Step[] = [
     { description: "Tausche ein Element mit nächstem, falls A[i] > A[i+1] für i=0...3",
         data: 
         [ 
@@ -266,3 +266,5 @@ export const bubble_steps:Step[] = [
         ]
     },
 ]
+
+export default bubble_steps;
