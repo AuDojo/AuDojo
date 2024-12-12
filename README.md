@@ -54,7 +54,7 @@ npm run start
 
   Als nächstes wollen wir das Image zum leben erwecken, in dem wir eine konkrete Instanz (einen Container) starten
   ```bash
-  docker run -d --name <container_name> AuDojo_Image --expose 5001
+  docker run -p 5001:5001 AuDojo_Image 
   ```
   Zugriff auf den Container
   Solltest du vergessen haben den Container zu stoppen, oder vergessen haben wie du ihn genannt hast, kannst du dir mit folgendem Befehl die derzeit laufenden Container       anzeigen
