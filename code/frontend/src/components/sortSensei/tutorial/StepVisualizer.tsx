@@ -37,6 +37,7 @@ const Visualizer:React.FC<VisualizerProps> = ({ steps,mergesort }) => {
   }
 
     return (
+      <div> <h1 className={"margin:10px"} >Beispiel</h1>
         <div className={tutorialContent["visualiser-container"]}>
             <h3>{steps[currentStep].description}</h3>
             {/* array container */}
@@ -84,30 +85,9 @@ const Visualizer:React.FC<VisualizerProps> = ({ steps,mergesort }) => {
             </button>
             
           </div>
-        ))}
+      
       </div>
-
-      {/* Step Navigation */}
-      <div>
-        <button
-          onClick={goToPrevStep}
-          disabled={currentStep === 0}
-          className={tutorialContent["button-style"]}
-        >
-          {"<<"}
-        </button>
-        <span style={{ margin: "0 20px" }}>
-          Step {currentStep + 1} / {steps.length}
-        </span>
-        <button
-          onClick={goToNextStep}
-          disabled={currentStep === steps.length - 1}
-          className={tutorialContent["button-style"]}
-        >
-          {">>"}
-        </button>
       </div>
-    </div>
   );
 };
 

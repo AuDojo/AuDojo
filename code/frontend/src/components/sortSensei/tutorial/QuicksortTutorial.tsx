@@ -1,10 +1,9 @@
-import quicksortPseudo from "../../../assets/pseudocode/quicksortpseudo.png";
-import partitionpseudo from "../../../assets/pseudocode/quicksortpartition.png";
-import tutorialContent from "../../../styles/sortSensei/tutorial/TutorialContent.module.css";
-import TutorialSidebar from "../../../components/sortSensei/tutorial/TutorialSidebar";
-import Visualizer from "./StepVisualizer";
+import quicksortPseudo from "@assets/pseudocode/quicksortpseudo.png";
+import partitionpseudo from "@assets/pseudocode/quicksortpartition.png";
+import tutorialContent from "@styles/sortSensei/tutorial/TutorialContent.module.css";
+import { StepVisualizer, TutorialSidebar } from "./";
 import { quick_steps } from "./tutorialData/quickSortData";
-import quicksortidee from "../../../assets/quicksortidee.png";
+import quicksortidee from "@assets/quicksortidee.png";
 
 const QuicksortTutorial = () => {
   return (
@@ -23,7 +22,7 @@ const QuicksortTutorial = () => {
                 </div>
             </TutorialSidebar>
 
-            <Visualizer steps = {quick_steps} mergesort={false}/>
+            <StepVisualizer steps = {quick_steps} mergesort={false}/>
 
     </div>
     );

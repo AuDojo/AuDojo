@@ -1,6 +1,6 @@
 
-import mergesortPseudo from "@assets/mergeSortpseudo.png";
-import mergePseudo from "@assets/mergepseudo.png";
+import mergesortPseudo from "@assets/pseudocode/mergeSortpseudo.png";
+import mergePseudo from "@assets/pseudocode/mergepseudo.png";
 import tutorialContent from "@styles/sortSensei/tutorial/TutorialContent.module.css";
 import { StepVisualizer, TutorialSidebar } from "./";
 import { merge_steps } from "./tutorialData/mergeSortData";
@@ -29,7 +29,7 @@ const MergesortTutorial = () => {
                 </div>
             </TutorialSidebar>
 
-            <Visualizer steps = {merge_steps} mergesort={true}/>
+            <StepVisualizer steps = {merge_steps} mergesort={true}/>
 
     </div>
   );

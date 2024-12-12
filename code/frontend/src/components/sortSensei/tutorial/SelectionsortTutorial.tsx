@@ -1,7 +1,6 @@
-import selectionPseudo from "../../../assets/pseudocode/selectionsortpseudo.jpg";
-import tutorialContent from "../../../styles/sortSensei/tutorial/TutorialContent.module.css";
-import TutorialSidebar from "../../../components/sortSensei/tutorial/TutorialSidebar";
-import Visualizer from "./StepVisualizer";
+import selectionPseudo from "@assets/pseudocode/selectionsortpseudo.jpg";
+import tutorialContent from "@styles/sortSensei/tutorial/TutorialContent.module.css";
+import { StepVisualizer, TutorialSidebar } from "./";
 import { selection_steps } from "./tutorialData/selectionSortData";
 
 const SelectionsortTutorial = () => {
@@ -20,7 +19,7 @@ const SelectionsortTutorial = () => {
                 </div>
             </TutorialSidebar>
 
-            <Visualizer steps = {selection_steps} mergesort={false}/>
+            <StepVisualizer steps = {selection_steps} mergesort={false}/>
     </div>
     );
 };
