@@ -6,14 +6,12 @@ import { selectionSortSteps } from "./tutorialData";
 const SelectionsortTutorial = () => {
   return (
     <div className={tutorialContent["content-container"]}>
-
-        <div className={tutorialContent["title"]}> Anleitung zum Selectionsort!</div>
             
-            <TutorialSidebar title="Aufklappen für Idee des Algorithmus">
+            <TutorialSidebar title="Aufklappen für Idee des Algorithmus" subtitle={true}>
                 <SelectionsortText/>
             </TutorialSidebar>
 
-            <TutorialSidebar title="Aufklappen für Pseudocode">
+            <TutorialSidebar title="Aufklappen für Pseudocode" subtitle={true}>
                 <div className={tutorialContent["image-container"]}>
                     <img src={selectionPseudo} className = {tutorialContent["image"]} alt="selectionsort pseudocode"/>
                 </div>

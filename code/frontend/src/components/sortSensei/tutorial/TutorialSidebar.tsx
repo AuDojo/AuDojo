@@ -4,9 +4,11 @@ import React, { useState } from "react";
 const TutorialSidebar = ({
   title,
   children,
+  subtitle
 }: {
   title: string;
   children: React.ReactNode;
+  subtitle:boolean
 }) => {
   const [isOpen, toggle] = useState(false);
 
@@ -27,7 +29,11 @@ const TutorialSidebar = ({
         >
           ▶
         </span>
-        <h2 className={tutorialsidebar["sidebar-title"]}>{title}</h2>
+
+        <div className={
+          tutorialsidebar[subtitle?"sidebar-subtitle":"sidebar-title"]
+          }>{title}</div>
+
       </div>
 
       {isOpen && (

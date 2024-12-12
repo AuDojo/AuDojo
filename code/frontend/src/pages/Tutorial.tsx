@@ -19,16 +19,16 @@ const Tutorial = () => {
       </header>
       <main>
         <RickRollTroll />
-        <TutorialSidebar title="Mergesort">
+        <TutorialSidebar title="Mergesort" subtitle={false}>
           <MergesortTutorial />
         </TutorialSidebar>
-        <TutorialSidebar title="Quicksort">
+        <TutorialSidebar title="Quicksort" subtitle={false}>
           <QuicksortTutorial />
         </TutorialSidebar>
-        <TutorialSidebar title="Bubblesort">
+        <TutorialSidebar title="Bubblesort" subtitle={false}>
           <BubblesortTutorial />
         </TutorialSidebar>
-        <TutorialSidebar title="Selectionsort">
+        <TutorialSidebar title="Selectionsort" subtitle={false}>
           <SelectionsortTutorial />
         </TutorialSidebar>
       </main>

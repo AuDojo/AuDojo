@@ -6,14 +6,12 @@ import { bubbleSortSteps } from "./tutorialData";
 const BubblesortTutorial = () => {
   return (
     <div className={tutorialContent["content-container"]}>
-
-        <div className={tutorialContent["title"]}> Anleitung zum Bubblesort!</div> 
             
-            <TutorialSidebar title="Aufklappen für Idee des Algorithmus">
+            <TutorialSidebar title="Aufklappen für Idee des Algorithmus" subtitle={true}>
                 <BubblesortText/>
             </TutorialSidebar>
 
-            <TutorialSidebar title="Aufklappen für Pseudocode">
+            <TutorialSidebar title="Aufklappen für Pseudocode" subtitle={true}>
                 <div className={tutorialContent["image-container"]}>
                     <img src={bubblesortPseudo} className = {tutorialContent["image"]} alt="bubblesort pseudocode"/>
                 </div>

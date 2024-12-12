@@ -9,13 +9,11 @@ const QuicksortTutorial = () => {
   return (
     <div className={tutorialContent["content-container"]}>
 
-        <div className={tutorialContent["title"]}> Anleitung zum Quicksort!</div> 
-
-            <TutorialSidebar title="Aufklappen für Idee des Algorithmus">
+            <TutorialSidebar title="Aufklappen für Idee des Algorithmus" subtitle={true}>
                 <QuicksortText/>
             </TutorialSidebar>
 
-            <TutorialSidebar title="Aufklappen für Pseudocode">
+            <TutorialSidebar title="Aufklappen für Pseudocode" subtitle={true}>
                 <div className={tutorialContent["image-container"]}>
                     <img src={quicksortPseudo} className = {tutorialContent["image"]} alt="quicksort pseudocode"/>
                     <img src={partitionpseudo} className = {tutorialContent["image"]} alt="partition pseudocode"/>
