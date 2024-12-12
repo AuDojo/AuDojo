@@ -22,6 +22,7 @@ const HeaderNavItems = () => {
           isOpen ? headerStyles.open : ""
         }`}
       >
+
         <div className={headerStyles["dropdown"]}>
           <HeaderNavItem to="/mergesort" text="SortSensei ▼" />
           <div className={headerStyles["dropdown-content"]}>

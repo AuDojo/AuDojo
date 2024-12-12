@@ -5,9 +5,6 @@
   color: black;
 }
 
-
-
-
 /* Style für Beispele*/
 .content-container {
   box-sizing: border-box;
@@ -26,6 +23,24 @@
   vertical-align: middle;
 }
 
+.text-container {
+  text-align: left;
+  margin: 20px;
+  line-height: 1.6;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 100;
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  color: #333333;
+  box-sizing: border-box;
+}
+
+span.font-highlight { 
+  font-weight: bold; 
+  padding: 2px 4px; 
+  border-radius: 3px; 
+}
+
 .visualiser-container {
    text-align: center;
    padding: 20px;
@@ -40,9 +55,14 @@
    font-size: 18px;
 }
 
+.array-merge {
+  display: inline-block;
+  margin: 40px; 
+}
+
 .array {
   display: inline-block;
-  margin: 20px; 
+  margin: 7px; 
 }
 
 .box {
@@ -51,6 +71,7 @@
   border: 3px solid rgb(140, 14, 14);
   margin: 2px;
   border-radius: 5px;
+  transition: transform 0.5s ease-in-out;
 }
 
 .button-style {
