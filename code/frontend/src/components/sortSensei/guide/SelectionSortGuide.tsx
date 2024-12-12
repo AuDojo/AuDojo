@@ -1,35 +1,45 @@
 // MergeSortGuide.tsx
 import { useSortContext } from "@hooks/index";
-import styles from "@styles/sortSensei/MergeSortGuide.module.css";
+import styles from "@styles/sortSensei/SortGuide.module.css";
 
-const SelectionSortGuide: React.FC = () => {
-  const { step, mergeRanges } = useSortContext();
+const QuickSortGuide: React.FC = () => {
+  const { step, stepsList, selectionElement } = useSortContext();
 
   const getCurrentGuideText = () => {
-    const currentRange = mergeRanges[step - 1];
-    if (!currentRange || currentRange[0] === -1) {
-      return "Starting Selection Sort! ";
+    if (!stepsList || stepsList.length === 0) {
+      return "Starting Selection Sort!";
     }
 
-    const [start, end] = currentRange;
-    const length = end - start + 1;
-
-    if (length === 1) {
-      return "An array of length 1 is already sorted.";
-    } else if (length === 2) {
-      return "...";
-    } else {
-      if (step === 1) {
-        return "....";
+    const currentArray = stepsList[step - 1];
+    const prevArray = step > 1 ? stepsList[step - 2] : currentArray;
+    const smallestElement = prevArray[selectionElement[step - 2]];
+    const currentElement = prevArray[step - 2];
+    if (step === 1) {
+      return (
+        <>
+          Starts with the current element at <b>index 0</b>.<br />
+          Find the smallest from the remaining elements.
+          <br />
+        </>
+      );
+    } else if (step >= 2) {
+      if (step === stepsList.length) {
+        return <>Sorting is complete!</>;
       }
-      // Add more specific messages based on the current state
-      return `... `;
+
+      return (
+        <>
+          Swap <b>current ({currentElement})</b> with <b>smallest ({smallestElement})</b>. <br />
+          Move to <b>index {step - 1}</b> and find the smallest in the unsorted subarray.
+          <br />
+        </>
+      );
     }
   };
 
   return (
     <div className={styles.guide}>
-      <h3>Selection Sort Guide</h3>
+      <h3>Quick Sort Guide</h3>
       <div className={styles.step}>
         <p>{getCurrentGuideText()}</p>
       </div>
@@ -37,4 +47,4 @@ const SelectionSortGuide: React.FC = () => {
   );
 };
 
-export default SelectionSortGuide;
+export default QuickSortGuide;
