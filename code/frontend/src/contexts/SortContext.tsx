@@ -1,10 +1,4 @@
-import React, {
-  createContext,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { createContext, useCallback, useEffect, useRef, useState } from "react";
 import { SortType } from "../constants";
 
 // Define types for our context state
@@ -25,27 +19,23 @@ export interface SortContextProps {
   sortTypeRef: React.MutableRefObject<SortType>;
   pivotElement: [number, number][];
   setPivotElement: React.Dispatch<React.SetStateAction<[number, number][]>>;
+  selectionElement: number[];
 }
 
 // Create context with default values
-export const SortContext = createContext<SortContextProps | undefined>(
-  undefined
-);
+export const SortContext = createContext<SortContextProps | undefined>(undefined);
 
 const defaultArray = [7, 13, 5, 9, 10, 12, 1, 3, 2, 6, 25, 40];
 
-export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const SortProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // State management
   const [stepsList, setStepsList] = useState<number[][]>([]);
   const [step, setStep] = useState<number>(1);
   const [mergeRanges, setMergeRanges] = useState<[number, number][]>([]);
   const [inputCellValues, setInputCellValues] = useState<string[][]>([]);
-  const [cellValidation, setCellValidation] = useState<(boolean | null)[][]>(
-    []
-  );
+  const [cellValidation, setCellValidation] = useState<(boolean | null)[][]>([]);
   const [pivotElement, setPivotElement] = useState<[number, number][]>([]);
+  const [selectionElement, setSelectionElement] = useState<number[]>([]);
   const [sharedArray, setSharedArray] = useState<number[]>(() => {
     const storedArray = localStorage.getItem("sharedArray");
     return storedArray != undefined ? JSON.parse(storedArray) : defaultArray;
@@ -63,18 +53,13 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
   const initializeStates = (
     steps: number[][],
     mergeRange: [number, number][] | null,
-    pivotElement: [number, number][] |null
+    pivotElement: [number, number][] | null,
+    selectionElement: number[]
   ) => {
     setStepsList(steps);
-    setInputCellValues(
-      steps.map((step, index) =>
-        index === 0 ? [...step] : new Array(step.length).fill("")
-      )
-    );
+    setInputCellValues(steps.map((step, index) => (index === 0 ? [...step] : new Array(step.length).fill(""))));
     setCellValidation(steps.map((step) => new Array(step.length).fill(null)));
-    inputCellsRef.current = steps.map((step) =>
-      new Array(step.length).fill(null)
-    );
+    inputCellsRef.current = steps.map((step) => new Array(step.length).fill(null));
 
     // Initialize merge ranges if applicable
     if (mergeRange) {
@@ -84,6 +69,9 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
     if (pivotElement) {
       pivotElement[0] = [-1, -1];
       setPivotElement(pivotElement);
+    }
+    if (selectionElement) {
+      setSelectionElement(selectionElement);
     }
   };
 
@@ -126,11 +114,11 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
         });
 
         const data = await response.json();
-        const { processList, mergeRange, pivotElement } = JSON.parse(data);
+        const { processList, mergeRange, pivotElement, selectionElement } = JSON.parse(data);
         const fetchedStepsList: number[][] = processList;
 
         determineSortType();
-        initializeStates(fetchedStepsList, mergeRange, pivotElement);
+        initializeStates(fetchedStepsList, mergeRange, pivotElement, selectionElement);
       } catch (error) {
         console.log("Error fetching sorting steps: ", error);
       }
@@ -162,6 +150,7 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
         setSharedArray,
         pivotElement,
         setPivotElement,
+        selectionElement,
       }}
     >
       {children}
