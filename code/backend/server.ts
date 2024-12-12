@@ -20,10 +20,19 @@ import path from "path";
 const app: Express = express();
 const port = 5001;
 const bodyParser = require("body-parser");
-const sortingRouting = require("./sortingRouting.ts");
 
+// make sure the right sortingRouting.* is required
+const env = process.env.NODE_ENV; // 'development' oder 'production'
+const sortingRouting = require(
+  env === 'development' ? './sortingRouting.ts' : './sortingRouting.js'
+);
+
+// make express deliver static frontend pages
+app.use(express.static(path.join(__dirname, '..', '..', 'frontend', 'public')));
+
+app.use(express.static(path.join(__dirname, '..', '..', 'frontend', 'dist')));
 app.use(bodyParser.json());
-app.use("/sorting", sortingRouting);
+app.use("/api/sorting", sortingRouting);
 
 app.get("/", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "..", "frontend", "index.html")); //our main page frontend/index.html is loaded

@@ -4,8 +4,10 @@
   "description": "## Todo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon backend/server.ts"
+    "build:frontend": "npm run build --prefix frontend",
+    "build:backend": "npm run build --prefix backend",
+    "build": "npm run build:frontend && npm run build:backend",
+    "start": "npm run start --prefix backend"
   },
   "keywords": [],
   "author": "",
