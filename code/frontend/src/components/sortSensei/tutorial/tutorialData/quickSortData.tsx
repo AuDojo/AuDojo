@@ -12,7 +12,7 @@ function bluecolor():string {
     return "rgb(125, 249, 255)";
 }
 
-export const quick_steps:Step[] = [
+const quick_steps:Step[] = [
     { description: "Partition 0...6",
         data: 
         [ 
@@ -316,3 +316,5 @@ export const quick_steps:Step[] = [
     },
   
 ]
+
+export default quick_steps;

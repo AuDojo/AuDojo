@@ -9,7 +9,7 @@ function redcolor(): string {
 }
 
 // Example data representing steps
-export const merge_steps:Step[] = [
+const merge_steps:Step[] = [
     { description: "Teile das Array in Hälften auf", data: 
         [
             {array:[13,10,12,1,6,2,25],color:whitecolor()}
@@ -181,3 +181,5 @@ export const merge_steps:Step[] = [
         ]
      },
   ];
+
+  export default merge_steps;

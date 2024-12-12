@@ -195,3 +195,5 @@ export const selection_steps:Step[] = [
     }, 
 
 ]
+
+export default selection_steps;

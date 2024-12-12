@@ -3,19 +3,17 @@ import mergesortPseudo from "@assets/pseudocode/mergeSortpseudo.png";
 import mergePseudo from "@assets/pseudocode/mergepseudo.png";
 import tutorialContent from "@styles/sortSensei/tutorial/TutorialContent.module.css";
 import { StepVisualizer, TutorialSidebar } from "./";
-import { merge_steps } from "./tutorialData/mergeSortData";
+import { mergeSortSteps } from "./tutorialData";
 
 const MergesortTutorial = () => {
   return (
     <div className={tutorialContent["content-container"]}>
 
-        <div className={tutorialContent["title"]}> Anleitung zum Mergesort!</div> 
-
-            <TutorialSidebar title="Aufklappen für Idee des Algorithmus">
+            <TutorialSidebar title="Aufklappen für Idee des Algorithmus" subtitle={true}>
                 <MergesortText/>
             </TutorialSidebar>
 
-            <TutorialSidebar title="Aufklappen für Pseudocode">
+            <TutorialSidebar title="Aufklappen für Pseudocode" subtitle={true}>
                 <div className={tutorialContent["image-container"]}>
                   
                     <img src={mergesortPseudo} 
@@ -29,7 +27,7 @@ const MergesortTutorial = () => {
                 </div>
             </TutorialSidebar>
 
-            <StepVisualizer steps = {merge_steps} mergesort={true}/>
+            <StepVisualizer steps = {mergeSortSteps} mergesort={true}/>
 
     </div>
   );

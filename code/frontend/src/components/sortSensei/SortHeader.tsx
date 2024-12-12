@@ -104,7 +104,7 @@ const SortHeader = () => {
 
       <div className={headerStyles["sort-nav"]}>
         <div className={`${headerStyles["sort-nav-list"]}`}>
-          <HilfeButton to="/tutorial" text="Hilfe & Beispiele" />
+          <HilfeButton to="/tutorial" text="Beispiele" />
 
           <SortHeaderNavItem
             activeSort={activeSort === "mergesort"}

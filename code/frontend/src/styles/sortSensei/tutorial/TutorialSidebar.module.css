@@ -27,7 +27,16 @@
     flex-grow: 1;         
     text-align: left;    
     font-size: 38px;
-    font-weight: bold;
+    font-weight: bolder;
+    color:rgb(0,51,102);
+  }
+
+  .sidebar-subtitle {
+    flex-grow: 1;         
+    text-align: left;    
+    font-size: 30px;
+    font-weight:600;
+    color:rgb(55,90,127);
   }
   
   .arrow {

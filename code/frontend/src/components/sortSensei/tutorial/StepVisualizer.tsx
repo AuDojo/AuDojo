@@ -37,7 +37,7 @@ const Visualizer:React.FC<VisualizerProps> = ({ steps,mergesort }) => {
   }
 
     return (
-      <div> <h1 className={"margin:10px"} >Beispiel</h1>
+      <div> <h1>Beispiel</h1>
         <div className={tutorialContent["visualiser-container"]}>
             <h3>{steps[currentStep].description}</h3>
             {/* array container */}

@@ -2,27 +2,25 @@ import quicksortPseudo from "@assets/pseudocode/quicksortpseudo.png";
 import partitionpseudo from "@assets/pseudocode/quicksortpartition.png";
 import tutorialContent from "@styles/sortSensei/tutorial/TutorialContent.module.css";
 import { StepVisualizer, TutorialSidebar } from "./";
-import { quick_steps } from "./tutorialData/quickSortData";
+import { quickSortSteps } from "./tutorialData";
 import quicksortidee from "@assets/quicksortidee.png";
 
 const QuicksortTutorial = () => {
   return (
     <div className={tutorialContent["content-container"]}>
 
-        <div className={tutorialContent["title"]}> Anleitung zum Quicksort!</div> 
-
-            <TutorialSidebar title="Aufklappen für Idee des Algorithmus">
+            <TutorialSidebar title="Aufklappen für Idee des Algorithmus" subtitle={true}>
                 <QuicksortText/>
             </TutorialSidebar>
 
-            <TutorialSidebar title="Aufklappen für Pseudocode">
+            <TutorialSidebar title="Aufklappen für Pseudocode" subtitle={true}>
                 <div className={tutorialContent["image-container"]}>
                     <img src={quicksortPseudo} className = {tutorialContent["image"]} alt="quicksort pseudocode"/>
                     <img src={partitionpseudo} className = {tutorialContent["image"]} alt="partition pseudocode"/>
                 </div>
             </TutorialSidebar>
 
-            <StepVisualizer steps = {quick_steps} mergesort={false}/>
+            <StepVisualizer steps = {quickSortSteps} mergesort={false}/>
 
     </div>
     );
@@ -32,14 +30,14 @@ const QuicksortText = () => {
     return (
         <div className={tutorialContent["text-container"]}>
             Die Idee des Algorithmus basiert auf dem Prinzip <span className={tutorialContent["font-highlight"]}> "divide and conquer"</span>.
-            Der Array wird in zwei aufgeteilt, ein Teilarray, deren Werte kleiner als Pivotelement sind und anderer, deren Werte größer als das Pivotelement sind. Das wird wiederholt, bis der Array nicht mehr zerlegbar ist. Der Auswahl von Pivotelement ist in unserem Fall letztes Element betrachtetes Arrays.
+            Dabei wird das Array in zwei Teilarrays aufgeteilt: eines enthält Werte, die kleiner als das Pivotelement sind, und das andere Werte, die größer sind. Dieser Prozess wird rekursiv wiederholt, bis das Array nicht weiter zerlegbar ist. In unserem Fall wird das letzte Element des betrachteten Arrays als Pivotelement gewählt.
             <br/><br/>
 
             <div className={tutorialContent["image-container"]}>
             <img src={quicksortidee} className = {tutorialContent["image"]} alt="quicksort idee"/>
             </div>
 
-            Die Laufzeit ist abhängig von dem Wahl des Pivotelements. Falls Pivotelement so gewählt wird, dass das Pivotelement nach Parititionalgorithmus in der Mitte vom Array liegt, funktioniert die Zerlegung wie Mergesort, dass der Array in zwei aufgeteilt wird. In dem Fall beträgt die Laufzeit <span className={tutorialContent["font-highlight"]}> O(nlogn)</span>. Das ist auch durchschnittliche Laufzeit. Die Laufzeit kann schlimmstenfall <span className={tutorialContent["font-highlight"]}> O(n^2)</span> betragen, falls das Pivotelement das größte/kleinste Element in dem Array gewählt wird. 
+            Die Laufzeit hängt von der Wahl des Pivotelements ab. Wird das Pivotelement so gewählt, dass es nach dem Partitionalgorithmus in der Mitte des Arrays liegt, ähnelt die Zerlegung der von Mergesort, bei der das Array in zwei gleich große Teile aufgeteilt wird. In diesem Fall beträgt die Laufzeit  <span className={tutorialContent["font-highlight"]}> O(nlogn)</span>, was der durchschnittlichen Laufzeit entspricht. Im schlimmsten Fall kann die Laufzeit jedoch <span className={tutorialContent["font-highlight"]}> O(n<sup>2</sup>)</span> betragen, wenn das Pivotelement immer das größte oder kleinste Element des Arrays ist.
         </div>
     );
 };

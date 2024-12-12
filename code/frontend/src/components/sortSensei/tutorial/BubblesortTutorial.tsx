@@ -1,25 +1,23 @@
 import bubblesortPseudo from "@assets/pseudocode/bubblesortpseudo.png";
 import tutorialContent from "@styles/sortSensei/tutorial/TutorialContent.module.css";
 import { StepVisualizer, TutorialSidebar } from "./";
-import { bubble_steps } from "./tutorialData/bubbleSortData";
+import { bubbleSortSteps } from "./tutorialData";
 
 const BubblesortTutorial = () => {
   return (
     <div className={tutorialContent["content-container"]}>
-
-        <div className={tutorialContent["title"]}> Anleitung zum Bubblesort!</div> 
             
-            <TutorialSidebar title="Aufklappen für Idee des Algorithmus">
+            <TutorialSidebar title="Aufklappen für Idee des Algorithmus" subtitle={true}>
                 <BubblesortText/>
             </TutorialSidebar>
 
-            <TutorialSidebar title="Aufklappen für Pseudocode">
+            <TutorialSidebar title="Aufklappen für Pseudocode" subtitle={true}>
                 <div className={tutorialContent["image-container"]}>
                     <img src={bubblesortPseudo} className = {tutorialContent["image"]} alt="bubblesort pseudocode"/>
                 </div>
             </TutorialSidebar>
 
-            <StepVisualizer steps = {bubble_steps} mergesort={false}/>
+            <StepVisualizer steps = {bubbleSortSteps} mergesort={false}/>
     </div>
     );
 };
@@ -28,9 +26,10 @@ const BubblesortTutorial = () => {
 const BubblesortText = () => {
     return (
         <div className={tutorialContent["text-container"]}>
-             Der Algorithmus ist <span className={tutorialContent["font-highlight"]}> iterativ</span>. Die Idee ist, dass wir immer das größere Element mit dessen Nachbar tauschen und nach rechts verschieben. Nach der Iteration wird der Endindex um eins verringert. Nach der ersten Iteration wird sich ergeben, dass das größte Element ganzes Arrays ganz am rechts stehen. Nächste Iteration wird das nächstgrößte Element links von dem Element verschoben.<br/><br/>
-             
-            O(n) viele Elemente werden in einer Iteration getauscht. Die Anzahl der Iteration ist die Länge des Arrays - 1 also auch O(n). Insgesamt beträgt die Laufzeit<span className={tutorialContent["font-highlight"]}> O(n^2)</span>.
+            Der Algorithmus arbeitet <span className={tutorialContent["font-highlight"]}> iterativ</span>. Die Grundidee besteht darin, stets das größere Element mit seinem Nachbarn zu tauschen und nach rechts zu verschieben. Nach jeder Iteration wird der Endindex um eins reduziert. Nach der ersten Iteration befindet sich das größte Element des gesamten Arrays ganz rechts. In der nächsten Iteration wird das nächstgrößere Element links von diesem Element platziert.
+            <br/><br/>
+
+            Während einer Iteration werden O(n) Elemente verglichen und gegebenenfalls getauscht. Die Anzahl der Iterationen entspricht der Länge des Arrays minus 1, was ebenfalls O(n) ist. Somit ergibt sich für den Algorithmus eine Gesamtlaufzeit von <span className={tutorialContent["font-highlight"]}> O(n<sup>2</sup>)</span>.
         </div>
     );
 };
