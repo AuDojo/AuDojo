@@ -1,9 +1,9 @@
+import { SortType } from "@constants/index";
+import { useButtonContext, useSortContext } from "@hooks/index";
+import buttonStyles from "@styles/sortSensei/Button.module.css";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { SortType } from "../../../constants";
-import { useSortContext } from "../../../hooks/sortContextHooks";
-import buttonStyles from "../../../styles/sortSensei/Button.module.css";
-import { useButtonContext } from "./useButtonContext";
 import Points from "../Points";
+import Tooltip from "../Tooltip";
 
 const SPEED_VALUES = [5000, 4000, 2500, 1500, 1000, 500, 5];
 const DEFAULT_SPEED_INDEX = 3;
@@ -148,7 +148,7 @@ const SolveButton = () => {
   useEffect(() => {
     switch (solveAllStatus) {
       case "solve":
-        setButtonText("Sort All");
+        setButtonText("Check All");
         break;
       case "stop":
         setButtonText("Stop");
@@ -161,12 +161,14 @@ const SolveButton = () => {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "a" || event.key === "A") {
-        handleSolveAll();
-      } else if (event.key === "l" || event.key === "L") {
-        handleSolveLine();
-      } else if (event.key === "t" || event.key === "T") {
-        handleTryAgain();
+      if (!event.ctrlKey && !event.metaKey) {
+        if (event.key === "a" || event.key === "A") {
+          handleSolveAll();
+        } else if (event.key === "l" || event.key === "L") {
+          handleSolveLine();
+        } else if (event.key === "s" || event.key === "S") {
+          handleTryAgain();
+        }
       }
     };
 
@@ -177,9 +179,13 @@ const SolveButton = () => {
     };
   }, [handleSolveLine, handleSolveAll, handleTryAgain]);
 
+  if (!stepsList || stepsList.length === 0) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className={buttonStyles["solve-speed-buttons"]}>
-            <Points />
+      <Points />
       <div style={{ fontSize: "12px", fontStyle: "italic", color: "gray" }}>
         Current speed: x{SPEED_DISPLAY[selectedSpeedIndex]}
       </div>
@@ -194,9 +200,17 @@ const SolveButton = () => {
         />
       </div>
       <div className={buttonStyles["solve-buttons"]}>
-        <button onClick={handleSolveAll}>{buttonText} (A)</button>
-        <button onClick={handleSolveLine}>Sort Line (L)</button>
-        <button className={buttonStyles["try-again-button"]} onClick={handleTryAgain}>Try Again (T)</button>
+        <Tooltip direction="right" content="A">
+          <button onClick={handleSolveAll}>{buttonText}</button>
+        </Tooltip>
+        <Tooltip direction="right" content={`L`}>
+          <button onClick={handleSolveLine}>Check Line</button>
+        </Tooltip>
+        <Tooltip direction="right" content="S">
+          <button className={buttonStyles["try-again-button"]} onClick={handleTryAgain}>
+            Reset ↺
+          </button>
+        </Tooltip>
       </div>
     </div>
   );

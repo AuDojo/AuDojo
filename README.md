@@ -19,26 +19,68 @@
   </tr>
 </table>
 
-## Start Backend and Frontend ⚡
+## Run AuDojo locally ⚡
 
-### Installation
-
-```bash
-cd code/
-npm i # Install backend dependencies
-cd frontend/
-npm i # Install frontend dependencies
-```
-
-### Run 🏃‍♂️
+### Installation 💾
 
 ```bash
 cd code/
-npm run dev # Run express server on http://localhost:5001
-cd frontend/
-npm run dev # Run frontend server on some localhost (look at terminal)
-
+npm i
 ```
+
+### Run in Devmode 🥽
+
+```bash
+cd code/
+npm run dev # catch site-url from programm output
+```
+
+### Build 🏗️  &&  Run 🏃🏻
+```bash
+cd code/
+npm run build
+npm run start
+```
+Das Dojo ist nun unter http://localhost:5001/ erreichbar ☎️
+
+## Run AuDoJo in a Docker Container 🐋📦
+
+### Via Terminal 📟
+  (1) Image erzeugen 🌱
+  ```bash
+  cd code/
+  docker build -t AuDojo_Image .
+  ```
+
+  (2) Container starten 🛫
+  ```bash
+  docker run -p 5001:5001 AuDojo_Image 
+  ```
+
+  (3) Laufende Container anzeigen 👓
+  ```bash
+  docker ps
+  ```
+
+  (4) Auf Container zugreifen 🤚
+  ```bash
+  docker exec -it <container_name> /bin/bash
+  ```
+
+  (5) Container löschen 🗑️
+  ```bash
+  docker rm <container_name>
+  ```
+
+  (6) Images anzeigen 👓
+  ```bash
+  docker image ls
+  ```
+
+(7) Images löschen 🗑️
+   ```bash
+  docker rmi <image_name>
+  ```
 
 ## ✨ Kriterien ✨
 

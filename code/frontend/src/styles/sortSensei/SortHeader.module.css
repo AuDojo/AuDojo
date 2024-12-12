@@ -50,9 +50,15 @@
   height: 100%;
   margin-left: 20px;
 }
-@media (max-width: 1040px) {
+@media (max-width: 1120px) {
   .sort-nav-list {
-    display: none;
+    visibility: hidden;
+  }
+  .sort-nav-list .help-button{
+    visibility: visible;
+    position: fixed;
+    top: 32px;
+    left: 20px;
   }
 }
 
@@ -82,6 +88,12 @@
   text-underline-offset: 5px;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
+}
+@media (max-width: 1220px)
+{
+  .help-button{
+    font-size: 18px;
+  }
 }
 .help-button:hover {
   text-decoration: underline;

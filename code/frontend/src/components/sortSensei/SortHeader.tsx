@@ -1,7 +1,7 @@
+import audojoLogo from "@assets/logo-audojo.png";
+import headerStyles from "@styles/sortSensei/SortHeader.module.css";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import audojoLogo from "../../assets/logo-audojo.png";
-import headerStyles from "../../styles/sortSensei/SortHeader.module.css";
 
 const HeaderNavItem = ({ to, text }: { to: string; text: string }) => {
   return (
@@ -17,7 +17,12 @@ const HeaderNavItems = () => {
   };
   return (
     <div className={headerStyles["header-nav"]}>
-      <div className={`${headerStyles["header-nav-list"]} ${isOpen ? headerStyles.open : ""}`}>
+      <div
+        className={`${headerStyles["header-nav-list"]} ${
+          isOpen ? headerStyles.open : ""
+        }`}
+      >
+
         <div className={headerStyles["dropdown"]}>
           <HeaderNavItem to="/mergesort" text="SortSensei ▼" />
           <div className={headerStyles["dropdown-content"]}>
@@ -31,7 +36,12 @@ const HeaderNavItems = () => {
         <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="Kontakt" />
       </div>
 
-      <div className={`${headerStyles["hamburger"]} ${isOpen ? headerStyles.change : ""}`} onClick={toogleMenu}>
+      <div
+        className={`${headerStyles["hamburger"]} ${
+          isOpen ? headerStyles.change : ""
+        }`}
+        onClick={toogleMenu}
+      >
         <div className={headerStyles["bar1"]}></div>
         <div className={headerStyles["bar2"]}></div>
         <div className={headerStyles["bar3"]}></div>
@@ -82,7 +92,11 @@ const SortHeader = () => {
         <Link to={"/"}>
           <div className={headerStyles["header-logo-container"]}>
             <div className={headerStyles["header-logo-text"]}>AUDOJO</div>
-            <img className={headerStyles["header-logo-image"]} src={audojoLogo} alt="audojo logo" />
+            <img
+              className={headerStyles["header-logo-image"]}
+              src={audojoLogo}
+              alt="audojo logo"
+            />
           </div>
         </Link>
         <HeaderNavItems />

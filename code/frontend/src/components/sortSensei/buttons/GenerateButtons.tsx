@@ -1,13 +1,14 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import {
   MAX_ARRAY_SIZE,
   MAX_INPUT_RANGE,
   MIN_ARRAY_SIZE,
   MIN_INPUT_RANGE,
-} from "../../../constants/sorting";
-import { useSortContext } from "../../../hooks/sortContextHooks";
-import buttonStyles from "../../../styles/sortSensei/Button.module.css";
-import { useButtonContext } from "./useButtonContext";
+} from "@constants/index";
+import { useButtonContext, useSortContext } from "@hooks/index";
+import buttonStyles from "@styles/sortSensei/Button.module.css";
+import { useCallback, useEffect, useRef, useState } from "react";
+import Tooltip from "../Tooltip";
+
 const GenerateButtons = () => {
   const { setStep, fetchStepsList, stepsList, sharedArray } = useSortContext();
   const [customArray, setCustomArray] = useState<string>("");
@@ -137,14 +138,21 @@ const GenerateButtons = () => {
     };
   }, [isSubmitting, toggleSubmit, handleRandomArray]);
 
+  if (!stepsList || stepsList.length === 0) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className={buttonStyles["generate-buttons"]}>
-      <button
-        onClick={toggleSubmit}
-        className={` ${buttonStyles[isSubmitting ? "close-button" : ""]}`}
-      >
-        {isSubmitting ? "Close editing (C)" : "New custom array (C)"}
-      </button>
+      <Tooltip direction="left" content="C">
+        <button
+          onClick={toggleSubmit}
+          className={` ${buttonStyles[isSubmitting ? "close-button" : ""]}`}
+        >
+          {isSubmitting ? "Close editing" : "New custom array"}
+        </button>
+      </Tooltip>
+
       {isSubmitting && (
         <input
           ref={inputRef}
@@ -152,23 +160,27 @@ const GenerateButtons = () => {
           placeholder=" 4 10 7 20 15 30 25 (Enter)"
           value={customArray}
           onChange={handleInputChange}
-          className={`${!isSubmitting ? buttonStyles["no-submitting"] : ""}`}
           onKeyDown={(e) => e.key === "Enter" && submitCustomArray()}
         />
       )}
       {errorMessage && (
         <div style={{ color: "red", fontSize: "12px" }}>{errorMessage}</div>
       )}
-      <button
-        className={`${buttonStyles["submit-button"]} ${
-          !isSubmitting ? buttonStyles["no-submitting"] : ""
-        }`}
-        onClick={submitCustomArray}
-      >
-        Submit
-      </button>
 
-      <button onClick={handleRandomArray}>New random array (R)</button>
+      {isSubmitting && (
+        <Tooltip direction="left" content="Enter">
+          <button
+            className={`${buttonStyles["submit-button"]}`}
+            onClick={submitCustomArray}
+          >
+            Submit
+          </button>
+        </Tooltip>
+      )}
+      {isSubmitting && <div></div>}
+      <Tooltip direction="left" content="R">
+        <button onClick={handleRandomArray}>New random array</button>
+      </Tooltip>
       <div className={buttonStyles["array-length-container"]}>
         <div
           style={{

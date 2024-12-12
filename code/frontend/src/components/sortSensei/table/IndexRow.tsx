@@ -1,17 +1,16 @@
-import classNames from "classnames/bind";
-import { useSortContext } from "../../../hooks/sortContextHooks";
-import styles from "../../../styles/sortSensei/SortingTable.module.css";
+import { useSortContext } from "@hooks/index";
+import cellStyles from "@styles/sortSensei/TableCell.module.css";
+import rowStyles from "@styles/sortSensei/TableRow.module.css";
 
 // Bind styles to classNames
-const cx = classNames.bind(styles);
 
 const IndexRow = () => {
   const { stepsList } = useSortContext();
   return (
-    <tr className={cx("index-row-container")}>
-      <th className={cx("index-row-index")}></th>
+    <tr className={rowStyles["index-row-container"]}>
+      <th className={rowStyles["index-row-index"]}></th>
       {stepsList[0].map((_, index) => (
-        <td key={index} className={cx("column-index")}>
+        <td key={index} className={cellStyles["column-index"]}>
           {index}
         </td>
       ))}

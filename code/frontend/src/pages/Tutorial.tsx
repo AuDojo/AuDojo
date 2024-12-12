@@ -1,13 +1,15 @@
-import Footer from "../components/homepage/Footer";
-import BubblesortTutorial from "../components/sortSensei/tutorial/BubblesortTutorial";
-import MergesortTutorial from "../components/sortSensei/tutorial/MergesortTutorial";
-import QuicksortTutorial from "../components/sortSensei/tutorial/QuicksortTutorial";
-import SelectionsortTutorial from "../components/sortSensei/tutorial/SelectionsortTutorial";
-import RickRollTroll from "../components/sortSensei/tutorial/RickRollTroll";
-import TutorialHeader from "../components/sortSensei/tutorial/TutorialHeader";
-import TutorialSidebar from "../components/sortSensei/tutorial/TutorialSidebar";
-import generalStyles from "../styles/homepage/general.module.css";
-import headerStyles from "../styles/homepage/Header.module.css";
+import { Footer } from "@components/homepage";
+import {
+  BubblesortTutorial,
+  MergesortTutorial,
+  QuicksortTutorial,
+  RickRollTroll,
+  SelectionsortTutorial,
+  TutorialHeader,
+  TutorialSidebar,
+} from "@components/sortSensei/tutorial";
+import generalStyles from "@styles/homepage/general.module.css";
+import headerStyles from "@styles/homepage/Header.module.css";
 
 const Tutorial = () => {
   return (
@@ -16,7 +18,7 @@ const Tutorial = () => {
         <TutorialHeader />
       </header>
       <main>
-      <RickRollTroll />
+        <RickRollTroll />
         <TutorialSidebar title="Mergesort">
           <MergesortTutorial />
         </TutorialSidebar>

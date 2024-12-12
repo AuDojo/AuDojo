@@ -1,0 +1,26 @@
+{
+    "name": "audojo",
+    "version": "1.0.0",
+    "description": "## Todo",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "dev": "NODE_ENV=development nodemon server.ts",
+      "build": "NODE_ENV=production tsc",
+      "start": "node dist/server.js",
+      "clean": "rimraf dist"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "@types/express": "^5.0.0",
+      "body-parser": "^1.20.3",
+      "express": "^4.21.1",
+      "ts-node": "^10.9.2"
+    },
+    "devDependencies": {
+      "nodemon": "^3.1.7",
+      "rimraf": "^3.0.2"
+    }
+  }

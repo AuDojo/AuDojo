@@ -23,6 +23,8 @@ export interface SortContextProps {
   fetchStepsList: (array: number[]) => Promise<void>; // Fetch the solution from the backend
   inputCellsRef: React.MutableRefObject<HTMLInputElement[][]>;
   sortTypeRef: React.MutableRefObject<SortType>;
+  pivotElement: [number, number][];
+  setPivotElement: React.Dispatch<React.SetStateAction<[number, number][]>>;
 }
 
 // Create context with default values
@@ -43,6 +45,7 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
   const [cellValidation, setCellValidation] = useState<(boolean | null)[][]>(
     []
   );
+  const [pivotElement, setPivotElement] = useState<[number, number][]>([]);
   const [sharedArray, setSharedArray] = useState<number[]>(() => {
     const storedArray = localStorage.getItem("sharedArray");
     return storedArray != undefined ? JSON.parse(storedArray) : defaultArray;
@@ -59,7 +62,8 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
   // Helper: Initialize state for fetched data
   const initializeStates = (
     steps: number[][],
-    mergeRange: [number, number][] | null
+    mergeRange: [number, number][] | null,
+    pivotElement: [number, number][] |null
   ) => {
     setStepsList(steps);
     setInputCellValues(
@@ -76,6 +80,10 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
     if (mergeRange) {
       mergeRange[0] = [-1, -1];
       setMergeRanges(mergeRange);
+    }
+    if (pivotElement) {
+      pivotElement[0] = [-1, -1];
+      setPivotElement(pivotElement);
     }
   };
 
@@ -122,7 +130,7 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
         const fetchedStepsList: number[][] = processList;
 
         determineSortType();
-        initializeStates(fetchedStepsList, mergeRange);
+        initializeStates(fetchedStepsList, mergeRange, pivotElement);
       } catch (error) {
         console.log("Error fetching sorting steps: ", error);
       }
@@ -152,6 +160,8 @@ export const SortProvider: React.FC<{ children: React.ReactNode }> = ({
         sortTypeRef,
         sharedArray,
         setSharedArray,
+        pivotElement,
+        setPivotElement,
       }}
     >
       {children}

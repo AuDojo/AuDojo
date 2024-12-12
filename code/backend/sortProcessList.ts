@@ -8,6 +8,7 @@ export class SortProcessList {
   #processList: number[][] = [];
   #mergeRange: [number, number][] = []; // Array of Tuples
   #pivotElement: [number, number | null][] = [];
+  #selectedElement: number[] = [];
 
   /**
    * Creates an object in which the single steps of a sorting algorithm can be stored.
@@ -57,6 +58,13 @@ export class SortProcessList {
     console.log("pivot_index: ", this.#pivotElement[index][1]);
   }
 
+  pushSelectedElement(selected_index: number) {
+    let index = this.#selectedElement.length;
+    this.#selectedElement[index] = selected_index;
+
+    console.log("selected_items: ", this.#selectedElement[index]);
+  }
+
   checkIfSolved(): boolean {
     let lastList = this.#processList[this.#processList.length - 1];
 
@@ -85,11 +93,13 @@ export class SortProcessList {
   createJson(): string {
     let mergeRange = this.#mergeRange.length == 0 ? null : this.#mergeRange;
     let pivotElement = this.#pivotElement.length == 0 ? null : this.#pivotElement;
+    let selctionElemnt = this.#selectedElement.length == 0 ? null : this.#selectedElement;
 
     let obj = {
       processList: this.#processList,
       mergeRange: mergeRange,
       pivotElement: pivotElement,
+      selectionElement: selctionElemnt,
     };
 
     console.log(obj);

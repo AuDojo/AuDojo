@@ -1,7 +1,8 @@
+import tutorialContent from "@styles/sortSensei/tutorial/TutorialContent.module.css";
 import { useState } from "react";
-import tutorialContent from "../../../styles/sortSensei/tutorial/TutorialContent.module.css";
 
 export interface Step {
+
     description: string;
     data: {array: number[],color:string}[];
 }
@@ -81,10 +82,33 @@ const Visualizer:React.FC<VisualizerProps> = ({ steps,mergesort }) => {
             <button onClick={goToLaststep} disabled= {currentStep === steps.length -1 } className={tutorialContent["button-style"]}>
               {">>"}
             </button>
+            
           </div>
-        </div>
-      );
-    };
-    
-    
-    export default Visualizer;
+        ))}
+      </div>
+
+      {/* Step Navigation */}
+      <div>
+        <button
+          onClick={goToPrevStep}
+          disabled={currentStep === 0}
+          className={tutorialContent["button-style"]}
+        >
+          {"<<"}
+        </button>
+        <span style={{ margin: "0 20px" }}>
+          Step {currentStep + 1} / {steps.length}
+        </span>
+        <button
+          onClick={goToNextStep}
+          disabled={currentStep === steps.length - 1}
+          className={tutorialContent["button-style"]}
+        >
+          {">>"}
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Visualizer;

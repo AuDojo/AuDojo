@@ -6,45 +6,30 @@ button {
 .solve-speed-buttons {
   position: absolute;
   height: auto;
-  max-width: 220px;
+  width: auto;
+  min-width: 140px;
+  max-width: 200px;
 }
 .generate-buttons {
   top: 0px;
-  left: -230px;
-}
-@media (max-width: 1100px) {
-  .generate-buttons {
-    right: -230px;
-    left: auto;
-  }
+  left: -220px;
 }
 
 .solve-speed-buttons {
   bottom: 0px;
-  right: -200px;
+  right: -190px;
 }
-@media (max-height: 550px) {
+@media (max-height: 550px){
   .solve-speed-buttons {
     top: 0px;
   }
-}
-@media (max-width: 1100px) and (max-height: 700px) {
-  .solve-speed-buttons {
-    top: 160px;
-  }
-}
+} 
+
 .solve-buttons,
 .generate-buttons {
   display: flex;
   flex-direction: column;
   row-gap: 13px;
-}
-
-.submit-button {
-  margin-bottom: 20px;
-}
-.no-submitting {
-  display: none;
 }
 
 input {
@@ -62,23 +47,18 @@ input::placeholder {
 }
 
 .solve-buttons button,
-.generate-buttons button,
-.pseudo-button {
-  background-color: white;
+.generate-buttons button {
   border-radius: 4px;
   padding: 8px 16px;
-  color: rgb(190, 30, 60);
   font-size: 16px;
   font-weight: 800;
   border: 1px solid rgb(190, 30, 60);
 }
 .solve-buttons button:hover,
-.pseudo-button:hover,
 .generate-buttons button:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 .solve-buttons button:active,
-.pseudo-button:active,
 .generate-buttons button:active {
   opacity: 0.8;
 }
@@ -94,6 +74,11 @@ input::placeholder {
   flex-direction: row;
   align-items: center;
   margin-bottom: 10px;
+}
+
+.generate-buttons button {
+  color: rgb(190, 30, 60);
+  background-color: rgba(239, 213, 213, 0.4);
 }
 
 .solve-buttons button,
