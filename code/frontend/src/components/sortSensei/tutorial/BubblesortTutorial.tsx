@@ -1,7 +1,6 @@
-import bubblesortPseudo from "../../../assets/pseudocode/bubblesortpseudo.png";
-import tutorialContent from "../../../styles/sortSensei/tutorial/TutorialContent.module.css";
-import TutorialSidebar from "../../../components/sortSensei/tutorial/TutorialSidebar";
-import Visualizer from "./StepVisualizer";
+import bubblesortPseudo from "@assets/pseudocode/bubblesortpseudo.png";
+import tutorialContent from "@styles/sortSensei/tutorial/TutorialContent.module.css";
+import { StepVisualizer, TutorialSidebar } from "./";
 import { bubble_steps } from "./tutorialData/bubbleSortData";
 
 const BubblesortTutorial = () => {
@@ -20,7 +19,7 @@ const BubblesortTutorial = () => {
                 </div>
             </TutorialSidebar>
 
-            <Visualizer steps = {bubble_steps} mergesort={false}/>
+            <StepVisualizer steps = {bubble_steps} mergesort={false}/>
     </div>
     );
 };

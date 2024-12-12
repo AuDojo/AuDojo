@@ -82,33 +82,11 @@ const Visualizer:React.FC<VisualizerProps> = ({ steps,mergesort }) => {
             <button onClick={goToLaststep} disabled= {currentStep === steps.length -1 } className={tutorialContent["button-style"]}>
               {">>"}
             </button>
-            
           </div>
-        ))}
-      </div>
 
-      {/* Step Navigation */}
-      <div>
-        <button
-          onClick={goToPrevStep}
-          disabled={currentStep === 0}
-          className={tutorialContent["button-style"]}
-        >
-          {"<<"}
-        </button>
-        <span style={{ margin: "0 20px" }}>
-          Step {currentStep + 1} / {steps.length}
-        </span>
-        <button
-          onClick={goToNextStep}
-          disabled={currentStep === steps.length - 1}
-          className={tutorialContent["button-style"]}
-        >
-          {">>"}
-        </button>
-      </div>
-    </div>
-  );
+        </div>
+        );
 };
+
 
 export default Visualizer;
