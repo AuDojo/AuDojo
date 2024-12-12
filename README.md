@@ -32,7 +32,7 @@ npm i
 
 ```bash
 cd code/
-npm run dev # catch vite address from programm output
+npm run dev # catch site-url from programm output
 ```
 
 ### Build 🏗️  &&  Run 🏃🏻
