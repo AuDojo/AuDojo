@@ -21,7 +21,7 @@
 
 ## Run AuDojo locally ⚡
 
-### Installation
+### Installation 💾
 
 ```bash
 cd code/
@@ -35,7 +35,7 @@ cd code/
 npm run dev # catch vite address from programm output
 ```
 
-### Build 🏗️ && Run 🏃🏻
+### Build 🏗️  &&  Run 🏃🏻
 ```bash
 cd code/
 npm run build
