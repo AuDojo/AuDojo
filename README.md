@@ -41,7 +41,7 @@ cd code/
 npm run build
 npm run start
 ```
-Das Dojo ist nun unter http://localhost:5001/ erreichbar
+Das Dojo ist nun unter http://localhost:5001/ erreichbar ☎️
 
 ## Run AuDoJo in a Docker Container 🐋📦
 
