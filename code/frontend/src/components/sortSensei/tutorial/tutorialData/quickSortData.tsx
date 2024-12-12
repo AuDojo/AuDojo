@@ -1,5 +1,4 @@
 import { Step } from "../StepVisualizer";
-import bubble_steps from "./bubbleSortData";
 
 function whitecolor(): string {
     return "#f4f4f9";
@@ -318,4 +317,4 @@ const quick_steps:Step[] = [
   
 ]
 
-export default bubble_steps;
+export default quick_steps;
