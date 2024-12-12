@@ -19,7 +19,7 @@
   </tr>
 </table>
 
-## Start Backend and Frontend ⚡
+## Start AuDojo ⚡
 
 ### Installation
 
