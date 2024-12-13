@@ -1,14 +1,21 @@
 // MergeSortGuide.tsx
 import { useSortContext } from "@hooks/index";
-import styles from "@styles/sortSensei/MergeSortGuide.module.css";
+import styles from "@styles/sortSensei/SortGuide.module.css";
 
 const MergeSortGuide: React.FC = () => {
   const { step, mergeRanges, stepsList } = useSortContext();
 
   const getCurrentGuideText = () => {
     const currentRange = mergeRanges[step - 1];
-    if (!currentRange || currentRange[0] === -1) {
-      return "Starting Merge Sort! \nSplit array into two halves.";
+    if (!stepsList || stepsList.length === 0) {
+      return "Starting Merge Sort!";
+    }
+    if (!currentRange || currentRange[0] === -1 || step === 1) {
+      return (
+        <>
+          <b>Split</b> the array into <b>two halves recursively</b> until each subarray contains one element.
+        </>
+      );
     }
 
     const [start, end] = currentRange;
@@ -17,15 +24,23 @@ const MergeSortGuide: React.FC = () => {
     if (length === 1) {
       return "An array of length 1 is already sorted.";
     } else if (length === 2) {
-      return "Compare and merge two elements in sorted order.";
+      return (
+        <>
+          Compare and sort two elements. <br /> <b>The sorted elements are marked</b>
+        </>
+      );
     } else if (length === stepsList.length) {
-      return "Sorting is complete.";
+      return "Sorting is complete!";
     } else {
       if (step === 1) {
         return "Split the array into two halves.";
       }
-      // Add more specific messages based on the current state
-      return `Merging ... `;
+      return (
+        <>
+          Merge the sorted subarrays by comparing elements.
+          <br /> <b>The merged array is marked.</b>
+        </>
+      );
     }
   };
 

@@ -1,6 +1,6 @@
 // MergeSortGuide.tsx
 import { useSortContext } from "@hooks/index";
-import styles from "@styles/sortSensei/MergeSortGuide.module.css";
+import styles from "@styles/sortSensei/SortGuide.module.css";
 
 const BubbleSortGuide: React.FC = () => {
   const { step, mergeRanges } = useSortContext();

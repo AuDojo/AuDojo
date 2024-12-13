@@ -8,13 +8,15 @@ interface BarData {
   index: number;
   previousIndex: number;
   isSorted: boolean;
-  isActive: boolean;
+  isMerging: boolean;
   type: SortType;
   isPivot: boolean;
+  isSelected: boolean;
+  isLink: boolean;
 }
 
 const D3SortVisualizer = () => {
-  const { stepsList, step, mergeRanges, sharedArray, sortTypeRef, pivotElement } = useSortContext();
+  const { stepsList, step, mergeRanges, sharedArray, sortTypeRef, pivotElement, selectionElement } = useSortContext();
   const svgRef = useRef<SVGSVGElement | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const initialPositionsRef = useRef<Map<string, number>>(new Map());
@@ -30,12 +32,13 @@ const D3SortVisualizer = () => {
     // Check if containerRef is assigned to a DOM element
     if (containerRef.current) {
       // Get the current width of the container element
-      const containerWidth = containerRef.current.clientWidth;
+      let containerWidth = containerRef.current.clientWidth;
+      containerWidth = Math.min(containerWidth, 1000);
 
       // Set the dimensions state with new width and height values
       setDimensions({
         width: Math.min(sharedArray.length * 50 + 50, containerWidth - 20), // Ensure width does not exceed 790px
-        height: 240, 
+        height: 240,
       });
     }
   };
@@ -104,17 +107,32 @@ const D3SortVisualizer = () => {
 
       const currentMergeRange = mergeRanges[step - 1];
       const pivotIndex = sortTypeRef.current === SortType.QuickSort ? pivotElement[step - 1][0] : null;
+      const selectedIndex =
+        sortTypeRef.current === SortType.SelectionSort && step > 1 ? selectionElement[step - 2] : null;
+      const linkElement = sortTypeRef.current === SortType.SelectionSort ? currentArray[step - 1] : 0;
 
-      const isSorted = currentMergeRange && index >= currentMergeRange[0] && index <= currentMergeRange[1];
+      // Merge sort : mark sorted (green) when the subarrays merge
+      // Selectionsort : mark sorted (green) when the smallest element moved to left side
+      let isSorted = false;
+      if (sortTypeRef.current === SortType.MergeSort) {
+        isSorted = currentMergeRange && index >= currentMergeRange[0] && index <= currentMergeRange[1];
+      } else if (sortTypeRef.current === SortType.SelectionSort) {
+        isSorted = index < currentArray.indexOf(linkElement) || step === stepsList.length;
+      } else {
+        // bubble sort and quicksort
+        isSorted = step === stepsList.length;
+      }
 
       return {
         value,
         index,
         previousIndex: previousIndex === -1 ? index : previousIndex,
         isSorted,
-        isActive: previousIndex !== index && previousIndex !== -1,
+        isMerging: currentMergeRange && index >= currentMergeRange[0] && index <= currentMergeRange[1],
         type: sortTypeRef.current,
         isPivot: pivotElement && pivotIndex === previousIndex,
+        isSelected: sortTypeRef.current === SortType.SelectionSort && selectedIndex === previousIndex,
+        isLink: sortTypeRef.current === SortType.SelectionSort && previousIndex === step - 2,
       };
     });
 
@@ -160,20 +178,21 @@ const D3SortVisualizer = () => {
       .text((d) => d.value);
 
     // Animation sequence
+    // mark pivot before moving
     bars
-      .filter((d) => d.isPivot)
+      .filter((d) => d.isPivot || d.isSelected || d.isLink)
       .select("rect")
       .attr("fill", "yellow"); // Highlight pivot element oder max element
 
     bars
-      .filter((d) => d.isActive) // Select only active bars
+      .filter((d) => d.isMerging || d.isPivot || d.isSelected || d.isLink)
       .transition()
       .duration(600) // Highlight duration
       .select("rect")
-      .attr("fill", (d) => (d.isPivot ? "yellow" : "#ff6b6b")) // Highlight color
+      .attr("fill", (d) => (d.isPivot || d.isSelected || d.isLink ? "yellow" : "#ff6b6b")) // Highlight color
       .transition()
-      .duration(700) // Movement duration
-      .attr("fill", (d) => (d.isSorted ? "#51cf66" : "#74c0fc")); // Final color (green or blue)
+      .duration(700)
+      .attr("fill", (d) => (d.isSorted || d.isPivot || d.isSelected || d.isLink ? "#51cf66" : "#74c0fc")); // Final color (green or blue)
 
     // Move all bars to their new positions
     bars
@@ -182,12 +201,12 @@ const D3SortVisualizer = () => {
       .attr("transform", (d) => `translate(${xScale(String(d.index))}, 0)`);
 
     bars
-      .filter((d) => !d.isActive)
+      .filter((d) => !d.isMerging)
       .select("rect")
       .transition()
       .duration(700)
-      .attr("fill", (d) => (d.isSorted ? "#51cf66" : "#74c0fc"));
-  }, [stepsList, step, mergeRanges, dimensions, pivotElement, sortTypeRef]); // Add dimensions to dependencies
+      .attr("fill", (d) => (d.isSorted || d.isPivot || d.isSelected ? "#51cf66" : "#74c0fc"));
+  }, [stepsList, step, mergeRanges, dimensions, pivotElement, sortTypeRef, selectionElement]); // Add dimensions to dependencies
 
   return (
     <div

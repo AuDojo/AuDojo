@@ -1,29 +1,44 @@
 // MergeSortGuide.tsx
 import { useSortContext } from "@hooks/index";
-import styles from "@styles/sortSensei/MergeSortGuide.module.css";
+import styles from "@styles/sortSensei/SortGuide.module.css";
 
 const QuickSortGuide: React.FC = () => {
-  const { step, mergeRanges } = useSortContext();
+  const { step, stepsList, pivotElement } = useSortContext();
 
   const getCurrentGuideText = () => {
-    const currentRange = mergeRanges[step - 1];
-    if (!currentRange || currentRange[0] === -1) {
-      return "Starting Quick sort! ";
+    if (!stepsList || stepsList.length === 0) {
+      return "Starting Quick Sort!";
     }
+    if (step === 1) {
+      return (
+        <>
+          Choose <b>last element "{stepsList[0][stepsList[0].length - 1]}"</b> as pivot element.
+        </>
+      );
+    } else if (step >= 2) {
+      const prevArray = stepsList[step - 2];
+      const pivot = prevArray[pivotElement[step - 1][0]];
+      const currentArray = stepsList[step - 1];
+      const nextPivot = step !== stepsList.length ? currentArray[pivotElement[step][0]] : 0;
 
-    const [start, end] = currentRange;
-    const length = end - start + 1;
-
-    if (length === 1) {
-      return "An array of length 1 is already sorted.";
-    } else if (length === 2) {
-      return "...";
-    } else {
-      if (step === 1) {
-        return "...";
+      if (!nextPivot) {
+        return (
+          <>
+            <b> The used pivot element "{pivot}" is marked</b>
+            <br />
+            Sorting is complete!
+          </>
+        );
       }
-      // Add more specific messages based on the current state
-      return ` ... `;
+
+      return (
+        <>
+          After partitioning, all elements smaller than {pivot} are on its left, and larger on the right.
+          <b> Choose "{nextPivot}"</b> as <b>next</b> pivot element.
+          <br />
+          <b> The used pivot element "{pivot}" is marked.</b>
+        </>
+      );
     }
   };
 
