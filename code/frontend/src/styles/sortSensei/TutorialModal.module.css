@@ -1,0 +1,67 @@
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding-bottom: 4rem;
+}
+
+.dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5); /* Dimmed background */
+}
+
+.close-button {
+  margin: 0;
+  border: 0;
+  padding: 0;
+
+  width: 2rem;
+  height: 2rem;
+
+  position: absolute;
+  top: -0.6rem;
+  right: 0;
+
+  background-color: white;
+  opacity: 0.5;
+  border: none;
+}
+.close-button:hover {
+  opacity: 1;
+}
+.close-button:before,
+.close-button:after {
+  position: absolute;
+  left: 1rem;
+  content: " ";
+  height: 1.5rem;
+  width: 2px;
+  background-color: black;
+}
+.close-button:before {
+  transform: rotate(45deg);
+}
+.close-button:after {
+  transform: rotate(-45deg);
+}
+
+.slide-index,
+.prev-button,
+.next-button {
+  position: absolute;
+  bottom: 1rem;
+}
+.prev-button {
+  right: 50%;
+  transform: translateX(-20px);
+}
+.next-button {
+  left: 50%;
+  transform: translateX(20px);
+}
+
+.slide-index {
+  left: 50%;
+  transform: translateX(-50%);
+}
