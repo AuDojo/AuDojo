@@ -86,6 +86,27 @@ const SolveButton = () => {
     validateLine(currentStepRef.current);
   }, [validateLine, timeoutRef, currentStepRef, stepsList, speedIndexRef]);
 
+  const handleGoNext = useCallback(() => {
+    if (step >= stepsList.length) {
+      return;
+    }
+    validateLine(step);
+    setStep(step + 1);
+  }, [step, validateLine, stepsList]);
+
+  const handleGoBack = useCallback(() => {
+    if (step <= 1) {
+      return;
+    }
+    setCellValidation((prev) => {
+      const updated = [...prev];
+      updated[step - 1] = [];
+      return updated;
+    });
+    setStep(step - 1);
+    currentStepRef.current = step - 1;
+  }, [step, setStep]);
+
   // Finish solving
   useEffect(() => {
     if (step >= stepsList.length) {
@@ -132,6 +153,11 @@ const SolveButton = () => {
     setCellValidation(stepsList.map((step) => new Array(step.length).fill(null)));
   }, [stepsList, setStep, setInputCellValues, setCellValidation, stopSolving, setSolveAllStatus]);
 
+  const unsolveLine = useCallback(() => {
+    let step = stepsList[currentStepRef.current];
+    setCellValidation((prev) => new Array(step.length).fill(null));
+  }, [stepsList, setInputCellValues, setCellValidation]);
+
   /**
    * Changes the speed of the animation by clearing the current timeout and
    * starting a new one with the new speed.
@@ -168,6 +194,10 @@ const SolveButton = () => {
           handleSolveLine();
         } else if (event.key === "s" || event.key === "S") {
           handleTryAgain();
+        } else if (event.key === "ArrowLeft") {
+          handleGoBack();
+        } else if (event.key === "ArrowRight") {
+          handleGoNext();
         }
       }
     };
@@ -199,6 +229,19 @@ const SolveButton = () => {
           onChange={(event) => handleSpeedChange(parseInt(event.target.value))}
         />
       </div>
+      <div className={buttonStyles["arrow-button-container"]}>
+        <Tooltip direction="top" content="←">
+          <button className={buttonStyles["arrow-button"]} onClick={handleGoBack}>
+            &larr;
+          </button>
+        </Tooltip>
+        <Tooltip direction="top" content="→">
+          <button className={buttonStyles["arrow-button"]} onClick={handleGoNext}>
+            &rarr;
+          </button>
+        </Tooltip>
+      </div>
+
       <div className={buttonStyles["solve-buttons"]}>
         <Tooltip direction="right" content="A">
           <button onClick={handleSolveAll}>{buttonText}</button>

@@ -92,3 +92,27 @@ input::placeholder {
   color: rgb(190, 30, 60);
   background-color: white;
 }
+.arrow-button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 13px;
+}
+.arrow-button {
+  flex:1;
+  border-radius: 4px;
+  padding: 8px 35px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 800;
+  border: 1px solid rgb(190, 30, 60);
+  background-color: rgb(190, 30, 60);
+  color: white;
+}
+
+.arrow-button:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.arrow-button:active {
+  opacity: 0.8;
+}
