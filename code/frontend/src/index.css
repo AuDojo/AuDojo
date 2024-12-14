@@ -1,6 +1,13 @@
+:root {
+  /* CSS variables */
+  --top-layer: 1000;
+  --overlap-layer: calc(var(--top-layer) / 2);
+  font-family: "Open Sans", Helvetica, Verdana, Arial, sans-serif;
+}
+
 body {
   margin: 0;
-  font-family: "Open Sans", Helvetica, Verdana, Arial, sans-serif;
+  background-color: white;
 }
 
 a {
@@ -15,6 +22,15 @@ p {
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+}
+
+.highlight {
+  z-index: calc(var(--top-layer) - 1);
+  border-radius: 5px;
+  box-shadow: 0 0 0 10px white;
+  position: relative;
+
+  transition: all 0.3s ease-out;
 }
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;

@@ -1,7 +1,8 @@
 import { useSortContext } from "@hooks/index";
+import { useTutorialModal } from "@src/hooks/useTutorialModalContext";
 import styles from "@styles/sortSensei/SortingTable.module.css";
-import { IndexRow, StartRow, TableRow } from "./";
 import { JSX } from "react";
+import { IndexRow, StartRow, TableRow } from "./";
 /**
  * A table component that displays a list of steps for the given sorting
  * algorithm. Each step is represented by a TableRow component.
@@ -11,6 +12,7 @@ import { JSX } from "react";
  */
 const SortingTable = (): JSX.Element => {
   const { stepsList } = useSortContext();
+  const { refs } = useTutorialModal();
 
   // If stepsList is empty, just return null
   if (!stepsList || stepsList.length === 0) {
@@ -22,11 +24,11 @@ const SortingTable = (): JSX.Element => {
   const maxHeight = `${(stepsList.length + 1) * rowHeight}rem`;
 
   return (
-    <>
+    <div ref={refs.sortingTable} style={{ backgroundColor: "white" }}>
       <StartRow />
       <div className={styles["table-container"]} style={{ maxHeight }}>
         <table>
-          {/* <caption>Iterations</caption> */}
+          {/* <caption>Iterations</captaon> */}
           <tbody>
             <IndexRow />
             {stepsList.slice(1).map((_, index) => (
@@ -35,7 +37,7 @@ const SortingTable = (): JSX.Element => {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 };
 
