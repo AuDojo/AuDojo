@@ -155,11 +155,6 @@ const SolveButton = () => {
     setCellValidation(stepsList.map((step) => new Array(step.length).fill(null)));
   }, [stepsList, setStep, setInputCellValues, setCellValidation, stopSolving, setSolveAllStatus]);
 
-  const unsolveLine = useCallback(() => {
-    const step = stepsList[currentStepRef.current];
-    setCellValidation((prev) => new Array(step.length).fill(null));
-  }, [stepsList, setInputCellValues, setCellValidation]);
-
   /**
    * Changes the speed of the animation by clearing the current timeout and
    * starting a new one with the new speed.
