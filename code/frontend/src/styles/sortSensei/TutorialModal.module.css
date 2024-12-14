@@ -1,67 +1,125 @@
+/* ----------- Tutorial modal ----------- */
 .dialog {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  translate: -50% -50%;
 
-  padding-bottom: 4rem;
+  width: 440px;
+  border-radius: 0.5rem;
+
+  z-index: var(--top-layer);
+
+  color: rgb(50, 50, 50);
+}
+@media (max-width: 550px) {
+  .dialog {
+    width: 80%;
+  }
 }
 
-.dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.5); /* Dimmed background */
+/* Transparent overlay */
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+
+  position: fixed;
+  top: 0;
+  z-index: var(--overlap-layer);
+
+  display: none;
+  filter: blur(5px);
 }
 
+.overlay.open {
+  display: inline-block;
+}
+
+/* ----------- Content styles ----------- */
+h2 {
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
+/* ----------- Tutorial steps ----------- */
+
+/* ----------- Progress bar ----------- */
+.progress-bar {
+  --optimum: gold;
+  width: 100%;
+  margin-top: 2rem;
+}
+/* The green (optimum) bar in Firefox */
+/* .progress-bar::-moz-meter-bar {
+  background: var(--optimum);
+}
+/* The green (optimum) bar in Chrome etc. */
+/* .progress-bar::-webkit-meter-optimum-value {
+  background: var(--optimum);
+}  */
+/* ----------- Buttons and slide index ----------- */
 .close-button {
   margin: 0;
   border: 0;
   padding: 0;
 
+  position: absolute;
+  top: 2px;
+  right: 2px;
+
   width: 2rem;
   height: 2rem;
 
-  position: absolute;
-  top: -0.6rem;
-  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  background-color: white;
+  background-color: transparent;
+  font-size: 1.5rem;
   opacity: 0.5;
   border: none;
+
+  transition: all 0.2s ease-in-out;
 }
 .close-button:hover {
   opacity: 1;
 }
-.close-button:before,
-.close-button:after {
-  position: absolute;
-  left: 1rem;
-  content: " ";
-  height: 1.5rem;
-  width: 2px;
-  background-color: black;
+
+.nav-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
 }
-.close-button:before {
-  transform: rotate(45deg);
-}
-.close-button:after {
-  transform: rotate(-45deg);
+.nav-buttons-container > :only-child {
+  flex: 1;
 }
 
-.slide-index,
 .prev-button,
-.next-button {
-  position: absolute;
-  bottom: 1rem;
+.next-button,
+.finish-button {
+  border: none;
+  padding: 0.7rem 2rem;
+  border-radius: 1.5rem;
+
+  font-size: 0.9rem;
+  font-weight: bold;
 }
 .prev-button {
-  right: 50%;
-  transform: translateX(-20px);
+  background: none;
+  color: rgb();
+  font-weight: 600;
 }
 .next-button {
-  left: 50%;
-  transform: translateX(20px);
+  background-color: rgb(245, 139, 0);
+  color: white;
+  outline: none;
 }
-
-.slide-index {
-  left: 50%;
-  transform: translateX(-50%);
+.finish-button {
+  background-color: #00ab61de;
+  color: white;
 }
