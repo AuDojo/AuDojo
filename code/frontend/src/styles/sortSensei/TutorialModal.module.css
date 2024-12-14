@@ -47,6 +47,9 @@ p {
 }
 
 /* ----------- Tutorial steps ----------- */
+.step-3 {
+  top: 190px;
+}
 
 /* ----------- Progress bar ----------- */
 .progress-bar {
@@ -109,9 +112,17 @@ p {
 
   font-size: 0.9rem;
   font-weight: bold;
+
+  transition: all 0.2s ease-in-out;
+}
+.start-button:hover,
+.back-button:hover,
+.next-button:hover,
+.finish-button:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 .start-button {
-  background-color: rgb(190, 30, 60);
+  background-image: linear-gradient(to right, #be1e3c, #ff6b6b); /* Define gradient */
   color: white;
   outline: none;
 }
