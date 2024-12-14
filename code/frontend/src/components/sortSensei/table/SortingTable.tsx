@@ -24,9 +24,9 @@ const SortingTable = (): JSX.Element => {
   const maxHeight = `${(stepsList.length + 1) * rowHeight}rem`;
 
   return (
-    <>
+    <div ref={refs.sortingTable} style={{ backgroundColor: "white" }}>
       <StartRow />
-      <div className={styles["table-container"]} style={{ maxHeight }} ref={refs.sortingTable}>
+      <div className={styles["table-container"]} style={{ maxHeight }}>
         <table>
           {/* <caption>Iterations</captaon> */}
           <tbody>
@@ -37,7 +37,7 @@ const SortingTable = (): JSX.Element => {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 };
 

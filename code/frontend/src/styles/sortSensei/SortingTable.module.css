@@ -12,12 +12,6 @@ td {
   max-width: 1300px;
 }
 
-@media (max-width: 1050px) {
-  .inner-table-buttons-container {
-    transform: scale(0.8);
-  }
-}
-
 .outer-table-buttons-container {
   min-height: 250px;
   display: flex;
