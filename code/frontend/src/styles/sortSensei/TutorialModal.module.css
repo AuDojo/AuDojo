@@ -99,7 +99,8 @@ p {
   flex: 1;
 }
 
-.prev-button,
+.start-button,
+.back-button,
 .next-button,
 .finish-button {
   border: none;
@@ -109,9 +110,13 @@ p {
   font-size: 0.9rem;
   font-weight: bold;
 }
-.prev-button {
+.start-button {
+  background-color: rgb(190, 30, 60);
+  color: white;
+  outline: none;
+}
+.back-button {
   background: none;
-  color: rgb();
   font-weight: 600;
 }
 .next-button {

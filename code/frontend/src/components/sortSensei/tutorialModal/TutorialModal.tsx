@@ -23,18 +23,14 @@ const TutorialModal = () => {
   // Handle keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      switch (event.key) {
-        case "ArrowLeft":
-          handlePrevious();
-          break;
-        case "ArrowRight":
-          handleNext();
-          break;
-        case "Escape":
-          closeModal();
-          break;
-        default:
-          break;
+      const { key, shiftKey } = event;
+      if (key === "ArrowLeft" || (key === "Enter" && shiftKey)) {
+        handlePrevious();
+      } else if (key === "ArrowRight" || key === "Enter") {
+        handleNext();
+      }
+      if (key === "Escape") {
+        closeModal();
       }
     };
 
@@ -88,21 +84,21 @@ const TutorialModal = () => {
         <ProgressBar />
         <div className={cx("nav-buttons-container")}>
           {/* Buttons */}
-          {currentStep !== 1 && (
-            <button className={cx("prev-button")} onClick={handlePrevious}>
+          {currentStep === 1 && (
+            <button className={cx("start-button")} onClick={handleNext}>
+              Start
+            </button>
+          )}
+          {currentStep > 1 && (
+            <button className={cx("back-button")} onClick={handlePrevious}>
               Back
             </button>
           )}
           {/* <span className={cx("slide-index")}>
             {currentStep}/{tutorialSteps.length}
           </span> */}
-          {currentStep < tutorialSteps.length && (
-            <button
-              className={cx("next-button")}
-              onClick={handleNext}
-              disabled={currentStep === tutorialSteps.length}
-              autoFocus={true}
-            >
+          {currentStep > 1 && currentStep < tutorialSteps.length && (
+            <button className={cx("next-button")} onClick={handleNext}>
               Next
             </button>
           )}
