@@ -10,7 +10,11 @@ const CloseButton = () => {
     }
   };
 
-  return <button onClick={handleOnClick} className={styles["close-button"]}></button>;
+  return (
+    <button onClick={handleOnClick} className={styles["close-button"]}>
+      &#128473;
+    </button>
+  );
 };
 
 export default CloseButton;

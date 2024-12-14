@@ -18,18 +18,20 @@ button {
 .solve-speed-buttons {
   bottom: 0px;
   right: -190px;
+  background-color: white;
 }
-@media (max-height: 550px){
+@media (max-height: 550px) {
   .solve-speed-buttons {
     top: 0px;
   }
-} 
+}
 
 .solve-buttons,
 .generate-buttons {
   display: flex;
   flex-direction: column;
   row-gap: 13px;
+  background-color: white;
 }
 
 input {

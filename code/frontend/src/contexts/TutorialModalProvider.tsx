@@ -7,7 +7,7 @@ export const TutorialModalProvider: React.FC<{ children: React.ReactNode }> = ({
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   // Refs for focusable elements
-  const refs: Record<RefKeys, React.RefObject<HTMLElement | null>> = {
+  const refs: Record<RefKeys, React.RefObject<HTMLDivElement | null>> = {
     sortingTable: useRef<HTMLDivElement>(null),
     generateButtons: useRef<HTMLDivElement>(null),
     d3Visualizer: useRef<HTMLDivElement>(null),
