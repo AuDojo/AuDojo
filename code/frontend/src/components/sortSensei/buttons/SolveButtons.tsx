@@ -20,7 +20,7 @@ const SolveButton = () => {
   const currentStepRef = useRef<number>(step);
   const [selectedSpeedIndex, setSelectedSpeedIndex] = useState<number>(DEFAULT_SPEED_INDEX);
   const speedIndexRef = useRef<number>(DEFAULT_SPEED_INDEX);
-  const [buttonText, setButtonText] = useState("Sort All");
+  const [buttonText, setButtonText] = useState("Check All ✔");
 
   /**
    * Validates the user's input values against the correct step values for a given sorting step.
@@ -171,13 +171,13 @@ const SolveButton = () => {
   useEffect(() => {
     switch (solveAllStatus) {
       case "solve":
-        setButtonText("Check All");
+        setButtonText("Check All ✔");
         break;
       case "stop":
-        setButtonText("Stop");
+        setButtonText("Stop ✔");
         break;
       case "continue":
-        setButtonText("Continue");
+        setButtonText("Continue ✔");
         break;
     }
   }, [solveAllStatus]);
