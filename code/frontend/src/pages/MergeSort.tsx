@@ -1,4 +1,4 @@
-import { D3SortVisualizer, SortHeader, SortTips } from "@components/sortSensei";
+import { D3SortVisualizer, SortHeader } from "@components/sortSensei";
 import { GenerateButtons, SolveButtons } from "@components/sortSensei/buttons";
 import { MergeSortGuide } from "@components/sortSensei/guide";
 import { SortingTable } from "@components/sortSensei/table";
@@ -21,7 +21,6 @@ const MergeSort = () => {
           <div className={tableStyles["outer-table-buttons-container"]}>
             <div className={tableStyles["inner-table-buttons-container"]}>
               {/* Left Tips */}
-              <SortTips />
               {/* Table */}
               <SortingTable />
               {/* right buttons */}
