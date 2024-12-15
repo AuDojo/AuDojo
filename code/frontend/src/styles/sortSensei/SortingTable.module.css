@@ -17,6 +17,7 @@ td {
   display: flex;
   justify-content: center;
   overflow-x: auto; /* Enable horizontal scrolling */
+  padding-bottom: 1rem;
 }
 
 .table-container {
