@@ -110,7 +110,7 @@ const TutorialModal = () => {
         </div>
         {/* Close button */}
         <button onClick={closeModal} className={styles["close-button"]}>
-          🗙
+          X
         </button>
       </dialog>
       {/* Overlay for transparent background */}
