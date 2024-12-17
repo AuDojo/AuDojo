@@ -60,7 +60,7 @@ const TableCell: React.FC<TableCellProps> = ({ rowIndex, columnIndex }): JSX.Ele
 
   return (
     <Tooltip
-      delay={0}
+      delay={200}
       direction="top"
       content={cellData.inputCellValue ? `Wrong: ${cellData.inputCellValue}` : "Missing input"}
       hidden={cellData.validation !== false}

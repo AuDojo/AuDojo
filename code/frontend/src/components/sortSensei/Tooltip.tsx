@@ -10,13 +10,7 @@ interface TooltipProps {
   children: React.ReactElement | string; // Child element that triggers the tooltip
 }
 
-const Tooltip: React.FC<TooltipProps> = ({
-  delay = 200,
-  direction = "top",
-  hidden = false,
-  content,
-  children,
-}) => {
+const Tooltip: React.FC<TooltipProps> = ({ delay = 500, direction = "top", hidden = false, content, children }) => {
   let timeout: NodeJS.Timeout;
   const [active, setActive] = useState<boolean>(false);
 
@@ -42,11 +36,7 @@ const Tooltip: React.FC<TooltipProps> = ({
       onMouseLeave={hideTip}
     >
       {children}
-      {active && (
-        <div className={classNames(styles["Tooltip-Tip"], styles[direction])}>
-          {content}
-        </div>
-      )}
+      {active && <div className={classNames(styles["Tooltip-Tip"], styles[direction])}>{content}</div>}
     </div>
   );
 };

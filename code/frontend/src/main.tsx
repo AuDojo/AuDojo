@@ -1,7 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
-import { SortProvider } from "./contexts/SortContext";
+import { SortProvider } from "./contexts";
 import "./index.css";
 import { BubbleSort, Datenschutz, Home, Impressum, MergeSort, QuickSort, SelectionSort, Tutorial } from "./pages";
 

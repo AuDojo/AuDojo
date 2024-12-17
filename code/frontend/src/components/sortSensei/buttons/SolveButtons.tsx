@@ -1,10 +1,11 @@
 import { SortType } from "@constants/index";
 import { useButtonContext, useSortContext } from "@hooks/index";
+import { useTutorialModal } from "@src/hooks/useTutorialModalContext";
 import buttonStyles from "@styles/sortSensei/Button.module.css";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Points from "../Points";
 import Tooltip from "../Tooltip";
-import e from "express";
+// import e from "express";
 
 const SPEED_VALUES = [5000, 4000, 2500, 1500, 1000, 500, 5];
 const DEFAULT_SPEED_INDEX = 3;
@@ -13,13 +14,14 @@ const SPEED_DISPLAY = ["0.25", "0.5", "0.75", "1.0", "1.25", "1.5", "15"];
 const SolveButton = () => {
   const { step, stepsList, inputCellValues, mergeRanges, sortTypeRef, setStep, setInputCellValues, setCellValidation } =
     useSortContext();
+  const { refs } = useTutorialModal();
 
   const { timeoutRef, solveAllStatus, setSolveAllStatus } = useButtonContext();
   const isSolvingRef = useRef<boolean>(false);
   const currentStepRef = useRef<number>(step);
   const [selectedSpeedIndex, setSelectedSpeedIndex] = useState<number>(DEFAULT_SPEED_INDEX);
   const speedIndexRef = useRef<number>(DEFAULT_SPEED_INDEX);
-  const [buttonText, setButtonText] = useState("Sort All");
+  const [buttonText, setButtonText] = useState("Check All ✔");
 
   /**
    * Validates the user's input values against the correct step values for a given sorting step.
@@ -157,12 +159,13 @@ const SolveButton = () => {
   /**
    * Called when the "back" button is pressed
    */
-  const unsolveLine = useCallback(() => {
-    let step = stepsList[currentStepRef.current];
+  //? UNUSED
+  // const unsolveLine = useCallback(() => {
+    //let step = stepsList[currentStepRef.current];
 
     // Reset the input cell values to the initial values (remove color etc.)
-    setCellValidation((prev) => new Array(step.length).fill(null));
-  }, [stepsList, setInputCellValues, setCellValidation]);
+    // setCellValidation((prev) => new Array(step.length).fill(null));
+  //}, [stepsList, setInputCellValues, setCellValidation]);
 
   /**
    * Changes the speed of the animation by clearing the current timeout and
@@ -180,13 +183,13 @@ const SolveButton = () => {
   useEffect(() => {
     switch (solveAllStatus) {
       case "solve":
-        setButtonText("Check All");
+        setButtonText("Check All ✔");
         break;
       case "stop":
-        setButtonText("Stop");
+        setButtonText("Stop ✔");
         break;
       case "continue":
-        setButtonText("Continue");
+        setButtonText("Continue ✔");
         break;
     }
   }, [solveAllStatus]);
@@ -218,7 +221,7 @@ const SolveButton = () => {
   }
 
   return (
-    <div className={buttonStyles["solve-speed-buttons"]}>
+    <div className={buttonStyles["solve-speed-buttons"]} ref={refs.solveButtons}>
       <Points />
       <div style={{ fontSize: "12px", fontStyle: "italic", color: "gray" }}>
         Current speed: x{SPEED_DISPLAY[selectedSpeedIndex]}
@@ -234,14 +237,15 @@ const SolveButton = () => {
         />
       </div>
       <div className={buttonStyles["arrow-button-container"]}>
+        
         <Tooltip direction="top" content="J">
-          <button className={`${buttonStyles["arrow-button"]} ${buttonStyles["previous-btn"]}`} onClick={handleGoBack}>
-            previous
+          <button className={`${buttonStyles["arrow-button"]}`} onClick={handleGoBack}>
+            ← Back 
           </button>
         </Tooltip>
         <Tooltip direction="top" content="K">
-          <button className={`${buttonStyles["arrow-button"]} ${buttonStyles["next-btn"]}`} onClick={handleGoNext}>
-            next
+          <button className={`${buttonStyles["arrow-button"]}`} onClick={handleGoNext}>
+            Next →
           </button>
         </Tooltip>
       </div>

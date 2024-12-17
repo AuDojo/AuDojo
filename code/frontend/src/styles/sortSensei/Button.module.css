@@ -19,17 +19,19 @@ button {
   bottom: 0px;
   right: -220px;
 }
-@media (max-height: 550px){
+
+@media (max-height: 550px) {
   .solve-speed-buttons {
     top: 0px;
   }
-} 
+}
 
 .solve-buttons,
 .generate-buttons {
   display: flex;
   flex-direction: column;
   row-gap: 13px;
+  background-color: white;
 }
 
 input {
@@ -99,7 +101,7 @@ input::placeholder {
 }
 
 .arrow-button {
-  flex:1;
+  flex: 1;
   border-radius: 4px;
   margin-bottom: 15px;
   font-size: 16px;
@@ -107,16 +109,7 @@ input::placeholder {
   border: 1px solid rgb(190, 30, 60);
   background-color: rgb(190, 30, 60);
   color: white;
-}
-
-.previous-btn {
-  padding: 8px 9px;
-
-}
-
-.next-btn {
-  padding: 8px 25px;
-
+  padding: 8px 11px;
 }
 
 .arrow-button:hover {

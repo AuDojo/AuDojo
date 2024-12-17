@@ -1,10 +1,6 @@
-import {
-  MAX_ARRAY_SIZE,
-  MAX_INPUT_RANGE,
-  MIN_ARRAY_SIZE,
-  MIN_INPUT_RANGE,
-} from "@constants/index";
+import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE } from "@constants/index";
 import { useButtonContext, useSortContext } from "@hooks/index";
+import { useTutorialModal } from "@src/hooks/useTutorialModalContext";
 import buttonStyles from "@styles/sortSensei/Button.module.css";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Tooltip from "../Tooltip";
@@ -18,6 +14,7 @@ const GenerateButtons = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { timeoutRef, setSolveAllStatus } = useButtonContext();
+  const { refs } = useTutorialModal();
 
   // Set input value in submit field to the current array
   useEffect(() => {
@@ -54,14 +51,10 @@ const GenerateButtons = () => {
       .split(/[,\s]+/) // split by (many) commas, #;- or whitespace
       .map((num) => parseInt(num, 10)) // convert the string to an Integer number
       .filter((num) => !isNaN(num));
-    const outOfRangeNumbers = array.filter(
-      (num) => num < MIN_INPUT_RANGE || num > MAX_INPUT_RANGE
-    );
+    const outOfRangeNumbers = array.filter((num) => num < MIN_INPUT_RANGE || num > MAX_INPUT_RANGE);
 
     if (outOfRangeNumbers.length > 0) {
-      setErrorMessage(
-        `Please enter numbers only in the range ${MIN_INPUT_RANGE} to ${MAX_INPUT_RANGE}.`
-      );
+      setErrorMessage(`Please enter numbers only in the range ${MIN_INPUT_RANGE} to ${MAX_INPUT_RANGE}.`);
       setTimeout(() => setErrorMessage(""), 3000);
       return;
     }
@@ -101,21 +94,13 @@ const GenerateButtons = () => {
     setIsSubmitting(false);
   }, [arrayLength, fetchStepsList, setSolveAllStatus, setStep, timeoutRef]);
 
-  const handleArrayLengthChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleArrayLengthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value, 10);
     setArrayLength(value);
   };
 
-  const handleArrayLengthKeyDown = (
-    event: React.KeyboardEvent<HTMLInputElement>
-  ) => {
-    if (
-      event.key === "Enter" &&
-      arrayLength >= MIN_ARRAY_SIZE &&
-      arrayLength <= MAX_ARRAY_SIZE
-    ) {
+  const handleArrayLengthKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter" && arrayLength >= MIN_ARRAY_SIZE && arrayLength <= MAX_ARRAY_SIZE) {
       handleRandomArray();
     }
   };
@@ -143,13 +128,10 @@ const GenerateButtons = () => {
   }
 
   return (
-    <div className={buttonStyles["generate-buttons"]}>
+    <div className={buttonStyles["generate-buttons"]} ref={refs.generateButtons}>
       <Tooltip direction="left" content="C">
-        <button
-          onClick={toggleSubmit}
-          className={` ${buttonStyles[isSubmitting ? "close-button" : ""]}`}
-        >
-          {isSubmitting ? "Close editing" : "New custom array"}
+        <button onClick={toggleSubmit} className={`${buttonStyles[isSubmitting ? "close-button" : ""]}`}>
+          {isSubmitting ? "Close ✗" : "🛠️ Custom Array"}
         </button>
       </Tooltip>
 
@@ -163,23 +145,18 @@ const GenerateButtons = () => {
           onKeyDown={(e) => e.key === "Enter" && submitCustomArray()}
         />
       )}
-      {errorMessage && (
-        <div style={{ color: "red", fontSize: "12px" }}>{errorMessage}</div>
-      )}
+      {errorMessage && <div style={{ color: "red", fontSize: "12px" }}>{errorMessage}</div>}
 
       {isSubmitting && (
         <Tooltip direction="left" content="Enter">
-          <button
-            className={`${buttonStyles["submit-button"]}`}
-            onClick={submitCustomArray}
-          >
-            Submit
+          <button className={`${buttonStyles["submit-button"]}`} onClick={submitCustomArray}>
+            Submit ↩
           </button>
         </Tooltip>
       )}
       {isSubmitting && <div></div>}
       <Tooltip direction="left" content="R">
-        <button onClick={handleRandomArray}>New random array</button>
+        <button onClick={handleRandomArray}>🎲 Random Array</button>
       </Tooltip>
       <div className={buttonStyles["array-length-container"]}>
         <div
