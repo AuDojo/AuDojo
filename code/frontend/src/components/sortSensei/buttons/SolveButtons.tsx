@@ -5,6 +5,7 @@ import buttonStyles from "@styles/sortSensei/Button.module.css";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Points from "../Points";
 import Tooltip from "../Tooltip";
+// import e from "express";
 
 const SPEED_VALUES = [5000, 4000, 2500, 1500, 1000, 500, 5];
 const DEFAULT_SPEED_INDEX = 3;
@@ -156,6 +157,17 @@ const SolveButton = () => {
   }, [stepsList, setStep, setInputCellValues, setCellValidation, stopSolving, setSolveAllStatus]);
 
   /**
+   * Called when the "back" button is pressed
+   */
+  //? UNUSED
+  // const unsolveLine = useCallback(() => {
+    //let step = stepsList[currentStepRef.current];
+
+    // Reset the input cell values to the initial values (remove color etc.)
+    // setCellValidation((prev) => new Array(step.length).fill(null));
+  //}, [stepsList, setInputCellValues, setCellValidation]);
+
+  /**
    * Changes the speed of the animation by clearing the current timeout and
    * starting a new one with the new speed.
    * @param newSpeedIndex The new speed index
@@ -187,13 +199,11 @@ const SolveButton = () => {
       if (!event.ctrlKey && !event.metaKey) {
         if (event.key === "a" || event.key === "A") {
           handleSolveAll();
-        } else if (event.key === "l" || event.key === "L") {
-          handleSolveLine();
         } else if (event.key === "s" || event.key === "S") {
           handleTryAgain();
-        } else if (event.key === "p" || event.key === "P") {
+        } else if (event.key === "k" || event.key === "K") {
           handleGoBack();
-        } else if (event.key === "n" || event.key === "N") {
+        } else if (event.key === "j" || event.key === "J") {
           handleGoNext();
         }
       }
@@ -227,14 +237,15 @@ const SolveButton = () => {
         />
       </div>
       <div className={buttonStyles["arrow-button-container"]}>
-        <Tooltip direction="top" content="P">
-          <button className={buttonStyles["arrow-button"]} onClick={handleGoBack}>
-            &larr;
+        
+        <Tooltip direction="top" content="J">
+          <button className={`${buttonStyles["arrow-button"]}`} onClick={handleGoBack}>
+            ← Back 
           </button>
         </Tooltip>
-        <Tooltip direction="top" content="N">
-          <button className={buttonStyles["arrow-button"]} onClick={handleGoNext}>
-            &rarr;
+        <Tooltip direction="top" content="K">
+          <button className={`${buttonStyles["arrow-button"]}`} onClick={handleGoNext}>
+            Next →
           </button>
         </Tooltip>
       </div>

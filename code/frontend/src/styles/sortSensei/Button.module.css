@@ -17,9 +17,9 @@ button {
 
 .solve-speed-buttons {
   bottom: 0px;
-  right: -190px;
-  background-color: white;
+  right: -220px;
 }
+
 @media (max-height: 550px) {
   .solve-speed-buttons {
     top: 0px;
@@ -97,18 +97,19 @@ input::placeholder {
 .arrow-button-container {
   display: flex;
   flex-direction: row;
-  gap: 13px;
+  gap: 10px;
 }
+
 .arrow-button {
   flex: 1;
   border-radius: 4px;
-  padding: 8px 35px;
   margin-bottom: 15px;
   font-size: 16px;
   font-weight: 800;
   border: 1px solid rgb(190, 30, 60);
   background-color: rgb(190, 30, 60);
   color: white;
+  padding: 8px 11px;
 }
 
 .arrow-button:hover {
