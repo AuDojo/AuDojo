@@ -14,7 +14,7 @@ interface TableCellProps {
 // Bind styles to classNames
 const cx = classNames.bind(styles);
 
-const TableCell: React.FC<TableCellProps> = ({ rowIndex, columnIndex }): JSX.Element => {
+const TableCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
   const { stepsList, step, mergeRanges, sortTypeRef, inputCellValues, inputCellsRef, cellValidation, pivotElement } =
     useSortContext();
 
@@ -58,9 +58,15 @@ const TableCell: React.FC<TableCellProps> = ({ rowIndex, columnIndex }): JSX.Ele
     };
   }, [rowIndex, columnIndex, stepsList, inputCellValues, cellValidation, mergeRanges, sortTypeRef, pivotElement]);
 
+  const isSelected = () => {
+    if (sortTypeRef.current !== SortType.SelectionSort) {
+      return;
+    }
+  };
+
   return (
     <Tooltip
-      delay={200}
+      delay={300}
       direction="top"
       content={cellData.inputCellValue ? `Wrong: ${cellData.inputCellValue}` : "Missing input"}
       hidden={cellData.validation !== false}

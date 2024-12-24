@@ -10,7 +10,7 @@ interface TooltipProps {
   children: React.ReactElement | string; // Child element that triggers the tooltip
 }
 
-const Tooltip: React.FC<TooltipProps> = ({ delay = 500, direction = "top", hidden = false, content, children }) => {
+const Tooltip = ({ delay = 500, direction = "top", hidden = false, content, children }: TooltipProps) => {
   let timeout: NodeJS.Timeout;
   const [active, setActive] = useState<boolean>(false);
 

@@ -2,7 +2,7 @@
 import { useSortContext } from "@hooks/index";
 import styles from "@styles/sortSensei/SortGuide.module.css";
 
-const BubbleSortGuide: React.FC = () => {
+const BubbleSortGuide = () => {
   const { step, mergeRanges } = useSortContext();
 
   const getCurrentGuideText = () => {

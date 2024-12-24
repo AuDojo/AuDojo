@@ -2,7 +2,7 @@
 import { useSortContext } from "@hooks/index";
 import styles from "@styles/sortSensei/SortGuide.module.css";
 
-const QuickSortGuide: React.FC = () => {
+const QuickSortGuide = () => {
   const { step, stepsList, pivotElement } = useSortContext();
 
   const getCurrentGuideText = () => {

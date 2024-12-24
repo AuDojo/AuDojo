@@ -1,8 +1,8 @@
 import { HIGHLIGHT_CLASS } from "@constants/modal";
-import React, { useRef, useState } from "react";
+import React, { ReactNode, useRef, useState } from "react";
 import { RefKeys, TutorialModalContext } from "./TutorialModalContext";
 
-export const TutorialModalProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const TutorialModalProvider = ({ children }: { children: ReactNode }) => {
   const [currentStep, setCurrentStep] = useState<number>(1);
   const dialogRef = useRef<HTMLDialogElement>(null);
 

@@ -65,10 +65,10 @@ export const useTableUtils = () => {
       } else {
         focusCell(rowIndex, columnIndex + 1);
       }
-    } else if ((key === "Enter" && shiftKey) || key === "ArrowDown") {
+    } else if ((key === "Enter" && !shiftKey) || key === "ArrowDown") {
       // Move down
       focusCell(rowIndex + 1, columnIndex);
-    } else if ((key === "Enter" && !shiftKey) || key === "ArrowUp") {
+    } else if ((key === "Enter" && shiftKey) || key === "ArrowUp") {
       // Move up
       focusCell(rowIndex - 1, columnIndex);
     } else if (key === "Escape") {

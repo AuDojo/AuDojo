@@ -2,7 +2,7 @@
 import { useSortContext } from "@hooks/index";
 import styles from "@styles/sortSensei/SortGuide.module.css";
 
-const MergeSortGuide: React.FC = () => {
+const MergeSortGuide = () => {
   const { step, mergeRanges, stepsList } = useSortContext();
 
   const getCurrentGuideText = () => {
