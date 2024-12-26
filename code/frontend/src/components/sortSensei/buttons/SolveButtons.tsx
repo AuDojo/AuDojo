@@ -161,10 +161,10 @@ const SolveButton = () => {
    */
   //? UNUSED
   // const unsolveLine = useCallback(() => {
-    //let step = stepsList[currentStepRef.current];
+  //let step = stepsList[currentStepRef.current];
 
-    // Reset the input cell values to the initial values (remove color etc.)
-    // setCellValidation((prev) => new Array(step.length).fill(null));
+  // Reset the input cell values to the initial values (remove color etc.)
+  // setCellValidation((prev) => new Array(step.length).fill(null));
   //}, [stepsList, setInputCellValues, setCellValidation]);
 
   /**
@@ -202,9 +202,9 @@ const SolveButton = () => {
         } else if (event.key === "s" || event.key === "S") {
           handleTryAgain();
         } else if (event.key === "k" || event.key === "K") {
-          handleGoBack();
-        } else if (event.key === "j" || event.key === "J") {
           handleGoNext();
+        } else if (event.key === "j" || event.key === "J") {
+          handleGoBack();
         }
       }
     };
@@ -237,10 +237,9 @@ const SolveButton = () => {
         />
       </div>
       <div className={buttonStyles["arrow-button-container"]}>
-        
         <Tooltip direction="top" content="J">
           <button className={`${buttonStyles["arrow-button"]}`} onClick={handleGoBack}>
-            ← Back 
+            ← Back
           </button>
         </Tooltip>
         <Tooltip direction="top" content="K">
@@ -251,10 +250,10 @@ const SolveButton = () => {
       </div>
 
       <div className={buttonStyles["solve-buttons"]}>
-        <Tooltip direction="right" content="A">
+        <Tooltip direction="top" content="A">
           <button onClick={handleSolveAll}>{buttonText}</button>
         </Tooltip>
-        <Tooltip direction="right" content="S">
+        <Tooltip direction="top" content="S">
           <button className={buttonStyles["try-again-button"]} onClick={handleTryAgain}>
             Reset ↺
           </button>

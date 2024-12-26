@@ -129,7 +129,7 @@ const GenerateButtons = () => {
 
   return (
     <div className={buttonStyles["generate-buttons"]} ref={refs.generateButtons}>
-      <Tooltip direction="left" content="C">
+      <Tooltip direction="bottom" content="C">
         <button onClick={toggleSubmit} className={`${buttonStyles[isSubmitting ? "close-button" : ""]}`}>
           {isSubmitting ? "Close ✗" : "🛠️ Custom Array"}
         </button>
@@ -148,14 +148,14 @@ const GenerateButtons = () => {
       {errorMessage && <div style={{ color: "red", fontSize: "12px" }}>{errorMessage}</div>}
 
       {isSubmitting && (
-        <Tooltip direction="left" content="Enter">
+        <Tooltip direction="bottom" content="Enter">
           <button className={`${buttonStyles["submit-button"]}`} onClick={submitCustomArray}>
             Submit ↩
           </button>
         </Tooltip>
       )}
       {isSubmitting && <div></div>}
-      <Tooltip direction="left" content="R">
+      <Tooltip direction="top" content="R">
         <button onClick={handleRandomArray}>🎲 Random Array</button>
       </Tooltip>
       <div className={buttonStyles["array-length-container"]}>
