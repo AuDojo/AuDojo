@@ -7,16 +7,17 @@ export const useTableUtils = () => {
 
   /**
    * Focuses the input element at the given row and column index. This is used
-   * to focus the cell after pressing the Enter key to go to the next cell.
+   * to focus the cell after pressing given hotkeys to go to the next cell.
    * @param rowIndex The index of the row
    * @param columnIndex The index of the column
    */
   const focusCell = (rowIndex: number, columnIndex: number): void => {
     const inputElement = inputCellsRef.current[rowIndex]?.[columnIndex];
     if (inputElement) {
-      // Set the cursor position to the end of the input value
+      // Focus the input element in the table
       inputElement.focus();
 
+      // Select the entire input
       const length = inputElement.value.length;
       setTimeout(() => inputElement.setSelectionRange(0, length), 0);
     }
