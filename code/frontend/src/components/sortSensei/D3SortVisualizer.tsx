@@ -1,7 +1,7 @@
+import { SortType } from "@constants/index";
 import { useSortContext } from "@hooks/index";
 import * as d3 from "d3";
 import { useEffect, useRef, useState } from "react";
-import { SortType } from "@constants/index";
 
 interface BarData {
   value: number;
@@ -42,17 +42,6 @@ const D3SortVisualizer = () => {
       });
     }
   };
-  // Handle window resize
-  useEffect(() => {
-    // Initial size
-    handleResize();
-
-    // Add resize listener
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   useEffect(() => {
     handleResize();
