@@ -149,3 +149,37 @@ p {
     text-align: right; 
     margin-bottom: 15px;
 }
+
+.successMessage {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    background-color: #d4edda; 
+    color: #155724; 
+    border: 1px solid #c3e6cb; 
+    border-radius: 5px; 
+    padding: 5px 20px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    width: 100%; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+    z-index: 1000; 
+    animation: fadeOut 3s forwards;
+}
+
+.errorMessage {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    background-color: #f8d7da; 
+    color: #721c24; 
+    border: 1px solid #f5c6cb; 
+    border-radius: 5px; 
+    padding: 5px 20px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    width: 100%; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000; 
+    animation: fadeOut 3s forwards; 
+}

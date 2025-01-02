@@ -13,6 +13,9 @@ function Kontakt() {
     const [lastName, setLastName] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [successMessage, setSuccessMessage] = React.useState("");
+    const [errorMessage, setErrorMessage] = React.useState("");
+    const [showDiv, setShowDiv] = React.useState(false);
+
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target;
@@ -40,9 +43,19 @@ function Kontakt() {
         return emailRegex.test(email)
     }
 
+    const showSuccessMessage = () => {
+        setShowDiv(true);
+
+        setTimeout( () => {
+            setShowDiv(false)
+            successMessage ? setSuccessMessage("") : setErrorMessage("");
+        }, 4000)
+    }
+
     const submitContactForm = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
-        setSuccessMessage("Deine Nachricht wurde erfolgreich versendet, vielen Dank!")
+        setErrorMessage("Es gab einen Fehler!")
+        showSuccessMessage();
 
         if(!validateEmail(email)) {
             setEmail("Bitte geben Sie eine gültige E-Mail-Adresse ein");
@@ -90,10 +103,9 @@ function Kontakt() {
 
             <div className={kontaktStyles.contentContainer}>
                 <div className={kontaktStyles.leftContainer}>
-                    <div className={
-                        successMessage ? kontaktStyles.successMessage : kontaktStyles.errorMessage}>
-                            {successMessage}
-                    </div>
+                    {showDiv && (<div className={
+                        successMessage ? kontaktStyles.successMessage : kontaktStyles.errorMessage}> {successMessage ? successMessage : errorMessage}
+                    </div> )}
                     <div className={kontaktStyles.formHeading}>
                         <p>Sende uns eine Nachricht</p>
                     </div>
