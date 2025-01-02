@@ -8,8 +8,13 @@ const router = express.Router();
 router.post("/", (req: Request, res: Response) => {
   console.log("---------- Mail wird gesendet ----------");
 
+  let firstName = req.body.firstName;
+  let lastName = req.body.lastName;
+  let mail = req.body.email;
   let subject = req.body.subject;
-  let text = req.body.text;
+  let message = req.body.message;
+
+  let text = firstName + " " + lastName + "\n" + mail + "\n\n" + message;
 
   if (process.env.MAIL_USERNAME == undefined) {
     res.send("Error!! Mail-Account not found");
