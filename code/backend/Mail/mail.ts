@@ -10,6 +10,15 @@ const logger = winston.createLogger({
   transports: [new winston.transports.Console()],
 });
 
+/**
+ * Creates the Message of the body of the mail with the passed Data
+ * @param req Posesses the separated information of the user from the frontend
+ * - firstName,
+ * - lastName,
+ * - mail,
+ * - message
+ * @returns Text with all the information
+ */
 export function createMessage(req: Request): string {
   let firstName = req.body.firstName;
   let lastName = req.body.lastName;
@@ -27,6 +36,13 @@ export function createMessage(req: Request): string {
   return text;
 }
 
+/**
+ * Sends the Mail to our in the .env file specified email
+ * @param from The Sender Mail
+ * @param to The Receiver Mail
+ * @param subject The subject of the Mail
+ * @param text The body of the Mail
+ */
 export const sendMail = async (from: string, to: string, subject: string, text: string) => {
   const transporter = nodemailer.createTransport({
     service: process.env.MAIL_HOST,
