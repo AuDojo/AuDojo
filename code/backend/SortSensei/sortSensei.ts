@@ -151,7 +151,6 @@ export class SortSensei {
           this.#processList?.pushBubbleElement(j);
         }
       }
-      
     }
   }
 
