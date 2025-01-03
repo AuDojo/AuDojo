@@ -13,14 +13,14 @@ router.post("/", (req: Request, res: Response) => {
 
   if (process.env.MAIL_USERNAME == undefined) {
     res.send("Error!! Mail-Account not found");
-    console.log("Error!");
+    res.status(500).send("Error");
     return;
   } else {
     sendMail(process.env.MAIL_USERNAME, process.env.MAIL_USERNAME, subject, text);
     console.log("Geklappt!!");
   }
 
-  res.send("hello world");
+  res.status(200).send("Geklappt");
 });
 
 module.exports = router;
