@@ -9,7 +9,7 @@ const bodyParser = require("body-parser");
 // const sortingRouting = require(env === "development" ? "./sortingRouting.ts" : "./sortingRouting.js");
 const sortingRouting = require("./sortingRouting");
 
-const mailRouting = require("./mailRouting");
+const mailRouting = require("./Mail/mailRouting");
 
 app.use(bodyParser.json());
 app.use("/api/sorting", sortingRouting);
