@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import nodemailer from "nodemailer";
 import winston from "winston";
 import dotenv from "dotenv";
@@ -9,7 +10,24 @@ const logger = winston.createLogger({
   transports: [new winston.transports.Console()],
 });
 
-export const sendMail = async (from: string, to: string, subject: string, html: string) => {
+export function createMessage(req: Request): string {
+  let firstName = req.body.firstName;
+  let lastName = req.body.lastName;
+  let mail = req.body.email;
+  let message = req.body.message;
+
+  let text: string = "";
+
+  text += "Liebes AuDojo Team,\n\n";
+  text += message + "\n\n";
+  text += "Liebe Grüße, \n";
+  text += firstName + " " + lastName + "\n";
+  text += mail;
+
+  return text;
+}
+
+export const sendMail = async (from: string, to: string, subject: string, text: string) => {
   const transporter = nodemailer.createTransport({
     service: process.env.MAIL_HOST,
     auth: {
@@ -22,7 +40,7 @@ export const sendMail = async (from: string, to: string, subject: string, html: 
     from: from,
     to: to,
     subject: subject,
-    html: html,
+    text: text,
   };
 
   logger.info(`Sending mail to - ${to}`);
