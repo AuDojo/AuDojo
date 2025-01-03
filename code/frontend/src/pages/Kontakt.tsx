@@ -68,7 +68,11 @@ function Kontakt() {
 
     setTimeout(() => {
       setShowDiv(false);
-      successMessage ? setSuccessMessage("") : setErrorMessage("");
+      if (successMessage) {
+        setSuccessMessage("");
+      } else {
+        setErrorMessage("");
+      }
     }, 4000);
   };
 
