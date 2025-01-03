@@ -26,10 +26,8 @@ function Kontakt() {
 
   const [showDiv, setShowDiv] = React.useState(false);
 
-
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
-    console.log(name)
     switch (name) {
       case "message":
         setMessage(value);
@@ -45,6 +43,7 @@ function Kontakt() {
         break;
       case "subject":
         setSubject(value);
+        console.log(subject)
         break;
       default:
         break;
@@ -80,6 +79,7 @@ function Kontakt() {
       lastName: true,
       message: true,
       email: true,
+      subject: true,
       error: false
     };
 
@@ -115,9 +115,10 @@ function Kontakt() {
       firstName,
       lastName,
       email,
-      message
+      message,
+      subject
     };
-
+    console.log(subject)
     try {
       const response = await fetch("/api/mail", {
         method: "POST",
@@ -134,6 +135,7 @@ function Kontakt() {
         setMessage("");
         setFirstName("");
         setLastName("");
+        setSubject("");
       } else {
         setErrorMessage("Es gab einen Fehler beim senden der Nachricht")
         showSuccessMessage();
@@ -177,7 +179,8 @@ function Kontakt() {
               maxLength={100}
               required
             />
-            <input name="lastName"
+            <input
+              name="lastName"
               placeholder="Nachname*"
               className={errors.lastName ? kontaktStyles.nameInput : kontaktStyles.nameInputError}
               onChange={handleInputChange}
@@ -186,7 +189,8 @@ function Kontakt() {
               required
             />
           </div>
-          <input name="email"
+          <input
+            name="email"
             placeholder="Email"
             className={errors.email ? kontaktStyles.emailInput : kontaktStyles.emailInputError}
             onChange={handleInputChange}
@@ -194,11 +198,13 @@ function Kontakt() {
             value={email}
           />
 
-          <input name="subject "
+          <input
+            name="subject"
             placeholder="Betreff"
             className={kontaktStyles.emailInput}
             maxLength={50}
             onChange={handleInputChange}
+            value={subject}
           />
 
           <textarea maxLength={maxChars}
