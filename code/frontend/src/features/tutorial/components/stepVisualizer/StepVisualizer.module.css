@@ -1,0 +1,42 @@
+.visualiser-container {
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border: 1px solid black;
+  margin: 2px;
+  border-radius: 5px;
+}
+
+.array-container {
+  margin: 20px;
+  font-size: 18px;
+}
+
+.array-merge {
+  display: inline-block;
+  margin: 40px;
+}
+
+.array {
+  display: inline-block;
+  margin: 7px;
+}
+
+.box {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 3px solid rgb(140, 14, 14);
+  margin: 2px;
+  border-radius: 5px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.button-style {
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #eaeaea;
+  cursor: pointer;
+  font-size: 16px;
+}

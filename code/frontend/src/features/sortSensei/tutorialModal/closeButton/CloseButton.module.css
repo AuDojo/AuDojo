@@ -1,0 +1,26 @@
+.close-button {
+  margin: 0;
+  border: 0;
+  padding: 0;
+
+  position: absolute;
+  top: 2px;
+  right: 2px;
+
+  width: 2rem;
+  height: 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: transparent;
+  font-size: 1.5rem;
+  opacity: 0.5;
+  border: none;
+
+  transition: all 0.2s ease-in-out;
+}
+.close-button:hover {
+  opacity: 1;
+}

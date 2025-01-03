@@ -1,9 +1,16 @@
 import audoLogo from "@assets/logo-audojo.png";
-import { Footer, Header, HomeButtonList } from "@components/homepage";
+import { Footer } from "@components/footer";
+import { Header } from "@components/header";
+import { HomeButtons } from "@features/homepage/homeButtons";
 import generalStyles from "@styles/homepage/general.module.css";
 import mainStyles from "@styles/homepage/Main.module.css";
+import { useEffect } from "react";
 
 const Home = () => {
+  useEffect(() => {
+    document.title = "AuDojo";
+  }, []);
+
   return (
     <div className={generalStyles.container}>
       <header>
@@ -17,7 +24,7 @@ const Home = () => {
         <p className={mainStyles["main-welcome-message"]}>
           Willkommen bei AuDojo! Dein Dojo für Algorithmen und Datenstrukturen
         </p>
-        <HomeButtonList />
+        <HomeButtons />
       </main>
       <footer>
         <Footer />

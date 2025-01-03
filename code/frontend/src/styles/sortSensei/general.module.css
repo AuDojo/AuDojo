@@ -1,3 +1,17 @@
 .container {
   margin-top: 60px;
 }
+
+.inner-table-buttons-container {
+  margin-top: 0.6rem;
+  position: relative;
+  max-width: 1300px;
+}
+
+.outer-table-buttons-container {
+  min-height: 250px;
+  display: flex;
+  justify-content: center;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  padding-bottom: 1rem;
+}
