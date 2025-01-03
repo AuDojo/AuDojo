@@ -14,7 +14,7 @@ router.post("/", (req: Request, res: Response) => {
   let subject = req.body.subject;
   let message = req.body.message;
 
-  let text = firstName + " " + lastName + "\n" + mail + "\n\n" + message;
+  let text = firstName + " " + lastName + "\n" + mail + "\n\n" + message; //TODO: \n wird nicht richtig behandelt
 
   if (process.env.MAIL_USERNAME == undefined) {
     res.send("Error!! Mail-Account not found");
