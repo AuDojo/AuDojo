@@ -31,7 +31,7 @@ const HeaderNavItems = () => {
           </div>
         </div>
         <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="TreeTutor" />
-        <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="Kontakt" />
+        <HeaderNavItem to= "/kontakt" text="Kontakt" />
       </div>
 
       <div
