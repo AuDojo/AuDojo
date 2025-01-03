@@ -208,7 +208,8 @@ function Kontakt() {
             value={subject}
           />
 
-          <textarea maxLength={maxChars}
+          <textarea
+            maxLength={maxChars}
             name="message"
             placeholder="Deine Nachricht*"
             rows={10}
@@ -239,7 +240,8 @@ function Kontakt() {
             <p> Feedback ist uns wichtig! Scheut euch nicht davor Verbesserungsvorschläge oder Anmerkungen zu äußern.</p>
             <div className={kontaktStyles.addressContainer}>
               <div>
-                <img src={informatikzentrumJPG} className={kontaktStyles.addressImage} />
+                <img src={informatikzentrumJPG}
+                  className={kontaktStyles.addressImage} />
               </div>
               <div>
                 <p className={kontaktStyles.addressInfo}> Institut für Betriebssysteme und Rechnerverbund </p>
