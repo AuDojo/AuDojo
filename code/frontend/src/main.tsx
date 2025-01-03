@@ -5,6 +5,7 @@ import { SortProvider } from "./contexts";
 import "./index.css";
 import { BubbleSort, Datenschutz, Home, Impressum, MergeSort, QuickSort, SelectionSort, Tutorial, Kontakt } from "./pages";
 
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -14,8 +15,8 @@ const router = createBrowserRouter(
       <Route path="bubblesort" element={<BubbleSort />} />
       <Route path="selectionsort" element={<SelectionSort />} />
       <Route path="tutorial" element={<Tutorial />} />
-      <Route path="datenschutz" element={<Datenschutz />} />
-      <Route path="impressum" element={<Impressum />} />
+      {/* <Route path="datenschutz" element={<Datenschutz />} /> */}
+      {/* <Route path="impressum" element={<Impressum />} /> */}
       <Route path="Kontakt" element={<Kontakt />} />
       {/* <Route path="sortsensei/mergesort" element={<Home />} /> */}
       {/* Nested route */}

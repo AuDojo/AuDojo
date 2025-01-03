@@ -4,12 +4,12 @@ const Footer = () => {
   return (
     <div className={footerStyles["footer-content"]}>
       <div>
-        <Link className="Link" to="/impressum">
+        <Link className="Link" to="https://www.tu-braunschweig.de/impressum">
           Impressum
         </Link>
       </div>
       <div>
-        <Link className="Link" to="/datenschutz">
+        <Link className="Link" to="https://www.tu-braunschweig.de/datenschutzerklaerung">
           Datenschutz
         </Link>
       </div>

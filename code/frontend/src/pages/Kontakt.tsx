@@ -3,7 +3,8 @@ import { Footer, Header } from "@components/homepage";
 import generalStyles from "@styles/homepage/general.module.css";
 import kontaktStyles from "@styles/Kontakt/Kontakt.module.css";
 import mainStyles from "@styles/homepage/Main.module.css";
-import informatikzentrumJPG from "@assets/informatikzentrum.jpg"
+import informatikzentrumJPG from "@assets/informatikzentrum.jpg";
+import setTitle from "../../title";
 
 function Kontakt() {
   const maxChars = 1000;
@@ -147,7 +148,7 @@ function Kontakt() {
       showSuccessMessage();
     }
   }
-
+  setTitle("Kontakt");
   return (
     <div className={kontaktStyles.generalContainer} >
       <Header />
@@ -230,7 +231,6 @@ function Kontakt() {
             mit * markierte Felder sind Pflichtfelder
           </p>
         </div>
-
         <div className={kontaktStyles.rightContainer}>
           <div className={kontaktStyles.formHeading}>
             <p>Kontaktinformationen</p>
