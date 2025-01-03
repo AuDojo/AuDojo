@@ -66,5 +66,5 @@ export const sendMail = async (from: string, to: string, subject: string, text: 
     } else {
       logger.info("Email sent: " + info.response);
     }
-  });
+  }); //TODO: Return some kind of error Message to handle in the response to frontend, if mail could not be send
 };

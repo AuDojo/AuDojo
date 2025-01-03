@@ -20,7 +20,7 @@ router.post("/", (req: Request, res: Response) => {
     console.log("Geklappt!!");
   }
 
-  res.status(200).send("Geklappt");
+  res.status(200).send("Geklappt"); //TODO: Error handeling if mail could not be send
 });
 
 module.exports = router;
