@@ -12,13 +12,22 @@ function Kontakt() {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [email, setEmail] = React.useState("");
+  const [subject, setSubject] = React.useState("");
   const [successMessage, setSuccessMessage] = React.useState("");
   const [errorMessage, setErrorMessage] = React.useState("");
+  const [errors, setErrors] = React.useState({
+    firstName: true,
+    lastName: true,
+    message: true,
+    email: true,
+    subject: true,
+    error: false,
+  });
+
   const [showDiv, setShowDiv] = React.useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
-    console.log(name);
     switch (name) {
       case "message":
         setMessage(value);
@@ -32,12 +41,24 @@ function Kontakt() {
       case "email":
         setEmail(value);
         break;
+      case "subject":
+        setSubject(value);
+        console.log(subject);
+        break;
       default:
         break;
     }
+
+    setErrors((prevErrors) => ({
+      ...prevErrors, // Behalte alle vorherigen Fehler bei
+      [name]: true, // Setze den Fehler für das aktuelle Feld (name) zurück
+    }));
   };
 
   const validateEmail = (email: string) => {
+    if (!email.trim()) {
+      return true;
+    }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
@@ -51,23 +72,52 @@ function Kontakt() {
     }, 4000);
   };
 
-  const submitContactForm = async (event: { preventDefault: () => void }) => {
-    event.preventDefault();
-    setErrorMessage("Es gab einen Fehler!");
-    showSuccessMessage();
+  const validateForm = () => {
+    const newErrors = {
+      firstName: true,
+      lastName: true,
+      message: true,
+      email: true,
+      subject: true,
+      error: false,
+    };
 
+    if (!firstName.trim()) {
+      newErrors.firstName = false;
+      newErrors.error = true;
+    }
+    if (!lastName.trim()) {
+      newErrors.lastName = false;
+      newErrors.error = true;
+    }
+    if (!message.trim()) {
+      newErrors.message = false;
+      newErrors.error = true;
+    }
     if (!validateEmail(email)) {
-      setEmail("Bitte geben Sie eine gültige E-Mail-Adresse ein");
-      return;
+      newErrors.email = false;
+      newErrors.error = true;
     }
 
+    setErrors(newErrors);
+
+    return newErrors.error;
+  };
+
+  const submitContactForm = async (event: { preventDefault: () => void }) => {
+    event.preventDefault(); //verhindert neuladen der Seite
+
+    if (validateForm()) {
+      return;
+    }
     const data = {
       firstName,
       lastName,
       email,
       message,
+      subject,
     };
-
+    console.log(subject);
     try {
       const response = await fetch("/api/mail", {
         method: "POST",
@@ -78,22 +128,24 @@ function Kontakt() {
       });
 
       if (response.ok) {
-        alert("Nachricht erfolgreich gesendet");
+        setSuccessMessage("Nachricht wurde erfolgreich gesendet!");
+        showSuccessMessage();
         setEmail("");
         setMessage("");
         setFirstName("");
         setLastName("");
+        setSubject("");
       } else {
-        alert("Fehler beim senden der Nachricht.");
+        setErrorMessage("Es gab einen Fehler beim senden der Nachricht");
+        showSuccessMessage();
       }
     } catch (error) {
       console.error("Fehler: ", error);
-      alert("Ein Fehler ist aufgetreten");
+      setErrorMessage("Ein Fehler ist aufgetreten");
+      showSuccessMessage();
     }
   };
-
   useSetTitle("Kontakt");
-
   return (
     <div className={kontaktStyles.generalContainer}>
       <Header />
@@ -107,47 +159,61 @@ function Kontakt() {
             <div className={successMessage ? kontaktStyles.successMessage : kontaktStyles.errorMessage}>
               {" "}
               {successMessage ? successMessage : errorMessage}
+              <button className={kontaktStyles.closeButton} onClick={() => setShowDiv(false)}>
+                x
+              </button>
             </div>
           )}
           <div className={kontaktStyles.formHeading}>
-            <p>Sende uns eine Nachricht</p>
+            <p>Sende uns eine Nachricht!</p>
           </div>
 
           <div className={kontaktStyles.namesContainer}>
             <input
               name="firstName"
               placeholder="Vorname*"
-              className={kontaktStyles.nameInput}
+              className={errors.firstName ? kontaktStyles.nameInput : kontaktStyles.nameInputError}
               onChange={handleInputChange}
+              value={firstName}
+              maxLength={100}
               required
             />
             <input
               name="lastName"
               placeholder="Nachname*"
-              className={kontaktStyles.nameInput}
+              className={errors.lastName ? kontaktStyles.nameInput : kontaktStyles.nameInputError}
               onChange={handleInputChange}
+              value={lastName}
+              maxLength={100}
               required
             />
           </div>
           <input
             name="email"
             placeholder="Email"
-            className={kontaktStyles.emailInput}
+            className={errors.email ? kontaktStyles.emailInput : kontaktStyles.emailInputError}
             onChange={handleInputChange}
-          ></input>
+            maxLength={100}
+            value={email}
+          />
+
           <input
-            name="subject "
+            name="subject"
             placeholder="Betreff"
             className={kontaktStyles.emailInput}
+            maxLength={50}
             onChange={handleInputChange}
-          ></input>
+            value={subject}
+          />
+
           <textarea
             maxLength={maxChars}
             name="message"
             placeholder="Deine Nachricht*"
             rows={10}
             cols={30}
-            className={kontaktStyles.messageInput}
+            value={message}
+            className={errors.message ? kontaktStyles.messageInput : kontaktStyles.messageInputError}
             onChange={handleInputChange}
           />
           <div>
@@ -160,7 +226,6 @@ function Kontakt() {
           </button>
           <p className={kontaktStyles.pflichtfelderHinweis}>mit * markierte Felder sind Pflichtfelder</p>
         </div>
-
         <div className={kontaktStyles.rightContainer}>
           <div className={kontaktStyles.formHeading}>
             <p>Kontaktinformationen</p>

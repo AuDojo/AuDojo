@@ -30,7 +30,8 @@ Softwarearchitektur von Backend:
       "processList": [[startList], [sortStep1], [sortStep2], ...],
       "mergeRange": [null, [start1, end1], [start2, end2], ...],
       "pivotElement": null,
-      "selectedElement": null
+      "selectedElement": null,
+      "bubbleElement":null
    }
    ```
 
@@ -43,11 +44,26 @@ Softwarearchitektur von Backend:
       "processList": [[startList], [sortStep1], [sortStep2], ...],
       "mergeRange": null,
       "pivotElement": [null, [pivot-before1, pivot-after1], [pivot-before2, pivot-after2], ...],
-      "selectedElement": null
+      "selectedElement": null,
+      "bubbleElement":null
    }
    ```
 
    `[pivot-before1, pivot-after1]` gibt den Index des Pivot-Elements vor und nach dem ersten sortier Schritt an.
+
+   - Wenn BubbleSort verwendet wird:
+
+   ```json
+   {
+      "processList": [[startList], [sortStep1], [sortStep2], ...],
+      "mergeRange": null,
+      "pivotElement": [null, [pivot-before1, pivot-after1], [pivot-before2, pivot-after2], ...],
+      "selectedElement": null,
+      "bubbleElement":[[Tauschindex1,Tauschindex1 + 1],[Tauschindex2,Tauschindex2 + 1], ...]
+   }
+   ```
+
+   `Tauschindex1` gibt den Index des aktuell getauschten Element an. Der Index wird in BubbleSort mit seinem rechten Nachbar getauscht.
 
    - Wenn SelectionSort verwendet wird:
 
@@ -56,7 +72,8 @@ Softwarearchitektur von Backend:
       "processList": [[startList], [sortStep1], [sortStep2], ...],
       "mergeRange": null,
       "pivotElement": null,
-      "selectedElement": [selected1, selected2, selected3, ...]
+      "selectedElement": [selected1, selected2, selected3, ...],
+      "bubbleElement":null
    }
    ```
 
