@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import headerStyles from "./Header.module.css";
-import HeaderLogo from "./HeaderLogo.js";
+import HeaderLogo from "./HeaderLogo.tsx";
 
 const HeaderNavItem = ({ to, text }: { to: string; text: string }) => {
   return (
