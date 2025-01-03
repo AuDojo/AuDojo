@@ -47,7 +47,6 @@ export class SortSensei {
   }
 
   // ------------- MergeSort -------------
-  //TODO: Find a way to return the splitting Index, so that it can be shown in the frontend
 
   static #mergeSort(list: number[], start: number, end: number) {
     if (start < end) {
@@ -93,8 +92,6 @@ export class SortSensei {
   }
 
   // ------------- QuickSort -------------
-  //TODO: Find a way to use a certain method to determine the pivot-element
-  //TODO: Find a way to return the pivot-element, so that it can be shown in the frontend
 
   static #quickSort(list: number[], start: number, end: number) {
     if (start < end) {
@@ -155,6 +152,7 @@ export class SortSensei {
   }
 
   // ------------- SelectionSort -------------
+
   static #selectionSort(list: number[]) {
     for (let i = 0; i < list.length - 1; i++) {
       if (this.#processList?.checkIfSolved()) {
