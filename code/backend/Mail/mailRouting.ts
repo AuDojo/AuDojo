@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { sendMail, createMessage } from "./mail";
-import dotenv from "dotenv";
 
 const express = require("express");
 const router = express.Router();
@@ -20,7 +19,7 @@ router.post("/", (req: Request, res: Response) => {
     console.log("Geklappt!!");
   }
 
-  res.status(200).send("Geklappt");
+  res.status(200).send("Geklappt"); //TODO: Error handeling if mail could not be send
 });
 
 module.exports = router;

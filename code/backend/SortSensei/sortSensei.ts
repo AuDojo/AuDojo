@@ -11,8 +11,6 @@ export enum SortType {
 export class SortSensei {
   static #processList: SortProcessList | null = null;
 
-  //constructor() {}
-
   /**
    * This Method is managing the callingprocess of the different Sort-Methods
    * @param list Starting list, that should be sorted
@@ -42,12 +40,10 @@ export class SortSensei {
         break;
     }
 
-    // console.log(this.#processList.processList);
     return this.#processList.createJson();
   }
 
   // ------------- MergeSort -------------
-  //TODO: Find a way to return the splitting Index, so that it can be shown in the frontend
 
   static #mergeSort(list: number[], start: number, end: number) {
     if (start < end) {
@@ -93,8 +89,6 @@ export class SortSensei {
   }
 
   // ------------- QuickSort -------------
-  //TODO: Find a way to use a certain method to determine the pivot-element
-  //TODO: Find a way to return the pivot-element, so that it can be shown in the frontend
 
   static #quickSort(list: number[], start: number, end: number) {
     if (start < end) {
@@ -104,7 +98,6 @@ export class SortSensei {
 
       let pivot_index = this.#partition(list, start, end);
 
-      // console.log("q: ", pivot_index);
       this.#processList?.pushPivotElementAfter(pivot_index);
       this.#processList?.pushList(list);
 
@@ -151,11 +144,11 @@ export class SortSensei {
           this.#processList?.pushBubbleElement(j);
         }
       }
-      
     }
   }
 
   // ------------- SelectionSort -------------
+
   static #selectionSort(list: number[]) {
     for (let i = 0; i < list.length - 1; i++) {
       if (this.#processList?.checkIfSolved()) {
@@ -193,9 +186,4 @@ export class SortSensei {
   }
 }
 
-// SortSensei.test([11, 13, 4, 9, 3, 5, 16, 2, 29, 21, 1],SortType.QuickSort);
 SortSensei.test([7, 1, 8, 2, 3, 5], SortType.BubbleSort);
-
-// SortSensei.test([8, 7, 6, 5, 4, 3, 2, 1],SortType.QuickSort);
-// SortSensei.test([1, 2, 3, 4, 5, 6, 7, 8],SortType.QuickSort);
-// SortSensei.test([4, 2, 1, 3, 8, 6, 7, 5],SortType.QuickSort);
