@@ -83,6 +83,11 @@ p {
     border-radius: 5px;
     padding-left: 10px;
 }
+.nameInputError {
+    border-color: rgb(255, 0, 0);
+    border-radius: 5px;
+    padding-left: 10px;
+}
 
 .emailInput {
     margin-bottom: 5px;
@@ -91,12 +96,28 @@ p {
     padding-left: 10px;
 }
 
+.emailInputError {
+    margin-bottom: 5px;
+    border-color: rgb(255, 0, 0);
+    border-radius: 5px;
+    padding-left: 10px;
+
+}
+
 .messageInput {
     border-radius: 5px;
     padding-left: 10px;
     padding-top: 10px;
     font-family: Arial;
+    border-color: rgb(0, 63, 87);
+}
 
+.messageInputError {
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-top: 10px;
+    font-family: Arial;
+    border-color: rgb(255, 0, 0);
 }
 .sendButton {
     margin-bottom: 5px;
@@ -152,6 +173,9 @@ p {
 
 .successMessage {
     display: flex; 
+    position: fixed;
+    bottom: 30px;
+    right:20px;
     align-items: center; 
     justify-content: center; 
     background-color: #d4edda; 
@@ -161,7 +185,6 @@ p {
     padding: 5px 20px; 
     font-size: 16px; 
     font-weight: bold; 
-    width: 100%; 
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
     z-index: 1000; 
     animation: fadeOut 3s forwards;
@@ -169,6 +192,9 @@ p {
 
 .errorMessage {
     display: flex; 
+    position: fixed;
+    bottom: 30px;
+    right:20px;
     align-items: center; 
     justify-content: center; 
     background-color: #f8d7da; 
@@ -182,4 +208,23 @@ p {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 1000; 
     animation: fadeOut 3s forwards; 
+}
+
+.closeButton {
+    position: relative;
+    top: -5px;
+    right: -10px;
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 50%;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.closeButton:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }

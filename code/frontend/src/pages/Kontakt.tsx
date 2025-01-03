@@ -14,6 +14,14 @@ function Kontakt() {
     const [email, setEmail] = React.useState("");
     const [successMessage, setSuccessMessage] = React.useState("");
     const [errorMessage, setErrorMessage] = React.useState("");
+    const [errors, setErrors] = React.useState({
+        firstName: true,
+        lastName: true,
+        message: true,
+        email: true,
+        error: false
+    })
+
     const [showDiv, setShowDiv] = React.useState(false);
 
 
@@ -36,9 +44,18 @@ function Kontakt() {
             default:
                 break;
         }
+
+        setErrors((prevErrors) => ({
+            ...prevErrors, // Behalte alle vorherigen Fehler bei
+            [name]: true,   // Setze den Fehler für das aktuelle Feld (name) zurück
+        }));
+
     };
 
     const validateEmail = (email : string) => {
+        if(!email.trim()) {
+            return true;
+         }
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email)
     }
@@ -52,16 +69,44 @@ function Kontakt() {
         }, 4000)
     }
 
-    const submitContactForm = async (event: { preventDefault: () => void; }) => {
-        event.preventDefault();
-        setErrorMessage("Es gab einen Fehler!")
-        showSuccessMessage();
+    const validateForm = () => {
+        const newErrors = {
+            firstName: true,
+            lastName: true,
+            message: true,
+            email: true,
+            error: false
+        };
 
-        if(!validateEmail(email)) {
-            setEmail("Bitte geben Sie eine gültige E-Mail-Adresse ein");
-            return;
+        if(!firstName.trim()) {
+            newErrors.firstName = false;
+            newErrors.error = true;
+        } 
+        if(!lastName.trim()) {
+            newErrors.lastName = false;
+            newErrors.error = true
+        }; 
+        if(!message.trim()) { 
+            newErrors.message = false;
+            newErrors.error = true;
+        }
+        if(!validateEmail(email)){
+            newErrors.email = false;
+            newErrors.error = true;
         }
 
+        setErrors(newErrors)
+
+        return newErrors.error;
+    }
+
+    const submitContactForm = async (event: { preventDefault: () => void; }) => {
+        event.preventDefault();
+
+
+        if(validateForm()) {
+            return
+        }
         const data = {
             firstName,
             lastName,
@@ -79,13 +124,15 @@ function Kontakt() {
             });
 
             if(response.ok) {
-                alert("Nachricht erfolgreich gesendet")
+                setSuccessMessage("Nachricht wurde erfolgreich gesendet!");
+                showSuccessMessage();
                 setEmail("");
                 setMessage("");
                 setFirstName("");
                 setLastName("");
             } else {
-                alert("Fehler beim senden der Nachricht.");
+                setErrorMessage("Es gab einen Fehler beim senden der Nachricht")
+                showSuccessMessage();
             }
 
         } catch(error) {
@@ -105,6 +152,11 @@ function Kontakt() {
                 <div className={kontaktStyles.leftContainer}>
                     {showDiv && (<div className={
                         successMessage ? kontaktStyles.successMessage : kontaktStyles.errorMessage}> {successMessage ? successMessage : errorMessage}
+                        <button className={kontaktStyles.closeButton}
+                            onClick={()=> setShowDiv(false)}
+                        > 
+                        x 
+                        </button>
                     </div> )}
                     <div className={kontaktStyles.formHeading}>
                         <p>Sende uns eine Nachricht!</p>
@@ -114,25 +166,30 @@ function Kontakt() {
                         <input 
                             name="firstName" 
                             placeholder="Vorname*" 
-                            className={kontaktStyles.nameInput} 
+                            className={errors.firstName ? kontaktStyles.nameInput : kontaktStyles.nameInputError} 
                             onChange={handleInputChange} 
                             required
                         />
                         <input name="lastName" 
                             placeholder="Nachname*" 
-                            className={kontaktStyles.nameInput} 
+                            className={ errors.lastName ? kontaktStyles.nameInput : kontaktStyles.nameInputError} 
                             onChange={handleInputChange}
                             required
                         />
                     </div>
-                    <input name="email"placeholder="Email" className={kontaktStyles.emailInput} onChange={handleInputChange}></input>
+                    <input name="email"
+                        placeholder="Email" 
+                        className={ errors.email ? kontaktStyles.emailInput : kontaktStyles.emailInputError} 
+                        onChange={handleInputChange} 
+                    />
+
                     <input name="subject "placeholder="Betreff" className={kontaktStyles.emailInput} onChange={handleInputChange}></input>
                     <textarea maxLength={maxChars} 
                             name="message"
                             placeholder="Deine Nachricht*" 
                             rows={10} 
                             cols={30} 
-                            className={kontaktStyles.messageInput} 
+                            className={ errors.message ? kontaktStyles.messageInput : kontaktStyles.messageInputError} 
                             onChange={handleInputChange}
                     />
                     <div>
