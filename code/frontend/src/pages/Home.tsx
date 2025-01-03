@@ -2,8 +2,14 @@ import audoLogo from "@assets/logo-audojo.png";
 import { Footer, Header, HomeButtonList } from "@components/homepage";
 import generalStyles from "@styles/homepage/general.module.css";
 import mainStyles from "@styles/homepage/Main.module.css";
+import { useEffect } from "react";
 
 const Home = () => {
+
+  useEffect(() => {
+    document.title = "AuDojo";
+  })
+
   return (
     <div className={generalStyles.container}>
       <header>

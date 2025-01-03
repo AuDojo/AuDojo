@@ -10,8 +10,10 @@ import {
 } from "@components/sortSensei/tutorial";
 import generalStyles from "@styles/homepage/general.module.css";
 import headerStyles from "@styles/homepage/Header.module.css";
+import setTitle from "../../title";
 
 const Tutorial = () => {
+  setTitle("Tutorial");
   return (
     <div className={generalStyles.container}>
       <header className={headerStyles.header}>

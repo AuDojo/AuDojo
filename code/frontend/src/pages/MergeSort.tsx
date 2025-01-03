@@ -6,8 +6,10 @@ import { TutorialModal } from "@components/sortSensei/tutorialModal";
 import { ButtonContextProvider, SortProvider, TutorialModalProvider } from "@contexts/index";
 import styles from "@styles/sortSensei/general.module.css";
 import tableStyles from "@styles/sortSensei/SortingTable.module.css";
+import setTitle from "../../title";
 
 const MergeSort = () => {
+  setTitle("MergeSort");
   return (
     <SortProvider>
       <TutorialModalProvider>
