@@ -1,12 +1,15 @@
 import { Request, Response } from "express";
-import { SortSensei,SortType } from "./sortSensei";
-
+import { SortSensei, SortType } from "./sortSensei";
 
 const express = require("express");
 const router = express.Router(); //this router has a sublink /sorting. To access, use ourlink/sorting/mergesort for example
 
+/**
+ * empfängt JSON {startArray:[...]} und wandelt in Typ number[] um
+ * @param req The given Object of the frontend
+ * @returns Only the array of the StartArray
+ */
 function parse_array(req: Request): number[] {
-  //empfängt JSON {startArray:[...]} und wandelt in Typ number[] um
   const startArray = req.body.startArray;
 
   if (startArray.length > 20) {
@@ -15,9 +18,8 @@ function parse_array(req: Request): number[] {
   return startArray;
 }
 
-function convertString_to_SortType(str:string): SortType {
-
-  switch(str) {
+function convertString_to_SortType(str: string): SortType {
+  switch (str) {
     case "mergesort":
       return SortType.MergeSort;
 
@@ -31,16 +33,14 @@ function convertString_to_SortType(str:string): SortType {
       return SortType.BubbleSort;
 
     default:
-      return SortType.UNDEFINED;  
+      return SortType.UNDEFINED;
   }
 }
 
-
-router.post("/:sortType",(req: Request, res: Response)=>{
-  
-  let sortType:SortType = convertString_to_SortType(req.params.sortType);
+router.post("/:sortType", (req: Request, res: Response) => {
+  let sortType: SortType = convertString_to_SortType(req.params.sortType);
   let startArray: number[] = parse_array(req);
-  let jsonObj = SortSensei.createSortProcessList(startArray,sortType);
+  let jsonObj = SortSensei.createSortProcessList(startArray, sortType);
 
   res.json(jsonObj);
 });

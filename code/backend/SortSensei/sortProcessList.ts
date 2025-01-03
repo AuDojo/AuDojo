@@ -29,6 +29,11 @@ export class SortProcessList {
     this.#processList[index] = list.slice(0); // slice sorgt dafür dass pass by value anstatt von pass by reference verwendet wird.
   }
 
+  /**
+   * This Method adds a the indeces of the start and end of the Merge-Range
+   * @param start The Index of the Merge-Range start
+   * @param end The Index of the Merge-Range end
+   */
   pushMergeRange(start: number, end: number) {
     let index = this.#processList.length;
     this.#mergeRange[index] = [start, end];
@@ -59,6 +64,10 @@ export class SortProcessList {
     console.log("pivot_index: ", this.#pivotElement[index][1]);
   }
 
+  /**
+   * Adds the Index of the selected element after each sorting step
+   * @param selected_index Index of the selected element
+   */
   pushSelectedElement(selected_index: number) {
     let index = this.#selectedElement.length;
     this.#selectedElement[index] = selected_index;
@@ -66,13 +75,23 @@ export class SortProcessList {
     console.log("selected_items: ", this.#selectedElement[index]);
   }
 
+  /**
+   * Adds the Index of each swapped element
+   * @param selected_index Index of the Bubbled Element
+   */
   pushBubbleElement(selected_index: number) {
     let index = this.#bubbleElement.length;
-    this.#bubbleElement[index] = [selected_index,selected_index+1];
+    this.#bubbleElement[index] = [selected_index, selected_index + 1];
 
     console.log("bubble_elements: ", this.#bubbleElement[index]);
   }
 
+  /**
+   * Checks if the latest added List to this Object is already sorted
+   * @returns
+   * - true: is sorted
+   * - false: is not sorted
+   */
   checkIfSolved(): boolean {
     let lastList = this.#processList[this.#processList.length - 1];
 
@@ -109,7 +128,7 @@ export class SortProcessList {
       mergeRange: mergeRange,
       pivotElement: pivotElement,
       selectionElement: selctionElement,
-      bubbleElement: bubbleElement
+      bubbleElement: bubbleElement,
     };
 
     console.log(obj);
