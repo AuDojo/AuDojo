@@ -107,7 +107,7 @@ function Kontakt() {
                         successMessage ? kontaktStyles.successMessage : kontaktStyles.errorMessage}> {successMessage ? successMessage : errorMessage}
                     </div> )}
                     <div className={kontaktStyles.formHeading}>
-                        <p>Sende uns eine Nachricht</p>
+                        <p>Sende uns eine Nachricht!</p>
                     </div>
 
                     <div className={kontaktStyles.namesContainer}>
