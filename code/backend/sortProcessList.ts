@@ -9,6 +9,7 @@ export class SortProcessList {
   #mergeRange: [number, number][] = []; // Array of Tuples
   #pivotElement: [number, number | null][] = [];
   #selectedElement: number[] = [];
+  #bubbleElement: number[][] = [];
 
   /**
    * Creates an object in which the single steps of a sorting algorithm can be stored.
@@ -63,6 +64,13 @@ export class SortProcessList {
     this.#selectedElement[index] = selected_index;
 
     console.log("selected_items: ", this.#selectedElement[index]);
+  }
+
+  pushBubbleElement(selected_index: number) {
+    let index = this.#bubbleElement.length;
+    this.#bubbleElement[index] = [selected_index,selected_index+1];
+
+    console.log("bubble_elements: ", this.#bubbleElement[index]);
   }
 
   checkIfSolved(): boolean {

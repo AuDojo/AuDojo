@@ -148,6 +148,7 @@ export class SortSensei {
           list[j + 1] = list[j];
           list[j] = temp;
           this.#processList?.pushList(list);
+          this.#processList?.pushBubbleElement(j);
         }
       }
       
