@@ -1,28 +1,25 @@
-import { D3SortVisualizer, SortHeader } from "@components/sortSensei";
-import { GenerateButtons, SolveButtons } from "@components/sortSensei/buttons";
-import { MergeSortGuide } from "@components/sortSensei/guide";
-import { SortingTable } from "@components/sortSensei/table";
-import { TutorialModal } from "@components/sortSensei/tutorialModal";
 import { ButtonContextProvider, SortProvider, TutorialModalProvider } from "@contexts/index";
+import { GenerateButtons, SolveButtons } from "@features/sortSensei/buttons";
+import { MergeSortGuide } from "@features/sortSensei/guide";
+import { SortHeader } from "@features/sortSensei/sortHeader";
+import { SortingTable } from "@features/sortSensei/table";
+import { SortVisualizer } from "@src/features/sortSensei/sortVisualizer";
 import styles from "@styles/sortSensei/general.module.css";
-import tableStyles from "@styles/sortSensei/SortingTable.module.css";
-import setTitle from "../../title";
+import useSetTitle from "../hooks/title";
 
 const MergeSort = () => {
-  setTitle("MergeSort");
+  useSetTitle("MergeSort");
   return (
     <SortProvider>
       <TutorialModalProvider>
-        <TutorialModal />
         <SortHeader />
         <div className={styles.container}>
           <div>
-            <D3SortVisualizer />
             <MergeSortGuide />
+            <SortVisualizer />
           </div>
-          <div className={tableStyles["outer-table-buttons-container"]}>
-            <div className={tableStyles["inner-table-buttons-container"]}>
-              {/* Left Tips */}
+          <div className={styles["outer-table-buttons-container"]}>
+            <div className={styles["inner-table-buttons-container"]}>
               {/* Table */}
               <SortingTable />
               {/* right buttons */}

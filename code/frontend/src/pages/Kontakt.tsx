@@ -1,10 +1,9 @@
-import React from "react";
-import { Footer, Header } from "@components/homepage";
-import generalStyles from "@styles/homepage/general.module.css";
-import kontaktStyles from "@styles/Kontakt/Kontakt.module.css";
-import mainStyles from "@styles/homepage/Main.module.css";
 import informatikzentrumJPG from "@assets/informatikzentrum.jpg";
-import setTitle from "../../title";
+import { Footer } from "@components/footer";
+import { Header } from "@components/header";
+import kontaktStyles from "@styles/Kontakt/Kontakt.module.css";
+import React from "react";
+import useSetTitle from "../hooks/title";
 
 function Kontakt() {
   const maxChars = 1000;
@@ -22,8 +21,8 @@ function Kontakt() {
     message: true,
     email: true,
     subject: true,
-    error: false
-  })
+    error: false,
+  });
 
   const [showDiv, setShowDiv] = React.useState(false);
 
@@ -44,7 +43,7 @@ function Kontakt() {
         break;
       case "subject":
         setSubject(value);
-        console.log(subject)
+        console.log(subject);
         break;
       default:
         break;
@@ -52,9 +51,8 @@ function Kontakt() {
 
     setErrors((prevErrors) => ({
       ...prevErrors, // Behalte alle vorherigen Fehler bei
-      [name]: true,   // Setze den Fehler für das aktuelle Feld (name) zurück
+      [name]: true, // Setze den Fehler für das aktuelle Feld (name) zurück
     }));
-
   };
 
   const validateEmail = (email: string) => {
@@ -62,17 +60,17 @@ function Kontakt() {
       return true;
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email)
-  }
+    return emailRegex.test(email);
+  };
 
   const showSuccessMessage = () => {
     setShowDiv(true);
 
     setTimeout(() => {
-      setShowDiv(false)
+      setShowDiv(false);
       successMessage ? setSuccessMessage("") : setErrorMessage("");
-    }, 4000)
-  }
+    }, 4000);
+  };
 
   const validateForm = () => {
     const newErrors = {
@@ -81,7 +79,7 @@ function Kontakt() {
       message: true,
       email: true,
       subject: true,
-      error: false
+      error: false,
     };
 
     if (!firstName.trim()) {
@@ -90,8 +88,8 @@ function Kontakt() {
     }
     if (!lastName.trim()) {
       newErrors.lastName = false;
-      newErrors.error = true
-    };
+      newErrors.error = true;
+    }
     if (!message.trim()) {
       newErrors.message = false;
       newErrors.error = true;
@@ -101,25 +99,25 @@ function Kontakt() {
       newErrors.error = true;
     }
 
-    setErrors(newErrors)
+    setErrors(newErrors);
 
     return newErrors.error;
-  }
+  };
 
-  const submitContactForm = async (event: { preventDefault: () => void; }) => {
+  const submitContactForm = async (event: { preventDefault: () => void }) => {
     event.preventDefault(); //verhindert neuladen der Seite
 
     if (validateForm()) {
-      return
+      return;
     }
     const data = {
       firstName,
       lastName,
       email,
       message,
-      subject
+      subject,
     };
-    console.log(subject)
+    console.log(subject);
     try {
       const response = await fetch("/api/mail", {
         method: "POST",
@@ -138,19 +136,18 @@ function Kontakt() {
         setLastName("");
         setSubject("");
       } else {
-        setErrorMessage("Es gab einen Fehler beim senden der Nachricht")
+        setErrorMessage("Es gab einen Fehler beim senden der Nachricht");
         showSuccessMessage();
       }
-
     } catch (error) {
       console.error("Fehler: ", error);
-      setErrorMessage("Ein Fehler ist aufgetreten")
+      setErrorMessage("Ein Fehler ist aufgetreten");
       showSuccessMessage();
     }
-  }
-  setTitle("Kontakt");
+  };
+  useSetTitle("Kontakt");
   return (
-    <div className={kontaktStyles.generalContainer} >
+    <div className={kontaktStyles.generalContainer}>
       <Header />
       <div className={kontaktStyles.kontaktMessageContainer}>
         <p className={kontaktStyles.kontaktMessage}> Kontakt </p>
@@ -158,14 +155,15 @@ function Kontakt() {
 
       <div className={kontaktStyles.contentContainer}>
         <div className={kontaktStyles.leftContainer}>
-          {showDiv && (<div className={
-            successMessage ? kontaktStyles.successMessage : kontaktStyles.errorMessage}> {successMessage ? successMessage : errorMessage}
-            <button className={kontaktStyles.closeButton}
-              onClick={() => setShowDiv(false)}
-            >
-              x
-            </button>
-          </div>)}
+          {showDiv && (
+            <div className={successMessage ? kontaktStyles.successMessage : kontaktStyles.errorMessage}>
+              {" "}
+              {successMessage ? successMessage : errorMessage}
+              <button className={kontaktStyles.closeButton} onClick={() => setShowDiv(false)}>
+                x
+              </button>
+            </div>
+          )}
           <div className={kontaktStyles.formHeading}>
             <p>Sende uns eine Nachricht!</p>
           </div>
@@ -223,25 +221,23 @@ function Kontakt() {
               {message.length > 0 ? `${maxChars - message.length} verbleibende Zeichen` : ""}
             </p>
           </div>
-          <button
-            className={kontaktStyles.sendButton}
-            onClick={submitContactForm}>
+          <button className={kontaktStyles.sendButton} onClick={submitContactForm}>
             Nachricht senden
           </button>
-          <p className={kontaktStyles.pflichtfelderHinweis}>
-            mit * markierte Felder sind Pflichtfelder
-          </p>
+          <p className={kontaktStyles.pflichtfelderHinweis}>mit * markierte Felder sind Pflichtfelder</p>
         </div>
         <div className={kontaktStyles.rightContainer}>
           <div className={kontaktStyles.formHeading}>
             <p>Kontaktinformationen</p>
           </div>
           <div className={kontaktStyles.kontaktdetailsContainer}>
-            <p> Feedback ist uns wichtig! Scheut euch nicht davor Verbesserungsvorschläge oder Anmerkungen zu äußern.</p>
+            <p>
+              {" "}
+              Feedback ist uns wichtig! Scheut euch nicht davor Verbesserungsvorschläge oder Anmerkungen zu äußern.
+            </p>
             <div className={kontaktStyles.addressContainer}>
               <div>
-                <img src={informatikzentrumJPG}
-                  className={kontaktStyles.addressImage} />
+                <img src={informatikzentrumJPG} className={kontaktStyles.addressImage} />
               </div>
               <div>
                 <p className={kontaktStyles.addressInfo}> Institut für Betriebssysteme und Rechnerverbund </p>

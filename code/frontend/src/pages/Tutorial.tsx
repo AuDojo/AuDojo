@@ -1,24 +1,21 @@
-import { Footer } from "@components/homepage";
+import { Footer } from "@components/footer";
 import {
   BubblesortTutorial,
   MergesortTutorial,
   QuicksortTutorial,
   RickRollTroll,
   SelectionsortTutorial,
-  TutorialHeader,
   TutorialSidebar,
-} from "@components/sortSensei/tutorial";
+} from "@features/tutorial/components";
+import { SortHeader } from "@src/features/sortSensei/sortHeader";
 import generalStyles from "@styles/homepage/general.module.css";
-import headerStyles from "@styles/homepage/Header.module.css";
-import setTitle from "../../title";
+import useSetTitle from "../hooks/title";
 
 const Tutorial = () => {
-  setTitle("Tutorial");
+  useSetTitle("Tutorial");
   return (
     <div className={generalStyles.container}>
-      <header className={headerStyles.header}>
-        <TutorialHeader />
-      </header>
+      <SortHeader />
       <main>
         <RickRollTroll />
         <TutorialSidebar title="Mergesort" subtitle={false}>

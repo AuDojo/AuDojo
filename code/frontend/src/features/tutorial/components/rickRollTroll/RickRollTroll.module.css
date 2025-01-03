@@ -1,0 +1,34 @@
+.rainbow-text {
+  font-size: 12px; /* Adjust the size */
+  font-weight: bold;
+  text-decoration: none;
+  color: red; /* Default color */
+  animation: rainbowColor 2s infinite; /* Animation duration and repetition */
+}
+
+@keyframes rainbowColor {
+  0% {
+    color: red;
+  }
+  14.28% {
+    color: orange;
+  }
+  28.56% {
+    color: yellow;
+  }
+  42.84% {
+    color: green;
+  }
+  57.12% {
+    color: blue;
+  }
+  71.4% {
+    color: indigo;
+  }
+  85.68% {
+    color: violet;
+  }
+  100% {
+    color: red;
+  } /* Loop back to the first color */
+}

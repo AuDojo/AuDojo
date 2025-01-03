@@ -1,0 +1,43 @@
+import mergesortPseudo from "@features/tutorial/assets/mergeSortpseudo.png";
+import mergePseudo from "@features/tutorial/assets/mergepseudo.png";
+import { StepVisualizer, TutorialSidebar } from "@features/tutorial/components";
+import { mergeSortSteps } from "@features/tutorial/data";
+import tutorialContent from "./TutorialContent.module.css";
+
+const MergesortTutorial = () => {
+  return (
+    <div className={tutorialContent["content-container"]}>
+      <TutorialSidebar title="Aufklappen für Idee des Algorithmus" subtitle={true}>
+        <MergesortText />
+      </TutorialSidebar>
+
+      <TutorialSidebar title="Aufklappen für Pseudocode" subtitle={true}>
+        <div className={tutorialContent["image-container"]}>
+          <img src={mergesortPseudo} className={tutorialContent["image"]} alt="mergesort pseudocode" />
+
+          <img src={mergePseudo} className={tutorialContent["image"]} alt="merge pseudocode" />
+        </div>
+      </TutorialSidebar>
+
+      <StepVisualizer steps={mergeSortSteps} mergesort={true} />
+    </div>
+  );
+};
+
+const MergesortText = () => {
+  return (
+    <div className={tutorialContent["text-container"]}>
+      Die Idee des Algorithmus basiert auf dem Prinzip
+      <span className={tutorialContent["font-highlight"]}> "divide and conquer"</span>. Dabei wird das Array wiederholt
+      in zwei Hälften zerlegt, bis die Größe jedes Teilarrays 1 beträgt.
+      <br />
+      Anschließend werden jeweils zwei Teilarrays betrachtet und beim Zusammensetzen sortiert.
+      <br />
+      <br />
+      Die Zerlegung erfolgt in O(log n) Schritten, während das Zusammensetzen O(n) erfordert. Insgesamt hat Mergesort
+      die Laufzeit <span className={tutorialContent["font-highlight"]}> O(nlogn)</span>.
+    </div>
+  );
+};
+
+export default MergesortTutorial;

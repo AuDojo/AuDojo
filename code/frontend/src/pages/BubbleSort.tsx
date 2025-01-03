@@ -1,14 +1,14 @@
-import { D3SortVisualizer, SortHeader} from "@components/sortSensei";
-import { GenerateButtons, SolveButtons } from "@components/sortSensei/buttons";
-import { BubbleSortGuide } from "@components/sortSensei/guide";
-import { SortingTable } from "@components/sortSensei/table";
 import { ButtonContextProvider, SortProvider, TutorialModalProvider } from "@contexts/index";
+import { GenerateButtons, SolveButtons } from "@features/sortSensei/buttons";
+import { BubbleSortGuide } from "@features/sortSensei/guide";
+import { SortHeader } from "@features/sortSensei/sortHeader";
+import { SortingTable } from "@features/sortSensei/table";
+import { SortVisualizer } from "@src/features/sortSensei/sortVisualizer";
 import styles from "@styles/sortSensei/general.module.css";
-import tableStyles from "@styles/sortSensei/SortingTable.module.css";
-import setTitle from "../../title"
+import useSetTitle from "../hooks/title";
 
 const BubbleSort = () => {
-  setTitle("BubbleSort");
+  useSetTitle("BubbleSort");
   return (
     <SortProvider>
       <TutorialModalProvider>
@@ -16,10 +16,10 @@ const BubbleSort = () => {
         <div className={styles.container}>
           <div>
             <BubbleSortGuide />
-            <D3SortVisualizer />
+            <SortVisualizer />
           </div>
-          <div className={tableStyles["outer-table-buttons-container"]}>
-            <div className={tableStyles["inner-table-buttons-container"]}>
+          <div className={styles["outer-table-buttons-container"]}>
+            <div className={styles["inner-table-buttons-container"]}>
               {/* Table */}
               <SortingTable />
               {/* right buttons */}
