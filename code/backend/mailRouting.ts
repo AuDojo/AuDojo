@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { sendMail } from "./mail";
+import { sendMail, createMessage } from "./mail";
 import dotenv from "dotenv";
 
 const express = require("express");
@@ -8,13 +8,8 @@ const router = express.Router();
 router.post("/", (req: Request, res: Response) => {
   console.log("---------- Mail wird gesendet ----------");
 
-  let firstName = req.body.firstName;
-  let lastName = req.body.lastName;
-  let mail = req.body.email;
   let subject = req.body.subject;
-  let message = req.body.message;
-
-  let text = firstName + " " + lastName + "\n" + mail + "\n\n" + message; //TODO: \n wird nicht richtig behandelt
+  let text = createMessage(req);
 
   if (process.env.MAIL_USERNAME == undefined) {
     res.send("Error!! Mail-Account not found");
