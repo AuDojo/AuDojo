@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request } from "express";
 import nodemailer from "nodemailer";
 import winston from "winston";
 import dotenv from "dotenv";

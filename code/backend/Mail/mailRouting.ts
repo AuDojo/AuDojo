@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { sendMail, createMessage } from "./mail";
-import dotenv from "dotenv";
 
 const express = require("express");
 const router = express.Router();

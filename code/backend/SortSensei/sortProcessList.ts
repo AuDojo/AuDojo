@@ -1,5 +1,3 @@
-import { json } from "express";
-
 /**
  * An object of this class can store all the steps of a sorting algorithm and can return those as a json-string.
  */
