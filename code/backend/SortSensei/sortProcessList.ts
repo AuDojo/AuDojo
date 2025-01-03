@@ -46,7 +46,6 @@ export class SortProcessList {
   pushPivotElementBefore(pivot_index: number) {
     let index = this.#processList.length;
     this.#pivotElement[index] = [pivot_index, null];
-    // this.#pivotElement[index][0] = pivot_index;
 
     console.log("pivot_index: ", this.#pivotElement[index][0]);
   }

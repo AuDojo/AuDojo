@@ -11,8 +11,6 @@ export enum SortType {
 export class SortSensei {
   static #processList: SortProcessList | null = null;
 
-  //constructor() {}
-
   /**
    * This Method is managing the callingprocess of the different Sort-Methods
    * @param list Starting list, that should be sorted
@@ -42,7 +40,6 @@ export class SortSensei {
         break;
     }
 
-    // console.log(this.#processList.processList);
     return this.#processList.createJson();
   }
 
@@ -101,7 +98,6 @@ export class SortSensei {
 
       let pivot_index = this.#partition(list, start, end);
 
-      // console.log("q: ", pivot_index);
       this.#processList?.pushPivotElementAfter(pivot_index);
       this.#processList?.pushList(list);
 
@@ -190,9 +186,4 @@ export class SortSensei {
   }
 }
 
-// SortSensei.test([11, 13, 4, 9, 3, 5, 16, 2, 29, 21, 1],SortType.QuickSort);
 SortSensei.test([7, 1, 8, 2, 3, 5], SortType.BubbleSort);
-
-// SortSensei.test([8, 7, 6, 5, 4, 3, 2, 1],SortType.QuickSort);
-// SortSensei.test([1, 2, 3, 4, 5, 6, 7, 8],SortType.QuickSort);
-// SortSensei.test([4, 2, 1, 3, 8, 6, 7, 5],SortType.QuickSort);
