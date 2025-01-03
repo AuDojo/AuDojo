@@ -7,12 +7,12 @@ p {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: rgb(0,63,87);
+    color: rgb(0, 63, 87);
     margin-top: 110px;
 }
 
 .contentContainer {
-    display:flex;
+    display: flex;
     flex: 1;
     flex-direction: row;
     max-width: 1000px;
@@ -20,7 +20,7 @@ p {
     justify-content: center;
 }
 
-.kontaktMessageContainer{
+.kontaktMessageContainer {
     display: flex;
     align-items: start;
     flex-direction: row;
@@ -30,14 +30,14 @@ p {
 
 .kontaktMessage {
     font-size: 30px;
-    color: rgb(0,63,87);
+    color: rgb(0, 63, 87);
     font-weight: bold;
 }
 
-.leftContainer{
+.leftContainer {
     margin-top: 0px;
     display: flex;
-    flex:1;
+    flex: 1;
     flex-direction: column;
 }
 
@@ -49,18 +49,19 @@ p {
     font-size: 18px;
 
 }
-.formHeading::after{
+
+.formHeading::after {
     content: "";
     position: absolute;
     bottom: -5px;
     left: 0;
-    height:2px;
+    height: 2px;
     background-color: #ccc;
     width: 100%;
 
 }
 
-.formContainer{
+.formContainer {
     display: flex;
     flex: 1;
     flex-direction: column;
@@ -79,10 +80,11 @@ p {
 }
 
 .nameInput {
-    border-color: rgb(0,63,87);
+    border-color: rgb(0, 63, 87);
     border-radius: 5px;
     padding-left: 10px;
 }
+
 .nameInputError {
     border-color: rgb(255, 0, 0);
     border-radius: 5px;
@@ -91,7 +93,7 @@ p {
 
 .emailInput {
     margin-bottom: 5px;
-    border-color: rgb(0,63,87);
+    border-color: rgb(0, 63, 87);
     border-radius: 5px;
     padding-left: 10px;
 }
@@ -119,21 +121,23 @@ p {
     font-family: Arial;
     border-color: rgb(255, 0, 0);
 }
+
 .sendButton {
     margin-bottom: 5px;
-    background-color: rgb(0,63,87);
+    background-color: rgb(0, 63, 87);
     color: white;
     padding-top: 10px;
     padding-bottom: 10px;
     border-radius: 10px;
     cursor: pointer;
-    font-weight:600;
+    font-weight: 600;
 }
+
 .sendButton:active {
     opacity: 0.8;
 }
 
-.pflichtfelderHinweis{
+.pflichtfelderHinweis {
     font-size: 10px;
 }
 
@@ -149,6 +153,7 @@ p {
     flex-direction: column;
     margin-top: 10px;
 }
+
 .addressContainer {
     display: flex;
     margin-top: 15px;
@@ -167,52 +172,51 @@ p {
 
 .remainingCharacters {
     font-size: 15px;
-    text-align: right; 
+    text-align: right;
     margin-bottom: 15px;
 }
 
 .successMessage {
-    display: flex; 
+    display: flex;
     position: fixed;
     bottom: 30px;
-    right:20px;
-    align-items: center; 
-    justify-content: center; 
-    background-color: #d4edda; 
-    color: #155724; 
-    border: 1px solid #c3e6cb; 
-    border-radius: 5px; 
-    padding: 5px 20px; 
-    font-size: 16px; 
-    font-weight: bold; 
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
-    z-index: 1000; 
+    right: 20px;
+    align-items: center;
+    justify-content: center;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    padding: 5px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
     animation: fadeOut 3s forwards;
 }
 
 .errorMessage {
-    display: flex; 
+    display: flex;
     position: fixed;
     bottom: 30px;
-    right:20px;
-    align-items: center; 
-    justify-content: center; 
-    background-color: #f8d7da; 
-    color: #721c24; 
-    border: 1px solid #f5c6cb; 
-    border-radius: 5px; 
-    padding: 5px 20px; 
-    font-size: 16px; 
-    font-weight: bold; 
-    width: 100%; 
+    right: 20px;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 5px 20px;
+    font-size: 16px;
+    font-weight: bold;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000; 
-    animation: fadeOut 3s forwards; 
+    z-index: 1000;
+    animation: fadeOut 3s forwards;
 }
 
 .closeButton {
     position: relative;
-    top: -5px;
+    top: 0px;
     right: -10px;
     background: none;
     border: none;
