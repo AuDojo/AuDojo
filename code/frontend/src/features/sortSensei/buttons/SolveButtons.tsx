@@ -1,10 +1,11 @@
 import { Tooltip } from "@components/Tooltip";
 import { SortType } from "@constants/index";
-import { useButtonContext, useSortContext } from "@hooks/index";
+import { useSortContext } from "@hooks/index";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTutorialModalContext } from "../hooks";
 import { Points } from "../points";
 import buttonStyles from "./Button.module.css";
+import { useButtonContext } from "./hooks";
 
 const SPEED_VALUES = [5000, 4000, 2500, 1500, 1000, 500, 5];
 const DEFAULT_SPEED_INDEX = 3;
