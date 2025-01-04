@@ -31,7 +31,7 @@ const GenerateButtons = () => {
     if (isSubmitting && inputRef.current) {
       inputRef.current.focus();
     }
-  });
+  }, [isSubmitting]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // Regex to check if input contins only numbers, commas or whitespaces
