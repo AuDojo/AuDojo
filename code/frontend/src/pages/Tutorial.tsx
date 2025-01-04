@@ -7,9 +7,9 @@ import {
   SelectionsortTutorial,
   TutorialSidebar,
 } from "@features/tutorial/components";
-import generalStyles from "@styles/homepage/general.module.css";
-import useSetTitle from "../hooks/title";
+import { useSetTitle } from "@hooks/useSetTitle";
 import { Header } from "@src/components/header";
+import generalStyles from "@styles/homepage/general.module.css";
 
 const Tutorial = () => {
   useSetTitle("Tutorial");
