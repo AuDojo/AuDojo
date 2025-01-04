@@ -15,8 +15,17 @@ interface TableCellProps {
 const cx = classNames.bind(styles);
 
 const TableCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
-  const { stepsList, step, mergeRanges, sortTypeRef, inputCellValues, inputCellsRef, cellValidation, pivotElement } =
-    useSortContext();
+  const {
+    stepsList,
+    step,
+    mergeRanges,
+    sortTypeRef,
+    inputCellValues,
+    inputCellsRef,
+    cellValidation,
+    pivotElement,
+    selectionElement,
+  } = useSortContext();
 
   const { handleCellChange, handleCellKeyDown } = useTableUtils();
 
@@ -58,11 +67,13 @@ const TableCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
     };
   }, [rowIndex, columnIndex, stepsList, inputCellValues, cellValidation, mergeRanges, sortTypeRef, pivotElement]);
 
-  // const isSelected = () => {
-  //   if (sortTypeRef.current !== SortType.SelectionSort) {
-  //     return;
-  //   }
-  // };
+  const isSelected = () => {
+    console.log("selectionElement: ", selectionElement, "sortType: ", sortTypeRef.current);
+    if (sortTypeRef.current === SortType.SelectionSort && rowIndex < step) {
+      console.log("hello");
+      return columnIndex === selectionElement[rowIndex] || columnIndex === rowIndex;
+    }
+  };
 
   return (
     <Tooltip
@@ -81,6 +92,7 @@ const TableCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
           correct: cellData.validation === true,
           incorrect: cellData.validation === false,
           "pivot-cell": cellData.isPivot && rowIndex < step,
+          "selected-cell": isSelected(),
         })}
         value={rowIndex < step ? cellData.num || "" : cellData.inputCellValue}
         readOnly={rowIndex < step}

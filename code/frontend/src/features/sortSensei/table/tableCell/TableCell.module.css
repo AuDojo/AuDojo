@@ -97,3 +97,12 @@
 .pivot-cell.correct {
   border-color: rgb(21, 87, 36);
 }
+
+/* Selection element */
+.selected-cell {
+  background-color: saddlebrown;
+  color: white;
+  border-color: rgb(190, 30, 60);
+  border-radius: 5px;
+  font-weight: bold;
+}
