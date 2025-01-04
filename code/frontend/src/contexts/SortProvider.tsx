@@ -48,6 +48,7 @@ export const SortProvider = ({ children }: { children: ReactNode }) => {
       setPivotElement(pivotElement);
     }
     if (selectionElement) {
+      // const newSelectionElement = [-1, ...selectionElement]
       setSelectionElement(selectionElement);
     }
   };

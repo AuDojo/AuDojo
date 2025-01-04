@@ -8,8 +8,6 @@
   margin: 0;
 
   border: 1px solid rgb(220, 220, 220);
-  border-left-width: 0.5px;
-  border-right-width: 0.5px;
   outline: none;
 
   /* Dark grey input text */
@@ -87,13 +85,17 @@
 }
 
 /* Pivot element */
+/* Selection element */
+.selected-cell,
 .pivot-cell {
   font-weight: bold;
   border-radius: 5px;
 }
+.selected-cell.incorrect,
 .pivot-cell.incorrect {
   border-color: rgb(114, 28, 36);
 }
+.selected-cell.correct,
 .pivot-cell.correct {
   border-color: rgb(21, 87, 36);
 }

@@ -12,8 +12,17 @@ const DEFAULT_SPEED_INDEX = 3;
 const SPEED_DISPLAY = ["0.25", "0.5", "0.75", "1.0", "1.25", "1.5", "15"];
 
 const SolveButton = () => {
-  const { step, stepsList, inputCellValues, mergeRanges, sortTypeRef, setStep, setInputCellValues, setCellValidation } =
-    useSortContext();
+  const {
+    step,
+    stepsList,
+    inputCellValues,
+    mergeRanges,
+    sortTypeRef,
+    selectionElement,
+    setStep,
+    setInputCellValues,
+    setCellValidation,
+  } = useSortContext();
   const { refs } = useTutorialModalContext();
 
   const { timeoutRef, solveAllStatus, setSolveAllStatus } = useButtonContext();
@@ -41,9 +50,17 @@ const SolveButton = () => {
 
       // TODO: Clean up this code, maybe own validateMergeSortLine
       const validationResult = userValues.map((value, index) => {
+        // Check if cell is in merge range
         const isInMergeRange = currentMergeRange && index >= currentMergeRange[0] && index <= currentMergeRange[1];
 
-        if (sortType !== SortType.MergeSort || isInMergeRange) {
+        // Check if cell is selected from selection sort
+        const isSelected =
+          selectionElement.length >= currentStep &&
+          (index === selectionElement[currentStep - 1] || index === currentStep - 1);
+
+        if (sortType === SortType.SelectionSort && !isSelected) {
+          return value === "" ? true : Number(value) === correctValues[index];
+        } else if (sortType !== SortType.MergeSort || isInMergeRange) {
           return Number(value) === correctValues[index];
         } else {
           return value === "" ? true : Number(value) === correctValues[index];
