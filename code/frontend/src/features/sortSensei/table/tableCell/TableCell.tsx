@@ -68,10 +68,8 @@ const TableCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
   }, [rowIndex, columnIndex, stepsList, inputCellValues, cellValidation, mergeRanges, sortTypeRef, pivotElement]);
 
   const isSelected = () => {
-    console.log("selectionElement: ", selectionElement, "sortType: ", sortTypeRef.current);
-    if (sortTypeRef.current === SortType.SelectionSort && rowIndex < step) {
-      console.log("hello");
-      return columnIndex === selectionElement[rowIndex] || columnIndex === rowIndex;
+    if (sortTypeRef.current === SortType.SelectionSort && rowIndex < step && rowIndex !== 0) {
+      return columnIndex === selectionElement[rowIndex - 1] || columnIndex === rowIndex - 1;
     }
   };
 
