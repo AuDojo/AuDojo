@@ -16,5 +16,13 @@
       "after-partition": "After partitioning, all elements smaller than {{pivot}} are on its left, and larger on the right. <b> Choose {{nextPivot}} </b> as <b>next</b> pivot element. <br /> <b> The used pivot element {{pivot}} is marked.</b>",
       "end": "<b> The used pivot element {{pivot}} is marked</b> <br /> Sorting is complete!"
     }
+  },
+  "selectionSort": {
+    "guide": {
+      "header": "Selection Sort Guide",
+      "start": "Starts with the current element at <b>index 0</b>.<br /> Find the smallest from the remaining elements. <br />",
+      "swap": "Swap <b>current ({{currentElement}})</b> with <b>smallest ({{smallestElement}})</b>. <br /> Move to <b>index {{move}}</b> and find the smallest in the unsorted subarray.<br />",
+      "end": "Sorting is complete!"
+    }
   }
 }
