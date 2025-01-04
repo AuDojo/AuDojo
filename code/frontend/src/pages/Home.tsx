@@ -12,7 +12,7 @@ const Home = () => {
     document.title = "AuDojo";
   }, []);
 
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation('home');
 
   return (
     <div className={generalStyles.container}>
@@ -25,7 +25,7 @@ const Home = () => {
           <img className={mainStyles["audojo-logo"]} src={audoLogo} alt="logo of audojo" />
         </h1>
         <p className={mainStyles["main-welcome-message"]}>
-          {t("welcomeMessage")}
+          {t("home-welcomeMessage")}
         </p>
         <HomeButtons />
       </main>

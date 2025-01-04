@@ -33,6 +33,7 @@ function LanguageSelector() {
     }
 
     i18n.changeLanguage(selectedLanguage);
+    console.log("Language: " + selectedLanguage);
   }
 
   return (
