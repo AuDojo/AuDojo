@@ -1,18 +1,22 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import Backend from "i18next-http-backend";
 
-i18n.use(initReactI18next).init({
+i18n
+  .use(Backend)
+  .use(initReactI18next)
+  .init({
     lng: "de",
     fallbackLng: "de",
     keySeparator: false,
     interpolation: {
-        escapeValue: false,
+      escapeValue: false,
     },
-    ns: ['footer', 'header', 'home', 'sortsensei-tutorial', 'sortsensei', 'treetutor', 'treetutor-tutorial'],
+    defaultNS:"home",
+    ns: ["footer", "header", "home", "sortsensei-tutorial", "sortsensei", "treetutor", "treetutor-tutorial"],
     backend: {
-        loadPath:"/{{lng}}/{{ns}}.json"
-    }
-
-});
+      loadPath: "translation/{{lng}}/{{ns}}.json",
+    },
+  });
 
 export default i18n;
