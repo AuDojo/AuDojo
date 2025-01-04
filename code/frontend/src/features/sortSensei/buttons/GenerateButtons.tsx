@@ -4,7 +4,7 @@ import { useSortContext } from "@hooks/index";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTutorialModalContext } from "../hooks";
 import buttonStyles from "./Button.module.css";
-import { useButtonContext } from "./hooks/useButtonContext";
+import { useButtonContext } from "./hooks/";
 
 const GenerateButtons = () => {
   const { setStep, fetchStepsList, stepsList, sharedArray } = useSortContext();
