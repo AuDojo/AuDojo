@@ -1,4 +1,16 @@
 {
+  "length-input-info": "Länge vom zufälligem Array: ({{min}}-{{max}})",
+  "speed-info": "Animations geschwindigkeit",
+  "tutorialModal": {},
+  "button": {
+    "new-custom": "🛠️ Eigenes Array",
+    "new-random": "🎲 Zufälliges Array"
+  },
+  "error-message": {
+    "range": "Bitte gebe nur Zahlen zwischen den Werten {{min}} und {{max}} ein.",
+    "to-few": "Bitte gebe mindestens {{min}} Zahlen ein.",
+    "to-many": "Bitte gebe höchstens {{max}} Zahlen ein."
+  },
   "mergeSort": {
     "guide": {
       "start": "Starte Merge Sort!",
@@ -13,7 +25,7 @@
     "guide": {
       "heading": "Quick Sort Hilfe",
       "choose": "Wähle das <b> letzte Element {{lastElement}} </b> als pivot Element.",
-      "after-partition": "Nach dem aufteilen, sind alle Elemente, welche kleiner als das pivot Element {{pivot}} sind, auf dessem linken, und größere auf der rechten Seite. <b> Wähle {{nextPivot}} </b> als <b>das nächste</b> pivot element. <br /> <b> Das benutzte pivot Element {{pivot}} wurde markiert.</b>",
+      "after-partition": "Nach dem Aufteilen, sind alle Elemente, welche kleiner als das pivot Element {{pivot}} sind, auf dessem linken, und größere auf der rechten Seite. <b> Wähle {{nextPivot}} </b> als <b>das nächste</b> pivot element. <br /> <b> Das benutzte pivot Element {{pivot}} wurde markiert.</b>",
       "end": "<b> Das benutzte pivot Element {{pivot}} wurde markiert </b> <br /> Das Sortieren ist abgeschlossen!"
     }
   },

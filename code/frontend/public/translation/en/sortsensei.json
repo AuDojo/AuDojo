@@ -1,4 +1,16 @@
 {
+  "length-input-info": "Random array length: ({{min}}-{{max}})",
+  "speed-info": "Animation speed",
+  "tutorialModal": {},
+  "button": {
+    "new-random": "🎲 Random Array",
+    "new-custom": "🛠️ Custom Array"
+  },
+  "error-message": {
+    "range": "Please enter numbers only in the range {{min}} to {{max}}.",
+    "to-few": "Please enter at least {{min}} numbers.",
+    "to-many": "Please enter at most {{max}} numbers."
+  },
   "mergeSort": {
     "guide": {
       "start": "Starting Merge Sort!",
