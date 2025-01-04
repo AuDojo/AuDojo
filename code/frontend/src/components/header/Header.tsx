@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import headerStyles from "./Header.module.css";
 import HeaderLogo from "./HeaderLogo.tsx";
+import Menu from "./LanguageSelector.tsx";
+import LanguageSelector from "./LanguageSelector.tsx";
 
 const HeaderNavItem = ({ to, text }: { to: string; text: string }) => {
   return (
@@ -29,6 +31,7 @@ const HeaderNavItems = () => {
         </div>
         <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="TreeTutor" />
         <HeaderNavItem to="/kontakt" text="Kontakt" />
+        <LanguageSelector/>
       </div>
 
       <div className={`${headerStyles["hamburger"]} ${isOpen ? headerStyles.change : ""}`} onClick={toogleMenu}>

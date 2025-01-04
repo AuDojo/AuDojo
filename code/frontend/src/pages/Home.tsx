@@ -5,11 +5,14 @@ import { HomeButtons } from "@features/homepage/homeButtons";
 import generalStyles from "@styles/homepage/general.module.css";
 import mainStyles from "@styles/homepage/Main.module.css";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
   useEffect(() => {
     document.title = "AuDojo";
   }, []);
+
+  const { t, i18n } = useTranslation();
 
   return (
     <div className={generalStyles.container}>
@@ -22,7 +25,7 @@ const Home = () => {
           <img className={mainStyles["audojo-logo"]} src={audoLogo} alt="logo of audojo" />
         </h1>
         <p className={mainStyles["main-welcome-message"]}>
-          Willkommen bei AuDojo! Dein Dojo für Algorithmen und Datenstrukturen
+          {t("welcomeMessage")}
         </p>
         <HomeButtons />
       </main>

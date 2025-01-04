@@ -1,0 +1,36 @@
+
+.selectContainer {
+    position: relative;
+    width: fit-content; /* Breite des Dropdowns */
+    display: flex;
+}
+  
+.customSelect {
+    border: none; /* Entfernt den Rahmen */
+    background-color: transparent; /* Hintergrund transparent */
+    font-size: 16px; /* Schriftgröße anpassen */
+    color: #333; /* Textfarbe */
+    padding: 8px; /* Innenabstand */
+    border-radius: 4px; /* Runde Ecken */
+    appearance: none; /* Entfernt Standard-Browser-Styling */
+    -webkit-appearance: none; /* Für Safari */
+    -moz-appearance: none; /* Für Firefox */
+    cursor: pointer; /* Zeigt den Zeiger an */
+  }
+  
+.customSelect:focus {
+    outline: none; /* Entfernt den Fokusrahmen */
+}
+
+.dropdownArrow {
+    position: absolute;
+    right: 35px; /* Abstand vom rechten Rand des Selects */
+    top: 50%;
+    transform: translateY(-50%); /* Vertikal zentrieren */
+    pointer-events: none; /* Verhindert, dass der Pfeil anklickbar ist */
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #333; 
+}
