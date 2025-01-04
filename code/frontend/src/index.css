@@ -3,6 +3,8 @@
   --top-layer: 1000;
   --overlap-layer: calc(var(--top-layer) / 2);
   font-family: "Open Sans", Helvetica, Verdana, Arial, sans-serif;
+  --maincolor-red: rgb(190, 30, 60);
+  --maincolor-darkblue: rgb(0, 63, 87);
 }
 
 body {
