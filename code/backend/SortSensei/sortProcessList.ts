@@ -7,7 +7,7 @@ export class SortProcessList {
   #mergeRange: [number, number][] = []; // Array of Tuples
   #pivotElement: [number, number | null][] = [];
   #selectedElement: number[] = [];
-  #bubbleElement: number[][] = [];
+  #bubbleElement: number[] = [];
 
   /**
    * Creates an object in which the single steps of a sorting algorithm can be stored.
@@ -78,7 +78,7 @@ export class SortProcessList {
    */
   pushBubbleElement(selected_index: number) {
     let index = this.#bubbleElement.length;
-    this.#bubbleElement[index] = [selected_index, selected_index + 1];
+    this.#bubbleElement[index] = selected_index;
 
     console.log("bubble_elements: ", this.#bubbleElement[index]);
   }
