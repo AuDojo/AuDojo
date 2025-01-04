@@ -1,18 +1,22 @@
 import { ButtonContextProvider, SortProvider, TutorialModalProvider } from "@contexts/index";
 import { GenerateButtons, SolveButtons } from "@features/sortSensei/buttons";
 import { BubbleSortGuide } from "@features/sortSensei/guide";
-import { SortHeader } from "@features/sortSensei/sortHeader";
 import { SortingTable } from "@features/sortSensei/table";
 import { SortVisualizer } from "@src/features/sortSensei/sortVisualizer";
 import styles from "@styles/sortSensei/general.module.css";
 import useSetTitle from "../hooks/title";
+import { SideBarMenu } from "@features/sortSensei/sideBarMenu";
+import { Header } from "@src/components/header";
+import { Footer } from "@src/components/footer";
 
 const BubbleSort = () => {
   useSetTitle("BubbleSort");
   return (
+    <>
     <SortProvider>
       <TutorialModalProvider>
-        <SortHeader />
+        <Header />
+        <SideBarMenu />
         <div className={styles.container}>
           <div>
             <BubbleSortGuide />
@@ -22,7 +26,6 @@ const BubbleSort = () => {
             <div className={styles["inner-table-buttons-container"]}>
               {/* Table */}
               <SortingTable />
-              {/* right buttons */}
               <ButtonContextProvider>
                 <GenerateButtons />
                 <SolveButtons />
@@ -32,6 +35,8 @@ const BubbleSort = () => {
         </div>
       </TutorialModalProvider>
     </SortProvider>
+    <Footer />
+    </>
   );
 };
 

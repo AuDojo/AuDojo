@@ -7,15 +7,15 @@ import {
   SelectionsortTutorial,
   TutorialSidebar,
 } from "@features/tutorial/components";
-import { SortHeader } from "@src/features/sortSensei/sortHeader";
 import generalStyles from "@styles/homepage/general.module.css";
 import useSetTitle from "../hooks/title";
+import { Header } from "@src/components/header";
 
 const Tutorial = () => {
   useSetTitle("Tutorial");
   return (
     <div className={generalStyles.container}>
-      <SortHeader />
+      <Header />
       <main>
         <RickRollTroll />
         <TutorialSidebar title="Mergesort" subtitle={false}>
