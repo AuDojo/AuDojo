@@ -1,2 +1,2 @@
-export * from "../features/sortSensei/buttons/hooks/useButtonContext";
+export * from "./useSetTitle";
 export * from "./useSortContext";

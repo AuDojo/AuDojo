@@ -1,9 +1,9 @@
 import informatikzentrumJPG from "@assets/informatikzentrum.jpg";
 import { Footer } from "@components/footer";
 import { Header } from "@components/header";
+import { useSetTitle } from "@hooks/useSetTitle";
 import kontaktStyles from "@styles/Kontakt/Kontakt.module.css";
 import React from "react";
-import useSetTitle from "../hooks/title";
 
 function Kontakt() {
   const maxChars = 1000;
