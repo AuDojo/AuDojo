@@ -8,11 +8,10 @@ i18n
   .init({
     lng: "de",
     fallbackLng: "de",
-    keySeparator: false,
     interpolation: {
       escapeValue: false,
     },
-    defaultNS:"home",
+    defaultNS: "home",
     ns: ["footer", "header", "home", "sortsensei-tutorial", "sortsensei", "treetutor", "treetutor-tutorial"],
     backend: {
       loadPath: "translation/{{lng}}/{{ns}}.json",
