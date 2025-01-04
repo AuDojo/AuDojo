@@ -31,7 +31,6 @@ const HeaderNavItems = () => {
         </div>
         <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="TreeTutor" />
         <HeaderNavItem to="/kontakt" text="Kontakt" />
-        <LanguageSelector/>
       </div>
 
       <div className={`${headerStyles["hamburger"]} ${isOpen ? headerStyles.change : ""}`} onClick={toogleMenu}>
@@ -47,6 +46,7 @@ const Header = () => {
     <div className={headerStyles["header-container"]}>
       <HeaderLogo />
       <HeaderNavItems />
+        <LanguageSelector/>
     </div>
   );
 };
