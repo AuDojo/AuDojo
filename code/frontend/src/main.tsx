@@ -5,14 +5,14 @@ import { SortProvider } from "./contexts";
 import "./index.css";
 import {
   BubbleSort,
+  Datenschutz,
   Home,
+  Impressum,
   Kontakt,
   MergeSort,
   QuickSort,
   SelectionSort,
   Tutorial,
-  Datenschutz,
-  Impressum,
 } from "./pages";
 
 const router = createBrowserRouter(
