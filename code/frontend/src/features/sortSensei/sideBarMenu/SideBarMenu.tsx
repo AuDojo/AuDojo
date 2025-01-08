@@ -38,16 +38,6 @@ const SideBarMenu = () => {
 
   return (
     <>
-      {/* <div className={styles["header-container"]}>
-        <Link to={"/"}>
-          <div className={styles["header-logo-container"]}>
-            <div className={styles["header-logo-text"]}>AUDOJO</div>
-            <img className={styles["header-logo-image"]} src={audojoLogo} alt="audojo logo" />
-          </div>
-        </Link>
-        <HeaderNavItems />
-      </div> */}
-
       <div className={styles["sort-nav"]}>
         <div className={`${styles["sort-nav-list"]}`}>
           <HilfeButton to={paths.tutorial} text="Beispiele" />

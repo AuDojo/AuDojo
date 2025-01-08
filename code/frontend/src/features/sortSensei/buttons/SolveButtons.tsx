@@ -1,4 +1,3 @@
-import { Tooltip } from "@components/Tooltip";
 import { SortType } from "@constants/index";
 import { useSortContext } from "@hooks/index";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -254,27 +253,36 @@ const SolveButton = () => {
         />
       </div>
       <div className={buttonStyles["arrow-button-container"]}>
-        <Tooltip direction="top" content="J">
-          <button className={`${buttonStyles["arrow-button"]}`} onClick={handleGoBack}>
-            ← Back
-          </button>
-        </Tooltip>
-        <Tooltip direction="top" content="K">
-          <button className={`${buttonStyles["arrow-button"]}`} onClick={handleGoNext}>
-            Next →
-          </button>
-        </Tooltip>
+        <button
+          aria-label="Press [J]"
+          data-tooltip="top"
+          className={`${buttonStyles["arrow-button"]}`}
+          onClick={handleGoBack}
+        >
+          ← Back
+        </button>
+        <button
+          aria-label="Press [K]"
+          data-tooltip="top"
+          className={`${buttonStyles["arrow-button"]}`}
+          onClick={handleGoNext}
+        >
+          Next →
+        </button>
       </div>
 
       <div className={buttonStyles["solve-buttons"]}>
-        <Tooltip direction="top" content="A">
-          <button onClick={handleSolveAll}>{buttonText}</button>
-        </Tooltip>
-        <Tooltip direction="top" content="S">
-          <button className={buttonStyles["try-again-button"]} onClick={handleTryAgain}>
-            Reset ↺
-          </button>
-        </Tooltip>
+        <button aria-label="Press [A]" data-tooltip="top" onClick={handleSolveAll}>
+          {buttonText}
+        </button>
+        <button
+          aria-label="Press [S]"
+          data-tooltip="top"
+          className={buttonStyles["try-again-button"]}
+          onClick={handleTryAgain}
+        >
+          Reset ↺
+        </button>
       </div>
     </div>
   );
