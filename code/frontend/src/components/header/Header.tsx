@@ -41,10 +41,10 @@ const HeaderNavItems = () => {
 };
 const Header = () => {
   return (
-    <div className={headerStyles["header-container"]}>
+    <header className={headerStyles["header-container"]}>
       <HeaderLogo />
       <HeaderNavItems />
-    </div>
+    </header>
   );
 };
 

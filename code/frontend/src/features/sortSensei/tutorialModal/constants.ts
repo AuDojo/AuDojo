@@ -1,4 +1,4 @@
-import { RefKeys } from "@src/contexts";
+import { RefKeys } from "@/contexts";
 
 export const HIGHLIGHT_CLASS = "highlight";
 

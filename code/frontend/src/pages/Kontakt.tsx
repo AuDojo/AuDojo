@@ -1,6 +1,4 @@
 import informatikzentrumJPG from "@assets/informatikzentrum.jpg";
-import { Footer } from "@components/footer";
-import { Header } from "@components/header";
 import { useSetTitle } from "@hooks/useSetTitle";
 import kontaktStyles from "@styles/Kontakt/Kontakt.module.css";
 import React from "react";
@@ -152,7 +150,6 @@ function Kontakt() {
   useSetTitle("Kontakt");
   return (
     <div className={kontaktStyles.generalContainer}>
-      <Header />
       <div className={kontaktStyles.kontaktMessageContainer}>
         <p className={kontaktStyles.kontaktMessage}> Kontakt </p>
       </div>
@@ -254,7 +251,6 @@ function Kontakt() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

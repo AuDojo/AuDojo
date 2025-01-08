@@ -1,4 +1,4 @@
-import { HIGHLIGHT_CLASS } from "@src/features/sortSensei/tutorialModal/constants";
+import { HIGHLIGHT_CLASS } from "@/features/sortSensei/tutorialModal/constants";
 import React, { ReactNode, useRef, useState } from "react";
 import { RefKeys, TutorialModalContext } from "./TutorialModalContext";
 

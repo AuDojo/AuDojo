@@ -1,14 +1,9 @@
-import { Header } from "@src/components/header";
-import { Footer } from "@src/components/footer";
 import generalStyles from "@styles/homepage/general.module.css";
 import mainStyles from "@styles/homepage/Main.module.css";
 
 const Datenschutz = () => {
   return (
     <div className={generalStyles.container}>
-      <header>
-        <Header />
-      </header>
       <div className={mainStyles["bureaucratic-container"]}>
         <h1 className={mainStyles["bureaucratic-heading"]}>
           <div>Datenschutzerklärung</div>
@@ -67,8 +62,6 @@ const Datenschutz = () => {
         </div>
         <p className={mainStyles["bureaucratic-subheading"]}></p>
       </div>
-
-      <Footer />
     </div>
   );
 };
