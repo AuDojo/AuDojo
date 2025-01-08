@@ -1,3 +1,11 @@
+svg {
+  --light-blue: rgb(116, 192, 252);
+  --green: rgb(95, 209, 112);
+  --gold: rgb(252, 203, 64);
+  --soft-yellow: rgb(255, 211, 87);
+  --red: rgb(231, 65, 65);
+}
+
 .viz-container {
   display: flex;
   flex-direction: row;
@@ -5,26 +13,41 @@
   height: 100%;
   column-gap: 10px;
   justify-content: center;
+  transition: transform 8s ease;
 }
-.bar-container {
-  display: flex;
-  flex-direction: column;
-  width: calc(100% / 13);
-  justify-content: end;
-  text-align: center;
+.viz-container svg {
+  display: block;
+  border: 3px solid var(--maincolor-darkblue);
+  border-radius: 15px;
 }
-.bar {
-  background-color: rgb(0, 63, 87);
-  margin: 0 auto;
-  width: 100%;
-  max-width: 50px;
-}
+/* .viz-container rect {
+  fill: var(--maincolor-darkblue);
+} */
 
 text {
   font-size: 12px;
-  fill: #495057;
+  fill: var(--maincolor-darkblue);
 }
 
 rect {
   transition: fill 0.3s ease;
+}
+.viz-container g {
+  transform-origin: center;
+  will-change: transform;
+}
+.bar-base {
+  fill: var(--light-blue);
+}
+.bar-text {
+  color: var(--maincolor-darkblue);
+  font-size: 15px;
+  text-anchor: middle;
+}
+.swapped-bar {
+  fill: var(--maincolor-red);
+}
+
+.sorted-bar {
+  fill: var(--green);
 }
