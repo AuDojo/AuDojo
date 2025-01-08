@@ -9,6 +9,7 @@ interface BarData {
   index: number;
   previousIndex: number;
   isSorted: boolean;
+  isSwapped: boolean;
 }
 interface BubbleSortProps {
   array: number[];
@@ -24,18 +25,6 @@ const margin = {
   left: 37,
 };
 const adjustedMarginLeft = margin.left - 12;
-
-/**
- * Determines if the current or adjacent index is swapped in the bubble sort process.
- *
- * @param i - The current index being evaluated.
- * @param bubbleStep - The index of the element that was last bubbled in the sorting process.
- * @returns true if the current index or the previous index matches the bubbled element; otherwise, false.
- */
-
-const isSwapped = (i: number, bubbleStep: number) => {
-  return i === bubbleStep || i - 1 === bubbleStep;
-};
 
 /**
  * Transforms the given array into an array of BarData objects.
@@ -65,6 +54,7 @@ const getData = ({ array, stepsListLength, i, bubbleElement }: BubbleSortProps):
       index,
       previousIndex,
       isSorted,
+      isSwapped: index === bubbleElement[i - 1] || index - 1 === bubbleElement[i - 1],
     };
   });
 };
@@ -146,7 +136,7 @@ const BubbleSortVisualizer = () => {
 
     // Highlight swapped bars
     bars
-      .filter((d) => i >= 1 && isSwapped(d.index, bubbleElement[i - 1]))
+      .filter((d) => i >= 1 && d.isSwapped)
       .selectAll("rect")
       .attr("class", style["swapped-bar"]);
 
