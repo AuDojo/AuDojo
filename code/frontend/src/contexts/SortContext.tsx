@@ -20,6 +20,8 @@ export interface SortContextProps {
   pivotElement: [number, number][];
   setPivotElement: React.Dispatch<React.SetStateAction<[number, number][]>>;
   selectionElement: number[];
+  bubbleElement: number[];
+  setBubbleElement: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
 // Create context with default values
