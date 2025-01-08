@@ -1,3 +1,4 @@
+import { paths } from "@/constants";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./SideBarMenu.module.css";
@@ -49,32 +50,32 @@ const SideBarMenu = () => {
 
       <div className={styles["sort-nav"]}>
         <div className={`${styles["sort-nav-list"]}`}>
-          <HilfeButton to="/tutorial" text="Beispiele" />
+          <HilfeButton to={paths.tutorial} text="Beispiele" />
 
           <NavItem
             activeSort={activeSort === "mergesort"}
             onClick={() => setActiveSort("mergesort")}
-            to="/mergesort"
+            to={paths.mergeSort}
             text="MergeSort"
           />
 
           <NavItem
             activeSort={activeSort === "quicksort"}
             onClick={() => setActiveSort("quicksort")}
-            to="/quicksort"
+            to={paths.quickSort}
             text="QuickSort"
           />
           <NavItem
             activeSort={activeSort === "bubblesort"}
             onClick={() => setActiveSort("bubblesort")}
-            to="/bubblesort"
+            to={paths.bubbleSort}
             text="BubbleSort"
           />
 
           <NavItem
             activeSort={activeSort === "selectionsort"}
             onClick={() => setActiveSort("selectionsort")}
-            to="/selectionsort"
+            to={paths.selectionSort}
             text="SelectionSort"
           />
         </div>

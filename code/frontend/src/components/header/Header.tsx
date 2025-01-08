@@ -1,3 +1,4 @@
+import { paths } from "@/constants";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import headerStyles from "./Header.module.css";
@@ -19,16 +20,16 @@ const HeaderNavItems = () => {
     <div className={headerStyles["header-nav"]}>
       <div className={`${headerStyles["header-nav-list"]} ${isOpen ? headerStyles.open : ""}`}>
         <div className={headerStyles["dropdown"]}>
-          <HeaderNavItem to="/mergesort" text="SortSensei ▼" />
+          <HeaderNavItem to={paths.mergeSort} text="SortSensei ▼" />
           <div className={headerStyles["dropdown-content"]}>
-            <HeaderNavItem to="/mergesort" text="MergeSort" />
-            <HeaderNavItem to="/quicksort" text="QuickSort" />
-            <HeaderNavItem to="/bubblesort" text="BubbleSort" />
-            <HeaderNavItem to="/selectionsort" text="SelectionSort" />
+            <HeaderNavItem to={paths.mergeSort} text="MergeSort" />
+            <HeaderNavItem to={paths.quickSort} text="QuickSort" />
+            <HeaderNavItem to={paths.bubbleSort} text="BubbleSort" />
+            <HeaderNavItem to={paths.selectionSort} text="SelectionSort" />
           </div>
         </div>
         <HeaderNavItem to="https://aud.ibr.cs.tu-bs.de" text="TreeTutor" />
-        <HeaderNavItem to="/kontakt" text="Kontakt" />
+        <HeaderNavItem to={paths.kontakt} text="Kontakt" />
       </div>
 
       <div className={`${headerStyles["hamburger"]} ${isOpen ? headerStyles.change : ""}`} onClick={toogleMenu}>
