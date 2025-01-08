@@ -1,7 +1,7 @@
 import { useTutorialModalContext } from "@features/sortSensei/hooks";
-import { tutorialSteps } from "@src/constants";
 import classNames from "classnames/bind";
 import { useEffect, useRef } from "react";
+import { tutorialSteps } from "./constants";
 import ProgressBar from "./progressBar/ProgressBar";
 import styles from "./TutorialModal.module.css";
 

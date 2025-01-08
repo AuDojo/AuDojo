@@ -1,12 +1,10 @@
+import { SortVisualizer } from "@/features/sortSensei/sortVisualizer";
 import { ButtonContextProvider, SortProvider, TutorialModalProvider } from "@contexts/index";
 import { GenerateButtons, SolveButtons } from "@features/sortSensei/buttons";
 import { QuickSortGuide } from "@features/sortSensei/guide";
 import { SideBarMenu } from "@features/sortSensei/sideBarMenu";
 import { SortingTable } from "@features/sortSensei/table";
 import { useSetTitle } from "@hooks/useSetTitle";
-import { Footer } from "@src/components/footer";
-import { Header } from "@src/components/header";
-import { SortVisualizer } from "@src/features/sortSensei/sortVisualizer";
 import styles from "@styles/sortSensei/general.module.css";
 
 const QuickSort = () => {
@@ -15,7 +13,6 @@ const QuickSort = () => {
     <>
       <SortProvider>
         <TutorialModalProvider>
-          <Header />
           <SideBarMenu />
           <div className={styles.container}>
             <div>
@@ -36,7 +33,6 @@ const QuickSort = () => {
           </div>
         </TutorialModalProvider>
       </SortProvider>
-      <Footer />
     </>
   );
 };
