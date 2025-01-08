@@ -28,14 +28,14 @@ export const App = () => {
         <Routes>
           <Route path={paths.home} element={<Home />} />
           <Route path={paths.kontakt} element={<Kontakt />} />
-          <Route path={paths.sortSensei.mergeSort} element={<MergeSort />} />
-          <Route path={paths.sortSensei.quickSort} element={<QuickSort />} />
-          <Route path={paths.sortSensei.bubbleSort} element={<BubbleSort />} />
-          <Route path={paths.sortSensei.selectionSort} element={<SelectionSort />} />
+          <Route path={paths.mergeSort} element={<MergeSort />} />
+          <Route path={paths.quickSort} element={<QuickSort />} />
+          <Route path={paths.bubbleSort} element={<BubbleSort />} />
+          <Route path={paths.selectionSort} element={<SelectionSort />} />
           <Route path={paths.tutorial} element={<Tutorial />} />
           <Route path={paths.kontakt} element={<Kontakt />} />
-          <Route path={paths.legal.datenschutz} element={<Datenschutz />} />
-          <Route path={paths.legal.impressum} element={<Impressum />} />
+          <Route path={paths.datenschutz} element={<Datenschutz />} />
+          <Route path={paths.impressum} element={<Impressum />} />
           <Route path="*" element={<NotFound />} /> {/* Invalid route*/}
         </Routes>
       </Suspense>

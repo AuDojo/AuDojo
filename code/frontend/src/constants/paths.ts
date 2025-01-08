@@ -1,15 +1,16 @@
 export const paths = {
   home: "/",
-  sortSensei: {
-    mergeSort: "/mergesort",
-    quickSort: "/quicksort",
-    bubbleSort: "/bubblesort",
-    selectionSort: "/selectionsort",
-  },
-  tutorial: "/tutorial",
   kontakt: "/kontakt",
-  legal: {
-    datenschutz: "/datenschutz",
-    impressum: "/impressum",
-  },
+
+  // Legal
+  datenschutz: "/datenschutz",
+  impressum: "/impressum",
+
+  // SortSensei
+  mergeSort: "/mergesort",
+  quickSort: "/quicksort",
+  bubbleSort: "/bubblesort",
+  selectionSort: "/selectionsort",
+
+  tutorial: "/tutorial",
 } as const;
