@@ -13,7 +13,6 @@
   transform: translateX(50%);
   pointer-events: none;
   position: absolute;
-  z-index: var(--top-layer);
 }
 
 /* Tooltip content */
@@ -62,7 +61,7 @@
   transform: translateX(50%);
 }
 [data-tooltip^="bottom"][aria-label]::before {
-  top: calc(var(--tooltip-arrow-size) + 100%);
+  top: calc(var(--tooltip-arrow-size) + 100% + var(--tooltip-offset));
   right: 50%;
   transform: translateX(50%);
 }
@@ -72,12 +71,12 @@
   border-right-color: #0000;
   border-left-width: var(--tooltip-arrow-size);
   border-left-color: #0000;
-  top: 100%;
+  top: calc(100% + var(--tooltip-offset));
   right: 50%;
   transform: translateX(50%);
 }
 [data-tooltip^="left"][aria-label]::before {
-  right: calc(1rem + 100%);
+  right: calc(var(--tooltip-arrow-size) + var(--tooltip-offset) + 100%);
   bottom: 50%;
   transform: translateY(50%);
 }
@@ -88,11 +87,11 @@
   border-bottom-width: var(--tooltip-arrow-size);
   border-bottom-color: #0000;
   bottom: 50%;
-  right: calc(var(--tooltip-arrow-size) + 100%);
+  right: calc(var(--tooltip-offset) + 100%);
   transform: translateY(50%);
 }
 [data-tooltip^="right"][aria-label]::before {
-  left: calc(1rem + 100%);
+  left: calc(var(--tooltip-arrow-size) + 100% + var(--tooltip-offset));
   bottom: 50%;
   transform: translateY(50%);
 }
@@ -103,7 +102,7 @@
   border-bottom-width: var(--tooltip-arrow-size);
   border-bottom-color: #0000;
   bottom: 50%;
-  left: calc(var(--tooltip-arrow-size) + 100%);
+  left: calc(var(--tooltip-offset) + 100%);
   transform: translateY(50%);
 }
 

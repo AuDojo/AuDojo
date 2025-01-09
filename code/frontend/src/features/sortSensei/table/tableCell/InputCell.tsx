@@ -24,6 +24,7 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
     cellValidation,
     pivotElement,
     selectionElement,
+    bubbleElement,
   } = useSortContext();
 
   const { handleCellChange, handleCellKeyDown } = useTableUtils();
@@ -55,6 +56,13 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
     // Check if element is pivot
     const isPivot = () => columnIndex === pivotPair[1];
 
+    const isSelected = (): boolean => {
+      if (sortTypeRef.current === SortType.SelectionSort && rowIndex < step) {
+        return columnIndex === selectionElement[rowIndex - 1] || columnIndex === rowIndex - 1;
+      }
+      return false;
+    };
+
     return {
       sortType,
       num,
@@ -63,15 +71,11 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
       mergeRange,
       isInMergeRange: isInMergeRange(),
       isPivot: isPivot(),
+      isSelected: isSelected(),
     };
   }, [rowIndex, columnIndex, stepsList, inputCellValues, cellValidation, mergeRanges, sortTypeRef, pivotElement]);
 
-  const isSelected = () => {
-    if (sortTypeRef.current === SortType.SelectionSort && rowIndex < step) {
-      return columnIndex === selectionElement[rowIndex - 1] || columnIndex === rowIndex - 1;
-    }
-  };
-
+  // Tooltip content for incorrect input
   const tooltipContent = cellData.inputCellValue ? `Wrong: ${cellData.inputCellValue}` : "Missing input";
 
   return (
@@ -82,15 +86,28 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
     >
       <input
         className={cx("cell-input", {
+          // Cell Validation styles
+          correct: cellData.validation === true,
+          incorrect: cellData.validation === false,
+          "pivot-cell": cellData.isPivot && rowIndex < step,
+
+          // MergeSort styles
           "in-merge-range": cellData.sortType === SortType.MergeSort && cellData.isInMergeRange && rowIndex < step,
           "merge-range-start":
             cellData.sortType === SortType.MergeSort && columnIndex === cellData.mergeRange[0] && rowIndex < step,
           "merge-range-end":
             cellData.sortType === SortType.MergeSort && columnIndex === cellData.mergeRange[1] && rowIndex < step,
-          correct: cellData.validation === true,
-          incorrect: cellData.validation === false,
-          "pivot-cell": cellData.isPivot && rowIndex < step,
-          "selected-cell": isSelected(),
+
+          // SelectionSort styles
+          "selected-cell": cellData.isSelected,
+
+          // BubbleSort styles
+          "bubble-cell-first":
+            cellData.sortType === SortType.BubbleSort && columnIndex === bubbleElement[rowIndex - 1] && rowIndex < step,
+          "bubble-cell-second":
+            cellData.sortType === SortType.BubbleSort &&
+            columnIndex === bubbleElement[rowIndex - 1] + 1 &&
+            rowIndex < step,
         })}
         value={rowIndex < step ? cellData.num || "" : cellData.inputCellValue}
         readOnly={rowIndex < step}

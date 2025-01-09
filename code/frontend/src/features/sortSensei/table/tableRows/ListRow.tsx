@@ -1,4 +1,4 @@
-import { useSortContext } from "@hooks/index";
+import { useSortContext } from "@/hooks";
 import classNames from "classnames/bind";
 import ListCell from "../tableCell/ListCell";
 import styles from "./TableRow.module.css";
