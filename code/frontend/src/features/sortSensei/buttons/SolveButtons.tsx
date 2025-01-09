@@ -18,6 +18,7 @@ const SolveButton = () => {
     mergeRanges,
     sortTypeRef,
     selectionElement,
+    bubbleElement,
     setStep,
     setInputCellValues,
     setCellValidation,
@@ -48,21 +49,30 @@ const SolveButton = () => {
       const sortType = sortTypeRef.current;
 
       // TODO: Clean up this code, maybe own validateMergeSortLine
-      const validationResult = userValues.map((value, index) => {
+      const validationResult = userValues.map((value, currentColumn) => {
         // Check if cell is in merge range
-        const isInMergeRange = currentMergeRange && index >= currentMergeRange[0] && index <= currentMergeRange[1];
+        const isInMergeRange =
+          currentMergeRange && currentColumn >= currentMergeRange[0] && currentColumn <= currentMergeRange[1];
 
         // Check if cell is selected from selection sort
         const isSelected =
+          sortType === SortType.SelectionSort &&
           selectionElement.length >= currentStep &&
-          (index === selectionElement[currentStep - 1] || index === currentStep - 1);
+          (currentColumn === selectionElement[currentStep - 1] || currentColumn === currentStep - 1);
 
-        if (sortType === SortType.SelectionSort && !isSelected) {
-          return value === "" ? true : Number(value) === correctValues[index];
-        } else if (sortType !== SortType.MergeSort || isInMergeRange) {
-          return Number(value) === correctValues[index];
+        const isBubbleElement =
+          (sortType === SortType.BubbleSort && bubbleElement[currentStep - 1] === currentColumn) ||
+          bubbleElement[currentStep - 1] + 1 === currentColumn;
+
+        if (
+          (sortType === SortType.SelectionSort && !isSelected) ||
+          (sortType === SortType.MergeSort && !isInMergeRange) ||
+          (sortType === SortType.BubbleSort && !isBubbleElement)
+        ) {
+          // Skip validation for unselected / unmerged cells
+          return value === "" || Number(value) === correctValues[currentColumn];
         } else {
-          return value === "" ? true : Number(value) === correctValues[index];
+          return Number(value) === correctValues[currentColumn];
         }
       });
 

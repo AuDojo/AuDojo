@@ -13,6 +13,7 @@ export const SortProvider = ({ children }: { children: ReactNode }) => {
   const [cellValidation, setCellValidation] = useState<(boolean | null)[][]>([]);
   const [pivotElement, setPivotElement] = useState<[number, number][]>([]);
   const [selectionElement, setSelectionElement] = useState<number[]>([]);
+  const [bubbleElement, setBubbleElement] = useState<number[]>([]);
   const [sharedArray, setSharedArray] = useState<number[]>(() => {
     const storedArray = localStorage.getItem("sharedArray");
     return storedArray != undefined ? JSON.parse(storedArray) : defaultArray;
@@ -31,7 +32,8 @@ export const SortProvider = ({ children }: { children: ReactNode }) => {
     steps: number[][],
     mergeRange: [number, number][] | null,
     pivotElement: [number, number][] | null,
-    selectionElement: number[]
+    selectionElement: number[],
+    bubbleElement: number[]
   ) => {
     setStepsList(steps);
     setInputCellValues(steps.map((step, index) => (index === 0 ? [...step] : new Array(step.length).fill(""))));
@@ -50,6 +52,9 @@ export const SortProvider = ({ children }: { children: ReactNode }) => {
     if (selectionElement) {
       // const newSelectionElement = [-1, ...selectionElement]
       setSelectionElement(selectionElement);
+    }
+    if (bubbleElement) {
+      setBubbleElement(bubbleElement);
     }
   };
 
@@ -92,11 +97,11 @@ export const SortProvider = ({ children }: { children: ReactNode }) => {
         });
 
         const data = await response.json();
-        const { processList, mergeRange, pivotElement, selectionElement } = JSON.parse(data);
+        const { processList, mergeRange, pivotElement, selectionElement, bubbleElement } = JSON.parse(data);
         const fetchedStepsList: number[][] = processList;
 
         determineSortType();
-        initializeStates(fetchedStepsList, mergeRange, pivotElement, selectionElement);
+        initializeStates(fetchedStepsList, mergeRange, pivotElement, selectionElement, bubbleElement);
       } catch (error) {
         console.log("Error fetching sorting steps: ", error);
       }
@@ -129,6 +134,8 @@ export const SortProvider = ({ children }: { children: ReactNode }) => {
         pivotElement,
         setPivotElement,
         selectionElement,
+        bubbleElement,
+        setBubbleElement,
       }}
     >
       {children}
