@@ -14,7 +14,7 @@ const GenerateButtons = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { timeoutRef, setSolveAllStatus } = useButtonContext();
-  const { refs } = useTutorialModalContext();
+  const { highlightRefs } = useTutorialModalContext();
 
   // Set input value in submit field to the current array
   useEffect(() => {
@@ -128,7 +128,7 @@ const GenerateButtons = () => {
   }
 
   return (
-    <div className={buttonStyles["generate-buttons"]} ref={refs.generateButtons}>
+    <div className={buttonStyles["generate-buttons"]} ref={highlightRefs.generateButtons}>
       {/* <Tooltip direction="bottom" content="C"> */}
       <button
         aria-label={isSubmitting ? "Close [C]" : "Custom [C]"}

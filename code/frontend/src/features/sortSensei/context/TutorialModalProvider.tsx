@@ -4,12 +4,12 @@ import { TutorialModalContext } from "./TutorialModalContext";
 
 export const TutorialModalProvider = ({ children }: { children: ReactNode }) => {
   // Refs for focusable elements
-  const refs: Record<RefKeys, React.RefObject<HTMLDivElement | null>> = {
+  const highlightRefs: Record<RefKeys, React.RefObject<HTMLDivElement | null>> = {
     sortingTable: useRef<HTMLDivElement>(null),
     generateButtons: useRef<HTMLDivElement>(null),
     d3Visualizer: useRef<HTMLDivElement>(null),
     solveButtons: useRef<HTMLDivElement>(null),
   };
 
-  return <TutorialModalContext.Provider value={{ refs }}>{children}</TutorialModalContext.Provider>;
+  return <TutorialModalContext.Provider value={{ highlightRefs }}>{children}</TutorialModalContext.Provider>;
 };

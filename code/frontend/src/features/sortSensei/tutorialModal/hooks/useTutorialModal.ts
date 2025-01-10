@@ -10,11 +10,11 @@ import { useKeyboardNavigation } from "./useKeyboardNavigation";
  * Provides controls for opening, closing, and navigating through steps.
  */
 export const useTutorialModal = () => {
-  const { refs } = useTutorialModalContext(); // Access refs from context
+  const { highlightRefs } = useTutorialModalContext(); // Access refs from context
   const { step } = useTutorialSteps(); // Access step
 
   const [isOpen, setIsOpen] = useState(true); // State to track if the modal is open
-  const { highlight, clearHighlight } = useHighlight(refs); // Highlight controls
+  const { highlight, clearHighlight } = useHighlight(highlightRefs); // Highlight controls
 
   // Function to open the modal
   const openModal = useCallback(() => {

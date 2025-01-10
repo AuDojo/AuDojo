@@ -3,7 +3,7 @@ import { RefKeys } from "../tutorialModal/types";
 
 // Define types for our context state
 export interface ModalContextProps {
-  refs: Record<RefKeys, React.RefObject<HTMLDivElement | null>>;
+  highlightRefs: Record<RefKeys, React.RefObject<HTMLDivElement | null>>;
 }
 
 // Create context with default values

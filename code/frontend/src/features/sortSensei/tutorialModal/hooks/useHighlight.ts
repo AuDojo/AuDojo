@@ -7,24 +7,24 @@ import { RefKeys } from "../types";
  * The highlight function adds a class name to the ref and scrolls it into view.
  * The clearHighlight function removes the class name from all refs.
  */
-export const useHighlight = (refs: Record<RefKeys, React.RefObject<HTMLDivElement | null>>) => {
+export const useHighlight = (highlightRefs: Record<RefKeys, React.RefObject<HTMLDivElement | null>>) => {
   const clearHighlight = useCallback(() => {
-    Object.values(refs).forEach((el) => {
+    Object.values(highlightRefs).forEach((el) => {
       if (el?.current) {
         el.current.classList.remove(HIGHLIGHT_CLASS);
       }
     });
-  }, [refs]);
+  }, [highlightRefs]);
 
   const highlight = useCallback(
     (key: RefKeys) => {
       clearHighlight();
-      if (refs[key]?.current) {
-        refs[key].current.classList.add(HIGHLIGHT_CLASS);
-        refs[key].current.scrollIntoView({ behavior: "smooth", block: "center" });
+      if (highlightRefs[key]?.current) {
+        highlightRefs[key].current.classList.add(HIGHLIGHT_CLASS);
+        highlightRefs[key].current.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     },
-    [refs, clearHighlight]
+    [clearHighlight, highlightRefs]
   );
 
   return { highlight, clearHighlight };
