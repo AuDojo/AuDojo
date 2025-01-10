@@ -1,53 +1,62 @@
 svg {
-  --light-blue: rgb(116, 192, 252);
+  --lightblue: rgb(116, 192, 252);
   --green: rgb(95, 209, 112);
-  --gold: rgb(252, 203, 64);
-  --soft-yellow: rgb(255, 211, 87);
-  --red: rgb(231, 65, 65);
+  --lightgrey: rgb(165, 165, 165);
 }
 
 .viz-container {
   display: flex;
-  flex-direction: row;
-  padding: 0 10px 0 10px;
-  height: 100%;
-  column-gap: 10px;
   justify-content: center;
-  transition: transform 8s ease;
 }
 .viz-container svg {
-  display: block;
+  justify-content: center;
   border: 3px solid var(--maincolor-darkblue);
   border-radius: 15px;
 }
-/* .viz-container rect {
-  fill: var(--maincolor-darkblue);
-} */
 
+/* general text color*/
 text {
-  font-size: 12px;
+  font-size: 15px;
   fill: var(--maincolor-darkblue);
+  text-anchor: middle;
 }
 
 rect {
-  transition: fill 0.3s ease;
+  /* smooth transition for filling color*/
+  transition: fill 0.2s linear;
 }
-.viz-container g {
-  transform-origin: center;
-  will-change: transform;
-}
-.bar-base {
-  fill: var(--light-blue);
-}
-.bar-text {
-  color: var(--maincolor-darkblue);
-  font-size: 15px;
+
+/* markers for pivot/min/left */
+.bar-marker {
+  fill: var(--lightgrey);
+  font-size: 12px;
   text-anchor: middle;
 }
-.swapped-bar {
-  fill: var(--maincolor-red);
+
+.unsorted-bar {
+  fill: var(--lightblue);
 }
 
 .sorted-bar {
   fill: var(--green);
+}
+
+.changed-bar {
+  fill: var(--maincolor-red);
+}
+
+.changed-bar-blink {
+  fill: var(--maincolor-red);
+  animation: blink 2s ease infinite;
+}
+@keyframes blink {
+  25% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.7;
+  }
 }
