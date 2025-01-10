@@ -1,4 +1,4 @@
-import { SortVisualizer } from "@/features/sortSensei/sortVisualizer";
+import { MergeSortVisualizer } from "@/features/sortSensei/sortVisualizer";
 import { ButtonContextProvider, SortProvider, TutorialModalProvider } from "@contexts/index";
 import { GenerateButtons, SolveButtons } from "@features/sortSensei/buttons";
 import { MergeSortGuide } from "@features/sortSensei/guide";
@@ -17,7 +17,7 @@ const MergeSort = () => {
           <div className={styles.container}>
             <div>
               <MergeSortGuide />
-              <SortVisualizer />
+              <MergeSortVisualizer />
             </div>
             <div className={styles["outer-table-buttons-container"]}>
               <div className={styles["inner-table-buttons-container"]}>

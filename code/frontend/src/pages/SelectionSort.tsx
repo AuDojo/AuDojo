@@ -1,4 +1,4 @@
-import { SortVisualizer } from "@/features/sortSensei/sortVisualizer";
+import { SelectionSortVisualizer } from "@/features/sortSensei/sortVisualizer";
 import { ButtonContextProvider, SortProvider, TutorialModalProvider } from "@contexts/index";
 import { GenerateButtons, SolveButtons } from "@features/sortSensei/buttons";
 import { SelectionSortGuide } from "@features/sortSensei/guide";
@@ -18,7 +18,8 @@ const SelectionSort = () => {
           <div className={styles.container}>
             <div>
               <SelectionSortGuide />
-              <SortVisualizer />
+              <SelectionSortVisualizer />
+              {/* <SortVisualizer /> */}
             </div>
             <div className={styles["outer-table-buttons-container"]}>
               <div className={styles["inner-table-buttons-container"]}>

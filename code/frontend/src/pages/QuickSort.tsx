@@ -1,4 +1,4 @@
-import { SortVisualizer } from "@/features/sortSensei/sortVisualizer";
+import { QuickSortVisualizer } from "@/features/sortSensei/sortVisualizer";
 import { ButtonContextProvider, SortProvider, TutorialModalProvider } from "@contexts/index";
 import { GenerateButtons, SolveButtons } from "@features/sortSensei/buttons";
 import { QuickSortGuide } from "@features/sortSensei/guide";
@@ -17,7 +17,7 @@ const QuickSort = () => {
           <div className={styles.container}>
             <div>
               <QuickSortGuide />
-              <SortVisualizer />
+              <QuickSortVisualizer />
             </div>
             <div className={styles["outer-table-buttons-container"]}>
               <div className={styles["inner-table-buttons-container"]}>
