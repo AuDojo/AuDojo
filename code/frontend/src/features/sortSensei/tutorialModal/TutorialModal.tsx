@@ -1,6 +1,7 @@
 import { useTutorialModalContext } from "@features/sortSensei/hooks";
 import classNames from "classnames/bind";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
+import { CloseButton } from "./closeButton";
 import { tutorialSteps } from "./constants";
 import ProgressBar from "./progressBar/ProgressBar";
 import styles from "./TutorialModal.module.css";
@@ -69,10 +70,11 @@ const TutorialModal = () => {
     setCurrentStep((prev) => Math.min(tutorialSteps.length, prev + 1));
   };
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
+    clearHighlight();
     dialogRef.current?.close();
     overlayRef.current?.classList.remove(cx("open"));
-  };
+  }, [clearHighlight]);
 
   return (
     <>
@@ -108,10 +110,7 @@ const TutorialModal = () => {
             </button>
           )}
         </div>
-        {/* Close button */}
-        <button onClick={closeModal} className={styles["close-button"]}>
-          X
-        </button>
+        <CloseButton onClick={closeModal} />
       </dialog>
       {/* Overlay for transparent background */}
       <div className={cx("overlay", "open")} ref={overlayRef} onClick={closeModal}></div>
