@@ -1,2 +1,1 @@
-export * from "./TutorialModalContext";
-export * from "./TutorialModalProvider";
+export { useTutorialSteps } from "./useTutorialSteps";
