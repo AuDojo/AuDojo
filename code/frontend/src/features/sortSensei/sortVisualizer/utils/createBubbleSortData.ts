@@ -19,14 +19,13 @@ export const createBubbleSortData = ({
           : firstElementSwap
         : index;
 
-    let isSorted = false;
-    isSorted = i === numSteps - 1;
+    const isElementSorted = bubbleElement[i - 1] > bubbleElement[i];
 
     return {
       value,
       index,
       previousIndex,
-      isSorted,
+      isSorted: i === numSteps - 1 || (isElementSorted && index >= bubbleElement[i - 1] + 1),
       isSwapped: index === bubbleElement[i - 1] || index - 1 === bubbleElement[i - 1],
     };
   });
