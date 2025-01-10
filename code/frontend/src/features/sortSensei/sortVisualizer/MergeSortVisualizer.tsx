@@ -5,25 +5,15 @@ import useResize from "./hooks/useResize";
 import style from "./SortVisualizer.module.css";
 import { margin, maxWidthEachBar, textMarginBottom, timeLoadColor, timeBarsMove } from "./constants";
 import useScales from "./hooks/useScales";
-import { createBubbleSortData } from "./utils/createBubbleSortData";
+import { createMergeSortData } from "./utils/createMergeSortData";
 
 /**
  * Transforms the given array into an array of BarData objects.
  *
- * @returns {BubbleSortBarData[]} An array of BarData objects with updated indices and sorted status.
+ * @returns {MergeSortBarData[]} An array of BarData objects with updated indices and sorted status.
  */
-
-/**
- * A visualizer component for the Bubble Sort algorithm. It updates dynamically based on
- * the current step of the sorting process, highlighting swapped elements and marking
- * sorted elements as the algorithm progresses.
- *
- * @returns {JSX.Element} A container with an SVG element displaying the bar
- * chart visualization of the sorting process.
- */
-
-const BubbleSortVisualizer = () => {
-  const { stepsList, step, sharedArray, bubbleElement } = useSortContext();
+const MergeSortVisualizer = () => {
+  const { stepsList, step, sharedArray, mergeRanges } = useSortContext();
   const i = step - 1;
   const svgRef = useRef<SVGSVGElement | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -36,13 +26,15 @@ const BubbleSortVisualizer = () => {
   const { xScale, yScale } = useScales({ containerSize, sharedArray });
 
   // Calculate the data for the bar chart based on the current step
+
   const data = useMemo(() => {
     if (!stepsList.length) return null;
-    return createBubbleSortData({
+    return createMergeSortData({
       currentArray: stepsList[i],
+      previousArray: i >= 1 ? stepsList[i - 1] : stepsList[i],
       numSteps: stepsList.length,
       i,
-      bubbleElement,
+      mergeRanges,
     });
   }, [stepsList, i]);
 
@@ -76,10 +68,10 @@ const BubbleSortVisualizer = () => {
 
     // Highlight swapped bars
     bars
-      .filter((d) => i >= 1 && d.isSwapped)
+      .filter((d) => d.isMerged)
       .selectAll("rect")
       .transition()
-      .duration(timeLoadColor)
+      .duration(timeLoadColor) // changing color
       .attr("class", style["changed-bar"]);
 
     // Add a class for sorted bars
@@ -109,4 +101,4 @@ const BubbleSortVisualizer = () => {
   );
 };
 
-export default BubbleSortVisualizer;
+export default MergeSortVisualizer;

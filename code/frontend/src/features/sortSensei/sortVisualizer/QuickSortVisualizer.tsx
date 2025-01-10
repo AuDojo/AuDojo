@@ -3,31 +3,21 @@ import { select } from "d3";
 import { useEffect, useRef, useMemo } from "react";
 import useResize from "./hooks/useResize";
 import style from "./SortVisualizer.module.css";
-import { margin, maxWidthEachBar, textMarginBottom, timeLoadColor, timeBarsMove } from "./constants";
+import { margin, maxWidthEachBar, textMarginBottom, timeLoadColor, timeBarsMove, textMarginTop } from "./constants";
 import useScales from "./hooks/useScales";
-import { createBubbleSortData } from "./utils/createBubbleSortData";
+import { createQuickSortData } from "./utils/createQuickSortData";
 
 /**
  * Transforms the given array into an array of BarData objects.
  *
- * @returns {BubbleSortBarData[]} An array of BarData objects with updated indices and sorted status.
+ * @returns {QuickSortBarData[]} An array of BarData objects with updated indices and sorted status.
  */
 
-/**
- * A visualizer component for the Bubble Sort algorithm. It updates dynamically based on
- * the current step of the sorting process, highlighting swapped elements and marking
- * sorted elements as the algorithm progresses.
- *
- * @returns {JSX.Element} A container with an SVG element displaying the bar
- * chart visualization of the sorting process.
- */
-
-const BubbleSortVisualizer = () => {
-  const { stepsList, step, sharedArray, bubbleElement } = useSortContext();
+const QuickSortVisualizer = () => {
+  const { stepsList, step, sharedArray, pivotElement } = useSortContext();
   const i = step - 1;
   const svgRef = useRef<SVGSVGElement | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-
   const containerSize = useResize({
     containerRef: containerRef,
     totalBarsWidth: sharedArray.length * maxWidthEachBar,
@@ -38,11 +28,12 @@ const BubbleSortVisualizer = () => {
   // Calculate the data for the bar chart based on the current step
   const data = useMemo(() => {
     if (!stepsList.length) return null;
-    return createBubbleSortData({
+    return createQuickSortData({
       currentArray: stepsList[i],
+      previousArray: i >= 1 ? stepsList[i - 1] : stepsList[i],
       numSteps: stepsList.length,
       i,
-      bubbleElement,
+      pivotElement,
     });
   }, [stepsList, i]);
 
@@ -71,16 +62,22 @@ const BubbleSortVisualizer = () => {
       .append("text")
       .attr("x", xScale.bandwidth() / 2)
       .attr("y", (d) => yScale(d.value) - textMarginBottom)
-      .attr("class", style["bar-text"])
       .text((d) => d.value);
-
+    bars
+      .filter((d) => d.isPivot)
+      .append("text")
+      .attr("x", xScale.bandwidth() / 2)
+      .attr("y", (d) => yScale(d.value) - textMarginTop)
+      .transition()
+      .attr("class", style["bar-marker"])
+      .text("(pivot)");
     // Highlight swapped bars
     bars
-      .filter((d) => i >= 1 && d.isSwapped)
+      .filter((d) => d.isPivot)
       .selectAll("rect")
       .transition()
-      .duration(timeLoadColor)
-      .attr("class", style["changed-bar"]);
+      .duration(timeLoadColor) // changing color
+      .attr("class", style["changed-bar-blink"]);
 
     // Add a class for sorted bars
     bars
@@ -109,4 +106,4 @@ const BubbleSortVisualizer = () => {
   );
 };
 
-export default BubbleSortVisualizer;
+export default QuickSortVisualizer;

@@ -2,7 +2,7 @@ import { SortType } from "@constants/index";
 import { useSortContext } from "@hooks/index";
 import * as d3 from "d3";
 import { useEffect, useRef } from "react";
-import useResize from "./useResize";
+import useResize from "./hooks/useResize";
 interface BarData {
   value: number;
   index: number;

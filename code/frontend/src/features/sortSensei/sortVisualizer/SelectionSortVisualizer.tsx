@@ -3,27 +3,17 @@ import { select } from "d3";
 import { useEffect, useRef, useMemo } from "react";
 import useResize from "./hooks/useResize";
 import style from "./SortVisualizer.module.css";
-import { margin, maxWidthEachBar, textMarginBottom, timeLoadColor, timeBarsMove } from "./constants";
+import { margin, maxWidthEachBar, textMarginBottom, timeLoadColor, timeBarsMove, textMarginTop } from "./constants";
 import useScales from "./hooks/useScales";
-import { createBubbleSortData } from "./utils/createBubbleSortData";
-
+import { createSelectionSortData } from "./utils/createSelectionSortData";
 /**
  * Transforms the given array into an array of BarData objects.
  *
- * @returns {BubbleSortBarData[]} An array of BarData objects with updated indices and sorted status.
+ * @returns {SelectionSortBarData[]} An array of BarData objects with updated indices and sorted status.
  */
 
-/**
- * A visualizer component for the Bubble Sort algorithm. It updates dynamically based on
- * the current step of the sorting process, highlighting swapped elements and marking
- * sorted elements as the algorithm progresses.
- *
- * @returns {JSX.Element} A container with an SVG element displaying the bar
- * chart visualization of the sorting process.
- */
-
-const BubbleSortVisualizer = () => {
-  const { stepsList, step, sharedArray, bubbleElement } = useSortContext();
+const SelectionSortVisualizer = () => {
+  const { stepsList, step, sharedArray, selectionElement } = useSortContext();
   const i = step - 1;
   const svgRef = useRef<SVGSVGElement | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -38,11 +28,11 @@ const BubbleSortVisualizer = () => {
   // Calculate the data for the bar chart based on the current step
   const data = useMemo(() => {
     if (!stepsList.length) return null;
-    return createBubbleSortData({
+    return createSelectionSortData({
       currentArray: stepsList[i],
       numSteps: stepsList.length,
       i,
-      bubbleElement,
+      selectionElement,
     });
   }, [stepsList, i]);
 
@@ -71,17 +61,47 @@ const BubbleSortVisualizer = () => {
       .append("text")
       .attr("x", xScale.bandwidth() / 2)
       .attr("y", (d) => yScale(d.value) - textMarginBottom)
-      .attr("class", style["bar-text"])
       .text((d) => d.value);
+
+    // add selected element label
+    bars
+      .filter((d) => d.isSelected)
+      .append("text")
+      .attr("x", xScale.bandwidth() / 2)
+      .attr("y", (d) => yScale(d.value) - textMarginTop)
+      .transition()
+      .attr("class", style["bar-marker"])
+      .text("(min)");
+    bars
+      .filter((d) => d.isLeftUnsorted && !d.isSelected)
+      .append("text")
+      .attr("x", xScale.bandwidth() / 2)
+      .attr("y", (d) => yScale(d.value) - textMarginTop)
+      .transition()
+      .attr("class", style["bar-marker"])
+      .text("(left)");
+    bars
+      .filter((d) => d.isLeftUnsorted && d.isSelected)
+      .append("text")
+      .attr("x", xScale.bandwidth() / 2)
+      .attr("y", (d) => yScale(d.value) - textMarginTop - margin.top)
+      .transition()
+      .attr("class", style["bar-marker"])
+      .text("(left)");
 
     // Highlight swapped bars
     bars
-      .filter((d) => i >= 1 && d.isSwapped)
+      .filter((d) => d.isSelected)
+      .selectAll("rect")
+      .transition()
+      .duration(timeLoadColor) // changing color
+      .attr("class", style["changed-bar-blink"]);
+    bars
+      .filter((d) => d.isLeftUnsorted)
       .selectAll("rect")
       .transition()
       .duration(timeLoadColor)
       .attr("class", style["changed-bar"]);
-
     // Add a class for sorted bars
     bars
       .filter((d) => d.isSorted)
@@ -109,4 +129,4 @@ const BubbleSortVisualizer = () => {
   );
 };
 
-export default BubbleSortVisualizer;
+export default SelectionSortVisualizer;
