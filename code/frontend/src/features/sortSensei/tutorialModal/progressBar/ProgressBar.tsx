@@ -1,17 +1,21 @@
-import { useTutorialModalContext } from "@features/sortSensei/hooks";
 import classNames from "classnames/bind";
-import { tutorialSteps } from "../constants";
+import { useTutorialSteps } from "../context";
 import styles from "./ProgressBar.module.css";
 
 // Bind styles to classNames
 const cx = classNames.bind(styles);
 
-const ProgressBar = () => {
-  const { currentStep } = useTutorialModalContext();
+interface ProgressBarProps {
+  min: number;
+  max: number;
+}
+
+const ProgressBar = ({ min, max }: ProgressBarProps) => {
+  const { step } = useTutorialSteps();
 
   return (
-    <meter min={1} max={tutorialSteps.length} value={currentStep} className={cx("progress-bar")}>
-      {currentStep}/{tutorialSteps.length}
+    <meter min={min} max={max} value={step} className={cx("progress-bar")}>
+      {step}/{max}
     </meter>
   );
 };

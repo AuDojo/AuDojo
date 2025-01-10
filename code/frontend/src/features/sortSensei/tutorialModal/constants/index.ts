@@ -1,4 +1,4 @@
-import { RefKeys } from "@/contexts";
+import { RefKeys } from "../types";
 
 export const HIGHLIGHT_CLASS = "highlight";
 
@@ -21,3 +21,5 @@ export const tutorialSteps: { title: string; content: string; key?: RefKeys }[] 
   },
   { title: "🎉  Ready to Sort!", content: "Now you can start sorting!" },
 ];
+
+export type TutorialStep = (typeof tutorialSteps)[number];
