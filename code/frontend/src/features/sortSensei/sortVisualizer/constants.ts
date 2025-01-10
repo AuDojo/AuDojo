@@ -1,3 +1,4 @@
+// Constants for the sort visualizer, which are the same for all sortss
 const maxWidthEachBar = 50;
 const margin = {
   top: 13,

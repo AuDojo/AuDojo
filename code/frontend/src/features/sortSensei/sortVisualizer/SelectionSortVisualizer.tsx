@@ -6,23 +6,27 @@ import style from "./SortVisualizer.module.css";
 import { margin, maxWidthEachBar, textMarginBottom, timeLoadColor, timeBarsMove, textMarginTop } from "./constants";
 import useScales from "./hooks/useScales";
 import { createSelectionSortData } from "./utils/createSelectionSortData";
-/**
- * Transforms the given array into an array of BarData objects.
- *
- * @returns {SelectionSortBarData[]} An array of BarData objects with updated indices and sorted status.
- */
 
+/**
+ * A component that renders a visual representation of the Selection Sort algorithm.
+ * It uses D3.js to create an animated bar chart that shows the sorting process.
+ *
+ * @returns {JSX.Element} A SVG component with a bar for each element in the given array.
+ * The bars are animated to show the selection sort process.
+ */
 const SelectionSortVisualizer = () => {
   const { stepsList, step, sharedArray, selectionElement } = useSortContext();
   const i = step - 1;
   const svgRef = useRef<SVGSVGElement | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // flexible container size based on the available space
   const containerSize = useResize({
     containerRef: containerRef,
     totalBarsWidth: sharedArray.length * maxWidthEachBar,
   });
 
+  // Create scales for positioning and sizing bars
   const { xScale, yScale } = useScales({ containerSize, sharedArray });
 
   // Calculate the data for the bar chart based on the current step
@@ -39,10 +43,9 @@ const SelectionSortVisualizer = () => {
   useEffect(() => {
     if (!stepsList.length || !svgRef.current || !data) return;
 
-    // Select the SVG and clear it
     const svg = select(svgRef.current);
 
-    // Create the bars and add the bars to the SVG
+    // Assigned the data
     const bars = svg.selectAll("g").data(data).enter().append("g");
 
     // Set the transformation of each bar to be the previous index
@@ -56,7 +59,7 @@ const SelectionSortVisualizer = () => {
       .attr("width", xScale.bandwidth())
       .attr("class", style["unsorted-bar"]);
 
-    // Add the text labels for each bar
+    // Add the value labels for each bar
     bars
       .append("text")
       .attr("x", xScale.bandwidth() / 2)
@@ -72,6 +75,8 @@ const SelectionSortVisualizer = () => {
       .transition()
       .attr("class", style["bar-marker"])
       .text("(min)");
+
+    // add leftmost unsorted element label
     bars
       .filter((d) => d.isLeftUnsorted && !d.isSelected)
       .append("text")
@@ -80,6 +85,8 @@ const SelectionSortVisualizer = () => {
       .transition()
       .attr("class", style["bar-marker"])
       .text("(left)");
+
+    // new y-position for label when the bar is both leftmost and selected
     bars
       .filter((d) => d.isLeftUnsorted && d.isSelected)
       .append("text")
@@ -89,20 +96,23 @@ const SelectionSortVisualizer = () => {
       .attr("class", style["bar-marker"])
       .text("(left)");
 
-    // Highlight swapped bars
+    // Highlight the selected bar with blinking color
     bars
       .filter((d) => d.isSelected)
       .selectAll("rect")
       .transition()
       .duration(timeLoadColor) // changing color
       .attr("class", style["changed-bar-blink"]);
+
+    // Highlight the leftmost unsorted bar
     bars
       .filter((d) => d.isLeftUnsorted)
       .selectAll("rect")
       .transition()
       .duration(timeLoadColor)
       .attr("class", style["changed-bar"]);
-    // Add a class for sorted bars
+
+    // Highlight the sorted bar
     bars
       .filter((d) => d.isSorted)
       .selectAll("rect")
