@@ -1,4 +1,4 @@
-import { SortVisualizer } from "@/features/sortSensei/sortVisualizer";
+import { BubbleSortVisualizer } from "@features/sortSensei/sortVisualizer";
 import { ButtonContextProvider, SortProvider, TutorialModalProvider } from "@contexts/index";
 import { GenerateButtons, SolveButtons } from "@features/sortSensei/buttons";
 import { BubbleSortGuide } from "@features/sortSensei/guide";
@@ -17,7 +17,7 @@ const BubbleSort = () => {
           <div className={styles.container}>
             <div>
               <BubbleSortGuide />
-              <SortVisualizer />
+              <BubbleSortVisualizer />
             </div>
             <div className={styles["outer-table-buttons-container"]}>
               <div className={styles["inner-table-buttons-container"]}>
