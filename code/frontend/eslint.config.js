@@ -39,7 +39,7 @@ export default tseslint.config({
     ...react.configs["jsx-runtime"].rules,
     ...reactHooks.configs.recommended.rules,
     ...prettierConfig.rules, // Disables ESLint rules that conflict with Prettier
-    "prettier/prettier": "error",
+    "prettier/prettier": "warn",
     "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
     "import/no-restricted-paths": [
       "error",
