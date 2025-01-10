@@ -74,7 +74,7 @@ const TutorialModal = () => {
     clearHighlight();
     dialogRef.current?.close();
     overlayRef.current?.classList.remove(cx("open"));
-  }, []);
+  }, [clearHighlight]);
 
   return (
     <>
