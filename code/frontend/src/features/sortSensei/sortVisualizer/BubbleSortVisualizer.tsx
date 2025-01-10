@@ -8,31 +8,25 @@ import useScales from "./hooks/useScales";
 import { createBubbleSortData } from "./utils/createBubbleSortData";
 
 /**
- * Transforms the given array into an array of BarData objects.
+ * A component that renders a visual representation of the Bubble Sort algorithm.
+ * It uses D3.js to create an animated bar chart that shows the sorting process.
  *
- * @returns {BubbleSortBarData[]} An array of BarData objects with updated indices and sorted status.
+ * @return {JSX.Element} A SVG component with a bar for each element in the given array.
+ * The bars are animated to show the bubble sort process.
  */
-
-/**
- * A visualizer component for the Bubble Sort algorithm. It updates dynamically based on
- * the current step of the sorting process, highlighting swapped elements and marking
- * sorted elements as the algorithm progresses.
- *
- * @returns {JSX.Element} A container with an SVG element displaying the bar
- * chart visualization of the sorting process.
- */
-
 const BubbleSortVisualizer = () => {
   const { stepsList, step, sharedArray, bubbleElement } = useSortContext();
-  const i = step - 1;
+  const i = step - 1; // Current step index
   const svgRef = useRef<SVGSVGElement | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // flexible container size based on the available space
   const containerSize = useResize({
     containerRef: containerRef,
     totalBarsWidth: sharedArray.length * maxWidthEachBar,
   });
 
+  // Create scales for positioning and sizing bars
   const { xScale, yScale } = useScales({ containerSize, sharedArray });
 
   // Calculate the data for the bar chart based on the current step
@@ -49,16 +43,15 @@ const BubbleSortVisualizer = () => {
   useEffect(() => {
     if (!stepsList.length || !svgRef.current || !data) return;
 
-    // Select the SVG and clear it
     const svg = select(svgRef.current);
 
-    // Create the bars and add the bars to the SVG
+    // Assigned the data
     const bars = svg.selectAll("g").data(data).enter().append("g");
 
-    // Set the transformation of each bar to be the previous index
+    // Set the initial position of the bars
     bars.attr("transform", (d) => `translate(${xScale(d.previousIndex)}, 0)`);
 
-    // Add the bars
+    // Add rectangles representing bars
     bars
       .append("rect")
       .attr("y", (d) => yScale(d.value))
@@ -66,7 +59,7 @@ const BubbleSortVisualizer = () => {
       .attr("width", xScale.bandwidth())
       .attr("class", style["unsorted-bar"]);
 
-    // Add the text labels for each bar
+    // Add the value labels for each bar
     bars
       .append("text")
       .attr("x", xScale.bandwidth() / 2)
@@ -82,11 +75,11 @@ const BubbleSortVisualizer = () => {
       .duration(timeLoadColor)
       .attr("class", style["changed-bar"]);
 
-    // Add a class for sorted bars
+    // Highlight sorted bars
     bars
       .filter((d) => d.isSorted)
       .selectAll("rect")
-      .transition() // wait for last transition to finish
+      .transition()
       .attr("class", style["sorted-bar"]);
 
     // Animate the bars to their new positions
