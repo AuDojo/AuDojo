@@ -1,4 +1,3 @@
-import { Tooltip } from "@components/Tooltip";
 import { SortType } from "@constants/index";
 import { useSortContext } from "@hooks/index";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -19,6 +18,7 @@ const SolveButton = () => {
     mergeRanges,
     sortTypeRef,
     selectionElement,
+    bubbleElement,
     setStep,
     setInputCellValues,
     setCellValidation,
@@ -49,21 +49,30 @@ const SolveButton = () => {
       const sortType = sortTypeRef.current;
 
       // TODO: Clean up this code, maybe own validateMergeSortLine
-      const validationResult = userValues.map((value, index) => {
+      const validationResult = userValues.map((value, currentColumn) => {
         // Check if cell is in merge range
-        const isInMergeRange = currentMergeRange && index >= currentMergeRange[0] && index <= currentMergeRange[1];
+        const isInMergeRange =
+          currentMergeRange && currentColumn >= currentMergeRange[0] && currentColumn <= currentMergeRange[1];
 
         // Check if cell is selected from selection sort
         const isSelected =
+          sortType === SortType.SelectionSort &&
           selectionElement.length >= currentStep &&
-          (index === selectionElement[currentStep - 1] || index === currentStep - 1);
+          (currentColumn === selectionElement[currentStep - 1] || currentColumn === currentStep - 1);
 
-        if (sortType === SortType.SelectionSort && !isSelected) {
-          return value === "" ? true : Number(value) === correctValues[index];
-        } else if (sortType !== SortType.MergeSort || isInMergeRange) {
-          return Number(value) === correctValues[index];
+        const isBubbleElement =
+          (sortType === SortType.BubbleSort && bubbleElement[currentStep - 1] === currentColumn) ||
+          bubbleElement[currentStep - 1] + 1 === currentColumn;
+
+        if (
+          (sortType === SortType.SelectionSort && !isSelected) ||
+          (sortType === SortType.MergeSort && !isInMergeRange) ||
+          (sortType === SortType.BubbleSort && !isBubbleElement)
+        ) {
+          // Skip validation for unselected / unmerged cells
+          return value === "" || Number(value) === correctValues[currentColumn];
         } else {
-          return value === "" ? true : Number(value) === correctValues[index];
+          return Number(value) === correctValues[currentColumn];
         }
       });
 
@@ -254,27 +263,36 @@ const SolveButton = () => {
         />
       </div>
       <div className={buttonStyles["arrow-button-container"]}>
-        <Tooltip direction="top" content="J">
-          <button className={`${buttonStyles["arrow-button"]}`} onClick={handleGoBack}>
-            ← Back
-          </button>
-        </Tooltip>
-        <Tooltip direction="top" content="K">
-          <button className={`${buttonStyles["arrow-button"]}`} onClick={handleGoNext}>
-            Next →
-          </button>
-        </Tooltip>
+        <button
+          aria-label="Press [J]"
+          data-tooltip="top"
+          className={`${buttonStyles["arrow-button"]}`}
+          onClick={handleGoBack}
+        >
+          ← Back
+        </button>
+        <button
+          aria-label="Press [K]"
+          data-tooltip="top"
+          className={`${buttonStyles["arrow-button"]}`}
+          onClick={handleGoNext}
+        >
+          Next →
+        </button>
       </div>
 
       <div className={buttonStyles["solve-buttons"]}>
-        <Tooltip direction="top" content="A">
-          <button onClick={handleSolveAll}>{buttonText}</button>
-        </Tooltip>
-        <Tooltip direction="top" content="S">
-          <button className={buttonStyles["try-again-button"]} onClick={handleTryAgain}>
-            Reset ↺
-          </button>
-        </Tooltip>
+        <button aria-label="Press [A]" data-tooltip="top" onClick={handleSolveAll}>
+          {buttonText}
+        </button>
+        <button
+          aria-label="Press [S]"
+          data-tooltip="top"
+          className={buttonStyles["try-again-button"]}
+          onClick={handleTryAgain}
+        >
+          Reset ↺
+        </button>
       </div>
     </div>
   );

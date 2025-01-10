@@ -30,6 +30,8 @@
   color: rgb(98, 98, 98);
 }
 
+.bubble-cell-first,
+.bubble-cell-second,
 .in-merge-range {
   border: none;
   border-top: 1px solid black;
@@ -43,11 +45,13 @@
   border: 1px solid rgb(38, 112, 1);
 } */
 
+.bubble-cell-first,
 .merge-range-start {
   border-left: 1px solid black;
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
+.bubble-cell-second,
 .merge-range-end {
   border-right: 1px solid black;
   border-top-right-radius: 3px;
@@ -88,7 +92,7 @@
 /* Selection element */
 .selected-cell,
 .pivot-cell {
-  font-weight: bold;
+  font-weight: 500;
   border-radius: 5px;
 }
 .selected-cell.incorrect,

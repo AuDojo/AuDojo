@@ -1,7 +1,6 @@
-import { Tooltip } from "@components/Tooltip";
-import { SortType } from "@constants/index";
+import { SortType } from "@/constants";
+import { useSortContext } from "@/hooks";
 import { useTableUtils } from "@features/sortSensei/table/hooks";
-import { useSortContext } from "@hooks/index";
 import classNames from "classnames/bind";
 import { JSX, useMemo } from "react";
 import styles from "./TableCell.module.css";
@@ -14,7 +13,7 @@ interface TableCellProps {
 // Bind styles to classNames
 const cx = classNames.bind(styles);
 
-const TableCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
+const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
   const {
     stepsList,
     step,
@@ -25,6 +24,7 @@ const TableCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
     cellValidation,
     pivotElement,
     selectionElement,
+    bubbleElement,
   } = useSortContext();
 
   const { handleCellChange, handleCellKeyDown } = useTableUtils();
@@ -56,6 +56,13 @@ const TableCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
     // Check if element is pivot
     const isPivot = () => columnIndex === pivotPair[1];
 
+    const isSelected = (): boolean => {
+      if (sortTypeRef.current === SortType.SelectionSort && rowIndex < step) {
+        return columnIndex === selectionElement[rowIndex - 1] || columnIndex === rowIndex - 1;
+      }
+      return false;
+    };
+
     return {
       sortType,
       num,
@@ -64,33 +71,43 @@ const TableCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
       mergeRange,
       isInMergeRange: isInMergeRange(),
       isPivot: isPivot(),
+      isSelected: isSelected(),
     };
   }, [rowIndex, columnIndex, stepsList, inputCellValues, cellValidation, mergeRanges, sortTypeRef, pivotElement]);
 
-  const isSelected = () => {
-    if (sortTypeRef.current === SortType.SelectionSort && rowIndex < step && rowIndex !== 0) {
-      return columnIndex === selectionElement[rowIndex - 1] || columnIndex === rowIndex - 1;
-    }
-  };
+  // Tooltip content for incorrect input
+  const tooltipContent = cellData.inputCellValue ? `Wrong: ${cellData.inputCellValue}` : "Missing input";
 
   return (
-    <Tooltip
-      delay={300}
-      direction="top"
-      content={cellData.inputCellValue ? `Wrong: ${cellData.inputCellValue}` : "Missing input"}
-      hidden={cellData.validation !== false}
+    <td
+      {...(cellData.validation === false
+        ? { "aria-label": tooltipContent, "data-tooltip": "top 200" } /* Tooltip */
+        : {})}
     >
       <input
         className={cx("cell-input", {
+          // Cell Validation styles
+          correct: cellData.validation === true,
+          incorrect: cellData.validation === false,
+          "pivot-cell": cellData.isPivot && rowIndex < step,
+
+          // MergeSort styles
           "in-merge-range": cellData.sortType === SortType.MergeSort && cellData.isInMergeRange && rowIndex < step,
           "merge-range-start":
             cellData.sortType === SortType.MergeSort && columnIndex === cellData.mergeRange[0] && rowIndex < step,
           "merge-range-end":
             cellData.sortType === SortType.MergeSort && columnIndex === cellData.mergeRange[1] && rowIndex < step,
-          correct: cellData.validation === true,
-          incorrect: cellData.validation === false,
-          "pivot-cell": cellData.isPivot && rowIndex < step,
-          "selected-cell": isSelected(),
+
+          // SelectionSort styles
+          "selected-cell": cellData.isSelected,
+
+          // BubbleSort styles
+          "bubble-cell-first":
+            cellData.sortType === SortType.BubbleSort && columnIndex === bubbleElement[rowIndex - 1] && rowIndex < step,
+          "bubble-cell-second":
+            cellData.sortType === SortType.BubbleSort &&
+            columnIndex === bubbleElement[rowIndex - 1] + 1 &&
+            rowIndex < step,
         })}
         value={rowIndex < step ? cellData.num || "" : cellData.inputCellValue}
         readOnly={rowIndex < step}
@@ -103,8 +120,8 @@ const TableCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
         onKeyDown={(event) => handleCellKeyDown(event, rowIndex, columnIndex)}
         placeholder={rowIndex === 1 && columnIndex === 0 ? "Edit" : ""}
       />
-    </Tooltip>
+    </td>
   );
 };
 
-export default TableCell;
+export default InputCell;

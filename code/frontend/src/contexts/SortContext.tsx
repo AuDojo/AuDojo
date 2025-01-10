@@ -9,6 +9,9 @@ export interface SortContextProps {
   inputCellValues: string[][]; // Holds the values in the input cells as strings
   cellValidation: (boolean | null)[][]; // True for correct, false for incorrect, null for neutral
   sharedArray: number[];
+  pivotElement: [number, number][];
+  selectionElement: number[];
+  bubbleElement: number[];
   setStep: React.Dispatch<React.SetStateAction<number>>;
   setStepsList: React.Dispatch<React.SetStateAction<number[][]>>;
   setInputCellValues: React.Dispatch<React.SetStateAction<string[][]>>;
@@ -17,10 +20,7 @@ export interface SortContextProps {
   fetchStepsList: (array: number[]) => Promise<void>; // Fetch the solution from the backend
   inputCellsRef: React.RefObject<HTMLInputElement[][]>;
   sortTypeRef: React.RefObject<SortType>;
-  pivotElement: [number, number][];
   setPivotElement: React.Dispatch<React.SetStateAction<[number, number][]>>;
-  selectionElement: number[];
-  bubbleElement: number[];
   setBubbleElement: React.Dispatch<React.SetStateAction<number[]>>;
 }
 

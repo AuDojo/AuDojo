@@ -1,6 +1,6 @@
 import { useSortContext } from "@hooks/index";
 import classNames from "classnames/bind";
-import { TableCell } from "../tableCell";
+import { InputCell } from "../tableCell";
 import styles from "./TableRow.module.css";
 
 interface RowProps {
@@ -22,9 +22,7 @@ const InputRow = ({ rowIndex }: RowProps) => {
     <tr className={cx("row-container")} key={rowIndex}>
       <th className={cx("row-index")}>{rowIndex}</th>
       {stepsList[rowIndex].map((_, columnIndex) => (
-        <td key={columnIndex}>
-          <TableCell rowIndex={rowIndex} columnIndex={columnIndex} />
-        </td>
+        <InputCell rowIndex={rowIndex} columnIndex={columnIndex} key={columnIndex} />
       ))}
     </tr>
   );
