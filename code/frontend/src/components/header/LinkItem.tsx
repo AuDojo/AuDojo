@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { JSX } from "react";
-import headerStyle from "./Header2.module.css";
+import headerStyle from "./Header.module.css";
 
 const LinkItem = ({
   className,
