@@ -1,10 +1,10 @@
-import { useSortContext } from "@hooks/index";
+import { useSortContext } from "@/hooks";
 import { select } from "d3";
-import { useEffect, useRef, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
+import { margin, maxWidthEachBar, textMarginBottom, textMarginTop, timeBarsMove, timeLoadColor } from "./constants";
 import useResize from "./hooks/useResize";
-import style from "./SortVisualizer.module.css";
-import { margin, maxWidthEachBar, textMarginBottom, timeLoadColor, timeBarsMove, textMarginTop } from "./constants";
 import useScales from "./hooks/useScales";
+import style from "./SortVisualizer.module.css";
 import { createSelectionSortData } from "./utils/createSelectionSortData";
 
 /**
