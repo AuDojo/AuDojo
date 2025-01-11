@@ -1,5 +1,7 @@
+import { ButtonContextProvider } from "@/features/sortSensei/buttons/context";
+import { TutorialModalProvider } from "@/features/sortSensei/context";
 import { QuickSortVisualizer } from "@/features/sortSensei/sortVisualizer";
-import { ButtonContextProvider, SortProvider, TutorialModalProvider } from "@contexts/index";
+import { SortProvider } from "@contexts/index";
 import { GenerateButtons, SolveButtons } from "@features/sortSensei/buttons";
 import { QuickSortGuide } from "@features/sortSensei/guide";
 import { SideBarMenu } from "@features/sortSensei/sideBarMenu";

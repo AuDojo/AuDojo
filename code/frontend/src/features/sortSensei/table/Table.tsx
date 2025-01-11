@@ -12,7 +12,7 @@ import styles from "./Table.module.css";
  */
 const SortingTable = (): JSX.Element => {
   const { stepsList } = useSortContext();
-  const { refs } = useTutorialModalContext();
+  const { highlightRefs } = useTutorialModalContext();
 
   // If stepsList is empty, just return null
   if (!stepsList || stepsList.length === 0) {
@@ -24,7 +24,7 @@ const SortingTable = (): JSX.Element => {
   const maxHeight = `${(stepsList.length + 1) * rowHeight}rem`;
 
   return (
-    <div ref={refs.sortingTable} style={{ backgroundColor: "white" }}>
+    <div ref={highlightRefs.sortingTable} style={{ backgroundColor: "white" }}>
       <ListRow />
       <div className={styles["table-container"]} style={{ maxHeight }}>
         <table>

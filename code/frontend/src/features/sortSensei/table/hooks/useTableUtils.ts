@@ -1,4 +1,4 @@
-import { MAX_INPUT_RANGE, MIN_INPUT_RANGE } from "@constants/index";
+import { MAX_INPUT_RANGE, MIN_INPUT_RANGE } from "@/constants";
 import { useSortContext } from "@hooks/index";
 import React from "react";
 

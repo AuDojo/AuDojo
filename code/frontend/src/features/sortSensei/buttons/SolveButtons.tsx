@@ -23,7 +23,7 @@ const SolveButton = () => {
     setInputCellValues,
     setCellValidation,
   } = useSortContext();
-  const { refs } = useTutorialModalContext();
+  const { highlightRefs } = useTutorialModalContext();
 
   const { timeoutRef, solveAllStatus, setSolveAllStatus } = useButtonContext();
   const isSolvingRef = useRef<boolean>(false);
@@ -247,7 +247,7 @@ const SolveButton = () => {
   }
 
   return (
-    <div className={buttonStyles["solve-speed-buttons"]} ref={refs.solveButtons}>
+    <div className={buttonStyles["solve-speed-buttons"]} ref={highlightRefs.solveButtons}>
       <Points />
       <div style={{ fontSize: "12px", fontStyle: "italic", color: "gray" }}>
         Current speed: x{SPEED_DISPLAY[selectedSpeedIndex]}
