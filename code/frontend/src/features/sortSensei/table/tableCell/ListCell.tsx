@@ -16,7 +16,7 @@ const ListCell = ({ columnIndex }: ListCellProps): JSX.Element => {
 
   const { handleCellKeyDown } = useTableUtils();
 
-  const cellValue = inputCellValues[0][columnIndex];
+  const cellValue = inputCellValues[0]?.[columnIndex] || "";
   return (
     <input
       className={cx("cell-input")}

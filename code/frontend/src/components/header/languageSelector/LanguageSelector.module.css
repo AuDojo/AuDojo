@@ -1,0 +1,67 @@
+/* Hauptcontainer für den Language Selector */
+.languageSelector {
+  position: fixed; /* Globus rechts platzieren */
+  top: 47px; /* Vertikal zentrieren */
+  right: 50px; /* Abstand vom rechten Rand */
+  transform: translateY(-50%); /* Perfekte vertikale Zentrierung */
+  cursor: pointer;
+}
+
+/* Globus-Icon */
+.globeContainer {
+  width: 25px;
+  height: 30px;
+}
+
+.globeIcon {
+  width: 50%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Globus-Icon */
+.globeContainer {
+  width: 30px;
+  height: 30px;
+}
+
+.globeIcon {
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
+}
+
+/* Dropdown-Menü */
+.dropdown {
+  position: absolute;
+  top: 25px; /* Abstand unter dem Globus-Icon */
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  width: 120px; /* Breite des Dropdown-Menüs */
+}
+
+/* Einzelne Dropdown-Optionen */
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.dropdownItem:hover {
+  background-color: #f0f0f0;
+}
+
+/* Flaggen-Icons in den Dropdown-Optionen */
+.flagIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  object-fit: contain;
+}

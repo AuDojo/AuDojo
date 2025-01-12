@@ -3,6 +3,7 @@
 import { Loading } from "@/components/ui/loading";
 import { queryConfig } from "@/lib/reactQuery";
 import { MainErrorFallback } from "@components/errors";
+import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ReactNode, Suspense, useState } from "react";
@@ -14,19 +15,24 @@ interface AppProviderProps {
 
 export const AppProvider = ({ children }: AppProviderProps) => {
   const [queryClient] = useState(
-    () =>
-      new QueryClient({
-        defaultOptions: queryConfig,
-      })
+    new QueryClient({
+      defaultOptions: queryConfig,
+    })
   );
+
+  const persister = createSyncStoragePersister({
+    storage: window.localStorage,
+  });
 
   return (
     <Suspense fallback={<Loading />}>
       <ErrorBoundary FallbackComponent={MainErrorFallback}>
+        {/* <PersistQueryClientProvider client={queryClient} persistOptions={{ persister }}> */}
         <QueryClientProvider client={queryClient}>
           {import.meta.env.DEV && <ReactQueryDevtools />}
           {children}
         </QueryClientProvider>
+        {/* </PersistQueryClientProvider> */}
       </ErrorBoundary>
     </Suspense>
   );

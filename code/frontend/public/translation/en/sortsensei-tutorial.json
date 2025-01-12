@@ -1,0 +1,80 @@
+{
+  "rickroll": {
+    "text": "Click here for solutions of the exam!!!"
+  },
+
+  "mergesort": {
+    "explanation": "The idea of the algorithm is based on the principle of <b>divide and conquer</b>. The array is repeatedly divided into two halves until the size of each subarray is 1.<br /><br /> Then, two subarrays are considered at a time and are sorted during the merging process.<br /><br /> The division occurs in O(log n) steps, while the merging requires O(n). Overall, Mergesort has a runtime of <b>O(nlogn)</b>."
+  },
+
+  "quicksort": {
+    "explanation1": "The idea of the algorithm is based on the principle of <b>divide and conquer</b>. The array is split into two subarrays: one containing values smaller than the pivot element and the other containing values greater than the pivot. This process is repeated recursively until the array can no longer be divided. In our case, the last element of the considered array is chosen as the pivot element.<br /><br />",
+    "explanation2": "During an iteration, O(n) elements are compared and, if necessary, swapped. The number of iterations corresponds to the length of the array minus 1, which is also O(n). Therefore, the overall runtime of the algorithm is <b>O(n<sup>2</sup>)</b>.."
+  },
+
+  "bubblesort": {
+    "explanation": "The algorithm works <b>iteratively</b>. The basic idea is to always swap the larger element with its neighbor and move it to the right. After each iteration, the end index is reduced by one. After the first iteration, the largest element in the entire array is positioned at the far right. In the next iteration, the next largest element is placed to the left of this element.<br /><br /> During an iteration, O(n) elements are compared and, if necessary, swapped. The number of iterations corresponds to the length of the array minus 1, which is also O(n). Therefore, the overall runtime of the algorithm is <b>O(n<sup>2</sup>)</b>."
+  },
+
+  "selectionsort": {
+    "explanation": "The algorithm works <b>iteratively</b>. The basic idea is to find the smallest element in the (sub)array and move it all the way to the left. Then, the considered range of the array is reduced by one element. The result is that the smallest element of the entire array is placed on the far left, the second smallest to its right, and so on.<br /><br /> Finding the smallest element in each subarray takes O(n) time. Since there are O(n) subarrays, the overall runtime of the algorithm is <b>O(n<sup>2</sup>)</b>."
+  },
+
+  "stepvisualizer": {
+        "mergesort": {
+            "divide": "Split the array into halves",
+            "divide_red": "Split the red-marked (sub)array",
+            "sortmerge_title": "Sort & Merge",
+            "sort_and_merge": "Sort and merge the red-marked subarray",
+            "finish":"Finished!"
+        },
+
+        "quicksort" : {
+            "partition_06": "Partition 0...6",
+            "partition_pivot4": "Partition, Pivot=4",
+            "2 <= 4": "2 <= 4",
+            "1 <= 4": "1 <= 4",
+            "5 > 4": "5 > 4",
+            "12 > 4": "12 > 4",
+            "3 <= 4": "3 <= 4",
+            "swap_with_first": "Swap with the first element of the red array",
+            "13 > 4": "13 > 4",
+            "swapPivot": "Swap the pivot element with the first element of the red array",
+            "partition_02": "Partition for subarray 0...2",
+            "pivot_3": "Pivot element: 3",
+            "2 <= 3": "2 <= 3",
+            "1 <= 3": "1 <= 3",
+            "swapPivot_special":"Swap the pivot element with the first element of the red array: Do nothing here",
+            "partition_01": "Partition for subarray 0...1",
+            "pivot_1":"Pivot element:1",
+            "2 > 1": "2 > 1",
+            "partition_46": "Partition 4...6",
+            "pivot_12":"Pivot element: 12",
+            "5 <= 12": "5 <= 12",
+            "13 > 12": "13 > 12",
+            "finish":"Finished!"
+
+        },
+
+        "bubblesort": {
+            "first_iteration": "Swap an element with the next one if A[i] > A[i+1] for i=0...3",
+            "second_iteration": "Swap an element with the next one if A[i] > A[i+1] for i=0...2",
+            "third_iteration":"Swap an element with the next one if A[i] > A[i+1] for i=0...1",
+            "fourth_iteration":"Swap an element with the next one if A[i] > A[i+1] for i=0...0",
+            "finish": "Fertig!"
+        },
+
+        "selectionsort": {
+          "look_04": "Consider array elements 0...4",
+          "find_smallest_04": "Find the smallest element in array 0...4",
+          "swap": "Swap with the first element",
+          "look_14": "Consider array elements 1...4",
+          "find_smallest_14": "Find the smallest element in array 1...4",
+          "look_24": "Consider array elements 2...4",
+          "find_smallest_24": "Find the smallest element in array 2...4",
+          "look_34": "Consider array elements 3...4",
+          "find_smallest_34": "Find the smallest element in array 3...4",
+          "finish":"Finished!"
+        }
+    }
+}

@@ -13,9 +13,13 @@ function bluecolor(): string {
 }
 
 const quick_steps: Step[] = [
-  { description: "Partition 0...6", data: [{ array: [2, 1, 5, 12, 3, 13, 4], color: whitecolor() }] },
   {
-    description: "Partition, Pivot=4",
+    description: "partition_06", //"Partition 0...6"
+    data: [{ array: [2, 1, 5, 12, 3, 13, 4], color: whitecolor() }],
+  },
+
+  {
+    description: "partition_pivot4", //"Partition, Pivot=4"
     data: [
       { array: [2, 1, 5, 12, 3, 13], color: whitecolor() },
       { array: [4], color: bluecolor() },
@@ -67,7 +71,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Tausche mit erstem Element von rotem Array",
+    description: "swap_with_first", //"Tausche mit erstem Element von rotem Array"
     data: [
       { array: [2, 1], color: whitecolor() },
       { array: [5], color: redcolor() },
@@ -78,7 +82,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Tausche mit erstem Element von rotem Array",
+    description: "swap_with_first", //"Tausche mit erstem Element von rotem Array"
     data: [
       { array: [2, 1, 3], color: whitecolor() },
       { array: [12, 5], color: redcolor() },
@@ -87,7 +91,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "13>4",
+    description: "13 > 4",
     data: [
       { array: [2, 1, 3], color: whitecolor() },
       { array: [12, 5], color: redcolor() },
@@ -96,7 +100,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Tausche pivotElements mit erstem Element von rotem Array",
+    description: "swapPivot", //"Tausche Pivotelement mit erstem Element von rotem Array"
     data: [
       { array: [2, 1, 3], color: whitecolor() },
       { array: [12, 5, 13], color: redcolor() },
@@ -104,7 +108,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Tausche pivotElements mit erstem Element von rotem Array",
+    description: "swapPivot",
     data: [
       { array: [2, 1, 3], color: whitecolor() },
       { array: [4], color: bluecolor() },
@@ -112,7 +116,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Partition für Teilarray 0...2",
+    description: "partition_02", //"Partition für Teilarray 0...2"
     data: [
       { array: [2, 1, 3], color: whitecolor() },
       { array: [4], color: bluecolor() },
@@ -120,7 +124,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "pivotElements: 3",
+    description: "pivot_3", //"Pivotelement: 3"
     data: [
       { array: [2, 1, 3], color: whitecolor() },
       { array: [4], color: bluecolor() },
@@ -128,7 +132,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "pivotElements: 3",
+    description: "pivot_3",
     data: [
       { array: [2, 1], color: whitecolor() },
       { array: [3], color: bluecolor() },
@@ -157,7 +161,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Tausche pivotElements mit erstem Element von rotem Array: Hier nichts machen",
+    description: "swapPivot_special", //"Tausche Pivotelement mit erstem Element von rotem Array: Hier nichts machen"
     data: [
       { array: [2, 1], color: whitecolor() },
       { array: [3], color: bluecolor() },
@@ -166,7 +170,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Partition für Teilarray 0...1",
+    description: "partition_01", //"Partition für Teilarray 0...1"
     data: [
       { array: [2, 1], color: whitecolor() },
       { array: [3], color: bluecolor() },
@@ -175,7 +179,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "pivotElements:1",
+    description: "pivot_1", //"Pivotelement:1"
     data: [
       { array: [2, 1], color: whitecolor() },
       { array: [3], color: bluecolor() },
@@ -184,7 +188,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "pivotElements:1",
+    description: "pivot_1",
     data: [
       { array: [2], color: whitecolor() },
       { array: [1], color: bluecolor() },
@@ -204,7 +208,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Tausche pivotElements mit erstem Element von rotem Array",
+    description: "swapPivot",
     data: [
       { array: [2], color: redcolor() },
       { array: [1], color: bluecolor() },
@@ -214,7 +218,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Tausche pivotElements mit erstem Element von rotem Array",
+    description: "swapPivot",
     data: [
       { array: [1], color: bluecolor() },
       { array: [2], color: whitecolor() },
@@ -224,7 +228,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Partition 4...6",
+    description: "partition_46", //"Partition 4...6"
     data: [
       { array: [1], color: bluecolor() },
       { array: [2], color: whitecolor() },
@@ -234,7 +238,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "pivotElements: 12",
+    description: "pivot_12", //"Pivotelement: 12"
     data: [
       { array: [1], color: bluecolor() },
       { array: [2], color: whitecolor() },
@@ -244,7 +248,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "pivotElements: 12",
+    description: "pivot_12",
     data: [
       { array: [1], color: bluecolor() },
       { array: [2], color: whitecolor() },
@@ -279,7 +283,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Tausche pivotElements mit erstem Element von rotem Array",
+    description: "swapPivot",
     data: [
       { array: [1], color: bluecolor() },
       { array: [2], color: whitecolor() },
@@ -291,7 +295,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Tausche pivotElements mit erstem Element von rotem Array",
+    description: "swapPivot",
     data: [
       { array: [1], color: bluecolor() },
       { array: [2], color: whitecolor() },
@@ -303,7 +307,7 @@ const quick_steps: Step[] = [
     ],
   },
 
-  { description: "Fertig!", data: [{ array: [1, 2, 3, 4, 5, 12, 13], color: whitecolor() }] },
+  { description: "finish", data: [{ array: [1, 2, 3, 4, 5, 12, 13], color: whitecolor() }] },
 ];
 
 export default quick_steps;

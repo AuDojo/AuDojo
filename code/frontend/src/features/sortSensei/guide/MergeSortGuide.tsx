@@ -1,21 +1,18 @@
 // MergeSortGuide.tsx
 import { useSortContext } from "@/features/sortSensei/context/SortContext";
+import parse from "html-react-parser";
+import { useTranslation } from "react-i18next";
 import styles from "./SortGuide.module.css";
-
 const MergeSortGuide = () => {
   const { step, mergeRanges, processList } = useSortContext();
-
+  const { t } = useTranslation("sortsensei");
   const getCurrentGuideText = () => {
     const currentRange = mergeRanges[step - 1];
     if (!processList || processList.length === 0) {
       return "Starting Merge Sort!";
     }
     if (!currentRange || currentRange[0] === -1 || step === 1) {
-      return (
-        <>
-          <b>Split</b> the array into <b>two halves recursively</b> until each subarray contains one element.
-        </>
-      );
+      return <>{parse(t("mergeSort.guide.splitting"))}</>;
     }
 
     const [start, end] = currentRange;
@@ -35,18 +32,13 @@ const MergeSortGuide = () => {
       if (step === 1) {
         return "Split the array into two halves.";
       }
-      return (
-        <>
-          Merge the sorted subarrays by comparing elements.
-          <br /> <b>The merged array is marked.</b>
-        </>
-      );
+      return <>{parse(t("mergeSort.guide.merge"))}</>;
     }
   };
 
   return (
     <div className={styles["guide"]}>
-      <h3>Merge Sort Guide</h3>
+      <h3>{t("mergeSort.guide.heading")}</h3>
       <div className={styles["step"]}>
         <p>{getCurrentGuideText()}</p>
       </div>

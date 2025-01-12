@@ -1,4 +1,4 @@
-import style from "./HamugerIcon.module.css";
+import style from "./HamburgerIcon.module.css";
 const HamburgerIcon = ({ isOpen, onClick }: { isOpen: boolean; onClick: () => void }) => {
   return (
     <div className={`${style["hamburger"]} ${isOpen ? style.change : ""}`} onClick={onClick}>

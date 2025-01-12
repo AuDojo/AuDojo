@@ -1,0 +1,40 @@
+{
+  "length-input-info": "Länge vom zufälligem Array: ({{min}}-{{max}})",
+  "speed-info": "Animations geschwindigkeit",
+  "tutorialModal": {},
+  "button": {
+    "new-custom": "🛠️ Eigenes Array",
+    "new-random": "🎲 Zufälliges Array"
+  },
+  "error-message": {
+    "range": "Bitte gebe nur Zahlen zwischen den Werten {{min}} und {{max}} ein.",
+    "to-few": "Bitte gebe mindestens {{min}} Zahlen ein.",
+    "to-many": "Bitte gebe höchstens {{max}} Zahlen ein."
+  },
+  "mergeSort": {
+    "guide": {
+      "start": "Starte Merge Sort!",
+      "heading": "Merge Sort Hilfe",
+      "splitting": "<b>Teile</b> das Array rekursiv in <b>zwei hälften</b> solange es in jedem Teilarray mehr als ein Element gibt.",
+      "compare": "Vergleiche und sortiere zwei Elemente <br /> <b>Die sortierten Elemente wurde markiert</b>",
+      "merge": "Kombiniere (Merge) die sortierten Teilarrays indem die einzelnen Elemente verglichen werden <br /> <b>Das kombinierte Array wurde markiert.</b>",
+      "end": "Das Sortieren ist abgeschlossen!"
+    }
+  },
+  "quickSort": {
+    "guide": {
+      "heading": "Quick Sort Hilfe",
+      "choose": "Wähle das <b> letzte Element {{lastElement}} </b> als pivot Element.",
+      "after-partition": "Nach dem Aufteilen, sind alle Elemente, welche kleiner als das pivot Element {{pivot}} sind, auf dessem linken, und größere auf der rechten Seite. <b> Wähle {{nextPivot}} </b> als <b>das nächste</b> pivot element. <br /> <b> Das benutzte pivot Element {{pivot}} wurde markiert.</b>",
+      "end": "<b> Das benutzte pivot Element {{pivot}} wurde markiert </b> <br /> Das Sortieren ist abgeschlossen!"
+    }
+  },
+  "selectionSort": {
+    "guide": {
+      "header": "Selection Sort Hilfe",
+      "start": "Started mit dem derzeitigen Element am <b>Index 0</b>.<br /> Finde das kleinste aller Elemente. <br />",
+      "swap": "Tausche <b>Derzeitiges Element ({{currentElement}})</b> mit dem <b>kleinsten ({{smallestElement}})</b>. <br /> Bewege zum <b>Index {{move}}</b> und finde das kleinste Element im übrigen Teilarray.<br />",
+      "end": "Das Sortieren ist abgeschlossen!"
+    }
+  }
+}

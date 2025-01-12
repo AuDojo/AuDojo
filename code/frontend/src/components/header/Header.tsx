@@ -1,13 +1,16 @@
-import { useState } from "react";
 import { paths } from "@/constants";
-import headerStyles from "./Header.module.css";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { FaAngleDown } from "react-icons/fa6";
-import HeaderLogo from "./logo/HeaderLogo";
+import headerStyles from "./Header.module.css";
 import LinkItem from "./LinkItem";
-import HamburgerIcon from "./hamburger/HamburgerIcon";
+import { HamburgerIcon } from "./hamburger";
+import { LanguageSelector } from "./languageSelector";
+import HeaderLogo from "./logo/HeaderLogo";
 
 const Header = () => {
   //Case: Client Width too small:  When the user clicks on hamburger icon, open the menu
+  const { t } = useTranslation("header");
   const [isOpen, setOpen] = useState<boolean>(false);
   const toogleMenu = () => {
     setOpen(!isOpen);
@@ -32,8 +35,9 @@ const Header = () => {
         </nav>
         <LinkItem className="menu-item" to={paths.home} text="TreeTutor" />
         <LinkItem className="menu-item" to={paths.tutorial} text="Beispiele" />
-        <LinkItem className="menu-item" to={paths.kontakt} text="Kontakt" />
+        <LinkItem className="menu-item" to={paths.kontakt} text={t("contact")} />
       </nav>
+      <LanguageSelector />
       <HamburgerIcon isOpen={isOpen} onClick={toogleMenu} />
     </header>
   );

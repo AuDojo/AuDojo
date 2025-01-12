@@ -25,7 +25,7 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
   const cellData = useMemo(() => {
     const sortType = sortTypeRef.current;
     const num = processList[rowIndex][columnIndex];
-    const inputCellValue = inputCellValues[rowIndex][columnIndex];
+    const inputCellValue = inputCellValues[rowIndex]?.[columnIndex] || "";
     const validation = cellValidation[rowIndex][columnIndex];
 
     let pivotPair: [number, number];

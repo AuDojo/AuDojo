@@ -2,6 +2,7 @@ import { SortTypes } from "@/features/sortSensei/constants";
 import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import { useTutorialModalContext } from "@features/sortSensei/context";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Points } from "../points";
 import { useTableContext } from "../table/context";
 import buttonStyles from "./Button.module.css";
@@ -15,6 +16,8 @@ const SolveButton = () => {
   const { step, processList, mergeRanges, sortTypeRef, selectionElements, bubbleElements, setStep } = useSortContext();
   const { inputCellValues, setInputCellValues, setCellValidation } = useTableContext();
   const { highlightRefs } = useTutorialModalContext();
+
+  const { t } = useTranslation("sortsensei");
 
   const { timeoutRef, solveAllStatus, setSolveAllStatus } = useButtonContext();
   const isSolvingRef = useRef<boolean>(false);
@@ -241,7 +244,7 @@ const SolveButton = () => {
     <div className={buttonStyles["solve-speed-buttons"]} ref={highlightRefs.solveButtons}>
       <Points />
       <div style={{ fontSize: "12px", fontStyle: "italic", color: "gray" }}>
-        Current speed: x{SPEED_DISPLAY[selectedSpeedIndex]}
+        {t("speed-info")}: x{SPEED_DISPLAY[selectedSpeedIndex]}
       </div>
       <div className={buttonStyles["speed-buttons-container"]}>
         <input

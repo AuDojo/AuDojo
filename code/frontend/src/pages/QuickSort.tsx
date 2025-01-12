@@ -13,9 +13,8 @@ import { useSetTitle } from "@hooks/useSetTitle";
 import styles from "@styles/sortSensei/general.module.css";
 
 const QuickSortContent = () => {
-  const { isLoading, error, pivotElements, selectionElements, mergeRanges, bubbleElements } = useSortContext();
+  const { isLoading, error } = useSortContext();
 
-  console.log(pivotElements, selectionElements, mergeRanges, bubbleElements);
   if (isLoading) {
     return <Loading />;
   }
