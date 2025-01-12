@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Loading } from "@/components/ui/loading";
 import { paths } from "@/constants";
+import TreeTutor from "@/pages/TreeTutor";
 import { Suspense, lazy } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { Route, Routes } from "react-router-dom";
@@ -36,6 +37,7 @@ export const App = () => {
             <Route path={paths.kontakt} element={<Kontakt />} />
             <Route path={paths.datenschutz} element={<Datenschutz />} />
             <Route path={paths.impressum} element={<Impressum />} />
+            <Route path={paths.treeTutor} element={<TreeTutor />} />
             <Route path="*" element={<NotFound />} /> {/* Invalid route*/}
           </Routes>
         </Suspense>

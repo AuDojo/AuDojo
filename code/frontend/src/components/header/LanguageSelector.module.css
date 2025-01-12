@@ -1,7 +1,7 @@
 /* Hauptcontainer für den Language Selector */
 .languageSelector {
   position: fixed; /* Globus rechts platzieren */
-  top: 47px; /* Vertikal zentrieren */
+  top: 36px; /* Vertikal zentrieren */
   right: 50px; /* Abstand vom rechten Rand */
   transform: translateY(-50%); /* Perfekte vertikale Zentrierung */
   cursor: pointer;
