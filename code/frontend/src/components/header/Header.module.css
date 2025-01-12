@@ -31,11 +31,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  list-style: none;
 }
 
 .menu-item:hover {
   color: var(--maincolor-red);
+}
+
+.dropdown-icon {
+  transition: transform 0.3s ease;
+}
+.dropdown-container:hover .dropdown-icon {
+  transform: rotate(180deg);
 }
 
 /* includes button to hover*/
