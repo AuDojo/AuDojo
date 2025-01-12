@@ -6,10 +6,10 @@ import { SortType } from "./sortSensei";
 export class SortProcessList {
   #columnsLength: number = 0;
   #processList: number[][] = [];
-  #mergeRange: [number, number][] = []; // Array of Tuples
-  #pivotElement: [number, number | null][] = [];
-  #selectedElement: number[] = [];
-  #bubbleElement: number[] = [];
+  #mergeRanges: [number, number][] = []; // Array of Tuples
+  #pivotElements: [number, number | null][] = [];
+  #bubbleElements: number[] = [];
+  #selectedElements: number[] = [];
 
   /**
    * Creates an object in which the single steps of a sorting algorithm can be stored.
@@ -21,11 +21,11 @@ export class SortProcessList {
 
     switch (sortType) {
       case SortType.MergeSort:
-        this.#mergeRange[0] = [-1, -1];
+        this.#mergeRanges[0] = [-1, -1];
         break;
 
       case SortType.QuickSort:
-        this.#pivotElement[0] = [-1, -1];
+        this.#pivotElements[0] = [-1, -1];
         break;
 
       default:
@@ -49,9 +49,9 @@ export class SortProcessList {
    */
   pushMergeRange(start: number, end: number) {
     let index = this.#processList.length;
-    this.#mergeRange[index] = [start, end];
+    this.#mergeRanges[index] = [start, end];
 
-    console.log("start, end: ", this.#mergeRange[index]);
+    console.log("start, end: ", this.#mergeRanges[index]);
   }
 
   /**
@@ -60,9 +60,9 @@ export class SortProcessList {
    */
   pushPivotElementBefore(pivot_index: number) {
     let index = this.#processList.length;
-    this.#pivotElement[index] = [pivot_index, null];
+    this.#pivotElements[index] = [pivot_index, null];
 
-    console.log("pivot_index: ", this.#pivotElement[index][0]);
+    console.log("pivot_index: ", this.#pivotElements[index][0]);
   }
 
   /**
@@ -71,9 +71,9 @@ export class SortProcessList {
    */
   pushPivotElementAfter(pivot_index: number) {
     let index = this.#processList.length;
-    this.#pivotElement[index][1] = pivot_index;
+    this.#pivotElements[index][1] = pivot_index;
 
-    console.log("pivot_index: ", this.#pivotElement[index][1]);
+    console.log("pivot_index: ", this.#pivotElements[index][1]);
   }
 
   /**
@@ -81,10 +81,10 @@ export class SortProcessList {
    * @param selected_index Index of the selected element
    */
   pushSelectedElement(selected_index: number) {
-    let index = this.#selectedElement.length;
-    this.#selectedElement[index] = selected_index;
+    let index = this.#selectedElements.length;
+    this.#selectedElements[index] = selected_index;
 
-    console.log("selected_items: ", this.#selectedElement[index]);
+    console.log("selected_items: ", this.#selectedElements[index]);
   }
 
   /**
@@ -92,10 +92,10 @@ export class SortProcessList {
    * @param selected_index Index of the Bubbled Element
    */
   pushBubbleElement(selected_index: number) {
-    let index = this.#bubbleElement.length;
-    this.#bubbleElement[index] = selected_index;
+    let index = this.#bubbleElements.length;
+    this.#bubbleElements[index] = selected_index;
 
-    console.log("bubble_elements: ", this.#bubbleElement[index]);
+    console.log("bubble_elements: ", this.#bubbleElements[index]);
   }
 
   /**
@@ -130,17 +130,12 @@ export class SortProcessList {
    * @returns json-string in following Format: {"processList": [[startList], [sortStep1], [sortStep2], ...]}
    */
   createJson(): string {
-    let mergeRange = this.#mergeRange.length == 0 ? null : this.#mergeRange;
-    let pivotElement = this.#pivotElement.length == 0 ? null : this.#pivotElement;
-    let selctionElement = this.#selectedElement.length == 0 ? null : this.#selectedElement;
-    let bubbleElement = this.#bubbleElement.length == 0 ? null : this.#bubbleElement;
-
     let obj = {
       processList: this.#processList,
-      mergeRange: mergeRange,
-      pivotElement: pivotElement,
-      selectionElement: selctionElement,
-      bubbleElement: bubbleElement,
+      mergeRanges: this.#mergeRanges,
+      pivotElements: this.#pivotElements,
+      bubbleElements: this.#bubbleElements,
+      selectionElements: this.#selectedElements,
     };
 
     console.log(obj);
