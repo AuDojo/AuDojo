@@ -29,9 +29,9 @@ Softwarearchitektur von Backend:
    {
       "processList": [[startList], [sortStep1], [sortStep2], ...],
       "mergeRange": [[-1, -1], [start1, end1], [start2, end2], ...],
-      "pivotElement": null,
-      "selectedElement": null,
-      "bubbleElement":null
+      "pivotElement": [],
+      "selectedElement": [],
+      "bubbleElement":[]
    }
    ```
 
@@ -42,10 +42,10 @@ Softwarearchitektur von Backend:
    ```json
    {
       "processList": [[startList], [sortStep1], [sortStep2], ...],
-      "mergeRange": null,
+      "mergeRange": [],
       "pivotElement": [[-1, -1], [pivot-before1, pivot-after1], [pivot-before2, pivot-after2], ...],
-      "selectedElement": null,
-      "bubbleElement":null
+      "selectedElement": [],
+      "bubbleElement":[]
    }
    ```
 
@@ -56,9 +56,9 @@ Softwarearchitektur von Backend:
    ```json
    {
       "processList": [[startList], [sortStep1], [sortStep2], ...],
-      "mergeRange": null,
-      "pivotElement": null,
-      "selectedElement": null,
+      "mergeRange": [],
+      "pivotElement": [],
+      "selectedElement": [],
       "bubbleElement":[Tauschindex1,Tauschindex2, ...]
    }
    ```
@@ -70,16 +70,16 @@ Softwarearchitektur von Backend:
    ```json
    {
       "processList": [[startList], [sortStep1], [sortStep2], ...],
-      "mergeRange": null,
-      "pivotElement": null,
+      "mergeRange": [],
+      "pivotElement": [],
       "selectedElement": [selected1, selected2, selected3, ...],
-      "bubbleElement":null
+      "bubbleElement":[]
    }
    ```
 
    `selected1` gibt den Index an, an welchen das jeweilig noch nicht sortierte Element mit dem derzeit kleinsten Element gewechselt wird.
 
-   Wenn "mergeRange" und "pivotElement" den Wert null besitzen heißt das, dass ein anderer Sortiealgorithmus benutzt wurde.
+   Wenn "mergeRange" und "pivotElement" ein leeres Array besitzen heißt das, dass ein anderer Sortieralgorithmus benutzt wurde.
 
 Edge Cases:
 Falls
