@@ -1,4 +1,4 @@
-import { useSortContext } from "@/hooks";
+import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import { select } from "d3";
 import { useEffect, useMemo, useRef } from "react";
 import { margin, maxWidthEachBar, textMarginBottom, timeBarsMove, timeLoadColor } from "./constants";
@@ -15,7 +15,7 @@ import { createBubbleSortData } from "./utils/createBubbleSortData";
  * The bars are animated to show the bubble sort process.
  */
 const BubbleSortVisualizer = () => {
-  const { stepsList, step, sharedArray, bubbleElement } = useSortContext();
+  const { processList, step, sharedArray, bubbleElements } = useSortContext();
   const i = step - 1; // Current step index
   const svgRef = useRef<SVGSVGElement | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,17 +31,17 @@ const BubbleSortVisualizer = () => {
 
   // Calculate the data for the bar chart based on the current step
   const data = useMemo(() => {
-    if (!stepsList.length) return null;
+    if (!processList.length) return null;
     return createBubbleSortData({
-      currentArray: stepsList[i],
-      numSteps: stepsList.length,
+      currentArray: processList[i],
+      numSteps: processList.length,
       i,
-      bubbleElement,
+      bubbleElements,
     });
-  }, [stepsList, i]);
+  }, [processList, i]);
 
   useEffect(() => {
-    if (!stepsList.length || !svgRef.current || !data) return;
+    if (!processList.length || !svgRef.current || !data) return;
 
     const svg = select(svgRef.current);
 

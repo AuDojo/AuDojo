@@ -1,4 +1,4 @@
-import { useSortContext } from "@/hooks";
+import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import { select } from "d3";
 import { useEffect, useMemo, useRef } from "react";
 import { margin, maxWidthEachBar, textMarginBottom, textMarginTop, timeBarsMove, timeLoadColor } from "./constants";
@@ -15,7 +15,7 @@ import { createQuickSortData } from "./utils/createQuickSortData";
  * The bars are animated to show the quick sort process.
  */
 const QuickSortVisualizer = () => {
-  const { stepsList, step, sharedArray, pivotElement } = useSortContext();
+  const { processList, step, sharedArray, pivotElements } = useSortContext();
   const i = step - 1;
   const svgRef = useRef<SVGSVGElement | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,18 +31,18 @@ const QuickSortVisualizer = () => {
 
   // Calculate the data for the bar chart based on the current step
   const data = useMemo(() => {
-    if (!stepsList.length) return null;
+    if (!processList.length) return null;
     return createQuickSortData({
-      currentArray: stepsList[i],
-      previousArray: i >= 1 ? stepsList[i - 1] : stepsList[i],
-      numSteps: stepsList.length,
+      currentArray: processList[i],
+      previousArray: i >= 1 ? processList[i - 1] : processList[i],
+      numSteps: processList.length,
       i,
-      pivotElement,
+      pivotElements,
     });
-  }, [stepsList, i]);
+  }, [processList, i]);
 
   useEffect(() => {
-    if (!stepsList.length || !svgRef.current || !data) return;
+    if (!processList.length || !svgRef.current || !data) return;
 
     const svg = select(svgRef.current);
 

@@ -1,25 +1,25 @@
 // MergeSortGuide.tsx
-import { useSortContext } from "@/hooks";
+import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import styles from "./SortGuide.module.css";
 
 const QuickSortGuide = () => {
-  const { step, stepsList, pivotElement } = useSortContext();
+  const { step, processList, pivotElements } = useSortContext();
 
   const getCurrentGuideText = () => {
-    if (!stepsList || stepsList.length === 0) {
+    if (!processList || processList.length === 0) {
       return "Starting Quick Sort!";
     }
     if (step === 1) {
       return (
         <>
-          Choose <b>last element "{stepsList[0][stepsList[0].length - 1]}"</b> as pivot element.
+          Choose <b>last element "{processList[0][processList[0].length - 1]}"</b> as pivot element.
         </>
       );
     } else if (step >= 2) {
-      const prevArray = stepsList[step - 2];
-      const pivot = prevArray[pivotElement[step - 1][0]];
-      const currentArray = stepsList[step - 1];
-      const nextPivot = step !== stepsList.length ? currentArray[pivotElement[step][0]] : 0;
+      const prevArray = processList[step - 2];
+      const pivot = prevArray[pivotElements[step - 1][0]];
+      const currentArray = processList[step - 1];
+      const nextPivot = step !== processList.length ? currentArray[pivotElements[step][0]] : 0;
 
       if (!nextPivot) {
         return (

@@ -1,8 +1,9 @@
-import { SortTypes } from "@/constants";
-import { useSortContext } from "@/hooks";
+import { SortTypes } from "@/features/sortSensei/constants";
+import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import { useTableUtils } from "@features/sortSensei/table/hooks";
 import classNames from "classnames/bind";
 import { JSX, useMemo } from "react";
+import { useTableContext } from "../context/TableContext";
 import styles from "./TableCell.module.css";
 
 interface TableCellProps {
@@ -14,32 +15,23 @@ interface TableCellProps {
 const cx = classNames.bind(styles);
 
 const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
-  const {
-    stepsList,
-    step,
-    mergeRanges,
-    sortTypeRef,
-    inputCellValues,
-    inputCellsRef,
-    cellValidation,
-    pivotElement,
-    selectionElement,
-    bubbleElement,
-  } = useSortContext();
+  const { processList, step, mergeRanges, sortTypeRef, pivotElements, selectionElements, bubbleElements } =
+    useSortContext();
+  const { inputCellValues, inputCellsRef, cellValidation } = useTableContext();
 
   const { handleCellChange, handleCellKeyDown } = useTableUtils();
 
   // Memoize derived values to prevent unnecessary re-renders
   const cellData = useMemo(() => {
     const sortType = sortTypeRef.current;
-    const num = stepsList[rowIndex][columnIndex];
+    const num = processList[rowIndex][columnIndex];
     const inputCellValue = inputCellValues[rowIndex][columnIndex];
     const validation = cellValidation[rowIndex][columnIndex];
 
     let pivotPair: [number, number];
-    if (sortType === SortTypes.QuickSort && pivotElement) {
-      if (rowIndex < pivotElement.length) {
-        pivotPair = pivotElement[rowIndex];
+    if (sortType === SortTypes.QuickSort && pivotElements) {
+      if (rowIndex < pivotElements.length) {
+        pivotPair = pivotElements[rowIndex];
       } else {
         pivotPair = [-1, -1];
       }
@@ -48,17 +40,18 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
     }
 
     // Calculate merge range
-    const mergeRange = sortType === SortTypes.MergeSort && mergeRanges ? mergeRanges[rowIndex] || [-1, -1] : [-1, -1];
+    const currentmergeRanges =
+      sortType === SortTypes.MergeSort && mergeRanges ? mergeRanges[rowIndex] || [-1, -1] : [-1, -1];
 
     // Check if column is in merge range
-    const isInMergeRange = () => columnIndex >= mergeRange[0] && columnIndex <= mergeRange[1];
+    const isInmergeRanges = () => columnIndex >= currentmergeRanges[0] && columnIndex <= currentmergeRanges[1];
 
     // Check if element is pivot
     const isPivot = () => columnIndex === pivotPair[1];
 
     const isSelected = (): boolean => {
       if (sortTypeRef.current === SortTypes.SelectionSort && rowIndex < step) {
-        return columnIndex === selectionElement[rowIndex - 1] || columnIndex === rowIndex - 1;
+        return columnIndex === selectionElements[rowIndex - 1] || columnIndex === rowIndex - 1;
       }
       return false;
     };
@@ -68,12 +61,12 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
       num,
       inputCellValue,
       validation,
-      mergeRange,
-      isInMergeRange: isInMergeRange(),
+      mergeRanges: currentmergeRanges,
+      isInmergeRanges: isInmergeRanges(),
       isPivot: isPivot(),
       isSelected: isSelected(),
     };
-  }, [rowIndex, columnIndex, stepsList, inputCellValues, cellValidation, mergeRanges, sortTypeRef, pivotElement]);
+  }, [rowIndex, columnIndex, processList, inputCellValues, cellValidation, mergeRanges, sortTypeRef, pivotElements]);
 
   // Tooltip content for incorrect input
   const tooltipContent = cellData.inputCellValue ? `Wrong: ${cellData.inputCellValue}` : "Missing input";
@@ -92,11 +85,11 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
           "pivot-cell": cellData.isPivot && rowIndex < step,
 
           // MergeSort styles
-          "in-merge-range": cellData.sortType === SortTypes.MergeSort && cellData.isInMergeRange && rowIndex < step,
+          "in-merge-range": cellData.sortType === SortTypes.MergeSort && cellData.isInmergeRanges && rowIndex < step,
           "merge-range-start":
-            cellData.sortType === SortTypes.MergeSort && columnIndex === cellData.mergeRange[0] && rowIndex < step,
+            cellData.sortType === SortTypes.MergeSort && columnIndex === cellData.mergeRanges[0] && rowIndex < step,
           "merge-range-end":
-            cellData.sortType === SortTypes.MergeSort && columnIndex === cellData.mergeRange[1] && rowIndex < step,
+            cellData.sortType === SortTypes.MergeSort && columnIndex === cellData.mergeRanges[1] && rowIndex < step,
 
           // SelectionSort styles
           "selected-cell": cellData.isSelected,
@@ -104,11 +97,11 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
           // BubbleSort styles
           "bubble-cell-first":
             cellData.sortType === SortTypes.BubbleSort &&
-            columnIndex === bubbleElement[rowIndex - 1] &&
+            columnIndex === bubbleElements[rowIndex - 1] &&
             rowIndex < step,
           "bubble-cell-second":
             cellData.sortType === SortTypes.BubbleSort &&
-            columnIndex === bubbleElement[rowIndex - 1] + 1 &&
+            columnIndex === bubbleElements[rowIndex - 1] + 1 &&
             rowIndex < step,
         })}
         value={rowIndex < step ? cellData.num || "" : cellData.inputCellValue}

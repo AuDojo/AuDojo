@@ -1,13 +1,13 @@
 // MergeSortGuide.tsx
-import { useSortContext } from "@/hooks";
+import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import styles from "./SortGuide.module.css";
 
 const MergeSortGuide = () => {
-  const { step, mergeRanges, stepsList } = useSortContext();
+  const { step, mergeRanges, processList } = useSortContext();
 
   const getCurrentGuideText = () => {
     const currentRange = mergeRanges[step - 1];
-    if (!stepsList || stepsList.length === 0) {
+    if (!processList || processList.length === 0) {
       return "Starting Merge Sort!";
     }
     if (!currentRange || currentRange[0] === -1 || step === 1) {
@@ -29,7 +29,7 @@ const MergeSortGuide = () => {
           Compare and sort two elements. <br /> <b>The sorted elements are marked</b>
         </>
       );
-    } else if (length === stepsList.length) {
+    } else if (length === processList.length) {
       return "Sorting is complete!";
     } else {
       if (step === 1) {

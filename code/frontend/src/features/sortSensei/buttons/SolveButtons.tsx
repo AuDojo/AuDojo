@@ -1,28 +1,19 @@
-import { SortTypes } from "@/constants";
-import { useSortContext } from "@/hooks";
+import { SortTypes } from "@/features/sortSensei/constants";
+import { useSortContext } from "@/features/sortSensei/context/SortContext";
+import { useTutorialModalContext } from "@features/sortSensei/context";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useTutorialModalContext } from "../hooks";
 import { Points } from "../points";
+import { useTableContext } from "../table/context";
 import buttonStyles from "./Button.module.css";
-import { useButtonContext } from "./hooks";
+import { useButtonContext } from "./context";
 
 const SPEED_VALUES = [5000, 4000, 2500, 1500, 1000, 500, 5];
 const DEFAULT_SPEED_INDEX = 3;
 const SPEED_DISPLAY = ["0.25", "0.5", "0.75", "1.0", "1.25", "1.5", "15"];
 
 const SolveButton = () => {
-  const {
-    step,
-    stepsList,
-    inputCellValues,
-    mergeRanges,
-    sortTypeRef,
-    selectionElement,
-    bubbleElement,
-    setStep,
-    setInputCellValues,
-    setCellValidation,
-  } = useSortContext();
+  const { step, processList, mergeRanges, sortTypeRef, selectionElements, bubbleElements, setStep } = useSortContext();
+  const { inputCellValues, setInputCellValues, setCellValidation } = useTableContext();
   const { highlightRefs } = useTutorialModalContext();
 
   const { timeoutRef, solveAllStatus, setSolveAllStatus } = useButtonContext();
@@ -41,33 +32,33 @@ const SolveButton = () => {
    */
   const validateLine = useCallback(
     (currentStep: number) => {
-      if (currentStep >= stepsList.length) return;
+      if (currentStep >= processList.length) return;
 
-      const correctValues = stepsList[currentStep];
+      const correctValues = processList[currentStep];
       const userValues = inputCellValues[currentStep];
-      const currentMergeRange = mergeRanges ? mergeRanges[currentStep] : [-1, -1];
+      const currentmergeRanges = mergeRanges ? mergeRanges[currentStep] : [-1, -1];
       const sortType = sortTypeRef.current;
 
       // TODO: Clean up this code, maybe own validateMergeSortLine
       const validationResult = userValues.map((value, currentColumn) => {
         // Check if cell is in merge range
-        const isInMergeRange =
-          currentMergeRange && currentColumn >= currentMergeRange[0] && currentColumn <= currentMergeRange[1];
+        const isInmergeRanges =
+          currentmergeRanges && currentColumn >= currentmergeRanges[0] && currentColumn <= currentmergeRanges[1];
 
         // Check if cell is selected from selection sort
         const isSelected =
           sortType === SortTypes.SelectionSort &&
-          selectionElement.length >= currentStep &&
-          (currentColumn === selectionElement[currentStep - 1] || currentColumn === currentStep - 1);
+          selectionElements.length >= currentStep &&
+          (currentColumn === selectionElements[currentStep - 1] || currentColumn === currentStep - 1);
 
-        const isBubbleElement =
-          (sortType === SortTypes.BubbleSort && bubbleElement[currentStep - 1] === currentColumn) ||
-          bubbleElement[currentStep - 1] + 1 === currentColumn;
+        const isbubbleElements =
+          (sortType === SortTypes.BubbleSort && bubbleElements[currentStep - 1] === currentColumn) ||
+          bubbleElements[currentStep - 1] + 1 === currentColumn;
 
         if (
           (sortType === SortTypes.SelectionSort && !isSelected) ||
-          (sortType === SortTypes.MergeSort && !isInMergeRange) ||
-          (sortType === SortTypes.BubbleSort && !isBubbleElement)
+          (sortType === SortTypes.MergeSort && !isInmergeRanges) ||
+          (sortType === SortTypes.BubbleSort && !isbubbleElements)
         ) {
           // Skip validation for unselected / unmerged cells
           return value === "" || Number(value) === correctValues[currentColumn];
@@ -85,7 +76,7 @@ const SolveButton = () => {
       setStep(currentStep + 1);
       currentStepRef.current = currentStep + 1;
     },
-    [inputCellValues, mergeRanges, stepsList, sortTypeRef, setCellValidation, setStep]
+    [inputCellValues, mergeRanges, processList, sortTypeRef, setCellValidation, setStep]
   );
 
   const stopSolving = useCallback(() => {
@@ -105,7 +96,7 @@ const SolveButton = () => {
   }, [step, validateLine, stopSolving, setSolveAllStatus]);
 
   const continueSolving = useCallback(() => {
-    if (!isSolvingRef.current || currentStepRef.current >= stepsList.length) {
+    if (!isSolvingRef.current || currentStepRef.current >= processList.length) {
       return;
     }
     if (timeoutRef.current) {
@@ -113,15 +104,15 @@ const SolveButton = () => {
     }
     timeoutRef.current = setTimeout(continueSolving, SPEED_VALUES[speedIndexRef.current]);
     validateLine(currentStepRef.current);
-  }, [validateLine, timeoutRef, currentStepRef, stepsList, speedIndexRef]);
+  }, [validateLine, timeoutRef, currentStepRef, processList, speedIndexRef]);
 
   const handleGoNext = useCallback(() => {
-    if (step >= stepsList.length) {
+    if (step >= processList.length) {
       return;
     }
     validateLine(step);
     setStep(step + 1);
-  }, [step, validateLine, stepsList]);
+  }, [step, validateLine, processList]);
 
   const handleGoBack = useCallback(() => {
     if (step <= 1) {
@@ -138,14 +129,14 @@ const SolveButton = () => {
 
   // Finish solving
   useEffect(() => {
-    if (step >= stepsList.length) {
+    if (step >= processList.length) {
       setSolveAllStatus("solve");
       stopSolving();
     }
-  }, [step, stepsList, setSolveAllStatus, stopSolving]);
+  }, [step, processList, setSolveAllStatus, stopSolving]);
 
   const handleSolveAll = useCallback(() => {
-    if (step >= stepsList.length) {
+    if (step >= processList.length) {
       return;
     }
     switch (solveAllStatus) {
@@ -165,7 +156,7 @@ const SolveButton = () => {
         continueSolving();
         break;
     }
-  }, [solveAllStatus, step, stepsList, continueSolving, stopSolving, setSolveAllStatus]);
+  }, [solveAllStatus, step, processList, continueSolving, stopSolving, setSolveAllStatus]);
 
   /**
    * Resets the state of the sorting animation to the initial state.
@@ -177,21 +168,21 @@ const SolveButton = () => {
     currentStepRef.current = 1;
     setSolveAllStatus("solve");
     // Reset the input cell values to the initial values
-    setInputCellValues(stepsList.map((step, index) => (index === 0 ? [...step] : new Array(step.length).fill(""))));
+    setInputCellValues(processList.map((step, index) => (index === 0 ? [...step] : new Array(step.length).fill(""))));
     // Reset the cell validation to null
-    setCellValidation(stepsList.map((step) => new Array(step.length).fill(null)));
-  }, [stepsList, setStep, setInputCellValues, setCellValidation, stopSolving, setSolveAllStatus]);
+    setCellValidation(processList.map((step) => new Array(step.length).fill(null)));
+  }, [processList, setStep, setInputCellValues, setCellValidation, stopSolving, setSolveAllStatus]);
 
   /**
    * Called when the "back" button is pressed
    */
   //? UNUSED
   // const unsolveLine = useCallback(() => {
-  //let step = stepsList[currentStepRef.current];
+  //let step = processList[currentStepRef.current];
 
   // Reset the input cell values to the initial values (remove color etc.)
   // setCellValidation((prev) => new Array(step.length).fill(null));
-  //}, [stepsList, setInputCellValues, setCellValidation]);
+  //}, [processList, setInputCellValues, setCellValidation]);
 
   /**
    * Changes the speed of the animation by clearing the current timeout and
@@ -242,7 +233,7 @@ const SolveButton = () => {
     };
   }, [handleSolveLine, handleSolveAll, handleTryAgain]);
 
-  if (!stepsList || stepsList.length === 0) {
+  if (!processList || processList.length === 0) {
     return <div>Loading...</div>;
   }
 

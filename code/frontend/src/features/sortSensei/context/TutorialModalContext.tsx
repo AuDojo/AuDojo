@@ -1,13 +1,13 @@
-import React, { createContext, ReactNode, useRef } from "react";
+import React, { createContext, ReactNode, useContext, useRef } from "react";
 import { RefKeys } from "../tutorialModal/types";
 
 // Define types for our context state
-export interface ModalContextProps {
+interface ModalContextProps {
   highlightRefs: Record<RefKeys, React.RefObject<HTMLDivElement | null>>;
 }
 
 // Create context with default values
-export const TutorialModalContext = createContext<ModalContextProps | undefined>(undefined);
+const TutorialModalContext = createContext<ModalContextProps | undefined>(undefined);
 
 export const TutorialModalProvider = ({ children }: { children: ReactNode }) => {
   // Refs for focusable elements
@@ -19,4 +19,14 @@ export const TutorialModalProvider = ({ children }: { children: ReactNode }) => 
   };
 
   return <TutorialModalContext.Provider value={{ highlightRefs }}>{children}</TutorialModalContext.Provider>;
+};
+
+// Custom Hook
+
+export const useTutorialModalContext = () => {
+  const context = useContext(TutorialModalContext);
+  if (!context) {
+    throw new Error("useTutorialModal must be used within a TutorialModalProvider");
+  }
+  return context;
 };

@@ -1,4 +1,4 @@
-import { useTutorialModalContext } from "@features/sortSensei/hooks";
+import { useTutorialModalContext } from "@features/sortSensei/context";
 import { useCallback, useEffect, useState } from "react";
 import { tutorialSteps } from "../constants";
 import { useTutorialSteps } from "../context/useTutorialSteps";

@@ -1,4 +1,4 @@
-import { useSortContext } from "@/hooks";
+import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import { select } from "d3";
 import { useEffect, useMemo, useRef } from "react";
 import { margin, maxWidthEachBar, textMarginBottom, textMarginTop, timeBarsMove, timeLoadColor } from "./constants";
@@ -15,7 +15,7 @@ import { createSelectionSortData } from "./utils/createSelectionSortData";
  * The bars are animated to show the selection sort process.
  */
 const SelectionSortVisualizer = () => {
-  const { stepsList, step, sharedArray, selectionElement } = useSortContext();
+  const { processList, step, sharedArray, selectionElements } = useSortContext();
   const i = step - 1;
   const svgRef = useRef<SVGSVGElement | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,17 +31,17 @@ const SelectionSortVisualizer = () => {
 
   // Calculate the data for the bar chart based on the current step
   const data = useMemo(() => {
-    if (!stepsList.length) return null;
+    if (!processList.length) return null;
     return createSelectionSortData({
-      currentArray: stepsList[i],
-      numSteps: stepsList.length,
+      currentArray: processList[i],
+      numSteps: processList.length,
       i,
-      selectionElement,
+      selectionElements,
     });
-  }, [stepsList, i]);
+  }, [processList, i]);
 
   useEffect(() => {
-    if (!stepsList.length || !svgRef.current || !data) return;
+    if (!processList.length || !svgRef.current || !data) return;
 
     const svg = select(svgRef.current);
 

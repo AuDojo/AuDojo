@@ -1,7 +1,7 @@
-import { useSortContext } from "@/hooks";
 import { useTableUtils } from "@features/sortSensei/table/hooks";
 import classNames from "classnames/bind";
 import { JSX } from "react";
+import { useTableContext } from "../context/TableContext";
 import styles from "./TableCell.module.css";
 
 interface ListCellProps {
@@ -12,7 +12,7 @@ interface ListCellProps {
 const cx = classNames.bind(styles);
 
 const ListCell = ({ columnIndex }: ListCellProps): JSX.Element => {
-  const { inputCellValues, inputCellsRef } = useSortContext();
+  const { inputCellValues, inputCellsRef } = useTableContext();
 
   const { handleCellKeyDown } = useTableUtils();
 

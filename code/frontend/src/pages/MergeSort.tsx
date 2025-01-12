@@ -1,6 +1,6 @@
 import { Loading } from "@/components/ui/loading";
-import { SortTypes } from "@/constants";
 import { ButtonContextProvider } from "@/features/sortSensei/buttons/context";
+import { SortTypes } from "@/features/sortSensei/constants";
 import { TutorialModalProvider } from "@/features/sortSensei/context";
 import { SortProvider, useSortContext } from "@/features/sortSensei/context/SortContext";
 import { MergeSortVisualizer } from "@/features/sortSensei/sortVisualizer";
@@ -23,33 +23,35 @@ const MergeSortContent = () => {
   }
 
   return (
-    <>
-      <TutorialModalProvider>
-        <SideBarMenu />
-        <MergeSortGuide />
-        <div className={styles["main-container"]}>
-          <MergeSortVisualizer />
-          <div className={styles["outer-table-buttons-container"]}>
-            <div className={styles["inner-table-buttons-container"]}>
-              <TableProvider>
-                {/* Table */}
-                <SortingTable />
-                <ButtonContextProvider>
-                  <GenerateButtons />
-                  <SolveButtons />
-                </ButtonContextProvider>
-              </TableProvider>
-            </div>
-          </div>
+    <div className={styles["main-container"]}>
+      <MergeSortGuide />
+      <MergeSortVisualizer />
+      <div className={styles["outer-table-buttons-container"]}>
+        <div className={styles["inner-table-buttons-container"]}>
+          <TableProvider>
+            {/* Table */}
+            <SortingTable />
+            <ButtonContextProvider>
+              <GenerateButtons />
+              <SolveButtons />
+            </ButtonContextProvider>
+          </TableProvider>
         </div>
-      </TutorialModalProvider>
-    </>
+      </div>
+    </div>
   );
 };
 
 const MergeSort = () => {
   useSetTitle("MergeSort");
-  return <SortProvider sortType={SortTypes.MergeSort}>{<MergeSortContent />}</SortProvider>;
+  return (
+    <TutorialModalProvider>
+      <SideBarMenu />
+      <SortProvider sortType={SortTypes.MergeSort}>
+        <MergeSortContent />
+      </SortProvider>
+    </TutorialModalProvider>
+  );
 };
 
 export default MergeSort;

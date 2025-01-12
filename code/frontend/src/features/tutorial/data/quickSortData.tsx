@@ -96,7 +96,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Tausche Pivotelement mit erstem Element von rotem Array",
+    description: "Tausche pivotElements mit erstem Element von rotem Array",
     data: [
       { array: [2, 1, 3], color: whitecolor() },
       { array: [12, 5, 13], color: redcolor() },
@@ -104,7 +104,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Tausche Pivotelement mit erstem Element von rotem Array",
+    description: "Tausche pivotElements mit erstem Element von rotem Array",
     data: [
       { array: [2, 1, 3], color: whitecolor() },
       { array: [4], color: bluecolor() },
@@ -120,7 +120,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Pivotelement: 3",
+    description: "pivotElements: 3",
     data: [
       { array: [2, 1, 3], color: whitecolor() },
       { array: [4], color: bluecolor() },
@@ -128,7 +128,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Pivotelement: 3",
+    description: "pivotElements: 3",
     data: [
       { array: [2, 1], color: whitecolor() },
       { array: [3], color: bluecolor() },
@@ -157,7 +157,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Tausche Pivotelement mit erstem Element von rotem Array: Hier nichts machen",
+    description: "Tausche pivotElements mit erstem Element von rotem Array: Hier nichts machen",
     data: [
       { array: [2, 1], color: whitecolor() },
       { array: [3], color: bluecolor() },
@@ -175,7 +175,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Pivotelement:1",
+    description: "pivotElements:1",
     data: [
       { array: [2, 1], color: whitecolor() },
       { array: [3], color: bluecolor() },
@@ -184,7 +184,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Pivotelement:1",
+    description: "pivotElements:1",
     data: [
       { array: [2], color: whitecolor() },
       { array: [1], color: bluecolor() },
@@ -204,7 +204,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Tausche Pivotelement mit erstem Element von rotem Array",
+    description: "Tausche pivotElements mit erstem Element von rotem Array",
     data: [
       { array: [2], color: redcolor() },
       { array: [1], color: bluecolor() },
@@ -214,7 +214,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Tausche Pivotelement mit erstem Element von rotem Array",
+    description: "Tausche pivotElements mit erstem Element von rotem Array",
     data: [
       { array: [1], color: bluecolor() },
       { array: [2], color: whitecolor() },
@@ -234,7 +234,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Pivotelement: 12",
+    description: "pivotElements: 12",
     data: [
       { array: [1], color: bluecolor() },
       { array: [2], color: whitecolor() },
@@ -244,7 +244,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Pivotelement: 12",
+    description: "pivotElements: 12",
     data: [
       { array: [1], color: bluecolor() },
       { array: [2], color: whitecolor() },
@@ -279,7 +279,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Tausche Pivotelement mit erstem Element von rotem Array",
+    description: "Tausche pivotElements mit erstem Element von rotem Array",
     data: [
       { array: [1], color: bluecolor() },
       { array: [2], color: whitecolor() },
@@ -291,7 +291,7 @@ const quick_steps: Step[] = [
     ],
   },
   {
-    description: "Tausche Pivotelement mit erstem Element von rotem Array",
+    description: "Tausche pivotElements mit erstem Element von rotem Array",
     data: [
       { array: [1], color: bluecolor() },
       { array: [2], color: whitecolor() },

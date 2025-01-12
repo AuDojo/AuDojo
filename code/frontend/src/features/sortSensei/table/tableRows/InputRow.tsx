@@ -1,4 +1,4 @@
-import { useSortContext } from "@/hooks";
+import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import classNames from "classnames/bind";
 import { InputCell } from "../tableCell";
 import styles from "./TableRow.module.css";
@@ -16,12 +16,12 @@ const cx = classNames.bind(styles);
  */
 const InputRow = ({ rowIndex }: RowProps) => {
   // Access the context values
-  const { stepsList } = useSortContext();
+  const { processList } = useSortContext();
 
   return (
     <tr className={cx("row-container")} key={rowIndex}>
       <th className={cx("row-index")}>{rowIndex}</th>
-      {stepsList[rowIndex].map((_, columnIndex) => (
+      {processList[rowIndex].map((_, columnIndex) => (
         <InputCell rowIndex={rowIndex} columnIndex={columnIndex} key={columnIndex} />
       ))}
     </tr>

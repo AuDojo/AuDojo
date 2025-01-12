@@ -1,11 +1,11 @@
-import { useSortContext } from "@/hooks";
+import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import styles from "./SortGuide.module.css";
 
 const BubbleSortGuide = () => {
-  const { step, stepsList, bubbleElement } = useSortContext();
+  const { step, processList, bubbleElements } = useSortContext();
 
   const getCurrentGuideText = () => {
-    if (!stepsList.length) {
+    if (!processList.length) {
       return "Starting Bubble Sort!";
     }
     if (step === 1) {
@@ -15,18 +15,18 @@ const BubbleSortGuide = () => {
         </>
       );
     } else if (step >= 2) {
-      const firstSwapElement = stepsList[step - 2][bubbleElement[step - 2]];
-      const adjacentElement = stepsList[step - 2][bubbleElement[step - 2] + 1];
-      const isElementSorted = bubbleElement[step - 2] > bubbleElement[step - 1];
+      const firstSwapElement = processList[step - 2][bubbleElements[step - 2]];
+      const adjacentElement = processList[step - 2][bubbleElements[step - 2] + 1];
+      const isElementSorted = bubbleElements[step - 2] > bubbleElements[step - 1];
       return (
         <>
           Swap <b>{firstSwapElement}</b> with <b>{adjacentElement}</b>
           <br />
           <br />
-          {isElementSorted || step === stepsList.length ? (
+          {isElementSorted || step === processList.length ? (
             <>
               Now <b>{firstSwapElement}</b> stands at the <b>right place!</b>
-              {step === stepsList.length ? (
+              {step === processList.length ? (
                 <b>
                   <br />
                   Sorting is complete!

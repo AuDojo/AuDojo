@@ -1,2 +1,1 @@
-export * from "./ButtonContext";
-export * from "./ButtonProvider";
+export { ButtonContextProvider, useButtonContext } from "./ButtonContext";

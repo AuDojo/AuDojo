@@ -7,7 +7,7 @@ import { QuickSortBarData, QuickSortProps } from "../types";
  * @param {number[]} props.previousArray - The state of the array from the previous step.
  * @param {number} props.numSteps - The total number of steps in the sorting process.
  * @param {number} props.i - The current step index.
- * @param {[number, number][]} props.pivotElement - The pivot elements for each step.
+ * @param {[number, number][]} props.pivotElements - The pivot elements for each step.
  *
  * @returns {QuickSortBarData[]} An array of QuickSortBarData objects containing the value, current index, previous index,
  * whether the element is a pivot, and whether the element is sorted.
@@ -17,7 +17,7 @@ export const createQuickSortData = ({
   previousArray,
   numSteps,
   i,
-  pivotElement,
+  pivotElements,
 }: QuickSortProps): QuickSortBarData[] => {
   return currentArray.map((value, index) => {
     // Count occurrences of the current value up to the current index
@@ -30,11 +30,11 @@ export const createQuickSortData = ({
     });
 
     // Determine if the element is the used pivot in the last step
-    const isPivot = i < numSteps - 1 ? previousIndex === pivotElement[i][0] : false;
+    const isPivot = i < numSteps - 1 ? previousIndex === pivotElements[i][0] : false;
 
     // Determine if the element is sorted in the current step or final step
     //TODO: improve this
-    const isSorted = i >= 1 ? index === pivotElement[i][1] : false;
+    const isSorted = i >= 1 ? index === pivotElements[i][1] : false;
 
     return {
       value,

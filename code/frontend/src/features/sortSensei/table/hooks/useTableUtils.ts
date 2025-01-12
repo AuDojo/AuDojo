@@ -1,9 +1,11 @@
-import { MAX_INPUT_RANGE, MIN_INPUT_RANGE } from "@/constants";
-import { useSortContext } from "@/hooks";
+import { MAX_INPUT_RANGE, MIN_INPUT_RANGE } from "@/features/sortSensei/constants";
+import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import React from "react";
+import { useTableContext } from "../context/TableContext";
 
 export const useTableUtils = () => {
-  const { inputCellsRef, stepsList, inputCellValues, setInputCellValues } = useSortContext();
+  const { processList } = useSortContext();
+  const { inputCellsRef, inputCellValues, setInputCellValues } = useTableContext();
 
   /**
    * Focuses the input element at the given row and column index. This is used
@@ -53,7 +55,7 @@ export const useTableUtils = () => {
     columnIndex: number
   ): void => {
     const { key, shiftKey } = event;
-    const stepList = stepsList[rowIndex];
+    const stepList = processList[rowIndex];
 
     if (key === "ArrowLeft") {
       // Move to the previous field

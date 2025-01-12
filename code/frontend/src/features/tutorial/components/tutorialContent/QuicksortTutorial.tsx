@@ -29,15 +29,15 @@ const QuicksortText = () => {
     <div className={tutorialContent["text-container"]}>
       Die Idee des Algorithmus basiert auf dem Prinzip{" "}
       <span className={tutorialContent["font-highlight"]}> "divide and conquer"</span>. Dabei wird das Array in zwei
-      Teilarrays aufgeteilt: eines enthält Werte, die kleiner als das Pivotelement sind, und das andere Werte, die
+      Teilarrays aufgeteilt: eines enthält Werte, die kleiner als das pivotElements sind, und das andere Werte, die
       größer sind. Dieser Prozess wird rekursiv wiederholt, bis das Array nicht weiter zerlegbar ist. In unserem Fall
-      wird das letzte Element des betrachteten Arrays als Pivotelement gewählt.
+      wird das letzte Element des betrachteten Arrays als pivotElements gewählt.
       <br />
       <br />
       <div className={tutorialContent["image-container"]}>
         <img src={quicksortidee} className={tutorialContent["image"]} alt="quicksort idee" />
       </div>
-      Die Laufzeit hängt von der Wahl des Pivotelements ab. Wird das Pivotelement so gewählt, dass es nach dem
+      Die Laufzeit hängt von der Wahl des pivotElementss ab. Wird das pivotElements so gewählt, dass es nach dem
       Partitionalgorithmus in der Mitte des Arrays liegt, ähnelt die Zerlegung der von Mergesort, bei der das Array in
       zwei gleich große Teile aufgeteilt wird. In diesem Fall beträgt die Laufzeit{" "}
       <span className={tutorialContent["font-highlight"]}> O(nlogn)</span>, was der durchschnittlichen Laufzeit
@@ -46,7 +46,7 @@ const QuicksortText = () => {
         {" "}
         O(n<sup>2</sup>)
       </span>{" "}
-      betragen, wenn das Pivotelement immer das größte oder kleinste Element des Arrays ist.
+      betragen, wenn das pivotElements immer das größte oder kleinste Element des Arrays ist.
     </div>
   );
 };

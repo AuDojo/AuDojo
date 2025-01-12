@@ -1,18 +1,18 @@
 // MergeSortGuide.tsx
-import { useSortContext } from "@/hooks";
+import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import styles from "./SortGuide.module.css";
 
 const SelectionSortGuide = () => {
-  const { step, stepsList, selectionElement } = useSortContext();
+  const { step, processList, selectionElements } = useSortContext();
 
   const getCurrentGuideText = () => {
-    if (!stepsList || stepsList.length === 0) {
+    if (!processList || processList.length === 0) {
       return "Starting Selection Sort!";
     }
 
-    const currentArray = stepsList[step - 1];
-    const prevArray = step > 1 ? stepsList[step - 2] : currentArray;
-    const smallestElement = prevArray[selectionElement[step - 2]];
+    const currentArray = processList[step - 1];
+    const prevArray = step > 1 ? processList[step - 2] : currentArray;
+    const smallestElement = prevArray[selectionElements[step - 2]];
     const currentElement = prevArray[step - 2];
     if (step === 1) {
       return (
@@ -23,7 +23,7 @@ const SelectionSortGuide = () => {
         </>
       );
     } else if (step >= 2) {
-      if (step === stepsList.length) {
+      if (step === processList.length) {
         return <>Sorting is complete!</>;
       }
 

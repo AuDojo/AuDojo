@@ -1,14 +1,11 @@
-import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE } from "@/constants";
-import { useSortContext } from "@/hooks";
+import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE } from "@/features/sortSensei/constants";
+import { useSortContext, useTutorialModalContext } from "@/features/sortSensei/context";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useSortContext as useSortContextNew } from "../context/SortContext";
-import { useTutorialModalContext } from "../hooks";
 import buttonStyles from "./Button.module.css";
-import { useButtonContext } from "./hooks/";
+import { useButtonContext } from "./context";
 
 const GenerateButtons = () => {
-  const { setStep, fetchStepsList, stepsList, sharedArray } = useSortContext();
-  const { setSharedArray } = useSortContextNew();
+  const { setSharedArray, setStep, sharedArray, processList } = useSortContext();
   const [customArray, setCustomArray] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [arrayLength, setArrayLength] = useState<number>(sharedArray.length);
@@ -20,9 +17,9 @@ const GenerateButtons = () => {
 
   // Set input value in submit field to the current array
   useEffect(() => {
-    if (!stepsList || stepsList.length === 0) return;
-    setCustomArray(stepsList[0].join(" "));
-  }, [stepsList]);
+    if (!processList || processList.length === 0) return;
+    setCustomArray(processList[0].join(" "));
+  }, [processList]);
 
   const toggleSubmit = useCallback(() => {
     setIsSubmitting(!isSubmitting);
@@ -75,7 +72,6 @@ const GenerateButtons = () => {
       return;
     }
     setStep(1);
-    fetchStepsList(array);
     setSharedArray(array);
 
     // setCustomArray("");
@@ -94,9 +90,9 @@ const GenerateButtons = () => {
       timeoutRef.current = null;
     }
     const array = generateRandomArray(arrayLength);
-    fetchStepsList(array);
+    setSharedArray(array);
     setIsSubmitting(false);
-  }, [arrayLength, fetchStepsList, setSolveAllStatus, setStep, timeoutRef]);
+  }, [arrayLength, setSolveAllStatus, setStep, timeoutRef]);
 
   const handleArrayLengthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value, 10);
@@ -126,10 +122,6 @@ const GenerateButtons = () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isSubmitting, toggleSubmit, handleRandomArray]);
-
-  if (!stepsList || stepsList.length === 0) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div className={buttonStyles["generate-buttons"]} ref={highlightRefs.generateButtons}>
