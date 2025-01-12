@@ -152,7 +152,7 @@ function Kontakt() {
   console.log("emailField.title= " + t("emailField.title"));
   useSetTitle("Kontakt");
   return (
-    <>
+    <div className={kontaktStyles.generalContainer}>
       <div className={kontaktStyles.kontaktMessageContainer}>
         <p className={kontaktStyles.kontaktMessage}> {t("title") /* Kontakt */} </p>
       </div>
@@ -266,7 +266,7 @@ function Kontakt() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
