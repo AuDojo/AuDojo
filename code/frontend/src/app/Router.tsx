@@ -21,20 +21,22 @@ export const AppRouter = () => {
   return (
     <>
       <Header />
+      <main>
+        <Routes>
+          <Route path={paths.home} element={<Home />} />
+          <Route path={paths.kontakt} element={<Kontakt />} />
+          <Route path={paths.mergeSort} element={<MergeSort />} />
+          <Route path={paths.quickSort} element={<QuickSort />} />
+          <Route path={paths.bubbleSort} element={<BubbleSort />} />
+          <Route path={paths.selectionSort} element={<SelectionSort />} />
+          <Route path={paths.tutorial} element={<Tutorial />} />
+          <Route path={paths.kontakt} element={<Kontakt />} />
+          <Route path={paths.datenschutz} element={<Datenschutz />} />
+          <Route path={paths.impressum} element={<Impressum />} />
+          <Route path="*" element={<NotFound />} /> {/* Invalid route*/}
+        </Routes>
+      </main>
       <Footer />
-      <Routes>
-        <Route path={paths.home} element={<Home />} />
-        <Route path={paths.kontakt} element={<Kontakt />} />
-        <Route path={paths.mergeSort} element={<MergeSort />} />
-        <Route path={paths.quickSort} element={<QuickSort />} />
-        <Route path={paths.bubbleSort} element={<BubbleSort />} />
-        <Route path={paths.selectionSort} element={<SelectionSort />} />
-        <Route path={paths.tutorial} element={<Tutorial />} />
-        <Route path={paths.kontakt} element={<Kontakt />} />
-        <Route path={paths.datenschutz} element={<Datenschutz />} />
-        <Route path={paths.impressum} element={<Impressum />} />
-        <Route path="*" element={<NotFound />} /> {/* Invalid route*/}
-      </Routes>
     </>
   );
 };
