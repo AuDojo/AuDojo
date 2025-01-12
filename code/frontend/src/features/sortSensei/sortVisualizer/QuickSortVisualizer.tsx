@@ -67,37 +67,51 @@ const QuickSortVisualizer = () => {
       .attr("y", (d) => yScale(d.value) - textMarginBottom)
       .text((d) => d.value);
 
-    // Add marker text for pivot bars
+    // Add marker text for used pivot bars
     bars
       .filter((d) => d.isPivot)
       .append("text")
       .attr("x", xScale.bandwidth() / 2)
       .attr("y", (d) => yScale(d.value) - textMarginTop)
-      .transition()
+      .attr("dy", "0.1em")
       .attr("class", style["bar-marker"])
-      .text("(pivot)");
+      .text("pivot");
 
-    // Animate color change for pivot bars
+    // change color of pivot bars
     bars
       .filter((d) => d.isPivot)
       .selectAll("rect")
-      .transition()
+      .transition() // color change effect
       .duration(timeLoadColor)
-      .attr("class", style["changed-bar-blink"]);
+      .attr("class", style["changed-bar"]);
+
+    // Animate bars to new positions
+    bars
+      .transition()
+      .delay(timeBarsMove / 2)
+      .duration(timeBarsMove)
+      .attr("class", style["unsorted-bar"])
+      .attr("transform", (d) => `translate(${xScale(d.index)}, 0)`);
+
+    // change bar-marker to last pivot (add "last")
+    bars
+      .filter((d) => d.isPivot)
+      .append("text")
+      .attr("x", xScale.bandwidth() / 2)
+      .attr("y", (d) => yScale(d.value) - textMarginTop)
+      .attr("dy", "-0.8em")
+      .transition()
+      .delay(timeBarsMove) // delay is not inherited
+      .attr("class", style["bar-marker"])
+      .text("last");
 
     // Highlight sorted bars
     bars
       .filter((d) => d.isSorted)
       .selectAll("rect")
       .transition()
+      .delay(timeBarsMove) // delay is not inherited => define again
       .attr("class", style["sorted-bar"]);
-
-    // Animate bars to new positions
-    bars
-      .transition()
-      .duration(timeBarsMove)
-      .attr("class", style["unsorted-bar"])
-      .attr("transform", (d) => `translate(${xScale(d.index)}, 0)`);
 
     return () => {
       // Clear the SVG content when component is unmounted

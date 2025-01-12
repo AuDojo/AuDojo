@@ -33,6 +33,7 @@ export interface QuickSortProps extends SortVisualizerProps {
 export interface SelectionSortBarData extends BarDataGeneral {
   isSelected: boolean;
   isLeftUnsorted: boolean;
+  isCurrentSorted: boolean;
 }
 export interface SelectionSortProps extends SortVisualizerProps {
   selectionElement: number[];

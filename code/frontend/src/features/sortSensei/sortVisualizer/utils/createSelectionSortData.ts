@@ -30,14 +30,15 @@ export const createSelectionSortData = ({
           : lastLeftElement
         : index;
 
-    // Check if the current index is the leftmost unsorted element
-    const isLeftUnsorted = index === i && i !== numSteps - 1;
+    // Check if the last index is the leftmost unsorted element
+    const isLeftUnsorted = previousIndex === i - 1 && i - 1 !== numSteps - 1;
 
-    // Check if the current index is the selected minimum element
-    const isSelected = selectionElement[i] === index;
+    // Check if the last index is the selected minimum element
+    const isSelected = selectionElement[i - 1] === previousIndex;
 
     // Determine if the element is sorted
     const isSorted = i === numSteps - 1 || index < i;
+    const isCurrentSorted = index === i - 1; // avoid animation conflict
 
     return {
       value,
@@ -46,6 +47,7 @@ export const createSelectionSortData = ({
       isLeftUnsorted,
       isSelected,
       isSorted,
+      isCurrentSorted,
     };
   });
 };
