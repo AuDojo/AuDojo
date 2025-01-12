@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import menuStyles from "./LanguageSelector.module.css";
-import i18n from "@src/translation/i18n";
+import i18n from "@/translation/i18n";
 import globeIcon from "@assets/globeicon.png"; // Globus-Icon importieren
-import deFlag from "@assets/de.png"
-import enFlag from "@assets/gb.png"
+import deFlag from "@assets/de.png";
+import enFlag from "@assets/gb.png";
 
 const LANGUAGES = [
   { label: "EN", code: "en", flag: enFlag },
@@ -16,7 +16,6 @@ function LanguageSelector() {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
-
 
   const handleLanguageChange = (code: string) => {
     setLanguage(code);
@@ -41,10 +40,7 @@ function LanguageSelector() {
   return (
     <div className={menuStyles.languageSelector} ref={dropdownRef}>
       {/* Globus-Icon mit Klickfunktion */}
-      <div
-        className={menuStyles.globeContainer}
-        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-      >
+      <div className={menuStyles.globeContainer} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
         <img src={globeIcon} alt="Globe Icon" className={menuStyles.globeIcon} />
       </div>
 
@@ -52,11 +48,7 @@ function LanguageSelector() {
       {isDropdownOpen && (
         <div className={menuStyles.dropdown}>
           {LANGUAGES.map(({ code, label, flag }) => (
-            <div
-              key={code}
-              className={menuStyles.dropdownItem}
-              onClick={() => handleLanguageChange(code)}
-            >
+            <div key={code} className={menuStyles.dropdownItem} onClick={() => handleLanguageChange(code)}>
               <img src={flag} alt={`${code} flag`} className={menuStyles.flagIcon} />
               {label}
             </div>

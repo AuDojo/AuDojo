@@ -1,3 +1,5 @@
+import { SortType } from "./sortSensei";
+
 /**
  * An object of this class can store all the steps of a sorting algorithm and can return those as a json-string.
  */
@@ -7,15 +9,28 @@ export class SortProcessList {
   #mergeRange: [number, number][] = []; // Array of Tuples
   #pivotElement: [number, number | null][] = [];
   #selectedElement: number[] = [];
-  #bubbleElement: number[][] = [];
+  #bubbleElement: number[] = [];
 
   /**
    * Creates an object in which the single steps of a sorting algorithm can be stored.
    * @param startList The starting list, which should be sorted.
    */
-  constructor(startList: number[]) {
+  constructor(startList: number[], sortType: SortType) {
     this.#columnsLength = startList.length;
     this.#processList[0] = startList.slice(0); // slice sorgt dafür dass pass by value anstatt von pass by reference verwendet wird.
+
+    switch (sortType) {
+      case SortType.MergeSort:
+        this.#mergeRange[0] = [-1, -1];
+        break;
+
+      case SortType.QuickSort:
+        this.#pivotElement[0] = [-1, -1];
+        break;
+
+      default:
+        break;
+    }
   }
 
   /**
@@ -78,7 +93,7 @@ export class SortProcessList {
    */
   pushBubbleElement(selected_index: number) {
     let index = this.#bubbleElement.length;
-    this.#bubbleElement[index] = [selected_index, selected_index + 1];
+    this.#bubbleElement[index] = selected_index;
 
     console.log("bubble_elements: ", this.#bubbleElement[index]);
   }

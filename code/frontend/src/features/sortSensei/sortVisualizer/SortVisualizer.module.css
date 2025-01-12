@@ -1,30 +1,62 @@
-.viz-container {
-  display: flex;
-  flex-direction: row;
-  padding: 0 10px 0 10px;
-  height: 100%;
-  column-gap: 10px;
-  justify-content: center;
-}
-.bar-container {
-  display: flex;
-  flex-direction: column;
-  width: calc(100% / 13);
-  justify-content: end;
-  text-align: center;
-}
-.bar {
-  background-color: rgb(0, 63, 87);
-  margin: 0 auto;
-  width: 100%;
-  max-width: 50px;
+svg {
+  --lightblue: rgb(116, 192, 252);
+  --green: rgb(95, 209, 112);
+  --lightgrey: rgb(165, 165, 165);
 }
 
+.viz-container {
+  width: 95vw;
+  display: flex;
+  justify-content: center;
+}
+.viz-container svg {
+  border: 3px solid var(--maincolor-darkblue);
+  border-radius: 15px;
+}
+
+/* general text color*/
 text {
-  font-size: 12px;
-  fill: #495057;
+  font-size: 15px;
+  fill: var(--maincolor-darkblue);
+  text-anchor: middle;
 }
 
 rect {
-  transition: fill 0.3s ease;
+  /* smooth transition for filling color*/
+  transition: fill 0.2s linear;
+}
+
+/* markers for pivot/min/left */
+.bar-marker {
+  fill: var(--lightgrey);
+  font-size: 12px;
+  text-anchor: middle;
+}
+
+.unsorted-bar {
+  fill: var(--lightblue);
+}
+
+.sorted-bar {
+  fill: var(--green);
+}
+
+.changed-bar {
+  fill: var(--maincolor-red);
+}
+
+.changed-bar-blink {
+  fill: var(--maincolor-red);
+  animation: blink 2s ease infinite;
+}
+@keyframes blink {
+  25% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.7;
+  }
 }

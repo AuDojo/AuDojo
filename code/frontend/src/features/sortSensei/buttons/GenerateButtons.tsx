@@ -1,10 +1,9 @@
-import { Tooltip } from "@components/Tooltip/";
-import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE } from "@constants/index";
-import { useSortContext } from "@hooks/index";
+import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE } from "@/constants";
+import { useSortContext } from "@/hooks";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTutorialModalContext } from "../hooks";
 import buttonStyles from "./Button.module.css";
-import { useButtonContext } from "./hooks/useButtonContext";
+import { useButtonContext } from "./hooks/";
 import { useTranslation } from "react-i18next";
 
 const GenerateButtons = () => {
@@ -16,8 +15,7 @@ const GenerateButtons = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const { timeoutRef, setSolveAllStatus } = useButtonContext();
-  const { refs } = useTutorialModalContext();
-
+  const { highlightRefs } = useTutorialModalContext();
   const { t } = useTranslation("sortsensei");
 
   // Set input value in submit field to the current array
@@ -34,7 +32,7 @@ const GenerateButtons = () => {
     if (isSubmitting && inputRef.current) {
       inputRef.current.focus();
     }
-  });
+  }, [isSubmitting]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // Regex to check if input contins only numbers, commas or whitespaces
@@ -132,12 +130,17 @@ const GenerateButtons = () => {
   }
 
   return (
-    <div className={buttonStyles["generate-buttons"]} ref={refs.generateButtons}>
-      <Tooltip direction="bottom" content="C">
-        <button onClick={toggleSubmit} className={`${buttonStyles[isSubmitting ? "close-button" : ""]}`}>
-          {isSubmitting ? "Close ✗" : t("button.new-custom")}
-        </button>
-      </Tooltip>
+    <div className={buttonStyles["generate-buttons"]} ref={highlightRefs.generateButtons}>
+      {/* <Tooltip direction="bottom" content="C"> */}
+      <button
+        aria-label={isSubmitting ? "Close [C]" : "Custom [C]"}
+        data-tooltip="left"
+        onClick={toggleSubmit}
+        className={`${buttonStyles[isSubmitting ? "close-button" : ""]}`}
+      >
+        {isSubmitting ? "Close ✗" : t("button.new-custom")}
+      </button>
+      {/* </Tooltip> */}
 
       {isSubmitting && (
         <input
@@ -152,16 +155,19 @@ const GenerateButtons = () => {
       {errorMessage && <div style={{ color: "red", fontSize: "12px" }}>{errorMessage}</div>}
 
       {isSubmitting && (
-        <Tooltip direction="bottom" content="Enter">
-          <button className={`${buttonStyles["submit-button"]}`} onClick={submitCustomArray}>
-            Submit ↩
-          </button>
-        </Tooltip>
+        <button
+          aria-label="Submit [Enter]"
+          data-tooltip="left"
+          className={`${buttonStyles["submit-button"]}`}
+          onClick={submitCustomArray}
+        >
+          Submit ↩
+        </button>
       )}
       {isSubmitting && <div></div>}
-      <Tooltip direction="top" content="R">
-        <button onClick={handleRandomArray}>{t("button.new-random")}</button>
-      </Tooltip>
+      <button aria-label="Random [R]" data-tooltip="left" onClick={handleRandomArray}>
+        {t("button.new-random")}
+      </button>
       <div className={buttonStyles["array-length-container"]}>
         <div
           style={{

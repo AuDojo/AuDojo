@@ -1,5 +1,5 @@
 // MergeSortGuide.tsx
-import { useSortContext } from "@hooks/index";
+import { useSortContext } from "@/hooks";
 import styles from "./SortGuide.module.css";
 import { useTranslation } from "react-i18next";
 import parse from "html-react-parser";
@@ -23,7 +23,7 @@ const QuickSortGuide = () => {
       const nextPivot = step !== stepsList.length ? currentArray[pivotElement[step][0]] : 0;
 
       if (!nextPivot) {
-        return <>{parse(t("quickSort.guide.end", { pivot: pivot }))}</>;
+        return <>{parse(t("quickSort.guide.end", { pivot }))}</>;
       }
 
       return <>{parse(t("quickSort.guide.after-partition", { pivot: pivot, nextPivot: nextPivot }))}</>;

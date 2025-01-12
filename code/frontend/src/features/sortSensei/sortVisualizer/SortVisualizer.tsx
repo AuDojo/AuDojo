@@ -1,8 +1,8 @@
-import { SortType } from "@constants/index";
-import { useSortContext } from "@hooks/index";
+import { SortType } from "@/constants";
+import { useSortContext } from "@/hooks";
 import * as d3 from "d3";
-import { useEffect, useRef, useState } from "react";
-
+import { useEffect, useRef } from "react";
+import useResize from "./hooks/useResize";
 interface BarData {
   value: number;
   index: number;
@@ -22,44 +22,19 @@ const SortVisualizer = () => {
   const initialPositionsRef = useRef<Map<string, number>>(new Map());
 
   // State to track container dimensions
-  const [dimensions, setDimensions] = useState({
-    width: 790,
-    height: 240,
-  });
 
   // Function to handle the resizing of the container
-  const handleResize = () => {
-    // Check if containerRef is assigned to a DOM element
-    if (containerRef.current) {
-      // Get the current width of the container element
-      let containerWidth = containerRef.current.clientWidth;
-      containerWidth = Math.min(containerWidth, 1000);
-
-      // Set the dimensions state with new width and height values
-      setDimensions({
-        width: Math.min(sharedArray.length * 50 + 50, containerWidth - 20), // Ensure width does not exceed 790px
-        height: 240,
-      });
-    }
+  const margin = {
+    top: 20,
+    right: 20,
+    bottom: 10,
+    left: 20,
   };
-
-  useEffect(() => {
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [sharedArray.length]);
-
+  const maxBarWidth = 50;
+  const dimensions = useResize({ containerRef: containerRef, totalBarsWidth: sharedArray.length * maxBarWidth });
   // Visualization effect
   useEffect(() => {
     if (!stepsList.length || !svgRef.current) return;
-
-    const margin = {
-      top: 20,
-      right: 20,
-      bottom: 10,
-      left: 20,
-    };
-    const maxBarWidth = 50;
 
     // Calculate responsive bar width
     const availableWidth = dimensions.width - margin.left - margin.right;

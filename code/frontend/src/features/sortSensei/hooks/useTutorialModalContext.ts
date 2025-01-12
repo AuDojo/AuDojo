@@ -1,5 +1,5 @@
 // Custom Hook
-import { TutorialModalContext } from "@src/features/sortSensei/tutorialModal/context/TutorialModalContext";
+import { TutorialModalContext } from "@/features/sortSensei/context/TutorialModalContext";
 import { useContext } from "react";
 
 export const useTutorialModalContext = () => {

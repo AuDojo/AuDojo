@@ -1,5 +1,5 @@
 // MergeSortGuide.tsx
-import { useSortContext } from "@hooks/index";
+import { useSortContext } from "@/hooks";
 import styles from "./SortGuide.module.css";
 import { useTranslation } from "react-i18next";
 import parse from "html-react-parser";

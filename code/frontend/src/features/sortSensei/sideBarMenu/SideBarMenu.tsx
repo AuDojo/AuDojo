@@ -1,3 +1,4 @@
+import { paths } from "@/constants";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./SideBarMenu.module.css";
@@ -14,18 +15,10 @@ const NavItem = ({
   onClick: () => void;
 }) => {
   return (
-    <Link className="Link" to={to} onClick={onClick}>
+    <Link to={to} onClick={onClick}>
       <div className={`${styles["sort-nav-list-item"]} ${activeSort ? styles["sort-nav-list-item-active"] : ""}`}>
         {text}
       </div>
-    </Link>
-  );
-};
-
-const HilfeButton = ({ to, text }: { to: string; text: string }) => {
-  return (
-    <Link className="Link" to={to}>
-      <div className={styles["help-button"]}>{text}</div>
     </Link>
   );
 };
@@ -37,44 +30,32 @@ const SideBarMenu = () => {
 
   return (
     <>
-      {/* <div className={styles["header-container"]}>
-        <Link to={"/"}>
-          <div className={styles["header-logo-container"]}>
-            <div className={styles["header-logo-text"]}>AUDOJO</div>
-            <img className={styles["header-logo-image"]} src={audojoLogo} alt="audojo logo" />
-          </div>
-        </Link>
-        <HeaderNavItems />
-      </div> */}
-
       <div className={styles["sort-nav"]}>
         <div className={`${styles["sort-nav-list"]}`}>
-          <HilfeButton to="/tutorial" text="Beispiele" />
-
           <NavItem
             activeSort={activeSort === "mergesort"}
             onClick={() => setActiveSort("mergesort")}
-            to="/mergesort"
+            to={paths.mergeSort}
             text="MergeSort"
           />
 
           <NavItem
             activeSort={activeSort === "quicksort"}
             onClick={() => setActiveSort("quicksort")}
-            to="/quicksort"
+            to={paths.quickSort}
             text="QuickSort"
           />
           <NavItem
             activeSort={activeSort === "bubblesort"}
             onClick={() => setActiveSort("bubblesort")}
-            to="/bubblesort"
+            to={paths.bubbleSort}
             text="BubbleSort"
           />
 
           <NavItem
             activeSort={activeSort === "selectionsort"}
             onClick={() => setActiveSort("selectionsort")}
-            to="/selectionsort"
+            to={paths.selectionSort}
             text="SelectionSort"
           />
         </div>

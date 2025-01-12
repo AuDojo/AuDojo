@@ -1,2 +1,2 @@
-export * from "../features/sortSensei/tutorialModal/constants";
+export * from "./paths";
 export * from "./sorting";

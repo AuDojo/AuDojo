@@ -1,3 +1,4 @@
+import { paths } from "@/constants";
 import audojoLogo from "@assets/logo-audojo.png";
 import { Link, useNavigate } from "react-router-dom";
 import headerStyles from "./TutorialHeader.module.css";
@@ -7,7 +8,7 @@ const TutorialHeader = () => {
 
   return (
     <div className={headerStyles["header-container"]}>
-      <Link to={"/"}>
+      <Link to={paths.home}>
         <div className={headerStyles["header-logo-container"]}>
           <div className={headerStyles["header-logo-text"]}>AUDOJO</div>
           <img className={headerStyles["header-logo-image"]} src={audojoLogo} alt="audojo logo" />

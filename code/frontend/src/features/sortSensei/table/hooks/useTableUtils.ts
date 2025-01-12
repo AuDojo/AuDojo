@@ -1,5 +1,5 @@
-import { MAX_INPUT_RANGE, MIN_INPUT_RANGE } from "@constants/index";
-import { useSortContext } from "@hooks/index";
+import { MAX_INPUT_RANGE, MIN_INPUT_RANGE } from "@/constants";
+import { useSortContext } from "@/hooks";
 import React from "react";
 
 export const useTableUtils = () => {
@@ -31,6 +31,9 @@ export const useTableUtils = () => {
    * @param columnIndex The index of the input in the row
    */
   const handleCellChange = (value: string, rowIndex: number, columnIndex: number): void => {
+    // Check if input is too long
+    if (value.length > 2) return;
+
     // Check if the input value is either empty or a valid number
     if ((Number(value) >= MIN_INPUT_RANGE && Number(value) <= MAX_INPUT_RANGE) || value === "") {
       const updatedValues = [...inputCellValues];

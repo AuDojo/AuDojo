@@ -1,9 +1,6 @@
 import audoLogo from "@assets/logo-audojo.png";
-import { Footer } from "@components/footer";
-import { Header } from "@components/header";
 import { HomeButtons } from "@features/homepage/homeButtons";
-import generalStyles from "@styles/homepage/general.module.css";
-import mainStyles from "@styles/homepage/Main.module.css";
+import styles from "@styles/homepage/Main.module.css";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -12,27 +9,17 @@ const Home = () => {
     document.title = "AuDojo";
   }, []);
 
-  const { t } = useTranslation('home');
+  const { t } = useTranslation("home");
 
   return (
-    <div className={generalStyles.container}>
-      <header>
-        <Header />
-      </header>
-      <main className={mainStyles.main}>
-        <h1 className={mainStyles["main-header"]}>
-          <div>AuDojo</div>
-          <img className={mainStyles["audojo-logo"]} src={audoLogo} alt="logo of audojo" />
-        </h1>
-        <p className={mainStyles["main-welcome-message"]}>
-          {t("welcomeMessage")}
-        </p>
-        <HomeButtons />
-      </main>
-      <footer>
-        <Footer />
-      </footer>
-    </div>
+    <>
+      <h1 className={styles["main-header"]}>
+        <div>AuDojo</div>
+        <img className={styles["audojo-logo"]} src={audoLogo} alt="logo of audojo" />
+      </h1>
+      <p className={styles["main-welcome-message"]}>{t("welcomeMessage")}</p>
+      <HomeButtons />
+    </>
   );
 };
 

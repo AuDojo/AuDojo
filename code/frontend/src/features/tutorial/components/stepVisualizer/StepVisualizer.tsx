@@ -34,7 +34,7 @@ const Visualizer = ({ steps, sortType }: VisualizerProps) => {
   const { t } = useTranslation("sortsensei-tutorial");
 
   return (
-    <div>
+    <>
       {" "}
       <h1>Beispiel</h1>
       <div className={tutorialContent["visualiser-container"]}>
@@ -79,7 +79,7 @@ const Visualizer = ({ steps, sortType }: VisualizerProps) => {
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

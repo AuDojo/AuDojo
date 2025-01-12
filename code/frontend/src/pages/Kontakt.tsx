@@ -1,9 +1,7 @@
 import informatikzentrumJPG from "@assets/informatikzentrum.jpg";
-import { Footer } from "@components/footer";
-import { Header } from "@components/header";
+import { useSetTitle } from "@hooks/useSetTitle";
 import kontaktStyles from "@styles/Kontakt/Kontakt.module.css";
 import React from "react";
-import useSetTitle from "../hooks/title";
 import { useTranslation } from "react-i18next";
 
 function Kontakt() {
@@ -151,11 +149,10 @@ function Kontakt() {
     }
   };
   const { t } = useTranslation("contact");
-  console.log("emailField.title= "+ t("emailField.title"));
+  console.log("emailField.title= " + t("emailField.title"));
   useSetTitle("Kontakt");
   return (
-    <div className={kontaktStyles.generalContainer}>
-      <Header />
+    <>
       <div className={kontaktStyles.kontaktMessageContainer}>
         <p className={kontaktStyles.kontaktMessage}> {t("title") /* Kontakt */} </p>
       </div>
@@ -269,8 +266,7 @@ function Kontakt() {
           </div>
         </div>
       </div>
-      <Footer />
-    </div>
+    </>
   );
 }
 

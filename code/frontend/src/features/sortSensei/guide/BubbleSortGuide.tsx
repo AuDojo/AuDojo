@@ -1,29 +1,45 @@
-// MergeSortGuide.tsx
-import { useSortContext } from "@hooks/index";
+import { useSortContext } from "@/hooks";
 import styles from "./SortGuide.module.css";
 
 const BubbleSortGuide = () => {
-  const { step, mergeRanges } = useSortContext();
+  const { step, stepsList, bubbleElement } = useSortContext();
 
   const getCurrentGuideText = () => {
-    const currentRange = mergeRanges[step - 1];
-    if (!currentRange || currentRange[0] === -1) {
+    if (!stepsList.length) {
       return "Starting Bubble Sort!";
     }
-
-    const [start, end] = currentRange;
-    const length = end - start + 1;
-
-    if (length === 1) {
-      return "An array of length 1 is already sorted.";
-    } else if (length === 2) {
-      return "...";
-    } else {
-      if (step === 1) {
-        return "...";
-      }
-      // Add more specific messages based on the current state
-      return `... `;
+    if (step === 1) {
+      return (
+        <>
+          <b>Compare adjacents</b> elements and swap them if they are in the wrong order.
+        </>
+      );
+    } else if (step >= 2) {
+      const firstSwapElement = stepsList[step - 2][bubbleElement[step - 2]];
+      const adjacentElement = stepsList[step - 2][bubbleElement[step - 2] + 1];
+      const isElementSorted = bubbleElement[step - 2] > bubbleElement[step - 1];
+      return (
+        <>
+          Swap <b>{firstSwapElement}</b> with <b>{adjacentElement}</b>
+          <br />
+          <br />
+          {isElementSorted || step === stepsList.length ? (
+            <>
+              Now <b>{firstSwapElement}</b> stands at the <b>right place!</b>
+              {step === stepsList.length ? (
+                <b>
+                  <br />
+                  Sorting is complete!
+                </b>
+              ) : (
+                ""
+              )}
+            </>
+          ) : (
+            <>(Bring {firstSwapElement} to the end of the array.)</>
+          )}
+        </>
+      );
     }
   };
 

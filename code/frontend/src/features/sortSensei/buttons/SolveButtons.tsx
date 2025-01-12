@@ -1,10 +1,10 @@
-import { Tooltip } from "@components/Tooltip";
-import { SortType } from "@constants/index";
-import { useButtonContext, useSortContext } from "@hooks/index";
+import { SortType } from "@/constants";
+import { useSortContext } from "@/hooks";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTutorialModalContext } from "../hooks";
 import { Points } from "../points";
 import buttonStyles from "./Button.module.css";
+import { useButtonContext } from "./hooks";
 import { useTranslation } from "react-i18next";
 
 const SPEED_VALUES = [5000, 4000, 2500, 1500, 1000, 500, 5];
@@ -12,9 +12,19 @@ const DEFAULT_SPEED_INDEX = 3;
 const SPEED_DISPLAY = ["0.25", "0.5", "0.75", "1.0", "1.25", "1.5", "15"];
 
 const SolveButton = () => {
-  const { step, stepsList, inputCellValues, mergeRanges, sortTypeRef, setStep, setInputCellValues, setCellValidation } =
-    useSortContext();
-  const { refs } = useTutorialModalContext();
+  const {
+    step,
+    stepsList,
+    inputCellValues,
+    mergeRanges,
+    sortTypeRef,
+    selectionElement,
+    bubbleElement,
+    setStep,
+    setInputCellValues,
+    setCellValidation,
+  } = useSortContext();
+  const { highlightRefs } = useTutorialModalContext();
 
   const { t } = useTranslation("sortsensei");
 
@@ -42,13 +52,30 @@ const SolveButton = () => {
       const sortType = sortTypeRef.current;
 
       // TODO: Clean up this code, maybe own validateMergeSortLine
-      const validationResult = userValues.map((value, index) => {
-        const isInMergeRange = currentMergeRange && index >= currentMergeRange[0] && index <= currentMergeRange[1];
+      const validationResult = userValues.map((value, currentColumn) => {
+        // Check if cell is in merge range
+        const isInMergeRange =
+          currentMergeRange && currentColumn >= currentMergeRange[0] && currentColumn <= currentMergeRange[1];
 
-        if (sortType !== SortType.MergeSort || isInMergeRange) {
-          return Number(value) === correctValues[index];
+        // Check if cell is selected from selection sort
+        const isSelected =
+          sortType === SortType.SelectionSort &&
+          selectionElement.length >= currentStep &&
+          (currentColumn === selectionElement[currentStep - 1] || currentColumn === currentStep - 1);
+
+        const isBubbleElement =
+          (sortType === SortType.BubbleSort && bubbleElement[currentStep - 1] === currentColumn) ||
+          bubbleElement[currentStep - 1] + 1 === currentColumn;
+
+        if (
+          (sortType === SortType.SelectionSort && !isSelected) ||
+          (sortType === SortType.MergeSort && !isInMergeRange) ||
+          (sortType === SortType.BubbleSort && !isBubbleElement)
+        ) {
+          // Skip validation for unselected / unmerged cells
+          return value === "" || Number(value) === correctValues[currentColumn];
         } else {
-          return value === "" ? true : Number(value) === correctValues[index];
+          return Number(value) === correctValues[currentColumn];
         }
       });
 
@@ -223,7 +250,7 @@ const SolveButton = () => {
   }
 
   return (
-    <div className={buttonStyles["solve-speed-buttons"]} ref={refs.solveButtons}>
+    <div className={buttonStyles["solve-speed-buttons"]} ref={highlightRefs.solveButtons}>
       <Points />
       <div style={{ fontSize: "12px", fontStyle: "italic", color: "gray" }}>
         {t("speed-info")}: x{SPEED_DISPLAY[selectedSpeedIndex]}
@@ -239,27 +266,36 @@ const SolveButton = () => {
         />
       </div>
       <div className={buttonStyles["arrow-button-container"]}>
-        <Tooltip direction="top" content="J">
-          <button className={`${buttonStyles["arrow-button"]}`} onClick={handleGoBack}>
-            ← Back
-          </button>
-        </Tooltip>
-        <Tooltip direction="top" content="K">
-          <button className={`${buttonStyles["arrow-button"]}`} onClick={handleGoNext}>
-            Next →
-          </button>
-        </Tooltip>
+        <button
+          aria-label="Press [J]"
+          data-tooltip="top"
+          className={`${buttonStyles["arrow-button"]}`}
+          onClick={handleGoBack}
+        >
+          ← Back
+        </button>
+        <button
+          aria-label="Press [K]"
+          data-tooltip="top"
+          className={`${buttonStyles["arrow-button"]}`}
+          onClick={handleGoNext}
+        >
+          Next →
+        </button>
       </div>
 
       <div className={buttonStyles["solve-buttons"]}>
-        <Tooltip direction="top" content="A">
-          <button onClick={handleSolveAll}>{buttonText}</button>
-        </Tooltip>
-        <Tooltip direction="top" content="S">
-          <button className={buttonStyles["try-again-button"]} onClick={handleTryAgain}>
-            Reset ↺
-          </button>
-        </Tooltip>
+        <button aria-label="Press [A]" data-tooltip="top" onClick={handleSolveAll}>
+          {buttonText}
+        </button>
+        <button
+          aria-label="Press [S]"
+          data-tooltip="top"
+          className={buttonStyles["try-again-button"]}
+          onClick={handleTryAgain}
+        >
+          Reset ↺
+        </button>
       </div>
     </div>
   );
