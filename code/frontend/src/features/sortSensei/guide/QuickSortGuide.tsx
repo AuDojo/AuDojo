@@ -1,20 +1,21 @@
 // MergeSortGuide.tsx
 import { useSortContext } from "@hooks/index";
 import styles from "./SortGuide.module.css";
+import { useTranslation } from "react-i18next";
+import parse from "html-react-parser";
 
 const QuickSortGuide = () => {
   const { step, stepsList, pivotElement } = useSortContext();
+
+  const { t } = useTranslation("sortsensei");
 
   const getCurrentGuideText = () => {
     if (!stepsList || stepsList.length === 0) {
       return "Starting Quick Sort!";
     }
     if (step === 1) {
-      return (
-        <>
-          Choose <b>last element "{stepsList[0][stepsList[0].length - 1]}"</b> as pivot element.
-        </>
-      );
+      let lastElement = stepsList[0][stepsList[0].length - 1];
+      return <>{parse(t("quickSort.guide.choose", { lastElement: lastElement }))}</>;
     } else if (step >= 2) {
       const prevArray = stepsList[step - 2];
       const pivot = prevArray[pivotElement[step - 1][0]];
@@ -22,29 +23,16 @@ const QuickSortGuide = () => {
       const nextPivot = step !== stepsList.length ? currentArray[pivotElement[step][0]] : 0;
 
       if (!nextPivot) {
-        return (
-          <>
-            <b> The used pivot element "{pivot}" is marked</b>
-            <br />
-            Sorting is complete!
-          </>
-        );
+        return <>{parse(t("quickSort.guide.end", { pivot: pivot }))}</>;
       }
 
-      return (
-        <>
-          After partitioning, all elements smaller than {pivot} are on its left, and larger on the right.
-          <b> Choose "{nextPivot}"</b> as <b>next</b> pivot element.
-          <br />
-          <b> The used pivot element "{pivot}" is marked.</b>
-        </>
-      );
+      return <>{parse(t("quickSort.guide.after-partition", { pivot: pivot, nextPivot: nextPivot }))}</>;
     }
   };
 
   return (
     <div className={styles.guide}>
-      <h3>Quick Sort Guide</h3>
+      <h3>{t("quickSort.guide.heading")}</h3>
       <div className={styles.step}>
         <p>{getCurrentGuideText()}</p>
       </div>

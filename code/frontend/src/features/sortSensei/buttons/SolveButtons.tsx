@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useTutorialModalContext } from "../hooks";
 import { Points } from "../points";
 import buttonStyles from "./Button.module.css";
+import { useTranslation } from "react-i18next";
 
 const SPEED_VALUES = [5000, 4000, 2500, 1500, 1000, 500, 5];
 const DEFAULT_SPEED_INDEX = 3;
@@ -14,6 +15,8 @@ const SolveButton = () => {
   const { step, stepsList, inputCellValues, mergeRanges, sortTypeRef, setStep, setInputCellValues, setCellValidation } =
     useSortContext();
   const { refs } = useTutorialModalContext();
+
+  const { t } = useTranslation("sortsensei");
 
   const { timeoutRef, solveAllStatus, setSolveAllStatus } = useButtonContext();
   const isSolvingRef = useRef<boolean>(false);
@@ -223,7 +226,7 @@ const SolveButton = () => {
     <div className={buttonStyles["solve-speed-buttons"]} ref={refs.solveButtons}>
       <Points />
       <div style={{ fontSize: "12px", fontStyle: "italic", color: "gray" }}>
-        Current speed: x{SPEED_DISPLAY[selectedSpeedIndex]}
+        {t("speed-info")}: x{SPEED_DISPLAY[selectedSpeedIndex]}
       </div>
       <div className={buttonStyles["speed-buttons-container"]}>
         <input

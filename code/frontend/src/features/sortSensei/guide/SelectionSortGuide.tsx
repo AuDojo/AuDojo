@@ -1,9 +1,13 @@
 // MergeSortGuide.tsx
 import { useSortContext } from "@hooks/index";
 import styles from "./SortGuide.module.css";
+import { useTranslation } from "react-i18next";
+import parse from "html-react-parser";
 
 const SelectionSortGuide = () => {
   const { step, stepsList, selectionElement } = useSortContext();
+
+  const { t } = useTranslation("sortsensei");
 
   const getCurrentGuideText = () => {
     if (!stepsList || stepsList.length === 0) {
@@ -15,23 +19,21 @@ const SelectionSortGuide = () => {
     const smallestElement = prevArray[selectionElement[step - 2]];
     const currentElement = prevArray[step - 2];
     if (step === 1) {
-      return (
-        <>
-          Starts with the current element at <b>index 0</b>.<br />
-          Find the smallest from the remaining elements.
-          <br />
-        </>
-      );
+      return <>{parse(t("selectionSort.guide.start"))}</>;
     } else if (step >= 2) {
       if (step === stepsList.length) {
-        return <>Sorting is complete!</>;
+        return <>{t("selectionSort.guide.end")}</>;
       }
 
       return (
         <>
-          Swap <b>current ({currentElement})</b> with <b>smallest ({smallestElement})</b>. <br />
-          Move to <b>index {step - 1}</b> and find the smallest in the unsorted subarray.
-          <br />
+          {parse(
+            t("selectionSort.guide.swap", {
+              currentElement: currentElement,
+              smallestElement: smallestElement,
+              move: step - 1,
+            })
+          )}
         </>
       );
     }
@@ -39,7 +41,7 @@ const SelectionSortGuide = () => {
 
   return (
     <div className={styles.guide}>
-      <h3>Selection Sort Guide</h3>
+      <h3>{t("selectionSort.guide.header")}</h3>
       <div className={styles.step}>
         <p>{getCurrentGuideText()}</p>
       </div>
