@@ -1,6 +1,6 @@
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import { SortContext } from ".";
-import { SortType } from "../constants";
+import { SortType, SortTypes } from "../constants";
 
 const defaultArray = [7, 13, 5, 9, 10, 12, 1, 3, 2, 6, 25, 40];
 
@@ -21,7 +21,7 @@ export const SortProvider = ({ children }: { children: ReactNode }) => {
 
   // References
   const inputCellsRef = useRef<HTMLInputElement[][]>([]);
-  const sortTypeRef = useRef<SortType>(SortType.MergeSort);
+  const sortTypeRef = useRef<SortType>(SortTypes.MergeSort);
 
   useEffect(() => {
     localStorage.setItem("sharedArray", JSON.stringify(sharedArray));
@@ -63,19 +63,19 @@ export const SortProvider = ({ children }: { children: ReactNode }) => {
     const sortType = location.pathname.split("/")[1];
     switch (sortType) {
       case "mergesort": {
-        sortTypeRef.current = SortType.MergeSort;
+        sortTypeRef.current = SortTypes.MergeSort;
         break;
       }
       case "quicksort": {
-        sortTypeRef.current = SortType.QuickSort;
+        sortTypeRef.current = SortTypes.QuickSort;
         break;
       }
       case "bubblesort": {
-        sortTypeRef.current = SortType.BubbleSort;
+        sortTypeRef.current = SortTypes.BubbleSort;
         break;
       }
       case "selectionsort": {
-        sortTypeRef.current = SortType.SelectionSort;
+        sortTypeRef.current = SortTypes.SelectionSort;
       }
     }
   };

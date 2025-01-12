@@ -1,4 +1,4 @@
-import { SortType } from "@/constants";
+import { SortTypes } from "@/constants";
 import { useSortContext } from "@/hooks";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTutorialModalContext } from "../hooks";
@@ -56,18 +56,18 @@ const SolveButton = () => {
 
         // Check if cell is selected from selection sort
         const isSelected =
-          sortType === SortType.SelectionSort &&
+          sortType === SortTypes.SelectionSort &&
           selectionElement.length >= currentStep &&
           (currentColumn === selectionElement[currentStep - 1] || currentColumn === currentStep - 1);
 
         const isBubbleElement =
-          (sortType === SortType.BubbleSort && bubbleElement[currentStep - 1] === currentColumn) ||
+          (sortType === SortTypes.BubbleSort && bubbleElement[currentStep - 1] === currentColumn) ||
           bubbleElement[currentStep - 1] + 1 === currentColumn;
 
         if (
-          (sortType === SortType.SelectionSort && !isSelected) ||
-          (sortType === SortType.MergeSort && !isInMergeRange) ||
-          (sortType === SortType.BubbleSort && !isBubbleElement)
+          (sortType === SortTypes.SelectionSort && !isSelected) ||
+          (sortType === SortTypes.MergeSort && !isInMergeRange) ||
+          (sortType === SortTypes.BubbleSort && !isBubbleElement)
         ) {
           // Skip validation for unselected / unmerged cells
           return value === "" || Number(value) === correctValues[currentColumn];

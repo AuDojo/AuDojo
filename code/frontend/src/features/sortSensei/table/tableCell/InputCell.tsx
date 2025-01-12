@@ -1,4 +1,4 @@
-import { SortType } from "@/constants";
+import { SortTypes } from "@/constants";
 import { useSortContext } from "@/hooks";
 import { useTableUtils } from "@features/sortSensei/table/hooks";
 import classNames from "classnames/bind";
@@ -37,7 +37,7 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
     const validation = cellValidation[rowIndex][columnIndex];
 
     let pivotPair: [number, number];
-    if (sortType === SortType.QuickSort && pivotElement) {
+    if (sortType === SortTypes.QuickSort && pivotElement) {
       if (rowIndex < pivotElement.length) {
         pivotPair = pivotElement[rowIndex];
       } else {
@@ -48,7 +48,7 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
     }
 
     // Calculate merge range
-    const mergeRange = sortType === SortType.MergeSort && mergeRanges ? mergeRanges[rowIndex] || [-1, -1] : [-1, -1];
+    const mergeRange = sortType === SortTypes.MergeSort && mergeRanges ? mergeRanges[rowIndex] || [-1, -1] : [-1, -1];
 
     // Check if column is in merge range
     const isInMergeRange = () => columnIndex >= mergeRange[0] && columnIndex <= mergeRange[1];
@@ -57,7 +57,7 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
     const isPivot = () => columnIndex === pivotPair[1];
 
     const isSelected = (): boolean => {
-      if (sortTypeRef.current === SortType.SelectionSort && rowIndex < step) {
+      if (sortTypeRef.current === SortTypes.SelectionSort && rowIndex < step) {
         return columnIndex === selectionElement[rowIndex - 1] || columnIndex === rowIndex - 1;
       }
       return false;
@@ -92,20 +92,22 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
           "pivot-cell": cellData.isPivot && rowIndex < step,
 
           // MergeSort styles
-          "in-merge-range": cellData.sortType === SortType.MergeSort && cellData.isInMergeRange && rowIndex < step,
+          "in-merge-range": cellData.sortType === SortTypes.MergeSort && cellData.isInMergeRange && rowIndex < step,
           "merge-range-start":
-            cellData.sortType === SortType.MergeSort && columnIndex === cellData.mergeRange[0] && rowIndex < step,
+            cellData.sortType === SortTypes.MergeSort && columnIndex === cellData.mergeRange[0] && rowIndex < step,
           "merge-range-end":
-            cellData.sortType === SortType.MergeSort && columnIndex === cellData.mergeRange[1] && rowIndex < step,
+            cellData.sortType === SortTypes.MergeSort && columnIndex === cellData.mergeRange[1] && rowIndex < step,
 
           // SelectionSort styles
           "selected-cell": cellData.isSelected,
 
           // BubbleSort styles
           "bubble-cell-first":
-            cellData.sortType === SortType.BubbleSort && columnIndex === bubbleElement[rowIndex - 1] && rowIndex < step,
+            cellData.sortType === SortTypes.BubbleSort &&
+            columnIndex === bubbleElement[rowIndex - 1] &&
+            rowIndex < step,
           "bubble-cell-second":
-            cellData.sortType === SortType.BubbleSort &&
+            cellData.sortType === SortTypes.BubbleSort &&
             columnIndex === bubbleElement[rowIndex - 1] + 1 &&
             rowIndex < step,
         })}

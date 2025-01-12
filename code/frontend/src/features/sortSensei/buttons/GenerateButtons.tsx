@@ -1,12 +1,14 @@
 import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE } from "@/constants";
 import { useSortContext } from "@/hooks";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useSortContext as useSortContextNew } from "../context/SortContext";
 import { useTutorialModalContext } from "../hooks";
 import buttonStyles from "./Button.module.css";
 import { useButtonContext } from "./hooks/";
 
 const GenerateButtons = () => {
   const { setStep, fetchStepsList, stepsList, sharedArray } = useSortContext();
+  const { setSharedArray } = useSortContextNew();
   const [customArray, setCustomArray] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [arrayLength, setArrayLength] = useState<number>(sharedArray.length);
@@ -74,6 +76,8 @@ const GenerateButtons = () => {
     }
     setStep(1);
     fetchStepsList(array);
+    setSharedArray(array);
+
     // setCustomArray("");
     setIsSubmitting(false);
   };

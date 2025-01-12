@@ -1,4 +1,4 @@
-import { SortType } from "@/constants";
+import { SortTypes } from "@/constants";
 import { useSortContext } from "@/hooks";
 import * as d3 from "d3";
 import { useEffect, useRef } from "react";
@@ -9,7 +9,7 @@ interface BarData {
   previousIndex: number;
   isSorted: boolean;
   isMerging: boolean;
-  type: SortType;
+  type: SortTypes;
   isPivot: boolean;
   isSelected: boolean;
   isLink: boolean;
@@ -70,17 +70,17 @@ const SortVisualizer = () => {
       });
 
       const currentMergeRange = mergeRanges[step - 1];
-      const pivotIndex = sortTypeRef.current === SortType.QuickSort ? pivotElement[step - 1][0] : null;
+      const pivotIndex = sortTypeRef.current === SortTypes.QuickSort ? pivotElement[step - 1][0] : null;
       const selectedIndex =
-        sortTypeRef.current === SortType.SelectionSort && step > 1 ? selectionElement[step - 2] : null;
-      const linkElement = sortTypeRef.current === SortType.SelectionSort ? currentArray[step - 1] : 0;
+        sortTypeRef.current === SortTypes.SelectionSort && step > 1 ? selectionElement[step - 2] : null;
+      const linkElement = sortTypeRef.current === SortTypes.SelectionSort ? currentArray[step - 1] : 0;
 
       // Merge sort : mark sorted (green) when the subarrays merge
       // Selectionsort : mark sorted (green) when the smallest element moved to left side
       let isSorted = false;
-      if (sortTypeRef.current === SortType.MergeSort) {
+      if (sortTypeRef.current === SortTypes.MergeSort) {
         isSorted = currentMergeRange && index >= currentMergeRange[0] && index <= currentMergeRange[1];
-      } else if (sortTypeRef.current === SortType.SelectionSort) {
+      } else if (sortTypeRef.current === SortTypes.SelectionSort) {
         isSorted = index < currentArray.indexOf(linkElement) || step === stepsList.length;
       } else {
         // bubble sort and quicksort
@@ -95,8 +95,8 @@ const SortVisualizer = () => {
         isMerging: currentMergeRange && index >= currentMergeRange[0] && index <= currentMergeRange[1],
         type: sortTypeRef.current,
         isPivot: pivotElement && pivotIndex === previousIndex,
-        isSelected: sortTypeRef.current === SortType.SelectionSort && selectedIndex === previousIndex,
-        isLink: sortTypeRef.current === SortType.SelectionSort && previousIndex === step - 2,
+        isSelected: sortTypeRef.current === SortTypes.SelectionSort && selectedIndex === previousIndex,
+        isLink: sortTypeRef.current === SortTypes.SelectionSort && previousIndex === step - 2,
       };
     });
 

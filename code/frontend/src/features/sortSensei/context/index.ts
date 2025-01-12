@@ -1,2 +1,1 @@
-export { TutorialModalContext } from "./TutorialModalContext";
-export { TutorialModalProvider } from "./TutorialModalProvider";
+export { TutorialModalContext, TutorialModalProvider } from "./TutorialModalContext";
