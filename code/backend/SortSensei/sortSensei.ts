@@ -18,7 +18,7 @@ export class SortSensei {
    * @returns All the sorting steps in a 2D-list as a json-string in the following format: `{"processList": [[startList], [sortStep1], [sortStep2], ...]}`
    */
   static createSortProcessList(list: number[], sortType: SortType): string {
-    this.#processList = new SortProcessList(list);
+    this.#processList = new SortProcessList(list, sortType);
 
     console.log("---------- Start with sorting ----------");
     switch (sortType) {
@@ -36,7 +36,7 @@ export class SortSensei {
         break;
 
       default: //SortType = UNDEFINED -> gibt ein leeres Array zurück
-        this.#processList = new SortProcessList([]);
+        this.#processList = new SortProcessList([], SortType.UNDEFINED);
         break;
     }
 
