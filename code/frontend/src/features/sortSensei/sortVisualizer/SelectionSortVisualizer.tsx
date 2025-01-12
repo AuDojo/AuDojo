@@ -66,65 +66,70 @@ const SelectionSortVisualizer = () => {
       .attr("y", (d) => yScale(d.value) - textMarginBottom)
       .text((d) => d.value);
 
+    // Animate the bars to their new positions
+    bars
+      .transition()
+      .delay(timeBarsMove)
+      .duration(timeBarsMove)
+      .attr("class", style["unsorted-bar"])
+      .attr("transform", (d) => `translate(${xScale(d.index)}, 0)`);
+
     // add selected element label
     bars
       .filter((d) => d.isSelected)
       .append("text")
       .attr("x", xScale.bandwidth() / 2)
       .attr("y", (d) => yScale(d.value) - textMarginTop)
-      .transition()
       .attr("class", style["bar-marker"])
-      .text("(min)");
-
-    // add leftmost unsorted element label
-    bars
-      .filter((d) => d.isLeftUnsorted && !d.isSelected)
-      .append("text")
-      .attr("x", xScale.bandwidth() / 2)
-      .attr("y", (d) => yScale(d.value) - textMarginTop)
+      .text("(min)")
       .transition()
-      .attr("class", style["bar-marker"])
-      .text("(left)");
+      .delay(timeBarsMove) // remove text before bars move
+      .remove();
 
-    // new y-position for label when the bar is both leftmost and selected
-    bars
-      .filter((d) => d.isLeftUnsorted && d.isSelected)
-      .append("text")
-      .attr("x", xScale.bandwidth() / 2)
-      .attr("y", (d) => yScale(d.value) - textMarginTop - margin.top)
-      .transition()
-      .attr("class", style["bar-marker"])
-      .text("(left)");
-
-    // Highlight the selected bar with blinking color
+    // Highlight the selected bar
     bars
       .filter((d) => d.isSelected)
       .selectAll("rect")
       .transition()
-      .duration(timeLoadColor) // changing color
-      .attr("class", style["changed-bar-blink"]);
+      .duration(timeLoadColor) // changing color effect
+      .attr("class", style["changed-bar"]);
+
+    // add leftmost unsorted element label
+    bars
+      .filter((d) => d.isLeftUnsorted)
+      .append("text")
+      .attr("x", xScale.bandwidth() / 2)
+      .attr("y", (d) => (d.isSelected ? yScale(d.value) - textMarginTop - margin.top : yScale(d.value) - textMarginTop))
+      .attr("class", style["bar-marker"])
+      .text("(left)")
+      .transition()
+      .delay(timeBarsMove) // remove text before bars move
+      .remove();
 
     // Highlight the leftmost unsorted bar
     bars
       .filter((d) => d.isLeftUnsorted)
-      .selectAll("rect")
+      .select("rect")
       .transition()
       .duration(timeLoadColor)
-      .attr("class", style["changed-bar"]);
+      .attr("class", style["changed-bar"])
+      .transition()
+      .delay((timeBarsMove * 3) / 2) // after bars move, change back to default color
+      .attr("class", (d) => (d.isSorted ? style["sorted-bar"] : style["unsorted-bar"]));
 
-    // Highlight the sorted bar
+    // Highlight the current sorted bar after delay
     bars
-      .filter((d) => d.isSorted)
+      .filter((d) => d.isCurrentSorted)
       .selectAll("rect")
-      .transition() // wait for last transition to finish
+      .transition()
+      .delay(timeBarsMove)
       .attr("class", style["sorted-bar"]);
 
-    // Animate the bars to their new positions
+    // Highlight the sorted bar except the current sorted bar
     bars
-      .transition()
-      .duration(timeBarsMove)
-      .attr("class", style["unsorted-bar"])
-      .attr("transform", (d) => `translate(${xScale(d.index)}, 0)`);
+      .filter((d) => d.isSorted && !d.isCurrentSorted)
+      .selectAll("rect")
+      .attr("class", style["sorted-bar"]);
 
     return () => {
       // Remove the bars when the component is unmounted
