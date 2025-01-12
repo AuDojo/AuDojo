@@ -6,12 +6,12 @@ import styles from "./HomeButtons.module.css";
 import { useTranslation } from "react-i18next";
 
 const HomeButtons = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <>
       <div className={styles["home-buttons-container"]}>
         <HomeButton link={paths.mergeSort} header="Sort Sensei" img={sortingPng} text={t("sortSenseiButton")} />
-        <HomeButton link={paths.home} header="Tree Tutor" img={treePng} text={t("treetutorButton")} />
+        <HomeButton link={paths.treeTutor} header="Tree Tutor" img={treePng} text={t("treetutorButton")} />
       </div>
     </>
   );

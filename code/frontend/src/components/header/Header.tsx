@@ -33,8 +33,8 @@ const Header = () => {
             <LinkItem className="menu-item" to={paths.selectionSort} text="SelectionSort" />
           </nav>
         </nav>
-        <LinkItem className="menu-item" to={paths.home} text="TreeTutor" />
-        <LinkItem className="menu-item" to={paths.tutorial} text="Beispiele" />
+        <LinkItem className="menu-item" to={paths.treeTutor} text="TreeTutor" />
+        <LinkItem className="menu-item" to={paths.tutorial} text={t("example")} />
         <LinkItem className="menu-item" to={paths.kontakt} text={t("contact")} />
       </nav>
       <LanguageSelector />

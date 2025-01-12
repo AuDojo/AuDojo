@@ -12,5 +12,8 @@ export const paths = {
   bubbleSort: "/bubblesort",
   selectionSort: "/selectionsort",
 
+  //TreeTutor
+  treeTutor: "/treetutor",
+
   tutorial: "/tutorial",
 } as const;

@@ -26,7 +26,7 @@ const SortingTable = (): JSX.Element => {
   return (
     <div ref={highlightRefs.sortingTable} style={{ backgroundColor: "white" }}>
       <ListRow />
-      <div className={styles["table-container"]}>
+      <div className={styles["table-container"]} style={{ maxHeight }}>
         <table>
           {/* <caption>Iterations</captaon> */}
           <tbody>
