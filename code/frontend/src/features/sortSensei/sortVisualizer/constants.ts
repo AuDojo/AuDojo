@@ -1,5 +1,5 @@
 // Constants for the sort visualizer, which are the same for all sortss
-const maxWidthEachBar = 50;
+const maxWidthEachBar = 48;
 const margin = {
   top: 13,
   right: 20,
@@ -7,7 +7,7 @@ const margin = {
   left: 33,
 };
 const adjustedMarginLeft = margin.left - 12;
-const scaleBandPadding = 0.16;
+const scaleBandPadding = 0.18;
 const timeLoadColor = 20;
 const timeBarsMove = 600;
 const textMarginTop = 23;

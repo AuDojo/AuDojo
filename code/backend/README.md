@@ -28,7 +28,7 @@ Softwarearchitektur von Backend:
    ```json
    {
       "processList": [[startList], [sortStep1], [sortStep2], ...],
-      "mergeRange": [null, [start1, end1], [start2, end2], ...],
+      "mergeRange": [[-1, -1], [start1, end1], [start2, end2], ...],
       "pivotElement": null,
       "selectedElement": null,
       "bubbleElement":null
@@ -43,7 +43,7 @@ Softwarearchitektur von Backend:
    {
       "processList": [[startList], [sortStep1], [sortStep2], ...],
       "mergeRange": null,
-      "pivotElement": [null, [pivot-before1, pivot-after1], [pivot-before2, pivot-after2], ...],
+      "pivotElement": [[-1, -1], [pivot-before1, pivot-after1], [pivot-before2, pivot-after2], ...],
       "selectedElement": null,
       "bubbleElement":null
    }

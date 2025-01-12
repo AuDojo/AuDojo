@@ -17,17 +17,12 @@ const SelectionSort = () => {
       <SortProvider>
         <TutorialModalProvider>
           <SideBarMenu />
-          <div className={styles.container}>
-            <div>
-              <SelectionSortGuide />
-              <SelectionSortVisualizer />
-              {/* <SortVisualizer /> */}
-            </div>
+          <SelectionSortGuide />
+          <div className={styles["main-container"]}>
+            <SelectionSortVisualizer />
             <div className={styles["outer-table-buttons-container"]}>
               <div className={styles["inner-table-buttons-container"]}>
-                {/* Table */}
                 <SortingTable />
-                {/* right buttons */}
                 <ButtonContextProvider>
                   <GenerateButtons />
                   <SolveButtons />

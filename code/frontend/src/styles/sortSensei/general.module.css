@@ -1,11 +1,10 @@
-.container {
-  margin-top: 110px;
+.main-container {
+  margin-top: -25px;
 }
 
 .inner-table-buttons-container {
   margin-top: 0.6rem;
   position: relative;
-  max-width: 1300px;
 }
 
 .outer-table-buttons-container {

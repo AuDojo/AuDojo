@@ -16,16 +16,12 @@ const MergeSort = () => {
       <SortProvider>
         <TutorialModalProvider>
           <SideBarMenu />
-          <div className={styles.container}>
-            <div>
-              <MergeSortGuide />
-              <MergeSortVisualizer />
-            </div>
+          <MergeSortGuide />
+          <div className={styles["main-container"]}>
+            <MergeSortVisualizer />
             <div className={styles["outer-table-buttons-container"]}>
               <div className={styles["inner-table-buttons-container"]}>
-                {/* Table */}
                 <SortingTable />
-                {/* right buttons */}
                 <ButtonContextProvider>
                   <GenerateButtons />
                   <SolveButtons />
