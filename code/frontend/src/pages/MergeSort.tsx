@@ -8,6 +8,7 @@ import useSetTitle from "../hooks/title";
 import { SideBarMenu } from "@features/sortSensei/sideBarMenu";
 import { Header } from "@src/components/header";
 import { Footer } from "@src/components/footer";
+import { TutorialModal } from "@src/features/sortSensei/tutorialModal";
 
 const MergeSort = () => {
   useSetTitle("MergeSort");
@@ -15,6 +16,7 @@ const MergeSort = () => {
     <>
     <SortProvider>
       <TutorialModalProvider>
+        <TutorialModal />
         <Header />
         <SideBarMenu />
         <div className={styles.container}>

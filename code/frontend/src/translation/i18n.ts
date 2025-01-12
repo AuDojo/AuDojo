@@ -11,8 +11,10 @@ i18n
     interpolation: {
       escapeValue: false,
     },
-    defaultNS: "home",
-    ns: ["footer", "header", "home", "sortsensei-tutorial", "sortsensei", "treetutor", "treetutor-tutorial"],
+
+    defaultNS:"home",
+    ns: ["contact","footer", "header", "home", "sortsensei-tutorial", "sortsensei", "treetutor", "treetutor-tutorial"],
+
     backend: {
       loadPath: "translation/{{lng}}/{{ns}}.json",
     },

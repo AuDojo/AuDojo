@@ -1,5 +1,5 @@
 {
-    "home-welcomeMessage" : "Welcome to AuDojo! Your Dojo for Algorithms and Datastructures",
-    "home-sortSenseiButton" : "Sorting Algorithm",
-    "home-treetutorButton" : "AVL Tree Operations" 
+    "welcomeMessage" : "Welcome to AuDojo! Your Dojo for Algorithms and Datastructures",
+    "sortSenseiButton" : "Sorting Algorithm",
+    "treetutorButton" : "AVL Tree Operations" 
 }

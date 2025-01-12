@@ -17,6 +17,7 @@ function LanguageSelector() {
 
   const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
 
+
   const handleLanguageChange = (code: string) => {
     setLanguage(code);
     i18n.changeLanguage(code);
