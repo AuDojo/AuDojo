@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { App } from "./app";
 import { SortProvider } from "./contexts";
 import "./index.css";
+import "./translation/i18n.ts";
 
 createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

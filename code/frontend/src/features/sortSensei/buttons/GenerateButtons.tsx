@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useTutorialModalContext } from "../hooks";
 import buttonStyles from "./Button.module.css";
 import { useButtonContext } from "./hooks/";
+import { useTranslation } from "react-i18next";
 
 const GenerateButtons = () => {
   const { setStep, fetchStepsList, stepsList, sharedArray } = useSortContext();
@@ -15,6 +16,7 @@ const GenerateButtons = () => {
 
   const { timeoutRef, setSolveAllStatus } = useButtonContext();
   const { highlightRefs } = useTutorialModalContext();
+  const { t } = useTranslation("sortsensei");
 
   // Set input value in submit field to the current array
   useEffect(() => {
@@ -54,7 +56,7 @@ const GenerateButtons = () => {
     const outOfRangeNumbers = array.filter((num) => num < MIN_INPUT_RANGE || num > MAX_INPUT_RANGE);
 
     if (outOfRangeNumbers.length > 0) {
-      setErrorMessage(`Please enter numbers only in the range ${MIN_INPUT_RANGE} to ${MAX_INPUT_RANGE}.`);
+      setErrorMessage(t("error-message.range", { min: MIN_INPUT_RANGE, max: MAX_INPUT_RANGE }));
       setTimeout(() => setErrorMessage(""), 3000);
       return;
     }
@@ -62,13 +64,13 @@ const GenerateButtons = () => {
     if (array.length < MIN_ARRAY_SIZE) {
       //! min array length
       setIsSubmitting(false);
-      setErrorMessage(`Please enter at least ${MIN_ARRAY_SIZE} numbers.`);
+      setErrorMessage(t("error-message.to-few", { min: MIN_ARRAY_SIZE }));
       setCustomArray("");
       setTimeout(() => setErrorMessage(""), 2200);
       return;
     }
     if (array.length > MAX_ARRAY_SIZE) {
-      setErrorMessage(`Please enter at most ${MAX_ARRAY_SIZE} numbers.`);
+      setErrorMessage(t("error-message.to-many", { max: MAX_ARRAY_SIZE }));
       setTimeout(() => setErrorMessage(""), 2200);
       return;
     }
@@ -136,7 +138,7 @@ const GenerateButtons = () => {
         onClick={toggleSubmit}
         className={`${buttonStyles[isSubmitting ? "close-button" : ""]}`}
       >
-        {isSubmitting ? "Close ✗" : "🛠️ Custom Array"}
+        {isSubmitting ? "Close ✗" : t("button.new-custom")}
       </button>
       {/* </Tooltip> */}
 
@@ -164,7 +166,7 @@ const GenerateButtons = () => {
       )}
       {isSubmitting && <div></div>}
       <button aria-label="Random [R]" data-tooltip="left" onClick={handleRandomArray}>
-        🎲 Random Array
+        {t("button.new-random")}
       </button>
       <div className={buttonStyles["array-length-container"]}>
         <div
@@ -174,7 +176,7 @@ const GenerateButtons = () => {
             color: "gray",
           }}
         >
-          Random array length: ({MIN_ARRAY_SIZE}-{MAX_ARRAY_SIZE})
+          {t("length-input-info", { min: MIN_ARRAY_SIZE, max: MAX_ARRAY_SIZE })}
         </div>
         <input
           type="number"

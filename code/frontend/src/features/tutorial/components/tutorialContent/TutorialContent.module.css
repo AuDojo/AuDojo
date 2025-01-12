@@ -5,8 +5,8 @@
   color: var(--maincolor-darkblue);
 }
 
-.image-container {
-  max-width: 45%;
+.image-container img{
+  max-width: 50%;
   height: auto;
   vertical-align: middle;
 }
@@ -21,10 +21,4 @@
   font-family: "Arial", "Helvetica", sans-serif;
   color: #333333;
   box-sizing: border-box;
-}
-
-span.font-highlight {
-  font-weight: bold;
-  padding: 2px 4px;
-  border-radius: 3px;
 }

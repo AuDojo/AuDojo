@@ -5,9 +5,13 @@ import { FaAngleDown } from "react-icons/fa6";
 import HeaderLogo from "./logo/HeaderLogo";
 import LinkItem from "./LinkItem";
 import HamburgerIcon from "./hamburger/HamburgerIcon";
+import Menu from "./LanguageSelector.tsx";
+import LanguageSelector from "./LanguageSelector.tsx";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   //Case: Client Width too small:  When the user clicks on hamburger icon, open the menu
+  const { t } = useTranslation("header");
   const [isOpen, setOpen] = useState<boolean>(false);
   const toogleMenu = () => {
     setOpen(!isOpen);
@@ -32,7 +36,8 @@ const Header = () => {
         </nav>
         <LinkItem className="menu-item" to={paths.home} text="TreeTutor" />
         <LinkItem className="menu-item" to={paths.tutorial} text="Beispiele" />
-        <LinkItem className="menu-item" to={paths.kontakt} text="Kontakt" />
+        <LinkItem className="menu-item" to={paths.kontakt} text={t("contact")} />
+        <LanguageSelector />
       </nav>
       <HamburgerIcon isOpen={isOpen} onClick={toogleMenu} />
     </header>
