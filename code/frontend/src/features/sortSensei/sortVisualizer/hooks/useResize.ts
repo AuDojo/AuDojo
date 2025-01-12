@@ -6,7 +6,8 @@ interface useResizeProps {
 }
 const innerSideMargin = 25;
 const outerSideMargin = 10;
-
+const defaultHeight = 220;
+const defaultWidth = 700;
 /**
  * A hook that returns the size of a container based on the width of its contents and the size of the container itself.
  *
@@ -14,8 +15,8 @@ const outerSideMargin = 10;
  */
 const useResize = ({ containerRef, totalBarsWidth }: useResizeProps) => {
   const [containerSize, setContainerSize] = useState({
-    width: 790,
-    height: 240,
+    width: defaultWidth,
+    height: defaultHeight,
   });
 
   useEffect(() => {
@@ -25,7 +26,7 @@ const useResize = ({ containerRef, totalBarsWidth }: useResizeProps) => {
         setContainerSize({
           // ensure the width doesn't exceed the available space
           width: Math.min(totalBarsWidth + innerSideMargin * 2, containerRef.current.clientWidth - outerSideMargin * 2),
-          height: 240,
+          height: defaultHeight,
         });
       }
     };

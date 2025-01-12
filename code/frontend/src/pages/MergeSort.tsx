@@ -16,8 +16,8 @@ const MergeSort = () => {
       <SortProvider>
         <TutorialModalProvider>
           <SideBarMenu />
-          <div>
-            <MergeSortGuide />
+          <MergeSortGuide />
+          <div className={styles["main-container"]}>
             <MergeSortVisualizer />
             <div className={styles["outer-table-buttons-container"]}>
               <div className={styles["inner-table-buttons-container"]}>

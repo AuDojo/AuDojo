@@ -16,8 +16,8 @@ const BubbleSort = () => {
       <SortProvider>
         <TutorialModalProvider>
           <SideBarMenu />
-          <div>
-            <BubbleSortGuide />
+          <BubbleSortGuide />
+          <div className={styles["main-container"]}>
             <BubbleSortVisualizer />
             <div className={styles["outer-table-buttons-container"]}>
               <div className={styles["inner-table-buttons-container"]}>
