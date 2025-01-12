@@ -4,17 +4,14 @@ import footerStyles from "./Footer.module.css";
 
 const Footer = () => {
   return (
-    <footer className={footerStyles["footer-content"]}>
-      <div>
-        <Link className="Link" to={paths.impressum}>
-          Impressum
-        </Link>
-      </div>
-      <div>
-        <Link className="Link" to={paths.datenschutz}>
-          Datenschutz
-        </Link>
-      </div>
+    <footer>
+      <Link className={footerStyles["footer-content"]} to={paths.impressum}>
+        Impressum
+      </Link>
+
+      <Link className={footerStyles["footer-content"]} to={paths.datenschutz}>
+        Datenschutz
+      </Link>
     </footer>
   );
 };

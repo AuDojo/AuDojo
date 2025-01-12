@@ -11,7 +11,16 @@
 body {
   font-family: "Open Sans", Helvetica, Verdana, Arial, sans-serif;
   margin: 0;
-  background-color: white;
+  min-height: 100vh;
+  position: relative;
+}
+
+main {
+  display: flex;
+  flex: 1; /* Take up remaining space between header and footer */
+  flex-direction: column;
+  padding: 100px 0 20px 0;
+  align-items: center;
 }
 
 a {
@@ -29,6 +38,5 @@ a {
   border-radius: 5px;
   box-shadow: 0 0 0 10px white;
   position: relative;
-
   transition: all 0.3s ease-out;
 }

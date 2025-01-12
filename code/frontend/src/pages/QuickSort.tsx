@@ -16,16 +16,12 @@ const QuickSort = () => {
       <SortProvider>
         <TutorialModalProvider>
           <SideBarMenu />
-          <div className={styles.container}>
-            <div>
-              <QuickSortGuide />
-              <QuickSortVisualizer />
-            </div>
+          <div>
+            <QuickSortGuide />
+            <QuickSortVisualizer />
             <div className={styles["outer-table-buttons-container"]}>
               <div className={styles["inner-table-buttons-container"]}>
-                {/* Table */}
                 <SortingTable />
-                {/* right buttons */}
                 <ButtonContextProvider>
                   <GenerateButtons />
                   <SolveButtons />

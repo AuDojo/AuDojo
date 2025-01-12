@@ -9,7 +9,7 @@ const Home = () => {
   }, []);
 
   return (
-    <main className={styles.main}>
+    <>
       <h1 className={styles["main-header"]}>
         <div>AuDojo</div>
         <img className={styles["audojo-logo"]} src={audoLogo} alt="logo of audojo" />
@@ -18,7 +18,7 @@ const Home = () => {
         Willkommen bei AuDojo! Dein Dojo für Algorithmen und Datenstrukturen
       </p>
       <HomeButtons />
-    </main>
+    </>
   );
 };
 
