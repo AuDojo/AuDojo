@@ -9,8 +9,8 @@ const HomeButtons = () => {
   return (
     <>
       <div className={styles["home-buttons-container"]}>
-        <HomeButton link="/mergesort" header="Sort Sensei" img={sortingPng} text={t("home-sortSenseiButton")} />
-        <HomeButton link="/" header="Tree Tutor" img={treePng} text={t("home-treetutorButton")} />
+        <HomeButton link="/mergesort" header="Sort Sensei" img={sortingPng} text={t("sortSenseiButton")} />
+        <HomeButton link="/" header="Tree Tutor" img={treePng} text={t("treetutorButton")} />
       </div>
     </>
   );

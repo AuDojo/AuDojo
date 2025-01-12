@@ -1,13 +1,14 @@
 import { Step } from "@features/tutorial/types";
 import { useState } from "react";
 import tutorialContent from "./StepVisualizer.module.css";
+import { useTranslation } from "react-i18next";
 
 type VisualizerProps = {
   steps: Step[]; // Define the type of the step prop
-  mergesort: boolean;
+  sortType:string;
 };
 
-const Visualizer = ({ steps, mergesort }: VisualizerProps) => {
+const Visualizer = ({ steps, sortType }: VisualizerProps) => {
   const [currentStep, setCurrentStep] = useState(0);
 
   const goToNextStep = () => {
@@ -30,16 +31,18 @@ const Visualizer = ({ steps, mergesort }: VisualizerProps) => {
     setCurrentStep(steps.length - 1);
   };
 
+  const { t } = useTranslation("sortsensei-tutorial");
+
   return (
     <div>
       {" "}
       <h1>Beispiel</h1>
       <div className={tutorialContent["visualiser-container"]}>
-        <h3>{steps[currentStep].description}</h3>
+        <h3>{t("stepvisualizer."+ sortType + "." + steps[currentStep].description)}</h3>
         {/* array container */}
         <div className={tutorialContent["array-container"]}>
           {steps[currentStep].data.map((component, index) => (
-            <div key={index} className={tutorialContent[mergesort === false ? "array" : "array-merge"]}>
+            <div key={index} className={tutorialContent[sortType === "mergesort" ? "array-merge" : "array"]}>
               {component.array.map((num, i) => (
                 <span key={i} className={tutorialContent["box"]} style={{ background: component.color }}>
                   {num}

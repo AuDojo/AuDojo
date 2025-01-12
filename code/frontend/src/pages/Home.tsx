@@ -25,7 +25,7 @@ const Home = () => {
           <img className={mainStyles["audojo-logo"]} src={audoLogo} alt="logo of audojo" />
         </h1>
         <p className={mainStyles["main-welcome-message"]}>
-          {t("home-welcomeMessage")}
+          {t("welcomeMessage")}
         </p>
         <HomeButtons />
       </main>
