@@ -7,11 +7,10 @@ td {
   background-color: rgb(248, 248, 248);
   padding-top: 0.4rem;
   padding-right: 1rem;
-  height: calc(100vh - 440px); /* Subtract header, total 335px */
-  max-height: 621px;
+  height: calc(100vh - 370px); /* Subtract header, total 335px */
   border-radius: 10px;
-
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: visible;
 }
 
 /*solve problem with scrollbar is too big in safari*/

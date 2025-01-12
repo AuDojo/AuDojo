@@ -17,8 +17,8 @@ const SelectionSort = () => {
       <SortProvider>
         <TutorialModalProvider>
           <SideBarMenu />
-          <div>
-            <SelectionSortGuide />
+          <SelectionSortGuide />
+          <div className={styles["main-container"]}>
             <SelectionSortVisualizer />
             <div className={styles["outer-table-buttons-container"]}>
               <div className={styles["inner-table-buttons-container"]}>
