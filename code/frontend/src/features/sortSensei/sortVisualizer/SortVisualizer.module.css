@@ -5,11 +5,11 @@ svg {
 }
 
 .viz-container {
+  width: 95vw;
   display: flex;
   justify-content: center;
 }
 .viz-container svg {
-  justify-content: center;
   border: 3px solid var(--maincolor-darkblue);
   border-radius: 15px;
 }

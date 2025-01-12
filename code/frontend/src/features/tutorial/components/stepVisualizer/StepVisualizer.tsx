@@ -31,7 +31,7 @@ const Visualizer = ({ steps, mergesort }: VisualizerProps) => {
   };
 
   return (
-    <div>
+    <>
       {" "}
       <h1>Beispiel</h1>
       <div className={tutorialContent["visualiser-container"]}>
@@ -76,7 +76,7 @@ const Visualizer = ({ steps, mergesort }: VisualizerProps) => {
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -149,7 +149,7 @@ function Kontakt() {
   };
   useSetTitle("Kontakt");
   return (
-    <div className={kontaktStyles.generalContainer}>
+    <>
       <div className={kontaktStyles.kontaktMessageContainer}>
         <p className={kontaktStyles.kontaktMessage}> Kontakt </p>
       </div>
@@ -251,7 +251,7 @@ function Kontakt() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
