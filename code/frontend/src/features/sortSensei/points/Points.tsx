@@ -1,4 +1,4 @@
-import { useSortContext } from "@hooks/index";
+import { useSortContext } from "@/hooks";
 import styles from "./Points.module.css";
 
 const Points = () => {

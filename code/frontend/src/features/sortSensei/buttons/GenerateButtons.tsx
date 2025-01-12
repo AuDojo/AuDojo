@@ -1,5 +1,5 @@
-import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE } from "@constants/index";
-import { useSortContext } from "@hooks/index";
+import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE } from "@/constants";
+import { useSortContext } from "@/hooks";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTutorialModalContext } from "../hooks";
 import buttonStyles from "./Button.module.css";

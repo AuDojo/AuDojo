@@ -1,12 +1,12 @@
+import { SortProvider } from "@/contexts";
 import { ButtonContextProvider } from "@/features/sortSensei/buttons/context";
 import { TutorialModalProvider } from "@/features/sortSensei/context";
-import { SortProvider } from "@contexts/index";
+import { useSetTitle } from "@/hooks";
 import { GenerateButtons, SolveButtons } from "@features/sortSensei/buttons";
 import { BubbleSortGuide } from "@features/sortSensei/guide";
 import { SideBarMenu } from "@features/sortSensei/sideBarMenu";
 import { BubbleSortVisualizer } from "@features/sortSensei/sortVisualizer";
 import { SortingTable } from "@features/sortSensei/table";
-import { useSetTitle } from "@hooks/useSetTitle";
 import styles from "@styles/sortSensei/general.module.css";
 
 const BubbleSort = () => {

@@ -1,5 +1,5 @@
-import { SortType } from "@constants/index";
-import { useSortContext } from "@hooks/index";
+import { SortType } from "@/constants";
+import { useSortContext } from "@/hooks";
 import * as d3 from "d3";
 import { useEffect, useRef } from "react";
 import useResize from "./hooks/useResize";

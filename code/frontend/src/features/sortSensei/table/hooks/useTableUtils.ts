@@ -1,5 +1,5 @@
 import { MAX_INPUT_RANGE, MIN_INPUT_RANGE } from "@/constants";
-import { useSortContext } from "@hooks/index";
+import { useSortContext } from "@/hooks";
 import React from "react";
 
 export const useTableUtils = () => {

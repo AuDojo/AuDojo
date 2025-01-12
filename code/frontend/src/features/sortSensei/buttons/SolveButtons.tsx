@@ -1,5 +1,5 @@
-import { SortType } from "@constants/index";
-import { useSortContext } from "@hooks/index";
+import { SortType } from "@/constants";
+import { useSortContext } from "@/hooks";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTutorialModalContext } from "../hooks";
 import { Points } from "../points";

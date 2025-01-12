@@ -1,5 +1,5 @@
+import { useSortContext } from "@/hooks";
 import { useTutorialModalContext } from "@features/sortSensei/hooks/";
-import { useSortContext } from "@hooks/index";
 import { JSX } from "react";
 import { IndexRow, InputRow, ListRow } from ".";
 import styles from "./Table.module.css";
