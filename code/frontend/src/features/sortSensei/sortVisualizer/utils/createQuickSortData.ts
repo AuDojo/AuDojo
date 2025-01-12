@@ -29,8 +29,8 @@ export const createQuickSortData = ({
       return v === value && prevOccurrences === occurrenceCount;
     });
 
-    // Determine if the element is the pivot to be used in the current step
-    const isPivot = i < numSteps - 1 ? index === pivotElement[i + 1][0] : false;
+    // Determine if the element is the used pivot in the last step
+    const isPivot = i < numSteps - 1 ? previousIndex === pivotElement[i][0] : false;
 
     // Determine if the element is sorted in the current step or final step
     //TODO: improve this

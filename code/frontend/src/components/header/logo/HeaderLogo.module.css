@@ -11,11 +11,12 @@
   border-top-right-radius: calc(var(--height-header) / 2);
   border-bottom-right-radius: calc(var(--height-header) / 2);
   box-shadow: 3px 0px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
 .logo-container:hover {
   cursor: pointer;
-  box-shadow: 3px 0px 4px rgba(172, 172, 172, 0.2);
+  box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.4);
 }
 
 .logo-container img {

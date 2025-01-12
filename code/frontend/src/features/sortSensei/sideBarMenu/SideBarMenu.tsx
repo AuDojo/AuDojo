@@ -15,18 +15,10 @@ const NavItem = ({
   onClick: () => void;
 }) => {
   return (
-    <Link className="Link" to={to} onClick={onClick}>
+    <Link to={to} onClick={onClick}>
       <div className={`${styles["sort-nav-list-item"]} ${activeSort ? styles["sort-nav-list-item-active"] : ""}`}>
         {text}
       </div>
-    </Link>
-  );
-};
-
-const HilfeButton = ({ to, text }: { to: string; text: string }) => {
-  return (
-    <Link className="Link" to={to}>
-      <div className={styles["help-button"]}>{text}</div>
     </Link>
   );
 };
@@ -40,8 +32,6 @@ const SideBarMenu = () => {
     <>
       <div className={styles["sort-nav"]}>
         <div className={`${styles["sort-nav-list"]}`}>
-          <HilfeButton to={paths.tutorial} text="Beispiele" />
-
           <NavItem
             activeSort={activeSort === "mergesort"}
             onClick={() => setActiveSort("mergesort")}
