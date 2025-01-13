@@ -3,3 +3,18 @@
 
 ### VS-Code ###
 .vscode
+
+### TypeScript React ###
+
+# dependencies
+node_modules
+
+# testing
+/coverage
+
+# production
+dist
+
+# misc
+.env
+npm-debug.log
