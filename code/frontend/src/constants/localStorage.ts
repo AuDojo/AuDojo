@@ -1,0 +1,2 @@
+// Keys
+export const SHARED_ARRAY_KEY = "SORTSENSEI_SHARED_ARRAY";
