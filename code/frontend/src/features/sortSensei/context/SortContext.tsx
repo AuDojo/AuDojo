@@ -26,8 +26,7 @@ interface SortContextProps {
   selectionElements: number[];
   bubbleElements: number[];
 
-  /** Indicates data currently being fetched */
-  isLoading: boolean;
+  isPending: boolean;
   /** Indicates an error */
   error: Error | null;
 }
@@ -53,13 +52,13 @@ export const SortProvider = ({ children, sortType }: { children: ReactNode; sort
   );
   const sortTypeRef = useRef<SortType>(sortType ?? SortTypes.MergeSort);
 
-  const { derivedData, isLoading, error } = useSortData(sharedArray, sortTypeRef.current);
+  const { derivedData, isPending, error } = useSortData(sharedArray, sortTypeRef.current);
 
   return (
     <SortContext.Provider
       value={{
         ...derivedData,
-        isLoading,
+        isPending,
         error,
         sharedArray,
         setSharedArray,

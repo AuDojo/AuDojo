@@ -13,9 +13,9 @@ import { useSetTitle } from "@hooks/useSetTitle";
 import styles from "@styles/sortSensei/general.module.css";
 
 const BubbleSortContent = () => {
-  const { isLoading, error } = useSortContext();
+  const { isPending, error } = useSortContext();
 
-  if (isLoading) {
+  if (isPending) {
     return <Loading />;
   }
   if (error) {
