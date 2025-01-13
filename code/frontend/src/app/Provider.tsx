@@ -5,6 +5,7 @@ import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persist
 import { QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
+import { compress, decompress } from "lz-string";
 import { ReactNode, Suspense, useState } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
@@ -21,6 +22,8 @@ export const AppProvider = ({ children }: AppProviderProps) => {
 
   const persister = createSyncStoragePersister({
     storage: window.localStorage,
+    serialize: (data) => compress(JSON.stringify(data)),
+    deserialize: (data) => JSON.parse(decompress(data)),
   });
 
   return (
