@@ -11,6 +11,19 @@ interface AppProviderProps {
   children: ReactNode;
 }
 
+/**
+ * The root provider for the entire app.
+ *
+ * This component wraps the entire app and provides the following features:
+ * 1. Suspense handling for the entire app. When a component suspends, the entire app shows a loading indicator.
+ * 2. Error boundary handling for the entire app. When an uncaught error occurs, the entire app shows an error message.
+ * 3. Query caching using React Query.
+ * 4. Query persistence using React Query Persist Client.
+ * 5. If the app is running in development mode, it also enables the React Query Devtools.
+ *
+ * @param children The children components of the app.
+ * @returns The root provider for the entire app.
+ */
 export const AppProvider = ({ children }: AppProviderProps) => {
   const [queryClient] = useState(
     new QueryClient({
