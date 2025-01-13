@@ -26,7 +26,7 @@ async function fetchSortingSteps(array: number[], sortType: SortType) {
 
 export const useSortData = (array: number[], sortType: SortType) => {
   // Fetch initially and whenever the queryKey changes
-  const { data, isLoading, error } = useQuery<SortingData>({
+  const { data, isPending, error } = useQuery<SortingData>({
     queryKey: ["sortingSteps", array, sortType],
     queryFn: () => fetchSortingSteps(array, sortType),
 
@@ -53,5 +53,5 @@ export const useSortData = (array: number[], sortType: SortType) => {
     };
   }, [data]);
 
-  return { derivedData, isLoading, error };
+  return { derivedData, isPending, error };
 };
