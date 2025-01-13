@@ -1,5 +1,3 @@
-//TODO: Not used yet, cache on server to reduce requests
-
 import { Loading } from "@/components/ui/loading";
 import { queryConfig } from "@/lib/reactQuery";
 import { MainErrorFallback } from "@components/errors";
