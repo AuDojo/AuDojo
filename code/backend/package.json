@@ -20,11 +20,11 @@
         "dotenv": "^16.4.7",
         "express": "^4.21.2",
         "nodemailer": "^6.9.16",
-        "ts-node": "^10.9.2",
         "winston": "^3.17.0"
     },
     "devDependencies": {
         "nodemon": "^3.1.9",
-        "rimraf": "^6.0.1"
+        "rimraf": "^6.0.1",
+        "ts-node": "^10.9.2"
     }
 }
