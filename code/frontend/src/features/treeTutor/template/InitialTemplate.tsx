@@ -1,17 +1,17 @@
-import style from "./InitialTemplate.module.css";
-import Modal from "./Modal";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { FaArrowDown } from "react-icons/fa";
+import style from "./InitialTemplate.module.css";
 
 import classNames from "classnames/bind";
 import React from "react";
-const containerSize: { width: number; height: number } = {
-  width: 300,
-  height: 300,
-};
+
+// const containerSize: { width: number; height: number } = {
+//   width: 300,
+//   height: 300,
+// };
 const cx = classNames.bind(style);
-const iconLeft = <FaArrowDown className={cx("icon", "left")} />;
-const iconRight = <FaArrowDown className={cx("icon", "right")} />;
+// const iconLeft = <FaArrowDown className={cx("icon", "left")} />;
+// const iconRight = <FaArrowDown className={cx("icon", "right")} />;
 interface Node {
   x: number;
   y: number;

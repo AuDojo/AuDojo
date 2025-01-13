@@ -11,14 +11,10 @@ const LANGUAGES = [
 ];
 
 function LanguageSelector() {
-  const [languageSelected, setLanguage] = useState("de");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
-
   const handleLanguageChange = (code: string) => {
-    setLanguage(code);
     i18n.changeLanguage(code);
     setIsDropdownOpen(false); // Schließt das Dropdown nach der Auswahl
   };
