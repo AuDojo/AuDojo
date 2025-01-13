@@ -1,2 +1,2 @@
-export { TutorialModalContext } from "./TutorialModalContext";
-export { TutorialModalProvider } from "./TutorialModalProvider";
+export { SortProvider, useSortContext } from "./SortContext";
+export { TutorialModalProvider, useTutorialModalContext } from "./TutorialModalContext";

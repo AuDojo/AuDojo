@@ -1,7 +1,8 @@
-import { SortType } from "@/constants";
-import { useSortContext } from "@/hooks";
+import { SortTypes } from "@/features/sortSensei/constants";
+import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import * as d3 from "d3";
 import { useEffect, useRef } from "react";
+import { SortType } from "../types";
 import useResize from "./hooks/useResize";
 interface BarData {
   value: number;
@@ -16,7 +17,8 @@ interface BarData {
 }
 
 const SortVisualizer = () => {
-  const { stepsList, step, mergeRanges, sharedArray, sortTypeRef, pivotElement, selectionElement } = useSortContext();
+  const { processList, step, mergeRanges, sharedArray, sortTypeRef, pivotElements, selectionElements } =
+    useSortContext();
   const svgRef = useRef<SVGSVGElement | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const initialPositionsRef = useRef<Map<string, number>>(new Map());
@@ -34,11 +36,11 @@ const SortVisualizer = () => {
   const dimensions = useResize({ containerRef: containerRef, totalBarsWidth: sharedArray.length * maxBarWidth });
   // Visualization effect
   useEffect(() => {
-    if (!stepsList.length || !svgRef.current) return;
+    if (!processList.length || !svgRef.current) return;
 
     // Calculate responsive bar width
     const availableWidth = dimensions.width - margin.left - margin.right;
-    const currentArray = stepsList[step - 1];
+    const currentArray = processList[step - 1];
 
     // Calculate bar width based on available space and number of elements
     const calculatedBarWidth = Math.min(maxBarWidth, availableWidth / currentArray.length);
@@ -51,13 +53,13 @@ const SortVisualizer = () => {
 
     // Initialize positions map on first render
     if (initialPositionsRef.current.size === 0) {
-      stepsList[0].forEach((value, index) => {
+      processList[0].forEach((value, index) => {
         const key = `${value}-${index}`;
         initialPositionsRef.current.set(key, index);
       });
     }
 
-    const previousArray = step > 1 ? stepsList[step - 2] : currentArray;
+    const previousArray = step > 1 ? processList[step - 2] : currentArray;
 
     const barData: BarData[] = currentArray.map((value, index) => {
       // Create unique key based on value and occurrence count
@@ -69,22 +71,22 @@ const SortVisualizer = () => {
         return v === value && prevOccurrences === occurrenceCount;
       });
 
-      const currentMergeRange = mergeRanges[step - 1];
-      const pivotIndex = sortTypeRef.current === SortType.QuickSort ? pivotElement[step - 1][0] : null;
+      const mergeRange = mergeRanges[step - 1];
+      const pivotIndex = sortTypeRef.current === SortTypes.QuickSort ? pivotElements[step - 1][0] : null;
       const selectedIndex =
-        sortTypeRef.current === SortType.SelectionSort && step > 1 ? selectionElement[step - 2] : null;
-      const linkElement = sortTypeRef.current === SortType.SelectionSort ? currentArray[step - 1] : 0;
+        sortTypeRef.current === SortTypes.SelectionSort && step > 1 ? selectionElements[step - 2] : null;
+      const linkElement = sortTypeRef.current === SortTypes.SelectionSort ? currentArray[step - 1] : 0;
 
       // Merge sort : mark sorted (green) when the subarrays merge
       // Selectionsort : mark sorted (green) when the smallest element moved to left side
       let isSorted = false;
-      if (sortTypeRef.current === SortType.MergeSort) {
-        isSorted = currentMergeRange && index >= currentMergeRange[0] && index <= currentMergeRange[1];
-      } else if (sortTypeRef.current === SortType.SelectionSort) {
-        isSorted = index < currentArray.indexOf(linkElement) || step === stepsList.length;
+      if (sortTypeRef.current === SortTypes.MergeSort) {
+        isSorted = mergeRange && index >= mergeRange[0] && index <= mergeRange[1];
+      } else if (sortTypeRef.current === SortTypes.SelectionSort) {
+        isSorted = index < currentArray.indexOf(linkElement) || step === processList.length;
       } else {
         // bubble sort and quicksort
-        isSorted = step === stepsList.length;
+        isSorted = step === processList.length;
       }
 
       return {
@@ -92,11 +94,11 @@ const SortVisualizer = () => {
         index,
         previousIndex: previousIndex === -1 ? index : previousIndex,
         isSorted,
-        isMerging: currentMergeRange && index >= currentMergeRange[0] && index <= currentMergeRange[1],
+        isMerging: mergeRange && index >= mergeRange[0] && index <= mergeRange[1],
         type: sortTypeRef.current,
-        isPivot: pivotElement && pivotIndex === previousIndex,
-        isSelected: sortTypeRef.current === SortType.SelectionSort && selectedIndex === previousIndex,
-        isLink: sortTypeRef.current === SortType.SelectionSort && previousIndex === step - 2,
+        isPivot: pivotElements && pivotIndex === previousIndex,
+        isSelected: sortTypeRef.current === SortTypes.SelectionSort && selectedIndex === previousIndex,
+        isLink: sortTypeRef.current === SortTypes.SelectionSort && previousIndex === step - 2,
       };
     });
 
@@ -114,7 +116,7 @@ const SortVisualizer = () => {
 
     const yScale = d3
       .scaleLinear()
-      .domain([0, d3.max(currentArray) || 0])
+      .domain([0, d3.max(currentArray) ?? 0])
       .range([dimensions.height - margin.bottom, margin.top]);
 
     // Create and update bars
@@ -170,7 +172,7 @@ const SortVisualizer = () => {
       .transition()
       .duration(700)
       .attr("fill", (d) => (d.isSorted || d.isPivot || d.isSelected ? "#51cf66" : "#74c0fc"));
-  }, [stepsList, step, mergeRanges, dimensions, pivotElement, sortTypeRef, selectionElement]); // Add dimensions to dependencies
+  }, [processList, step, mergeRanges, dimensions, pivotElements, sortTypeRef, selectionElements]); // Add dimensions to dependencies
 
   return (
     <div

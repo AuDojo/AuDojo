@@ -1,26 +1,26 @@
 // MergeSortGuide.tsx
-import { useSortContext } from "@/hooks";
-import styles from "./SortGuide.module.css";
-import { useTranslation } from "react-i18next";
+import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import parse from "html-react-parser";
+import { useTranslation } from "react-i18next";
+import styles from "./SortGuide.module.css";
 
 const QuickSortGuide = () => {
-  const { step, stepsList, pivotElement } = useSortContext();
+  const { step, processList, pivotElements } = useSortContext();
 
   const { t } = useTranslation("sortsensei");
 
   const getCurrentGuideText = () => {
-    if (!stepsList || stepsList.length === 0) {
+    if (!processList || processList.length === 0) {
       return "Starting Quick Sort!";
     }
     if (step === 1) {
-      let lastElement = stepsList[0][stepsList[0].length - 1];
+      let lastElement = processList[0][processList[0].length - 1];
       return <>{parse(t("quickSort.guide.choose", { lastElement: lastElement }))}</>;
     } else if (step >= 2) {
-      const prevArray = stepsList[step - 2];
-      const pivot = prevArray[pivotElement[step - 1][0]];
-      const currentArray = stepsList[step - 1];
-      const nextPivot = step !== stepsList.length ? currentArray[pivotElement[step][0]] : 0;
+      const prevArray = processList[step - 2];
+      const pivot = prevArray[pivotElements[step - 1][0]];
+      const currentArray = processList[step - 1];
+      const nextPivot = step !== processList.length ? currentArray[pivotElements[step][0]] : 0;
 
       if (!nextPivot) {
         return <>{parse(t("quickSort.guide.end", { pivot }))}</>;

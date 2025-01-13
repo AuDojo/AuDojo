@@ -1,5 +1,5 @@
-import { useSortContext } from "@/hooks";
-import { useTutorialModalContext } from "@features/sortSensei/hooks/";
+import { useSortContext } from "@/features/sortSensei/context/SortContext";
+import { useTutorialModalContext } from "@features/sortSensei/context";
 import { JSX } from "react";
 import { IndexRow, InputRow, ListRow } from ".";
 import styles from "./Table.module.css";
@@ -11,17 +11,17 @@ import styles from "./Table.module.css";
  *  given sorting algorithm
  */
 const SortingTable = (): JSX.Element => {
-  const { stepsList } = useSortContext();
+  const { processList } = useSortContext();
   const { highlightRefs } = useTutorialModalContext();
 
-  // If stepsList is empty, just return null
-  if (!stepsList || stepsList.length === 0) {
+  // If processList is empty, just return null
+  if (!processList || processList.length === 0) {
     return <div>Loading...</div>;
   }
 
   // Set row height (2.5rem) and calc max height
   const rowHeight = 2.5;
-  const maxHeight = `${(stepsList.length + 1) * rowHeight}rem`;
+  const maxHeight = `${(processList.length + 1) * rowHeight}rem`;
 
   return (
     <div ref={highlightRefs.sortingTable} style={{ backgroundColor: "white" }}>
@@ -31,7 +31,7 @@ const SortingTable = (): JSX.Element => {
           {/* <caption>Iterations</captaon> */}
           <tbody>
             <IndexRow />
-            {stepsList.slice(1).map((_, index) => (
+            {processList.slice(1).map((_, index) => (
               <InputRow key={index + 1} rowIndex={index + 1} />
             ))}
           </tbody>

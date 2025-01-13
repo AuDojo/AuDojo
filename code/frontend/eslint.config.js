@@ -1,4 +1,5 @@
 import js from "@eslint/js";
+import pluginQuery from "@tanstack/eslint-plugin-query";
 import prettierConfig from "eslint-config-prettier";
 import importPlugin from "eslint-plugin-import";
 import prettierPlugin from "eslint-plugin-prettier";
@@ -33,12 +34,14 @@ export default tseslint.config({
     "react-refresh": reactRefresh,
     import: importPlugin,
     prettier: prettierPlugin,
+    "@tanstack/query": pluginQuery,
   },
   rules: {
     ...react.configs.recommended.rules,
     ...react.configs["jsx-runtime"].rules,
     ...reactHooks.configs.recommended.rules,
     ...prettierConfig.rules, // Disables ESLint rules that conflict with Prettier
+    ...pluginQuery.configs["flat/recommended"][0].rules, // Integrate TanStack Query rules
     "prettier/prettier": "warn",
     "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
     "import/no-restricted-paths": [

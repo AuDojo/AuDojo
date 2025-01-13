@@ -20,7 +20,7 @@ export interface BubbleSortBarData extends BarDataGeneral {
   isSwapped: boolean;
 }
 export interface BubbleSortProps extends SortVisualizerProps {
-  bubbleElement: number[];
+  bubbleElements: number[];
 }
 export interface QuickSortBarData extends BarDataGeneral {
   isPivot: boolean;
@@ -28,7 +28,7 @@ export interface QuickSortBarData extends BarDataGeneral {
 
 export interface QuickSortProps extends SortVisualizerProps {
   previousArray: number[];
-  pivotElement: [number, number][];
+  pivotElements: [number, number][];
 }
 export interface SelectionSortBarData extends BarDataGeneral {
   isSelected: boolean;
@@ -36,5 +36,5 @@ export interface SelectionSortBarData extends BarDataGeneral {
   isCurrentSorted: boolean;
 }
 export interface SelectionSortProps extends SortVisualizerProps {
-  selectionElement: number[];
+  selectionElements: number[];
 }

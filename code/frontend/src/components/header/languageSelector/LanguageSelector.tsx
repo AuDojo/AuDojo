@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
-import menuStyles from "./LanguageSelector.module.css";
 import i18n from "@/translation/i18n";
-import globeIcon from "@assets/globeicon.png"; // Globus-Icon importieren
 import deFlag from "@assets/de.png";
 import enFlag from "@assets/gb.png";
+import globeIcon from "@assets/globeicon.png"; // Globus-Icon importieren
+import { useEffect, useRef, useState } from "react";
+import menuStyles from "./LanguageSelector.module.css";
 
 const LANGUAGES = [
   { label: "EN", code: "en", flag: enFlag },
@@ -20,7 +20,6 @@ function LanguageSelector() {
   const handleLanguageChange = (code: string) => {
     setLanguage(code);
     i18n.changeLanguage(code);
-    console.log("il8next.language: " + i18n.language);
     setIsDropdownOpen(false); // Schließt das Dropdown nach der Auswahl
   };
 

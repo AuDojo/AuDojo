@@ -1,18 +1,15 @@
 // MergeSortGuide.tsx
-import { useSortContext } from "@/hooks";
-import styles from "./SortGuide.module.css";
-import { useTranslation } from "react-i18next";
+import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import parse from "html-react-parser";
-
+import { useTranslation } from "react-i18next";
+import styles from "./SortGuide.module.css";
 const MergeSortGuide = () => {
-  const { step, mergeRanges, stepsList } = useSortContext();
-
+  const { step, mergeRanges, processList } = useSortContext();
   const { t } = useTranslation("sortsensei");
-
   const getCurrentGuideText = () => {
     const currentRange = mergeRanges[step - 1];
-    if (!stepsList || stepsList.length === 0) {
-      return "Starting Merge Sort!"; // t("mergeSort.guide.start");
+    if (!processList || processList.length === 0) {
+      return "Starting Merge Sort!";
     }
     if (!currentRange || currentRange[0] === -1 || step === 1) {
       return <>{parse(t("mergeSort.guide.splitting"))}</>;
@@ -24,9 +21,13 @@ const MergeSortGuide = () => {
     if (length === 1) {
       return "An array of length 1 is already sorted.";
     } else if (length === 2) {
-      return <>{parse(t("mergeSort.guide.compare"))}</>;
-    } else if (length === stepsList.length) {
-      return t("mergeSort.guide.end");
+      return (
+        <>
+          Compare and sort two elements. <br /> <b>The sorted elements are marked</b>
+        </>
+      );
+    } else if (length === processList.length) {
+      return "Sorting is complete!";
     } else {
       if (step === 1) {
         return "Split the array into two halves.";

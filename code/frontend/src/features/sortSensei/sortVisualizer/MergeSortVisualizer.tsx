@@ -1,4 +1,4 @@
-import { useSortContext } from "@/hooks";
+import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import { select } from "d3";
 import { useEffect, useMemo, useRef } from "react";
 import { margin, maxWidthEachBar, textMarginBottom, timeBarsMove, timeLoadColor } from "./constants";
@@ -15,7 +15,7 @@ import { createMergeSortData } from "./utils/createMergeSortData";
  * The bars are animated to show the merge sort process.
  */
 const MergeSortVisualizer = () => {
-  const { stepsList, step, sharedArray, mergeRanges } = useSortContext();
+  const { processList, step, sharedArray, mergeRanges } = useSortContext();
   const i = step - 1;
   const svgRef = useRef<SVGSVGElement | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,18 +31,18 @@ const MergeSortVisualizer = () => {
 
   // Calculate the data for the bar chart based on the current step
   const data = useMemo(() => {
-    if (!stepsList.length) return null;
+    if (!processList.length) return null;
     return createMergeSortData({
-      currentArray: stepsList[i],
-      previousArray: i >= 1 ? stepsList[i - 1] : stepsList[i],
-      numSteps: stepsList.length,
+      currentArray: processList[i],
+      previousArray: i >= 1 ? processList[i - 1] : processList[i],
+      numSteps: processList.length,
       i,
       mergeRanges,
     });
-  }, [stepsList, i]);
+  }, [processList, i]);
 
   useEffect(() => {
-    if (!stepsList.length || !svgRef.current || !data) return;
+    if (!processList.length || !svgRef.current || !data) return;
 
     const svg = select(svgRef.current);
 
