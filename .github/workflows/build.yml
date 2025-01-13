@@ -1,0 +1,33 @@
+name: Build Project
+
+# Trigger workflow on push or pull request to every branch
+on:
+  push:
+  pull_request:
+
+# Workflow jobs
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the code from the repo
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        working-directory: code
+        run: npm install
+
+      # Step 4: Build the project
+      - name: Build project
+        working-directory: code
+        run: npm run build
