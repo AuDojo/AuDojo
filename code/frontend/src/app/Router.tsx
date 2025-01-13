@@ -1,4 +1,3 @@
-// //TODO: Not used yet
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { paths } from "@/constants";
