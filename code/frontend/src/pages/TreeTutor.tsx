@@ -1,13 +1,19 @@
 import { useSetTitle } from "@/hooks";
-import { InitialTemplate } from "@/features/treeTutor";
-// import { BinaryTreeTemplate } from "@features/treeTutor";
+import { InitialTemplate, BinaryTemplate, Modal } from "@/features/treeTutor";
+import { useState } from "react";
 const TreeTutor = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(true);
+
   useSetTitle("TreeTutor");
   return (
     <>
       <h1>TreeTutor</h1>
-      {/* <BinaryTreeTemplate /> */}
       <InitialTemplate />
+      {/* <BinaryTemplate /> */}
+
+      {/* <Modal openModal={isOpen} cancel={() => setIsOpen(!isOpen)}>
+        <text>Hello</text>
+      </Modal> */}
     </>
   );
 };

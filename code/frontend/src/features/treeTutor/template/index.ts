@@ -1,2 +1,3 @@
 export { default as InitialTemplate } from "./InitialTemplate";
-// export { default as BinaryTreeTemplate } from "./BinaryTreeTemplate";
+export { default as BinaryTemplate } from "./BinaryTemplate";
+export { default as Modal } from "./Modal";

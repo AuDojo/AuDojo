@@ -1,0 +1,19 @@
+.icon {
+    cursor: copy;
+  }
+  .icon.left {
+    transform: rotate(45deg);
+  }
+  
+  .icon.right {
+    transform: rotate(45deg);
+  }
+  
+  circle {
+    transition: fill 0.2s ease;
+  }
+  
+  circle:hover {
+    fill: lightblue;
+  }
+  

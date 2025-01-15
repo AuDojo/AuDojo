@@ -1,6 +1,21 @@
-/* .modal {
-  width: 50vw;
-  height: 50vh;
+.modal {
+  width: 70vw;
+  height: 70vh;
+}
+
+.modal-content {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-svg {
+  width: 500px;
+  height: 800px;
+  background-color: lightblue;
 }
 
 .modal input {
@@ -16,25 +31,37 @@
   outline: none;
 }
 
+/* Chrome, Safari, Edge, Opera */
+.modal input::-webkit-outer-spin-button,
+.modal input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.modal input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.icon {
+  cursor: copy;
+}
+
 .icon.left {
-  transform: rotate(45deg);
+  transform: translateX(-45px) translateY(-30px) rotate(45deg);
+  /* transform: rotate(45deg); */
 }
 
 .icon.right {
-  transform: rotate(-45deg);
-} */
-.icon.left {
-  transform: rotate(45deg);
+  transform: translateX(-5px) translateY(-45px) rotate(-45deg);
 }
-
-.icon.right {
-  transform: rotate(-45deg);
-}
-
-circle {
-  transition: fill 0.2s ease;
-}
-
-circle:hover {
-  fill: lightblue;
+.node {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: burlywood;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
