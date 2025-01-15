@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import tutorialsidebar from "./TutorialSidebar.module.css";
 import { StepVisualizer } from "../stepVisualizer";
 import { Step } from "../../types";
+import { useTranslation } from "react-i18next";
 
 const TutorialSidebar = ({
   title,
@@ -23,6 +24,8 @@ const TutorialSidebar = ({
     toggle(!isOpen);
   };
 
+  const { t } = useTranslation("sortsensei-tutorial");
+
   return (
     <div className={tutorialsidebar["sidebar"]}>
       <div className={tutorialsidebar["section-header"]} onClick={toggleSidebar}>
@@ -33,9 +36,9 @@ const TutorialSidebar = ({
 
       {isOpen && (
         <div className={tutorialsidebar["section-content"]}>
-          <TutorialSubSidebar title="Aufklappen für Idee des Algorithmus">{algexp}</TutorialSubSidebar>
+          <TutorialSubSidebar title={t("subheader1")}>{algexp}</TutorialSubSidebar>
 
-          <TutorialSubSidebar title="Aufklappen für Pseudocode">{photo}</TutorialSubSidebar>
+          <TutorialSubSidebar title={t("subheader2")}>{photo}</TutorialSubSidebar>
 
           <StepVisualizer steps={sortsteps} sortType={sortType} />
         </div>
@@ -56,6 +59,7 @@ const TutorialSubSidebar = ({
   const toggleSidebar = () => {
     toggle(!isOpen);
   };
+
 
   return (
     <div className={tutorialsidebar["sidebar"]}>
