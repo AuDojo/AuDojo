@@ -1,4 +1,4 @@
-import React, { createContext, ReactNode, useContext, useRef } from "react";
+import React, { createContext, ReactNode, use, useRef } from "react";
 import { RefKeys } from "../tutorialModal/types";
 
 // Define types for our context state
@@ -18,13 +18,13 @@ export const TutorialModalProvider = ({ children }: { children: ReactNode }) => 
     solveButtons: useRef<HTMLDivElement>(null),
   };
 
-  return <TutorialModalContext.Provider value={{ highlightRefs }}>{children}</TutorialModalContext.Provider>;
+  return <TutorialModalContext value={{ highlightRefs }}>{children}</TutorialModalContext>;
 };
 
 // Custom Hook
 
 export const useTutorialModalContext = () => {
-  const context = useContext(TutorialModalContext);
+  const context = use(TutorialModalContext);
   if (!context) {
     throw new Error("useTutorialModal must be used within a TutorialModalProvider");
   }

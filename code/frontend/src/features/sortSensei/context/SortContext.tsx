@@ -1,6 +1,6 @@
 import { SHARED_ARRAY_KEY } from "@/constants/localStorage";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { createContext, ReactNode, useContext, useRef, useState } from "react";
+import { createContext, ReactNode, use, useRef, useState } from "react";
 import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE, SortTypes } from "../constants";
 import { useSortData } from "../hooks/useSortData";
 import { SortType } from "../types";
@@ -56,7 +56,7 @@ export const SortProvider = ({ children, sortType }: { children: ReactNode; sort
   const { derivedData, isPending, error } = useSortData(sharedArray, sortTypeRef.current);
 
   return (
-    <SortContext.Provider
+    <SortContext
       value={{
         ...derivedData,
         isPending,
@@ -69,13 +69,13 @@ export const SortProvider = ({ children, sortType }: { children: ReactNode; sort
       }}
     >
       {children}
-    </SortContext.Provider>
+    </SortContext>
   );
 };
 
 // Custom hook
 export const useSortContext = () => {
-  const context = useContext(SortContext);
+  const context = use(SortContext);
   if (!context) {
     throw new Error("useSortContext must be used within a SortProvider");
   }

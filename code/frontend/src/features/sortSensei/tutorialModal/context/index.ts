@@ -1,1 +1,1 @@
-export { useTutorialSteps } from "./useTutorialSteps";
+export { useTutorialSteps } from "./TutorialStepsContext";

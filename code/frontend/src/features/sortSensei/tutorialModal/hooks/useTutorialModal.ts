@@ -1,7 +1,7 @@
 import { useTutorialModalContext } from "@features/sortSensei/context";
 import { useCallback, useEffect, useState } from "react";
 import { tutorialSteps } from "../constants";
-import { useTutorialSteps } from "../context/useTutorialSteps";
+import { useTutorialSteps } from "../context/";
 import { useHighlight } from "./useHighlight";
 import { useKeyboardNavigation } from "./useKeyboardNavigation";
 

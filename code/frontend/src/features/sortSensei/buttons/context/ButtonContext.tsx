@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useRef, useState } from "react";
+import React, { createContext, use, useRef, useState } from "react";
 
 interface ButtonContextProps {
   timeoutRef: React.RefObject<NodeJS.Timeout | null>;
@@ -10,7 +10,7 @@ const ButtonContext = createContext<ButtonContextProps | null>(null);
 export const ButtonContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [solveAllStatus, setSolveAllStatus] = useState<"solve" | "stop" | "continue">("solve");
   return (
-    <ButtonContext.Provider
+    <ButtonContext
       value={{
         timeoutRef: useRef<NodeJS.Timeout | null>(null),
         solveAllStatus,
@@ -18,12 +18,12 @@ export const ButtonContextProvider = ({ children }: { children: React.ReactNode 
       }}
     >
       {children}
-    </ButtonContext.Provider>
+    </ButtonContext>
   );
 };
 
 export const useButtonContext = (): ButtonContextProps => {
-  const context = useContext(ButtonContext);
+  const context = use(ButtonContext);
   if (!context) {
     throw new Error("useButtonContext must be used within a ButtonContextProvider");
   }
