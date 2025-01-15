@@ -1,4 +1,4 @@
-import { TutorialStepsProvider } from "./context/TutorialStepsProvider";
+import { TutorialStepsProvider } from "./context/TutorialStepsContext";
 import TutorialModalContent from "./TutorialModalContent";
 
 export const TutorialModal = () => (

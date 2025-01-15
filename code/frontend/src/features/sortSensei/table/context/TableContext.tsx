@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useRef, useState } from "react";
+import React, { createContext, use, useRef, useState } from "react";
 import { useInitTableStates } from "../hooks/useInitTableStates";
 
 interface TableContextProps {
@@ -25,7 +25,7 @@ export const TableProvider = ({ children }: { children: React.ReactNode }) => {
   const inputCellsRef = useRef<(HTMLInputElement | null)[][]>(initInputCells);
 
   return (
-    <TableContext.Provider
+    <TableContext
       value={{
         inputCellValues,
         cellValidation,
@@ -35,12 +35,12 @@ export const TableProvider = ({ children }: { children: React.ReactNode }) => {
       }}
     >
       {children}
-    </TableContext.Provider>
+    </TableContext>
   );
 };
 
 export const useTableContext = () => {
-  const context = useContext(TableContext);
+  const context = use(TableContext);
   if (!context) {
     throw new Error("useSolutionTableContext must be used within a SolutionTableProvider");
   }

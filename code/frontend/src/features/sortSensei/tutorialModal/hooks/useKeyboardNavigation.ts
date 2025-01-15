@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useTutorialSteps } from "../context/useTutorialSteps";
+import { useTutorialSteps } from "../context";
 
 /**
  * Custom hook that adds keyboard event listeners for navigation in the tutorial modal.
