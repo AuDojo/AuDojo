@@ -1,29 +1,30 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FaArrowDown } from "react-icons/fa";
 import style from "./InitialTemplate.module.css";
 import classNames from "classnames/bind";
 const cx = classNames.bind(style);
 
-const iconLeft = <FaArrowDown className={cx("icon", "left")} />;
-const iconRight = <FaArrowDown className={cx("icon", "right")} />;
 interface Node {
   id: number;
   x: number;
   y: number;
-  value: number;
+  value: number | null;
   treeHeight: number;
   hasChildLeft?: boolean;
   hasChildRight?: boolean;
+  parentX: number;
+  parentY: number;
 }
 
 const TEST_VALUE = 10;
 
 const InitialTemplate = () => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
-  const [title, setTitle] = useState<string>("");
+  // const [title, setTitle] = useState<string>("");
   const ref = useRef<HTMLDialogElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [nodes, setNodes] = useState<Node[]>([{ id: 0, x: 225, y: 50, treeHeight: 0, value: TEST_VALUE }]);
+  const [nodes, setNodes] = useState<Node[]>([
+    { id: 0, x: 225, y: 50, treeHeight: 0, value: TEST_VALUE, parentX: 225, parentY: 50 },
+  ]);
   const maxTreeHeight = Math.max(...nodes.map((item) => item.treeHeight));
   useEffect(() => {
     if (isOpen) {
@@ -41,33 +42,53 @@ const InitialTemplate = () => {
     } else {
       parent.hasChildRight = true;
     }
+    const newNodeHeight = parent.treeHeight + 1;
 
+    if (newNodeHeight > maxTreeHeight) {
+      updateOffsetParent(newNodeHeight);
+    }
     const newNode = {
       id: direction === "left" ? parent.id * 2 + 1 : parent.id * 2 + 2,
       x: parent.x + offsetX,
       y: parent.y + offsetY,
-      treeHeight: parent.treeHeight + 1,
+      treeHeight: newNodeHeight,
       value: TEST_VALUE,
+      parentX: parent.x,
+      parentY: parent.y + 50,
     };
     setNodes((prev) => [...prev, newNode]);
+  };
+  const updateOffsetParent = (newNodeHeight: number) => {
+    nodes.map((node) => {
+      if (node.treeHeight !== 0 && node.treeHeight < newNodeHeight) {
+        const newOffsetX = 95 * Math.pow(2, newNodeHeight - node.treeHeight - 1);
+        const parentX = nodes.find((item) => item.id * 2 + 1 === node.id || item.id * 2 + 2 === node.id)?.x;
+        node.x = node.id % 2 === 1 ? parentX - newOffsetX : parentX + newOffsetX;
+      }
+    });
   };
 
   return (
     <>
-      <h1 style={{ position: "fixed", top: "100px", left: "10px" }}>Title: {title}</h1>
+      {/* <h1 style={{ position: "fixed", top: "100px", left: "10px" }}>Title: {title}</h1> */}
       <button onClick={() => setIsOpen(true)}>Create new template</button>
       <dialog className={style["modal"]} ref={ref} onCancel={() => setIsOpen(false)}>
         <div className={style["modal-content"]}>
           <h3>Create a new template</h3>
-          <svg className={style["custom-svg"]} viewBox={`0 0 500 ${maxTreeHeight * 70 + 200}`}>
+          <svg
+            className={style["custom-svg"]}
+            viewBox={`${-maxTreeHeight * 100} 0 ${500 + maxTreeHeight * 200} ${maxTreeHeight * 70 + 200}`}
+          >
             {nodes.map((node, index) => (
               <React.Fragment key={index}>
                 <foreignObject x={node.x} y={node.y} width="50px" height="50px">
                   {/* <div className={style["node"]}> */}
-                  <input value={TEST_VALUE} ref={inputRef} type="number" />
+                  <input ref={inputRef} type="number" />
                   {/* </div> */}
                 </foreignObject>
-
+                {node.treeHeight !== 0 && (
+                  <line x1={node.parentX + 23} y1={node.parentY - 5} x2={node.x + 23} y2={node.y} stroke="black" />
+                )}
                 {/*left arrow*/}
                 {!node.hasChildLeft && (
                   <g
@@ -102,7 +123,7 @@ const InitialTemplate = () => {
                     onClick={() => addNode(node, "right")}
                   >
                     <path
-                      d="M18.36 5.64a9 9 0 1 0 0 12.72 9 9 0 0 0 0-12.72Zm-3.57 10.12-3.73-.7a1 1 0 0 1-.57-1.55l3-3a1 1 0 0 1 1.55.57l.7 3.73a.82.82 0 0 1-.95.95Z"
+                      d="M18.36 5.64a9 9 0 1 0 0 12.72 9 9 0 0 0 0-12.72Zm-3.5*10.12-3.73-.7a1 1 0 0 1-.57-1.55l3-3a1 1 0 0 1 1.55.57l.7 3.73a.82.82 0 0 1-.95.95Z"
                       style={{
                         fill: "#2ca9bc",
                         strokeWidth: 2,
