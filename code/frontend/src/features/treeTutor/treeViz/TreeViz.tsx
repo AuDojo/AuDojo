@@ -14,26 +14,26 @@ interface TreeNode {
 }
 
 const treeData: TreeNode = {
-  name: "Root",
+  name: "10",
   children: [
     {
-      name: "Child 1",
+      name: "5",
       children: [
         {
-          name: "Grandchild 1.1",
+          name: "4",
           children: [
             {
-              name: "Great-grandchild 1.1.1",
+              name: "2",
             },
           ],
         },
         {
-          name: "Grandchild 1.2",
+          name: "6",
         },
       ],
     },
     {
-      name: "Child 2",
+      name: "14",
     },
   ],
 };
