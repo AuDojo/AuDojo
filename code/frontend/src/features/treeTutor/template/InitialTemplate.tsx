@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaArrowDown } from "react-icons/fa";
 import style from "./InitialTemplate.module.css";
 import classNames from "classnames/bind";
-import leftArrow from "@/assets/leftArrow.svg";
 const cx = classNames.bind(style);
 
 const iconLeft = <FaArrowDown className={cx("icon", "left")} />;
@@ -143,7 +142,6 @@ const InitialTemplate = () => {
           Node: id={node.id} value={node.value}
         </p>
       ))}
-      <img src={leftArrow} alt="tree" />
     </>
   );
 };
