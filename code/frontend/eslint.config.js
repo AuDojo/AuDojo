@@ -40,8 +40,8 @@ export default tseslint.config({
     ...react.configs.recommended.rules,
     ...react.configs["jsx-runtime"].rules,
     ...reactHooks.configs.recommended.rules,
-    ...prettierConfig.rules, // Disables ESLint rules that conflict with Prettier
     ...pluginQuery.configs["flat/recommended"][0].rules, // Integrate TanStack Query rules
+    ...prettierConfig.rules, // Disables ESLint rules that conflict with Prettier
     "prettier/prettier": "warn",
     "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
     "import/no-restricted-paths": [
@@ -80,7 +80,7 @@ export default tseslint.config({
 
           // e.g src/features and src/pages can import from these shared modules but not the other way around
           {
-            target: ["./src/components", "./src/hooks", "./src/constants", "./src/contexts"],
+            target: ["./src/app", "./src/components", "./src/hooks", "./src/constants", "./src/contexts", "./src/lib"],
             from: ["./src/features", "./src/pages"],
           },
         ],

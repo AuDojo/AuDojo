@@ -1,50 +1,56 @@
-# React + TypeScript + Vite
+# 🗄️ Project Structure
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Most of the code lives in the `src` folder and looks something like this:
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```sh
+src
+|
++-- app               # application layer containing:
+|   |
+|   +-- app.tsx       # main application component
+|   +-- provider.tsx  # application provider that wraps the entire application with different global providers
+|   +-- router.tsx    # application router configuration
++-- assets            # assets folder can contain all the static files such as images, fonts, etc.
+|
++-- components        # shared components used across the entire application
+|
++-- config            # global configurations, exported env variables etc.
+|
++-- constants         # used for storing static, immutable values that are referenced across the application. These values generally do not change during runtime.
+|
++-- features          # feature based modules
+|
++-- hooks             # shared hooks used across the entire application
+|
++-- lib               # reusable libraries preconfigured for the application. Follows facade pattern
+|
++-- pages             # Entry points for pages
+|
++-- styles            # shared styles used across the entire application
+|
++-- translation       # translation configs, translatiion json's are in public/
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+For easy scalability and maintenance, organize most of the code within the features folder. Each feature folder should contain code specific to that feature, keeping things neatly separated. This approach helps prevent mixing feature-related code with shared components, making it simpler to manage and maintain the codebase compared to having many files in a flat folder structure. By adopting this method, you can enhance collaboration, readability, and scalability in the application's architecture.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+A feature could have the following structure:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```sh
+src/features/awesome-feature
+|
++-- api         # exported API request declarations and api hooks related to a specific feature
+|
++-- assets      # assets folder can contain all the static files for a specific feature
+|
++-- components  # components scoped to a specific feature
+|
++-- hooks       # hooks scoped to a specific feature
+|
++-- stores      # state stores for a specific feature
+|
++-- types       # typescript types used within the feature
+|
++-- utils       # utility functions for a specific feature
 ```
+
+NOTE: You don't need all of these folders for every feature. Only include the ones that are necessary for the feature.
