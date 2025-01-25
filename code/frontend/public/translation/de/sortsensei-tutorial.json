@@ -3,6 +3,9 @@
         "text":"Hier klicken für die Lösungen zur Klausur!!!"
     },
 
+    "subheader1":"Aufklappen für Idee des Algorithmus",
+    "subheader2":"Aufklappen für Pseudocode",
+
     "mergesort": {
         "explanation": "Die Idee des Algorithmus basiert auf dem Prinzip <b> divide and conquer</b>. Dabei wird das Array wiederholt in zwei Hälften zerlegt, bis die Größe jedes Teilarrays 1 beträgt.<br /><br /> Anschließend werden jeweils zwei Teilarrays betrachtet und beim Zusammensetzen sortiert.<br /><br />Die Zerlegung erfolgt in O(log n) Schritten, während das Zusammensetzen O(n) erfordert. Insgesamt hat Mergesort die Laufzeit <b> O(nlogn) </b>."
     },
