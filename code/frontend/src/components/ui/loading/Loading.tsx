@@ -3,8 +3,7 @@ import styles from "./Loading.module.css";
 
 const LoadingComponent = () => (
   <div className={styles["loading-container"]}>
-    <p>Loading... </p>
-    <Spinner size="lg" />
+    <Spinner size="xl" />
   </div>
 );
 
