@@ -5,10 +5,20 @@
 
 version: 2
 updates:
+  # Enable version updates for npm
   - package-ecosystem: "npm" # See documentation for possible values
+    # Look for `package.json` and `lock` files
     directories:
       - "/code" 
       - "/code/frontend"
       - "/code/backend"
+    # Check the npm registry for updates every day (weekdays)
     schedule:
       interval: "daily"
+
+  - package-ecosystem: "docker"
+    # Look for a `Dockerfile` in the `root` directory
+    directory: "/code"
+    # Check for updates once a week
+    schedule:
+      interval: "weekly"
