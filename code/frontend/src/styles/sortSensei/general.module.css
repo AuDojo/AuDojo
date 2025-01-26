@@ -8,6 +8,7 @@
 }
 
 .outer-table-buttons-container {
+  /* width: 100vw; */
   min-height: 250px;
   display: flex;
   justify-content: center;

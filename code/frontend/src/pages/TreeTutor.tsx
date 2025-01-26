@@ -1,13 +1,16 @@
-import { useSetTitle } from "@/hooks";
-import { InitialTemplate } from "@/features/treeTutor";
 // import { BinaryTreeTemplate } from "@features/treeTutor";
+import { TreeVisualizer } from "@/features/treeTutor/treeViz";
 const TreeTutor = () => {
-  useSetTitle("TreeTutor");
   return (
     <>
       <h1>TreeTutor</h1>
-      {/* <BinaryTreeTemplate /> */}
-      <InitialTemplate />
+      {/* <InitialTemplate /> */}
+      {/* <BinaryTemplate /> */}
+
+      {/* <Modal openModal={isOpen} cancel={() => setIsOpen(!isOpen)}>
+        <text>Hello</text>
+      </Modal> */}
+      <TreeVisualizer />
     </>
   );
 };
