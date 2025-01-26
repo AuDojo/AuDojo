@@ -1,9 +1,0 @@
-.modal {
-  width: 50vw;
-  height: 50vh;
-  background-color: white;
-}
-
-.modal::backdrop {
-  background-color: rgba(0, 0, 0, 0.5);
-}
