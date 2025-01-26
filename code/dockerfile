@@ -1,5 +1,5 @@
 # Schritt 1: Verwende ein Basis-Image mit Node.js
-FROM node:18 AS build-stage
+FROM node:23 AS build-stage
 
 # Schritt 2: Setze das Arbeitsverzeichnis im Container auf /app
 WORKDIR /app
@@ -20,7 +20,7 @@ COPY . .
 RUN npm run build
 
 # Produktions-Stage: Nur das Notwendige kopieren
-FROM node:18 AS production-stage
+FROM node:23 AS production-stage
 
 # Arbeitsverzeichnis setzen
 WORKDIR /app
