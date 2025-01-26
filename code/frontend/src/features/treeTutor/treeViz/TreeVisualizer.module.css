@@ -1,0 +1,33 @@
+.svg {
+  width: 100%;
+  max-width: 800px; /* Maximum width of the SVG (adjustable*/
+  min-height: 500px; /* Minimum height of the SVG (adjustable)*/
+  background-color: lightgrey;
+  overflow: visible;
+}
+
+.node circle {
+  fill: #ecf0f1;
+  stroke: #247d24;
+  stroke-opacity: 0.8;
+  stroke-width: 2.5px;
+}
+
+.node div {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+.text {
+  fill: #247d24;
+  font-size: 1.2rem;
+  text-anchor: middle;
+}
+
+.link {
+  fill: none;
+  stroke: #247d24;
+  stroke-opacity: 0.8;
+  stroke-width: 2px;
+}

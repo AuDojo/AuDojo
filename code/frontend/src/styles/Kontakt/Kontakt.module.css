@@ -76,6 +76,21 @@ p {
   flex: 1;
 }
 
+/* Custom styles for input fields (can copy from button.modul.css) */
+/* input {
+  height: 30px;
+  font-size: 15px;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid rgba(190, 30, 59, 0.87);
+}
+input:focus {
+  outline: 1px solid rgb(91, 133, 191);
+}
+input::placeholder {
+  font-size: 13px;
+} */
+
 .nameInput {
   border-color: rgb(0, 63, 87);
   border-radius: 5px;
