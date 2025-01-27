@@ -69,7 +69,8 @@ const TreeVisualizer = () => {
     ],
   };
 
-  const [treeData, setTreeData] = useState<TreeNode>(initialData);
+  // TODO: Later on change to [treeData, setTreeData]
+  const [treeData] = useState<TreeNode>(initialData);
   const svgRef = useRef<SVGSVGElement>(null);
   const dimensions = useResizeObserver(svgRef);
 
@@ -123,7 +124,8 @@ const TreeVisualizer = () => {
       .text((d) => d.data.value);
 
     // node inputs
-    const inputs = gNodes
+    // const inputs =
+    gNodes
       .append("foreignObject")
       .attr("width", 160)
       .attr("height", 200)
