@@ -9,18 +9,18 @@
   right: 0;
 }
 
-@media (max-width: 1260px){
-  .guide{
+@media (max-width: 1260px) {
+  .guide {
     width: 200px;
   }
 }
-@media (max-width: 1190px){
-  .guide{
+@media (max-width: 1190px) {
+  .guide {
     width: 160px;
   }
 }
-@media (max-width: 1120px){
-  .guide{
+@media (max-width: 1120px) {
+  .guide {
     display: none;
   }
 }

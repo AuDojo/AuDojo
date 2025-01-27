@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import parse from "html-react-parser";
 
 const MergesortText = () => {
-    const { t } = useTranslation("sortsensei-tutorial");
+  const { t } = useTranslation("sortsensei-tutorial");
   return (
     <div className={tutorialContent["text-container"]}>
       <>{parse(t("mergesort.explanation"))}</>

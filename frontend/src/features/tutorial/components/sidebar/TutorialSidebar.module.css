@@ -1,60 +1,58 @@
-
 .sidebar {
-    width: 100%;
-    background-color: #fff;
-    border-right: 1px solid #ddd;
-    padding: 10px;
-    color: var(--maincolor-darkblue);
-  }
-  
-  .sidebar-section {
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    width:100%;
-  }
-  
-  .section-header {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    width:100%;
-    box-sizing: border-box;
-    
-  }
-  
-  .sidebar-title {
-    flex-grow: 1;         
-    text-align: left;    
-    font-size: 38px;
-    font-weight: bolder;
-    color:rgb(0,51,102);
-  }
+  width: 100%;
+  background-color: #fff;
+  border-right: 1px solid #ddd;
+  padding: 10px;
+  color: var(--maincolor-darkblue);
+}
 
-  .sidebar-subtitle {
-    flex-grow: 1;         
-    text-align: left;    
-    font-size: 30px;
-    font-weight:600;
-    color:rgb(55,90,127);
-  }
-  
-  .arrow {
-    margin-right: 8px;
-    transition: transform 0.3s ease;
-  }
-  
-  .arrow.open {
-    transform: rotate(90deg); /* Rotate when sidebar is open */
-  }
-  
-  .section-content {
-    margin-top: 5px; 
-    padding-left: 20px;
-    text-align: left;  
-    border-top: 1px solid #ddd;
-    margin-top: 5px;
-    display: flex;
-    flex-direction: column;
-  }
+.sidebar-section {
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sidebar-title {
+  flex-grow: 1;
+  text-align: left;
+  font-size: 38px;
+  font-weight: bolder;
+  color: rgb(0, 51, 102);
+}
+
+.sidebar-subtitle {
+  flex-grow: 1;
+  text-align: left;
+  font-size: 30px;
+  font-weight: 600;
+  color: rgb(55, 90, 127);
+}
+
+.arrow {
+  margin-right: 8px;
+  transition: transform 0.3s ease;
+}
+
+.arrow.open {
+  transform: rotate(90deg); /* Rotate when sidebar is open */
+}
+
+.section-content {
+  margin-top: 5px;
+  padding-left: 20px;
+  text-align: left;
+  border-top: 1px solid #ddd;
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+}

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "lint": "eslint --max-warnings=0 .",
     "preview": "vite preview",
     "prepare": "cd .. && husky install frontend/.husky"
   },
@@ -54,11 +54,11 @@
     "vite": "^6.0.11"
   },
   "lint-staged": {
-    "src/**/*.{js, jsx,ts,tsx}": [
-      "eslint --quiet --fix"
+    "*.{js, jsx,ts,tsx}": [
+      "eslint --fix"
     ],
-    "src/**/*.{json,js,ts,jsx,tsx,html,css}": [
-      "prettier --write --ignore-unknown"
+    "*.{json,js,ts,jsx,tsx,html,css}": [
+      "prettier --write"
     ]
   }
 }

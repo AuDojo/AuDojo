@@ -3,10 +3,10 @@ import { useState } from "react";
 import tutorialContent from "./StepVisualizer.module.css";
 import { useTranslation } from "react-i18next";
 
-type VisualizerProps = {
+interface VisualizerProps {
   steps: Step[]; // Define the type of the step prop
-  sortType:string;
-};
+  sortType: string;
+}
 
 const Visualizer = ({ steps, sortType }: VisualizerProps) => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -38,7 +38,7 @@ const Visualizer = ({ steps, sortType }: VisualizerProps) => {
       {" "}
       <h1>Beispiel</h1>
       <div className={tutorialContent["visualiser-container"]}>
-        <h3>{t("stepvisualizer."+ sortType + "." + steps[currentStep].description)}</h3>
+        <h3>{t("stepvisualizer." + sortType + "." + steps[currentStep].description)}</h3>
         {/* array container */}
         <div className={tutorialContent["array-container"]}>
           {steps[currentStep].data.map((component, index) => (

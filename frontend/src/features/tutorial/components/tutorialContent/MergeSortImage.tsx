@@ -10,7 +10,6 @@ const MergeSortImage = () => {
       <img src={mergePseudo} className={tutorialContent["image"]} alt="merge pseudocode" />
     </div>
   );
-}
+};
 
 export default MergeSortImage;
-

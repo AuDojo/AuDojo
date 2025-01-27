@@ -250,11 +250,7 @@ const bubble_steps: Step[] = [
       { array: [12, 13, 14], color: whitecolor() },
     ],
   },
-  { description: "finish", 
-    data: [
-      { array: [6, 10, 12, 13, 14], color: whitecolor() }
-    ] 
-  },
+  { description: "finish", data: [{ array: [6, 10, 12, 13, 14], color: whitecolor() }] },
 ];
 
 export default bubble_steps;

@@ -11,4 +11,4 @@ const SelectionSortText = () => {
   );
 };
 
-export default SelectionSortText
+export default SelectionSortText;

@@ -9,14 +9,13 @@ const TutorialSidebar = ({
   algexp,
   photo,
   sortsteps,
-  sortType
+  sortType,
 }: {
   title: string;
   algexp: React.ReactNode;
   photo: React.ReactNode;
-  sortsteps: Step[]
-  sortType:string;
-
+  sortsteps: Step[];
+  sortType: string;
 }) => {
   const [isOpen, toggle] = useState(false);
 
@@ -45,21 +44,14 @@ const TutorialSidebar = ({
       )}
     </div>
   );
-}
+};
 
-const TutorialSubSidebar = ({
-  title,
-  children
-}: {
-  title: string;
-  children: React.ReactNode;
-}) => {
+const TutorialSubSidebar = ({ title, children }: { title: string; children: React.ReactNode }) => {
   const [isOpen, toggle] = useState(false);
 
   const toggleSidebar = () => {
     toggle(!isOpen);
   };
-
 
   return (
     <div className={tutorialsidebar["sidebar"]}>
