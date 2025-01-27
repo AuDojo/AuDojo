@@ -2,6 +2,7 @@ import js from "@eslint/js";
 import pluginQuery from "@tanstack/eslint-plugin-query";
 import prettierConfig from "eslint-config-prettier";
 import importPlugin from "eslint-plugin-import";
+import "eslint-plugin-only-warn";
 import prettierPlugin from "eslint-plugin-prettier";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
@@ -14,7 +15,7 @@ export default tseslint.config({
   settings: { react: { version: "detect" } },
   extends: [
     js.configs.recommended,
-    ...tseslint.configs.recommendedTypeChecked, // Enable type-aware linting
+    ...tseslint.configs.strict, // Enable type-aware linting. If too strong, pick recommended-type-checked
     ...tseslint.configs.stylisticTypeChecked, // Enforce stylistic preferences
   ],
   files: ["**/*.{ts,tsx}"],
@@ -42,7 +43,7 @@ export default tseslint.config({
     ...reactHooks.configs.recommended.rules,
     ...pluginQuery.configs["flat/recommended"][0].rules, // Integrate TanStack Query rules
     ...prettierConfig.rules, // Disables ESLint rules that conflict with Prettier
-    // "prettier/prettier": "warn",
+    "prettier/prettier": "warn",
     "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
     "import/no-restricted-paths": [
       "error",
