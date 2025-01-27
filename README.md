@@ -11,10 +11,10 @@
   </tr>
   <tr>
     <td>
-      <img src="code/frontend/src/assets/homepage.png" />
+      <img src="frontend/src/assets/homepage.png" />
     </td>
     <td>
-      <img src="code/frontend/src/assets/sortsensei-page.png" />
+      <img src="frontend/src/assets/sortsensei-page.png" />
     </td>
   </tr>
 </table>
