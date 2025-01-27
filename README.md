@@ -11,10 +11,10 @@
   </tr>
   <tr>
     <td>
-      <img src="code/frontend/src/assets/homepage.png" />
+      <img src="frontend/src/assets/homepage.png" />
     </td>
     <td>
-      <img src="code/frontend/src/assets/sortsensei-page.png" />
+      <img src="frontend/src/assets/sortsensei-page.png" />
     </td>
   </tr>
 </table>
@@ -24,63 +24,69 @@
 ### Installation 💾
 
 ```bash
-cd code/
 npm i
 ```
 
 ### Run in Devmode 🥽
 
 ```bash
-cd code/
 npm run dev # catch site-url from programm output
 ```
 
-### Build 🏗️  &&  Run 🏃🏻
+### Build 🏗️ && Run 🏃🏻
+
 ```bash
-cd code/
 npm run build
 npm run start
 ```
+
 Das Dojo ist nun unter http://localhost:5001/ erreichbar ☎️
 
 ## Run AuDoJo in a Docker Container 🐋📦
 
 ### Via Terminal 📟
-  (1) Image erzeugen 🌱
-  ```bash
-  cd code/
-  docker build -t AuDojo_Image .
-  ```
 
-  (2) Container starten 🛫
-  ```bash
-  docker run -p 5001:5001 AuDojo_Image 
-  ```
+(1) Image erzeugen 🌱
 
-  (3) Laufende Container anzeigen 👓
-  ```bash
-  docker ps
-  ```
+```bash
+docker build -t AuDojo_Image .
+```
 
-  (4) Auf Container zugreifen 🤚
-  ```bash
-  docker exec -it <container_name> /bin/bash
-  ```
+(2) Container starten 🛫
 
-  (5) Container löschen 🗑️
-  ```bash
-  docker rm <container_name>
-  ```
+```bash
+docker run -p 5001:5001 AuDojo_Image
+```
 
-  (6) Images anzeigen 👓
-  ```bash
-  docker image ls
-  ```
+(3) Laufende Container anzeigen 👓
+
+```bash
+docker ps
+```
+
+(4) Auf Container zugreifen 🤚
+
+```bash
+docker exec -it <container_name> /bin/bash
+```
+
+(5) Container löschen 🗑️
+
+```bash
+docker rm <container_name>
+```
+
+(6) Images anzeigen 👓
+
+```bash
+docker image ls
+```
 
 (7) Images löschen 🗑️
-   ```bash
-  docker rmi <image_name>
-  ```
+
+```bash
+docker rmi <image_name>
+```
 
 ## ✨ Kriterien ✨
 
