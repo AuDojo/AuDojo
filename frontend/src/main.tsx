@@ -5,8 +5,17 @@ import { App } from "./app";
 import "./index.css";
 import "./translation/i18n.ts";
 
-const a = 10;
-createRoot(document.getElementById("root")!).render(
+const rootId = "root";
+let rootElement = document.getElementById(rootId);
+
+// Create root if it doesnt exist
+if (!rootElement) {
+  rootElement = document.createElement("div");
+  rootElement.id = rootId;
+  document.body.appendChild(rootElement);
+}
+
+createRoot(rootElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <App />
