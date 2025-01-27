@@ -44,6 +44,7 @@ export default tseslint.config({
     ...pluginQuery.configs["flat/recommended"][0].rules, // Integrate TanStack Query rules
     ...prettierConfig.rules, // Disables ESLint rules that conflict with Prettier
     "prettier/prettier": "warn",
+    // "react-refresh/only-export-components": ["off", { allowConstantExport: true }],
     "import/no-restricted-paths": [
       "error",
       {
