@@ -11,7 +11,8 @@
     "install": "npm i --prefix backend && npm i --prefix frontend",
     "start-dev:frontend": "cd frontend && npm run dev",
     "start-dev:backend": "cd backend && npm run dev",
-    "dev": "npm-run-all -p start-dev:frontend start-dev:backend"
+    "dev": "npm-run-all -p start-dev:frontend start-dev:backend",
+    "lint": "npm run lint --prefix frontend"
   },
   "keywords": [],
   "author": "",
