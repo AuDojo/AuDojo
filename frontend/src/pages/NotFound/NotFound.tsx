@@ -1,4 +1,4 @@
-import { paths } from "@/constants";
+import { paths } from "@/config";
 import { Link } from "react-router-dom";
 import styles from "./NotFound.module.css";
 

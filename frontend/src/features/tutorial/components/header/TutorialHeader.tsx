@@ -1,4 +1,4 @@
-import { paths } from "@/constants";
+import { paths } from "@/config";
 import audojoLogo from "@assets/logo-audojo.png";
 import { Link, useNavigate } from "react-router-dom";
 import headerStyles from "./TutorialHeader.module.css";

@@ -16,8 +16,6 @@ src
 |
 +-- config            # global configurations, exported env variables etc.
 |
-+-- constants         # used for storing static, immutable values that are referenced across the application. These values generally do not change during runtime.
-|
 +-- features          # feature based modules
 |
 +-- hooks             # shared hooks used across the entire application

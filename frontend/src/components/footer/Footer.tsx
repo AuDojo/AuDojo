@@ -1,7 +1,7 @@
-import { paths } from "@/constants";
+import { paths } from "@/config";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import footerStyles from "./Footer.module.css";
-import { useTranslation } from "react-i18next";
 
 const Footer = () => {
   const { t } = useTranslation("footer");

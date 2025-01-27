@@ -1,6 +1,6 @@
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
-import { paths } from "@/constants";
+import { paths } from "@/config";
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 
@@ -42,7 +42,7 @@ export const AppRouter = () => {
   );
 };
 
-// import { paths } from "@/constants";
+// import { paths } from "@/config";
 // import { QueryClient } from "@tanstack/react-query";
 // import { useMemo } from "react";
 // import { createBrowserRouter, RouterProvider } from "react-router-dom";

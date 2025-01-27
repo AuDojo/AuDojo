@@ -2,7 +2,7 @@ import js from "@eslint/js";
 import pluginQuery from "@tanstack/eslint-plugin-query";
 import prettierConfig from "eslint-config-prettier";
 import importPlugin from "eslint-plugin-import";
-import "eslint-plugin-only-warn";
+import "eslint-plugin-only-warn"; // Changes eslint errors into warnings, remove if not needed
 import prettierPlugin from "eslint-plugin-prettier";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
@@ -44,7 +44,6 @@ export default tseslint.config({
     ...pluginQuery.configs["flat/recommended"][0].rules, // Integrate TanStack Query rules
     ...prettierConfig.rules, // Disables ESLint rules that conflict with Prettier
     "prettier/prettier": "warn",
-    "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
     "import/no-restricted-paths": [
       "error",
       {
@@ -81,7 +80,7 @@ export default tseslint.config({
 
           // e.g src/features and src/pages can import from these shared modules but not the other way around
           {
-            target: ["./src/app", "./src/components", "./src/hooks", "./src/constants", "./src/contexts", "./src/lib"],
+            target: ["./src/app", "./src/components", "./src/hooks", "./src/config", "./src/contexts", "./src/lib"],
             from: ["./src/features", "./src/pages"],
           },
         ],
@@ -89,7 +88,7 @@ export default tseslint.config({
     ],
 
     // Disable specific rules
-    "react/no-unescaped-entities": "off",
-    "@typescript-eslint/dot-notation": "off",
+    "react/no-unescaped-entities": "off", // This rule disallows "" etc. in HTML
+    "@typescript-eslint/dot-notation": "off", // This rule disallows styles["container"] instead of styles.container
   },
 });

@@ -1,4 +1,4 @@
-import { paths } from "@/constants";
+import { paths } from "@/config";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaAngleDown } from "react-icons/fa6";

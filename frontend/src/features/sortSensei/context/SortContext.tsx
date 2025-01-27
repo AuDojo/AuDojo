@@ -1,4 +1,4 @@
-import { SHARED_ARRAY_KEY } from "@/constants/localStorage";
+import { SHARED_ARRAY_KEY } from "@/config/localStorage";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { createContext, ReactNode, use, useRef, useState } from "react";
 import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE, SortTypes } from "../constants";

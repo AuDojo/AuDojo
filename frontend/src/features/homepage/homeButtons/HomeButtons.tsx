@@ -1,9 +1,9 @@
-import { paths } from "@/constants";
+import { paths } from "@/config";
+import { useTranslation } from "react-i18next";
 import sortingPng from "./assets/sorting.png";
 import treePng from "./assets/tree.png";
 import HomeButton from "./HomeButton";
 import styles from "./HomeButtons.module.css";
-import { useTranslation } from "react-i18next";
 
 const HomeButtons = () => {
   const { t } = useTranslation();

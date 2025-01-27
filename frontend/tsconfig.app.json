@@ -26,7 +26,7 @@
       "@assets/*": ["src/assets/*"],
       "@features/*": ["src/features/*"],
       "@components/*": ["src/components/*"],
-      "@constants/*": ["src/constants/*"],
+      "@config/*": ["src/config/*"],
       "@contexts/*": ["src/contexts/*"],
       "@hooks/*": ["src/hooks/*"],
       "@pages/*": ["src/pages/*"],
