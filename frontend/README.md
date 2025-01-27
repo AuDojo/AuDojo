@@ -1,5 +1,7 @@
 # 🗄️ Project Structure
 
+> *Hint: `git commit` will automatically check linting with ESLint and Prettier. `git commit --no-verify` will skip that.*
+
 Most of the code lives in the `src` folder and looks something like this:
 
 ```sh
