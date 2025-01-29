@@ -66,10 +66,21 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
       isPivot: isPivot(),
       isSelected: isSelected(),
     };
-  }, [rowIndex, columnIndex, processList, inputCellValues, cellValidation, mergeRanges, sortTypeRef, pivotElements]);
+  }, [
+    sortTypeRef,
+    processList,
+    rowIndex,
+    columnIndex,
+    inputCellValues,
+    cellValidation,
+    pivotElements,
+    mergeRanges,
+    step,
+    selectionElements,
+  ]);
 
   // Tooltip content for incorrect input
-  const tooltipContent = cellData.inputCellValue ? `Wrong: ${cellData.inputCellValue}` : "Missing input";
+  const tooltipContent = cellData.inputCellValue ? `Your input: ${cellData.inputCellValue}` : "Missing input";
 
   return (
     <td
@@ -108,7 +119,7 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
         readOnly={rowIndex < step}
         ref={(el) => {
           if (inputCellsRef.current[rowIndex]) {
-            inputCellsRef.current[rowIndex][columnIndex] = el!;
+            inputCellsRef.current[rowIndex][columnIndex] = el;
           }
         }}
         onChange={(event) => rowIndex >= step && handleCellChange(event.target.value, rowIndex, columnIndex)}
