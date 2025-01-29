@@ -14,10 +14,6 @@
   color: rgb(60, 60, 60);
 }
 
-.cell-input:hover:not(:focus):not(:disabled) {
-  background-color: rgb(234, 234, 234);
-  cursor: pointer;
-}
 .cell-input:focus {
   outline: none;
   border-color: rgb(59, 130, 246);

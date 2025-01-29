@@ -1,0 +1,79 @@
+.cell-separator {
+  height: 32px;
+  position: relative;
+}
+
+.hover-checkmark {
+  cursor: pointer;
+  position: absolute;
+  top: -6px;
+  bottom: -6px;
+  left: -8px;
+  right: -8px;
+}
+
+/* .hover-checkmark {
+    background-color: rgba(181, 248, 187, 0.726);
+  } */
+
+.c0,
+.c1,
+.c2,
+.c3 {
+  position: absolute;
+  border-radius: 5px;
+  top: 0;
+  bottom: 0;
+  left: -1.5px;
+  right: -1.5px;
+}
+.c0 {
+  background-color: rgba(139, 139, 139);
+  opacity: 0.4;
+  animation: blink 2s ease infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0.3;
+  }
+  30% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+.cell-separator:hover .c0 {
+  left: -2px;
+  right: -2px;
+  opacity: 1;
+  animation: none;
+}
+
+.c1 {
+  background-color: rgba(190, 30, 30);
+  left: -2.9px;
+  right: -2.9px;
+  top: -7px;
+  bottom: -7px;
+}
+
+.c2 {
+  background-color: rgba(218, 51, 0);
+  opacity: 0.85;
+  left: -2.7px;
+  right: -2.7px;
+  top: -4px;
+  bottom: -4px;
+}
+
+.c3 {
+  background-color: rgba(248, 120, 0);
+  opacity: 0.7;
+  left: -2.5px;
+  right: -2.5px;
+}
