@@ -1,4 +1,5 @@
-button {
+.solve-speed-buttons button,
+.generate-buttons button {
   cursor: pointer;
 }
 
@@ -19,6 +20,7 @@ button {
   bottom: 0px;
   right: -220px;
   background-color: white;
+  width: 190px;
 }
 
 @media (max-height: 550px) {
@@ -35,17 +37,17 @@ button {
   background-color: white;
 }
 
-input {
+.generate-buttons input {
   height: 30px;
   font-size: 15px;
   width: 100%;
   margin: 0 auto;
   border: 1px solid rgba(190, 30, 59, 0.87);
 }
-input:focus {
+.generate-buttons input:focus {
   outline: 1px solid rgb(91, 133, 191);
 }
-input::placeholder {
+.generate-buttons input::placeholder {
   font-size: 13px;
 }
 
@@ -70,7 +72,7 @@ input::placeholder {
   width: 50px;
 }
 
-.speed-buttons-container {
+.speed-buttons-container input {
   width: 100%;
   height: auto;
   display: flex;
