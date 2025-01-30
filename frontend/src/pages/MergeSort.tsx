@@ -5,6 +5,7 @@ import { TutorialModalProvider } from "@/features/sortSensei/context";
 import { SortProvider, useSortContext } from "@/features/sortSensei/context/SortContext";
 import { MergeSortVisualizer } from "@/features/sortSensei/sortVisualizer";
 import { TableProvider } from "@/features/sortSensei/table/context/TableContext";
+import { TutorialModal } from "@/features/sortSensei/tutorialModal";
 import { GenerateButtons, SolveButtons } from "@features/sortSensei/buttons";
 import { MergeSortGuide } from "@features/sortSensei/guide";
 import { SideBarMenu } from "@features/sortSensei/sideBarMenu";
@@ -24,6 +25,7 @@ const MergeSortContent = () => {
 
   return (
     <div className={styles["main-container"]}>
+      <TutorialModal />
       <MergeSortGuide />
       <MergeSortVisualizer />
       <div className={styles["outer-table-buttons-container"]}>
