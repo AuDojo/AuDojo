@@ -1,0 +1,9 @@
+.progress-bar-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.progress-bar {
+  width: 100%;
+}

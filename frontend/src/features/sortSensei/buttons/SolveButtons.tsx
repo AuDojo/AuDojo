@@ -3,7 +3,6 @@ import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import { useTutorialModalContext } from "@features/sortSensei/context";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Points } from "../points";
 import { useTableContext } from "../table/context";
 import buttonStyles from "./Button.module.css";
 import { useButtonContext } from "./context";
@@ -243,7 +242,6 @@ const SolveButton = () => {
   return (
     <>
       <div className={buttonStyles["solve-speed-buttons"]}>
-        <Points />
         <div style={{ fontSize: "12px", fontStyle: "italic", color: "gray" }}>
           {t("speed-info")}: x{SPEED_DISPLAY[selectedSpeedIndex]}
         </div>
