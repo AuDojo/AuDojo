@@ -19,6 +19,8 @@
   </tr>
 </table>
 
+> *Hint: `git commit` will automatically check linting with ESLint and Prettier. `git commit --no-verify` will skip that.*
+
 ## Run AuDojo locally ⚡
 
 ### Installation 💾
