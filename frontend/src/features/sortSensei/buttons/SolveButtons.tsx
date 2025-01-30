@@ -241,54 +241,58 @@ const SolveButton = () => {
   }
 
   return (
-    <div className={buttonStyles["solve-speed-buttons"]} ref={highlightRefs.solveButtons}>
-      <Points />
-      <div style={{ fontSize: "12px", fontStyle: "italic", color: "gray" }}>
-        {t("speed-info")}: x{SPEED_DISPLAY[selectedSpeedIndex]}
-      </div>
-      <div className={buttonStyles["speed-buttons-container"]}>
-        <input
-          type="range"
-          min="0"
-          max={SPEED_VALUES.length - 1}
-          step="1"
-          value={selectedSpeedIndex}
-          onChange={(event) => handleSpeedChange(parseInt(event.target.value))}
-        />
-      </div>
-      <div className={buttonStyles["arrow-button-container"]}>
-        <button
-          aria-label="Press [J]"
-          data-tooltip="top"
-          className={`${buttonStyles["arrow-button"]}`}
-          onClick={handleGoBack}
-        >
-          ← Back
-        </button>
-        <button
-          aria-label="Press [K]"
-          data-tooltip="top"
-          className={`${buttonStyles["arrow-button"]}`}
-          onClick={handleGoNext}
-        >
-          Next →
-        </button>
-      </div>
+    <>
+      <div className={buttonStyles["solve-speed-buttons"]}>
+        <Points />
+        <div style={{ fontSize: "12px", fontStyle: "italic", color: "gray" }}>
+          {t("speed-info")}: x{SPEED_DISPLAY[selectedSpeedIndex]}
+        </div>
+        <div className={buttonStyles["speed-buttons-container"]}>
+          <input
+            type="range"
+            min="0"
+            max={SPEED_VALUES.length - 1}
+            step="1"
+            value={selectedSpeedIndex}
+            onChange={(event) => handleSpeedChange(parseInt(event.target.value))}
+          />
+        </div>
+        <div ref={highlightRefs.solveButtons}>
+          <div className={buttonStyles["arrow-button-container"]}>
+            <button
+              aria-label="Press [J]"
+              data-tooltip="top"
+              className={`${buttonStyles["arrow-button"]}`}
+              onClick={handleGoBack}
+            >
+              ← Back
+            </button>
+            <button
+              aria-label="Press [K]"
+              data-tooltip="top"
+              className={`${buttonStyles["arrow-button"]}`}
+              onClick={handleGoNext}
+            >
+              Next →
+            </button>
+          </div>
 
-      <div className={buttonStyles["solve-buttons"]}>
-        <button aria-label="Press [A]" data-tooltip="top" onClick={handleSolveAll}>
-          {buttonText}
-        </button>
-        <button
-          aria-label="Press [S]"
-          data-tooltip="top"
-          className={buttonStyles["try-again-button"]}
-          onClick={handleTryAgain}
-        >
-          Reset ↺
-        </button>
+          <div className={buttonStyles["solve-buttons"]}>
+            <button aria-label="Press [A]" data-tooltip="top" onClick={handleSolveAll}>
+              {buttonText}
+            </button>
+            <button
+              aria-label="Press [S]"
+              data-tooltip="top"
+              className={buttonStyles["try-again-button"]}
+              onClick={handleTryAgain}
+            >
+              Reset ↺
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -15,8 +15,8 @@ export const tutorialSteps: { title: string; content: string; key?: RefKeys }[] 
     key: "sortingTable",
   },
   {
-    title: "3. 🖍️ Mark the split",
-    content: "Click to the line between numbers to make a split.",
+    title: "3. 🖍️ Split the array",
+    content: "Click on the <strong>Line</strong> between numbers to split the array.",
     key: "listRow",
   },
   {
