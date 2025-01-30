@@ -1,12 +1,12 @@
+import { Spinner } from "@/components/ui/spinner";
 import { paths } from "@/config";
-import { useState, lazy, Suspense } from "react";
+import { lazy, Suspense, useState } from "react";
 import { useTranslation } from "react-i18next";
 import headerStyles from "./Header.module.css";
 import LinkItem from "./LinkItem";
 import { HamburgerIcon } from "./hamburger";
 import { LanguageSelector } from "./languageSelector";
 import HeaderLogo from "./logo/HeaderLogo";
-import { Spinner } from "../ui/spinner";
 
 const FaAngleDown = lazy(() => import("react-icons/fa6").then((module) => ({ default: module.FaAngleDown })));
 
