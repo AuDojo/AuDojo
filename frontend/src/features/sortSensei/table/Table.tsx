@@ -2,6 +2,7 @@ import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import { useTutorialModalContext } from "@features/sortSensei/context";
 import { JSX } from "react";
 import { IndexRow, InputRow, ListRow } from ".";
+import { Points } from "./points";
 import styles from "./Table.module.css";
 /**
  * A table component that displays a list of steps for the given sorting
@@ -37,6 +38,7 @@ const SortingTable = (): JSX.Element => {
           </tbody>
         </table>
       </div>
+      <Points />
     </div>
   );
 };
