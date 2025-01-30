@@ -1,12 +1,14 @@
 import { paths } from "@/config";
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import { useTranslation } from "react-i18next";
-import { FaAngleDown } from "react-icons/fa6";
 import headerStyles from "./Header.module.css";
 import LinkItem from "./LinkItem";
 import { HamburgerIcon } from "./hamburger";
 import { LanguageSelector } from "./languageSelector";
 import HeaderLogo from "./logo/HeaderLogo";
+import { Spinner } from "../ui/spinner";
+
+const FaAngleDown = lazy(() => import("react-icons/fa6").then((module) => ({ default: module.FaAngleDown })));
 
 const Header = () => {
   //Case: Client Width too small:  When the user clicks on hamburger icon, open the menu
@@ -16,7 +18,7 @@ const Header = () => {
     setOpen(!isOpen);
   };
 
-  const iconDropdown = <FaAngleDown />;
+  const iconDropdown = <FaAngleDown className={headerStyles["dropdown-icon"]} />;
 
   return (
     <header className={headerStyles["header-container"]}>
@@ -25,7 +27,9 @@ const Header = () => {
       {/* Change Header to Hamburger Menu if client clicks on hamburger icon */}
       <nav className={`${headerStyles["menu-container"]} ${isOpen ? headerStyles.open : ""}`}>
         <nav className={headerStyles["dropdown-container"]}>
-          <LinkItem className="menu-item" to={paths.mergeSort} text="SortSensei &nbsp;" icon={iconDropdown} />
+          <Suspense fallback={<Spinner />}>
+            <LinkItem className="menu-item" to={paths.mergeSort} text="SortSensei &nbsp;" icon={iconDropdown} />
+          </Suspense>
           <nav className={headerStyles["dropdown-content"]}>
             <LinkItem className="menu-item" to={paths.mergeSort} text="MergeSort" />
             <LinkItem className="menu-item" to={paths.quickSort} text="QuickSort" />

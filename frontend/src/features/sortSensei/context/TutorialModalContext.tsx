@@ -16,6 +16,7 @@ export const TutorialModalProvider = ({ children }: { children: ReactNode }) => 
     generateButtons: useRef<HTMLDivElement>(null),
     d3Visualizer: useRef<HTMLDivElement>(null),
     solveButtons: useRef<HTMLDivElement>(null),
+    listRow: useRef<HTMLDivElement>(null),
   };
 
   return <TutorialModalContext value={{ highlightRefs }}>{children}</TutorialModalContext>;

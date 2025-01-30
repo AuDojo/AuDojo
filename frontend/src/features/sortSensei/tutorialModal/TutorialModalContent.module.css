@@ -21,30 +21,29 @@
 /* Transparent overlay */
 .overlay {
   background-color: rgba(0, 0, 0, 0.5);
-  width: 100%;
-  height: 100%;
-
   position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: var(--overlap-layer);
-
-  display: inline-block;
   filter: blur(5px);
 }
 
 /* ----------- Content styles ----------- */
-h2 {
+.dialog h2 {
   margin-bottom: 0.9rem;
   text-align: center;
 }
 
-p {
+.dialog p {
   text-align: center;
 }
 
 /* ----------- Tutorial steps ----------- */
+.step-2,
 .step-3 {
-  top: 190px;
+  top: 155px;
 }
 
 /* The green (optimum) bar in Firefox */

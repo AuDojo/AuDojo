@@ -10,7 +10,7 @@ td {
   height: calc(100vh - 370px); /* Subtract header, total 335px */
   border-radius: 10px;
   overflow-y: auto;
-  overflow-x: visible;
+  overflow-x: hidden;
 }
 
 /*solve problem with scrollbar is too big in safari*/
