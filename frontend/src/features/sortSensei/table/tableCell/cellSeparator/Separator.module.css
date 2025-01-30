@@ -32,6 +32,9 @@
   opacity: 0.4;
   animation: blink 2s ease infinite;
 }
+.c0.marked {
+  animation: none;
+}
 
 @keyframes blink {
   0% {

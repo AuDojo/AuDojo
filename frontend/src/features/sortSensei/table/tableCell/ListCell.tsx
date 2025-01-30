@@ -9,12 +9,14 @@ import Separator from "./cellSeparator/Separator";
 
 interface ListCellProps {
   columnIndex: number;
+  isMarked: boolean;
+  setIsMarked: (isMarked: boolean) => void;
 }
 
 // Bind styles to classNames
 const cx = classNames.bind(styles);
 
-const ListCell = ({ columnIndex }: ListCellProps): JSX.Element => {
+const ListCell = ({ columnIndex, isMarked, setIsMarked }: ListCellProps): JSX.Element => {
   const { sortTypeRef } = useSortContext();
   const { inputCellValues, inputCellsRef } = useTableContext();
   const { handleCellKeyDown } = useTableUtils();
@@ -32,7 +34,9 @@ const ListCell = ({ columnIndex }: ListCellProps): JSX.Element => {
         }}
         onKeyDown={(event) => handleCellKeyDown(event, 0, columnIndex)}
       />
-      {sortTypeRef.current === SortTypes.MergeSort && columnIndex != inputCellValues[0].length - 1 && <Separator />}
+      {sortTypeRef.current === SortTypes.MergeSort && columnIndex != inputCellValues[0].length - 1 && (
+        <Separator isMarked={isMarked} setIsMarked={setIsMarked} />
+      )}
     </>
   );
 };
