@@ -31,12 +31,6 @@ button {
   cursor: pointer;
 }
 
-.Link {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-}
-
 .highlight {
   z-index: calc(var(--top-layer) - 1);
   border-radius: 5px;
