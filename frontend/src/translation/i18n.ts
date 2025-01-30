@@ -20,7 +20,6 @@ i18n
     },
 
     defaultNS: "home",
-    ns: ["contact", "footer", "header", "home", "sortsensei-tutorial", "sortsensei", "treetutor", "treetutor-tutorial"],
 
     backend: {
       loadPath: "translation/{{lng}}/{{ns}}.json",
