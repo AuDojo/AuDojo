@@ -15,7 +15,7 @@
     "guide": {
       "start": "Starting Merge Sort!",
       "heading": "Merge Sort Guide",
-      "splitting": "<b>Split</b> the array into <b>two halves recursively</b> until each subarray contains one element.",
+      "splitting": "<b>Split</b> the array recursively into <b>two halves</b> as long as each subarray contains more than two elements.",
       "compare": "Compare and sort two elements. <br /> <b>The sorted elements are marked</b>",
       "merge": "Merge the sorted subarrays by comparing elements. <br /> <b>The merged array is marked.</b>",
       "end": "Sorting is complete!"
