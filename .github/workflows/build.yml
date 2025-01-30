@@ -3,7 +3,7 @@ name: Build Project
 # Trigger workflow on push or pull request to every branch
 on:
   push:
-  pull_request:
+  # pull_request:
 
 # Workflow jobs
 jobs:
