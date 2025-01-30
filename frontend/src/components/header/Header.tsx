@@ -18,7 +18,7 @@ const Header = () => {
     setOpen(!isOpen);
   };
 
-  const iconDropdown = <FaAngleDown />;
+  const iconDropdown = <FaAngleDown className={headerStyles["dropdown-icon"]} />;
 
   return (
     <header className={headerStyles["header-container"]}>
