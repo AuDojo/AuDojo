@@ -66,7 +66,7 @@
 }
 
 .c2 {
-  background-color: rgba(218, 51, 0);
+  background-color: rgb(235, 87, 43);
   opacity: 0.85;
   left: -2.7px;
   right: -2.7px;
@@ -75,8 +75,10 @@
 }
 
 .c3 {
-  background-color: rgba(248, 120, 0);
+  background-color: rgb(245, 162, 7);
   opacity: 0.7;
-  left: -2.5px;
-  right: -2.5px;
+  left: -2.7px;
+  right: -2.7px;
+  top: -1.5px;
+  bottom: -1.5px;
 }
