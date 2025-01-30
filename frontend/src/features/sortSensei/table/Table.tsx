@@ -1,8 +1,9 @@
+import { Spinner } from "@/components/ui/spinner";
 import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import { useTutorialModalContext } from "@features/sortSensei/context";
 import { JSX } from "react";
 import { IndexRow, InputRow, ListRow } from ".";
-import { Points } from "./points";
+import { ProgressBar } from "./progressBar";
 import styles from "./Table.module.css";
 /**
  * A table component that displays a list of steps for the given sorting
@@ -15,9 +16,9 @@ const SortingTable = (): JSX.Element => {
   const { processList } = useSortContext();
   const { highlightRefs } = useTutorialModalContext();
 
-  // If processList is empty, just return null
+  // If processList is empty, return Loading state
   if (!processList || processList.length === 0) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   // Set row height (2.5rem) and calc max height
@@ -38,7 +39,7 @@ const SortingTable = (): JSX.Element => {
           </tbody>
         </table>
       </div>
-      <Points />
+      <ProgressBar />
     </div>
   );
 };
