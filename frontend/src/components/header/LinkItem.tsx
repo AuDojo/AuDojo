@@ -1,5 +1,6 @@
+import { JSX, Suspense } from "react";
 import { Link } from "react-router-dom";
-import { JSX } from "react";
+import { Spinner } from "../ui/spinner";
 import headerStyle from "./Header.module.css";
 
 const LinkItem = ({
@@ -16,7 +17,7 @@ const LinkItem = ({
   return (
     <Link className={headerStyle[className]} to={to}>
       {text}
-      {icon}
+      <Suspense fallback={<Spinner size="sm" />}>{icon}</Suspense>
     </Link>
   );
 };

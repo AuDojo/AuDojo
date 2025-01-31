@@ -1,6 +1,5 @@
-import { Spinner } from "@/components/ui/spinner";
 import { paths } from "@/config";
-import { lazy, Suspense, useState } from "react";
+import { lazy, useState } from "react";
 import { useTranslation } from "react-i18next";
 import headerStyles from "./Header.module.css";
 import LinkItem from "./LinkItem";
@@ -27,9 +26,7 @@ const Header = () => {
       {/* Change Header to Hamburger Menu if client clicks on hamburger icon */}
       <nav className={`${headerStyles["menu-container"]} ${isOpen ? headerStyles.open : ""}`}>
         <nav className={headerStyles["dropdown-container"]}>
-          <Suspense fallback={<Spinner />}>
-            <LinkItem className="menu-item" to={paths.mergeSort} text="SortSensei &nbsp;" icon={iconDropdown} />
-          </Suspense>
+          <LinkItem className="menu-item" to={paths.mergeSort} text="SortSensei &nbsp;" icon={iconDropdown} />
           <nav className={headerStyles["dropdown-content"]}>
             <LinkItem className="menu-item" to={paths.mergeSort} text="MergeSort" />
             <LinkItem className="menu-item" to={paths.quickSort} text="QuickSort" />
