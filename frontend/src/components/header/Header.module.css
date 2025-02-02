@@ -23,7 +23,7 @@
 
 .menu-item {
   background-color: var(--background-header);
-  color: var(--maincolor-darkblue);
+  color: var(--main-darkblue);
   height: 100%;
   width: 160px;
   font-weight: 600;
@@ -34,7 +34,7 @@
 }
 
 .menu-item:hover {
-  color: var(--maincolor-red);
+  color: var(--main-red);
 }
 
 .dropdown-icon {
@@ -89,7 +89,7 @@
   }
 
   .menu-item {
-    background-color: var(--maincolor-darkblue);
+    background-color: var(--main-darkblue);
     color: white;
     height: 50px;
     width: 100%;

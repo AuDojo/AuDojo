@@ -9,7 +9,7 @@ footer {
 }
 .footer-content {
   font-size: 15px;
-  color: var(--maincolor-darkblue);
+  color: var(--main-darkblue);
   text-decoration: none;
   padding: 2px 20px;
 }
