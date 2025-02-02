@@ -2,7 +2,7 @@
 .content-container {
   box-sizing: border-box;
   margin: 10px;
-  color: var(--main-darkblue);
+  color: var(--maincolor-darkblue);
 }
 
 .image-container img {

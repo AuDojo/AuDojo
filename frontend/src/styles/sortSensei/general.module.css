@@ -1,6 +1,5 @@
 .main-container {
-  margin-top: -28px;
-  width: 100%;
+  margin-top: -25px;
 }
 
 .inner-table-buttons-container {
@@ -9,7 +8,7 @@
 }
 
 .outer-table-buttons-container {
-  /* width: 1300px; */
+  /* width: 100vw; */
   min-height: 250px;
   display: flex;
   justify-content: center;

@@ -5,19 +5,19 @@ svg {
 }
 
 .viz-container {
+  width: 95vw;
   display: flex;
   justify-content: center;
 }
-
 .viz-container svg {
-  border: 3px solid var(--main-darkblue);
+  border: 3px solid var(--maincolor-darkblue);
   border-radius: 15px;
 }
 
 /* general text color*/
 text {
   font-size: 15px;
-  fill: var(--main-darkblue);
+  fill: var(--maincolor-darkblue);
   text-anchor: middle;
 }
 
@@ -42,11 +42,11 @@ rect {
 }
 
 .changed-bar {
-  fill: var(--main-red);
+  fill: var(--maincolor-red);
 }
 
 .changed-bar-blink {
-  fill: var(--main-red);
+  fill: var(--maincolor-red);
   animation: blink 2s ease infinite;
 }
 @keyframes blink {
