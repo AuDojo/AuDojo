@@ -1,20 +1,32 @@
-import React, { createContext, use, useRef, useState } from "react";
+import React, { createContext, use, useCallback, useRef, useState } from "react";
 
 interface ButtonContextProps {
+  isPlaying: boolean;
+  setIsPlaying: React.Dispatch<React.SetStateAction<boolean>>;
   timeoutRef: React.RefObject<NodeJS.Timeout | null>;
-  solveAllStatus: "solve" | "stop" | "continue";
-  setSolveAllStatus: React.Dispatch<React.SetStateAction<"solve" | "stop" | "continue">>;
+  clearPlayBackTimer: () => void;
 }
 const ButtonContext = createContext<ButtonContextProps | null>(null);
 
 export const ButtonContextProvider = ({ children }: { children: React.ReactNode }) => {
-  const [solveAllStatus, setSolveAllStatus] = useState<"solve" | "stop" | "continue">("solve");
+  const [isPlaying, setIsPlaying] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const clearPlayBackTimer = useCallback(() => {
+    if (timeoutRef.current) {
+      clearInterval(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    setIsPlaying(false);
+  }, []);
+
   return (
     <ButtonContext
       value={{
+        isPlaying,
+        setIsPlaying,
         timeoutRef: useRef<NodeJS.Timeout | null>(null),
-        solveAllStatus,
-        setSolveAllStatus,
+        clearPlayBackTimer,
       }}
     >
       {children}
