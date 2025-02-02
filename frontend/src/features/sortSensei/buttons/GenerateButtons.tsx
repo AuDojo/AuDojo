@@ -13,7 +13,7 @@ const GenerateButtons = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { timeoutRef, setSolveAllStatus } = useButtonContext();
+  const { clearPlayBackTimer } = useButtonContext();
   const { highlightRefs } = useTutorialModalContext();
   const { t } = useTranslation("sortsensei");
 
@@ -43,11 +43,7 @@ const GenerateButtons = () => {
   };
 
   const submitCustomArray = () => {
-    setSolveAllStatus("solve");
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
+    clearPlayBackTimer();
     const array = customArray
       .split(/[,\s]+/) // split by (many) commas, #;- or whitespace
       .map((num) => parseInt(num, 10)) // convert the string to an Integer number
@@ -86,15 +82,11 @@ const GenerateButtons = () => {
 
   const handleRandomArray = useCallback(() => {
     setStep(1);
-    setSolveAllStatus("solve");
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
+    clearPlayBackTimer();
     const array = generateRandomArray(arrayLength);
     setSharedArray(array);
     setIsSubmitting(false);
-  }, [arrayLength, setSolveAllStatus, setStep, timeoutRef]);
+  }, [arrayLength, clearPlayBackTimer, setSharedArray, setStep]);
 
   const handleArrayLengthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value, 10);

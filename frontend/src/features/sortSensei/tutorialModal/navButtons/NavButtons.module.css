@@ -1,5 +1,5 @@
 /* ----------- Buttons ----------- */
-button {
+.nav-buttons-container button {
   border: none;
   padding: 0.7rem 2rem;
   border-radius: 1.5rem;
@@ -9,7 +9,7 @@ button {
 
   transition: all 0.2s ease-in-out;
 }
-button:hover {
+.nav-buttons-container button:hover {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
