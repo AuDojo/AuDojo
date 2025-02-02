@@ -15,6 +15,12 @@ updates:
     # Check the npm registry for updates every day (weekdays)
     schedule:
       interval: "daily"
+    # Group pull requests together
+    groups:
+      npm-dev-deps:
+        dependency-type: "development"
+      npm-prod-deps:
+        dependency-type: "production"
 
   - package-ecosystem: "docker"
     # Look for a `Dockerfile` in the `root` directory
@@ -22,9 +28,17 @@ updates:
     # Check for updates once a week
     schedule:
       interval: "weekly"
+    groups:
+      docker-deps:
+        patterns:
+          - "*"
       
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       # Check for updates to GitHub Actions every week
       interval: "weekly"
+    groups:
+      actions-deps:
+        patterns:
+          - "*"
