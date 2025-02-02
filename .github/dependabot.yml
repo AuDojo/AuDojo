@@ -7,7 +7,7 @@ version: 2
 updates:
   # Enable version updates for npm
   - package-ecosystem: "npm" # See documentation for possible values
-    # Look for `package.json` and `lock` files
+    # Look for `package.json` and `package-lock.json` files
     directories:
       - "/"
       - "/frontend"
