@@ -7,6 +7,7 @@
     "build:frontend": "npm run build --prefix frontend",
     "build:backend": "npm run build --prefix backend",
     "build": "npm run build:frontend && npm run build:backend",
+    "clean": "npm run clean --prefix frontend && npm run clean --prefix backend",
     "start": "npm run start --prefix backend",
     "install": "npm i --prefix backend && npm i --prefix frontend",
     "start-dev:frontend": "cd frontend && npm run dev",
