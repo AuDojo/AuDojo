@@ -1,13 +1,32 @@
-.generalContainer p {
-  text-align: left;
-}
-
 .generalContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  color: rgb(0, 63, 87);
+  color: var(--main-darkblue);
+}
+
+.generalContainer p {
+  text-align: left;
+}
+
+.generalContainer input,
+.generalContainer textarea {
+  font-size: 15px;
+  border: 1px solid var(--main-darkblue);
+}
+.generalContainer textarea:focus,
+.generalContainer input:focus {
+  outline: 1px solid rgb(91, 133, 191);
+}
+.generalContainer textarea::placeholder,
+.generalContainer input::placeholder {
+  font-size: 13px;
+}
+
+.generalContainer input {
+  height: 30px;
+  width: 100%;
 }
 
 .contentContainer {
@@ -29,7 +48,7 @@
 
 .kontaktMessage {
   font-size: 30px;
-  color: rgb(0, 63, 87);
+  color: var(--main-darkblue);
   font-weight: bold;
 }
 
@@ -76,23 +95,8 @@
   flex: 1;
 }
 
-/* Custom styles for input fields (can copy from button.modul.css) */
-/* input {
-  height: 30px;
-  font-size: 15px;
-  width: 100%;
-  margin: 0 auto;
-  border: 1px solid rgba(190, 30, 59, 0.87);
-}
-input:focus {
-  outline: 1px solid rgb(91, 133, 191);
-}
-input::placeholder {
-  font-size: 13px;
-} */
-
 .nameInput {
-  border-color: rgb(0, 63, 87);
+  border-color: var(--main-darkblue);
   border-radius: 5px;
   padding-left: 10px;
 }
@@ -105,7 +109,7 @@ input::placeholder {
 
 .emailInput {
   margin-bottom: 5px;
-  border-color: rgb(0, 63, 87);
+  border-color: var(--main-darkblue);
   border-radius: 5px;
   padding-left: 10px;
 }
@@ -122,7 +126,7 @@ input::placeholder {
   padding-left: 10px;
   padding-top: 10px;
   font-family: Arial;
-  border-color: rgb(0, 63, 87);
+  border-color: var(--main-darkblue);
 }
 
 .messageInputError {
@@ -135,12 +139,11 @@ input::placeholder {
 
 .sendButton {
   margin-bottom: 5px;
-  background-color: rgb(0, 63, 87);
+  background-color: var(--main-darkblue);
   color: white;
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
-  cursor: pointer;
   font-weight: 600;
 }
 
@@ -233,7 +236,6 @@ input::placeholder {
   color: inherit;
   font-size: 1.2rem;
   font-weight: bold;
-  cursor: pointer;
   padding: 0;
   border-radius: 50%;
   transition: background-color 0.3s ease-in-out;
