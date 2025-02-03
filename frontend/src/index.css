@@ -1,4 +1,8 @@
 @import url("./styles/tooltip.css");
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
 
 :root {
   /* CSS variables */

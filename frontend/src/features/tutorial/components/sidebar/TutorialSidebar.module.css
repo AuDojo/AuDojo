@@ -8,7 +8,6 @@
 
 .sidebar-section {
   margin-bottom: 10px;
-  box-sizing: border-box;
   width: 100%;
 }
 
@@ -19,7 +18,6 @@
   font-size: 18px;
   font-weight: bold;
   width: 100%;
-  box-sizing: border-box;
 }
 
 .sidebar-title {
