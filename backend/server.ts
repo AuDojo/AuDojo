@@ -20,7 +20,7 @@ app.use("/api/sorting", sortingRouting);
 app.use("/api/mail", mailRouting);
 
 app.get("*", (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, ".." , "frontend","dist", "index.html")); //our main page frontend/index.html is loaded
+  res.sendFile(path.join(__dirname ,"..", ".." , "frontend","dist", "index.html")); //our main page frontend/index.html is loaded
 });
 
 app.listen(port, () => {
