@@ -1,16 +1,16 @@
-import styles from "./Buttons.module.css";
+import { useTutorialModalContext } from "@features/sortSensei/context";
 import BackNextButtons from "./BackNextButtons";
-import ResetButton from "./ResetButton";
+import styles from "./Buttons.module.css";
 import CheckAllButton from "./CheckAllButton";
 import PlaySpeedController from "./PlaySpeedController";
-import { useTutorialModalContext } from "@features/sortSensei/context";
+import ResetButton from "./ResetButton";
 
 // reset button: remove timer, reset current step, reset table cell
 // back next button: stop timer, set table, set step
 // check all: stop timer, set step
 // play button: stop and run modus, run -> activate timer with the setting of speed
 
-const SolveButtons2 = () => {
+const SolveButtons = () => {
   const { highlightRefs } = useTutorialModalContext();
   return (
     //action buttons: back, next, checkAll, reset
@@ -25,4 +25,4 @@ const SolveButtons2 = () => {
   );
 };
 
-export default SolveButtons2;
+export default SolveButtons;

@@ -2,11 +2,13 @@ import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE } from
 import { useSortContext, useTutorialModalContext } from "@/features/sortSensei/context";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useTableContext } from "../table/context";
 import buttonStyles from "./Button.module.css";
 import { useButtonContext } from "./context";
 
 const GenerateButtons = () => {
   const { setSharedArray, setStep, sharedArray, processList } = useSortContext();
+  const { setCellValidation } = useTableContext();
   const [customArray, setCustomArray] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [arrayLength, setArrayLength] = useState<number>(sharedArray.length);
@@ -71,6 +73,7 @@ const GenerateButtons = () => {
     }
     setStep(1);
     setSharedArray(array);
+    setCellValidation(array.map(() => new Array(array.length).fill(null)));
 
     // setCustomArray("");
     setIsSubmitting(false);
