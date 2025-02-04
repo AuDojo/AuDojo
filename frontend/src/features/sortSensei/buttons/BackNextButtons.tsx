@@ -1,8 +1,8 @@
 import { useSortContext } from "@features/sortSensei/context";
 import { useTableContext } from "@features/sortSensei/table/context";
-import { useLineValidation } from "./hooks/useLineValidation";
 import buttonStyles from "./Buttons.module.css";
 import { useButtonContext } from "./context";
+import { useLineValidation } from "./hooks/useLineValidation";
 /**
  * BackNextButtons component renders two buttons that allow the user to navigate
  * through the steps of the sorting algorithm.
@@ -25,7 +25,7 @@ const BackNextButtons = () => {
 
     setCellValidation((prev) => {
       const updated = [...prev];
-      updated[step - 1] = [];
+      updated[step - 1] = Array(processList[step - 1].length).fill(null);
       return updated;
     });
 
