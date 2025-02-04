@@ -4,3 +4,13 @@ services:
     container_name: webapp
     ports:
       - "5001:5001"
+
+  reverse-proxy:
+    image: nginx:latest
+    container_name: reverse-proxy
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - webapp
