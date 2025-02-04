@@ -1,5 +1,6 @@
+import { useSortContext } from "@/features/sortSensei/context";
 import React, { createContext, use, useRef, useState } from "react";
-import { useInitTableStates } from "../hooks/useInitTableStates";
+import { initTableStates } from "../utils/initTableStates";
 
 interface TableContextProps {
   inputCellValues: string[][];
@@ -14,13 +15,10 @@ interface TableContextProps {
 const TableContext = createContext<TableContextProps | undefined>(undefined);
 
 export const TableProvider = ({ children }: { children: React.ReactNode }) => {
-  const {
-    inputCellValues: initCellValues,
-    cellValidation: initCellValidation,
-    inputCells: initInputCells,
-  } = useInitTableStates();
+  const { sharedArray } = useSortContext();
+  const { initInputCellValues, initCellValidation, initInputCells } = initTableStates(sharedArray);
 
-  const [inputCellValues, setInputCellValues] = useState<string[][]>(initCellValues);
+  const [inputCellValues, setInputCellValues] = useState<string[][]>(initInputCellValues);
   const [cellValidation, setCellValidation] = useState<(boolean | null)[][]>(initCellValidation);
   const inputCellsRef = useRef<(HTMLInputElement | null)[][]>(initInputCells);
 
