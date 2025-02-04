@@ -5,7 +5,7 @@ import { useMemo } from "react";
  * @param cellValidation - 2D array of boolean values indicating correctness of each cell
  * @returns object with `currentPoints` and `totalPoints` properties
  */
-export const useCellValidation = (cellValidation: (boolean | null)[][]) => {
+export const useGetPoints = (cellValidation: (boolean | null)[][]) => {
   const validationObj = useMemo(() => {
     // Filter correct inputs
     const currentPoints = cellValidation.flat().filter((value) => value === true).length;

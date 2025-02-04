@@ -1,10 +1,10 @@
 import { useTableContext } from "@/features/sortSensei/table/context";
-import { useCellValidation } from "../hooks/useCellValidation";
+import { useGetPoints } from "../hooks/useGetPoints";
 import styles from "./ProgressBar.module.css";
 
 const ProgressBar = () => {
   const { cellValidation } = useTableContext();
-  const { currentPoints, totalPoints } = useCellValidation(cellValidation);
+  const { currentPoints, totalPoints } = useGetPoints(cellValidation);
 
   return (
     <div

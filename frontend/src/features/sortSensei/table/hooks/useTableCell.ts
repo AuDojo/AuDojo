@@ -3,7 +3,7 @@ import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import React from "react";
 import { useTableContext } from "../context/TableContext";
 
-export const useTableUtils = () => {
+export const useTableCell = () => {
   const { processList } = useSortContext();
   const { inputCellsRef, inputCellValues, setInputCellValues } = useTableContext();
 

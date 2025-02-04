@@ -1,1 +1,1 @@
-export { useTableUtils } from "./useTableUtils";
+export { useTableCell } from "./useTableCell";

@@ -1,6 +1,6 @@
 import { SortTypes } from "@/features/sortSensei/constants";
 import { useSortContext } from "@/features/sortSensei/context/SortContext";
-import { useTableUtils } from "@features/sortSensei/table/hooks";
+import { useTableCell } from "@features/sortSensei/table/hooks";
 import classNames from "classnames/bind";
 import { JSX, useMemo } from "react";
 import { useTableContext } from "../context/TableContext";
@@ -18,8 +18,7 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
   const { processList, step, mergeRanges, sortTypeRef, pivotElements, selectionElements, bubbleElements } =
     useSortContext();
   const { inputCellValues, inputCellsRef, cellValidation } = useTableContext();
-
-  const { handleCellChange, handleCellKeyDown } = useTableUtils();
+  const { handleCellChange, handleCellKeyDown } = useTableCell();
 
   // Memoize derived values to prevent unnecessary re-renders
   const cellData = useMemo(() => {
