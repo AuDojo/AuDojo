@@ -16,7 +16,7 @@ const Tutorial = lazy(() => import("@pages/Tutorial"));
 const Datenschutz = lazy(() => import("@pages/Datenschutz"));
 const Impressum = lazy(() => import("@pages/Impressum"));
 const NotFound = lazy(() => import("@/pages/NotFound/NotFound"));
-const TreeTutor = lazy(() => import("@pages/TreeTutor"));
+// const TreeTutor = lazy(() => import("@pages/TreeTutor"));
 
 export const AppRouter = () => {
   return (
@@ -35,7 +35,6 @@ export const AppRouter = () => {
             <Route path={paths.kontakt} element={<Kontakt />} />
             <Route path={paths.datenschutz} element={<Datenschutz />} />
             <Route path={paths.impressum} element={<Impressum />} />
-            <Route path={paths.treeTutor} element={<TreeTutor />} />
             <Route path="*" element={<NotFound />} /> {/* Invalid route*/}
           </Routes>
         </Suspense>

@@ -51,7 +51,7 @@ export class SortProcessList {
     let index = this.#processList.length;
     this.#mergeRanges[index] = [start, end];
 
-    console.log("start, end: ", this.#mergeRanges[index]);
+    // console.log("start, end: ", this.#mergeRanges[index]);
   }
 
   /**
@@ -62,7 +62,7 @@ export class SortProcessList {
     let index = this.#processList.length;
     this.#pivotElements[index] = [pivot_index, null];
 
-    console.log("pivot_index: ", this.#pivotElements[index][0]);
+    // console.log("pivot_index: ", this.#pivotElements[index][0]);
   }
 
   /**
@@ -73,7 +73,7 @@ export class SortProcessList {
     let index = this.#processList.length;
     this.#pivotElements[index][1] = pivot_index;
 
-    console.log("pivot_index: ", this.#pivotElements[index][1]);
+    // console.log("pivot_index: ", this.#pivotElements[index][1]);
   }
 
   /**
@@ -84,7 +84,7 @@ export class SortProcessList {
     let index = this.#selectedElements.length;
     this.#selectedElements[index] = selected_index;
 
-    console.log("selected_items: ", this.#selectedElements[index]);
+    // console.log("selected_items: ", this.#selectedElements[index]);
   }
 
   /**
@@ -95,7 +95,7 @@ export class SortProcessList {
     let index = this.#bubbleElements.length;
     this.#bubbleElements[index] = selected_index;
 
-    console.log("bubble_elements: ", this.#bubbleElements[index]);
+    // console.log("bubble_elements: ", this.#bubbleElements[index]);
   }
 
   /**
@@ -138,7 +138,7 @@ export class SortProcessList {
       selectionElements: this.#selectedElements,
     };
 
-    console.log(obj);
+    // console.log(obj);
 
     return JSON.stringify(obj);
   }
