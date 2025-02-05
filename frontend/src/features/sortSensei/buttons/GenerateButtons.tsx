@@ -14,4 +14,4 @@ const GenerateButtons = () => {
   );
 };
 
-export default GenerateButtonsBackup;
+export default GenerateButtons;
