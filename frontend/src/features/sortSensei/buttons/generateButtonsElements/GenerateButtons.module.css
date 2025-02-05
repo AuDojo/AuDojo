@@ -42,12 +42,15 @@
   background-color: var(--main-red);
   color: white;
 }
+.submit-button {
+  margin-bottom: 10px;
+}
 
 .input-field {
   height: 30px;
   font-size: 15px;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 0 10px 0;
   border: 1px solid var(--main-red);
 }
 
@@ -58,4 +61,6 @@
 .error-message {
   color: var(--main-red);
   font-size: 13px;
+  padding: 3px;
+  margin-bottom: 10px;
 }
