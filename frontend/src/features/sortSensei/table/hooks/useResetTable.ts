@@ -6,7 +6,11 @@ import { useSortContext } from "@/features/sortSensei/context";
  * Hook to reset the sorting table to its initial state based on the given input array.
  */
 export const useResetTable = () => {
-  const { setCellValidation, setInputCellValues,  inputCellsRef } = useTableContext();
+  const {
+    setCellsValidation: setCellsValidation,
+    setUserInputTable: setUserInputTable,
+    tableCellsRef: tableCellsRef,
+  } = useTableContext();
   const { processList } = useSortContext();
 
   const resetTable = useCallback(() => {
@@ -14,10 +18,10 @@ export const useResetTable = () => {
     const { initInputCellValues, initCellValidation, initInputCells } = getInitTableStates(processList);
 
     // reset cells
-    setInputCellValues(initInputCellValues);
-    setCellValidation(initCellValidation);
-    inputCellsRef.current = initInputCells;
-  }, [setInputCellValues, setCellValidation, inputCellsRef, processList]);
+    setUserInputTable(initInputCellValues);
+    setCellsValidation(initCellValidation);
+    tableCellsRef.current = initInputCells;
+  }, [setUserInputTable, setCellsValidation, tableCellsRef, processList]);
 
   return { resetTable };
 };

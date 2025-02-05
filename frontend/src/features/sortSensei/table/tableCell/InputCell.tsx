@@ -17,7 +17,11 @@ const cx = classNames.bind(styles);
 const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
   const { processList, step, mergeRanges, sortTypeRef, pivotElements, selectionElements, bubbleElements } =
     useSortContext();
-  const { inputCellValues, inputCellsRef, cellValidation } = useTableContext();
+  const {
+    userInputTable: inputCellValues,
+    tableCellsRef: tableCellsRef,
+    cellsValidation: cellsValidation,
+  } = useTableContext();
   const { handleCellChange, handleCellKeyDown } = useTableCell();
 
   // Memoize derived values to prevent unnecessary re-renders
@@ -25,7 +29,7 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
     const sortType = sortTypeRef.current;
     const num = processList[rowIndex][columnIndex];
     const inputCellValue = inputCellValues[rowIndex]?.[columnIndex] || "";
-    const validation = cellValidation[rowIndex][columnIndex];
+    const validation = cellsValidation[rowIndex][columnIndex];
 
     let pivotPair: [number, number];
     if (sortType === SortTypes.QuickSort && pivotElements) {
@@ -71,7 +75,7 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
     rowIndex,
     columnIndex,
     inputCellValues,
-    cellValidation,
+    cellsValidation,
     pivotElements,
     mergeRanges,
     step,
@@ -117,8 +121,8 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
         value={rowIndex < step ? cellData.num || "" : cellData.inputCellValue}
         readOnly={rowIndex < step}
         ref={(el) => {
-          if (inputCellsRef.current[rowIndex]) {
-            inputCellsRef.current[rowIndex][columnIndex] = el;
+          if (tableCellsRef.current[rowIndex]) {
+            tableCellsRef.current[rowIndex][columnIndex] = el;
           }
         }}
         onChange={(event) => rowIndex >= step && handleCellChange(event.target.value, rowIndex, columnIndex)}

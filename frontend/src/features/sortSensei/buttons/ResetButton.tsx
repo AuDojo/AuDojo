@@ -5,7 +5,7 @@ import { useButtonContext } from "./context";
 
 const ResetButton = () => {
   const { setStep, processList } = useSortContext();
-  const { setInputCellValues, setCellValidation } = useTableContext();
+  const { setUserInputTable: setUserInputTable, setCellsValidation: setCellsValidation } = useTableContext();
   const { clearPlayBackTimer } = useButtonContext();
 
   const handleTryAgain = () => {
@@ -15,10 +15,10 @@ const ResetButton = () => {
     clearPlayBackTimer();
 
     // Reset the userinput cell values to the initial values
-    setInputCellValues(processList.map((step, index) => (index === 0 ? [...step] : new Array(step.length).fill(""))));
+    setUserInputTable(processList.map((step, index) => (index === 0 ? [...step] : new Array(step.length).fill(""))));
 
     // Reset the cell validation to null
-    setCellValidation(processList.map((step) => new Array(step.length).fill(null)));
+    setCellsValidation(processList.map((step) => new Array(step.length).fill(null)));
   };
 
   return (

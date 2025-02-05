@@ -4,7 +4,7 @@ import { SortTypes } from "@/features/sortSensei/constants";
 
 export const useLineValidation = () => {
   const { processList, mergeRanges, sortTypeRef, selectionElements, bubbleElements } = useSortContext();
-  const { inputCellValues } = useTableContext();
+  const { userInputTable: inputCellValues } = useTableContext();
 
   /* Check if cell is in merge range*/
   const isValueInMergeRange = (currentStep: number, currentColumn: number): boolean => {

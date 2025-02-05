@@ -3,8 +3,8 @@ import { useGetPoints } from "../hooks/useGetPoints";
 import styles from "./ProgressBar.module.css";
 
 const ProgressBar = () => {
-  const { cellValidation } = useTableContext();
-  const { currentPoints, totalPoints } = useGetPoints(cellValidation);
+  const { cellsValidation: cellsValidation } = useTableContext();
+  const { currentPoints, totalPoints } = useGetPoints(cellsValidation);
 
   return (
     <div

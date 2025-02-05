@@ -9,14 +9,14 @@ import { useTutorialModalContext } from "@features/sortSensei/context";
 const cx = classNames.bind(styles);
 
 const ListRow = () => {
-  const { processList } = useSortContext();
+  const { sharedArray } = useSortContext();
   const [isMarked, setIsMarked] = useState<boolean>(false);
   const { highlightRefs } = useTutorialModalContext();
 
   return (
     <div ref={highlightRefs.listRow} className={cx("start-row-container")}>
       <span className={cx("list-index")}>List</span>
-      {processList[0].map((_, index) => (
+      {sharedArray.map((_, index) => (
         <ListCell key={index} columnIndex={index} isMarked={isMarked} setIsMarked={setIsMarked} />
       ))}
     </div>

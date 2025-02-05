@@ -5,7 +5,11 @@ import { useTableContext } from "../context/TableContext";
 
 export const useTableCell = () => {
   const { processList } = useSortContext();
-  const { inputCellsRef, inputCellValues, setInputCellValues } = useTableContext();
+  const {
+    tableCellsRef: tableCellsRef,
+    userInputTable: inputCellValues,
+    setUserInputTable: setUserInputTable,
+  } = useTableContext();
 
   /**
    * Focuses the input element at the given row and column index. This is used
@@ -14,7 +18,7 @@ export const useTableCell = () => {
    * @param columnIndex The index of the column
    */
   const focusCell = (rowIndex: number, columnIndex: number): void => {
-    const inputElement = inputCellsRef.current[rowIndex]?.[columnIndex];
+    const inputElement = tableCellsRef.current[rowIndex]?.[columnIndex];
     if (inputElement) {
       // Focus the input element in the table
       inputElement.focus();
@@ -40,7 +44,7 @@ export const useTableCell = () => {
     if ((Number(value) >= MIN_INPUT_RANGE && Number(value) <= MAX_INPUT_RANGE) || value === "") {
       const updatedValues = [...inputCellValues];
       updatedValues[rowIndex][columnIndex] = value; // Update the specific index with new value
-      setInputCellValues(updatedValues); // Update the state
+      setUserInputTable(updatedValues); // Update the state
     }
   };
 

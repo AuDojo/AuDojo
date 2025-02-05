@@ -11,18 +11,18 @@ import buttonStyles from "./Buttons.module.css";
  */
 const CheckAllButton = () => {
   const { step, setStep, processList } = useSortContext();
-  const { cellValidation, setCellValidation } = useTableContext();
+  const { cellsValidation: cellsValidation, setCellsValidation: setCellsValidation } = useTableContext();
   const { validateLine } = useLineValidation();
 
   // step === next empty row
   const handleCheckAll = () => {
-    const updated = [...cellValidation];
+    const updated = [...cellsValidation];
 
     for (let i = step; i < processList.length; i++) {
       updated[i] = validateLine(i);
     }
 
-    setCellValidation(updated);
+    setCellsValidation(updated);
     setStep(processList.length);
   };
 

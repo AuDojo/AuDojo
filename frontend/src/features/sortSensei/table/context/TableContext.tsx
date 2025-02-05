@@ -3,13 +3,13 @@ import React, { createContext, use, useRef, useState } from "react";
 import { getInitTableStates } from "../utils/tableUtils";
 
 interface TableContextProps {
-  inputCellValues: string[][];
-  setInputCellValues: React.Dispatch<React.SetStateAction<string[][]>>;
+  userInputTable: string[][];
+  setUserInputTable: React.Dispatch<React.SetStateAction<string[][]>>;
 
-  cellValidation: (boolean | null)[][];
-  setCellValidation: React.Dispatch<React.SetStateAction<(boolean | null)[][]>>;
+  cellsValidation: (boolean | null)[][];
+  setCellsValidation: React.Dispatch<React.SetStateAction<(boolean | null)[][]>>;
 
-  inputCellsRef: React.RefObject<(HTMLInputElement | null)[][]>;
+  tableCellsRef: React.RefObject<(HTMLInputElement | null)[][]>;
 }
 
 const TableContext = createContext<TableContextProps | undefined>(undefined);
@@ -18,18 +18,18 @@ export const TableProvider = ({ children }: { children: React.ReactNode }) => {
   const { processList } = useSortContext();
   const { initInputCellValues, initCellValidation, initInputCells } = getInitTableStates(processList);
 
-  const [inputCellValues, setInputCellValues] = useState<string[][]>(initInputCellValues);
-  const [cellValidation, setCellValidation] = useState<(boolean | null)[][]>(initCellValidation);
-  const inputCellsRef = useRef<(HTMLInputElement | null)[][]>(initInputCells);
+  const [userInputTable, setUserInputTable] = useState<string[][]>(initInputCellValues);
+  const [cellsValidation, setCellsValidation] = useState<(boolean | null)[][]>(initCellValidation);
+  const tableCellsRef = useRef<(HTMLInputElement | null)[][]>(initInputCells);
 
   return (
     <TableContext
       value={{
-        inputCellValues,
-        cellValidation,
-        setInputCellValues,
-        setCellValidation,
-        inputCellsRef,
+        userInputTable,
+        cellsValidation,
+        setUserInputTable,
+        setCellsValidation,
+        tableCellsRef,
       }}
     >
       {children}

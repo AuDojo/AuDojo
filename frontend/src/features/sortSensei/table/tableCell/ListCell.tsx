@@ -17,10 +17,10 @@ interface ListCellProps {
 const cx = classNames.bind(styles);
 
 const ListCell = ({ columnIndex, isMarked, setIsMarked }: ListCellProps): JSX.Element => {
-  const { sortTypeRef } = useSortContext();
-  const { inputCellValues, inputCellsRef } = useTableContext();
+  const { sortTypeRef, sharedArray } = useSortContext();
+  const { tableCellsRef: tableCellsRef } = useTableContext();
   const { handleCellKeyDown } = useTableCell();
-  const cellValue = inputCellValues[0]?.[columnIndex] || "";
+  const cellValue = sharedArray[columnIndex] || "";
   return (
     <>
       <input
@@ -28,13 +28,13 @@ const ListCell = ({ columnIndex, isMarked, setIsMarked }: ListCellProps): JSX.El
         value={cellValue}
         readOnly={true}
         ref={(el) => {
-          if (inputCellsRef.current[0]) {
-            inputCellsRef.current[0][columnIndex] = el;
+          if (tableCellsRef.current[0]) {
+            tableCellsRef.current[0][columnIndex] = el;
           }
         }}
         onKeyDown={(event) => handleCellKeyDown(event, 0, columnIndex)}
       />
-      {sortTypeRef.current === SortTypes.MergeSort && columnIndex != inputCellValues[0].length - 1 && (
+      {sortTypeRef.current === SortTypes.MergeSort && columnIndex != sharedArray.length - 1 && (
         <Separator isMarked={isMarked} setIsMarked={setIsMarked} />
       )}
     </>

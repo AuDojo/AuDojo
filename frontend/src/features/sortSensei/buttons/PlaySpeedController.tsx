@@ -20,7 +20,7 @@ const PlaySpeedController = () => {
   const { step, setStep, processList } = useSortContext();
   const [selectedSpeedIndex, setSelectedSpeedIndex] = useState<number>(DEFAULT_SPEED_INDEX);
   const { validateLine } = useLineValidation();
-  const { setCellValidation } = useTableContext();
+  const { setCellsValidation: setCellsValidation } = useTableContext();
   const { isPlaying, setIsPlaying, timeoutRef, clearPlayBackTimer } = useButtonContext();
 
   const handlePlayPause = () => {
@@ -43,7 +43,7 @@ const PlaySpeedController = () => {
       // create timer
       timeoutRef.current = setInterval(() => {
         // cell validation
-        setCellValidation((prev) => {
+        setCellsValidation((prev) => {
           const updated = [...prev];
           updated[step] = validateLine(step);
           return updated;
@@ -65,7 +65,7 @@ const PlaySpeedController = () => {
     isPlaying,
     processList.length,
     selectedSpeedIndex,
-    setCellValidation,
+    setCellsValidation,
     setStep,
     step,
     timeoutRef,

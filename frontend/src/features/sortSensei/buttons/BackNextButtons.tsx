@@ -12,7 +12,7 @@ import { useLineValidation } from "./hooks/useLineValidation";
 const BackNextButtons = () => {
   // step === next empty row
   const { step, setStep, processList } = useSortContext();
-  const { setCellValidation } = useTableContext();
+  const { setCellsValidation: setCellsValidation } = useTableContext();
   const { validateLine } = useLineValidation();
   const { clearPlayBackTimer } = useButtonContext();
 
@@ -23,7 +23,7 @@ const BackNextButtons = () => {
     // stop auto checking line (playbutton timer) when back is clicked
     clearPlayBackTimer();
 
-    setCellValidation((prev) => {
+    setCellsValidation((prev) => {
       const updated = [...prev];
       updated[step - 1] = Array(processList[step - 1].length).fill(null);
       return updated;
@@ -39,7 +39,7 @@ const BackNextButtons = () => {
     // stop auto checking line (playbutton timer) when next is clicked
     clearPlayBackTimer();
 
-    setCellValidation((prev) => {
+    setCellsValidation((prev) => {
       const updated = [...prev];
       updated[step] = validateLine(step);
       return updated;
