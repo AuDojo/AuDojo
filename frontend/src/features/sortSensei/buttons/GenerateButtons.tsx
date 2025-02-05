@@ -2,22 +2,20 @@ import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE } from
 import { useSortContext, useTutorialModalContext } from "@/features/sortSensei/context";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useTableContext } from "../table/context";
-import { initTableStates } from "../table/utils/initTableStates";
+import { useResetTable } from "../table/hooks/useResetTable";
 import buttonStyles from "./Button.module.css";
 import { useButtonContext } from "./context";
 
-const GenerateButtons = () => {
+const GenerateButtonsBackup = () => {
   const { setSharedArray, setStep, sharedArray, processList } = useSortContext();
-  const { setCellValidation, setInputCellValues } = useTableContext();
   const [customArray, setCustomArray] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [arrayLength, setArrayLength] = useState<number>(sharedArray.length);
   const [errorMessage, setErrorMessage] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
-
   const { clearPlayBackTimer } = useButtonContext();
   const { highlightRefs } = useTutorialModalContext();
+  const { resetTable } = useResetTable();
   const { t } = useTranslation("sortsensei");
 
   // Set input value in submit field to the current array
@@ -72,18 +70,17 @@ const GenerateButtons = () => {
       setTimeout(() => setErrorMessage(""), 2200);
       return;
     }
-    setStep(1);
     setSharedArray(array);
+    resetTable();
+    setStep(1);
 
-    const { initCellValidation, initInputCellValues } = initTableStates(array);
-    setCellValidation(initCellValidation);
-    setInputCellValues(initInputCellValues);
-
-    // setCustomArray("");
     setIsSubmitting(false);
   };
 
   const generateRandomArray = (length = 7, max = MAX_INPUT_RANGE) => {
+    if (isNaN(length)) {
+      return sharedArray;
+    }
     return Array.from({ length }, () => Math.floor(Math.random() * max + 1));
   };
 
@@ -92,8 +89,11 @@ const GenerateButtons = () => {
     clearPlayBackTimer();
     const array = generateRandomArray(arrayLength);
     setSharedArray(array);
+
+    // resetTable();
+
     setIsSubmitting(false);
-  }, [arrayLength, clearPlayBackTimer, setSharedArray, setStep]);
+  }, [arrayLength, clearPlayBackTimer, setSharedArray, setStep, resetTable]);
 
   const handleArrayLengthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value, 10);
@@ -186,4 +186,4 @@ const GenerateButtons = () => {
   );
 };
 
-export default GenerateButtons;
+export default GenerateButtonsBackup;
