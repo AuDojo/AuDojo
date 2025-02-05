@@ -4,7 +4,13 @@
   "tutorialModal": {},
   "button": {
     "new-random": "🎲 Random Array",
-    "new-custom": "🛠️ Custom Array"
+    "new-custom": "🛠️ Custom Array",
+    "back": "Back",
+    "next": "Next",
+    "check-all": "Check All",
+    "reset": "Reset",
+    "close": "Close",
+    "submit": "Submit"
   },
   "error-message": {
     "range": "Please enter numbers only in the range {{min}} to {{max}}.",

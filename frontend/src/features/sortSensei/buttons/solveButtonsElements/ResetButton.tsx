@@ -1,12 +1,14 @@
 import { useSortContext } from "@features/sortSensei/context";
 import { useTableContext } from "@features/sortSensei/table/context";
-import buttonStyles from "./Buttons.module.css";
-import { useButtonContext } from "./context";
+import { useButtonContext } from "@features/sortSensei/buttons/context";
+import { useTranslation } from "react-i18next";
+import buttonStyles from "./SolveButtons.module.css";
 
 const ResetButton = () => {
   const { setStep, processList } = useSortContext();
   const { setUserInputTable: setUserInputTable, setCellsValidation: setCellsValidation } = useTableContext();
   const { clearPlayBackTimer } = useButtonContext();
+  const { t } = useTranslation("sortsensei");
 
   const handleTryAgain = () => {
     setStep(1);
@@ -23,7 +25,7 @@ const ResetButton = () => {
 
   return (
     <button aria-label="Press [S]" data-tooltip="top" className={buttonStyles["reset-button"]} onClick={handleTryAgain}>
-      Reset ↺
+      {t("button.reset")} ↺
     </button>
   );
 };

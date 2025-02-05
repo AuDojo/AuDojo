@@ -1,7 +1,8 @@
 import { useSortContext } from "@features/sortSensei/context";
-import { useTableContext } from "../table/context";
-import { useLineValidation } from "./hooks/useLineValidation";
-import buttonStyles from "./Buttons.module.css";
+import { useTableContext } from "@features/sortSensei/table/context";
+import { useLineValidation } from "@features/sortSensei/buttons/hooks";
+import { useTranslation } from "react-i18next";
+import buttonStyles from "./SolveButtons.module.css";
 
 /**
  * CheckAllButton is a component that validates all user inputs up to the final step
@@ -13,6 +14,7 @@ const CheckAllButton = () => {
   const { step, setStep, processList } = useSortContext();
   const { cellsValidation: cellsValidation, setCellsValidation: setCellsValidation } = useTableContext();
   const { validateLine } = useLineValidation();
+  const { t } = useTranslation("sortsensei");
 
   // step === next empty row
   const handleCheckAll = () => {
@@ -33,7 +35,7 @@ const CheckAllButton = () => {
       onClick={handleCheckAll}
       className={buttonStyles["check-all-button"]}
     >
-      Check All ✔
+      {t("button.check-all")} ✔
     </button>
   );
 };

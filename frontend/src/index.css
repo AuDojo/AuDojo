@@ -10,6 +10,8 @@
   --overlap-layer: calc(var(--top-layer) / 2);
   --main-red: rgb(190, 30, 60);
   --main-darkblue: rgb(0, 63, 87);
+  --main-lightblue: rgb(116, 192, 252);
+  --main-mediumblue: rgb(23, 128, 209);
 }
 
 body {
