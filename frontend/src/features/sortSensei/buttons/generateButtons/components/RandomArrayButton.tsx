@@ -9,33 +9,59 @@ import { useHotkeys } from "react-hotkeys-hook";
 import { HOTKEYS } from "@/lib/hotkeyMap";
 import buttonStyles from "@features/sortSensei/buttons/generateButtons/generateButtons.module.css";
 
-const RandomArrayButton = () => {
+interface RandomArrayButtonProps {
+  setIsSubmitting: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const RandomArrayButton = ({ setIsSubmitting }: RandomArrayButtonProps) => {
   const { t } = useTranslation("sortsensei");
   const { sharedArray, setSharedArray } = useSortContext();
   const [arrayLength, setArrayLength] = useState<number>(sharedArray.length);
   const { clearPlayBackTimer } = useButtonContext();
   const { resetTable } = useResetTable();
 
-  const handleRandomArray = () => {
+  /**
+   * Generates a new random array of the desired length
+   * and sets it as the shared array.
+   * Also resets the table and clears the playback timer.
+   */
+  const handleRandomArray = (): void => {
+    // do nothing when array length is out of range
     if (arrayLength < MIN_ARRAY_SIZE || arrayLength > MAX_ARRAY_SIZE) return;
-    setSharedArray(arrayLength ? generateRandomArray(arrayLength) : generateRandomArray(sharedArray.length));
+
+    // Generate a new random array of the desired length
+    const newSharedArray = arrayLength ? generateRandomArray(arrayLength) : generateRandomArray(sharedArray.length);
+
+    // Set the new array as the shared array
+    setSharedArray(newSharedArray);
+
+    // close the form
+    setIsSubmitting(false);
+
+    // Clear the playback timer
     clearPlayBackTimer();
+
+    // Reset the table
     resetTable();
   };
 
-  const handleArrayLengthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  /**
+   * Tracking the input for array length
+   */
+  const handleArrayLengthChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    // parse the input to a number
     const value = parseInt(event.target.value, 10);
+    // update array length
     setArrayLength(value);
   };
 
-  const handleArrayLengthKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (arrayLength < MIN_ARRAY_SIZE || arrayLength > MAX_ARRAY_SIZE) return;
-    if (event.key === "Enter") {
-      handleRandomArray();
-    }
-  };
-
   useHotkeys(HOTKEYS.Random, handleRandomArray, { preventDefault: true });
+
+  // only allow enter key when the input is focused
+  const ref = useHotkeys("Enter", handleRandomArray, {
+    preventDefault: true,
+    enableOnFormTags: ["input"],
+  });
 
   return (
     <>
@@ -50,13 +76,13 @@ const RandomArrayButton = () => {
 
       <div className={buttonStyles["length-container"]}>
         <input
+          ref={ref}
           className={buttonStyles["length-select"]}
           type="number"
           value={arrayLength}
           min={MIN_ARRAY_SIZE}
           max={MAX_ARRAY_SIZE}
           onChange={handleArrayLengthChange}
-          onKeyDown={handleArrayLengthKeyDown}
         />
         <div className={buttonStyles["length-info"]}>
           {t("length-input-info", { min: MIN_ARRAY_SIZE, max: MAX_ARRAY_SIZE })}

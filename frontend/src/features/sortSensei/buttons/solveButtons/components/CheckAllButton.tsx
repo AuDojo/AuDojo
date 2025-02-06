@@ -1,8 +1,4 @@
-import { useSortContext } from "@features/sortSensei/context";
-import { useTableContext } from "@features/sortSensei/table/context";
-import { useLineValidation } from "@/features/sortSensei/buttons/solveButtons/hooks";
 import { useTranslation } from "react-i18next";
-import { useHotkeys } from "react-hotkeys-hook";
 import { HOTKEYS } from "@/lib/hotkeyMap";
 import buttonStyles from "@features/sortSensei/buttons/solveButtons/SolveButtons.module.css";
 
@@ -12,25 +8,8 @@ import buttonStyles from "@features/sortSensei/buttons/solveButtons/SolveButtons
  *
  * @returns {JSX.Element} A button element that triggers the validation of all steps.
  */
-const CheckAllButton = () => {
-  const { step, setStep, processList } = useSortContext();
-  const { cellsValidation: cellsValidation, setCellsValidation: setCellsValidation } = useTableContext();
-  const { validateLine } = useLineValidation();
+const CheckAllButton = ({ handleCheckAll }: { handleCheckAll: () => void }) => {
   const { t } = useTranslation("sortsensei");
-
-  // step === next empty row
-  const handleCheckAll = () => {
-    const updated = [...cellsValidation];
-
-    for (let i = step; i < processList.length; i++) {
-      updated[i] = validateLine(i);
-    }
-
-    setCellsValidation(updated);
-    setStep(processList.length);
-  };
-
-  useHotkeys(HOTKEYS.CheckAll, handleCheckAll, { preventDefault: true });
 
   return (
     <button

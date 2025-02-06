@@ -1,23 +1,15 @@
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
-import { useHotkeys } from "react-hotkeys-hook";
 import { HOTKEYS } from "@/lib/hotkeyMap";
 
 import buttonStyles from "@features/sortSensei/buttons/generateButtons/generateButtons.module.css";
-import FormSubmitButtons from "./FormSubmitButtons";
 
-const CustomArrayButton = () => {
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+interface CustomArrayButtonProps {
+  isSubmitting: boolean;
+  toggleCustomArray: () => void;
+}
+
+const CustomArrayButton = ({ isSubmitting, toggleCustomArray }: CustomArrayButtonProps) => {
   const { t } = useTranslation("sortsensei");
-
-  const toggleCustomArray = () => {
-    setIsSubmitting(!isSubmitting);
-  };
-
-  useHotkeys(isSubmitting ? HOTKEYS.Close : HOTKEYS.Custom, toggleCustomArray, {
-    preventDefault: true,
-    enableOnFormTags: ["input"],
-  });
 
   return (
     <>
@@ -44,8 +36,6 @@ const CustomArrayButton = () => {
           {t("button.close")} ✗
         </button>
       )}
-
-      {<FormSubmitButtons isSubmitting={isSubmitting} setIsSubmitting={setIsSubmitting} />}
     </>
   );
 };
