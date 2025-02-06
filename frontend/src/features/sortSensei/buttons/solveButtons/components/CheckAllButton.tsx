@@ -1,10 +1,10 @@
 import { useSortContext } from "@features/sortSensei/context";
 import { useTableContext } from "@features/sortSensei/table/context";
-import { useLineValidation } from "@/features/sortSensei/buttons/solveButtonsElements/hooks";
+import { useLineValidation } from "@/features/sortSensei/buttons/solveButtons/hooks";
 import { useTranslation } from "react-i18next";
 import { useHotkeys } from "react-hotkeys-hook";
 import { HOTKEYS } from "@/lib/hotkeyMap";
-import buttonStyles from "./SolveButtons.module.css";
+import buttonStyles from "@features/sortSensei/buttons/solveButtons/SolveButtons.module.css";
 
 /**
  * CheckAllButton is a component that validates all user inputs up to the final step

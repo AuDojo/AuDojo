@@ -1,14 +1,13 @@
-import React from "react";
 import { useTranslation } from "react-i18next";
 import { useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSortContext } from "@features/sortSensei/context";
 import { useButtonContext } from "@features/sortSensei/buttons/context";
 import { useResetTable } from "@features/sortSensei/table/hooks/useResetTable";
-import { validateArray } from "@features/sortSensei/buttons/generateButtonsElements/utils";
-import { MAX_INPUT_LENGTH, ERROR_TIMEOUT } from "@features/sortSensei/constants";
-import buttonStyles from "./GenerateButtons.module.css";
-import { stringToArrayNumbers, limitInputValues } from "./utils";
+import { validateArray } from "@/features/sortSensei/buttons/generateButtons/utils";
+import { MAX_INPUT_LENGTH, ERROR_TIMEOUT } from "@features/sortSensei/buttons/contants";
+import { stringToArrayNumbers, limitInputValues } from "@/features/sortSensei/buttons/generateButtons/utils";
+import buttonStyles from "@features/sortSensei/buttons/generateButtons/generateButtons.module.css";
 
 interface FormInput {
   userInput: string;

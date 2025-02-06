@@ -1,11 +1,11 @@
 import { useSortContext } from "@features/sortSensei/context";
 import { useTableContext } from "@features/sortSensei/table/context";
 import { useButtonContext } from "@features/sortSensei/buttons/context";
-import { useLineValidation } from "@/features/sortSensei/buttons/solveButtonsElements/hooks";
+import { useLineValidation } from "@/features/sortSensei/buttons/solveButtons/hooks";
 import { useTranslation } from "react-i18next";
 import { useHotkeys } from "react-hotkeys-hook";
 import { HOTKEYS } from "@/lib/hotkeyMap";
-import buttonStyles from "./SolveButtons.module.css";
+import buttonStyles from "@features/sortSensei/buttons/solveButtons/SolveButtons.module.css";
 
 /**
  * BackNextButtons component renders two buttons that allow the user to navigate

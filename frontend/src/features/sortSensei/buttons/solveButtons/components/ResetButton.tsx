@@ -1,9 +1,10 @@
 import { useButtonContext } from "@features/sortSensei/buttons/context";
 import { useTranslation } from "react-i18next";
-import buttonStyles from "./SolveButtons.module.css";
 import { useResetTable } from "@features/sortSensei/table/hooks/useResetTable";
 import { useHotkeys } from "react-hotkeys-hook";
 import { HOTKEYS } from "@/lib/hotkeyMap";
+import buttonStyles from "@features/sortSensei/buttons/solveButtons/SolveButtons.module.css";
+
 const ResetButton = () => {
   const { resetTable } = useResetTable();
   const { clearPlayBackTimer } = useButtonContext();

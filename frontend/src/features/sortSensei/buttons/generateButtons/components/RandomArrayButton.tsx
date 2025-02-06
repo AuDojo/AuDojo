@@ -1,5 +1,5 @@
 import { MAX_ARRAY_SIZE, MIN_ARRAY_SIZE } from "@/features/sortSensei/constants";
-import { generateRandomArray } from "./utils";
+import { generateRandomArray } from "../utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSortContext } from "@/features/sortSensei/context";
@@ -7,7 +7,7 @@ import { useButtonContext } from "@/features/sortSensei/buttons/context";
 import { useResetTable } from "@features/sortSensei/table/hooks/useResetTable";
 import { useHotkeys } from "react-hotkeys-hook";
 import { HOTKEYS } from "@/lib/hotkeyMap";
-import buttonStyles from "./GenerateButtons.module.css";
+import buttonStyles from "@features/sortSensei/buttons/generateButtons/generateButtons.module.css";
 
 const RandomArrayButton = () => {
   const { t } = useTranslation("sortsensei");
@@ -58,7 +58,6 @@ const RandomArrayButton = () => {
           onChange={handleArrayLengthChange}
           onKeyDown={handleArrayLengthKeyDown}
         />
-
         <div className={buttonStyles["length-info"]}>
           {t("length-input-info", { min: MIN_ARRAY_SIZE, max: MAX_ARRAY_SIZE })}
         </div>

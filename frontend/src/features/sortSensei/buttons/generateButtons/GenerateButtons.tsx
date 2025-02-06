@@ -1,6 +1,7 @@
 import { useTutorialModalContext } from "@features/sortSensei/context";
-import { RandomArrayButton, CustomArrayButton } from ".";
-import styles from "./generateButtonsElements/GenerateButtons.module.css";
+import { RandomArrayButton, CustomArrayButton } from "./components";
+
+import styles from "./GenerateButtons.module.css";
 const GenerateButtons = () => {
   const { highlightRefs } = useTutorialModalContext();
 

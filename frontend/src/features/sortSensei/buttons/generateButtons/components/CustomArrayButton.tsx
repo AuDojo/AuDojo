@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { HOTKEYS } from "@/lib/hotkeyMap";
 
-import buttonStyles from "./GenerateButtons.module.css";
+import buttonStyles from "@features/sortSensei/buttons/generateButtons/generateButtons.module.css";
 import FormSubmitButtons from "./FormSubmitButtons";
 
 const CustomArrayButton = () => {

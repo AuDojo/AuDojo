@@ -1,6 +1,6 @@
 import { useTutorialModalContext } from "@features/sortSensei/context";
-import { BackNextButtons, CheckAllButton, ResetButton, PlaySpeedController } from ".";
-import styles from "./solveButtonsElements/SolveButtons.module.css";
+import { BackNextButtons, CheckAllButton, ResetButton, PlaySpeedController } from "./components";
+import styles from "./SolveButtons.module.css";
 
 // reset button: remove timer, reset current step, reset table cell
 // back next button: stop timer, set table, set step
