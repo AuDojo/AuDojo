@@ -6,7 +6,7 @@ import { validateArray } from "@/features/sortSensei/buttons/generateButtons/uti
 import { MAX_INPUT_LENGTH } from "@features/sortSensei/buttons/contants";
 import { stringToArrayNumbers, limitInputValues } from "@/features/sortSensei/buttons/generateButtons/utils";
 import { useSubmitForm, FormInput } from "@features/sortSensei/buttons/generateButtons/hooks";
-import buttonStyles from "@features/sortSensei/buttons/generateButtons/generateButtons.module.css";
+import buttonStyles from "@features/sortSensei/buttons/generateButtons/GenerateButtons.module.css";
 import { useButtonContext } from "@features/sortSensei/buttons/context";
 
 interface FormSubmitButtonsProps {
