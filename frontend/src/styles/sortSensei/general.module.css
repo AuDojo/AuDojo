@@ -10,7 +10,7 @@
 
 .outer-table-buttons-container {
   /* width: 1300px; */
-  min-height: 250px;
+  min-height: 280px;
   display: flex;
   justify-content: center;
   overflow-x: auto; /* Enable horizontal scrolling */
