@@ -7,7 +7,7 @@ import { useButtonContext } from "@/features/sortSensei/buttons/context";
 import { useResetTable } from "@features/sortSensei/table/hooks/useResetTable";
 import { useHotkeys } from "react-hotkeys-hook";
 import { HOTKEYS } from "@/lib/hotkeyMap";
-import buttonStyles from "@features/sortSensei/buttons/generateButtons/generateButtons.module.css";
+import buttonStyles from "@features/sortSensei/buttons/generateButtons/GenerateButtons.module.css";
 
 interface RandomArrayButtonProps {
   setIsSubmitting: React.Dispatch<React.SetStateAction<boolean>>;
