@@ -5,7 +5,7 @@
   width: 190px;
   height: auto;
   position: absolute;
-  top: 30px;
+  top: 25px;
   left: -215px;
   background-color: white;
 }
@@ -36,17 +36,19 @@
   background-color: rgba(239, 213, 213, 0.4);
 }
 
-/* (hidden) buttons (close, input, submit)*/
+/* (hidden) buttons (close, input, submit, error message)*/
 .close-button,
 .submit-button {
   background-color: var(--main-red);
   color: white;
 }
+
 .submit-button {
   margin-bottom: 10px;
 }
 
-.input-field {
+.input-field,
+.length-select {
   height: 30px;
   font-size: 15px;
   width: 100%;
@@ -60,7 +62,27 @@
 
 .error-message {
   color: var(--main-red);
-  font-size: 13px;
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 600;
   padding: 3px;
+  border: 2px dashed var(--main-mediumblue);
   margin-bottom: 10px;
+}
+
+/*-------------Random Array Button-------------*/
+.length-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.length-info {
+  margin: 0 10px;
+  font-size: 13.3px;
+  font-style: "italic";
+  color: grey;
+}
+
+.length-select {
+  width: 50px;
 }

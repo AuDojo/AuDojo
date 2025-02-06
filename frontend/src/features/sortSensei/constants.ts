@@ -7,6 +7,7 @@ export const MIN_INPUT_RANGE = 1;
 export const MAX_INPUT_RANGE = 99;
 
 export const MAX_INPUT_LENGTH = 70;
+export const ERROR_TIMEOUT = 2500;
 
 export const SortTypes: Record<string, SortType> = {
   MergeSort: "mergesort",
