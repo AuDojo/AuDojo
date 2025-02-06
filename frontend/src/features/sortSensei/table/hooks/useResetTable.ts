@@ -11,7 +11,7 @@ export const useResetTable = () => {
     setUserInputTable: setUserInputTable,
     tableCellsRef: tableCellsRef,
   } = useTableContext();
-  const { processList } = useSortContext();
+  const { processList, setStep } = useSortContext();
 
   const resetTable = useCallback(() => {
     // get the initial table states based on the givenarray
@@ -21,7 +21,8 @@ export const useResetTable = () => {
     setUserInputTable(initInputCellValues);
     setCellsValidation(initCellValidation);
     tableCellsRef.current = initInputCells;
-  }, [setUserInputTable, setCellsValidation, tableCellsRef, processList]);
+    setStep(1);
+  }, [processList, setUserInputTable, setCellsValidation, tableCellsRef, setStep]);
 
   return { resetTable };
 };

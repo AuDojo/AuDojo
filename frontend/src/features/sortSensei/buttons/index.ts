@@ -1,2 +1,3 @@
-export { default as GenerateButtons } from "./GenerateButtons";
-export { default as SolveButtons } from "./SolveButtons";
+// export { default as GenerateButtons } from "./GenerateButtonsBackup";
+export * from "./generateButtons";
+export * from "./solveButtons";

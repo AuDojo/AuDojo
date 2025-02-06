@@ -1,12 +1,12 @@
-import buttonStyles from "./Buttons.module.css";
 import { FaPlay } from "react-icons/fa";
 import { GiPauseButton } from "react-icons/gi";
 import { useEffect, useState } from "react";
-import { SPEED_VALUES, DEFAULT_SPEED_INDEX } from "./contants";
+import { SPEED_VALUES, DEFAULT_SPEED_INDEX } from "@features/sortSensei/buttons/contants";
 import { useSortContext } from "@features/sortSensei/context";
-import { useLineValidation } from "./hooks/useLineValidation";
+import { useLineValidation } from "@/features/sortSensei/buttons/solveButtons/hooks";
 import { useTableContext } from "@features/sortSensei/table/context";
-import { useButtonContext } from "./context";
+import { useButtonContext } from "@features/sortSensei/buttons/context";
+import buttonStyles from "@features/sortSensei/buttons/solveButtons/SolveButtons.module.css";
 
 /**
  * PlaySpeedController component renders a "Play" button that allows the user to

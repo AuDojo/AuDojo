@@ -4,10 +4,16 @@
   "tutorialModal": {},
   "button": {
     "new-custom": "🛠️ Eigenes Array",
-    "new-random": "🎲 Zufälliges Array"
+    "new-random": "🎲 Zufälliges Array",
+    "back": "Zurück",
+    "next": "Weiter",
+    "check-all": "Alle prüfen",
+    "reset": "Zurücksetzen",
+    "close": "Schließen",
+    "submit": "Fertig"
   },
   "error-message": {
-    "range": "Bitte gebe nur Zahlen zwischen den Werten {{min}} und {{max}} ein.",
+    "range": "Bitte gebe nur Zahlen zwischen {{min}} und {{max}} ein.",
     "to-few": "Bitte gebe mindestens {{min}} Zahlen ein.",
     "to-many": "Bitte gebe höchstens {{max}} Zahlen ein."
   },
