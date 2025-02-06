@@ -44,7 +44,7 @@ jobs:
 
       # Step 3: Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: npm install --frozen-lockfile
 
       # Step 4: Build the project
       - name: Build project
