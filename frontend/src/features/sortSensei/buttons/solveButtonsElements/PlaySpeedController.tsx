@@ -3,7 +3,7 @@ import { GiPauseButton } from "react-icons/gi";
 import { useEffect, useState } from "react";
 import { SPEED_VALUES, DEFAULT_SPEED_INDEX } from "@features/sortSensei/buttons/contants";
 import { useSortContext } from "@features/sortSensei/context";
-import { useLineValidation } from "@features/sortSensei/buttons/hooks";
+import { useLineValidation } from "@features/sortSensei/buttons/solveButtonsElements/hooks";
 import { useTableContext } from "@features/sortSensei/table/context";
 import { useButtonContext } from "@features/sortSensei/buttons/context";
 import buttonStyles from "./SolveButtons.module.css";

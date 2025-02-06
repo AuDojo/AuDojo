@@ -1,6 +1,6 @@
 import { useSortContext } from "@features/sortSensei/context";
 import { useTableContext } from "@features/sortSensei/table/context";
-import { useLineValidation } from "@features/sortSensei/buttons/hooks";
+import { useLineValidation } from "@/features/sortSensei/buttons/solveButtonsElements/hooks";
 import { useTranslation } from "react-i18next";
 import buttonStyles from "./SolveButtons.module.css";
 
