@@ -1,5 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { useHotkeys } from "react-hotkeys-hook";
+import { HOTKEYS } from "@/lib/hotkeyMap";
 
 import buttonStyles from "./GenerateButtons.module.css";
 import FormSubmitButtons from "./FormSubmitButtons";
@@ -12,13 +14,18 @@ const CustomArrayButton = () => {
     setIsSubmitting(!isSubmitting);
   };
 
+  useHotkeys(isSubmitting ? HOTKEYS.Close : HOTKEYS.Custom, toggleCustomArray, {
+    preventDefault: true,
+    enableOnFormTags: ["input"],
+  });
+
   return (
     <>
       {!isSubmitting && (
         // CUSTOM array button
         <button
           className={buttonStyles["custom-array-button"]}
-          aria-label="Custom [C]"
+          aria-label={`Custom [${HOTKEYS.Custom}]`}
           data-tooltip="top"
           onClick={toggleCustomArray}
         >
@@ -30,7 +37,7 @@ const CustomArrayButton = () => {
         // CLOSE button
         <button
           className={buttonStyles["close-button"]}
-          aria-label="Close [C]"
+          aria-label={`Close [${HOTKEYS.Close[0]}]`}
           data-tooltip="top"
           onClick={toggleCustomArray}
         >

@@ -3,7 +3,10 @@ import { useTableContext } from "@features/sortSensei/table/context";
 import { useButtonContext } from "@features/sortSensei/buttons/context";
 import { useLineValidation } from "@/features/sortSensei/buttons/solveButtonsElements/hooks";
 import { useTranslation } from "react-i18next";
+import { useHotkeys } from "react-hotkeys-hook";
+import { HOTKEYS } from "@/lib/hotkeyMap";
 import buttonStyles from "./SolveButtons.module.css";
+
 /**
  * BackNextButtons component renders two buttons that allow the user to navigate
  * through the steps of the sorting algorithm.
@@ -50,12 +53,15 @@ const BackNextButtons = () => {
     setStep(step + 1);
   };
 
+  useHotkeys(HOTKEYS.BackButton, handleGoBack, { preventDefault: true });
+  useHotkeys(HOTKEYS.NextButton, handleGoNext, { preventDefault: true });
+
   return (
     <div className={buttonStyles["arrow-buttons-container"]}>
-      <button aria-label="Press [J]" data-tooltip="top" onClick={handleGoBack}>
+      <button aria-label={`Press [${HOTKEYS.BackButton}]`} data-tooltip="top" onClick={handleGoBack}>
         ← {t("button.back")}
       </button>
-      <button aria-label="Press [K]" data-tooltip="top" onClick={handleGoNext}>
+      <button aria-label={`Press [${HOTKEYS.NextButton}]`} data-tooltip="top" onClick={handleGoNext}>
         {t("button.next")} →
       </button>
     </div>

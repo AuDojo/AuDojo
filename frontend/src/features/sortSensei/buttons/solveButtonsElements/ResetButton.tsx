@@ -2,6 +2,8 @@ import { useButtonContext } from "@features/sortSensei/buttons/context";
 import { useTranslation } from "react-i18next";
 import buttonStyles from "./SolveButtons.module.css";
 import { useResetTable } from "@features/sortSensei/table/hooks/useResetTable";
+import { useHotkeys } from "react-hotkeys-hook";
+import { HOTKEYS } from "@/lib/hotkeyMap";
 const ResetButton = () => {
   const { resetTable } = useResetTable();
   const { clearPlayBackTimer } = useButtonContext();
@@ -14,8 +16,15 @@ const ResetButton = () => {
     resetTable();
   };
 
+  useHotkeys(HOTKEYS.Reset, handleReset, { preventDefault: true });
+
   return (
-    <button aria-label="Press [S]" data-tooltip="top" className={buttonStyles["reset-button"]} onClick={handleReset}>
+    <button
+      aria-label={`Press [${HOTKEYS.Reset}]`}
+      data-tooltip="top"
+      className={buttonStyles["reset-button"]}
+      onClick={handleReset}
+    >
       {t("button.reset")} ↺
     </button>
   );

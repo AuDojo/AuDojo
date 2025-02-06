@@ -1,11 +1,13 @@
-import { useTranslation } from "react-i18next";
 import { MAX_ARRAY_SIZE, MIN_ARRAY_SIZE } from "@/features/sortSensei/constants";
-import buttonStyles from "./GenerateButtons.module.css";
-import { useState } from "react";
-import { useSortContext } from "@/features/sortSensei/context";
 import { generateRandomArray } from "./utils";
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useSortContext } from "@/features/sortSensei/context";
 import { useButtonContext } from "@/features/sortSensei/buttons/context";
 import { useResetTable } from "@features/sortSensei/table/hooks/useResetTable";
+import { useHotkeys } from "react-hotkeys-hook";
+import { HOTKEYS } from "@/lib/hotkeyMap";
+import buttonStyles from "./GenerateButtons.module.css";
 
 const RandomArrayButton = () => {
   const { t } = useTranslation("sortsensei");
@@ -33,11 +35,13 @@ const RandomArrayButton = () => {
     }
   };
 
+  useHotkeys(HOTKEYS.Random, handleRandomArray, { preventDefault: true });
+
   return (
     <>
       <button
         className={buttonStyles["random-array-button"]}
-        aria-label="Random [R]"
+        aria-label={`Random [${HOTKEYS.Random}]`}
         data-tooltip="top"
         onClick={handleRandomArray}
       >

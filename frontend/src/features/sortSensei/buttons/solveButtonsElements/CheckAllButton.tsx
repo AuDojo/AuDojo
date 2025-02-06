@@ -2,6 +2,8 @@ import { useSortContext } from "@features/sortSensei/context";
 import { useTableContext } from "@features/sortSensei/table/context";
 import { useLineValidation } from "@/features/sortSensei/buttons/solveButtonsElements/hooks";
 import { useTranslation } from "react-i18next";
+import { useHotkeys } from "react-hotkeys-hook";
+import { HOTKEYS } from "@/lib/hotkeyMap";
 import buttonStyles from "./SolveButtons.module.css";
 
 /**
@@ -28,9 +30,11 @@ const CheckAllButton = () => {
     setStep(processList.length);
   };
 
+  useHotkeys(HOTKEYS.CheckAll, handleCheckAll, { preventDefault: true });
+
   return (
     <button
-      aria-label="Press [A]"
+      aria-label={`Press [${HOTKEYS.CheckAll}]`}
       data-tooltip="top"
       onClick={handleCheckAll}
       className={buttonStyles["check-all-button"]}

@@ -7,7 +7,6 @@ import { useButtonContext } from "@features/sortSensei/buttons/context";
 import { useResetTable } from "@features/sortSensei/table/hooks/useResetTable";
 import { validateArray } from "@features/sortSensei/buttons/generateButtonsElements/utils";
 import { MAX_INPUT_LENGTH, ERROR_TIMEOUT } from "@features/sortSensei/constants";
-
 import buttonStyles from "./GenerateButtons.module.css";
 import { stringToArrayNumbers, limitInputValues } from "./utils";
 
