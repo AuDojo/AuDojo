@@ -13,7 +13,7 @@
     "submit": "Submit"
   },
   "error-message": {
-    "range": "Please enter numbers only in the range {{min}} to {{max}}.",
+    "range": "Please enter numbers only from {{min}} to {{max}}.",
     "to-few": "Please enter at least {{min}} numbers.",
     "to-many": "Please enter at most {{max}} numbers."
   },
