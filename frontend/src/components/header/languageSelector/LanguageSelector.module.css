@@ -31,6 +31,12 @@
   object-fit: contain;
 }
 
+
+.globeContainer:hover {
+  /* Wandelt das schwarze icon in unsere mein-red farbe um. Mithilfe von https://isotropic.co/tool/hex-color-to-css-filter/ */
+  filter: invert(15%) sepia(43%) saturate(6881%) hue-rotate(338deg) brightness(95%) contrast(88%);
+}
+
 /* Dropdown-Menü */
 .dropdown {
   position: absolute;
@@ -56,6 +62,7 @@
 
 .dropdownItem:hover {
   background-color: #f0f0f0;
+  color: var(--main-red);
 }
 
 /* Flaggen-Icons in den Dropdown-Optionen */
