@@ -1,7 +1,7 @@
 /* Hauptcontainer für den Language Selector */
 .languageSelector {
   position: fixed; /* Globus rechts platzieren */
-  top: 36px; /* Vertikal zentrieren */
+  top: 30px; /* Vertikal zentrieren */
   right: 50px; /* Abstand vom rechten Rand */
   transform: translateY(-50%); /* Perfekte vertikale Zentrierung */
   cursor: pointer;
@@ -9,32 +9,36 @@
 
 /* Globus-Icon */
 .globeContainer {
-  width: 25px;
-  height: 30px;
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* background-color: #c84f4f; */
 }
 
 .globeIcon {
   width: 50%;
-  height: 100%;
+  height: 50%;
   object-fit: contain;
 }
 
-/* Globus-Icon */
-.globeContainer {
-  width: 30px;
-  height: 30px;
+.languageSelector:hover .dropdown {
+  display: block;
 }
 
-.globeIcon {
-  width: 75%;
-  height: 75%;
-  object-fit: contain;
+.globeContainer:hover {
+  /* Wandelt das schwarze icon in unsere mein-red farbe um. Mithilfe von https://isotropic.co/tool/hex-color-to-css-filter/ */
+  filter: invert(15%) sepia(43%) saturate(6881%) hue-rotate(338deg) brightness(95%) contrast(88%);
 }
 
 /* Dropdown-Menü */
 .dropdown {
+  display: none;
   position: absolute;
-  top: 25px; /* Abstand unter dem Globus-Icon */
+  top: 45px; /* Abstand unter dem Globus-Icon */
   right: 0;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -56,6 +60,7 @@
 
 .dropdownItem:hover {
   background-color: #f0f0f0;
+  color: var(--main-red);
 }
 
 /* Flaggen-Icons in den Dropdown-Optionen */
