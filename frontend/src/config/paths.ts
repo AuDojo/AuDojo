@@ -3,8 +3,8 @@ export const paths = {
   kontakt: "/kontakt",
 
   // Legal
-  datenschutz: "/datenschutz",
-  impressum: "/impressum",
+  datenschutz: "https://www.tu-braunschweig.de/datenschutzerklaerung",
+  impressum: "https://www.tu-braunschweig.de/impressum",
 
   // SortSensei
   mergeSort: "/mergesort",
