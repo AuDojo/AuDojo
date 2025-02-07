@@ -1,9 +1,10 @@
 import { SortTypes } from "@/features/sortSensei/constants";
 import { useSortContext } from "@/features/sortSensei/context/SortContext";
-import { useTableCell } from "@features/sortSensei/table/hooks";
+import { mergeRefs } from "@/lib/mergeRefs";
 import classNames from "classnames/bind";
 import { JSX, useMemo } from "react";
 import { useTableContext } from "../context/TableContext";
+import { useCellChange, useCellHotkeys } from "./hooks";
 import styles from "./TableCell.module.css";
 
 interface TableCellProps {
@@ -17,18 +18,15 @@ const cx = classNames.bind(styles);
 const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
   const { processList, step, mergeRanges, sortTypeRef, pivotElements, selectionElements, bubbleElements } =
     useSortContext();
-  const {
-    userInputTable: inputCellValues,
-    tableCellsRef: tableCellsRef,
-    cellsValidation: cellsValidation,
-  } = useTableContext();
-  const { handleCellChange, handleCellKeyDown } = useTableCell();
+  const { userInputTable, tableCellsRef, cellsValidation } = useTableContext();
+  const { handleCellChange } = useCellChange();
+  const hotkeyRefs = useCellHotkeys(rowIndex, columnIndex);
 
   // Memoize derived values to prevent unnecessary re-renders
   const cellData = useMemo(() => {
     const sortType = sortTypeRef.current;
     const num = processList[rowIndex][columnIndex];
-    const inputCellValue = inputCellValues[rowIndex]?.[columnIndex] || "";
+    const inputCellValue = userInputTable[rowIndex]?.[columnIndex] || "";
     const validation = cellsValidation[rowIndex][columnIndex];
 
     let pivotPair: [number, number];
@@ -74,7 +72,7 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
     processList,
     rowIndex,
     columnIndex,
-    inputCellValues,
+    userInputTable,
     cellsValidation,
     pivotElements,
     mergeRanges,
@@ -120,13 +118,15 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
         })}
         value={rowIndex < step ? cellData.num || "" : cellData.inputCellValue}
         readOnly={rowIndex < step}
-        ref={(el) => {
-          if (tableCellsRef.current[rowIndex]) {
-            tableCellsRef.current[rowIndex][columnIndex] = el;
-          }
-        }}
+        ref={mergeRefs(
+          (el) => {
+            if (tableCellsRef.current[rowIndex]) {
+              tableCellsRef.current[rowIndex][columnIndex] = el;
+            }
+          },
+          ...hotkeyRefs
+        )}
         onChange={(event) => rowIndex >= step && handleCellChange(event.target.value, rowIndex, columnIndex)}
-        onKeyDown={(event) => handleCellKeyDown(event, rowIndex, columnIndex)}
         placeholder={rowIndex === 1 && columnIndex === 0 ? "Edit" : ""}
       />
     </td>

@@ -1,6 +1,6 @@
-import { useTranslation } from "react-i18next";
-import { HOTKEYS } from "@/lib/hotkeyMap";
+import { HOTKEYS } from "@/config/hotkeyMap";
 import buttonStyles from "@features/sortSensei/buttons/solveButtons/SolveButtons.module.css";
+import { useTranslation } from "react-i18next";
 
 /**
  * CheckAllButton is a component that validates all user inputs up to the final step

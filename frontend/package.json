@@ -10,7 +10,7 @@
     "lint": "eslint --max-warnings=0 --cache .",
     "format": "prettier --write --cache .",
     "preview": "vite preview",
-    "prepare": "cd .. && husky install frontend/.husky || true"
+    "prepare": "cd .. && husky frontend/.husky || true"
   },
   "dependencies": {
     "@tanstack/query-sync-storage-persister": "^5.66.0",
@@ -45,7 +45,6 @@
     "eslint": "^9.19.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-only-warn": "^1.1.0",
     "eslint-plugin-prettier": "^5.2.3",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^5.1.0",

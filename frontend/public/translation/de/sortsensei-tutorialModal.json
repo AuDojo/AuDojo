@@ -1,7 +1,7 @@
 {
   "start": {
     "title": "Wilkommen 👋",
-    "content": "Wilkommen zu SortSensei! Lass uns anfangen."
+    "content": "Wilkommen zu SortSensei! Lass uns anfangen :)"
   },
   "create": {
     "title": "1. 🚀 Erstelle Dein Array",
@@ -9,7 +9,7 @@
   },
   "input": {
     "title": "2. ✍️ Füge Deine Lösungen Ein",
-    "content": "Füge deine sortier Lösung in die Tabelle ein. (Es müssen nicht alle Elemente eingegeben werden)"
+    "content": "Füge deine sortierte Lösung in die Tabelle ein."
   },
   "split": {
     "title": "3. 🖍️ Teile Das Array",

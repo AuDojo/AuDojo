@@ -2,7 +2,7 @@ import js from "@eslint/js";
 import pluginQuery from "@tanstack/eslint-plugin-query";
 import prettierConfig from "eslint-config-prettier";
 import importPlugin from "eslint-plugin-import";
-import "eslint-plugin-only-warn"; // Changes eslint errors into warnings, remove if not needed
+// import "eslint-plugin-only-warn"; // Changes eslint errors into warnings, remove if not needed
 import prettierPlugin from "eslint-plugin-prettier";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
