@@ -16,21 +16,7 @@ function LanguageSelector() {
 
   const handleLanguageChange = (code: string) => {
     i18n.changeLanguage(code);
-    // setIsDropdownOpen(false); // Schließt das Dropdown nach der Auswahl
   };
-
-  // const handleClickOutside = (event: MouseEvent) => {
-  //   if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-  //     setIsDropdownOpen(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, []);
 
   return (
     <div className={menuStyles.languageSelector} ref={dropdownRef}>
@@ -40,7 +26,6 @@ function LanguageSelector() {
       </div>
 
       {/* Dropdown-Menü */}
-      {/* {isDropdownOpen && ( */}
       <div className={menuStyles.dropdown}>
         {LANGUAGES.map(({ code, label, flag }) => (
           <div key={code} className={menuStyles.dropdownItem} onClick={() => handleLanguageChange(code)}>
@@ -49,7 +34,6 @@ function LanguageSelector() {
           </div>
         ))}
       </div>
-      {/* )} */}
     </div>
   );
 }
