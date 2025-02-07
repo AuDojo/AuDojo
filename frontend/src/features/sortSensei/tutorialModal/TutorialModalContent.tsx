@@ -5,6 +5,7 @@ import { useTutorialSteps } from "./context";
 import { useTutorialModal } from "./hooks";
 import { NavButtons } from "./navButtons";
 import { ProgressBar } from "./progressBar";
+import { useTranslation } from "react-i18next";
 import parse from "html-react-parser";
 import styles from "./TutorialModalContent.module.css";
 
@@ -14,6 +15,7 @@ const cx = classNames.bind(styles);
 const TutorialModalContent = () => {
   const { isOpen, closeModal } = useTutorialModal();
   const { step } = useTutorialSteps();
+  const { t } = useTranslation("sortsensei-tutorialModal");
 
   if (!isOpen) {
     return <></>;
@@ -21,8 +23,8 @@ const TutorialModalContent = () => {
   return (
     <>
       <dialog open={isOpen} className={cx("dialog", `step-${step}`)}>
-        <h2>{tutorialSteps[step].title}</h2>
-        <p>{parse(tutorialSteps[step].content)}</p>
+        <h2>{t(tutorialSteps[step].title)}</h2>
+        <p>{parse(t(tutorialSteps[step].content))}</p>
         <ProgressBar min={0} max={tutorialSteps.length - 1} />
         <NavButtons closeModal={closeModal} />
         <CloseButton onClick={closeModal} />

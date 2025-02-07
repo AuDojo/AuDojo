@@ -3,28 +3,28 @@ import { RefKeys } from "../types";
 export const HIGHLIGHT_CLASS = "highlight";
 //TODO : this is tutorial for mergeort
 export const tutorialSteps: { title: string; content: string; key?: RefKeys }[] = [
-  { title: "Welcome 👋", content: "Welcome to SortSensei! Let's get started." },
+  { title: "start.title", content: "start.content" },
   {
-    title: "1. 🚀 Create Your Array",
-    content: "Create a custom array or generate a random one.",
+    title: "create.title",
+    content: "create.content",
     key: "generateButtons",
   },
   {
-    title: "2. ✍️ Input Your Solution",
-    content: `Enter your sorting solution in the table. (Not all elements need to be entered)" `,
+    title: "input.title",
+    content: "input.content",
     key: "sortingTable",
   },
   {
-    title: "3. 🖍️ Split the array",
-    content: "Click on the <strong>Line</strong> between numbers to split the array.",
+    title: "split.title",
+    content: "split.content",
     key: "listRow",
   },
   {
-    title: "4. ✅ Validate Your Solution",
-    content: "Use these buttons to validate your solution.",
+    title: "validate.title",
+    content: "validate.content",
     key: "solveButtons",
   },
-  { title: "🎉  Ready to Sort!", content: "Now you can start sorting!" },
+  { title: "end.title", content: "end.content" },
 ];
 
 export type TutorialStep = (typeof tutorialSteps)[number];
