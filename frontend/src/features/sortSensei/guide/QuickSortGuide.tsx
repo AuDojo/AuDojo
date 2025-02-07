@@ -14,7 +14,7 @@ const QuickSortGuide = () => {
       return "Starting Quick Sort!";
     }
     if (step === 1) {
-      let lastElement = processList[0][processList[0].length - 1];
+      const lastElement = processList[0][processList[0].length - 1];
       return <>{parse(t("quickSort.guide.choose", { lastElement: lastElement }))}</>;
     } else if (step >= 2) {
       const prevArray = processList[step - 2];
