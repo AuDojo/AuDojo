@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { useForm } from "react-hook-form";
+import { UseFormClearErrors, UseFormSetError, UseFormSetValue } from "react-hook-form";
 import { useSortContext } from "@features/sortSensei/context";
 import { useResetTable } from "@features/sortSensei/table/hooks/useResetTable";
 import { ERROR_TIMEOUT } from "@features/sortSensei/buttons/contants";
@@ -8,11 +8,16 @@ export interface FormInput {
   userInput: string;
 }
 
-export const useSubmitForm = (setIsSubmitting: (value: boolean) => void) => {
+export const useSubmitForm = (
+  setIsSubmitting: (value: boolean) => void,
+  setError: UseFormSetError<FormInput>,
+  clearErrors: UseFormClearErrors<FormInput>,
+  setValue: UseFormSetValue<FormInput>
+) => {
   const { resetTable } = useResetTable();
   const timeRef = useRef<NodeJS.Timeout | null>(null);
   const { sharedArray, setSharedArray } = useSortContext();
-  const { setError, clearErrors, setValue } = useForm<FormInput>({ mode: "onChange" });
+  // const { setError, clearErrors, setValue } = useForm<FormInput>({ mode: "onChange" });
 
   /**
    * Clear the error message with a delay.
