@@ -7,5 +7,5 @@ function addTitle(str: string) {
 export function useSetTitle(to: string) {
   useEffect(() => {
     document.title = addTitle(to);
-  }, []);
+  }, [to]);
 }

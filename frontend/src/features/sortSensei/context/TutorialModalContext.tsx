@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode, use, useRef } from "react";
-import { RefKeys } from "../tutorialModal/types";
+import { RefKeys } from "../components/tutorialModal/types";
 
 // Define types for our context state
 interface ModalContextProps {

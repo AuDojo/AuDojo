@@ -1,8 +1,8 @@
 import { SHARED_ARRAY_KEY } from "@/config/localStorage";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { createContext, ReactNode, use, useRef, useState } from "react";
+import { useSortData } from "../api/postArray";
 import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE, SortTypes } from "../constants";
-import { useSortData } from "../hooks/useSortData";
 import { SortType } from "../types";
 
 // Define the structure of your context
