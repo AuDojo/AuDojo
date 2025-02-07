@@ -1,2 +1,2 @@
+export * from "./useCellChange";
 export * from "./useCellHotkeys";
-export * from "./useTableCell";

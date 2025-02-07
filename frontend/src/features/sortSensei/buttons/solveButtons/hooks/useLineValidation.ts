@@ -1,10 +1,10 @@
+import { SortTypes } from "@/features/sortSensei/constants";
 import { useSortContext } from "@features/sortSensei/context/SortContext";
 import { useTableContext } from "@features/sortSensei/table/context";
-import { SortTypes } from "@/features/sortSensei/constants";
 
 export const useLineValidation = () => {
   const { processList, mergeRanges, sortTypeRef, selectionElements, bubbleElements } = useSortContext();
-  const { userInputTable: inputCellValues } = useTableContext();
+  const { userInputTable } = useTableContext();
 
   /* Check if cell is in merge range*/
   const isValueInMergeRange = (currentStep: number, currentColumn: number): boolean => {
@@ -32,7 +32,7 @@ export const useLineValidation = () => {
   const validateLine = (currentStep: number): boolean[] => {
     if (currentStep >= processList.length) return [];
     const correctValues = processList[currentStep];
-    const userValues = inputCellValues[currentStep];
+    const userValues = userInputTable[currentStep];
     const sortType = sortTypeRef.current;
 
     const validationResult = userValues.map((value, currentColumn): boolean => {
