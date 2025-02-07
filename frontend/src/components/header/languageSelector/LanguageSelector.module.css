@@ -31,6 +31,9 @@
   object-fit: contain;
 }
 
+.languageSelector:hover .dropdown {
+  display: block;
+}
 
 .globeContainer:hover {
   /* Wandelt das schwarze icon in unsere mein-red farbe um. Mithilfe von https://isotropic.co/tool/hex-color-to-css-filter/ */
@@ -39,6 +42,7 @@
 
 /* Dropdown-Menü */
 .dropdown {
+  display: none;
   position: absolute;
   top: 25px; /* Abstand unter dem Globus-Icon */
   right: 0;
