@@ -2,7 +2,7 @@ import i18n from "@/translation/i18n";
 import deFlag from "@assets/de.png";
 import enFlag from "@assets/gb.png";
 import globeIcon from "@assets/globeicon.png"; // Globus-Icon importieren
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import menuStyles from "./LanguageSelector.module.css";
 
 const LANGUAGES = [
@@ -11,7 +11,6 @@ const LANGUAGES = [
 ];
 
 function LanguageSelector() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleLanguageChange = (code: string) => {
@@ -20,8 +19,8 @@ function LanguageSelector() {
 
   return (
     <div className={menuStyles.languageSelector} ref={dropdownRef}>
-      {/* Globus-Icon mit Klickfunktion */}
-      <div className={menuStyles.globeContainer} onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+      {/* Globus-Icon mit Hoverfunktion */}
+      <div className={menuStyles.globeContainer}>
         <img src={globeIcon} alt="Globe Icon" className={menuStyles.globeIcon} />
       </div>
 
