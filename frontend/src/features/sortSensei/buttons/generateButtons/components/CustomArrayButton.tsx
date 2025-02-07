@@ -1,5 +1,5 @@
+import { HOTKEYS } from "@/config/hotkeyMap";
 import { useTranslation } from "react-i18next";
-import { HOTKEYS } from "@/lib/hotkeyMap";
 
 import buttonStyles from "@features/sortSensei/buttons/generateButtons/GenerateButtons.module.css";
 

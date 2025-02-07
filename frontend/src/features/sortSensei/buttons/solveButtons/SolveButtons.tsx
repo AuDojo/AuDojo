@@ -1,11 +1,11 @@
-import { useHotkeys } from "react-hotkeys-hook";
-import { HOTKEYS } from "@/lib/hotkeyMap";
-import { useTutorialModalContext, useSortContext } from "@features/sortSensei/context";
+import { HOTKEYS } from "@/config/hotkeyMap";
+import { useLineValidation } from "@/features/sortSensei/buttons/solveButtons/hooks";
+import { useButtonContext } from "@features/sortSensei/buttons/context";
+import { useSortContext, useTutorialModalContext } from "@features/sortSensei/context";
 import { useTableContext } from "@features/sortSensei/table/context";
 import { useResetTable } from "@features/sortSensei/table/hooks/useResetTable";
-import { useButtonContext } from "@features/sortSensei/buttons/context";
-import { useLineValidation } from "@/features/sortSensei/buttons/solveButtons/hooks";
-import { BackNextButtons, CheckAllButton, ResetButton, PlaySpeedController } from "./components";
+import { useHotkeys } from "react-hotkeys-hook";
+import { BackNextButtons, CheckAllButton, PlaySpeedController, ResetButton } from "./components";
 import styles from "./SolveButtons.module.css";
 
 const SolveButtons = () => {

@@ -1,6 +1,6 @@
-import { HOTKEYS } from "@/lib/hotkeyMap";
-import { useTranslation } from "react-i18next";
+import { HOTKEYS } from "@/config/hotkeyMap";
 import buttonStyles from "@features/sortSensei/buttons/solveButtons/SolveButtons.module.css";
+import { useTranslation } from "react-i18next";
 
 const ResetButton = ({ handleReset }: { handleReset: () => void }) => {
   const { t } = useTranslation("sortsensei");

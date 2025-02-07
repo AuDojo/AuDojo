@@ -1,8 +1,8 @@
+import { HOTKEYS } from "@/config/hotkeyMap";
 import { useTutorialModalContext } from "@features/sortSensei/context";
-import { RandomArrayButton, CustomArrayButton, FormSubmitButtons } from "./components";
 import { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
-import { HOTKEYS } from "@/lib/hotkeyMap";
+import { CustomArrayButton, FormSubmitButtons, RandomArrayButton } from "./components";
 import styles from "./GenerateButtons.module.css";
 
 const GenerateButtons = () => {

@@ -1,1 +1,2 @@
-export { useTableCell } from "./useTableCell";
+export * from "./useGetPoints";
+export * from "./useResetTable";

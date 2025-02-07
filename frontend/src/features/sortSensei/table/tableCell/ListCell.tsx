@@ -1,11 +1,12 @@
-import { useTableCell } from "@features/sortSensei/table/hooks";
+import { SortTypes } from "@/features/sortSensei/constants";
+import { useSortContext } from "@/features/sortSensei/context";
+import { mergeRefs } from "@/lib/mergeRefs";
 import classNames from "classnames/bind";
 import { JSX } from "react";
 import { useTableContext } from "../context/TableContext";
-import styles from "./TableCell.module.css";
-import { useSortContext } from "@/features/sortSensei/context";
-import { SortTypes } from "@/features/sortSensei/constants";
 import Separator from "./cellSeparator/Separator";
+import { useCellHotkeys } from "./hooks";
+import styles from "./TableCell.module.css";
 
 interface ListCellProps {
   columnIndex: number;
@@ -19,7 +20,7 @@ const cx = classNames.bind(styles);
 const ListCell = ({ columnIndex, isMarked, setIsMarked }: ListCellProps): JSX.Element => {
   const { sortTypeRef, sharedArray } = useSortContext();
   const { tableCellsRef: tableCellsRef } = useTableContext();
-  const { handleCellKeyDown } = useTableCell();
+  const hotkeyRefs = useCellHotkeys(0, columnIndex);
   const cellValue = sharedArray[columnIndex] || "";
   return (
     <>
@@ -27,12 +28,14 @@ const ListCell = ({ columnIndex, isMarked, setIsMarked }: ListCellProps): JSX.El
         className={cx("cell-input")}
         value={cellValue}
         readOnly={true}
-        ref={(el) => {
-          if (tableCellsRef.current[0]) {
-            tableCellsRef.current[0][columnIndex] = el;
-          }
-        }}
-        onKeyDown={(event) => handleCellKeyDown(event, 0, columnIndex)}
+        ref={mergeRefs(
+          (el) => {
+            if (tableCellsRef.current[0]) {
+              tableCellsRef.current[0][columnIndex] = el;
+            }
+          },
+          ...hotkeyRefs
+        )}
       />
       {sortTypeRef.current === SortTypes.MergeSort && columnIndex != sharedArray.length - 1 && (
         <Separator isMarked={isMarked} setIsMarked={setIsMarked} />
