@@ -32,7 +32,7 @@
   font-weight: 600;
 }
 .next-button {
-  background-color: rgb(245, 139, 0);
+  background-color: var(--main-red);
   color: white;
   outline: none;
 }
