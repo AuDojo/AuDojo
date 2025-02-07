@@ -3,8 +3,8 @@
   "speed-info": "Animation speed",
   "tutorialModal": {},
   "button": {
+    "new-custom": "✍️  Custom Array",
     "new-random": "🎲 Random Array",
-    "new-custom": "🛠️ Custom Array",
     "back": "Back",
     "next": "Next",
     "check-all": "Check All",
