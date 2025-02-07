@@ -9,7 +9,7 @@
   flex-direction: column;
   list-style: none;
   height: 100%;
-  margin-left: 20px;
+  margin-left: 30px;
 }
 @media (max-width: 1120px) {
   .sort-nav-list {
@@ -34,6 +34,10 @@
   text-underline-offset: 5px;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
+
+  /* Center Text vertically so that its easier to click the right one */
+  display: flex;
+  align-items: center;
 }
 
 .sort-nav-list-item:hover {
