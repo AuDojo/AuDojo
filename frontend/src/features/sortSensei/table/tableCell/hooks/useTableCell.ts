@@ -1,7 +1,7 @@
 import { MAX_INPUT_RANGE, MIN_INPUT_RANGE } from "@/features/sortSensei/constants";
 import { useSortContext } from "@/features/sortSensei/context/SortContext";
+import { useTableContext } from "@/features/sortSensei/table/context/TableContext";
 import React from "react";
-import { useTableContext } from "../context/TableContext";
 
 export const useTableCell = () => {
   const { processList } = useSortContext();

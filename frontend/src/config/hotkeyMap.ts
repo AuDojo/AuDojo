@@ -1,8 +1,4 @@
 export const HOTKEYS = {
-  ArrowUp: "up",
-  ArrowDown: "down",
-  ArrowLeft: "left",
-  ArrowRight: "right",
   Enter: "Enter",
   BackButton: "J",
   NextButton: "K",
@@ -11,4 +7,11 @@ export const HOTKEYS = {
   Random: "R",
   Custom: "C",
   Close: ["C", "Escape"],
+  table: {
+    moveUp: ["up", "shift+enter"],
+    moveDown: ["down", "enter"],
+    moveLeft: "left",
+    moveRight: "right",
+    escape: "esc",
+  },
 };

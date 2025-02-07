@@ -1,13 +1,13 @@
-import { MAX_ARRAY_SIZE, MIN_ARRAY_SIZE } from "@/features/sortSensei/constants";
-import { generateRandomArray } from "../utils";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useSortContext } from "@/features/sortSensei/context";
+import { HOTKEYS } from "@/config/hotkeyMap";
 import { useButtonContext } from "@/features/sortSensei/buttons/context";
-import { useResetTable } from "@features/sortSensei/table/hooks/useResetTable";
-import { useHotkeys } from "react-hotkeys-hook";
-import { HOTKEYS } from "@/lib/hotkeyMap";
+import { MAX_ARRAY_SIZE, MIN_ARRAY_SIZE } from "@/features/sortSensei/constants";
+import { useSortContext } from "@/features/sortSensei/context";
 import buttonStyles from "@features/sortSensei/buttons/generateButtons/GenerateButtons.module.css";
+import { useResetTable } from "@features/sortSensei/table/hooks/useResetTable";
+import { useState } from "react";
+import { useHotkeys } from "react-hotkeys-hook";
+import { useTranslation } from "react-i18next";
+import { generateRandomArray } from "../utils";
 
 interface RandomArrayButtonProps {
   setIsSubmitting: React.Dispatch<React.SetStateAction<boolean>>;
