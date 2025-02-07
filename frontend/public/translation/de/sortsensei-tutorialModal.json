@@ -1,0 +1,26 @@
+{
+  "start": {
+    "title": "Wilkommen 👋",
+    "content": "Wilkommen zu SortSensei! Lass uns anfangen."
+  },
+  "create": {
+    "title": "1. 🚀 Erstelle Dein Array",
+    "content": "Erstelle ein eigenes Array oder generiere ein zufälliges."
+  },
+  "input": {
+    "title": "2. ✍️ Füge Deine Lösungen Ein",
+    "content": "Füge deine sortier Lösung in die Tabelle ein. (Es müssen nicht alle Elemente eingegeben werden)"
+  },
+  "split": {
+    "title": "3. 🖍️ Teile Das Array",
+    "content": "Klicke auf die <strong>Linie</strong> zwischen den Nummern, um das Array zu teilen."
+  },
+  "validate": {
+    "title": "4. ✅ Validiere Deine Lösung",
+    "content": "Benutze diese Knöpfe, um deine Lösungen zu validieren."
+  },
+  "end": {
+    "title": "🎉  Bereit Zu Sortieren!",
+    "content": "Du kannst nun mit dem Sortieren anfangen!"
+  }
+}
