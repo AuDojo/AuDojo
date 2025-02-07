@@ -6,15 +6,15 @@ import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
 // Lazy imports of pages to reduce bundle size
-const Home = lazy(() => import("@pages/Home"));
-const Kontakt = lazy(() => import("@pages/Kontakt"));
-const MergeSort = lazy(() => import("@pages/MergeSort"));
-const QuickSort = lazy(() => import("@pages/QuickSort"));
-const BubbleSort = lazy(() => import("@pages/BubbleSort"));
-const SelectionSort = lazy(() => import("@pages/SelectionSort"));
+const Home = lazy(() => import("@/pages/Home/Home"));
+const Kontakt = lazy(() => import("@/pages/Kontakt/Kontakt"));
+const MergeSort = lazy(() => import("@/pages/SortSensei/MergeSort"));
+const QuickSort = lazy(() => import("@/pages/SortSensei/QuickSort"));
+const BubbleSort = lazy(() => import("@/pages/SortSensei/BubbleSort"));
+const SelectionSort = lazy(() => import("@/pages/SortSensei/SelectionSort"));
 const Tutorial = lazy(() => import("@pages/Tutorial"));
-const Datenschutz = lazy(() => import("@pages/Datenschutz"));
-const Impressum = lazy(() => import("@pages/Impressum"));
+const Datenschutz = lazy(() => import("@/pages/Legal/Datenschutz"));
+const Impressum = lazy(() => import("@/pages/Legal/Impressum"));
 const NotFound = lazy(() => import("@/pages/NotFound/NotFound"));
 const TreeTutor = lazy(() => import("@pages/TreeTutor"));
 

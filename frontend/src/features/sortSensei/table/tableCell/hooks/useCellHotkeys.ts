@@ -79,7 +79,6 @@ export const useCellHotkeys = (row: number, column: number) => {
     HOTKEYS.table.escape,
     (event) => {
       event.preventDefault();
-      console.log("escape");
       // Unfocus the input field
       (event.target as HTMLInputElement).blur();
     },

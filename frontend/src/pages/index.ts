@@ -1,9 +1,5 @@
-export { default as BubbleSort } from "./BubbleSort";
-export { default as Datenschutz } from "./Datenschutz";
-export { default as Home } from "./Home";
-export { default as Impressum } from "./Impressum";
-export { default as Kontakt } from "./Kontakt";
-export { default as MergeSort } from "./MergeSort";
-export { default as QuickSort } from "./QuickSort";
-export { default as SelectionSort } from "./SelectionSort";
+export { Home } from "./Home";
+export { Kontakt } from "./Kontakt";
+export { Datenschutz, Impressum } from "./Legal";
+export { BubbleSort, MergeSort, QuickSort, SelectionSort } from "./SortSensei";
 export { default as Tutorial } from "./Tutorial";

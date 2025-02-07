@@ -79,11 +79,12 @@
 
 .length-info {
   margin-left: 10px;
-  font-size: 13.3px;
+  font-size: 12px;
   font-style: "italic";
-  color: grey;
+  color: rgb(96, 96, 96);
 }
 
 .length-select {
   width: 50px;
+  border-radius: 4px;
 }
