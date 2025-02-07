@@ -2,7 +2,7 @@ import i18n from "@/translation/i18n";
 import deFlag from "@assets/de.png";
 import enFlag from "@assets/gb.png";
 import globeIcon from "@assets/globeicon.png"; // Globus-Icon importieren
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import menuStyles from "./LanguageSelector.module.css";
 
 const LANGUAGES = [
