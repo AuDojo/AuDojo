@@ -1,7 +1,7 @@
-import { Step } from "@features/tutorial/types";
+import { Step } from "@/features/tutorial/types";
 import { useState } from "react";
-import tutorialContent from "./StepVisualizer.module.css";
 import { useTranslation } from "react-i18next";
+import tutorialContent from "./StepVisualizer.module.css";
 
 interface VisualizerProps {
   steps: Step[]; // Define the type of the step prop

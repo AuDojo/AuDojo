@@ -1,5 +1,5 @@
-import partitionpseudo from "@features/tutorial/assets/quicksortpartition.png";
-import quicksortPseudo from "@features/tutorial/assets/quicksortpseudo.png";
+import partitionpseudo from "@/features/tutorial/assets/quicksortpartition.png";
+import quicksortPseudo from "@/features/tutorial/assets/quicksortpseudo.png";
 import tutorialContent from "./TutorialContent.module.css";
 const QuickSortImage = () => {
   return (

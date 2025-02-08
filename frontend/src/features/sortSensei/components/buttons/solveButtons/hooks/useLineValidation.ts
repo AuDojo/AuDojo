@@ -1,6 +1,6 @@
 import { useTableContext } from "@/features/sortSensei/components/table/context";
 import { SortTypes } from "@/features/sortSensei/constants";
-import { useSortContext } from "@features/sortSensei/context/SortContext";
+import { useSortContext } from "@/features/sortSensei/context/SortContext";
 
 export const useLineValidation = () => {
   const { processList, mergeRanges, sortTypeRef, selectionElements, bubbleElements } = useSortContext();

@@ -1,5 +1,5 @@
 import { HOTKEYS } from "@/config/hotkeyMap";
-import { useTutorialModalContext } from "@features/sortSensei/context";
+import { useTutorialModalContext } from "@/features/sortSensei/context";
 import { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { CustomArrayButton, FormSubmitButtons, RandomArrayButton } from "./components";

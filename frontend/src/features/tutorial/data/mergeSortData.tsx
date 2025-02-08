@@ -1,4 +1,4 @@
-import { Step } from "@features/tutorial/types";
+import { Step } from "@/features/tutorial/types";
 
 function whitecolor(): string {
   return "#f4f4f9";

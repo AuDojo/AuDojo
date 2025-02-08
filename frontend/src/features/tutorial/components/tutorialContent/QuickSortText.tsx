@@ -1,7 +1,7 @@
-import quicksortidee from "@features/tutorial/assets/quicksortidee.png";
-import tutorialContent from "./TutorialContent.module.css";
-import { useTranslation } from "react-i18next";
+import quicksortidee from "@/features/tutorial/assets/quicksortidee.png";
 import parse from "html-react-parser";
+import { useTranslation } from "react-i18next";
+import tutorialContent from "./TutorialContent.module.css";
 
 const QuickSortText = () => {
   const { t } = useTranslation("sortsensei-tutorial");

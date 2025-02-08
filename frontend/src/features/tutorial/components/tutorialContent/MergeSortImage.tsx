@@ -1,5 +1,5 @@
-import mergesortPseudo from "@features/tutorial/assets/mergeSortpseudo.png";
-import mergePseudo from "@features/tutorial/assets/mergepseudo.png";
+import mergesortPseudo from "@/features/tutorial/assets/mergeSortpseudo.png";
+import mergePseudo from "@/features/tutorial/assets/mergepseudo.png";
 import tutorialContent from "./TutorialContent.module.css";
 
 const MergeSortImage = () => {

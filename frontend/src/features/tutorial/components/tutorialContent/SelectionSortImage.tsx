@@ -1,4 +1,4 @@
-import selectionPseudo from "@features/tutorial/assets/selectionsortpseudo.jpg";
+import selectionPseudo from "@/features/tutorial/assets/selectionsortpseudo.jpg";
 import tutorialContent from "./TutorialContent.module.css";
 
 const SelectionSortImage = () => {

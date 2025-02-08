@@ -1,5 +1,5 @@
-import informatikzentrumJPG from "@assets/informatikzentrum.jpg";
-import { useSetTitle } from "@hooks/useSetTitle";
+import informatikzentrumJPG from "@/assets/informatikzentrum.jpg";
+import { useSetTitle } from "@/hooks/useSetTitle";
 import parse from "html-react-parser";
 import React from "react";
 import { useTranslation } from "react-i18next";

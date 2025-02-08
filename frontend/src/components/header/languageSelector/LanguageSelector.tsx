@@ -1,6 +1,6 @@
-import deFlag from "@assets/de.png";
-import enFlag from "@assets/gb.png";
-import globeIcon from "@assets/globeicon.png"; // Globus-Icon importieren
+import deFlag from "@/assets/de.png";
+import enFlag from "@/assets/gb.png";
+import globeIcon from "@/assets/globeicon.png"; // Globus-Icon importieren
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import menuStyles from "./LanguageSelector.module.css";

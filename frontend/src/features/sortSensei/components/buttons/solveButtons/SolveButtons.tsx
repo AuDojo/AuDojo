@@ -3,7 +3,7 @@ import { useButtonContext } from "@/features/sortSensei/components/buttons/conte
 import { useLineValidation } from "@/features/sortSensei/components/buttons/solveButtons/hooks";
 import { useTableContext } from "@/features/sortSensei/components/table/context";
 import { useResetTable } from "@/features/sortSensei/components/table/hooks/useResetTable";
-import { useSortContext, useTutorialModalContext } from "@features/sortSensei/context";
+import { useSortContext, useTutorialModalContext } from "@/features/sortSensei/context";
 import { useHotkeys } from "react-hotkeys-hook";
 import { BackNextButtons, CheckAllButton, PlaySpeedController, ResetButton } from "./components";
 import styles from "./SolveButtons.module.css";

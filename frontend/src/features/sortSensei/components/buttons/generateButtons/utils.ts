@@ -1,5 +1,5 @@
+import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE } from "@/features/sortSensei/constants";
 import i18n from "i18next";
-import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE } from "@features/sortSensei/constants";
 
 export const stringToArrayNumbers = (str: string): number[] => {
   return (

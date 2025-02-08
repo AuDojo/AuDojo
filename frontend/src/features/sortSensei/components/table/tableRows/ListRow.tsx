@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useTutorialModalContext } from "@/features/sortSensei/context";
 import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import classNames from "classnames/bind";
+import { useState } from "react";
 import ListCell from "../tableCell/ListCell";
 import styles from "./TableRow.module.css";
-import { useTutorialModalContext } from "@features/sortSensei/context";
 
 // Bind styles to classNames
 const cx = classNames.bind(styles);

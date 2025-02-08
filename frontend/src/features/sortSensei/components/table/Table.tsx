@@ -1,6 +1,6 @@
 import { Spinner } from "@/components/ui/spinner";
+import { useTutorialModalContext } from "@/features/sortSensei/context";
 import { useSortContext } from "@/features/sortSensei/context/SortContext";
-import { useTutorialModalContext } from "@features/sortSensei/context";
 import { JSX } from "react";
 import { IndexRow, InputRow, ListRow } from ".";
 import { ProgressBar } from "./progressBar";

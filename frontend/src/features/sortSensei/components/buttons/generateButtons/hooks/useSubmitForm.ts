@@ -1,6 +1,6 @@
 import { ERROR_TIMEOUT } from "@/features/sortSensei/components/buttons/contants";
 import { useResetTable } from "@/features/sortSensei/components/table/hooks/useResetTable";
-import { useSortContext } from "@features/sortSensei/context";
+import { useSortContext } from "@/features/sortSensei/context";
 import { useRef } from "react";
 import { UseFormClearErrors, UseFormSetError, UseFormSetValue } from "react-hook-form";
 

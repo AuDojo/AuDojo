@@ -2,7 +2,7 @@ import { DEFAULT_SPEED_INDEX, SPEED_VALUES } from "@/features/sortSensei/compone
 import { useButtonContext } from "@/features/sortSensei/components/buttons/context";
 import { useLineValidation } from "@/features/sortSensei/components/buttons/solveButtons/hooks";
 import { useTableContext } from "@/features/sortSensei/components/table/context";
-import { useSortContext } from "@features/sortSensei/context";
+import { useSortContext } from "@/features/sortSensei/context";
 import { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
 import { GiPauseButton } from "react-icons/gi";

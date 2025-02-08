@@ -1,4 +1,4 @@
-import bubblesortPseudo from "@features/tutorial/assets/bubblesortpseudo.png";
+import bubblesortPseudo from "@/features/tutorial/assets/bubblesortpseudo.png";
 import tutorialContent from "./TutorialContent.module.css";
 
 const BubbleSortImage = () => {

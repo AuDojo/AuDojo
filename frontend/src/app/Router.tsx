@@ -12,11 +12,11 @@ const MergeSort = lazy(() => import("@/pages/SortSensei/MergeSort"));
 const QuickSort = lazy(() => import("@/pages/SortSensei/QuickSort"));
 const BubbleSort = lazy(() => import("@/pages/SortSensei/BubbleSort"));
 const SelectionSort = lazy(() => import("@/pages/SortSensei/SelectionSort"));
-const Tutorial = lazy(() => import("@pages/Tutorial"));
+const Tutorial = lazy(() => import("@/pages/Tutorial"));
 const Datenschutz = lazy(() => import("@/pages/Legal/Datenschutz"));
 const Impressum = lazy(() => import("@/pages/Legal/Impressum"));
 const NotFound = lazy(() => import("@/pages/NotFound/NotFound"));
-const TreeTutor = lazy(() => import("@pages/TreeTutor"));
+const TreeTutor = lazy(() => import("@/pages/TreeTutor"));
 
 export const AppRouter = () => {
   return (

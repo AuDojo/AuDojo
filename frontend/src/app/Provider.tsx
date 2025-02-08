@@ -1,5 +1,5 @@
+import { MainErrorFallback } from "@/components/errors";
 import { persistOptions, queryConfig } from "@/lib/reactQuery";
-import { MainErrorFallback } from "@components/errors";
 import { QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
