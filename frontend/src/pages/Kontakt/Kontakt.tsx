@@ -261,6 +261,10 @@ function Kontakt() {
               </div>
             </div>
           </div>
+
+          <section className={kontaktStyles.credits}>
+            <i>Made with ❤️ by Maximo Strohmann, Jan Detmers, Minseo Kim, An Hoang and Thuy Trang Nguyen</i>
+          </section>
         </div>
       </div>
     </div>
