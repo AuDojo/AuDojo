@@ -7,7 +7,9 @@
 :root {
   /* CSS variables */
   --top-layer: 1000;
-  --overlap-layer: calc(var(--top-layer) / 2);
+  --overlap-layer: calc(var(--top-layer) - 2);
+  --header-layer: 100;
+
   --main-red: rgb(190, 30, 60);
   --main-darkblue: rgb(0, 63, 87);
   --main-lightblue: rgb(116, 192, 252);

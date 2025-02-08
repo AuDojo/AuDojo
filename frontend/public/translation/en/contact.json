@@ -9,12 +9,12 @@
     "subject": "Subject",
     "field": "Your Feedback*",
     "charLeft": "characters left",
-    "sendButton": "send Feedback",
+    "sendButton": "Send Feedback",
     "notice": "Fields marked with * must be filled"
   },
   "info": {
     "title": "Contact Information",
-    "sentence": "Your Feedback is important to us! Do not be afraid to make suggestions for improvement, problems or comments.",
+    "sentence": "Thank you for visiting our website :) <br/> We appreciate your feedback and suggestions! Reach out to us if you have any questions or concerns.",
     "institute": "Institute of Operating Systems and Computer Networks",
     "center": "Informatikzentrum",
     "address1": "Mühlenpfordstraße 23",

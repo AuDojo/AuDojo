@@ -1,5 +1,6 @@
 import informatikzentrumJPG from "@assets/informatikzentrum.jpg";
 import { useSetTitle } from "@hooks/useSetTitle";
+import parse from "html-react-parser";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import kontaktStyles from "./Kontakt.module.css";
@@ -238,10 +239,9 @@ function Kontakt() {
           </div>
           <div className={kontaktStyles.kontaktdetailsContainer}>
             <p>
-              {" "}
               {
-                t(
-                  "info.sentence"
+                parse(
+                  t("info.sentence")
                 ) /* Feedback ist uns wichtig! Scheut euch nicht davor Verbesserungsvorschläge oder Anmerkungen zu äußern. */
               }
             </p>

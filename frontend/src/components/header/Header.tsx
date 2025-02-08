@@ -13,7 +13,7 @@ const Header = () => {
   //Case: Client Width too small:  When the user clicks on hamburger icon, open the menu
   const { t } = useTranslation("header");
   const [isOpen, setOpen] = useState<boolean>(false);
-  const toogleMenu = () => {
+  const toggleMenu = () => {
     setOpen(!isOpen);
   };
 
@@ -24,7 +24,7 @@ const Header = () => {
       <HeaderLogo />
 
       {/* Change Header to Hamburger Menu if client clicks on hamburger icon */}
-      <nav className={`${headerStyles["menu-container"]} ${isOpen ? headerStyles.open : ""}`}>
+      <nav className={`${headerStyles["menu-container"]} ${isOpen ?? headerStyles.open}`}>
         <nav className={headerStyles["dropdown-container"]}>
           <LinkItem className="menu-item" to={paths.mergeSort} text="SortSensei &nbsp;" icon={iconDropdown} />
           <nav className={headerStyles["dropdown-content"]}>
@@ -38,8 +38,9 @@ const Header = () => {
         <LinkItem className="menu-item" to={paths.tutorial} text={t("example")} />
         <LinkItem className="menu-item" to={paths.kontakt} text={t("contact")} />
       </nav>
+      {/* <HelpIcon onClick={closeModal} /> */}
       <LanguageSelector />
-      <HamburgerIcon isOpen={isOpen} onClick={toogleMenu} />
+      <HamburgerIcon isOpen={isOpen} onClick={toggleMenu} />
     </header>
   );
 };

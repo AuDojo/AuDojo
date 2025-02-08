@@ -1,4 +1,4 @@
-import { SHARED_ARRAY_KEY } from "@/config/localStorage";
+import { localStorageKeys } from "@/config/localStorage";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { createContext, ReactNode, use, useRef, useState } from "react";
 import { useSortData } from "../api/postArray";
@@ -47,7 +47,7 @@ function isValidArray(value: unknown): value is number[] {
 export const SortProvider = ({ children, sortType }: { children: ReactNode; sortType: SortType }) => {
   const [step, setStep] = useState<number>(1);
   const [sharedArray, setSharedArray] = useLocalStorage<number[]>(
-    SHARED_ARRAY_KEY,
+    localStorageKeys.sharedArray,
     [7, 13, 5, 9, 10, 12, 1, 3, 2, 6, 25, 40],
     isValidArray
   );

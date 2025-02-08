@@ -76,7 +76,7 @@ export const useCellHotkeys = (row: number, column: number) => {
   );
 
   const escRef = useHotkeys<HTMLInputElement>(
-    HOTKEYS.table.escape,
+    HOTKEYS.table.unfocus,
     (event) => {
       event.preventDefault();
       // Unfocus the input field

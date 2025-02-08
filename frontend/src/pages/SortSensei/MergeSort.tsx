@@ -2,6 +2,7 @@ import { Loading } from "@/components/ui/loading";
 import { GenerateButtons, SolveButtons } from "@/features/sortSensei/components/buttons";
 import { ButtonContextProvider } from "@/features/sortSensei/components/buttons/context";
 import { MergeSortGuide } from "@/features/sortSensei/components/guide";
+import { HelpIcon } from "@/features/sortSensei/components/helpIcon";
 import { SideBarMenu } from "@/features/sortSensei/components/sideBarMenu";
 import { MergeSortVisualizer } from "@/features/sortSensei/components/sortVisualizer";
 import { SortingTable } from "@/features/sortSensei/components/table";
@@ -25,7 +26,6 @@ const MergeSortContent = () => {
 
   return (
     <div className={styles["main-container"]}>
-      <TutorialModal />
       <MergeSortGuide />
       <MergeSortVisualizer />
       <div className={styles["outer-table-buttons-container"]}>
@@ -48,7 +48,9 @@ const MergeSort = () => {
   useSetTitle("MergeSort");
   return (
     <TutorialModalProvider>
+      <HelpIcon />
       <SideBarMenu />
+      <TutorialModal />
       <SortProvider sortType={SortTypes.MergeSort}>
         <MergeSortContent />
       </SortProvider>
