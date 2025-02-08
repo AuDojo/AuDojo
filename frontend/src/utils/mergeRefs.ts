@@ -9,6 +9,8 @@
  *   const domRef = React.useRef();
  *   const mergedRef = mergeRefs(ref, domRef);
  *
+ *   return <div ref={mergedRef} />;
+ * });
  */
 export function mergeRefs<T>(...refs: React.ForwardedRef<T>[]): React.RefCallback<T> {
   return (node: T) => {
