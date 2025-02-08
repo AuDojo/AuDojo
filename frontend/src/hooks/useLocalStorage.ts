@@ -14,24 +14,19 @@ export function useLocalStorage<T>(
   initialValue: T,
   typeGuard?: (value: unknown) => value is T
 ): [T, (value: T | ((val: T) => T)) => void] {
+  if (!typeGuard) typeGuard = (value: unknown): value is T => typeof value === typeof initialValue;
+
   const [storedValue, setStoredValue] = useState<T>(() => {
     try {
       const storedValue = window.localStorage.getItem(key);
       if (storedValue) {
         const parsedValue = JSON.parse(storedValue);
-        if (typeGuard) {
-          // If the type guard is provided and the type is correct, use the stored value
-          if (typeGuard(parsedValue)) {
-            return parsedValue;
-          }
-          // If the type guard is provided and the type is incorrect, use the initialValue
-          return initialValue;
+        // If the type is correct, use the stored value
+        if (typeGuard(parsedValue)) {
+          return parsedValue;
         }
-        // If the type guard is not provided, use the stored value
-        return parsedValue;
       }
-
-      // If the key doesn't exist, use the initialValue
+      // If the key doesn't exist or type is incorrect, use the initialValue
       return initialValue;
     } catch (error) {
       console.error(`Error reading localStorage key ${key}`, error);
@@ -57,17 +52,21 @@ export function useLocalStorage<T>(
   };
 
   useEffect(() => {
-    const handleStorageChange = () => {
-      const storedValue = window.localStorage.getItem(key);
-      if (storedValue) {
-        const parsedValue = JSON.parse(storedValue);
-        if (typeGuard?.(parsedValue)) {
+    const handleStorageChange = (event: StorageEvent) => {
+      if (event.key !== key) return;
+
+      try {
+        const newValue = event.newValue ? JSON.parse(event.newValue) : initialValue;
+        if (typeGuard(newValue)) {
           // If the type is correct, update the component with the new value
-          setStoredValue(parsedValue);
+          setStoredValue(newValue);
         } else {
           // If the type is incorrect, reset the component to the initialValue
           setStoredValue(initialValue);
         }
+      } catch (error) {
+        console.error(`Error reading localStorage key ${key}`, error);
+        setStoredValue(initialValue);
       }
     };
 

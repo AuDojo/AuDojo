@@ -10,6 +10,7 @@ import { useSortContext } from "@/features/sortSensei/context";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { useDebounceCallback } from "usehooks-ts";
 import buttonStyles from "../GenerateButtons.module.css";
 
 interface FormSubmitButtonsProps {
@@ -67,7 +68,7 @@ const FormSubmitButtons = ({ isSubmitting, setIsSubmitting }: FormSubmitButtonsP
    * It validates the input and then calls either `submitUnchange`, `submitWithError` or `submitValid` depending on the result.
    * @param data The input data from the form.
    */
-  const onSubmit = (data: FormInput) => {
+  const onSubmit = useDebounceCallback((data: FormInput) => {
     const array = stringToArrayNumbers(data.userInput);
     const validateResult = validateArray(array);
 
@@ -86,7 +87,7 @@ const FormSubmitButtons = ({ isSubmitting, setIsSubmitting }: FormSubmitButtonsP
     // if the array is valid, submit the form
     clearPlayBackTimer(); // clear timer of auto checking line
     submitValid(array);
-  };
+  }, 100);
 
   return (
     <>

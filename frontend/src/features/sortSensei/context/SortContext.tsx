@@ -51,6 +51,9 @@ export const SortProvider = ({ children, sortType }: { children: ReactNode; sort
     [7, 13, 5, 9, 10, 12, 1, 3, 2, 6, 25, 40],
     isValidArray
   );
+  // Debounce setSharedArray to avoid too many requests to backend
+  // const debouncedSetSharedArray = useDebounceCallback(setSharedArray, 50);
+
   const sortTypeRef = useRef<SortType>(sortType ?? SortTypes.MergeSort);
 
   const { derivedData, isPending, error } = useSortData(sharedArray, sortTypeRef.current);
