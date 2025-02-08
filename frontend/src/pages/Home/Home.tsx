@@ -1,5 +1,5 @@
 import audoLogo from "@/assets/logo-audojo.png";
-import { HomeButtons } from "@/features/homepage/homeButtons";
+import { HomeButtons } from "@/features/home/homeButtons";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./Home.module.css";
