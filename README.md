@@ -51,13 +51,13 @@ Das Dojo ist nun unter http://localhost:5001/ erreichbar ☎️
 (1) Image erzeugen 🌱
 
 ```bash
-docker build -t AuDojo_Image .
+docker build -t audojo .
 ```
 
 (2) Container starten 🛫
 
 ```bash
-docker run -p 5001:5001 AuDojo_Image
+docker run -p 5001:5001 audojo
 ```
 
 (3) Laufende Container anzeigen 👓
