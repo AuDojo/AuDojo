@@ -1,7 +1,7 @@
 footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: right;
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -12,6 +12,7 @@ footer {
   color: var(--main-darkblue);
   text-decoration: none;
   padding: 2px 20px;
+  cursor: pointer;
 }
 @media (max-width: 900px) {
   .footer-content {
