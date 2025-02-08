@@ -1,9 +1,8 @@
-version: '3.8'
+version: "3.8"
 
 services:
   webapp:
     build: .
-    container_name: audojo_running
-    #ports:
-    #  - "5001:5001"
-
+    container_name: webapp
+    ports:
+      - "5001:5001"
