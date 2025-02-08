@@ -11,7 +11,7 @@
   position: fixed;
   top: 0;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-  z-index: 100;
+  z-index: var(--header-layer);
 }
 
 .menu-container {
@@ -63,13 +63,24 @@
   display: block;
 }
 
-@media (max-width: 950px) {
+/* Shrink the menu on smaller screens */
+@media (max-width: 1080px) {
   .menu-container {
     margin-left: 50px;
     column-gap: 5px;
   }
   .menu-item {
     width: 140px;
+  }
+}
+
+@media (max-width: 939px) {
+  .menu-container {
+    margin-left: 25px;
+  }
+  .menu-item {
+    width: 110px;
+    font-size: 1rem;
   }
 }
 

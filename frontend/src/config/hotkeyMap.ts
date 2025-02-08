@@ -7,11 +7,16 @@ export const HOTKEYS = {
   Random: "R",
   Custom: "C",
   Close: ["C", "Escape"],
+  tutorial: {
+    next: ["enter", "right"],
+    prev: ["shift+enter", "left"],
+    close: "esc",
+  },
   table: {
     moveUp: ["up", "shift+enter"],
     moveDown: ["down", "enter"],
     moveLeft: "left",
     moveRight: "right",
-    escape: "esc",
+    unfocus: "esc",
   },
 };

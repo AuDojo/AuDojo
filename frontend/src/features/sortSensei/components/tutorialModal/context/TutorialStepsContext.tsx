@@ -4,6 +4,7 @@ import { createContext, ReactNode, use, useCallback, useState } from "react";
 // Define types for our context state
 interface StepsContextProps {
   step: number;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
   handlePrevious: () => void;
   handleNext: () => void;
 }
@@ -16,10 +17,10 @@ export const TutorialStepsProvider = ({ children }: { children: ReactNode }) => 
   const handlePrevious = useCallback(() => setStep((prev) => Math.max(0, prev - 1)), []);
   const handleNext = useCallback(() => setStep((prev) => Math.min(tutorialSteps.length - 1, prev + 1)), []);
 
-  return <TutorialStepsContext value={{ step, handleNext, handlePrevious }}>{children}</TutorialStepsContext>;
+  return <TutorialStepsContext value={{ step, setStep, handleNext, handlePrevious }}>{children}</TutorialStepsContext>;
 };
 
-export const useTutorialSteps = () => {
+export const useTutorialStepsContext = () => {
   const context = use(TutorialStepsContext);
   if (!context) {
     throw new Error("useTutorialSteps must be used within a TutorialStepsProvider");

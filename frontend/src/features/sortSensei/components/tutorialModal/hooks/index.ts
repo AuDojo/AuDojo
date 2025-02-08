@@ -1,1 +1,1 @@
-export { useTutorialModal } from "./useTutorialModal";
+export { useTutorialEvents } from "./useTutorialEvents";
