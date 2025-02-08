@@ -244,3 +244,8 @@
 .closeButton:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+.credits {
+  margin-top: 16px;
+  font-size: 0.9rem;
+}
