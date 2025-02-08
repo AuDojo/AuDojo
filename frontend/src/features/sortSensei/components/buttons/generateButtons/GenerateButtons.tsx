@@ -24,7 +24,7 @@ const GenerateButtons = () => {
 
   return (
     <>
-      <div ref={highlightRefs.solveButtons} className={styles["generate-buttons-container"]}>
+      <div ref={highlightRefs.generateButtons} className={styles["generate-buttons-container"]}>
         <CustomArrayButton isSubmitting={isSubmitting} toggleCustomArray={toggleCustomArray} />
         <FormSubmitButtons isSubmitting={isSubmitting} setIsSubmitting={setIsSubmitting} />
         <RandomArrayButton setIsSubmitting={setIsSubmitting} />
