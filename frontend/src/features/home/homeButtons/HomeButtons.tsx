@@ -11,7 +11,7 @@ const HomeButtons = () => {
     <>
       <div className={styles["home-buttons-container"]}>
         <HomeButton link={paths.mergeSort} header="Sort Sensei" img={sortingPng} text={t("sortSenseiButton")} />
-        <HomeButton link={paths.treeTutor} header="Tree Tutor" img={treePng} text={t("treetutorButton")} />
+        <HomeButton disabled={true} link={paths.home} header="Tree Tutor" img={treePng} text={t("treetutorButton")} />
       </div>
     </>
   );
