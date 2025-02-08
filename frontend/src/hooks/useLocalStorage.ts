@@ -2,10 +2,6 @@ import { useEffect, useState } from "react";
 
 /**
  * A React hook that provides a way to read and write to the browser's localStorage.
- * The hook uses the `key` parameter to read and write to the correct localStorage key.
- * The `initialValue` parameter is used to initialize the value for the key if it doesn't exist.
- * The `typeGuard` parameter is an optional function that can be used to verify the type of the stored value.
- * If the type guard is provided and the stored value does not match the type, the initialValue is used instead.
  * When the value is updated, the hook will save the new value to localStorage.
  * The hook also listens for changes to the localStorage key and updates the component if the key changes.
  * @param key The key to store the value in localStorage
