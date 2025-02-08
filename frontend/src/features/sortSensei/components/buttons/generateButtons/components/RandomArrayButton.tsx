@@ -3,6 +3,7 @@ import { useButtonContext } from "@/features/sortSensei/components/buttons/conte
 import { useResetTable } from "@/features/sortSensei/components/table/hooks/useResetTable";
 import { MAX_ARRAY_SIZE, MIN_ARRAY_SIZE } from "@/features/sortSensei/constants";
 import { useSortContext } from "@/features/sortSensei/context";
+import parse from "html-react-parser";
 import { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useTranslation } from "react-i18next";
@@ -85,7 +86,7 @@ const RandomArrayButton = ({ setIsSubmitting }: RandomArrayButtonProps) => {
           onChange={handleArrayLengthChange}
         />
         <div className={buttonStyles["length-info"]}>
-          {t("length-input-info", { min: MIN_ARRAY_SIZE, max: MAX_ARRAY_SIZE })}
+          {parse(t("length-input-info", { min: MIN_ARRAY_SIZE, max: MAX_ARRAY_SIZE }))}
         </div>
       </div>
     </>

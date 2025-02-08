@@ -1,5 +1,5 @@
 {
-  "length-input-info": "Länge vom zufälligem Array: ({{min}}-{{max}})",
+  "length-input-info": "Länge des Arrays: <br /> ({{min}}-{{max}})",
   "speed-info": "Animations geschwindigkeit",
   "tutorialModal": {},
   "button": {
