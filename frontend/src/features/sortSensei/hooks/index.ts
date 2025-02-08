@@ -1,1 +1,0 @@
-export { useSortData } from "./useSortData";
