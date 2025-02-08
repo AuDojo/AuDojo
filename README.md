@@ -38,8 +38,8 @@ npm run dev # catch site-url from programm output
 ### Build 🏗️ && Run 🏃🏻
 
 ```bash
-npm run build
-npm run start
+npm run build # remove artifacts with `npm run clean`
+npm run start 
 ```
 
 Das Dojo ist nun unter http://localhost:5001/ erreichbar ☎️
