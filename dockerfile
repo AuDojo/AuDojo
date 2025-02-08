@@ -10,13 +10,14 @@ COPY frontend/package*.json frontend/
 COPY backend/package*.json backend/
 
 # Schritt 4: Installiere die Abhängigkeiten für das gesamte Projekt
-RUN npm run install --omit=dev
+RUN npm i --omit=dev
 
 # Schritt 5: Kopiere den gesamten Quellcode ins Arbeitsverzeichnis
 COPY . .
 
 
 # Schritt 6: Baue das gesamte Projekt (Frontend und Backend)
+RUN npm i
 RUN npm run build --omit=dev
 
 # Produktions-Stage: Nur das Notwendige kopieren
