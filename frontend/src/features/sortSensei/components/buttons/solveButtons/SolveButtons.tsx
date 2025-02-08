@@ -13,8 +13,8 @@ const SolveButtons = () => {
   const { resetTable } = useResetTable();
   const { clearPlayBackTimer } = useButtonContext();
   const { validateLine } = useLineValidation();
-  const { step, setStep, processList } = useSortContext();
-  const { cellsValidation: cellsValidation, setCellsValidation: setCellsValidation } = useTableContext();
+  const { step, setStep, processList, sharedArray } = useSortContext();
+  const { cellsValidation, setCellsValidation } = useTableContext();
 
   // step === next empty row
   /* Handles the "Back" button click event */
@@ -69,7 +69,7 @@ const SolveButtons = () => {
     // stop auto checking line (playbutton timer) when reset is clicked
     clearPlayBackTimer();
     // reset table
-    resetTable();
+    resetTable(sharedArray);
   };
 
   useHotkeys(HOTKEYS.CheckAll, handleCheckAll, { preventDefault: true, enableOnFormTags: ["input"] });

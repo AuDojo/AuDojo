@@ -21,14 +21,22 @@ const FormSubmitButtons = ({ isSubmitting, setIsSubmitting }: FormSubmitButtonsP
   const { sharedArray, processList } = useSortContext();
   const { t } = useTranslation("sortsensei");
   const { clearPlayBackTimer } = useButtonContext();
-  const { submitUnchange, submitWithError, submitValid } = useSubmitForm(setIsSubmitting);
 
   const {
     register,
     handleSubmit,
     setValue,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useForm<FormInput>({ mode: "onChange" });
+
+  const { submitUnchange, submitWithError, submitValid } = useSubmitForm(
+    setIsSubmitting,
+    setError,
+    clearErrors,
+    setValue
+  );
 
   // fill input field with the shared array whenever shared array changes
   useEffect(() => {
