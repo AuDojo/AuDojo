@@ -1,5 +1,6 @@
 import { HOTKEYS } from "@/config/hotkeyMap";
 import { useTutorialModalContext } from "@/features/sortSensei/context";
+import { useThrottle } from "@/hooks/useThrottleDebounce";
 import { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { CustomArrayButton, FormSubmitButtons, RandomArrayButton } from "./components";
@@ -13,9 +14,9 @@ const GenerateButtons = () => {
    * Toggles the state of the custom array form.
    * The form is hidden if not isSubmitting, and shown if isSubmitting.
    */
-  const toggleCustomArray = () => {
+  const toggleCustomArray = useThrottle(() => {
     setIsSubmitting(!isSubmitting);
-  };
+  });
 
   useHotkeys(isSubmitting ? HOTKEYS.Close : HOTKEYS.Custom, toggleCustomArray, {
     preventDefault: true,

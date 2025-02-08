@@ -7,6 +7,7 @@ import parse from "html-react-parser";
 import { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useTranslation } from "react-i18next";
+import { useDebounceCallback } from "usehooks-ts";
 import buttonStyles from "../GenerateButtons.module.css";
 import { generateRandomArray } from "../utils";
 
@@ -26,7 +27,7 @@ const RandomArrayButton = ({ setIsSubmitting }: RandomArrayButtonProps) => {
    * and sets it as the shared array.
    * Also resets the table and clears the playback timer.
    */
-  const handleRandomArray = (): void => {
+  const handleRandomArray = useDebounceCallback((): void => {
     // do nothing when array length is out of range
     if (arrayLength < MIN_ARRAY_SIZE || arrayLength > MAX_ARRAY_SIZE) return;
 
@@ -44,7 +45,7 @@ const RandomArrayButton = ({ setIsSubmitting }: RandomArrayButtonProps) => {
 
     // Reset the table
     resetTable(newSharedArray);
-  };
+  }, 100);
 
   /**
    * Tracking the input for array length
