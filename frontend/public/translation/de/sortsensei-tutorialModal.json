@@ -13,7 +13,7 @@
   },
   "split": {
     "title": "3. 🖍️ Teile Das Array",
-    "content": "Klicke auf die <strong>Linie</strong> zwischen den Nummern, um das Array zu teilen."
+    "content": "Klicke auf die <strong>Linie</strong> zwischen den Nummern, um das Array zu teilen. <i>(MergeSort)</i>"
   },
   "validate": {
     "title": "4. ✅ Validiere Deine Lösung",
