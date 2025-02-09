@@ -16,8 +16,8 @@ const mailRouting = require("./Mail/mailRouting");
 // make express deliver static frontend pages
 if (env === "production") {
   // console.log("produciton is true");
-  app.use(express.static(path.join(__dirname,".." ,"..", "frontend", "dist")));
-  app.use(express.static(path.join(__dirname,"..", "..", "frontend", "public")));
+  app.use(express.static(path.join(__dirname, "..", "..", "frontend", "dist")));
+  app.use(express.static(path.join(__dirname, "..", "..", "frontend", "public")));
   app.get("*", (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, "..", "..", "frontend", "dist", "index.html")); //our main page frontend/index.html is loaded
   });
@@ -28,5 +28,5 @@ app.use("/api/sorting", sortingRouting);
 app.use("/api/mail", mailRouting);
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  // console.log(`Server is running on port ${port}`);
 });
