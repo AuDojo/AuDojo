@@ -8,11 +8,11 @@
     "content": "Create a custom array or generate a random one."
   },
   "input": {
-    "title": "2. ✍️ Input Your Solution",
-    "content": "Enter your sorting solution in the table."
+    "title": "2. ✍️ Enter Your Solution",
+    "content": "Enter your sorted solution in the table."
   },
   "split": {
-    "title": "3. 🖍️ Split the array",
+    "title": "3. 🖍️ Split the Array",
     "content": "Click on the <strong>Line</strong> between numbers to split the array. <i>(MergeSort)</i>"
   },
   "validate": {
