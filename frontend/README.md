@@ -1,6 +1,6 @@
 # 🗄️ Project Structure
 
-> *Hint: `git commit` will automatically check linting with ESLint and Prettier. `git commit --no-verify` will skip that.*
+> _Hint: `git commit` will automatically check linting with ESLint and Prettier. `git commit --no-verify` will skip that._
 
 Most of the code lives in the `src` folder and looks something like this:
 
@@ -28,7 +28,9 @@ src
 |
 +-- styles            # shared styles used across the entire application
 |
-+-- translation       # translation configs, translatiion json's are in public/
++-- translation       # translation configs, translation json's are in public/
+|
++-- utils             # utility functions
 ```
 
 For easy scalability and maintenance, organize most of the code within the features folder. Each feature folder should contain code specific to that feature, keeping things neatly separated. This approach helps prevent mixing feature-related code with shared components, making it simpler to manage and maintain the codebase compared to having many files in a flat folder structure. By adopting this method, you can enhance collaboration, readability, and scalability in the application's architecture.
