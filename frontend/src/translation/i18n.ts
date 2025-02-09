@@ -1,6 +1,6 @@
 import i18n from "i18next";
 import LanguageDetector, { DetectorOptions } from "i18next-browser-languagedetector";
-import Backend from "i18next-http-backend";
+import Backend, { HttpBackendOptions } from "i18next-http-backend";
 import { initReactI18next } from "react-i18next";
 
 const detectionOptions: DetectorOptions = {
@@ -12,14 +12,12 @@ i18n
   .use(Backend)
   .use(initReactI18next)
   .use(LanguageDetector)
-  .init({
+  .init<HttpBackendOptions>({
     detection: detectionOptions,
     fallbackLng: "de",
     interpolation: {
       escapeValue: false,
     },
-
-    defaultNS: "home",
 
     backend: {
       loadPath: "translation/{{lng}}/{{ns}}.json",
