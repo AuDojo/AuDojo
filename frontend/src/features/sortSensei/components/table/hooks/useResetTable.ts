@@ -19,7 +19,6 @@ export const useResetTable = () => {
     (array: number[]) => {
       // Check for cached data
       const cachedData = getCachedData(array);
-      console.log("cachedData: ", cachedData);
       const newProcessList = cachedData?.processList ?? processList;
 
       // get the initial table states based on the givenarray

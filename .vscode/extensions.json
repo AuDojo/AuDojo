@@ -7,6 +7,8 @@
     // Prettier support
     "esbenp.prettier-vscode",
     // .editorconfig support
-    "EditorConfig.EditorConfig"
+    "EditorConfig.EditorConfig",
+    // i18next support
+    "lokalise.i18n-ally"
   ]
 }
