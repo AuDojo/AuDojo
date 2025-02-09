@@ -10,7 +10,7 @@
     "field": "Deine Nachricht*",
     "charLeft": "verbleibende Zeichen",
     "sendButton": "Nachricht senden",
-    "notice": "mit * markierte Felder sind Pflichtfelder"
+    "notice": "mit * markierte Felder sind Pflichtfelder."
   },
   "info": {
     "title": "Kontaktinformationen",
@@ -22,3 +22,4 @@
     "email": "audojo8@gmail.com"
   }
 }
+

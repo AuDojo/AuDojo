@@ -1,18 +1,18 @@
 {
   "start": {
-    "title": "Wilkommen 👋",
-    "content": "Wilkommen zu SortSensei! Lass uns anfangen :)"
+    "title": "Willkommen 👋",
+    "content": "Willkommen zu SortSensei! Lass uns anfangen :)"
   },
   "create": {
     "title": "1. 🚀 Erstelle Dein Array",
     "content": "Erstelle ein eigenes Array oder generiere ein zufälliges."
   },
   "input": {
-    "title": "2. ✍️ Füge Deine Lösungen Ein",
+    "title": "2. ✍️ Füge Deine Lösungen ein",
     "content": "Füge deine sortierte Lösung in die Tabelle ein."
   },
   "split": {
-    "title": "3. 🖍️ Teile Das Array",
+    "title": "3. 🖍️ Teile das Array",
     "content": "Klicke auf die <strong>Linie</strong> zwischen den Nummern, um das Array zu teilen. <i>(MergeSort)</i>"
   },
   "validate": {
@@ -20,7 +20,7 @@
     "content": "Benutze diese Knöpfe, um deine Lösungen zu validieren."
   },
   "end": {
-    "title": "🎉  Bereit Zu Sortieren!",
+    "title": "🎉  Bereit zum Sortieren!",
     "content": "Du kannst nun mit dem Sortieren anfangen!"
   }
 }
