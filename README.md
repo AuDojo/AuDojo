@@ -46,7 +46,17 @@ Das Dojo ist nun unter http://localhost:5001/ erreichbar ☎️
 
 ## Run AuDoJo in a Docker Container 🐋📦
 
-### Via Terminal 📟
+### Via docker-compose
+
+```bash
+# Run
+docker-compose up -d
+
+# Stop and delete container
+docker-compose down
+```
+
+### Via dockerfile 
 
 (1) Image erzeugen 🌱
 
