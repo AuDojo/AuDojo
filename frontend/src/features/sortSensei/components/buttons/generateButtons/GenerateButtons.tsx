@@ -7,7 +7,7 @@ import { CustomArrayButton, FormSubmitButtons, RandomArrayButton } from "./compo
 import styles from "./GenerateButtons.module.css";
 
 const GenerateButtons = () => {
-  const { highlightRefs } = useTutorialModalContext();
+  const { highlightRefs, isTutorialOpen } = useTutorialModalContext();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   /**
@@ -18,10 +18,16 @@ const GenerateButtons = () => {
     setIsSubmitting(!isSubmitting);
   });
 
-  useHotkeys(isSubmitting ? HOTKEYS.Close : HOTKEYS.Custom, toggleCustomArray, {
-    preventDefault: true,
-    enableOnFormTags: ["input"],
-  });
+  useHotkeys(
+    isSubmitting ? HOTKEYS.Close : HOTKEYS.Custom,
+    toggleCustomArray,
+    {
+      preventDefault: true,
+      enableOnFormTags: ["input"],
+      enabled: !isTutorialOpen,
+    },
+    [isSubmitting]
+  );
 
   return (
     <>

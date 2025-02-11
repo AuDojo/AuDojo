@@ -4,12 +4,13 @@ import { useLineValidation } from "@/features/sortSensei/components/buttons/solv
 import { useTableContext } from "@/features/sortSensei/components/table/context";
 import { useResetTable } from "@/features/sortSensei/components/table/hooks/useResetTable";
 import { useSortContext, useTutorialModalContext } from "@/features/sortSensei/context";
-import { useHotkeys } from "react-hotkeys-hook";
+import { useMemo } from "react";
+import { Options, useHotkeys } from "react-hotkeys-hook";
 import { BackNextButtons, CheckAllButton, PlaySpeedController, ResetButton } from "./components";
 import styles from "./SolveButtons.module.css";
 
 const SolveButtons = () => {
-  const { highlightRefs } = useTutorialModalContext();
+  const { highlightRefs, isTutorialOpen } = useTutorialModalContext();
   const { resetTable } = useResetTable();
   const { clearPlayBackTimer } = useButtonContext();
   const { validateLine } = useLineValidation();
@@ -72,10 +73,18 @@ const SolveButtons = () => {
     resetTable(sharedArray);
   };
 
-  useHotkeys(HOTKEYS.CheckAll, handleCheckAll, { preventDefault: true, enableOnFormTags: ["input"] });
-  useHotkeys(HOTKEYS.BackButton, handleGoBack, { preventDefault: true, enableOnFormTags: ["input"] });
-  useHotkeys(HOTKEYS.NextButton, handleGoNext, { preventDefault: true, enableOnFormTags: ["input"] });
-  useHotkeys(HOTKEYS.Reset, handleReset, { preventDefault: true, enableOnFormTags: ["input"] });
+  const hotkeyOptions: Options = useMemo(
+    () => ({
+      preventDefault: true,
+      enableOnFormTags: ["input"],
+      enabled: !isTutorialOpen,
+    }),
+    [isTutorialOpen]
+  );
+  useHotkeys(HOTKEYS.CheckAll, handleCheckAll, hotkeyOptions);
+  useHotkeys(HOTKEYS.BackButton, handleGoBack, hotkeyOptions);
+  useHotkeys(HOTKEYS.NextButton, handleGoNext, hotkeyOptions);
+  useHotkeys(HOTKEYS.Reset, handleReset, hotkeyOptions);
 
   return (
     //action buttons: back, next, checkAll, reset

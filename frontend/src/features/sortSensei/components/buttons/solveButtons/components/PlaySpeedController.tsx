@@ -3,7 +3,7 @@ import { DEFAULT_SPEED_INDEX, SPEED_VALUES } from "@/features/sortSensei/compone
 import { useButtonContext } from "@/features/sortSensei/components/buttons/context";
 import { useLineValidation } from "@/features/sortSensei/components/buttons/solveButtons/hooks";
 import { useTableContext } from "@/features/sortSensei/components/table/context";
-import { useSortContext } from "@/features/sortSensei/context";
+import { useSortContext, useTutorialModalContext } from "@/features/sortSensei/context";
 import { useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { FaPlay } from "react-icons/fa";
@@ -20,6 +20,7 @@ import buttonStyles from "../SolveButtons.module.css";
 
 const PlaySpeedController = () => {
   const { step, setStep, processList } = useSortContext();
+  const { isTutorialOpen } = useTutorialModalContext();
   const [selectedSpeedIndex, setSelectedSpeedIndex] = useState<number>(DEFAULT_SPEED_INDEX);
   const { validateLine } = useLineValidation();
   const { setCellsValidation: setCellsValidation } = useTableContext();
@@ -75,7 +76,10 @@ const PlaySpeedController = () => {
   ]);
 
   // Hotkey
-  useHotkeys(HOTKEYS.PlayButton, handlePlayPause, { preventDefault: true });
+  useHotkeys(HOTKEYS.PlayButton, handlePlayPause, {
+    preventDefault: true,
+    enabled: !isTutorialOpen,
+  });
 
   return (
     <>

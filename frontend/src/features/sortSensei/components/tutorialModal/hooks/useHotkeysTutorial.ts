@@ -15,7 +15,7 @@ export const useHotkeysTutorial = () => {
   const { handlePrevious, handleNext } = useTutorialSteps();
   const { closeModal, isTutorialOpen } = useTutorialModalContext();
 
-  useHotkeys(HOTKEYS.tutorial.next, handleNext, { enabled: isTutorialOpen });
-  useHotkeys(HOTKEYS.tutorial.prev, handlePrevious, { enabled: isTutorialOpen });
-  useHotkeys(HOTKEYS.tutorial.close, closeModal, { enabled: isTutorialOpen });
+  useHotkeys(HOTKEYS.tutorial.next, handleNext, { enabled: isTutorialOpen, preventDefault: true });
+  useHotkeys(HOTKEYS.tutorial.prev, handlePrevious, { enabled: isTutorialOpen, preventDefault: true });
+  useHotkeys(HOTKEYS.tutorial.close, closeModal, { enabled: isTutorialOpen, preventDefault: true });
 };

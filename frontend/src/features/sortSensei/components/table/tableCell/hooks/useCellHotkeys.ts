@@ -1,11 +1,13 @@
 import { HOTKEYS } from "@/config/hotkeyMap";
+import { useTutorialModalContext } from "@/features/sortSensei/context";
 import { Options, useHotkeys } from "react-hotkeys-hook";
 import { useTableContext } from "../../context";
 
 export const useCellHotkeys = (row: number, column: number) => {
   const { userInputTable, tableCellsRef } = useTableContext();
+  const { isTutorialOpen } = useTutorialModalContext();
   const currentRow = userInputTable[row];
-  const hotkeyConfig: Options = { enabled: true, enableOnFormTags: ["INPUT"], preventDefault: true };
+  const hotkeyConfig: Options = { enabled: !isTutorialOpen, enableOnFormTags: ["INPUT"], preventDefault: true };
 
   /**
    * Focuses the input element at the given row and column index. This is used

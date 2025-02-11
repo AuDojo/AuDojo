@@ -5,7 +5,8 @@ export const HOTKEYS = {
   PlayButton: "Space",
   CheckAll: "A",
   Reset: "S",
-  Random: "R",
+  RandomButton: "R",
+  RandomInput: "Enter",
   Custom: "C",
   Close: ["C", "Escape"],
   tutorial: {

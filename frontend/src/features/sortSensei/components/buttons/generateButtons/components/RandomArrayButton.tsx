@@ -2,7 +2,7 @@ import { HOTKEYS } from "@/config/hotkeyMap";
 import { useButtonContext } from "@/features/sortSensei/components/buttons/context";
 import { useResetTable } from "@/features/sortSensei/components/table/hooks/useResetTable";
 import { MAX_ARRAY_SIZE, MIN_ARRAY_SIZE } from "@/features/sortSensei/constants";
-import { useSortContext } from "@/features/sortSensei/context";
+import { useSortContext, useTutorialModalContext } from "@/features/sortSensei/context";
 import parse from "html-react-parser";
 import { useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
@@ -16,6 +16,7 @@ interface RandomArrayButtonProps {
 }
 
 const RandomArrayButton = ({ setIsSubmitting }: RandomArrayButtonProps) => {
+  const { isTutorialOpen } = useTutorialModalContext();
   const { t } = useTranslation("sortsensei");
   const { sharedArray, setSharedArray } = useSortContext();
   const [arrayLength, setArrayLength] = useState<number>(sharedArray.length);
@@ -57,19 +58,21 @@ const RandomArrayButton = ({ setIsSubmitting }: RandomArrayButtonProps) => {
     setArrayLength(value);
   };
 
-  useHotkeys(HOTKEYS.Random, handleRandomArray, { preventDefault: true });
+  // Hotkeys
+  useHotkeys(HOTKEYS.RandomButton, handleRandomArray, { preventDefault: true, enabled: !isTutorialOpen });
 
   // only allow enter key when the input is focused
-  const ref = useHotkeys("Enter", handleRandomArray, {
+  const ref = useHotkeys(HOTKEYS.RandomInput, handleRandomArray, {
     preventDefault: true,
     enableOnFormTags: ["input"],
+    enabled: !isTutorialOpen,
   });
 
   return (
     <>
       <button
         className={buttonStyles["random-array-button"]}
-        aria-label={`Random [${HOTKEYS.Random}]`}
+        aria-label={`Random [${HOTKEYS.RandomButton}]`}
         data-tooltip="top"
         onClick={handleRandomArray}
       >
