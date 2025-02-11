@@ -19,7 +19,7 @@ function LanguageSelector() {
   };
 
   const isLanguageSelected = (code: string) => {
-    return i18n.language === code;
+    return i18n.resolvedLanguage === code;
   };
 
   return (

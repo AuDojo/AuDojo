@@ -6,7 +6,7 @@ import HomeButton from "./HomeButton";
 import styles from "./HomeButtons.module.css";
 
 const HomeButtons = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("home");
   return (
     <>
       <div className={styles["home-buttons-container"]}>
