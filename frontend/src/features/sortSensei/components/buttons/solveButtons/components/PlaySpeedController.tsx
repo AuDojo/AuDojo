@@ -1,9 +1,11 @@
+import { HOTKEYS } from "@/config/hotkeyMap";
 import { DEFAULT_SPEED_INDEX, SPEED_VALUES } from "@/features/sortSensei/components/buttons/contants";
 import { useButtonContext } from "@/features/sortSensei/components/buttons/context";
 import { useLineValidation } from "@/features/sortSensei/components/buttons/solveButtons/hooks";
 import { useTableContext } from "@/features/sortSensei/components/table/context";
 import { useSortContext } from "@/features/sortSensei/context";
 import { useEffect, useState } from "react";
+import { useHotkeys } from "react-hotkeys-hook";
 import { FaPlay } from "react-icons/fa";
 import { GiPauseButton } from "react-icons/gi";
 import buttonStyles from "../SolveButtons.module.css";
@@ -71,6 +73,9 @@ const PlaySpeedController = () => {
     timeoutRef,
     validateLine,
   ]);
+
+  // Hotkey
+  useHotkeys(HOTKEYS.PlayButton, handlePlayPause, { preventDefault: true });
 
   return (
     <>

@@ -2,6 +2,7 @@ export const HOTKEYS = {
   Enter: "Enter",
   BackButton: "J",
   NextButton: "K",
+  PlayButton: "Space",
   CheckAll: "A",
   Reset: "S",
   Random: "R",
