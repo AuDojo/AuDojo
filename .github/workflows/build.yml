@@ -46,6 +46,10 @@ jobs:
       - name: Install dependencies
         run: npm install --frozen-lockfile
 
+      # Step 4: Check linting
+      - name: Lint
+        run: npm run lint
+
       # Step 4: Build the project
-      - name: Build project
+      - name: Build
         run: npm run build
