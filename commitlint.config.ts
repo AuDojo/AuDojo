@@ -6,13 +6,12 @@ const Configuration: UserConfig = {
   formatter: "@commitlint/format",
   rules: {
     // TODO Add Scope Enum here
-    // 'scope-enum': [2, 'always', ['yourscope', 'yourscope']],
+    // 'scope-enum': [RuleConfigSeverity.Error, 'always', ['yourscope', 'yourscope']],
     "type-enum": [
       RuleConfigSeverity.Error,
       "always",
-      ["feat", "fix", "docs", "style", "refactor", "perf", "test", "ci", "chore"],
+      ["feat", "fix", "docs", "style", "refactor", "perf", "test", "build", "ci", "chore"],
     ],
   },
 };
-
 export default Configuration;
