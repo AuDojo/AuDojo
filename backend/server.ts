@@ -14,9 +14,11 @@ const mailRouting = require("./Mail/mailRouting");
 
 // make express deliver static frontend pages
 if (env === "production") {
-  app.use(express.static(path.join(__dirname, "..", "..", "frontend", "dist")));
-  app.use(express.static(path.join(__dirname, "..", "..", "frontend", "public")));
-  app.get("*", (req: Request, res: Response) => {
+  // console.log("produciton is true");
+  app.use("/projects/audojo", express.static(path.join(__dirname, "..", "..", "frontend", "dist")));
+  app.use("/projects/audojo", express.static(path.join(__dirname, "..", "..", "frontend", "public")));
+
+  app.get("/projects/audojo/*", (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname, "..", "..", "frontend", "dist", "index.html")); //our main page frontend/index.html is loaded
   });
 }

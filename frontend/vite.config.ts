@@ -7,6 +7,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
+  base: "/projects/audojo/",
   test: {
     globals: true,
     environment: "jsdom",
@@ -15,6 +16,7 @@ export default defineConfig({
       exclude: ["**/index.ts"],
     },
   },
+  base: "/projects/audojo/",
   server: {
     proxy: {
       "/api": {
