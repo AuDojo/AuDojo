@@ -13,12 +13,17 @@
     "start-dev:frontend": "cd frontend && npm run dev",
     "start-dev:backend": "cd backend && npm run dev",
     "dev": "npm-run-all -p start-dev:frontend start-dev:backend",
-    "lint": "npm run lint --prefix frontend"
+    "lint": "npm run lint --prefix frontend",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
+    "@commitlint/format": "^19.5.0",
+    "husky": "^9.1.7",
     "npm-run-all": "^4.1.5"
   }
 }
