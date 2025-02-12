@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "clean": "rimraf dist",
-    "lint": "eslint --max-warnings=0 --cache .",
+    "lint": "eslint --max-warnings=0 --cache --cache-location=node_modules/.cache/.eslintcache .",
     "format": "prettier --write --cache .",
     "preview": "vite preview",
     "prepare": "cd .. && husky frontend/.husky || true"
@@ -62,7 +62,7 @@
   },
   "lint-staged": {
     "src/**/*.{js, jsx,ts,tsx}": [
-      "eslint --max-warnings=0 --fix --cache"
+      "eslint --max-warnings=0 --fix --cache --cache-location=node_modules/.cache/.eslintcache"
     ],
     "src/**/*.{json,js,ts,jsx,tsx,html,css}": [
       "prettier --write --ignore-unknown --cache"
