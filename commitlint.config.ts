@@ -1,6 +1,8 @@
 import type { UserConfig } from "@commitlint/types";
 import { RuleConfigSeverity } from "@commitlint/types";
 
+// Refer to the commit convention guide:
+// https://github.com/AuDojo/AuDojo/blob/dev/.github/commit-convention.md
 const Configuration: UserConfig = {
   extends: ["@commitlint/config-conventional"],
   formatter: "@commitlint/format",
