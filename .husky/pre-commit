@@ -1,3 +1,2 @@
 cd frontend || exit
 npx lint-staged
-cd ..
