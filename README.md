@@ -1,3 +1,5 @@
+[![Build Project](https://github.com/AuDojo/AuDojo/actions/workflows/build.yml/badge.svg)](https://github.com/AuDojo/AuDojo/actions)
+
 # AuDojo ⛩️
 
 - AVL-Bäume und Sortieralgorithmen selbstständig üben und verstehen 📚
