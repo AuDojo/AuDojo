@@ -121,7 +121,7 @@ function Kontakt() {
       subject,
     };
     try {
-      const response = await fetch("/api/mail", {
+      const response = await fetch("/projects/audojo/api/mail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
