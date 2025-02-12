@@ -19,7 +19,7 @@ interface SortingData {
  * @returns The sorting steps as a JSON string.
  */
 export async function fetchSortingSteps(array: number[], sortType: SortType) {
-  const response = await fetch("/api/sorting/" + sortType, {
+  const response = await fetch("/projects/audojo/api/sorting/" + sortType, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

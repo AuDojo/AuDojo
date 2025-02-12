@@ -25,8 +25,8 @@ if (env === "production") {
 }
 
 app.use(bodyParser.json());
-app.use("/api/sorting", sortingRouting);
-app.use("/api/mail", mailRouting);
+app.use("/projects/audojo/api/sorting", sortingRouting);
+app.use("/projects/audojo/api/mail", mailRouting);
 
 app.listen(port, () => {
   // console.log(`Server is running on port ${port}`);
