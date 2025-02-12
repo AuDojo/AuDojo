@@ -10,7 +10,7 @@ Messages must be matched by the following regex:
 
 <!-- prettier-ignore -->
 ```js
-/^(revert: )?(feat|fix|docs|style|refactor|perf|test|build|ci|chore)(\(.+\))?!?: .{1,50}/
+/^(revert: )?(feat|fix|docs|style|refactor|perf|test|ci|chore)(\(.+\))?!?: .{1,50}/
 ```
 
 #### Examples
@@ -22,17 +22,42 @@ perf(build)!: remove 'foo' option
 revert: feat(compiler): add 'comments' option
 ```
 
-### Revert
+#### <a name="commit-header"></a>Commit Message Header
 
-If the PR reverts a previous commit, it should begin with `revert: `, followed by the header of the reverted commit
+```
+<type>(<scope>): <short summary>
+  │       │             │
+  │       │             └─⫸ Summary in present tense. Not capitalized. No period at the end.
+  │       │
+  │       └─⫸ Commit Scope:  sortSensei|treeTutor|cli|
+  │                          upgrade|router|...
+  │
+  └─⫸ Commit Type: feat|fix|docs|style|refactor|perf|test|ci|chore
+```
+
+The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is optional.
+
+#### Type
+
+Must be one of the following:
+
+- **feat**: A new feature
+- **fix**: A bug fix
+- **docs**: Documentation only changes
+- **style**: Formatting, missing semi colons, …
+- **refactor**: A code change that neither fixes a bug nor adds a feature
+- **perf**: A code change that improves performance
+- **test**: Adding missing tests or correcting existing tests
+- **ci**: Changes to our CI configuration files and scripts (examples: Github Actions)
+- **chore**: Maintain
 
 ### Scope
 
 The scope could be anything specifying the place of the commit change. For example `dev`, `build`, `workflow`, `cli` etc...
 
-### Subject
+### Short Summary
 
-The subject contains a succinct description of the change:
+The short summary contains a succinct description of the change:
 
 - use the imperative, present tense: "change" not "changed" nor "changes"
 - don't capitalize the first letter
