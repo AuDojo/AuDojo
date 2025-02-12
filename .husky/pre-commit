@@ -1,4 +1,3 @@
-#!/usr/bin/env sh
-
 cd frontend || exit
 npx lint-staged
+cd ..
