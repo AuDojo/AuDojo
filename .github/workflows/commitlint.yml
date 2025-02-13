@@ -8,6 +8,7 @@ on:
     branches:
       - main
       - dev
+    types: [synchronize, opened, reopened]
 
 permissions:
   contents: read
@@ -15,6 +16,9 @@ permissions:
 
 jobs:
   commitlint:
+    if: |
+      github.event_name == 'push' ||
+      (github.event.pull_request.merged == true && github.event.pull_request.merge_commit_sha)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
