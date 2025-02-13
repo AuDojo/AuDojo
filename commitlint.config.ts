@@ -12,7 +12,7 @@ const Configuration: UserConfig = {
     "type-enum": [
       RuleConfigSeverity.Error,
       "always",
-      ["feat", "fix", "docs", "style", "refactor", "perf", "test", "build", "ci", "chore"],
+      ["feat", "fix", "docs", "style", "revert", "refactor", "perf", "test", "build", "ci", "chore"],
     ],
   },
   helpUrl: "https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional",
