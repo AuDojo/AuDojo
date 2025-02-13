@@ -10,7 +10,7 @@ Messages must be matched by the following regex:
 
 <!-- prettier-ignore -->
 ```js
-/^(revert: )?(feat|fix|docs|style|refactor|perf|test|build|ci|chore)(\(.+\))?!?: .{1,50}/
+/^(revert: )?(feat|fix|docs|style|revert|refactor|perf|test|build|ci|chore)(\(.+\))?!?: .{1,50}/
 ```
 
 #### Examples
@@ -32,7 +32,7 @@ revert: feat(compiler): add 'comments' option
   │       └─⫸ Commit Scope:  sortSensei|treeTutor|cli|
   │                          upgrade|router|...
   │
-  └─⫸ Commit Type: feat|fix|docs|style|refactor|perf|test|build|ci|chore
+  └─⫸ Commit Type: feat|fix|docs|style|revert|refactor|perf|test|build|ci|chore
 ```
 
 The `<type>` and `<summary>` fields are mandatory, the `(<scope>)` field is optional.
@@ -45,6 +45,7 @@ Must be one of the following:
 - **fix**: A bug fix
 - **docs**: Documentation only changes
 - **style**: Formatting, missing semi colons, …
+- **revert**: Revert a commit
 - **refactor**: A code change that neither fixes a bug nor adds a feature
 - **perf**: A code change that improves performance
 - **test**: Adding missing tests or correcting existing tests
