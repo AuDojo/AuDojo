@@ -7,6 +7,7 @@ const Configuration: UserConfig = {
   extends: ["@commitlint/config-conventional"],
   formatter: "@commitlint/format",
   rules: {
+    "body-max-line-length": [RuleConfigSeverity.Error, "always", 800],
     // TODO Add Scope Enum here
     // 'scope-enum': [RuleConfigSeverity.Error, 'always', ['yourscope', 'yourscope']],
     "type-enum": [
