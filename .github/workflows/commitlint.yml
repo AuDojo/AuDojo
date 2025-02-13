@@ -8,7 +8,6 @@ on:
     branches:
       - main
       - dev
-    types: [synchronize, opened, reopened]
 
 permissions:
   contents: read
