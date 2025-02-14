@@ -24,7 +24,7 @@ const Header = () => {
       <HeaderLogo />
 
       {/* Change Header to Hamburger Menu if client clicks on hamburger icon */}
-      <nav className={`${headerStyles["menu-container"]} ${isOpen ?? headerStyles.open}`}>
+      <nav className={`${headerStyles["menu-container"]} ${isOpen && headerStyles.open}`}>
         <nav className={headerStyles["dropdown-container"]}>
           <LinkItem className="menu-item" to={paths.mergeSort} text="SortSensei &nbsp;" icon={iconDropdown} />
           <nav className={headerStyles["dropdown-content"]}>
