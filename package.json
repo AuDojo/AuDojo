@@ -15,7 +15,8 @@
     "dev": "npm-run-all -p start-dev:frontend start-dev:backend",
     "lint": "npm run lint --prefix frontend",
     "prepare": "husky",
-    "test": "npm run test --prefix frontend"
+    "test": "npm run test --prefix frontend",
+    "test:ui": "npm run test:ui --prefix frontend"
   },
   "keywords": [],
   "author": "",
