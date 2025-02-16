@@ -37,10 +37,25 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-        name: List the state of node modules
-        continue-on-error: true
-        run: npm list
+      # Cache frontend node_modules
+      - name: Cache frontend node_modules
+        id: cache-frontend
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-frontend-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-frontend-
+
+      # Cache backend node_modules
+      - name: Cache backend node_modules
+        id: cache-backend
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-backend-${{ hashFiles('backend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-backend-
 
       # Step 3: Install dependencies
       - name: Install dependencies
@@ -54,6 +69,6 @@ jobs:
       - name: Test
         run: npm run test
 
-      # Step 4: Build the project
+      # Step 6: Build the project
       - name: Build
         run: npm run build
