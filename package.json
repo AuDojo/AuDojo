@@ -16,7 +16,8 @@
     "lint": "npm run lint --prefix frontend",
     "prepare": "husky",
     "test": "npm run test --prefix frontend",
-    "test:ui": "npm run test:ui --prefix frontend"
+    "test:ui": "npm run test:ui --prefix frontend",
+    "coverage": "npm run coverage --prefix frontend"
   },
   "keywords": [],
   "author": "",
