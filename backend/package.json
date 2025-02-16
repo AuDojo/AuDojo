@@ -24,7 +24,6 @@
     },
     "devDependencies": {
         "nodemon": "^3.1.9",
-        "rimraf": "^6.0.1",
         "ts-node": "^10.9.2"
     }
 }
