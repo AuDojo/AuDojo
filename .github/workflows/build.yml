@@ -50,6 +50,10 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      # Step 5: Run tests
+      - name: Test
+        run: npm run test
+
       # Step 4: Build the project
       - name: Build
         run: npm run build
