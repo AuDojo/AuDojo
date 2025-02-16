@@ -1,6 +1,6 @@
 // import * as matchers from "@testing-library/jest-dom/matchers";
 import "@testing-library/jest-dom";
-import { cleanup } from "@testing-library/react";
+import { cleanup, screen } from "@testing-library/react";
 import { afterEach } from "vitest";
 
 // expect.extend(matchers);
@@ -16,5 +16,6 @@ vi.mock("react-i18next", () => ({
 
 //! Cleanup after every test
 afterEach(() => {
+  screen.debug();
   cleanup();
 });
