@@ -1,6 +1,6 @@
 import { JSX, Suspense } from "react";
 import { Link } from "react-router-dom";
-import { Spinner } from "../ui/spinner";
+import { Spinner } from "../../ui/spinner";
 import headerStyle from "./Header.module.css";
 
 const LinkItem = ({

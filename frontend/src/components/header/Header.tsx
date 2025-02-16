@@ -2,10 +2,10 @@ import { paths } from "@/config";
 import { lazy, useState } from "react";
 import { useTranslation } from "react-i18next";
 import headerStyles from "./Header.module.css";
-import LinkItem from "./LinkItem";
+import { LinkItem } from "./LinkItem";
 import { HamburgerIcon } from "./hamburger";
 import { LanguageSelector } from "./languageSelector";
-import HeaderLogo from "./logo/HeaderLogo";
+import { HeaderLogo } from "./logo";
 
 const FaAngleDown = lazy(() => import("react-icons/fa6").then((module) => ({ default: module.FaAngleDown })));
 
