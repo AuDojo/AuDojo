@@ -10,7 +10,6 @@ import { HeaderLogo } from "./logo";
 const FaAngleDown = lazy(() => import("react-icons/fa6").then((module) => ({ default: module.FaAngleDown })));
 
 const Header = () => {
-  //Case: Client Width too small:  When the user clicks on hamburger icon, open the menu
   const { t } = useTranslation("header");
   const [isOpen, setOpen] = useState<boolean>(false);
   const toggleMenu = () => {
@@ -26,17 +25,22 @@ const Header = () => {
       {/* Change Header to Hamburger Menu if client clicks on hamburger icon */}
       <nav className={`${headerStyles["menu-container"]} ${isOpen && headerStyles.open}`}>
         <nav className={headerStyles["dropdown-container"]}>
-          <LinkItem className="menu-item" to={paths.mergeSort} text="SortSensei &nbsp;" icon={iconDropdown} />
+          <LinkItem
+            className={headerStyles["menu-item"]}
+            to={paths.mergeSort}
+            text="SortSensei &nbsp;"
+            icon={iconDropdown}
+          />
           <nav className={headerStyles["dropdown-content"]}>
-            <LinkItem className="menu-item" to={paths.mergeSort} text="MergeSort" />
-            <LinkItem className="menu-item" to={paths.quickSort} text="QuickSort" />
-            <LinkItem className="menu-item" to={paths.bubbleSort} text="BubbleSort" />
-            <LinkItem className="menu-item" to={paths.selectionSort} text="SelectionSort" />
+            <LinkItem className={headerStyles["menu-item"]} to={paths.mergeSort} text="MergeSort" />
+            <LinkItem className={headerStyles["menu-item"]} to={paths.quickSort} text="QuickSort" />
+            <LinkItem className={headerStyles["menu-item"]} to={paths.bubbleSort} text="BubbleSort" />
+            <LinkItem className={headerStyles["menu-item"]} to={paths.selectionSort} text="SelectionSort" />
           </nav>
         </nav>
-        <LinkItem className="menu-item" to={paths.treeTutor} text="TreeTutor" />
-        <LinkItem className="menu-item" to={paths.tutorial} text={t("example")} />
-        <LinkItem className="menu-item" to={paths.kontakt} text={t("contact")} />
+        <LinkItem className={headerStyles["menu-item"]} to={paths.treeTutor} text="TreeTutor" />
+        <LinkItem className={headerStyles["menu-item"]} to={paths.tutorial} text={t("example")} />
+        <LinkItem className={headerStyles["menu-item"]} to={paths.kontakt} text={t("contact")} />
       </nav>
       {/* <HelpIcon onClick={closeModal} /> */}
       <LanguageSelector />
