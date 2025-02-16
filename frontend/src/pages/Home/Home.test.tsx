@@ -1,15 +1,11 @@
-import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { screen } from "@testing-library/react";
+import { renderWithRouter } from "tests/testUtils";
 import Home from "./Home";
 
 describe("Homepage", () => {
   it("should render the home page correctly", () => {
     // ARRANGE: Render the home component
-    render(
-      <MemoryRouter>
-        <Home />
-      </MemoryRouter>
-    );
+    renderWithRouter(<Home />);
 
     // ASSERT
     // Test if header and logo are rendered

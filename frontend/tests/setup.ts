@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 // import * as matchers from "@testing-library/jest-dom/matchers";
-import "@testing-library/jest-dom";
+import "@testing-library/jest-dom/vitest";
 import { cleanup, screen } from "@testing-library/react";
 import { afterEach } from "vitest";
 
