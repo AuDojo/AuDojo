@@ -127,9 +127,12 @@ const TreeVisualizer = () => {
     // const inputs =
     gNodes
       .append("foreignObject")
-      .attr("width", 160)
-      .attr("height", 200)
+      .attr("class", styles.inputContainer)
+      .attr("width", 36)
+      .attr("height", 36)
+      .attr("transform", `translate(-18, -18)`)
       .append("xhtml:input")
+      .attr("class", styles.input)
       .attr("value", (node) => node.data.value);
 
     // Cleanup function: remove all elements from the svg

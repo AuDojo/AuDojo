@@ -8,9 +8,9 @@
 
 .node circle {
   fill: #ecf0f1;
-  stroke: #247d24;
+  stroke: rgb(0, 63, 87);
   stroke-opacity: 0.8;
-  stroke-width: 2.5px;
+  stroke-width: 3.5px;
 }
 
 .node div {
@@ -27,7 +27,22 @@
 
 .link {
   fill: none;
-  stroke: #247d24;
+  stroke: rgb(0, 63, 87);
   stroke-opacity: 0.8;
   stroke-width: 2px;
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 12px;
 }
