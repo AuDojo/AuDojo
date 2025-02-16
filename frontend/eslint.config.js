@@ -10,6 +10,11 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
+/**
+ * Frontend eslint configuration.
+ *
+ * View config with `npx @eslint/config-inspector`
+ */
 export default tseslint.config({
   ignores: ["dist"],
   settings: { react: { version: "detect" } },
