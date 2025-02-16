@@ -14,7 +14,8 @@
     "start-dev:backend": "cd backend && npm run dev",
     "dev": "npm-run-all -p start-dev:frontend start-dev:backend",
     "lint": "npm run lint --prefix frontend",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "npm run test --prefix frontend"
   },
   "keywords": [],
   "author": "",
