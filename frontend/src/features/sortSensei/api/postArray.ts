@@ -1,3 +1,4 @@
+import { API_URL } from "@/config/env";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCallback, useMemo } from "react";
 import { useSortContext } from "../context";
@@ -19,7 +20,7 @@ interface SortingData {
  * @returns The sorting steps as a JSON string.
  */
 export async function fetchSortingSteps(array: number[], sortType: SortType) {
-  const response = await fetch("/api/sorting/" + sortType, {
+  const response = await fetch(`${API_URL}/sorting/` + sortType, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

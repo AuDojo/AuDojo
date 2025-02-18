@@ -1,4 +1,5 @@
 import informatikzentrumJPG from "@/assets/informatikzentrum.jpg";
+import { API_URL } from "@/config/env";
 import { useSetTitle } from "@/hooks/useSetTitle";
 import parse from "html-react-parser";
 import React from "react";
@@ -121,7 +122,7 @@ function Kontakt() {
       subject,
     };
     try {
-      const response = await fetch("/api/mail", {
+      const response = await fetch(`${API_URL}/mail`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

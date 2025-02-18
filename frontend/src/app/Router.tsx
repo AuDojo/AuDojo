@@ -2,6 +2,7 @@ import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Loading } from "@/components/ui/loading";
 import { paths } from "@/config";
+import { BASE_URL } from "@/config/env";
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -21,7 +22,7 @@ const TreeTutor = lazy(() => import("@/pages/TreeTutor"));
 export const AppRouter = () => {
   return (
     <>
-      <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <BrowserRouter basename={BASE_URL}>
         <Header />
         <main>
           <Suspense fallback={<Loading />}>
