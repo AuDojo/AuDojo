@@ -16,11 +16,10 @@ export default defineConfig({
       exclude: ["**/index.ts"],
     },
   },
-  base: "/projects/audojo/",
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:5001",
+        target: "http://localhost:5001/projects/audojo",
         changeOrigin: true,
       },
     },
