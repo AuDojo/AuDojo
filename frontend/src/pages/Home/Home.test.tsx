@@ -1,5 +1,5 @@
 import { paths } from "@/config";
-import { act, screen } from "@testing-library/react";
+import { screen, waitFor } from "@testing-library/react";
 import { UserEvent } from "@testing-library/user-event";
 import { renderWithRouter } from "tests/testUtils";
 import Home from "./Home";
@@ -38,10 +38,10 @@ describe("<Home>", () => {
       expect(homeButton).toBeInTheDocument();
 
       // Click home button
-      await act(async () => user.click(homeButton));
+      user.click(homeButton);
 
       // Assert that the URL has changed
-      expect(window.location.pathname).toBe(path);
+      await waitFor(() => expect(window.location.pathname).toBe(path));
     });
   });
 });
