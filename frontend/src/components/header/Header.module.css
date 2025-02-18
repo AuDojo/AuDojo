@@ -1,9 +1,7 @@
-:root {
+.header-container {
   --background-header: white;
   --height-header: 60px;
-}
 
-.header-container {
   height: var(--height-header);
   width: 100%;
   background-color: var(--background-header);

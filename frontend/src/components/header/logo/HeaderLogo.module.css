@@ -1,8 +1,3 @@
-:root {
-  --main-pink: rgb(236, 224, 226);
-  --main-purple: rgb(55, 45, 91);
-}
-
 .logo-container {
   height: var(--height-header);
   background-color: var(--main-pink);

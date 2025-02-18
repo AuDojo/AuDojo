@@ -14,6 +14,10 @@
   --main-darkblue: rgb(0, 63, 87);
   --main-lightblue: rgb(116, 192, 252);
   --main-mediumblue: rgb(23, 128, 209);
+
+  /* From logo */
+  --main-pink: rgb(236, 224, 226);
+  --main-purple: rgb(55, 45, 91);
 }
 
 body {
