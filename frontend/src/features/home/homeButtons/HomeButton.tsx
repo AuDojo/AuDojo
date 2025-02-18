@@ -11,9 +11,9 @@ interface HomeButtonProps {
 const HomeButton = ({ link, header, img, text }: HomeButtonProps) => {
   return (
     <Link to={link} className={styles["home-button-link"]}>
-      <div className={styles["home-button-header"]}>{header}</div>
-      <img className={styles["home-button-img"]} src={img} alt="Sorting animation" />
-      <div className={styles["home-button-text"]}>{text}</div>
+      <h2 className={styles["home-button-header"]}>{header}</h2>
+      <img className={styles["home-button-img"]} src={img} alt={`${header} illustration`} />
+      <p className={styles["home-button-text"]}>{text}</p>
     </Link>
   );
 };
