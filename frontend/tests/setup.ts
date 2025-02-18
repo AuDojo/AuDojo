@@ -27,5 +27,6 @@ vi.mock("react-i18next", () => ({
 //! Cleanup after every test
 afterEach(() => {
   screen.debug();
+  vi.clearAllMocks();
   cleanup();
 });
