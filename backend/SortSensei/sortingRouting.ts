@@ -1,8 +1,7 @@
-import { Request, Response } from "express";
+import { Request, Response, Router } from "express";
 import { SortSensei, SortType } from "./sortSensei";
 
-const express = require("express");
-const router = express.Router(); //this router has a sublink /sorting. To access, use ourlink/sorting/mergesort for example
+const router = Router(); //this router has a sublink /sorting. To access, use ourlink/sorting/mergesort for example
 
 /**
  * empfängt JSON {startArray:[...]} und wandelt in Typ number[] um

@@ -1,8 +1,7 @@
-import { Request, Response } from "express";
-import { sendMail, createMessage } from "./mail";
+import { Request, Response, Router } from "express";
+import { createMessage, sendMail } from "./mail";
 
-const express = require("express");
-const router = express.Router();
+const router = Router();
 
 router.post("/", (req: Request, res: Response) => {
   console.log("---------- Mail wird gesendet ----------");
