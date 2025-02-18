@@ -19,7 +19,7 @@ if (env === "production") {
   app.use(base_url, express.static(path.join(frontendPath, "dist")));
   app.use(base_url, express.static(path.join(frontendPath, "public")));
 
-  app.get(`${base_url}`, (req: Request, res: Response) => {
+  app.get(`${base_url}/*`, (req: Request, res: Response) => {
     res.sendFile(path.join(frontendPath, "dist", "index.html")); //our main page frontend/index.html is loaded
   });
 }
