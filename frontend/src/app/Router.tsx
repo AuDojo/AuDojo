@@ -3,7 +3,7 @@ import { Header } from "@/components/header";
 import { Loading } from "@/components/ui/loading";
 import { paths } from "@/config";
 import { lazy, Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // Lazy imports of pages to reduce bundle size
 const Home = lazy(() => import("@/pages/Home/Home"));
@@ -21,26 +21,28 @@ const TreeTutor = lazy(() => import("@/pages/TreeTutor"));
 export const AppRouter = () => {
   return (
     <>
-      <Header />
-      <main>
-        <Suspense fallback={<Loading />}>
-          <Routes>
-            <Route path={paths.home} element={<Home />} />
-            <Route path={paths.kontakt} element={<Kontakt />} />
-            <Route path={paths.mergeSort} element={<MergeSort />} />
-            <Route path={paths.quickSort} element={<QuickSort />} />
-            <Route path={paths.bubbleSort} element={<BubbleSort />} />
-            <Route path={paths.selectionSort} element={<SelectionSort />} />
-            <Route path={paths.tutorial} element={<Tutorial />} />
-            <Route path={paths.kontakt} element={<Kontakt />} />
-            <Route path={paths.datenschutz} element={<Datenschutz />} />
-            <Route path={paths.impressum} element={<Impressum />} />
-            <Route path={paths.treeTutor} element={<TreeTutor />} />
-            <Route path="*" element={<NotFound />} /> {/* Invalid route*/}
-          </Routes>
-        </Suspense>
-      </main>
-      <Footer />
+      <BrowserRouter>
+        <Header />
+        <main>
+          <Suspense fallback={<Loading />}>
+            <Routes>
+              <Route path={paths.home} element={<Home />} />
+              <Route path={paths.kontakt} element={<Kontakt />} />
+              <Route path={paths.mergeSort} element={<MergeSort />} />
+              <Route path={paths.quickSort} element={<QuickSort />} />
+              <Route path={paths.bubbleSort} element={<BubbleSort />} />
+              <Route path={paths.selectionSort} element={<SelectionSort />} />
+              <Route path={paths.tutorial} element={<Tutorial />} />
+              <Route path={paths.kontakt} element={<Kontakt />} />
+              <Route path={paths.datenschutz} element={<Datenschutz />} />
+              <Route path={paths.impressum} element={<Impressum />} />
+              <Route path={paths.treeTutor} element={<TreeTutor />} />
+              <Route path="*" element={<NotFound />} /> {/* Invalid route*/}
+            </Routes>
+          </Suspense>
+        </main>
+        <Footer />
+      </BrowserRouter>
     </>
   );
 };
