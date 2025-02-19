@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Volle Höhe */
+}
+
+/* Hauptbereich */
+.mainContent {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 10px;
+}
+
+/* Sidebar links */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar button {
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* Bereich für die Tree Templates */
+.treeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  max-width: 70%;
+}
+
+.treeWrapper {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px;
+}
+
+.treeTemplate {
+  border: 2px solid black;
+  padding: 20px;
+  width: 600px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Rechte Sidebar mit + Button */
+.rightSidebar {
+  display: flex;
+  align-items: center;
+}
+
+.addTemplate {
+  font-size: 20px;
+  padding: 5px 3px;
+}
+
+/* Footer mit Steuerungsbuttons */
+.footer .controls {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+}
+
+.submit {
+  background: red;
+  color: white;
+}

@@ -1,1 +1,1 @@
-export * from "./treeViz";
+export * from "./treeTemplate";
