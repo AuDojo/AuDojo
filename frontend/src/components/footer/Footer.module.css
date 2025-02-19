@@ -1,0 +1,21 @@
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(224, 224, 224);
+}
+.footer-content {
+  font-size: 15px;
+  color: var(--main-darkblue);
+  text-decoration: none;
+  padding: 2px 20px;
+  cursor: pointer;
+}
+@media (max-width: 900px) {
+  .footer-content {
+    font-size: 13px;
+  }
+}

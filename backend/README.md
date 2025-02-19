@@ -1,0 +1,101 @@
+Softwarearchitektur von Backend:
+
+1. Austausch der Daten zwischen Frontend und Backend soll durch JSON format erfolgen. Dieser wird durch POST-Methode von beiden
+   Seite erfolgt.
+
+2. Unsere Backend-POST-Endpunkte sehen folgendermaßen aus:
+
+   - localhost:5001/
+     - /sorting
+       - /mergesort
+       - /quicksort
+       - /bubblesort
+       - /selectionsort
+     - /tree (zukünftig)
+
+3. Von Frontend gesendetes JSON Objekt sieht z.B. wiefolgt aus:
+
+   ```json
+   { "startArray": [1, 2, 3, 4, 5, 6, 7, 8, 9] }
+   ```
+
+4. Es wird immer nur das startArray gesendet, egal ob man "check" oder "check All" klickt.
+
+5. Von Backend gesendetes JSON Objekt ist wie Folgendes:
+
+   - Wenn mergeSort verwendet wird:
+
+   ```json
+   {
+      "processList": [[startList], [sortStep1], [sortStep2], ...],
+      "mergeRange": [[-1, -1], [start1, end1], [start2, end2], ...],
+      "pivotElement": [],
+      "selectedElement": [],
+      "bubbleElement":[]
+   }
+   ```
+
+   `[start1, end1]` gibt den Start- und End-Index der Elemente an, die in dem ersten Merge-Schritt gemerged werden.
+
+   - Wenn QuickSort verwendet wird:
+
+   ```json
+   {
+      "processList": [[startList], [sortStep1], [sortStep2], ...],
+      "mergeRange": [],
+      "pivotElement": [[-1, -1], [pivot-before1, pivot-after1], [pivot-before2, pivot-after2], ...],
+      "selectedElement": [],
+      "bubbleElement":[]
+   }
+   ```
+
+   `[pivot-before1, pivot-after1]` gibt den Index des Pivot-Elements vor und nach dem ersten sortier Schritt an.
+
+   - Wenn BubbleSort verwendet wird:
+
+   ```json
+   {
+      "processList": [[startList], [sortStep1], [sortStep2], ...],
+      "mergeRange": [],
+      "pivotElement": [],
+      "selectedElement": [],
+      "bubbleElement":[Tauschindex1,Tauschindex2, ...]
+   }
+   ```
+
+   `Tauschindex1` gibt den Index des aktuell getauschten Element an. Der Index wird mit Index+1 getauscht. Achte, dass Tauschindex1 und Tauscheindex1 + 1 ein Tauschpaar ist
+
+   - Wenn SelectionSort verwendet wird:
+
+   ```json
+   {
+      "processList": [[startList], [sortStep1], [sortStep2], ...],
+      "mergeRange": [],
+      "pivotElement": [],
+      "selectedElement": [selected1, selected2, selected3, ...],
+      "bubbleElement":[]
+   }
+   ```
+
+   `selected1` gibt den Index an, an welchen das jeweilig noch nicht sortierte Element mit dem derzeit kleinsten Element gewechselt wird.
+
+   Wenn "mergeRange" und "pivotElement" ein leeres Array besitzen heißt das, dass ein anderer Sortieralgorithmus benutzt wurde.
+
+Edge Cases:
+Falls
+
+- a. startArray mehr als 20 Elemente hat
+
+oder
+
+- b. POST-Methode für falsches Link aufgerufen wurde (z.B POST-Methode für Link localhost:5001/sorting/sldkjsdlkf)
+
+,gibt Backend JSON Datei
+
+```json
+{ "processList": [[]] }
+```
+
+mit Array ohne Elemente
+
+Falls es eine Veränderung bei Namen/Struktur vorkommt, passe diese README.md dementsprechend bitte an.

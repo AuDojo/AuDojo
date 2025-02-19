@@ -1,0 +1,251 @@
+.generalContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: var(--main-darkblue);
+}
+
+.generalContainer p {
+  text-align: left;
+}
+
+.generalContainer input,
+.generalContainer textarea {
+  font-size: 15px;
+  border: 1px solid var(--main-darkblue);
+}
+.generalContainer textarea:focus,
+.generalContainer input:focus {
+  outline: 1px solid rgb(91, 133, 191);
+}
+.generalContainer textarea::placeholder,
+.generalContainer input::placeholder {
+  font-size: 13px;
+}
+
+.generalContainer input {
+  height: 30px;
+  width: 100%;
+}
+
+.contentContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  max-width: 1000px;
+  gap: 50px;
+  justify-content: center;
+}
+
+.kontaktMessageContainer {
+  display: flex;
+  align-items: start;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.kontaktMessage {
+  font-size: 30px;
+  color: var(--main-darkblue);
+  font-weight: bold;
+}
+
+.leftContainer {
+  margin-top: 0px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.formHeading {
+  display: flex;
+  position: relative;
+  margin-bottom: 10px;
+  justify-content: start;
+  font-size: 18px;
+}
+
+.formHeading::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  height: 2px;
+  background-color: #ccc;
+  width: 100%;
+}
+
+.formContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: start;
+  gap: 10px;
+  width: 500px;
+}
+
+.namesContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  gap: 5px;
+  flex: 1;
+}
+
+.nameInput {
+  border-color: var(--main-darkblue);
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+.nameInputError {
+  border-color: rgb(255, 0, 0);
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+.emailInput {
+  margin-bottom: 5px;
+  border-color: var(--main-darkblue);
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+.emailInputError {
+  margin-bottom: 5px;
+  border-color: rgb(255, 0, 0);
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+.messageInput {
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-top: 10px;
+  font-family: Arial;
+  border-color: var(--main-darkblue);
+}
+
+.messageInputError {
+  border-radius: 5px;
+  padding-left: 10px;
+  padding-top: 10px;
+  font-family: Arial;
+  border-color: rgb(255, 0, 0);
+}
+
+.sendButton {
+  margin-bottom: 5px;
+  background-color: var(--main-darkblue);
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.sendButton:active {
+  opacity: 0.8;
+}
+
+.pflichtfelderHinweis {
+  font-size: 10px;
+}
+
+.rightContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.kontaktdetailsContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.addressContainer {
+  display: flex;
+  margin-top: 15px;
+  gap: 15px;
+}
+
+.addressImage {
+  width: 230px;
+  border-radius: 5px;
+}
+
+.addressInfo {
+  margin-bottom: 5px;
+}
+
+.remainingCharacters {
+  font-size: 15px;
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.successMessage {
+  display: flex;
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  align-items: center;
+  justify-content: center;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 5px;
+  padding: 5px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: var(--top-layer);
+  animation: fadeOut 3s forwards;
+}
+
+.errorMessage {
+  display: flex;
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  padding: 5px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: var(--top-layer);
+  animation: fadeOut 3s forwards;
+}
+
+.closeButton {
+  position: relative;
+  top: 0px;
+  right: -10px;
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0;
+  border-radius: 50%;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.closeButton:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.credits {
+  margin-top: 16px;
+  font-size: 0.9rem;
+}

@@ -2,4 +2,22 @@
 .DS_Store
 
 ### VS-Code ###
-.vscode
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/i18n-ally-reviews.yml
+
+### TypeScript React ###
+
+# dependencies
+node_modules
+
+# testing
+/coverage
+
+# production
+dist
+
+# misc
+.env
+npm-debug.log

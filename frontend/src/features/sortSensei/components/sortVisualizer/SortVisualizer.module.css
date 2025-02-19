@@ -1,0 +1,61 @@
+svg {
+  --green: rgb(95, 209, 112);
+  --lightgrey: rgb(165, 165, 165);
+}
+
+.viz-container {
+  display: flex;
+  justify-content: center;
+}
+
+.viz-container svg {
+  border: 3px solid var(--main-darkblue);
+  border-radius: 15px;
+}
+
+/* general text color*/
+text {
+  font-size: 15px;
+  fill: var(--main-darkblue);
+  text-anchor: middle;
+}
+
+rect {
+  /* smooth transition for filling color*/
+  transition: fill 0.2s linear;
+}
+
+/* markers for pivot/min/left */
+.bar-marker {
+  fill: var(--lightgrey);
+  font-size: 12px;
+  text-anchor: middle;
+}
+
+.unsorted-bar {
+  fill: var(--main-lightblue);
+}
+
+.sorted-bar {
+  fill: var(--green);
+}
+
+.changed-bar {
+  fill: var(--main-red);
+}
+
+.changed-bar-blink {
+  fill: var(--main-red);
+  animation: blink 2s ease infinite;
+}
+@keyframes blink {
+  25% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.7;
+  }
+}

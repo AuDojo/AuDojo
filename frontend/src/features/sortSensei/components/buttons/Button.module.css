@@ -1,0 +1,120 @@
+.generate-buttons,
+.solve-speed-buttons {
+  position: absolute;
+  height: auto;
+  width: auto;
+  min-width: 140px;
+  max-width: 200px;
+}
+.generate-buttons {
+  top: 0px;
+  left: -220px;
+}
+
+.solve-speed-buttons {
+  bottom: 0px;
+  right: -220px;
+  background-color: white;
+  width: 190px;
+}
+
+@media (max-height: 550px) {
+  .solve-speed-buttons {
+    top: 0px;
+  }
+}
+
+.solve-buttons,
+.generate-buttons {
+  display: flex;
+  flex-direction: column;
+  row-gap: 13px;
+  background-color: white;
+}
+
+.generate-buttons input {
+  height: 30px;
+  font-size: 15px;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid rgba(190, 30, 59, 0.87);
+}
+.generate-buttons input:focus {
+  outline: 1px solid rgb(91, 133, 191);
+}
+.generate-buttons input::placeholder {
+  font-size: 13px;
+}
+
+.solve-buttons button,
+.generate-buttons button {
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: 800;
+  border: 1px solid rgb(190, 30, 60);
+}
+.solve-buttons button:hover,
+.generate-buttons button:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+.solve-buttons button:active,
+.generate-buttons button:active {
+  opacity: 0.8;
+}
+
+.array-length-container input {
+  width: 50px;
+}
+
+.speed-buttons-container input {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.generate-buttons button {
+  color: rgb(190, 30, 60);
+  background-color: rgba(239, 213, 213, 0.4);
+}
+
+.solve-buttons button,
+.generate-buttons .submit-button,
+.generate-buttons .close-button {
+  background-color: rgb(190, 30, 60);
+  color: white;
+}
+
+.solve-buttons .try-again-button {
+  color: rgb(190, 30, 60);
+  background-color: white;
+}
+.arrow-button-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  background-color: white;
+}
+
+.arrow-button {
+  flex: 1;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 800;
+  border: 1px solid rgb(190, 30, 60);
+  background-color: rgb(190, 30, 60);
+  color: white;
+  padding: 8px 11px;
+}
+
+.arrow-button:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.arrow-button:active {
+  opacity: 0.8;
+}

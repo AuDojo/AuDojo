@@ -1,0 +1,42 @@
+/* ----------- Buttons ----------- */
+.nav-buttons-container button {
+  border: none;
+  padding: 0.7rem 2rem;
+  border-radius: 1.5rem;
+
+  font-size: 0.9rem;
+  font-weight: bold;
+
+  transition: all 0.2s ease-in-out;
+}
+.nav-buttons-container button:hover {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.nav-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+}
+.nav-buttons-container > :only-child {
+  flex: 1;
+}
+
+.start-button {
+  background-image: linear-gradient(to right, #be1e3c, #ff6b6b); /* Define gradient */
+  color: white;
+  outline: none;
+}
+.back-button {
+  background: none;
+  font-weight: 600;
+}
+.next-button {
+  background-color: var(--main-red);
+  color: white;
+  outline: none;
+}
+.finish-button {
+  background-color: #00ab61de;
+  color: white;
+}

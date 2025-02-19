@@ -1,0 +1,24 @@
+{
+  "title": "Contact",
+
+  "emailField": {
+    "title": "Send us your Feedback!",
+    "firstName": "First name*",
+    "lastName": "Last name*",
+    "email": "Email",
+    "subject": "Subject",
+    "field": "Your Feedback*",
+    "charLeft": "characters left",
+    "sendButton": "Send Feedback",
+    "notice": "Fields marked with * must be filled"
+  },
+  "info": {
+    "title": "Contact Information",
+    "sentence": "Thank you for visiting our website :) <br/> We appreciate your feedback and suggestions! Reach out to us if you have any questions or concerns.",
+    "institute": "Institute of Operating Systems and Computer Networks",
+    "center": "Informatikzentrum",
+    "address1": "Mühlenpfordstraße 23",
+    "address2": "38106 Braunschweig",
+    "email": "audojo8@gmail.com"
+  }
+}

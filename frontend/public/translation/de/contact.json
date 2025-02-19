@@ -1,0 +1,24 @@
+{
+  "title": "Kontakt",
+
+  "emailField": {
+    "title": "Sende uns eine Nachricht!",
+    "firstName": "Vorname*",
+    "lastName": "Nachname*",
+    "email": "Email",
+    "subject": "Betreff",
+    "field": "Deine Nachricht*",
+    "charLeft": "verbleibende Zeichen",
+    "sendButton": "Nachricht senden",
+    "notice": "mit * markierte Felder sind Pflichtfelder"
+  },
+  "info": {
+    "title": "Kontaktinformationen",
+    "sentence": "Danke, dass du unsere Website besuchst :) <br/> Wir schätzen dein Feedback und deine Anregungen! Kontaktiere uns, wenn du Fragen oder Bedenken hast.",
+    "institute": "Institut für Betriebssysteme und Rechnerverbund",
+    "center": "Informatikzentrum",
+    "address1": "Mühlenpfordstraße 23",
+    "address2": "38106 Braunschweig",
+    "email": "audojo8@gmail.com"
+  }
+}

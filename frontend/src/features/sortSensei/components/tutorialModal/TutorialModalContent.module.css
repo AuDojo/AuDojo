@@ -1,0 +1,58 @@
+/* ----------- Tutorial modal ----------- */
+.dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+
+  width: 440px;
+  border-radius: 0.5rem;
+
+  z-index: var(--top-layer);
+
+  color: rgb(50, 50, 50);
+}
+@media (max-width: 550px) {
+  .dialog {
+    width: 80%;
+  }
+}
+
+/* Transparent overlay */
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--overlap-layer);
+  filter: blur(5px);
+}
+
+/* ----------- Content styles ----------- */
+.dialog h2 {
+  margin-bottom: 0.9rem;
+  text-align: center;
+}
+
+.dialog p {
+  text-align: center;
+}
+
+/* ----------- Tutorial steps ----------- */
+.step-1,
+.step-2,
+.step-3,
+.step-4 {
+  top: 155px;
+}
+
+/* The green (optimum) bar in Firefox */
+/* .progress-bar::-moz-meter-bar {
+  background: var(--optimum);
+}
+/* The green (optimum) bar in Chrome etc. */
+/* .progress-bar::-webkit-meter-optimum-value {
+  background: var(--optimum);
+}  */

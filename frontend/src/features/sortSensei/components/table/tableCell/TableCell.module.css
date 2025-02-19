@@ -1,0 +1,101 @@
+.column-index,
+.cell-input {
+  /* Styles for your cell input */
+  width: 3rem; /* Adjust width as needed */
+  height: 2rem;
+  text-align: center;
+  font-size: 1.3rem;
+  margin: 0;
+
+  border: 1px solid rgb(220, 220, 220);
+  outline: none;
+
+  /* Dark grey input text */
+  color: rgb(60, 60, 60);
+}
+
+.cell-input:focus {
+  outline: none;
+  border-color: rgb(59, 130, 246);
+}
+
+.column-index {
+  border: none;
+  height: auto;
+  font-size: 1rem;
+  color: rgb(98, 98, 98);
+}
+
+.bubble-cell-first,
+.bubble-cell-second,
+.in-merge-range {
+  border: none;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  font-weight: 500;
+}
+/* .in-merge-range:hover:not(:focus):not(:disabled) {
+  background-color: rgb(94, 219, 4);
+}
+.in-merge-range:focus {
+  border: 1px solid rgb(38, 112, 1);
+} */
+
+.bubble-cell-first,
+.merge-range-start {
+  border-left: 1px solid black;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+.bubble-cell-second,
+.merge-range-end {
+  border-right: 1px solid black;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+/* Correct User input */
+.correct {
+  color: rgb(21, 87, 36); /* Darker green for text to indicate success */
+  background-color: rgba(40, 167, 69, 0.1); /* Hellerer Grünton */
+}
+.correct:hover:not(:focus):not(:disabled) {
+  background-color: rgba(40, 167, 70, 0.301);
+  border: 1px solid rgb(38, 112, 1);
+}
+.correct:focus {
+  background-color: rgba(40, 167, 70, 0.35);
+  border: 1px solid rgb(38, 112, 1);
+}
+
+/* Incorrect User input */
+.incorrect {
+  background-color: rgb(248, 215, 218); /* Light red for incorrect cells */
+  color: rgb(114, 28, 36); /* Darker red for text to indicate error */
+}
+/* Hover effect for incorrect cells */
+.incorrect:hover:not(:focus):not(:disabled) {
+  background-color: rgb(241, 193, 198); /* Slightly darker red on hover */
+  border: 1px solid rgba(200, 35, 51, 0.726); /* Darker red border on hover */
+}
+/* Focus effect for incorrect cells */
+.incorrect:focus {
+  background-color: rgb(236, 181, 186); /* Even darker red when focused */
+  border: 1px solid rgb(172, 16, 33); /* Stronger border color on focus */
+  /*box-shadow: 0 0 3px rgba(172, 16, 33, 0.5); /* More pronounced shadow when focused */
+}
+
+/* Pivot element */
+/* Selection element */
+.selected-cell,
+.pivot-cell {
+  font-weight: 500;
+  border-radius: 5px;
+}
+.selected-cell.incorrect,
+.pivot-cell.incorrect {
+  border-color: rgb(114, 28, 36);
+}
+.selected-cell.correct,
+.pivot-cell.correct {
+  border-color: rgb(21, 87, 36);
+}

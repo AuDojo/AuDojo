@@ -1,0 +1,45 @@
+{
+  // Prevent clutter in file tree
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true
+    // "**/node_modules": true,
+    // "**/dist/**/*.js.map": true,
+    // "**/dist/**/*.js": {
+    //   "when": "$(basename).ts"
+    // }
+  },
+  // Improve search speed
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/coverage": true
+  },
+  // Read only
+  "files.readonlyInclude": {
+    "**/node_modules/**/*.*": true,
+    "**/dist/**/*.js": true,
+    "**/package-lock.json": true
+  },
+
+  // Editor settings
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+
+  // i18n-ally settings
+  "i18n-ally.localesPaths": "frontend/public/translation",
+  "i18n-ally.pathMatcher": "{locale}/{namespaces}.json",
+  "i18n-ally.namespace": true,
+  "i18n-ally.enabledFrameworks": ["i18next", "react-i18next"],
+  "i18n-ally.keystyle": "auto",
+  // Language to translate from
+  "i18n-ally.sourceLanguage": "en",
+
+  // Translation engines
+  "i18n-ally.translate.deepl.useFreeApiEntry": true,
+  "i18n-ally.translate.engines": ["deepl", "google"]
+}

@@ -1,0 +1,27 @@
+.logo-container {
+  height: var(--height-header);
+  background-color: var(--main-pink);
+  display: flex;
+  align-items: center;
+  border-top-right-radius: calc(var(--height-header) / 2);
+  border-bottom-right-radius: calc(var(--height-header) / 2);
+  box-shadow: 3px 0px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.logo-container:hover {
+  cursor: pointer;
+  box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.4);
+}
+
+.logo-container img {
+  height: inherit;
+  border-radius: 50%;
+}
+
+.logo-container span {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: var(--main-purple);
+  margin: 0 10px 0 30px;
+}

@@ -1,0 +1,90 @@
+.generate-buttons-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 13px;
+  width: 190px;
+  height: auto;
+  position: absolute;
+  top: 25px;
+  left: -215px;
+  background-color: white;
+}
+
+/*-------------general style-------------*/
+/* (custom, random) button*/
+.generate-buttons-container button {
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 16px;
+  font-weight: 800;
+  width: 100%;
+  border: 1px solid var(--main-red);
+}
+
+.generate-buttons-container button:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.generate-buttons-container button:active {
+  opacity: 0.8;
+}
+
+/* -------------specific style-------------*/
+.custom-array-button,
+.random-array-button {
+  color: var(--main-red);
+  background-color: rgba(239, 213, 213, 0.4);
+}
+
+/* (hidden) buttons (close, input, submit, error message)*/
+.close-button,
+.submit-button {
+  background-color: var(--main-red);
+  color: white;
+}
+
+.submit-button {
+  margin-bottom: 10px;
+}
+
+.input-field,
+.length-select {
+  height: 30px;
+  font-size: 15px;
+  width: 100%;
+  margin: 0 0 10px 0;
+  border: 1px solid var(--main-red);
+}
+
+.input-field:focus {
+  outline: 2px solid var(--main-mediumblue);
+}
+
+.error-message {
+  color: var(--main-red);
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 600;
+  padding: 3px;
+  border: 2px dashed var(--main-mediumblue);
+  margin-bottom: 10px;
+}
+
+/*-------------Random Array Button-------------*/
+.length-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.length-info {
+  margin-left: 10px;
+  font-size: 12px;
+  font-style: "italic";
+  color: rgb(96, 96, 96);
+}
+
+.length-select {
+  width: 50px;
+  border-radius: 4px;
+}

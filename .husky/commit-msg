@@ -1,0 +1,13 @@
+npx --no -- commitlint --edit $1
+
+# branch="$(git branch --show-current)"
+#
+# case "$branch" in
+#   dev|main|production)
+#     npx --no -- commitlint --edit $1
+#     ;;
+#   *)
+#     exit 0
+# esac
+
+

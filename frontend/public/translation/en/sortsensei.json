@@ -1,0 +1,46 @@
+{
+  "length-input-info": "Array length: <br /> ({{min}}-{{max}})",
+  "speed-info": "Animation speed",
+  "tutorialModal": {},
+  "button": {
+    "new-custom": "✍️  Custom Array",
+    "new-random": "🎲 Random Array",
+    "back": "Back",
+    "next": "Next",
+    "check-all": "Check All",
+    "reset": "Reset",
+    "close": "Close",
+    "submit": "Submit"
+  },
+  "error-message": {
+    "range": "Please enter numbers only from {{min}} to {{max}}.",
+    "to-few": "Please enter at least {{min}} numbers.",
+    "to-many": "Please enter at most {{max}} numbers."
+  },
+  "mergeSort": {
+    "guide": {
+      "start": "Starting Merge Sort!",
+      "heading": "Merge Sort Guide",
+      "splitting": "<b>Split</b> the array recursively into <b>two halves</b> as long as each subarray contains more than two elements.",
+      "compare": "Compare and sort two elements. <br /> <b>The sorted elements are marked</b>",
+      "merge": "Merge the sorted subarrays by comparing elements. <br /> <b>The merged array is marked.</b>",
+      "end": "Sorting is complete!"
+    }
+  },
+  "quickSort": {
+    "guide": {
+      "heading": "Quick Sort Guide",
+      "choose": "Choose <b> last element {{lastElement}} </b> as pivot element.",
+      "after-partition": "After partitioning, all elements smaller than {{pivot}} are on its left, and larger on the right. <b> Choose {{nextPivot}} </b> as <b>next</b> pivot element. <br /> <b> The used pivot element {{pivot}} is marked.</b>",
+      "end": "<b> The used pivot element {{pivot}} is marked</b> <br /> Sorting is complete!"
+    }
+  },
+  "selectionSort": {
+    "guide": {
+      "header": "Selection Sort Guide",
+      "start": "Starts with the current element at <b>index 0</b>.<br /> Find the smallest from the remaining elements. <br />",
+      "swap": "Swap <b>current ({{currentElement}})</b> with <b>smallest ({{smallestElement}})</b>. <br /> Move to <b>index {{move}}</b> and find the smallest in the unsorted subarray.<br />",
+      "end": "Sorting is complete!"
+    }
+  }
+}

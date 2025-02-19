@@ -1,0 +1,26 @@
+{
+  "start": {
+    "title": "Welcome 👋",
+    "content": "Welcome to SortSensei! Let's get started."
+  },
+  "create": {
+    "title": "1. 🚀 Create Your Array",
+    "content": "Create a custom array or generate a random one."
+  },
+  "input": {
+    "title": "2. ✍️ Input Your Solution",
+    "content": "Enter your sorting solution in the table."
+  },
+  "split": {
+    "title": "3. 🖍️ Split the array",
+    "content": "Click on the <strong>Line</strong> between numbers to split the array. <i>(MergeSort)</i>"
+  },
+  "validate": {
+    "title": "4. ✅ Validate Your Solution",
+    "content": "Use these buttons to validate your solution."
+  },
+  "end": {
+    "title": "🎉  Ready to Sort!",
+    "content": "Now you can start sorting!"
+  }
+}
