@@ -1,5 +1,4 @@
-import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
+import { Layout } from "@/components/layouts/Layout";
 import { Loading } from "@/components/ui/loading";
 import { paths } from "@/config";
 import { BASE_URL } from "@/config/env";
@@ -23,8 +22,7 @@ export const AppRouter = () => {
   return (
     <>
       <BrowserRouter basename={BASE_URL}>
-        <Header />
-        <main>
+        <Layout>
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path={paths.home} element={<Home />} />
@@ -41,8 +39,7 @@ export const AppRouter = () => {
               <Route path="*" element={<NotFound />} /> {/* Invalid route*/}
             </Routes>
           </Suspense>
-        </main>
-        <Footer />
+        </Layout>
       </BrowserRouter>
     </>
   );
