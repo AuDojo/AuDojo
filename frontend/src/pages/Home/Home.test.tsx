@@ -41,7 +41,8 @@ describe("<Home>", () => {
       user.click(homeButton);
 
       // Assert that the URL has changed
-      await waitFor(() => expect(window.location.pathname).toBe(path));
+      // expect(screen.getByText(path)).toBeInTheDocument();
+      await waitFor(() => expect(screen.getByTestId("location-display")).toHaveTextContent(path));
     });
   });
 });
