@@ -4,6 +4,7 @@
   min-height: 500px; /* Minimum height of the SVG (adjustable)*/
   background-color: lightgrey;
   overflow: visible;
+  position: relative;
 }
 
 .node circle {

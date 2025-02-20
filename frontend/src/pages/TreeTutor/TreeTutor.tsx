@@ -1,44 +1,53 @@
-import { JSX, useState } from "react";
 import { TreeTemplate } from "@/features/treeTutor/treeTemplate";
 import styles from "./TreeTutor.module.css";
+import { useState } from "react";
 
-const TreeTutor: React.FC = () => {
-  const [templates, setTemplates] = useState<{ id: number; element: JSX.Element }[]>([]);
+const TreeTutor = () => {
+  const [templates, setTemplates] = useState<number[]>([]);
 
-  const addTemplate = (): void => {
-    setTemplates([...templates, { id: Date.now(), element: <TreeTemplate /> }]);
+  const addTemplate = () => {
+    if (templates.length < 2) {
+      setTemplates([...templates, Date.now()]);
+    }
+  };
+
+  const removeTemplate = (id: number) => {
+    setTemplates(templates.filter((templateId) => templateId !== id));
   };
 
   return (
-    <main className={styles.mainContent}>
-      <section className={styles.treeContainer}>
-        <h2 className={styles.insertHeader}>Insert X</h2>
-        <div className={styles.treeWrapper}>
-          <div className={styles.treeTemplate}>
-            <h3>Initial Template</h3>
-            <TreeTemplate />
-          </div>
-
-          {templates.map((template) => (
-            <div key={template.id} className={styles.treeTemplate}>
-              {template.element}
+    <>
+      <main className={styles.mainContent}>
+        <section className={styles.treeContainer}>
+          <h2 className={styles.insertHeader}>Insert X</h2>
+          <div className={styles.treeWrapper}>
+            <div className={styles.treeTemplate}>
+              <h3>Initial Template</h3>
+              <TreeTemplate />
             </div>
-          ))}
-
-          <button className={styles.addTemplate} onClick={addTemplate}>
-            +
-          </button>
-        </div>
-        <div className="controls">
-          <button>Practice Insert</button>
-          <button>Practice Delete</button>
-          <button>Random</button>
-          <button className={styles.submit} onClick={addTemplate}>
-            Submit
-          </button>
-        </div>
-      </section>
-    </main>
+            {templates.map((id) => (
+              <div key={id} className={styles.treeTemplate}>
+                <button className={styles.closeButton} onClick={() => removeTemplate(id)}>
+                  ✖
+                </button>
+                <TreeTemplate />
+              </div>
+            ))}
+            {templates.length < 2 && (
+              <button className={styles.addTemplate} onClick={addTemplate}>
+                ➕
+              </button>
+            )}
+          </div>
+          <div className={styles.controls}>
+            <button>Practice Insert</button>
+            <button>Practice Delete</button>
+            <button>Random</button>
+            <button className={styles.submit}>Submit</button>
+          </div>
+        </section>
+      </main>
+    </>
   );
 };
 
