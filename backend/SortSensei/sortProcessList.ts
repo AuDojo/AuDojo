@@ -1,31 +1,35 @@
 import { SortType } from "./sortSensei";
+import { SortingData } from "../types/SortSensei-Types";
 
 /**
  * An object of this class can store all the steps of a sorting algorithm and can return those as a json-string.
  */
-export class SortProcessList {
-  #columnsLength: number = 0;
-  #processList: number[][] = [];
-  #mergeRanges: [number, number][] = []; // Array of Tuples
-  #pivotElements: [number, number | null][] = [];
-  #bubbleElements: number[] = [];
-  #selectedElements: number[] = [];
+export class SortProcessList implements SortingData {
+  columnsLength: number = 0;
+
+  processList: number[][] = [];
+  mergeRanges: [number, number][] = []; // Array of Tuples
+  pivotElements: [number, number | null][] = [];
+  bubbleElements: number[] = [];
+  selectionElements: number[] = [];
+
+  //: SortingData = new SortingData();
 
   /**
    * Creates an object in which the single steps of a sorting algorithm can be stored.
    * @param startList The starting list, which should be sorted.
    */
   constructor(startList: number[], sortType: SortType) {
-    this.#columnsLength = startList.length;
-    this.#processList[0] = startList.slice(0); // slice sorgt dafür dass pass by value anstatt von pass by reference verwendet wird.
+    this.columnsLength = startList.length;
+    this.processList[0] = startList.slice(0); // slice sorgt dafür dass pass by value anstatt von pass by reference verwendet wird.
 
     switch (sortType) {
       case SortType.MergeSort:
-        this.#mergeRanges[0] = [-1, -1];
+        this.mergeRanges[0] = [-1, -1];
         break;
 
       case SortType.QuickSort:
-        this.#pivotElements[0] = [-1, -1];
+        this.pivotElements[0] = [-1, -1];
         break;
 
       default:
@@ -38,8 +42,8 @@ export class SortProcessList {
    * @param list List that should be added to the processList
    */
   pushList(list: number[]): void {
-    let index = this.#processList.length;
-    this.#processList[index] = list.slice(0); // slice sorgt dafür dass pass by value anstatt von pass by reference verwendet wird.
+    let index = this.processList.length;
+    this.processList[index] = list.slice(0); // slice sorgt dafür dass pass by value anstatt von pass by reference verwendet wird.
   }
 
   /**
@@ -48,10 +52,10 @@ export class SortProcessList {
    * @param end The Index of the Merge-Range end
    */
   pushMergeRange(start: number, end: number) {
-    let index = this.#processList.length;
-    this.#mergeRanges[index] = [start, end];
+    let index = this.processList.length;
+    this.mergeRanges[index] = [start, end];
 
-    console.log("start, end: ", this.#mergeRanges[index]);
+    console.log("start, end: ", this.mergeRanges[index]);
   }
 
   /**
@@ -59,10 +63,10 @@ export class SortProcessList {
    * @param pivot_index The Index of the pivot-Element
    */
   pushPivotElementBefore(pivot_index: number) {
-    let index = this.#processList.length;
-    this.#pivotElements[index] = [pivot_index, null];
+    let index = this.processList.length;
+    this.pivotElements[index] = [pivot_index, null];
 
-    console.log("pivot_index: ", this.#pivotElements[index][0]);
+    console.log("pivot_index: ", this.pivotElements[index][0]);
   }
 
   /**
@@ -70,10 +74,10 @@ export class SortProcessList {
    * @param pivot_index The Index of the pivot-Element
    */
   pushPivotElementAfter(pivot_index: number) {
-    let index = this.#processList.length;
-    this.#pivotElements[index][1] = pivot_index;
+    let index = this.processList.length;
+    this.pivotElements[index][1] = pivot_index;
 
-    console.log("pivot_index: ", this.#pivotElements[index][1]);
+    console.log("pivot_index: ", this.pivotElements[index][1]);
   }
 
   /**
@@ -81,10 +85,10 @@ export class SortProcessList {
    * @param selected_index Index of the selected element
    */
   pushSelectedElement(selected_index: number) {
-    let index = this.#selectedElements.length;
-    this.#selectedElements[index] = selected_index;
+    let index = this.selectionElements.length;
+    this.selectionElements[index] = selected_index;
 
-    console.log("selected_items: ", this.#selectedElements[index]);
+    console.log("selected_items: ", this.selectionElements[index]);
   }
 
   /**
@@ -92,10 +96,10 @@ export class SortProcessList {
    * @param selected_index Index of the Bubbled Element
    */
   pushBubbleElement(selected_index: number) {
-    let index = this.#bubbleElements.length;
-    this.#bubbleElements[index] = selected_index;
+    let index = this.bubbleElements.length;
+    this.bubbleElements[index] = selected_index;
 
-    console.log("bubble_elements: ", this.#bubbleElements[index]);
+    console.log("bubble_elements: ", this.bubbleElements[index]);
   }
 
   /**
@@ -105,7 +109,7 @@ export class SortProcessList {
    * - false: is not sorted
    */
   checkIfSolved(): boolean {
-    let lastList = this.#processList[this.#processList.length - 1];
+    let lastList = this.processList[this.processList.length - 1];
 
     for (let index = 0; index < lastList.length - 1; index++) {
       const element = lastList[index];
@@ -121,9 +125,9 @@ export class SortProcessList {
    * Returns the 2D-list with all the steps of a sorting algorithm so far recorded.
    * @returns processList
    */
-  public get processList(): number[][] {
-    return this.#processList;
-  }
+  // public get processList(): number[][] {
+  //   return this.processList;
+  // }
 
   /**
    * Turns the saved lists into a json-string
@@ -131,11 +135,11 @@ export class SortProcessList {
    */
   createJson(): string {
     let obj = {
-      processList: this.#processList,
-      mergeRanges: this.#mergeRanges,
-      pivotElements: this.#pivotElements,
-      bubbleElements: this.#bubbleElements,
-      selectionElements: this.#selectedElements,
+      processList: this.processList,
+      mergeRanges: this.mergeRanges,
+      pivotElements: this.pivotElements,
+      bubbleElements: this.bubbleElements,
+      selectionElements: this.selectionElements,
     };
 
     console.log(obj);
@@ -150,9 +154,9 @@ export class SortProcessList {
   toString(): string {
     let returnString: string = "";
 
-    for (let i = 0; i < this.#processList.length; i++) {
-      for (let k = 0; k < this.#columnsLength; k++) {
-        returnString += this.#processList[i] + " ";
+    for (let i = 0; i < this.processList.length; i++) {
+      for (let k = 0; k < this.columnsLength; k++) {
+        returnString += this.processList[i] + " ";
       }
       returnString += "\n";
     }
