@@ -18,11 +18,10 @@ const TreeTutor = () => {
   return (
     <>
       <main className={styles.mainContent}>
+        <h2 className={styles.insertHeader}>Insert X</h2>
         <section className={styles.treeContainer}>
-          <h2 className={styles.insertHeader}>Insert X</h2>
           <div className={styles.treeWrapper}>
             <div className={styles.treeTemplate}>
-              <h3>Initial Template</h3>
               <TreeTemplate />
             </div>
             {templates.map((id) => (
