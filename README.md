@@ -13,15 +13,15 @@
   </tr>
   <tr>
     <td>
-      <img src="frontend/src/assets/homepage.png" />
+      <img src="frontend/src/assets/homepage-new.png" />
     </td>
     <td>
-      <img src="frontend/src/assets/sortsensei-page.png" />
+      <img src="frontend/src/assets/sortsensei-page-new.png" />
     </td>
   </tr>
 </table>
 
-> *Hint: `git commit` will automatically check linting with ESLint and Prettier. `git commit --no-verify` will skip that.*
+> _Hint: `git commit` will automatically check linting with ESLint and Prettier. `git commit --no-verify` will skip that._
 
 ## Run AuDojo locally ⚡
 
@@ -41,7 +41,7 @@ npm run dev # catch site-url from programm output
 
 ```bash
 npm run build # remove artifacts with `npm run clean`
-npm run start 
+npm run start
 ```
 
 Das Dojo ist nun unter http://localhost:5001/ erreichbar ☎️
@@ -58,7 +58,7 @@ docker-compose up -d
 docker-compose down
 ```
 
-### Via dockerfile 
+### Via dockerfile
 
 (1) Image erzeugen 🌱
 
