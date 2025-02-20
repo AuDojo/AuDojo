@@ -1,7 +1,7 @@
 export interface SortingData {
   processList: number[][];
   mergeRanges: [number, number][]; // Array of Tuples
-  pivotElements: [number, number | null][];
+  pivotElements: [number, number][];
   bubbleElements: number[];
   selectionElements: number[];
 }

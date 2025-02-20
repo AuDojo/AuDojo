@@ -9,7 +9,7 @@ export class SortProcessList implements SortingData {
 
   processList: number[][] = [];
   mergeRanges: [number, number][] = []; // Array of Tuples
-  pivotElements: [number, number | null][] = [];
+  pivotElements: [number, number][] = [];
   bubbleElements: number[] = [];
   selectionElements: number[] = [];
 
@@ -64,7 +64,7 @@ export class SortProcessList implements SortingData {
    */
   pushPivotElementBefore(pivot_index: number) {
     let index = this.processList.length;
-    this.pivotElements[index] = [pivot_index, null];
+    this.pivotElements[index] = [pivot_index, -1]; // The -1 is only a placeholder for pushPivotElementAfter
 
     console.log("pivot_index: ", this.pivotElements[index][0]);
   }
