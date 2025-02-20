@@ -83,6 +83,14 @@
   margin-left: 40px;
 }
 
+.submit:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.submit:active {
+  opacity: 0.8;
+}
+
 .controls {
   padding-top: 50px;
 }
@@ -111,4 +119,16 @@
   font-weight: 800;
   border: 1px solid rgb(190, 30, 60);
   margin-left: 10px;
+}
+
+.practiceDeleteButton:active,
+.practiceInsertButton:active,
+.randomModeButton:active {
+  opacity: 0.8;
+}
+
+.practiceDeleteButton:hover,
+.randomModeButton:hover,
+.practiceInsertButton:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
