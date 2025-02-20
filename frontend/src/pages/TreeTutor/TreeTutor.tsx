@@ -39,13 +39,13 @@ const TreeTutor = () => {
               </button>
             )}
           </div>
-          <div className={styles.controls}>
-            <button>Practice Insert</button>
-            <button>Practice Delete</button>
-            <button>Random</button>
-            <button className={styles.submit}>Submit</button>
-          </div>
         </section>
+        <div className={styles.controls}>
+          <button className={styles.practiceInsertButton}>Practice Insert</button>
+          <button className={styles.practiceDeleteButton}>Practice Delete</button>
+          <button className={styles.randomModeButton}>Random Mode</button>
+          <button className={styles.submit}>Submit</button>
+        </div>
       </main>
     </>
   );
