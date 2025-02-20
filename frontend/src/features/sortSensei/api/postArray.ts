@@ -3,14 +3,16 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useCallback, useMemo } from "react";
 import { useSortContext } from "../context";
 import { SortType } from "../types";
+import { SortingData } from "@backend/types/SortSensei-Types"; // TODO: Check if import works correctly
 
-interface SortingData {
-  processList: number[][];
-  mergeRanges: [number, number][];
-  pivotElements: [number, number][];
-  selectionElements: number[];
-  bubbleElements: number[];
-}
+// TODO: Remove Comment if working
+// interface SortingData {
+//   processList: number[][];
+//   mergeRanges: [number, number][];
+//   pivotElements: [number, number][];
+//   selectionElements: number[];
+//   bubbleElements: number[];
+// }
 
 /**
  * Fetches the sorting steps from the server.
