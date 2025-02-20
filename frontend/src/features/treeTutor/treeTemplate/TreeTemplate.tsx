@@ -78,13 +78,16 @@ const TreeTemplate = () => {
     const svg = select(svgRef.current);
     if (!dimensions) return;
 
+    console.log(dimensions.x);
+    console.log(dimensions.y);
+
     // use d3.hierarchy to create a hierarchial layout with nodes(data, children), has utilities like descendants and links
     const root = hierarchy<TreeNode>(treeData);
     // use d3.tree to create a tree layout. Gives us x and y coordinates of nodes
     // TODO: calculate size of the tree based on the number of nodes and height
     const treeLayout = tree<TreeNode>()
       .separation((a, b) => (a.parent == b.parent ? 2 : 3))
-      .size([dimensions.width, dimensions.height]);
+      .size([500, 400]);
     treeLayout(root);
 
     // console.log("root:", root);
