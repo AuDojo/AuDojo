@@ -44,7 +44,7 @@ npm run build # remove artifacts with `npm run clean`
 npm run start
 ```
 
-Das Dojo ist nun unter http://localhost:5001/ erreichbar ☎️
+Das Dojo ist nun unter http://localhost:5001/projects/audojo erreichbar ☎️
 
 ## Run AuDoJo in a Docker Container 🐋📦
 
