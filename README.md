@@ -52,7 +52,7 @@ Das Dojo ist nun unter http://localhost:5001/ erreichbar ☎️
 
 ```bash
 # Run
-docker-compose up -d
+docker-compose up -d # --build (if source code changed and you want to build the image again)
 
 # Stop and delete container
 docker-compose down
