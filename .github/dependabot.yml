@@ -36,6 +36,12 @@ updates:
 
   - package-ecosystem: "docker-compose"
     directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      docker-compose-deps:
+        patterns:
+          - "*"
 
   - package-ecosystem: "github-actions"
     directory: "/"
