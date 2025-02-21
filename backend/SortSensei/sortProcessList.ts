@@ -1,5 +1,5 @@
-import { SortType } from "./sortSensei";
 import { SortingData } from "../types/SortSensei-Types";
+import { SortType } from "./sortSensei";
 
 /**
  * An object of this class can store all the steps of a sorting algorithm and can return those as a json-string.
@@ -134,7 +134,7 @@ export class SortProcessList implements SortingData {
    * @returns json-string in following Format: {"processList": [[startList], [sortStep1], [sortStep2], ...]}
    */
   createJson(): string {
-    let obj = {
+    let obj: SortingData = {
       processList: this.processList,
       mergeRanges: this.mergeRanges,
       pivotElements: this.pivotElements,
