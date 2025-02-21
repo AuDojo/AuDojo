@@ -4,6 +4,7 @@
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
 version: 2
+enable-beta-ecosystems: true
 updates:
   # Enable version updates for npm
   - package-ecosystem: "npm" # See documentation for possible values
@@ -32,7 +33,10 @@ updates:
       docker-deps:
         patterns:
           - "*"
-      
+
+  - package-ecosystem: "docker-compose"
+    directory: "/"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
