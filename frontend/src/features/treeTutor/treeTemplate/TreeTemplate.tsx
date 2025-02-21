@@ -6,7 +6,7 @@ import styles from "./TreeTemplate.module.css";
 interface TreeNode {
   value: number | null;
   /** (Optional) Left and right child */
-  children?: [TreeNode, TreeNode];
+  children?: [TreeNode | null, TreeNode | null];
 }
 
 /**
@@ -104,7 +104,7 @@ const TreeTemplate = () => {
 
     // links (have to be rendered first, otherwise they overlap with nodes)
     svg
-      .selectAll(styles.link)
+      .selectAll("links")
       .data(links)
       .join("path")
       .attr("class", styles.link)
@@ -112,7 +112,7 @@ const TreeTemplate = () => {
 
     // nodes
     const gNodes = svg
-      .selectAll(styles.node)
+      .selectAll("nodes")
       .data(nodes)
       .join("g")
       .attr("class", styles.node)
@@ -137,6 +137,33 @@ const TreeTemplate = () => {
       .append("xhtml:input")
       .attr("class", styles.input)
       .attr("value", (node) => node.data.value);
+
+    gNodes
+      .append("foreignObject")
+      .attr("width", 50)
+      .attr("height", 40)
+      .attr("x", -24)
+      .attr("y", 20)
+      .style("overflow", "hidden")
+      .append("xhtml:div")
+      .attr("class", styles.buttonContainer)
+      .html((d) => {
+        const buttons = [];
+        const children = d.data.children ?? [null, null]; // Sicherstellen, dass es ein Array mit zwei Werten gibt
+
+        console.log(children[0]?.value);
+        console.log(children[1]?.value);
+
+        if ((children[0]?.value ?? null) === null) {
+          buttons.push(`<button class="${styles.addNodeLeft}">+</button>`);
+        }
+
+        if ((children[1]?.value ?? null) === null) {
+          buttons.push(`<button class="${styles.addNodeRight}">+</button>`);
+        }
+
+        return buttons.join(""); // Buttons als String zurückgeben
+      });
 
     // Cleanup function: remove all elements from the svg
     return () => {
