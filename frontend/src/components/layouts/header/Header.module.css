@@ -1,6 +1,5 @@
 .header-container {
   --background-header: white;
-  --height-header: 60px;
 
   height: var(--height-header);
   width: 100%;
