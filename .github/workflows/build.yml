@@ -3,6 +3,8 @@ name: Build Project
 # Trigger workflow on push or pull request to every branch
 on:
   push:
+    paths-ignore:
+      - "**/*.md"
   # pull_request:
 
 # Workflow jobs
@@ -36,26 +38,6 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-
-      # Cache frontend node_modules
-      - name: Cache frontend node_modules
-        id: cache-frontend
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-frontend-${{ hashFiles('frontend/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-frontend-
-
-      # Cache backend node_modules
-      - name: Cache backend node_modules
-        id: cache-backend
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-backend-${{ hashFiles('backend/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-backend-
 
       # Step 3: Install dependencies
       - name: Install dependencies
