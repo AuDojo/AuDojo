@@ -14,43 +14,40 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Check out the code from the repo
+      # Check out the code from the repo
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up Node.js environment
+      # Set up Node.js environment
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: lts/*
 
-      # Cache npm
-      - name: Cache node modules
-        id: cache-npm
+      # Cache npm and .eslintcache
+      - name: Cache npm cache and .eslintcache
+        id: cache
         uses: actions/cache@v4
         env:
-          cache-name: cache-node-modules
+          cache-name: cache
         with:
           # npm cache files are stored in `~/.npm` on Linux/macOS
-          path: ~/.npm
+          path: |
+            ~/.npm
+            **/.eslintcache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-
-      # Step 3: Install dependencies
       - name: Install dependencies
-        run: npm install --frozen-lockfile
-
-      # Step 4: Check linting
-      - name: Lint
+        run: |
+          npm ci --ignore-scripts
+          npm ci --ignore-scripts --prefix backend
+          npm ci --ignore-scripts --prefix frontend
+      - name: Run linter
         run: npm run lint
-
-      # Step 5: Run tests
-      - name: Test
+      - name: Run tests
         run: npm run test
-
-      # Step 6: Build the project
-      - name: Build
+      - name: Build application
         run: npm run build
