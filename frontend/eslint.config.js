@@ -51,11 +51,11 @@ export default tseslint.config([
       ...react.configs.recommended.rules,
       ...react.configs["jsx-runtime"].rules,
       ...reactHooks.configs.recommended.rules,
+      ...reactCompiler.configs.recommended.rules,
       ...pluginQuery.configs["flat/recommended"][0].rules, // Integrate TanStack Query rules
       ...prettierConfig.rules, // Disables ESLint rules that conflict with Prettier
 
       "prettier/prettier": "warn",
-      "react-compiler/react-compiler": "error",
       "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
       "import/no-restricted-paths": [
         "error",

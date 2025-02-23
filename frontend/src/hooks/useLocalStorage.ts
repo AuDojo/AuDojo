@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 /**
  * A React hook that provides a way to read and write to the browser's localStorage.
@@ -6,15 +6,18 @@ import { useEffect, useState } from "react";
  * The hook also listens for changes to the localStorage key and updates the component if the key changes.
  * @param key The key to store the value in localStorage
  * @param initialValue The initial value for the key if it doesn't exist
- * @param typeGuard An optional function that verifies the type of the stored value
+ * @param safeTypeGuard An optional function that verifies the type of the stored value
  * @returns An array of two values: the stored value and a function to update the stored value
  */
 export function useLocalStorage<T>(
   key: string,
   initialValue: T,
-  typeGuard?: (value: unknown) => value is T
+  typeguard?: (value: unknown) => value is T
 ): [T, (value: T | ((val: T) => T)) => void] {
-  if (!typeGuard) typeGuard = (value: unknown): value is T => typeof value === typeof initialValue;
+  const safeTypeGuard = useMemo(
+    () => typeguard ?? ((value: unknown): value is T => typeof value === typeof initialValue),
+    [initialValue, typeguard]
+  );
 
   const [storedValue, setStoredValue] = useState<T>(() => {
     try {
@@ -22,7 +25,7 @@ export function useLocalStorage<T>(
       if (storedValue) {
         const parsedValue = JSON.parse(storedValue);
         // If the type is correct, use the stored value
-        if (typeGuard(parsedValue)) {
+        if (safeTypeGuard(parsedValue)) {
           return parsedValue;
         }
       }
@@ -57,7 +60,7 @@ export function useLocalStorage<T>(
 
       try {
         const newValue = event.newValue ? JSON.parse(event.newValue) : initialValue;
-        if (typeGuard(newValue)) {
+        if (safeTypeGuard(newValue)) {
           // If the type is correct, update the component with the new value
           setStoredValue(newValue);
         } else {
@@ -75,7 +78,7 @@ export function useLocalStorage<T>(
     return () => {
       window.removeEventListener("storage", handleStorageChange);
     };
-  }, [key, initialValue, typeGuard]);
+  }, [key, initialValue, safeTypeGuard]);
 
   return [storedValue, setValue] as const;
 }
