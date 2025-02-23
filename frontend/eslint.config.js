@@ -56,6 +56,7 @@ export default tseslint.config([
 
       "prettier/prettier": "warn",
       "react-compiler/react-compiler": "error",
+      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
       "import/no-restricted-paths": [
         "error",
         {
