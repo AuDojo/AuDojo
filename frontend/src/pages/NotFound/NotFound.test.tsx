@@ -4,10 +4,10 @@ import { renderWithRouter } from "tests/testUtils";
 import NotFound from "./NotFound";
 
 describe("<NotFound>", () => {
-  const badPath = "/some-bad-path";
+  const setup = () => renderWithRouter(<NotFound />, { route: "/some-bad-path" });
 
   it("renders correctly with all main elements", () => {
-    renderWithRouter(<NotFound />, { route: badPath });
+    setup();
 
     // Test if header is rendered
     const header = screen.getByRole("heading", { name: /404 - Not Found/i });
@@ -15,7 +15,7 @@ describe("<NotFound>", () => {
   });
 
   it("navigates to home page when 'Go to Home' is clicked", async () => {
-    const { user } = renderWithRouter(<NotFound />, { route: badPath });
+    const { user } = setup();
 
     // Get home link
     const homeLink = screen.getByRole("link", { name: /Go to Home/i });

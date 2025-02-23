@@ -4,10 +4,10 @@ import { renderWithRouter } from "tests/testUtils";
 import Home from "./Home";
 
 describe("<Home>", () => {
-  const route = paths.home;
+  const setup = () => renderWithRouter(<Home />, { route: paths.home });
 
   it("renders correctly with all main elements", () => {
-    renderWithRouter(<Home />, { route });
+    setup();
 
     // Test if header is rendered
     const header = screen.getByRole("heading", { name: /AuDojo/i });
@@ -30,7 +30,7 @@ describe("<Home>", () => {
 
   homeButtonTests.forEach(({ name, path }) => {
     it(`navigates to ${path} when ${name} button is clicked`, async () => {
-      const { user } = renderWithRouter(<Home />, { route });
+      const { user } = setup();
 
       const homeButton = screen.getByRole("link", { name });
       expect(homeButton).toBeInTheDocument();
