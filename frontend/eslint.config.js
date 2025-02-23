@@ -3,10 +3,12 @@ import pluginQuery from "@tanstack/eslint-plugin-query";
 import vitest from "@vitest/eslint-plugin";
 import prettierConfig from "eslint-config-prettier";
 import importPlugin from "eslint-plugin-import";
+import jestDom from "eslint-plugin-jest-dom";
 import prettierPlugin from "eslint-plugin-prettier";
 import react from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
+import testingLibrary from "eslint-plugin-testing-library";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 
@@ -100,12 +102,15 @@ export default tseslint.config([
     },
   },
   {
-    files: ["tests/**/*.{ts,tsx}", "**/*.test.{ts, tsx}"],
+    files: ["tests/**/*.{ts,tsx}", "**/*.test.{ts,tsx}"],
+    extends: [vitest.configs.recommended, testingLibrary.configs["flat/react"], jestDom.configs["flat/recommended"]],
     plugins: {
+      testingLibrary: testingLibrary,
       vitest,
+      jestDom,
     },
     rules: {
-      ...vitest.configs.recommended.rules,
+      "vitest/consistent-test-it": ["error", { fn: "it", withinDescribe: "it" }],
     },
   },
 ]);
