@@ -6,6 +6,7 @@ import importPlugin from "eslint-plugin-import";
 import jestDom from "eslint-plugin-jest-dom";
 import prettierPlugin from "eslint-plugin-prettier";
 import react from "eslint-plugin-react";
+import reactCompiler from "eslint-plugin-react-compiler";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import testingLibrary from "eslint-plugin-testing-library";
@@ -41,6 +42,7 @@ export default tseslint.config([
       react,
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
+      "react-compiler": reactCompiler,
       import: importPlugin,
       prettier: prettierPlugin,
       "@tanstack/query": pluginQuery,
@@ -53,6 +55,7 @@ export default tseslint.config([
       ...prettierConfig.rules, // Disables ESLint rules that conflict with Prettier
 
       "prettier/prettier": "warn",
+      "react-compiler/react-compiler": "error",
       "import/no-restricted-paths": [
         "error",
         {
