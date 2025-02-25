@@ -4,7 +4,7 @@ import { useButtonContext } from "@/features/sortSensei/components/buttons/conte
 import { useLineValidation } from "@/features/sortSensei/components/buttons/solveButtons/hooks";
 import { useTableContext } from "@/features/sortSensei/components/table/context";
 import { useSortContext, useTutorialModalContext } from "@/features/sortSensei/context";
-import { updateValue } from "@/utils/updateValue";
+import { setRefValue } from "@/utils/updateValue";
 import { useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { FaPlay } from "react-icons/fa";
@@ -58,14 +58,14 @@ const PlaySpeedController = () => {
         setStep(step + 1);
       }, SPEED_VALUES[selectedSpeedIndex]); // with selected speed from pre-defined speed
 
-      updateValue(timeoutRef.current, timeoutId);
+      setRefValue(timeoutRef, timeoutId);
     }
 
     // Clear the interval when the user stops playing
     return () => {
       if (timeoutId) {
         clearTimeout(timeoutId);
-        updateValue(timeoutRef, null);
+        setRefValue(timeoutRef, null);
       }
     };
   }, [

@@ -1,7 +1,6 @@
 import { SortTypes } from "@/features/sortSensei/constants";
 import { useSortContext } from "@/features/sortSensei/context";
 import { mergeRefs } from "@/utils/mergeRefs";
-import { updateValue } from "@/utils/updateValue";
 import classNames from "classnames/bind";
 import { JSX } from "react";
 import { useTableContext } from "../context/TableContext";
@@ -32,7 +31,9 @@ const ListCell = ({ columnIndex, isMarked, setIsMarked }: ListCellProps): JSX.El
         ref={mergeRefs(
           (el) => {
             if (tableCellsRef.current[0]) {
-              updateValue(tableCellsRef.current[0][columnIndex], el);
+              //TODO: Remove the next line later, when react-compiler doesnt complain about assigning a value to a ref from a context
+              // eslint-disable-next-line react-compiler/react-compiler
+              tableCellsRef.current[0][columnIndex] = el;
             }
           },
           ...hotkeyRefs

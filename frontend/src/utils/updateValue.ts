@@ -1,8 +1,10 @@
+import { RefObject } from "react";
+
 /**
- * Updates the value of a mutable variable.
- * @param currentValue The current value of the mutable variable.
- * @param newValue The new value to set.
+ * Sets the value of a React RefObject created with `useRef` or `createRef`.
+ * @param ref - The ref object that you want to set the value of.
+ * @param newValue - The new value of the ref.
  */
-export function updateValue<T>(currentValue: T, newValue: T) {
-  currentValue = newValue;
+export function setRefValue<T>(ref: RefObject<T>, newValue: T) {
+  ref.current = newValue;
 }

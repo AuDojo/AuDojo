@@ -1,7 +1,7 @@
 import { useGetCachedData } from "@/features/sortSensei/api/postArray";
 import { useTableContext } from "@/features/sortSensei/components/table/context";
 import { useSortContext } from "@/features/sortSensei/context";
-import { updateValue } from "@/utils/updateValue";
+import { setRefValue } from "@/utils/updateValue";
 import { useCallback } from "react";
 import { getInitTableStates } from "../utils/tableUtils";
 /**
@@ -24,7 +24,7 @@ export const useResetTable = () => {
       // reset cells
       setUserInputTable(initInputCellValues);
       setCellsValidation(initCellValidation);
-      updateValue(tableCellsRef.current, initInputCells);
+      setRefValue(tableCellsRef, initInputCells);
       setStep(1);
     },
     [getCachedData, processList, setUserInputTable, setCellsValidation, tableCellsRef, setStep]
