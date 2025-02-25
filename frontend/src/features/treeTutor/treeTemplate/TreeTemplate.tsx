@@ -2,12 +2,7 @@ import { useResizeObserver } from "@/hooks/useResizeObserver";
 import { HierarchyLink, HierarchyNode, curveLinear, hierarchy, link, select, tree } from "d3";
 import { useEffect, useRef, useState } from "react";
 import styles from "./TreeTemplate.module.css";
-
-interface TreeNode {
-  value: number | null;
-  /** (Optional) Left and right child */
-  children?: [TreeNode | null, TreeNode | null];
-}
+import { addNode, hasValidXY, updateNode, deleteNode, TreeNode } from "../utils/treeUtils";
 
 /**
  * A React component that visualizes an AVL tree using D3.js.
@@ -17,7 +12,7 @@ interface TreeNode {
  */
 const TreeTemplate = () => {
   // TODO: Split this component (data, type(TreeNode), custom hook)
-  const initialData: TreeNode = {
+  /** const initialData: TreeNode = {
     value: 10,
     children: [
       {
@@ -68,15 +63,38 @@ const TreeTemplate = () => {
       },
     ],
   };
+*/
 
+  const initialData: TreeNode = { value: 0 };
   // TODO: Later on change to [treeData, setTreeData]
-  const [treeData] = useState<TreeNode>(initialData);
+  const [treeData, setTreeData] = useState<TreeNode>(initialData);
   const svgRef = useRef<SVGSVGElement>(null);
   const dimensions = useResizeObserver(svgRef);
 
+  const handleAddNode = (nodeValue: number | null, position: "left" | "right") => {
+    console.log(`Button clicked: Add node to ${position} of node with value ${nodeValue}`);
+    if (nodeValue == null) {
+      return;
+    }
+
+    setTreeData((prevTree) => {
+      const clone = structuredClone(prevTree);
+      // Neuen Wert basierend auf Position berechnen
+      const newValue = position === "left" ? nodeValue - 1 : nodeValue + 1;
+      const index = position === "left" ? 0 : 1;
+
+      // Knoten zum Baum hinzufügen
+      const updatedTree = addNode(clone, nodeValue, newValue, index);
+      return updatedTree;
+    });
+  };
+
   useEffect(() => {
+    console.log("use effect fired", treeData);
     const svg = select(svgRef.current);
     if (!dimensions) return;
+
+    svg.selectAll("*").remove();
 
     console.log(dimensions.x);
     console.log(dimensions.y);
@@ -136,39 +154,90 @@ const TreeTemplate = () => {
       .attr("transform", `translate(-18, -18)`)
       .append("xhtml:input")
       .attr("class", styles.input)
-      .attr("value", (node) => node.data.value);
+      .attr("value", (node) => node.data.value)
+      .on("blur", function (event, d) {
+        const newValue = event.target.value ? Number(event.target.value) : null;
 
-    gNodes
-      .append("foreignObject")
-      .attr("width", 50)
-      .attr("height", 40)
-      .attr("x", -24)
-      .attr("y", 20)
-      .style("overflow", "hidden")
-      .append("xhtml:div")
-      .attr("class", styles.buttonContainer)
-      .html((d) => {
-        const buttons = [];
-        const children = d.data.children ?? [null, null]; // Sicherstellen, dass es ein Array mit zwei Werten gibt
-
-        console.log(children[0]?.value);
-        console.log(children[1]?.value);
-
-        if ((children[0]?.value ?? null) === null) {
-          buttons.push(`<button class="${styles.addNodeLeft}">+</button>`);
+        if (typeof d.data.value !== "number") {
+          return;
         }
+        const value = d.data.value;
 
-        if ((children[1]?.value ?? null) === null) {
-          buttons.push(`<button class="${styles.addNodeRight}">+</button>`);
-        }
+        setTreeData((prevTree) => {
+          const clone = structuredClone(prevTree);
+          const updatedTree =
+            newValue === null ? (deleteNode(clone, value) ?? prevTree) : updateNode(clone, value, newValue);
 
-        return buttons.join(""); // Buttons als String zurückgeben
+          console.log(clone);
+          return updatedTree;
+        });
+        console.log(newValue);
+        console.log(updateNode);
       });
 
-    // Cleanup function: remove all elements from the svg
-    return () => {
-      svg.selectAll("*").remove();
-    };
+    const validNodes = nodes.filter(hasValidXY);
+
+    validNodes.forEach((d) => {
+      const children = d.data.children ?? [null, null];
+      const nodeValue = d.data.value;
+
+      const x = d.x;
+      const y = d.y;
+
+      // Linker Button (als SVG-Kreis)
+      if ((children[0]?.value ?? null) === null) {
+        svg
+          .append("circle")
+          .attr("class", `btn-left-${nodeValue}`)
+          .attr("cx", x - 15)
+          .attr("cy", y + 30)
+          .attr("r", 10)
+          .attr("fill", "#ecf0f1")
+          .attr("stroke", "rgb(0, 63, 87)")
+          .attr("stroke-width", 2)
+          .attr("cursor", "pointer")
+          .on("click", function (event) {
+            event.stopPropagation();
+            handleAddNode(nodeValue, "left");
+          });
+
+        svg
+          .append("text")
+          .attr("x", x - 15)
+          .attr("y", y + 34)
+          .attr("text-anchor", "middle")
+          .attr("font-size", "14px")
+          .attr("pointer-events", "none")
+          .text("+");
+      }
+
+      // Rechter Button (als SVG-Kreis)
+      if ((children[1]?.value ?? null) === null) {
+        svg
+          .append("circle")
+          .attr("class", `btn-right-${nodeValue}`)
+          .attr("cx", x + 15)
+          .attr("cy", y + 30)
+          .attr("r", 10)
+          .attr("fill", "#ecf0f1")
+          .attr("stroke", "rgb(0, 63, 87)")
+          .attr("stroke-width", 2)
+          .attr("cursor", "pointer")
+          .on("click", function (event) {
+            event.stopPropagation();
+            handleAddNode(nodeValue, "right");
+          });
+
+        svg
+          .append("text")
+          .attr("x", x + 15)
+          .attr("y", y + 34)
+          .attr("text-anchor", "middle")
+          .attr("font-size", "14px")
+          .attr("pointer-events", "none")
+          .text("+");
+      }
+    });
   }, [dimensions, treeData]);
 
   return <svg className={styles.svg} ref={svgRef}></svg>;
