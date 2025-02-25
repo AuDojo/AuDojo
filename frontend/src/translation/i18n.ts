@@ -18,6 +18,7 @@ i18n
     interpolation: {
       escapeValue: false,
     },
+    load: "languageOnly",
 
     backend: {
       loadPath: "translation/{{lng}}/{{ns}}.json",
