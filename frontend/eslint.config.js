@@ -71,8 +71,8 @@ export default tseslint.config([
 
             // e.g src/features and src/pages can import from these shared modules but not the other way around
             {
-              target: ["./src/app", "./src/components", "./src/hooks", "./src/config", "./src/contexts", "./src/lib"],
-              from: ["./src/features", "./src/pages"],
+              target: ["./src/components", "./src/hooks", "./src/config", "./src/contexts", "./src/lib"],
+              from: ["./src/app", "./src/features", "./src/pages"],
             },
           ],
         },
