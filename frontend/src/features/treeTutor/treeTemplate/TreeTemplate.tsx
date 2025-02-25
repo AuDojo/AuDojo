@@ -2,7 +2,7 @@ import { useResizeObserver } from "@/hooks/useResizeObserver";
 import { HierarchyLink, HierarchyNode, curveLinear, hierarchy, link, select, tree } from "d3";
 import { useEffect, useRef, useState } from "react";
 import styles from "./TreeTemplate.module.css";
-import { addNode, hasValidXY, updateNode, deleteNode, TreeNode } from "../utils/treeUtils";
+import { findNode, addNode, hasValidXY, updateNode, deleteNode, TreeNode } from "../utils/treeUtils";
 
 /**
  * A React component that visualizes an AVL tree using D3.js.
@@ -12,7 +12,7 @@ import { addNode, hasValidXY, updateNode, deleteNode, TreeNode } from "../utils/
  */
 const TreeTemplate = () => {
   // TODO: Split this component (data, type(TreeNode), custom hook)
-  /** const initialData: TreeNode = {
+  const initialData: TreeNode = {
     value: 10,
     children: [
       {
@@ -63,25 +63,25 @@ const TreeTemplate = () => {
       },
     ],
   };
-*/
 
-  const initialData: TreeNode = { value: 0 };
   // TODO: Later on change to [treeData, setTreeData]
   const [treeData, setTreeData] = useState<TreeNode>(initialData);
   const svgRef = useRef<SVGSVGElement>(null);
   const dimensions = useResizeObserver(svgRef);
 
-  const handleAddNode = (nodeValue: number | null, position: "left" | "right") => {
+  const handleAddNode = (nodeValue: number, position: "left" | "right") => {
     console.log(`Button clicked: Add node to ${position} of node with value ${nodeValue}`);
-    if (nodeValue == null) {
-      return;
-    }
 
     setTreeData((prevTree) => {
       const clone = structuredClone(prevTree);
       // Neuen Wert basierend auf Position berechnen
-      const newValue = position === "left" ? nodeValue - 1 : nodeValue + 1;
+      const newValue = 0;
       const index = position === "left" ? 0 : 1;
+
+      const foundNode = findNode(clone, nodeValue);
+      if (!foundNode) {
+        console.warn(`Knoten mit wert ${nodeValue} nicht gefunden!`);
+      }
 
       // Knoten zum Baum hinzufügen
       const updatedTree = addNode(clone, nodeValue, newValue, index);
@@ -92,15 +92,16 @@ const TreeTemplate = () => {
   useEffect(() => {
     console.log("use effect fired", treeData);
     const svg = select(svgRef.current);
-    if (!dimensions) return;
+    // if (!dimensions) return;
 
     svg.selectAll("*").remove();
 
-    console.log(dimensions.x);
-    console.log(dimensions.y);
+    //console.log(dimensions.x);
+    //console.log(dimensions.y);
 
-    // use d3.hierarchy to create a hierarchial layout with nodes(data, children), has utilities like descendants and links
-    const root = hierarchy<TreeNode>(treeData);
+    // d3 hierarchy ohne null values verarbeiten
+    const root = hierarchy<TreeNode>(treeData, (d) => d.children?.filter((child) => child !== null));
+
     // use d3.tree to create a tree layout. Gives us x and y coordinates of nodes
     // TODO: calculate size of the tree based on the number of nodes and height
     const treeLayout = tree<TreeNode>()
@@ -180,6 +181,10 @@ const TreeTemplate = () => {
     validNodes.forEach((d) => {
       const children = d.data.children ?? [null, null];
       const nodeValue = d.data.value;
+
+      if (typeof nodeValue !== "number") {
+        return;
+      }
 
       const x = d.x;
       const y = d.y;
