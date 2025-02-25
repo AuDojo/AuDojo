@@ -1,3 +1,5 @@
+import React from "react";
+
 /**
  * Merge multiple React refs into a single callback ref.
  *
@@ -12,7 +14,7 @@
  *   return <div ref={mergedRef} />;
  * });
  */
-export function mergeRefs<T>(...refs: React.ForwardedRef<T>[]): React.RefCallback<T> {
+export function mergeRefs<T>(...refs: React.Ref<T>[]): React.RefCallback<T> {
   return (node: T) => {
     for (const ref of refs) {
       if (ref) {

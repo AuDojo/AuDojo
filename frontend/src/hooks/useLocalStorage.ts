@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from "react";
  * The hook also listens for changes to the localStorage key and updates the component if the key changes.
  * @param key The key to store the value in localStorage
  * @param initialValue The initial value for the key if it doesn't exist
- * @param safeTypeGuard An optional function that verifies the type of the stored value
+ * @param typeguard An optional function that verifies the type of the stored value
  * @returns An array of two values: the stored value and a function to update the stored value
  */
 export function useLocalStorage<T>(

@@ -1,6 +1,7 @@
 import { SortTypes } from "@/features/sortSensei/constants";
 import { useSortContext } from "@/features/sortSensei/context";
 import { mergeRefs } from "@/utils/mergeRefs";
+import { updateValue } from "@/utils/updateValue";
 import classNames from "classnames/bind";
 import { JSX } from "react";
 import { useTableContext } from "../context/TableContext";
@@ -19,7 +20,7 @@ const cx = classNames.bind(styles);
 
 const ListCell = ({ columnIndex, isMarked, setIsMarked }: ListCellProps): JSX.Element => {
   const { sortTypeRef, sharedArray } = useSortContext();
-  const { tableCellsRef: tableCellsRef } = useTableContext();
+  const { tableCellsRef } = useTableContext();
   const hotkeyRefs = useCellHotkeys(0, columnIndex);
   const cellValue = sharedArray[columnIndex] || "";
   return (
@@ -31,7 +32,7 @@ const ListCell = ({ columnIndex, isMarked, setIsMarked }: ListCellProps): JSX.El
         ref={mergeRefs(
           (el) => {
             if (tableCellsRef.current[0]) {
-              tableCellsRef.current[0][columnIndex] = el;
+              updateValue(tableCellsRef.current[0][columnIndex], el);
             }
           },
           ...hotkeyRefs

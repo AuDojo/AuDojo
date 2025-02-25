@@ -1,6 +1,7 @@
 import { SortTypes } from "@/features/sortSensei/constants";
 import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import { mergeRefs } from "@/utils/mergeRefs";
+import { updateValue } from "@/utils/updateValue";
 import classNames from "classnames/bind";
 import { JSX } from "react";
 import { useTableContext } from "../context/TableContext";
@@ -61,7 +62,7 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
         ref={mergeRefs(
           (el) => {
             if (tableCellsRef.current[rowIndex]) {
-              tableCellsRef.current[rowIndex][columnIndex] = el;
+              updateValue(tableCellsRef.current[rowIndex][columnIndex], el);
             }
           },
           ...hotkeyRefs
