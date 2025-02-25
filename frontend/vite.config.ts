@@ -6,7 +6,14 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), tsconfigPaths()],
+  plugins: [
+    react({
+      babel: {
+        plugins: [["babel-plugin-react-compiler", { target: "19" }]],
+      },
+    }),
+    tsconfigPaths(),
+  ],
   base: "/projects/audojo/",
   test: {
     globals: true,
@@ -17,12 +24,12 @@ export default defineConfig({
       exclude: ["**/index.ts"],
     },
   },
-  // server: {
-  //   proxy: {
-  //     "/api": {
-  //       target: "http://localhost:5001/projects/audojo",
-  //       changeOrigin: true,
-  //     },
-  //   },
-  // },
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:5001/projects/audojo",
+        changeOrigin: true,
+      },
+    },
+  },
 });

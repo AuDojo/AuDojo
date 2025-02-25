@@ -19,7 +19,7 @@ const cx = classNames.bind(styles);
 
 const ListCell = ({ columnIndex, isMarked, setIsMarked }: ListCellProps): JSX.Element => {
   const { sortTypeRef, sharedArray } = useSortContext();
-  const { tableCellsRef: tableCellsRef } = useTableContext();
+  const { tableCellsRef } = useTableContext();
   const hotkeyRefs = useCellHotkeys(0, columnIndex);
   const cellValue = sharedArray[columnIndex] || "";
   return (
@@ -31,6 +31,8 @@ const ListCell = ({ columnIndex, isMarked, setIsMarked }: ListCellProps): JSX.El
         ref={mergeRefs(
           (el) => {
             if (tableCellsRef.current[0]) {
+              //TODO: Remove the next line later, when react-compiler doesnt complain about assigning a value to a ref from a context
+              // eslint-disable-next-line react-compiler/react-compiler
               tableCellsRef.current[0][columnIndex] = el;
             }
           },

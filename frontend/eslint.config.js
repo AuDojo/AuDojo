@@ -6,6 +6,7 @@ import importPlugin from "eslint-plugin-import";
 import jestDom from "eslint-plugin-jest-dom";
 import prettierPlugin from "eslint-plugin-prettier";
 import react from "eslint-plugin-react";
+import reactCompiler from "eslint-plugin-react-compiler";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import testingLibrary from "eslint-plugin-testing-library";
@@ -41,6 +42,7 @@ export default tseslint.config([
       react,
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
+      "react-compiler": reactCompiler,
       import: importPlugin,
       prettier: prettierPlugin,
       "@tanstack/query": pluginQuery,
@@ -49,10 +51,12 @@ export default tseslint.config([
       ...react.configs.recommended.rules,
       ...react.configs["jsx-runtime"].rules,
       ...reactHooks.configs.recommended.rules,
+      ...reactCompiler.configs.recommended.rules,
       ...pluginQuery.configs["flat/recommended"][0].rules, // Integrate TanStack Query rules
       ...prettierConfig.rules, // Disables ESLint rules that conflict with Prettier
 
       "prettier/prettier": "warn",
+      "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_", varsIgnorePattern: "^_" }],
       "import/no-restricted-paths": [
         "error",
         {

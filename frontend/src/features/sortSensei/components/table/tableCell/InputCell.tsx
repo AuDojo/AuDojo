@@ -61,6 +61,8 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
         ref={mergeRefs(
           (el) => {
             if (tableCellsRef.current[rowIndex]) {
+              //TODO: Remove the next line later, when react-compiler doesnt complain about assigning a value to a ref from a context
+              // eslint-disable-next-line react-compiler/react-compiler
               tableCellsRef.current[rowIndex][columnIndex] = el;
             }
           },

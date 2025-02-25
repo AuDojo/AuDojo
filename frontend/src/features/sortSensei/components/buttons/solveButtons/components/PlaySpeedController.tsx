@@ -4,6 +4,7 @@ import { useButtonContext } from "@/features/sortSensei/components/buttons/conte
 import { useLineValidation } from "@/features/sortSensei/components/buttons/solveButtons/hooks";
 import { useTableContext } from "@/features/sortSensei/components/table/context";
 import { useSortContext, useTutorialModalContext } from "@/features/sortSensei/context";
+import { setRefValue } from "@/utils/updateValue";
 import { useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { FaPlay } from "react-icons/fa";
@@ -15,7 +16,7 @@ import buttonStyles from "../SolveButtons.module.css";
  * check the solution step by step at the selected speed. It also renders a
  * speed range input to allow the user to change the speed of the animation.
  *
- * @returns {JSX.Element} A JSX element containing a "Play" or "Pause" button, a speed range input
+ * @returns A JSX element containing a "Play" or "Pause" button, a speed range input
  */
 
 const PlaySpeedController = () => {
@@ -23,7 +24,7 @@ const PlaySpeedController = () => {
   const { isTutorialOpen } = useTutorialModalContext();
   const [selectedSpeedIndex, setSelectedSpeedIndex] = useState<number>(DEFAULT_SPEED_INDEX);
   const { validateLine } = useLineValidation();
-  const { setCellsValidation: setCellsValidation } = useTableContext();
+  const { setCellsValidation } = useTableContext();
   const { isPlaying, setIsPlaying, timeoutRef, clearPlayBackTimer } = useButtonContext();
 
   const handlePlayPause = () => {
@@ -36,6 +37,8 @@ const PlaySpeedController = () => {
   };
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
     // If the user is playing, start the interval to check the next step
     if (isPlaying) {
       // stop timer at the last steps
@@ -44,7 +47,7 @@ const PlaySpeedController = () => {
         return;
       }
       // create timer
-      timeoutRef.current = setInterval(() => {
+      timeoutId = setInterval(() => {
         // cell validation
         setCellsValidation((prev) => {
           const updated = [...prev];
@@ -54,13 +57,15 @@ const PlaySpeedController = () => {
         // next step
         setStep(step + 1);
       }, SPEED_VALUES[selectedSpeedIndex]); // with selected speed from pre-defined speed
+
+      setRefValue(timeoutRef, timeoutId);
     }
 
     // Clear the interval when the user stops playing
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-        timeoutRef.current = null;
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+        setRefValue(timeoutRef, null);
       }
     };
   }, [
