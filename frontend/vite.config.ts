@@ -8,9 +8,9 @@ import tsconfigPaths from "vite-tsconfig-paths";
 export default defineConfig({
   plugins: [
     react({
-      babel: {
-        plugins: [["babel-plugin-react-compiler", { target: "19" }]],
-      },
+      // babel: {
+      //   plugins: [["babel-plugin-react-compiler", { target: "19" }]],
+      // },
     }),
     tsconfigPaths(),
   ],
