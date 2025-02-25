@@ -1,3 +1,4 @@
+import { Tooltip } from "@/components/ui/tooltip";
 import { paths } from "@/config";
 import { useLocation } from "react-router-dom";
 import { useTutorialModalContext } from "../../context";
@@ -16,9 +17,9 @@ const HelpIcon = () => {
 
   return (
     <div className={styles["icon-container"]} onClick={toggleModal}>
-      <div className={styles["help-tooltip"]} aria-label="Tutorial" data-tooltip="bottom 1000">
+      <Tooltip content="Tutorial" position="bottom" delay={1000}>
         <img src={helpIcon} className={styles["help-icon"]} />
-      </div>
+      </Tooltip>
     </div>
   );
 };

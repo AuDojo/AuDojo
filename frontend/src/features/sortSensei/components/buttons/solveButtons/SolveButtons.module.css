@@ -76,7 +76,7 @@
 .play-icon,
 .pause-icon {
   height: 22px;
-  width: 45px;
+  width: 28px;
   color: var(--main-red);
   cursor: pointer;
 }

@@ -7,7 +7,7 @@ const ResetButton = ({ handleReset }: { handleReset: () => void }) => {
 
   return (
     <button
-      aria-label={`Press [${HOTKEYS.Reset}]`}
+      aria-label={`Reset table [${HOTKEYS.Reset}]`}
       data-tooltip="top"
       className={buttonStyles["reset-button"]}
       onClick={handleReset}

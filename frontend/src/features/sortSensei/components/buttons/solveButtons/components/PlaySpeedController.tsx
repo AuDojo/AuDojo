@@ -1,3 +1,4 @@
+import { Tooltip } from "@/components/ui/tooltip";
 import { HOTKEYS } from "@/config/hotkeyMap";
 import { DEFAULT_SPEED_INDEX, SPEED_VALUES } from "@/features/sortSensei/components/buttons/contants";
 import { useButtonContext } from "@/features/sortSensei/components/buttons/context";
@@ -91,20 +92,14 @@ const PlaySpeedController = () => {
       <div className={buttonStyles["play-speed-container"]}>
         {!isPlaying || step === processList.length ? (
           // Play button is showed when is not playing or at the last step*
-          <FaPlay
-            aria-label="Auto Check Line"
-            data-tooltip="top"
-            onClick={handlePlayPause}
-            className={buttonStyles["play-icon"]}
-          />
+          <Tooltip content={`Auto Check [${HOTKEYS.PlayButton}]`}>
+            <FaPlay onClick={handlePlayPause} className={buttonStyles["play-icon"]} />
+          </Tooltip>
         ) : (
           // Pause button is showed when is playing
-          <GiPauseButton
-            aria-label="Stop Check Line"
-            data-tooltip="top"
-            onClick={handlePlayPause}
-            className={buttonStyles["pause-icon"]}
-          />
+          <Tooltip content={`Stop [${HOTKEYS.PlayButton}]`}>
+            <GiPauseButton onClick={handlePlayPause} className={buttonStyles["pause-icon"]} />
+          </Tooltip>
         )}
         {/* A range with pre-defined speeds*/}
         <div className={buttonStyles["speed-range"]}>
