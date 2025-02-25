@@ -6,7 +6,7 @@ import MergesortText from "@/features/tutorial/components/tutorialContent/MergeS
 import QuickSortImage from "@/features/tutorial/components/tutorialContent/QuickSortImage";
 import QuickSortText from "@/features/tutorial/components/tutorialContent/QuickSortText";
 import { bubbleSortSteps, mergeSortSteps, quickSortSteps, selectionSortSteps } from "@/features/tutorial/data";
-import { useSetTitle } from "@/hooks";
+import { useSetTitle } from "@/hooks/useSetTitle";
 
 const Tutorial = () => {
   useSetTitle("Tutorial");
