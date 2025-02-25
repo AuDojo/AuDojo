@@ -1,4 +1,4 @@
-import { paths } from "@/config";
+import { paths } from "@/config/paths";
 import { screen, waitFor } from "@testing-library/react";
 import { renderWithRouter } from "tests/testUtils";
 import Home from "./Home";

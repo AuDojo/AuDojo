@@ -1,4 +1,4 @@
-import { paths } from "@/config";
+import { paths } from "@/config/paths";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./SideBarMenu.module.css";

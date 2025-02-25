@@ -21,4 +21,4 @@ export const HOTKEYS = {
     moveRight: "right",
     unfocus: "esc",
   },
-};
+} as const;

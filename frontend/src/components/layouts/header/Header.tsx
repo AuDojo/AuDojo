@@ -1,4 +1,4 @@
-import { paths } from "@/config";
+import { paths } from "@/config/paths";
 import { lazy, useState } from "react";
 import { useTranslation } from "react-i18next";
 import headerStyles from "./Header.module.css";

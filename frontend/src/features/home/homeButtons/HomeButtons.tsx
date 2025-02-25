@@ -1,4 +1,4 @@
-import { paths } from "@/config";
+import { paths } from "@/config/paths";
 import { useTranslation } from "react-i18next";
 import sortingPng from "./assets/sorting.png";
 import treePng from "./assets/tree.png";

@@ -1,4 +1,4 @@
-import { paths } from "@/config";
+import { paths } from "@/config/paths";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import footerStyles from "./Footer.module.css";

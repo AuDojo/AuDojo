@@ -1,5 +1,5 @@
 import { Tooltip } from "@/components/ui/tooltip";
-import { paths } from "@/config";
+import { paths } from "@/config/paths";
 import { useLocation } from "react-router-dom";
 import { useTutorialModalContext } from "../../context";
 import helpIcon from "./help-icon.png";
