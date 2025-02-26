@@ -22,12 +22,12 @@ RUN pnpm run build
 FROM base
 
 # Copy production node_modules
-COPY --from=prod-deps /app/node_modules ./node_modules
-COPY --from=prod-deps /app/frontend/node_modules ./frontend/node_modules
-COPY --from=prod-deps /app/backend/node_modules ./backend/node_modules
+COPY --from=prod-deps /app/node_modules /app/node_modules
+COPY --from=prod-deps /app/frontend/node_modules /app/frontend/node_modules
+COPY --from=prod-deps /app/backend/node_modules /app/backend/node_modules
 # Copy built files
-COPY --from=build /app/backend/dist ./backend/dist
-COPY --from=build /app/frontend/dist ./frontend/dist
+COPY --from=build /app/backend/dist /app/backend/dist
+COPY --from=build /app/frontend/dist /app/frontend/dist
 
 # Start server
 WORKDIR /app/backend
