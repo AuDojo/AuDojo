@@ -5,6 +5,7 @@ on:
   push:
     paths-ignore:
       - "**/*.md"
+      - ".vscode/**"
   # pull_request:
 
 # Workflow jobs
@@ -12,20 +13,25 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [lts/*]
 
     steps:
-      # Check out the code from the repo
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Set up Node.js environment
-      - name: Set up Node.js
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
 
       # Cache npm and .eslintcache
-      - name: Cache npm cache and .eslintcache
+      - name: Cache .eslintcache
         id: cache
         uses: actions/cache@v4
         env:
@@ -33,18 +39,15 @@ jobs:
         with:
           # npm cache files are stored in `~/.npm` on Linux/macOS
           path: |
-            ~/.npm
             **/.eslintcache
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+
       - name: Install dependencies
-        run: |
-          npm ci --ignore-scripts
-          npm ci --ignore-scripts --prefix backend
-          npm ci --ignore-scripts --prefix frontend
+        run: pnpm install --frozen-lockfile --recursive
       - name: Run linter
         run: npm run lint
       - name: Run tests
