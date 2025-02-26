@@ -1,0 +1,13 @@
+# Version control
+.git
+.gitignore
+
+*.md
+
+# Build artifacts
+node_modules
+dist
+
+# Docker files themselves
+docker-compose.yml
+.dockerignore

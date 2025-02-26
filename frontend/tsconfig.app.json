@@ -27,7 +27,7 @@
       "@/*": ["src/*"]
     },
 
-    "types": ["vitest/globals", "vite/client"]
+    "types": ["vitest/globals"]
   },
   "include": ["src", "tests"]
 }

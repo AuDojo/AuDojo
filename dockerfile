@@ -1,37 +1,35 @@
-# Schritt 1: Verwende ein Basis-Image mit Node.js
-FROM node:23 AS build-stage
-
-# Schritt 2: Setze das Arbeitsverzeichnis im Container auf /app
+# 1. Verwende ein Basis-Image mit Node.js
+FROM node:23-slim AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+COPY . /app
 WORKDIR /app
 
-# Schritt 3: Kopiere die zentrale package.json und package-lock.json sowie die package.json-Dateien von frontend und backend
-COPY package*.json ./
-COPY frontend/package*.json frontend/
-COPY backend/package*.json backend/
 
-# Schritt 4: Installiere die Abhängigkeiten für das gesamte Projekt
-RUN npm ci
+# 2. Production dependencies
+FROM base AS prod-deps
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --prod --frozen-lockfile
 
-# Schritt 5: Kopiere den gesamten Quellcode ins Arbeitsverzeichnis
-COPY . .
+# 3. Build stage
+FROM base AS build
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+RUN pnpm run build
 
-# Schritt 6: Baue das gesamte Projekt (Frontend und Backend)
-RUN npm run build --omit=dev
+# 4. Final stage
+FROM base
 
-# Produktions-Stage: Nur das Notwendige kopieren
-FROM node:23 AS production-stage
+# Copy node_modules
+COPY --from=prod-deps /app/node_modules ./node_modules
+COPY --from=prod-deps /app/frontend/node_modules ./frontend/node_modules
+COPY --from=prod-deps /app/backend/node_modules ./backend/node_modules
 
-# Arbeitsverzeichnis setzen
-WORKDIR /app
+# Copy compiled output
+COPY --from=build /app/backend/dist ./backend/dist
+COPY --from=build /app/frontend/dist ./frontend/dist
 
-# Kopiere die gebauten Dateien aus der Build-Stage
-COPY --from=build-stage /app .
-
-
-# Setze das Arbeitsverzeichnis auf das Backend und starte den Server
+# Start server
 WORKDIR /app/backend
-CMD ["npm", "run", "start"]
-
-# Exponiere den Port (z.B. 5001, falls der Backend-Server auf diesem Port läuft)
+CMD ["pnpm", "start"]
 EXPOSE 5001
 
