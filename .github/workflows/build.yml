@@ -49,8 +49,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --recursive
       - name: Run linter
-        run: npm run lint
+        run: pnpm lint
       - name: Run tests
-        run: npm run test
+        run: pnpm test
       - name: Build application
-        run: npm run build
+        run: pnpm build
+      - name: Check if pnpm is installed
+        run: pnpm --version
