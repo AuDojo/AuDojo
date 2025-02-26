@@ -4,9 +4,8 @@ import { RuleConfigSeverity } from "@commitlint/types";
 
 // Refer to the commit convention guide:
 // https://github.com/AuDojo/AuDojo/blob/dev/.github/commit-convention.md
-const Configuration: UserConfig = {
+const Configuration = {
   extends: ["@commitlint/config-conventional"],
-  formatter: "@commitlint/format",
   rules: {
     "body-max-line-length": [RuleConfigSeverity.Error, "always", 800],
     // TODO Add Scope Enum here
@@ -14,6 +13,6 @@ const Configuration: UserConfig = {
     "type-enum": [RuleConfigSeverity.Error, "always", [...conventional.rules["type-enum"][2], "dev"]],
   },
   helpUrl: "https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional",
-};
+} satisfies UserConfig;
 
 export default Configuration;

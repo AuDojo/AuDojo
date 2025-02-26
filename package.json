@@ -24,7 +24,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
-    "@commitlint/format": "^19.5.0",
+    "@commitlint/types": "^19.5.0",
     "rimraf": "^6.0.1"
   },
   "optionalDependencies": {
