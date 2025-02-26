@@ -9,11 +9,11 @@
     "clean": "pnpm -r clean",
     "start": "pnpm --filter backend start",
     "dev": "pnpm -r run dev",
-    "lint": "pnpm -r lint",
-    "prepare": "husky",
+    "lint": "pnpm --filter frontend lint",
     "test": "pnpm --filter frontend test",
     "test:ui": "pnpm --filter frontend test:ui ",
-    "coverage": "pnpm --filter frontend coverage"
+    "coverage": "pnpm --filter frontend coverage",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",

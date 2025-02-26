@@ -30,7 +30,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
 
-      # Cache npm and .eslintcache
       - name: Cache .eslintcache
         id: cache
         uses: actions/cache@v4
@@ -39,17 +38,17 @@ jobs:
         with:
           # npm cache files are stored in `~/.npm` on Linux/macOS
           path: |
-            **/.eslintcache
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+            frontend/.eslintcache
+          key: ${{ runner.os }}-eslint-${{ env.cache-name }}-${{ hashFiles('**/.eslintcache') }}
           restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
+            ${{ runner.os }}-eslint-${{ env.cache-name }}-
+            ${{ runner.os }}-eslint-
             ${{ runner.os }}-
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --recursive
       - name: Run linter
-        run: pnpm lint
+        run: pnpm lint --cache-location ".eslintcache"
       - name: Run tests
         run: pnpm test
       - name: Build application
