@@ -43,3 +43,13 @@
   color: var(--main-darkblue);
   padding: 5px 0;
 }
+
+.sortsensei-img {
+  max-width: 100%;
+  height: 215px;
+  background: linear-gradient(rgb(142, 244, 251), rgb(0, 148, 206));
+}
+
+.unsorted-bar {
+  fill: white;
+}
