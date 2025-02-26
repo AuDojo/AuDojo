@@ -28,20 +28,20 @@
 ### Installation 💾
 
 ```bash
-npm i
+pnpm i
 ```
 
 ### Run in Devmode 🥽
 
 ```bash
-npm run dev # catch site-url from programm output
+pnpm dev # catch site-url from programm output
 ```
 
 ### Build 🏗️ && Run 🏃🏻
 
 ```bash
-npm run build # remove artifacts with `npm run clean`
-npm run start
+pnpm build # remove artifacts with `npm run clean`
+pnpm start
 ```
 
 Das Dojo ist nun unter http://localhost:5001/projects/audojo erreichbar ☎️

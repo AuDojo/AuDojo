@@ -1,29 +1,31 @@
 {
-    "name": "audojo",
-    "version": "1.0.0",
-    "description": "## Todo",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "dev": "NODE_ENV=development nodemon server.ts",
-        "build": "tsc",
-        "start": "NODE_ENV=production node dist/server.js",
-        "clean": "rimraf dist"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "@types/express": "^5.0.0",
-        "@types/nodemailer": "^6.4.17",
-        "body-parser": "^1.20.3",
-        "dotenv": "^16.4.7",
-        "express": "^4.21.2",
-        "nodemailer": "^6.10.0",
-        "winston": "^3.17.0"
-    },
-    "devDependencies": {
-        "nodemon": "^3.1.9",
-        "ts-node": "^10.9.2"
-    }
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "## Todo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=development nodemon server.ts",
+    "build": "tsc -b",
+    "start": "NODE_ENV=production node dist/server.js",
+    "clean": "rimraf dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^5.0.0",
+    "@types/nodemailer": "^6.4.17",
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "nodemailer": "^6.10.0",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.5",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
 }

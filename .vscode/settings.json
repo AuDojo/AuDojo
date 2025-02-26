@@ -21,7 +21,7 @@
   "files.readonlyInclude": {
     "**/node_modules/**/*.*": true,
     "**/dist/**/*.js": true,
-    "**/package-lock.json": true
+    "**/pnpm-lock.yaml": true
   },
 
   // Editor settings

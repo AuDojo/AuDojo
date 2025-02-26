@@ -4,30 +4,31 @@
   "description": "## Todo",
   "main": "index.js",
   "scripts": {
-    "build:frontend": "npm run build --prefix frontend",
-    "build:backend": "npm run build --prefix backend",
-    "build": "npm run build:frontend && npm run build:backend",
-    "clean": "npm run clean --prefix frontend && npm run clean --prefix backend",
-    "start": "npm run start --prefix backend",
-    "install": "npm i --prefix backend && npm i --prefix frontend",
-    "start-dev:frontend": "cd frontend && npm run dev",
-    "start-dev:backend": "cd backend && npm run dev",
-    "dev": "npm-run-all -p start-dev:frontend start-dev:backend",
-    "lint": "npm run lint --prefix frontend",
-    "prepare": "husky",
-    "test": "npm run test --prefix frontend",
-    "test:ui": "npm run test:ui --prefix frontend",
-    "coverage": "npm run coverage --prefix frontend"
+    "preinstall": "npx only-allow pnpm",
+    "build": "pnpm -r build",
+    "clean": "pnpm -r clean",
+    "start": "pnpm --filter backend start",
+    "dev": "pnpm -r run dev",
+    "lint": "pnpm --filter frontend lint",
+    "test": "pnpm --filter frontend test",
+    "test:ui": "pnpm --filter frontend test:ui ",
+    "coverage": "pnpm --filter frontend coverage",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": ">=22.11.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
-    "@commitlint/format": "^19.5.0",
-    "husky": "^9.1.7",
-    "npm-run-all": "^4.1.5",
+    "@commitlint/types": "^19.5.0",
     "rimraf": "^6.0.1"
-  }
+  },
+  "optionalDependencies": {
+    "husky": "^9.1.7"
+  },
+  "packageManager": "pnpm@10.5.1+sha512.c424c076bd25c1a5b188c37bb1ca56cc1e136fbf530d98bcb3289982a08fd25527b8c9c4ec113be5e3393c39af04521dd647bcf1d0801eaf8ac6a7b14da313af"
 }

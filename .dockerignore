@@ -1,0 +1,21 @@
+# Version control
+.git
+.gitignore
+.github
+
+# Build artifacts
+node_modules
+dist
+
+# Test files
+tests
+coverage
+
+# Docker files themselves
+docker-compose.yml
+.dockerignore
+
+.vscode
+*.md
+*.log
+.husky
