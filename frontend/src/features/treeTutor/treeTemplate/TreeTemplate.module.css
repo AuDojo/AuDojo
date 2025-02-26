@@ -1,9 +1,9 @@
 .svg {
+  display: flex;
+  justify-content: center;
+  margin: auto;
   width: 100%;
-  max-width: 500px; /* Maximum width of the SVG (adjustable*/
-  min-height: 400px; /* Minimum height of the SVG (adjustable)*/
-  margin-top: 50px;
-  overflow: visible;
+  min-height: 600px; /* Minimum height of the SVG (adjustable)*/
   position: relative;
 }
 
@@ -61,6 +61,7 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
+  margin-bottom: 5px;
 }
 
 .buttonContainer button:active {

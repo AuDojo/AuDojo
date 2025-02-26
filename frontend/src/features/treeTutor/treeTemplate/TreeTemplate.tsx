@@ -2,89 +2,32 @@ import { useResizeObserver } from "@/hooks/useResizeObserver";
 import { HierarchyLink, HierarchyNode, curveLinear, hierarchy, link, select, tree } from "d3";
 import { useEffect, useRef, useState } from "react";
 import styles from "./TreeTemplate.module.css";
-import { findNode, addNode, hasValidXY, updateNode, deleteNode, TreeNode } from "../utils/treeUtils";
+import { addNode, deleteNode, findNode, hasValidXY, updateNode, TreeNode } from "../utils/treeUtils";
 
-/**
- * A React component that visualizes an AVL tree using D3.js.
- * It initializes with a predefined tree structure and renders it
- * as an SVG element. The tree layout adjusts based on container size.
- * Nodes and links are dynamically filtered to exclude null values.
- */
 const TreeTemplate = () => {
-  // TODO: Split this component (data, type(TreeNode), custom hook)
-  const initialData: TreeNode = {
-    value: 10,
-    children: [
-      {
-        value: 5,
-        children: [
-          {
-            value: 3,
-            children: [
-              {
-                value: 1,
-              },
-              {
-                value: 4,
-                children: [
-                  {
-                    value: 3.5,
-                  },
-                  {
-                    value: 4.5,
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            value: 8,
-          },
-        ],
-      },
-      {
-        value: 15,
-        children: [
-          {
-            value: 12,
-            children: [
-              {
-                value: 11,
-              },
-              {
-                value: null,
-              },
-            ],
-          },
-          {
-            value: 18,
-          },
-        ],
-      },
-    ],
-  };
-
-  // TODO: Later on change to [treeData, setTreeData]
-  const [treeData, setTreeData] = useState<TreeNode>(initialData);
   const svgRef = useRef<SVGSVGElement>(null);
   const dimensions = useResizeObserver(svgRef);
 
-  const handleAddNode = (nodeValue: number, position: "left" | "right") => {
-    console.log(`Button clicked: Add node to ${position} of node with value ${nodeValue}`);
+  const root = { value: 0, height: 0, id: crypto.randomUUID() };
 
+  const [treeData, setTreeData] = useState<TreeNode>(root);
+
+  const handleAddNode = (nodeId: string, position: "left" | "right") => {
     setTreeData((prevTree) => {
       const clone = structuredClone(prevTree);
-      // Neuen Wert basierend auf Position berechnen
+      // Find the target node using the ID
+      const foundNode = findNode(clone, nodeId);
+
+      if (!foundNode) {
+        console.warn(`Node with ID ${nodeId} not found!`);
+        return clone;
+      }
+
       const newValue = 0;
       const index = position === "left" ? 0 : 1;
 
-      const foundNode = findNode(clone, nodeValue);
-      if (!foundNode) {
-        console.warn(`Knoten mit wert ${nodeValue} nicht gefunden!`);
-      }
+      const updatedTree = addNode(clone, nodeId, newValue, index);
 
-      // Knoten zum Baum hinzufügen
-      const updatedTree = addNode(clone, nodeValue, newValue, index);
       return updatedTree;
     });
   };
@@ -102,12 +45,27 @@ const TreeTemplate = () => {
     // d3 hierarchy ohne null values verarbeiten
     const root = hierarchy<TreeNode>(treeData, (d) => d.children?.filter((child) => child !== null));
 
-    // use d3.tree to create a tree layout. Gives us x and y coordinates of nodes
-    // TODO: calculate size of the tree based on the number of nodes and height
+    const width = 800;
+    const height = (root.height + 1) * 120;
+    const centerX = width / 2;
+
     const treeLayout = tree<TreeNode>()
-      .separation((a, b) => (a.parent == b.parent ? 2 : 3))
-      .size([500, 400]);
+      .size([width * 0.8, height])
+      .separation((a, b) => (a.parent === b.parent ? 1.5 : 2));
+
     treeLayout(root);
+
+    if (root.x !== undefined) {
+      const xOffset = centerX - root.x;
+      root.descendants().forEach((d) => {
+        if (d.x !== undefined && d.y !== undefined) {
+          d.x += xOffset - 110;
+          d.y += 23;
+        }
+      });
+    }
+
+    svg.attr("width", width).attr("height", height);
 
     // console.log("root:", root);
     // console.log("root.descendants():", root.descendants());
@@ -157,32 +115,30 @@ const TreeTemplate = () => {
       .attr("class", styles.input)
       .attr("value", (node) => node.data.value)
       .on("blur", function (event, d) {
-        const newValue = event.target.value ? Number(event.target.value) : null;
-
-        if (typeof d.data.value !== "number") {
+        if (typeof d.data.id !== "string" || typeof d.data.value !== "number") {
           return;
         }
-        const value = d.data.value;
 
-        setTreeData((prevTree) => {
-          const clone = structuredClone(prevTree);
-          const updatedTree =
-            newValue === null ? (deleteNode(clone, value) ?? prevTree) : updateNode(clone, value, newValue);
+        const id = d.data.id;
+        const inputValue = event.target.value;
 
-          console.log(clone);
-          return updatedTree;
-        });
-        console.log(newValue);
-        console.log(updateNode);
+        if (!inputValue) {
+          // Falls das Eingabefeld leer ist, entferne den Knoten
+          setTreeData((prevTree) => deleteNode(structuredClone(prevTree), id));
+        } else {
+          // Falls ein Wert vorhanden ist, aktualisiere den Knoten
+          const newValue = Number(inputValue);
+          setTreeData((prevTree) => updateNode(structuredClone(prevTree), id, newValue));
+        }
       });
 
     const validNodes = nodes.filter(hasValidXY);
 
     validNodes.forEach((d) => {
       const children = d.data.children ?? [null, null];
-      const nodeValue = d.data.value;
+      const nodeId = d.data.id;
 
-      if (typeof nodeValue !== "number") {
+      if (typeof nodeId !== "string") {
         return;
       }
 
@@ -193,7 +149,7 @@ const TreeTemplate = () => {
       if ((children[0]?.value ?? null) === null) {
         svg
           .append("circle")
-          .attr("class", `btn-left-${nodeValue}`)
+          .attr("class", `btn-left-${nodeId}`)
           .attr("cx", x - 15)
           .attr("cy", y + 30)
           .attr("r", 10)
@@ -203,7 +159,8 @@ const TreeTemplate = () => {
           .attr("cursor", "pointer")
           .on("click", function (event) {
             event.stopPropagation();
-            handleAddNode(nodeValue, "left");
+            console.log(` ID from on click Event: ${nodeId}`);
+            handleAddNode(nodeId, "left");
           });
 
         svg
@@ -220,7 +177,7 @@ const TreeTemplate = () => {
       if ((children[1]?.value ?? null) === null) {
         svg
           .append("circle")
-          .attr("class", `btn-right-${nodeValue}`)
+          .attr("class", `btn-right-${nodeId}`)
           .attr("cx", x + 15)
           .attr("cy", y + 30)
           .attr("r", 10)
@@ -230,7 +187,8 @@ const TreeTemplate = () => {
           .attr("cursor", "pointer")
           .on("click", function (event) {
             event.stopPropagation();
-            handleAddNode(nodeValue, "right");
+            console.log(` ID from on click Event: ${nodeId}`);
+            handleAddNode(nodeId, "right");
           });
 
         svg

@@ -1,9 +1,10 @@
 .svg {
   width: 100%;
   max-width: 800px; /* Maximum width of the SVG (adjustable*/
-  min-height: 500px; /* Minimum height of the SVG (adjustable)*/
+  min-height: 600px; /* Minimum height of the SVG (adjustable)*/
   background-color: lightgrey;
   overflow: visible;
+  margin-top: 20px;
 }
 
 .node circle {
