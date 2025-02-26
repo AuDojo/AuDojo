@@ -6,18 +6,18 @@ import { createBubbleSortData } from "@/features/sortSensei/components/sortVisua
 import { useResizeObserver } from "@/hooks/useResizeObserver";
 
 // demo data to show bubble sort animation on homebutton
-const array: number[] = [3, 1, 4, 6, 2, 5];
+const array: number[] = [4, 3, 1, 2, 6, 5];
 const process = [
-  [2, 6, 3, 1, 4, 5],
-  [2, 3, 6, 1, 4, 5],
-  [2, 3, 1, 6, 4, 5],
-  [2, 3, 1, 4, 6, 5],
-  [2, 3, 1, 4, 5, 6],
-  [2, 1, 3, 4, 5, 6],
+  [4, 3, 1, 2, 6, 5],
+  [3, 4, 1, 2, 6, 5],
+  [3, 1, 4, 2, 6, 5],
+  [3, 1, 2, 4, 6, 5],
+  [3, 1, 2, 4, 5, 6],
+  [1, 3, 2, 4, 5, 6],
   [1, 2, 3, 4, 5, 6],
 ];
-const bubbleElements = [1, 2, 3, 4, 1, 0];
-const durationSwapElements = 1000;
+const bubbleElements = [0, 1, 2, 4, 0, 1];
+const durationSwapElements = 600;
 
 /** Component that describes SortSensei home-button */
 const Sorting = () => {
