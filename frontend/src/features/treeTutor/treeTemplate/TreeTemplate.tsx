@@ -41,21 +41,18 @@ const TreeTemplate = () => {
     console.log("log dimensions: ", dimensions.x);
     console.log("log Dimensions: ", dimensions.y);
 
-    // d3 hierarchy ohne null values verarbeiten
+    // process d3 hiearchy without null values
     const root = hierarchy<TreeNode>(treeData, (d) => d.children?.filter((child) => child !== null));
 
-    const width = 550;
-    const height = 550;
+    const width = 800;
+    const height = 650;
 
-    svg.attr("width", width).attr("height", height);
+    svg.attr("width", "100%").attr("height", "100%");
 
     // center relative to viewbox
-    const centerX = 275;
+    const centerX = 400;
 
-    const viewBoxWidth = Math.max(dimensions.width * 0.9, 550);
-    const viewBoxHeight = Math.max(dimensions.height * 0.9, 550);
-
-    svg.attr("viewBox", `0 0 ${viewBoxWidth} ${viewBoxHeight}`);
+    svg.attr("viewBox", `0 0 ${width} ${height}`);
 
     const treeLayout = tree<TreeNode>()
       .size([width * 0.8, height])
@@ -65,16 +62,16 @@ const TreeTemplate = () => {
 
     // Dann manuell korrigieren, um Links/Rechts-Positionierung zu erzwingen
     const manualPositioning = (node: HierarchyNode<TreeNode>, level: number) => {
-      const yOffset = 140;
-      const exponentialDecrease = 0.45;
-      const horizontalSpacing = 130;
+      const yOffset = 160;
+      const exponentialDecrease = 0.5;
+      const horizontalSpacing = 190;
+
       // Root node handling
       if (!node.parent) {
         node.x = centerX;
-        node.y = 25;
+        node.y = 5;
 
         if (node.children) {
-          // Position children explicitly
           node.children.forEach((child) => {
             if (typeof node.x === "number" && typeof node.y === "number") {
               if (child.data.position === "left") {
@@ -85,10 +82,8 @@ const TreeTemplate = () => {
                 child.x = node.x + horizontalSpacing;
               }
 
-              // Vertical distance to next level
               child.y = node.y + yOffset;
 
-              // Continue recursively for all sub-children
               manualPositioning(child, level + 1);
             }
           });
@@ -97,51 +92,19 @@ const TreeTemplate = () => {
       // For all other nodes with parent
       else if (node.parent) {
         // spacing between nodes declines exponentially
-        const horizontalSpacing = 140 * Math.pow(exponentialDecrease, level);
-
-        // Determine if this is a left or right child
-        const parentChildren = node.parent.children ?? [];
-        const nodeIndex = parentChildren.indexOf(node);
-        const isLeftChild = nodeIndex === 0;
-        const isRightChild = nodeIndex === 1;
+        const levelSpacing = horizontalSpacing * Math.pow(exponentialDecrease, level);
 
         if (node.children) {
-          // Position children explicitly
           node.children.forEach((child) => {
             if (typeof node.x === "number" && typeof node.y === "number") {
               if (child.data.position === "left") {
-                // Left child
-                child.x = node.x - horizontalSpacing;
+                child.x = node.x - levelSpacing;
               } else {
-                // Right child
-                child.x = node.x + horizontalSpacing;
+                child.x = node.x + levelSpacing;
               }
 
-              // Preserve the left/right structure
-              if (isLeftChild && node.parent) {
-                // If this node is a left child, ensure its children stay on the left half
-                if (typeof node.parent.x === "number" && typeof child.x === "number") {
-                  // But don't move right children unnecessarily far left
-                  if (child.data.position === "right" && child.x > node.parent.x) {
-                    // Push it slightly left of the parent's position but still right of current node
-                    child.x = node.x + horizontalSpacing / 2;
-                  }
-                }
-              } else if (isRightChild && node.parent) {
-                // If this node is a right child, ensure its children stay on the right half
-                if (typeof node.parent.x === "number" && typeof child.x === "number") {
-                  // But don't move left children unnecessarily far right
-                  if (child.data.position === "left" && child.x < node.parent.x) {
-                    // Push it slightly right of the parent's position but still left of current node
-                    child.x = node.x - horizontalSpacing / 2;
-                  }
-                }
-              }
-
-              // Vertical distance
               child.y = node.y + yOffset;
 
-              // Continue recursively
               manualPositioning(child, level + 1);
             }
           });
@@ -150,10 +113,6 @@ const TreeTemplate = () => {
     };
 
     manualPositioning(root, 0);
-
-    // console.log("root:", root);
-    // console.log("root.descendants():", root.descendants());
-    // console.log("root.links(): ", root.links());
 
     // Filter out nodes and links with no value (and no coordinates)
     const nodes = root.descendants().filter((d) => d.data.value !== null && d.x !== undefined && d.y !== undefined);
@@ -231,7 +190,7 @@ const TreeTemplate = () => {
       const y = d.y;
 
       // Linker Button (als SVG-Kreis)
-      if ((children[0]?.value ?? null) === null && height < 3) {
+      if ((children[0]?.value ?? null) === null && height < 4) {
         svg
           .append("circle")
           .attr("class", `btn-left-${nodeId}`)
@@ -258,7 +217,7 @@ const TreeTemplate = () => {
           .text("+");
       }
       // Rechter Button (als SVG-Kreis)
-      if ((children[1]?.value ?? null) === null && height < 3) {
+      if ((children[1]?.value ?? null) === null && height < 4) {
         svg
           .append("circle")
           .attr("class", `btn-right-${nodeId}`)
@@ -289,7 +248,11 @@ const TreeTemplate = () => {
   }, [dimensions, treeData]);
   console.log(treeData);
 
-  return <svg className={styles.svg} ref={svgRef}></svg>;
+  return (
+    <div className={styles.treeTemplateContainer}>
+      <svg className={styles.svg} ref={svgRef}></svg>
+    </div>
+  );
 };
 
 export default TreeTemplate;
