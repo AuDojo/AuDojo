@@ -34,19 +34,28 @@ const TreeTemplate = () => {
   useEffect(() => {
     console.log("use effect fired", treeData);
     const svg = select(svgRef.current);
-    // if (!dimensions) return;
+    if (!dimensions) return;
 
     svg.selectAll("*").remove();
 
-    //console.log(dimensions.x);
-    //console.log(dimensions.y);
+    console.log("log dimensions: ", dimensions.x);
+    console.log("log Dimensions: ", dimensions.y);
 
     // d3 hierarchy ohne null values verarbeiten
     const root = hierarchy<TreeNode>(treeData, (d) => d.children?.filter((child) => child !== null));
 
-    const width = 800;
-    const height = (root.height + 1) * 120;
-    const centerX = 278;
+    const width = 550;
+    const height = 550;
+
+    svg.attr("width", width).attr("height", height);
+
+    // center relative to viewbox
+    const centerX = 275;
+
+    const viewBoxWidth = Math.max(dimensions.width * 0.9, 550);
+    const viewBoxHeight = Math.max(dimensions.height * 0.9, 550);
+
+    svg.attr("viewBox", `0 0 ${viewBoxWidth} ${viewBoxHeight}`);
 
     const treeLayout = tree<TreeNode>()
       .size([width * 0.8, height])
@@ -140,10 +149,7 @@ const TreeTemplate = () => {
       }
     };
 
-    // Wende manuelle Positionierung an
     manualPositioning(root, 0);
-
-    svg.attr("width", width).attr("height", height);
 
     // console.log("root:", root);
     // console.log("root.descendants():", root.descendants());
