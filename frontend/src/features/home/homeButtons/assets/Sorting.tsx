@@ -4,6 +4,9 @@ import style from "../HomeButtons.module.css";
 import useScales from "@/features/sortSensei/components/sortVisualizer/hooks/useScales";
 import { createBubbleSortData } from "@/features/sortSensei/components/sortVisualizer/utils/createBubbleSortData";
 import { useResizeObserver } from "@/hooks/useResizeObserver";
+import classNames from "classnames/bind";
+
+const cx = classNames.bind(style);
 
 // demo data to show bubble sort animation on homebutton
 const array: number[] = [4, 3, 1, 2, 6, 5];
@@ -101,7 +104,7 @@ const Sorting = () => {
   return (
     <svg
       ref={svgRef}
-      className={style["sortsensei-img"]}
+      className={cx("home-button-img", "sortsensei-img")}
       onMouseEnter={handleHovering}
       onMouseLeave={handleStopHovering}
     ></svg>
