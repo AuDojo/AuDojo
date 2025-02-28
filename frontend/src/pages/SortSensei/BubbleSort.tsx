@@ -11,7 +11,6 @@ import { TutorialModal } from "@/features/sortSensei/components/tutorialModal";
 import { SortTypes } from "@/features/sortSensei/constants";
 import { TutorialModalProvider } from "@/features/sortSensei/context";
 import { SortProvider, useSortContext } from "@/features/sortSensei/context/SortContext";
-import { useSetTitle } from "@/hooks/useSetTitle";
 import styles from "./SortSensei.module.css";
 
 const BubbleSortContent = () => {
@@ -45,9 +44,9 @@ const BubbleSortContent = () => {
 };
 
 const BubbleSort = () => {
-  useSetTitle("BubbleSort");
   return (
     <TutorialModalProvider>
+      <title>Bubblesort</title>
       <HelpIcon />
       <SideBarMenu />
       <TutorialModal />
