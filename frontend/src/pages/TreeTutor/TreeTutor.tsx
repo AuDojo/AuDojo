@@ -2,16 +2,41 @@ import { TreeTemplate } from "@/features/treeTutor/treeTemplate";
 import styles from "./TreeTutor.module.css";
 import { useState } from "react";
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
+import { generateRandomAVL } from "./utils/AVLTreeService";
+//import { ExerciseManager } from "./utils/ExerciseManager";
+
+/*
+type ExerciseMode = "CUSTOM" | "RANDOM";
+type OperationType = "INSERT" | "DELETE";
+*/
 
 const TreeTutor = () => {
   const [templates, setTemplates] = useState<number[]>([]);
 
-  // initial Template tree state
-  const root: TreeNode = { value: 0, height: 0, id: crypto.randomUUID(), position: "root" };
-  const [initialTreeData, setInitialTreeData] = useState<TreeNode>(root);
+  // treeData of initial Template
+  const root: TreeNode = {
+    value: 0,
+    height: 0,
+    id: crypto.randomUUID(),
+    position: "root",
+    children: [null, null],
+    depth: 0,
+    balanceFactor: 0,
+  };
 
-  // Tree States for additionaly templates
+  const sample: TreeNode = generateRandomAVL() ?? root;
+  const [initialTreeData, setInitialTreeData] = useState<TreeNode>(sample);
+
+  // treeData of consecutive Tree Templates
   const [templateTree, setTemplateTree] = useState<Record<number, TreeNode>>({});
+
+  /*
+  const [exerciseMode, setExerciseMode] = useState<ExerciseMode>("RANDOM");
+  const [currentOperationType, setCurrentOperationType] = useState<OperationType>("INSERT");
+  const [targetValue, setTargetValue] = useState<number | null>(null);
+  const [solutionTree, setSolutionTree] = useState<TreeNode | null>(null);
+  const [feedback, setFeedback] = useState<string | null>(null);
+  */
 
   const addTemplate = () => {
     if (templates.length < 3) {
@@ -46,6 +71,7 @@ const TreeTutor = () => {
 
   /*
   useEffect(() => {
+
     console.log("Updated initialTreeData:", initialTreeData);
   }, [initialTreeData]);
   */
