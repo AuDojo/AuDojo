@@ -5,22 +5,9 @@ import useScales from "@/features/sortSensei/components/sortVisualizer/hooks/use
 import { createBubbleSortData } from "@/features/sortSensei/components/sortVisualizer/utils/createBubbleSortData";
 import { useResizeObserver } from "@/hooks/useResizeObserver";
 import classNames from "classnames/bind";
+import { demoArray, demoProcess, demoBubbleElements, durationSorting } from "./constants";
 
 const cx = classNames.bind(style);
-
-// demo data to show bubble sort animation on homebutton
-const array: number[] = [4, 3, 1, 2, 6, 5];
-const process = [
-  [4, 3, 1, 2, 6, 5],
-  [3, 4, 1, 2, 6, 5],
-  [3, 1, 4, 2, 6, 5],
-  [3, 1, 2, 4, 6, 5],
-  [3, 1, 2, 4, 5, 6],
-  [1, 3, 2, 4, 5, 6],
-  [1, 2, 3, 4, 5, 6],
-];
-const bubbleElements = [0, 1, 2, 4, 0, 1];
-const durationSwapElements = 600;
 
 /** Component that describes SortSensei home-button */
 const Sorting = () => {
@@ -36,15 +23,15 @@ const Sorting = () => {
 
   /** specific data of bubblesort: {currentArray, numSteps, i, bubbleElements} */
   const data = createBubbleSortData({
-    currentArray: process[step],
-    numSteps: process.length,
+    currentArray: demoProcess[step],
+    numSteps: demoProcess.length,
     i: step,
-    bubbleElements,
+    bubbleElements: demoBubbleElements,
   });
 
   const { xScale, yScale } = useScales({
     containerSize,
-    sharedArray: array,
+    sharedArray: demoArray,
   });
 
   useEffect(() => {
@@ -70,7 +57,7 @@ const Sorting = () => {
     if (isHovering.current) {
       bars
         .transition()
-        .duration(durationSwapElements)
+        .duration(durationSorting)
         .attr("class", style["unsorted-bar"])
         .attr("transform", (d) => `translate(${xScale(d.index)}, 0)`);
     }
@@ -92,8 +79,8 @@ const Sorting = () => {
     isHovering.current = true;
     clearTimer();
     timerRef.current = setInterval(() => {
-      setStep((prev) => (prev + 1) % process.length);
-    }, durationSwapElements);
+      setStep((prev) => (prev + 1) % demoProcess.length);
+    }, durationSorting);
   };
   const handleStopHovering = () => {
     isHovering.current = false;
