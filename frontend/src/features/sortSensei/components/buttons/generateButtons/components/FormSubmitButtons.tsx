@@ -99,6 +99,7 @@ const FormSubmitButtons = ({ isSubmitting, setIsSubmitting }: FormSubmitButtonsP
             <input
               className={buttonStyles["input-field"]}
               type="text"
+              aria-label="Enter your array (separated by spaces)"
               // resgister make input values available for validation + submission
               {...register("userInput", {
                 onChange: handleInputChange,

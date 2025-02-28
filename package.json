@@ -6,33 +6,36 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build": "pnpm -r build",
-    "clean": "pnpm -r clean",
+    "clean": "rimraf test-results playwright-report && pnpm -r clean",
     "start": "pnpm --filter backend start",
-    "dev": "pnpm -r run dev",
-    "lint": "pnpm --filter frontend lint",
+    "dev": "pnpm -r dev",
+    "lint:e2e": "eslint --flag unstable_config_lookup_from_file e2e --cache --cache-location=node_modules/.cache/.eslintcache --max-warnings=0",
+    "lint": "pnpm --filter frontend lint && pnpm lint:e2e",
     "test": "pnpm --filter frontend test",
     "test:ui": "pnpm --filter frontend test:ui ",
-    "test-e2e": "pnpm playwright test",
+    "test:e2e": "pnpm playwright test",
     "coverage": "pnpm --filter frontend coverage",
     "prepare": "husky"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "engines": {
-    "node": ">=22.11.0"
-  },
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
     "@commitlint/types": "^19.5.0",
     "@playwright/test": "^1.50.1",
     "@types/node": "^22.13.5",
+    "@typescript-eslint/eslint-plugin": "^8.25.0",
+    "@typescript-eslint/parser": "^8.25.0",
+    "eslint": "^9.21.0",
     "eslint-plugin-playwright": "^2.2.0",
-    "rimraf": "^6.0.1"
+    "rimraf": "^6.0.1",
+    "typescript-eslint": "^8.25.0"
   },
   "optionalDependencies": {
     "husky": "^9.1.7"
   },
+  "type": "module",
   "packageManager": "pnpm@10.5.2+sha512.da9dc28cd3ff40d0592188235ab25d3202add8a207afbedc682220e4a0029ffbff4562102b9e6e46b4e3f9e8bd53e6d05de48544b0c57d4b0179e22c76d1199b"
 }
