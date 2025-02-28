@@ -13,6 +13,7 @@
   align-items: center;
   justify-content: space-between;
   width: 300px;
+  height: 290px;
   transition:
     box-shadow 0.15s,
     transform 0.15s;
@@ -35,8 +36,8 @@
 }
 
 .home-button-img {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 100%;
 }
 
 .home-button-text {
@@ -45,11 +46,22 @@
 }
 
 .sortsensei-img {
-  max-width: 100%;
-  height: 215px;
   background: linear-gradient(rgb(142, 244, 251), rgb(0, 148, 206));
 }
 
+.treetutor-img {
+  background: linear-gradient(rgb(163, 251, 141), rgb(61, 178, 14));
+}
+
 .unsorted-bar {
+  fill: rgba(255, 255, 255, 0.9);
+}
+
+.link {
+  stroke: rgba(255, 255, 255, 0.8);
+  stroke-width: 4px;
+}
+
+.circle {
   fill: white;
 }
