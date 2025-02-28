@@ -18,8 +18,6 @@ const HomeButton = ({ link, header, img, text }: HomeButtonProps) => {
       ) : (
         img
       )}
-      {/* <img className={styles["home-button-img"]} src={img} alt={`${header} illustration`} />
-      <div></div> */}
       <p className={styles["home-button-text"]}>{text}</p>
     </Link>
   );

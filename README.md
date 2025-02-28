@@ -28,6 +28,7 @@
 ### Installation 💾
 
 ```bash
+# If pnpm not installed, run: `npm i -g pnpm`
 pnpm i
 ```
 

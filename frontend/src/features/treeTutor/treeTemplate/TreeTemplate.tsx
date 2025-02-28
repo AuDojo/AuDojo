@@ -1,53 +1,62 @@
 import { useResizeObserver } from "@/hooks/useResizeObserver";
 import { HierarchyLink, HierarchyNode, curveLinear, hierarchy, link, select, tree } from "d3";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import styles from "./TreeTemplate.module.css";
 import { addNode, deleteNode, findNode, hasValidXY, updateNode, TreeNode } from "../utils/treeUtils";
 
-const TreeTemplate = () => {
+interface TreeTemplateProps {
+  treeData: TreeNode;
+  onTreeUpdate: (newTree: TreeNode) => void;
+}
+
+const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const dimensions = useResizeObserver(svgRef);
 
-  const root = { value: 0, height: 0, id: crypto.randomUUID() };
+  const handleAddNode = useCallback(
+    (nodeId: string, position: "left" | "right") => {
+      // Clone the current tree data
+      const treeDataTyped: TreeNode = treeData;
+      const clone = structuredClone(treeDataTyped);
 
-  const [treeData, setTreeData] = useState<TreeNode>(root);
-
-  const handleAddNode = (nodeId: string, position: "left" | "right") => {
-    setTreeData((prevTree) => {
-      const clone = structuredClone(prevTree);
       // Find the target node using the ID
       const foundNode = findNode(clone, nodeId);
 
       if (!foundNode) {
         console.warn(`Node with ID ${nodeId} not found!`);
-        return clone;
+        return;
       }
 
       const newValue = 0;
-      const index = position === "left" ? 0 : 1;
 
-      const updatedTree = addNode(clone, nodeId, newValue, index);
+      // Create updated tree
+      const updatedTree = addNode(clone, nodeId, newValue, position);
 
-      return updatedTree;
-    });
-  };
+      // Pass the new tree to the onTreeUpdate function
+      onTreeUpdate(updatedTree);
+    },
+    [treeData, onTreeUpdate]
+  );
 
   useEffect(() => {
     console.log("use effect fired", treeData);
     const svg = select(svgRef.current);
-    // if (!dimensions) return;
+    if (!dimensions) return;
 
     svg.selectAll("*").remove();
 
-    //console.log(dimensions.x);
-    //console.log(dimensions.y);
-
-    // d3 hierarchy ohne null values verarbeiten
+    // process d3 hiearchy without null values
     const root = hierarchy<TreeNode>(treeData, (d) => d.children?.filter((child) => child !== null));
 
     const width = 800;
-    const height = (root.height + 1) * 120;
-    const centerX = width / 2;
+    const height = 650;
+
+    svg.attr("width", "100%").attr("height", "100%");
+
+    // center relative to viewbox
+    const centerX = 400;
+
+    svg.attr("viewBox", `0 0 ${width} ${height}`);
 
     const treeLayout = tree<TreeNode>()
       .size([width * 0.8, height])
@@ -55,21 +64,59 @@ const TreeTemplate = () => {
 
     treeLayout(root);
 
-    if (root.x !== undefined) {
-      const xOffset = centerX - root.x;
-      root.descendants().forEach((d) => {
-        if (d.x !== undefined && d.y !== undefined) {
-          d.x += xOffset - 110;
-          d.y += 23;
+    // Dann manuell korrigieren, um Links/Rechts-Positionierung zu erzwingen
+    const manualPositioning = (node: HierarchyNode<TreeNode>, level: number) => {
+      const yOffset = 160;
+      const exponentialDecrease = 0.5;
+      const horizontalSpacing = 190;
+
+      // Root node handling
+      if (!node.parent) {
+        node.x = centerX;
+        node.y = 5;
+
+        if (node.children) {
+          node.children.forEach((child) => {
+            if (typeof node.x === "number" && typeof node.y === "number") {
+              if (child.data.position === "left") {
+                // Left child
+                child.x = node.x - horizontalSpacing;
+              } else {
+                // Right child
+                child.x = node.x + horizontalSpacing;
+              }
+
+              child.y = node.y + yOffset;
+
+              manualPositioning(child, level + 1);
+            }
+          });
         }
-      });
-    }
+      }
+      // For all other nodes with parent
+      else if (node.parent) {
+        // spacing between nodes declines exponentially
+        const levelSpacing = horizontalSpacing * Math.pow(exponentialDecrease, level);
 
-    svg.attr("width", width).attr("height", height);
+        if (node.children) {
+          node.children.forEach((child) => {
+            if (typeof node.x === "number" && typeof node.y === "number") {
+              if (child.data.position === "left") {
+                child.x = node.x - levelSpacing;
+              } else {
+                child.x = node.x + levelSpacing;
+              }
 
-    // console.log("root:", root);
-    // console.log("root.descendants():", root.descendants());
-    // console.log("root.links(): ", root.links());
+              child.y = node.y + yOffset;
+
+              manualPositioning(child, level + 1);
+            }
+          });
+        }
+      }
+    };
+
+    manualPositioning(root, 0);
 
     // Filter out nodes and links with no value (and no coordinates)
     const nodes = root.descendants().filter((d) => d.data.value !== null && d.x !== undefined && d.y !== undefined);
@@ -121,14 +168,13 @@ const TreeTemplate = () => {
 
         const id = d.data.id;
         const inputValue = event.target.value;
+        const treeClone = structuredClone(treeData);
 
         if (!inputValue) {
-          // Falls das Eingabefeld leer ist, entferne den Knoten
-          setTreeData((prevTree) => deleteNode(structuredClone(prevTree), id));
+          onTreeUpdate(deleteNode(treeClone, id));
         } else {
-          // Falls ein Wert vorhanden ist, aktualisiere den Knoten
           const newValue = Number(inputValue);
-          setTreeData((prevTree) => updateNode(structuredClone(prevTree), id, newValue));
+          onTreeUpdate(updateNode(treeClone, id, newValue));
         }
       });
 
@@ -137,6 +183,7 @@ const TreeTemplate = () => {
     validNodes.forEach((d) => {
       const children = d.data.children ?? [null, null];
       const nodeId = d.data.id;
+      const height = d.data.height;
 
       if (typeof nodeId !== "string") {
         return;
@@ -146,7 +193,7 @@ const TreeTemplate = () => {
       const y = d.y;
 
       // Linker Button (als SVG-Kreis)
-      if ((children[0]?.value ?? null) === null) {
+      if ((children[0]?.value ?? null) === null && height < 4) {
         svg
           .append("circle")
           .attr("class", `btn-left-${nodeId}`)
@@ -172,9 +219,8 @@ const TreeTemplate = () => {
           .attr("pointer-events", "none")
           .text("+");
       }
-
       // Rechter Button (als SVG-Kreis)
-      if ((children[1]?.value ?? null) === null) {
+      if ((children[1]?.value ?? null) === null && height < 4) {
         svg
           .append("circle")
           .attr("class", `btn-right-${nodeId}`)
@@ -185,6 +231,7 @@ const TreeTemplate = () => {
           .attr("stroke", "rgb(0, 63, 87)")
           .attr("stroke-width", 2)
           .attr("cursor", "pointer")
+          .attr("position", "right")
           .on("click", function (event) {
             event.stopPropagation();
             console.log(` ID from on click Event: ${nodeId}`);
@@ -201,9 +248,14 @@ const TreeTemplate = () => {
           .text("+");
       }
     });
-  }, [dimensions, treeData]);
+  }, [dimensions, treeData, onTreeUpdate, handleAddNode]);
+  console.log(treeData);
 
-  return <svg className={styles.svg} ref={svgRef}></svg>;
+  return (
+    <div className={styles.treeTemplateContainer}>
+      <svg className={styles.svg} ref={svgRef}></svg>
+    </div>
+  );
 };
 
 export default TreeTemplate;

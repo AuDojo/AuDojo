@@ -5,15 +5,10 @@
 export interface TreeNode {
   id: string;
   value: number | null;
-  height: number | null;
+  height: number;
+  position: string;
   children?: [TreeNode | null, TreeNode | null];
 }
-
-/**
- * Node Dictionary for faster lookup times
- */
-
-export type NodeDictionary = Map<string, TreeNode>;
 
 /**
  * Find a node by its value in the tree
@@ -36,6 +31,7 @@ export function findNode(root: TreeNode | null, targetId: string): TreeNode | nu
 /**
  *  Updates the value of a node in the tree
  * */
+
 export function updateNode(root: TreeNode, targetId: string, newValue: number | null): TreeNode {
   const newRoot = structuredClone(root);
 
@@ -51,6 +47,7 @@ export function updateNode(root: TreeNode, targetId: string, newValue: number | 
 /**
  * Deletes a node and its subtree
  */
+
 export function deleteNode(root: TreeNode, targetId: string): TreeNode {
   // Special case for root node
   if (root.id === targetId) {
@@ -59,6 +56,7 @@ export function deleteNode(root: TreeNode, targetId: string): TreeNode {
       value: 0,
       height: 0,
       children: [null, null],
+      position: "root",
     };
   }
 
@@ -97,7 +95,8 @@ export function deleteNode(root: TreeNode, targetId: string): TreeNode {
 /**
  * Hinzufügen eines Knotens
  */
-export function addNode(tree: TreeNode, targetId: string, newValue: number, position: number): TreeNode {
+
+export function addNode(tree: TreeNode, targetId: string, newValue: number, position: string): TreeNode {
   // Create a clone to ensure immutability
   const newRoot = structuredClone(tree);
 
@@ -111,21 +110,20 @@ export function addNode(tree: TreeNode, targetId: string, newValue: number, posi
   }
 
   // Check if position is already occupied
-  if (targetNode.children[position]) return newRoot;
+  if (targetNode.children[position === "left" ? 0 : 1]) return newRoot;
 
-  // Calculate the height
   const height = (targetNode.height ?? 0) + 1;
-
   // Create new node
   const newNode: TreeNode = {
     id: crypto.randomUUID(),
     value: newValue,
     height,
     children: [null, null],
+    position,
   };
 
   // Add the node to the tree
-  targetNode.children[position] = newNode;
+  targetNode.children[position === "left" ? 0 : 1] = newNode;
 
   return newRoot;
 }
