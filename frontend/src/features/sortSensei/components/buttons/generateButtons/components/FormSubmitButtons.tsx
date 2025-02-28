@@ -125,7 +125,7 @@ const FormSubmitButtons = ({ isSubmitting, setIsSubmitting }: FormSubmitButtonsP
         </form>
       )}
 
-      {!isSubmitting && errors.userInput && (
+      {errors.userInput && (
         // ERROR message at the end
         <div className={buttonStyles["error-message"]}> ‼️ {errors.userInput.message}</div>
       )}
