@@ -35,6 +35,27 @@
   padding: 10px;
   justify-content: center;
   width: 100%;
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 63, 87, 0.3) transparent;
+}
+
+/* Scrollbar Stylings */
+.treeWrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.treeWrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.treeWrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 63, 87, 0.3);
+  border-radius: 10px;
+}
+
+.treeWrapper::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 63, 87, 0.5);
 }
 
 .treeTemplate {
@@ -42,7 +63,7 @@
   border: 2px solid rgb(0, 63, 87);
   padding: 0;
   width: 100%;
-  min-width: 400px;
+  min-width: 600px;
   max-width: 550px;
   display: block;
   flex-direction: column;
@@ -71,11 +92,27 @@
 }
 
 .addTemplate {
-  font-size: 15px;
-  padding: 5px 3px;
+  font-size: 22px;
   background: white;
-  border: 1px solid black;
+  border: 1px solid rgb(0, 63, 87);
+  border-radius: 50%;
   cursor: pointer;
+  color: rgb(0, 63, 87);
+  transition: all 0.2s ease;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  margin: auto 0 auto 5px;
+  line-height: 0;
+  flex-shrink: 0;
+}
+
+.addTemplate:hover {
+  background-color: rgba(0, 63, 87, 0.05);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
 }
 
 .submit {

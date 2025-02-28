@@ -1,35 +1,42 @@
 import { useResizeObserver } from "@/hooks/useResizeObserver";
 import { HierarchyLink, HierarchyNode, curveLinear, hierarchy, link, select, tree } from "d3";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import styles from "./TreeTemplate.module.css";
 import { addNode, deleteNode, findNode, hasValidXY, updateNode, TreeNode } from "../utils/treeUtils";
 
-const TreeTemplate = () => {
+interface TreeTemplateProps {
+  treeData: TreeNode;
+  onTreeUpdate: (newTree: TreeNode) => void;
+}
+
+const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const dimensions = useResizeObserver(svgRef);
 
-  const root = { value: 0, height: 0, id: crypto.randomUUID(), position: "root" };
+  const handleAddNode = useCallback(
+    (nodeId: string, position: "left" | "right") => {
+      // Clone the current tree data
+      const treeDataTyped: TreeNode = treeData;
+      const clone = structuredClone(treeDataTyped);
 
-  const [treeData, setTreeData] = useState<TreeNode>(root);
-
-  const handleAddNode = (nodeId: string, position: "left" | "right") => {
-    setTreeData((prevTree) => {
-      const clone = structuredClone(prevTree);
       // Find the target node using the ID
       const foundNode = findNode(clone, nodeId);
 
       if (!foundNode) {
         console.warn(`Node with ID ${nodeId} not found!`);
-        return clone;
+        return;
       }
 
       const newValue = 0;
 
+      // Create updated tree
       const updatedTree = addNode(clone, nodeId, newValue, position);
 
-      return updatedTree;
-    });
-  };
+      // Pass the new tree to the onTreeUpdate function
+      onTreeUpdate(updatedTree);
+    },
+    [treeData, onTreeUpdate]
+  );
 
   useEffect(() => {
     console.log("use effect fired", treeData);
@@ -37,9 +44,6 @@ const TreeTemplate = () => {
     if (!dimensions) return;
 
     svg.selectAll("*").remove();
-
-    console.log("log dimensions: ", dimensions.x);
-    console.log("log Dimensions: ", dimensions.y);
 
     // process d3 hiearchy without null values
     const root = hierarchy<TreeNode>(treeData, (d) => d.children?.filter((child) => child !== null));
@@ -164,14 +168,13 @@ const TreeTemplate = () => {
 
         const id = d.data.id;
         const inputValue = event.target.value;
+        const treeClone = structuredClone(treeData);
 
         if (!inputValue) {
-          // Falls das Eingabefeld leer ist, entferne den Knoten
-          setTreeData((prevTree) => deleteNode(structuredClone(prevTree), id));
+          onTreeUpdate(deleteNode(treeClone, id));
         } else {
-          // Falls ein Wert vorhanden ist, aktualisiere den Knoten
           const newValue = Number(inputValue);
-          setTreeData((prevTree) => updateNode(structuredClone(prevTree), id, newValue));
+          onTreeUpdate(updateNode(treeClone, id, newValue));
         }
       });
 
@@ -245,7 +248,7 @@ const TreeTemplate = () => {
           .text("+");
       }
     });
-  }, [dimensions, treeData]);
+  }, [dimensions, treeData, onTreeUpdate, handleAddNode]);
   console.log(treeData);
 
   return (
