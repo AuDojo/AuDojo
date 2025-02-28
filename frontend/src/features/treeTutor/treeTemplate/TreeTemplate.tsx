@@ -183,7 +183,7 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
     validNodes.forEach((d) => {
       const children = d.data.children ?? [null, null];
       const nodeId = d.data.id;
-      const height = d.data.height;
+      const depth = d.data.depth;
 
       if (typeof nodeId !== "string") {
         return;
@@ -193,7 +193,7 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
       const y = d.y;
 
       // Linker Button (als SVG-Kreis)
-      if ((children[0]?.value ?? null) === null && height < 4) {
+      if ((children[0]?.value ?? null) === null && depth < 4) {
         svg
           .append("circle")
           .attr("class", `btn-left-${nodeId}`)
@@ -220,7 +220,7 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
           .text("+");
       }
       // Rechter Button (als SVG-Kreis)
-      if ((children[1]?.value ?? null) === null && height < 4) {
+      if ((children[1]?.value ?? null) === null && depth < 4) {
         svg
           .append("circle")
           .attr("class", `btn-right-${nodeId}`)
@@ -249,7 +249,6 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
       }
     });
   }, [dimensions, treeData, onTreeUpdate, handleAddNode]);
-  console.log(treeData);
 
   return (
     <div className={styles.treeTemplateContainer}>

@@ -4,10 +4,12 @@
 
 export interface TreeNode {
   id: string;
-  value: number | null;
+  value: number;
+  depth: number;
   height: number;
   position: string;
-  children?: [TreeNode | null, TreeNode | null];
+  children: [TreeNode | null, TreeNode | null];
+  balanceFactor: number;
 }
 
 /**
@@ -32,7 +34,7 @@ export function findNode(root: TreeNode | null, targetId: string): TreeNode | nu
  *  Updates the value of a node in the tree
  * */
 
-export function updateNode(root: TreeNode, targetId: string, newValue: number | null): TreeNode {
+export function updateNode(root: TreeNode, targetId: string, newValue: number): TreeNode {
   const newRoot = structuredClone(root);
 
   const targetNode = findNode(newRoot, targetId);
@@ -54,9 +56,11 @@ export function deleteNode(root: TreeNode, targetId: string): TreeNode {
     return {
       id: crypto.randomUUID(),
       value: 0,
+      depth: 0,
       height: 0,
       children: [null, null],
       position: "root",
+      balanceFactor: 0,
     };
   }
 
@@ -112,14 +116,16 @@ export function addNode(tree: TreeNode, targetId: string, newValue: number, posi
   // Check if position is already occupied
   if (targetNode.children[position === "left" ? 0 : 1]) return newRoot;
 
-  const height = (targetNode.height ?? 0) + 1;
+  const depth = (targetNode.depth ?? 0) + 1;
   // Create new node
   const newNode: TreeNode = {
     id: crypto.randomUUID(),
     value: newValue,
-    height,
+    height: 0,
+    depth,
     children: [null, null],
     position,
+    balanceFactor: 0,
   };
 
   // Add the node to the tree
@@ -131,7 +137,7 @@ export function addNode(tree: TreeNode, targetId: string, newValue: number, posi
  *
  * @param root übergebener Tree
  * @param targetValue Knoten, für den die höhe gefunden werden soll
- * @param height rekursive Zählvaribale, beginnend mit der Höhe des Wurzelknotens
+ * @param depth rekursive Zählvaribale, beginnend mit der Höhe des Wurzelknotens
  * @returns
  */
 
