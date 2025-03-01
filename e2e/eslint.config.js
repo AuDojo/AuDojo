@@ -29,7 +29,6 @@ export default tseslint.config([
       ...playwright.configs["flat/recommended"].rules,
 
       "no-console": "warn",
-      "@typescript-eslint/no-floating-promises": "error",
     },
   },
 ]);
