@@ -48,6 +48,8 @@ jobs:
         run: pnpm install --frozen-lockfile --recursive
       - name: Run linter
         run: pnpm lint --cache-location ".eslintcache"
+      - name: Check types
+        run: pnpm check-types
       - name: Run tests
         run: pnpm test
       - name: Build application
