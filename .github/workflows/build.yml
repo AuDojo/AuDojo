@@ -37,7 +37,7 @@ jobs:
           cache-name: cache
         with:
           path: |
-            frontend/.eslintcache
+            **/.eslintcache
           key: ${{ runner.os }}-eslint-${{ env.cache-name }}-${{ hashFiles('**/.eslintcache') }}
           restore-keys: |
             ${{ runner.os }}-eslint-${{ env.cache-name }}-

@@ -81,6 +81,7 @@ const RandomArrayButton = ({ setIsSubmitting }: RandomArrayButtonProps) => {
 
       <div className={buttonStyles["length-container"]}>
         <input
+          id="random-array-length"
           ref={ref}
           className={buttonStyles["length-select"]}
           type="number"
@@ -89,9 +90,9 @@ const RandomArrayButton = ({ setIsSubmitting }: RandomArrayButtonProps) => {
           max={MAX_ARRAY_SIZE}
           onChange={handleArrayLengthChange}
         />
-        <div className={buttonStyles["length-info"]}>
+        <label className={buttonStyles["length-info"]} htmlFor="random-array-length">
           {parse(t("length-input-info", { min: MIN_ARRAY_SIZE, max: MAX_ARRAY_SIZE }))}
-        </div>
+        </label>
       </div>
     </>
   );

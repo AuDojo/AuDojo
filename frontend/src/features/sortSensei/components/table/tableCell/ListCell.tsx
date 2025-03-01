@@ -38,6 +38,7 @@ const ListCell = ({ columnIndex, isMarked, setIsMarked }: ListCellProps): JSX.El
           },
           ...hotkeyRefs
         )}
+        aria-label={`Array[${columnIndex}]: ${cellValue}`}
       />
       {sortTypeRef.current === SortTypes.MergeSort && columnIndex != sharedArray.length - 1 && (
         <Separator isMarked={isMarked} setIsMarked={setIsMarked} />

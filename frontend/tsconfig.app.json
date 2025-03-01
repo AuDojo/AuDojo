@@ -29,5 +29,5 @@
 
     "types": ["vitest/globals", "vite/client"]
   },
-  "include": ["src", "src/testing"]
+  "include": ["src"]
 }

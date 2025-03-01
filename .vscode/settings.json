@@ -42,5 +42,8 @@
 
   // Translation engines
   "i18n-ally.translate.deepl.useFreeApiEntry": true,
-  "i18n-ally.translate.engines": ["deepl", "google"]
+  "i18n-ally.translate.engines": ["deepl", "google"],
+  "[properties]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  }
 }

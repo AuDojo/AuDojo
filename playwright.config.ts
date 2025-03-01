@@ -1,7 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const FRONTEND_PORT = 5177;
-const BACKEND_PORT = 5001;
+const FRONTEND_PORT = 5180;
+const BACKEND_PORT = 5002;
 
 /**
  * Read environment variables from file.
@@ -82,7 +82,7 @@ export default defineConfig({
       reuseExistingServer: !process.env.CI,
     },
     {
-      command: `pnpm --filter backend dev --port ${BACKEND_PORT}`,
+      command: `pnpm --filter backend dev`,
       timeout: 10 * 1000,
       port: BACKEND_PORT,
       reuseExistingServer: !process.env.CI,

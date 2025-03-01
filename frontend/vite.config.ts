@@ -19,7 +19,7 @@ export default defineConfig({
     open: true,
     proxy: {
       "/api": {
-        target: `http://localhost:5001/projects/audojo`,
+        target: "http://localhost:5002/projects/audojo",
         changeOrigin: true,
       },
     },

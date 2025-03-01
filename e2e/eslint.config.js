@@ -12,7 +12,7 @@ const { configs: typescriptConfigs } = typescript;
  */
 export default tseslint.config([
   {
-    files: ["**/*.ts", "**/*.tsx", "./tests/**/*.ts", "./tests/**/*.tsx"],
+    files: ["tests/**/*.ts", "tests/**/*.tsx"],
     plugins: {
       "@typescript-eslint": typescript,
       playwright: playwright,
@@ -25,10 +25,11 @@ export default tseslint.config([
       },
     },
     rules: {
-      ...typescriptConfigs["recommended-type-checked"].rules,
+      ...typescriptConfigs["recommended"].rules,
       ...playwright.configs["flat/recommended"].rules,
 
       "no-console": "warn",
+      "@typescript-eslint/no-floating-promises": "error",
     },
   },
 ]);

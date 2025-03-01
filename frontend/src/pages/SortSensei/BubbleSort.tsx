@@ -20,11 +20,11 @@ const BubbleSortContent = () => {
     return <Loading />;
   }
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div role="alert">Error: {error.message}</div>;
   }
 
   return (
-    <div className={styles["main-container"]}>
+    <section className={styles["main-container"]}>
       <BubbleSortGuide />
       <BubbleSortVisualizer />
       <div className={styles["outer-table-buttons-container"]}>
@@ -39,7 +39,7 @@ const BubbleSortContent = () => {
           </TableProvider>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
