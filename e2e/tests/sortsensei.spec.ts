@@ -38,7 +38,6 @@ test.describe("Custom Array Input", () => {
 
       // Verify that error message appears
       await expect(page.getByRole("alert", { name: "error message" })).toBeVisible();
-      // Invalid custom input
     });
   }
 
@@ -49,6 +48,7 @@ test.describe("Custom Array Input", () => {
     for (let i = 0; i < EXPECTED_ARRAY.length; i++) {
       await expect(page.getByLabel(`Array[${i}]: ${EXPECTED_ARRAY[i]}`)).toBeVisible();
     }
+    await expect(page.getByLabel(`Array[${EXPECTED_ARRAY.length}]`)).toBeHidden();
   });
 });
 
@@ -62,8 +62,6 @@ test.describe("Random Array generation", () => {
   test("should be able to create random array", async ({ page }) => {
     // Set the array length
     const lengthInput = page.getByRole("spinbutton", { name: "Array length" });
-
-    await lengthInput.click();
     await lengthInput.fill(`${randomArrayLength}`);
 
     // Generate a random array
@@ -73,14 +71,12 @@ test.describe("Random Array generation", () => {
     for (let i = 0; i < randomArrayLength; i++) {
       await expect(page.getByLabel(`Array[${i}]`)).toBeVisible();
     }
+    await expect(page.getByLabel(`Array[${randomArrayLength}]`)).toBeHidden();
   });
 });
 
 /**
  * Enters a custom array into the input field and submits it.
- *
- * @param page playwright page instance
- * @param input string represenatation of the custom array
  */
 async function enterCustomArrayAndSubmit(page: Page, input: string) {
   await page.getByRole("button", { name: "Custom" }).click();
@@ -93,8 +89,6 @@ async function enterCustomArrayAndSubmit(page: Page, input: string) {
 
 /**
  * Disables the tutorial by setting the corresponding localStorage key.
- *
- * @param page - Playwright Page instance
  */
 async function disableTutorialInLocalStorage(page: Page) {
   await page.evaluate((key) => {
