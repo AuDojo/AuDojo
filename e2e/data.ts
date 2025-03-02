@@ -1,7 +1,7 @@
 export const INVALID_ARRAY_INPUTS: string[] = [
   // more than 15 elements,
   "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16",
-  // less than 1 element,
+  // less than 2 elements,
   "5",
   // value over 99 exists,
   "100 200",
