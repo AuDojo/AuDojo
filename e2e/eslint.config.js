@@ -12,7 +12,7 @@ const { configs: typescriptConfigs } = typescript;
  */
 export default tseslint.config([
   {
-    files: ["tests/**/*.ts", "tests/**/*.tsx"],
+    files: ["tests/**/*.{ts,tsx}"],
     plugins: {
       "@typescript-eslint": typescript,
       playwright: playwright,
