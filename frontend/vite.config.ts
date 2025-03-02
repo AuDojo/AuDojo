@@ -16,9 +16,10 @@ export default defineConfig({
     tsconfigPaths(),
   ],
   server: {
+    open: true,
     proxy: {
       "/api": {
-        target: "http://localhost:5001/projects/audojo",
+        target: "http://localhost:5002/projects/audojo",
         changeOrigin: true,
       },
     },
@@ -26,9 +27,10 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "jsdom",
-    setupFiles: "./tests/setup.ts",
+    setupFiles: "./src/testing/setup.ts",
+    exclude: ["**/node_modules/**", "**/e2e/**"],
     coverage: {
-      include: ["src/**/*"],
+      include: ["src/**"],
       exclude: ["**/index.ts"],
     },
   },

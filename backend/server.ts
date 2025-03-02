@@ -3,9 +3,8 @@ import express, { Express, Request, Response } from "express";
 import path from "path";
 
 const app: Express = express();
-const port = 5001;
 const base_url = "/projects/audojo";
-
+const port = process.env.PORT || 5001;
 const env = process.env.NODE_ENV || "development"; // 'development' oder 'production'
 
 // make sure the right sortingRouting.* is required

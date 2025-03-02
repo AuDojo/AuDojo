@@ -11,7 +11,6 @@ import { TutorialModal } from "@/features/sortSensei/components/tutorialModal";
 import { SortTypes } from "@/features/sortSensei/constants";
 import { TutorialModalProvider } from "@/features/sortSensei/context";
 import { SortProvider, useSortContext } from "@/features/sortSensei/context/SortContext";
-import { useSetTitle } from "@/hooks/useSetTitle";
 import styles from "./SortSensei.module.css";
 
 const MergeSortContent = () => {
@@ -21,11 +20,11 @@ const MergeSortContent = () => {
     return <Loading />;
   }
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div role="alert">Error: {error.message}</div>;
   }
 
   return (
-    <div className={styles["main-container"]}>
+    <section className={styles["main-container"]}>
       <MergeSortGuide />
       <MergeSortVisualizer />
       <div className={styles["outer-table-buttons-container"]}>
@@ -40,14 +39,14 @@ const MergeSortContent = () => {
           </TableProvider>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
 const MergeSort = () => {
-  useSetTitle("MergeSort");
   return (
     <TutorialModalProvider>
+      <title>Mergesort</title>
       <HelpIcon />
       <SideBarMenu />
       <TutorialModal />

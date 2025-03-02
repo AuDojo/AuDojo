@@ -14,6 +14,9 @@
   color: rgb(60, 60, 60);
 }
 
+.cell-input::placeholder {
+  font-size: 1rem;
+}
 .cell-input:focus {
   outline: none;
   border-color: rgb(59, 130, 246);

@@ -84,7 +84,7 @@ export default tseslint.config([
     },
   },
   {
-    files: ["tests/**/*.{ts,tsx}", "**/*.test.{ts,tsx}"],
+    files: ["**/*.test.{ts,tsx}", "**/testing/**/*.{ts,tsx}"],
     extends: [vitest.configs.recommended, testingLibrary.configs["flat/react"], jestDom.configs["flat/recommended"]],
     plugins: {
       testingLibrary: testingLibrary,

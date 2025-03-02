@@ -1,6 +1,6 @@
 import { paths } from "@/config/paths";
+import { renderWithRouter } from "@/testing/testUtils";
 import { screen, waitFor } from "@testing-library/react";
-import { renderWithRouter } from "tests/testUtils";
 import NotFound from "./NotFound";
 
 describe("<NotFound>", () => {

@@ -1,6 +1,6 @@
 name: Build Project
 
-# Trigger workflow on push or pull request to every branch
+# Trigger workflow on push on every branch
 on:
   push:
     paths-ignore:
@@ -36,9 +36,8 @@ jobs:
         env:
           cache-name: cache
         with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
           path: |
-            frontend/.eslintcache
+            **/.eslintcache
           key: ${{ runner.os }}-eslint-${{ env.cache-name }}-${{ hashFiles('**/.eslintcache') }}
           restore-keys: |
             ${{ runner.os }}-eslint-${{ env.cache-name }}-
@@ -49,9 +48,9 @@ jobs:
         run: pnpm install --frozen-lockfile --recursive
       - name: Run linter
         run: pnpm lint --cache-location ".eslintcache"
+      - name: Check types
+        run: pnpm check-types
       - name: Run tests
         run: pnpm test
       - name: Build application
         run: pnpm build
-      - name: Check if pnpm is installed
-        run: pnpm --version

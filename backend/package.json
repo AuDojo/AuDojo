@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "NODE_ENV=development nodemon server.ts",
+    "dev": "NODE_ENV=development PORT=5002 nodemon server.ts",
+    "check-types": "tsc --pretty --noEmit",
     "build": "tsc -b",
     "start": "NODE_ENV=production node dist/server.js",
     "clean": "rimraf dist"

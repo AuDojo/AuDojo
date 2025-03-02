@@ -1,8 +1,14 @@
 import { RefKeys } from "../types";
 
+export interface TutorialStep {
+  title: string;
+  content: string;
+  key?: RefKeys;
+}
+
 export const HIGHLIGHT_CLASS = "highlight";
-//TODO : this is tutorial for mergeort
-export const tutorialSteps: { title: string; content: string; key?: RefKeys }[] = [
+//TODO : this is tutorial for mergesort
+export const tutorialSteps: TutorialStep[] = [
   { title: "start.title", content: "start.content" },
   {
     title: "create.title",
@@ -25,6 +31,4 @@ export const tutorialSteps: { title: string; content: string; key?: RefKeys }[] 
     key: "solveButtons",
   },
   { title: "end.title", content: "end.content" },
-];
-
-export type TutorialStep = (typeof tutorialSteps)[number];
+] as const;
