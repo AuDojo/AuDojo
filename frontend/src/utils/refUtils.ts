@@ -7,12 +7,12 @@ import React from "react";
  * @returns A single callback ref that will call all the provided refs.
  *
  * @example
- * const MyComponent = React.forwardRef((props, ref) => {
- *   const domRef = React.useRef();
- *   const mergedRef = mergeRefs(ref, domRef);
+ * const MyComponent = (props, ref1) => {
+ *   const ref2 = React.useRef();
+ *   const mergedRef = mergeRefs(ref1, ref2);
  *
  *   return <div ref={mergedRef} />;
- * });
+ * };
  */
 export function mergeRefs<T>(...refs: React.Ref<T>[]): React.RefCallback<T> {
   return (node: T) => {
@@ -23,4 +23,13 @@ export function mergeRefs<T>(...refs: React.Ref<T>[]): React.RefCallback<T> {
       }
     }
   };
+}
+
+/**
+ * Sets the value of a React RefObject created with `useRef` or `createRef`.
+ * @param ref - The ref object that you want to set the value of.
+ * @param newValue - The new value of the ref.
+ */
+export function setRefValue<T>(ref: React.RefObject<T>, newValue: T) {
+  ref.current = newValue;
 }
