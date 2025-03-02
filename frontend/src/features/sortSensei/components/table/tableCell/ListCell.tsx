@@ -1,6 +1,6 @@
 import { SortTypes } from "@/features/sortSensei/constants";
 import { useSortContext } from "@/features/sortSensei/context";
-import { mergeRefs } from "@/utils/mergeRefs";
+import { mergeRefs } from "@/utils/refUtils";
 import classNames from "classnames/bind";
 import { JSX } from "react";
 import { useTableContext } from "../context/TableContext";

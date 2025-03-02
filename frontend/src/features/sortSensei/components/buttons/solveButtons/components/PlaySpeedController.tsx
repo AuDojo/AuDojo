@@ -5,7 +5,7 @@ import { useButtonContext } from "@/features/sortSensei/components/buttons/conte
 import { useLineValidation } from "@/features/sortSensei/components/buttons/solveButtons/hooks";
 import { useTableContext } from "@/features/sortSensei/components/table/context";
 import { useSortContext, useTutorialModalContext } from "@/features/sortSensei/context";
-import { setRefValue } from "@/utils/updateValue";
+import { setRefValue } from "@/utils/refUtils";
 import { useEffect, useState } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { FaPlay } from "react-icons/fa";

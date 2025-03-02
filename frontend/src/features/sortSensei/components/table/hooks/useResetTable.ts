@@ -1,7 +1,7 @@
 import { useGetCachedData } from "@/features/sortSensei/api/postArray";
 import { useTableContext } from "@/features/sortSensei/components/table/context";
 import { useSortContext } from "@/features/sortSensei/context";
-import { setRefValue } from "@/utils/updateValue";
+import { setRefValue } from "@/utils/refUtils";
 import { useCallback } from "react";
 import { getInitTableStates } from "../utils/tableUtils";
 /**

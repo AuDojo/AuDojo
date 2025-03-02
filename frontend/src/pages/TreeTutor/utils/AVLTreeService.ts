@@ -1,6 +1,11 @@
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 
-export function generateRandomAVL(): TreeNode | null {
+export interface TreeStep {
+  tree: TreeNode | null;
+  operation: string;
+}
+
+export function generateRandomAVL(): TreeStep {
   // Instead of random values, use a fixed array that should produce a well-balanced tree
   let root: TreeNode | null = null; // Generate a random number of nodes between 3 and 12
   const nodeCount = Math.floor(Math.random() * 10) + 3; // 3 to 12
@@ -19,7 +24,7 @@ export function generateRandomAVL(): TreeNode | null {
   }
   printTree(root);
 
-  return root;
+  return { tree: root, operation: "Delete" };
 }
 
 // Helper function to get height of a node (handles null nodes)
