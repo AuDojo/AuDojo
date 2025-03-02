@@ -32,15 +32,15 @@ test.describe("Custom Array Input", () => {
     await disableTutorialInLocalStorage(page);
   });
 
-  test("should show an error message for invalid array inputs", async ({ page }) => {
-    // Invalid custom input
-    for (const input of INVALID_ARRAY_INPUTS) {
+  for (const input of INVALID_ARRAY_INPUTS) {
+    test(`should show an error message for input: ${input}`, async ({ page }) => {
       await enterCustomArrayAndSubmit(page, input);
 
       // Verify that error message appears
       await expect(page.getByRole("alert", { name: "error message" })).toBeVisible();
-    }
-  });
+      // Invalid custom input
+    });
+  }
 
   test("should accept valid array input", async ({ page }) => {
     await enterCustomArrayAndSubmit(page, VALID_ARRAY_INPUT);
