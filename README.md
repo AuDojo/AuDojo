@@ -103,6 +103,25 @@ docker image ls
 docker rmi <image_name>
 ```
 
+## 🧪 Testing
+
+Using [Vitest](https://vitest.dev) and [Testing Library](https://testing-library.com/) for Unit/Integration tests,
+[Playwright](https://playwright.dev) as a tool for running e2e tests.
+
+Start Unit and Integration tests with:
+
+```bash
+pnpm test # --ui
+```
+
+Start e2e tests with:
+
+```bash
+pnpm e2e # --ui
+```
+
+- [More about testing](https://github.com/AuDojo/AuDojo/discussions/332)
+
 ## ✨ Kriterien ✨
 
 ### 🔥 Muss
