@@ -25,8 +25,8 @@ const TreeTutor = () => {
     balanceFactor: 0,
   };
 
-  const sample = generateRandomAVL() ?? { root, steps: [] };
-  const [initialTreeData, setInitialTreeData] = useState<TreeNode>(sample.tree ?? root);
+  const sample = generateRandomAVL() ?? root;
+  const [initialTreeData, setInitialTreeData] = useState<TreeNode>(sample);
 
   // treeData of consecutive Tree Templates
   const [templateTree, setTemplateTree] = useState<Record<number, TreeNode>>({});
@@ -97,7 +97,7 @@ const TreeTutor = () => {
   // Generate new random tree
   const generateNewTree = () => {
     const newSample = generateRandomAVL();
-    setInitialTreeData(newSample.tree ?? root);
+    setInitialTreeData(newSample ?? root);
     setTemplates([]);
     setTemplateTree({});
     setShowingSolution(false);
@@ -110,13 +110,12 @@ const TreeTutor = () => {
     if (targetValue === null) return;
 
     if (currentOperationType === "INSERT") {
-      const insertSolution: TreeStep = { tree: null, operation: "INSERT" };
-      insertSolution.tree = generateInsertSolution(initialTreeData, targetValue);
-      setSolutionSteps([insertSolution]);
+      const updatedSteps = generateInsertSolution(initialTreeData, targetValue);
+      console.log("solution steps", solutionSteps);
+      setSolutionSteps(updatedSteps);
     } else {
-      const deleteSolution: TreeStep = { tree: null, operation: "DELETE" };
-      deleteSolution.tree = generateDeleteSolution(initialTreeData, targetValue);
-      setSolutionSteps([deleteSolution]);
+      const updatedSteps = generateDeleteSolution(initialTreeData, targetValue);
+      setSolutionSteps(updatedSteps);
     }
 
     setShowingSolution(true);
