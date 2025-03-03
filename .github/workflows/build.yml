@@ -45,7 +45,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile --recursive
+        run: pnpm install --frozen-lockfile
       - name: Run linter
         run: pnpm lint --cache-location ".eslintcache"
       - name: Check types
