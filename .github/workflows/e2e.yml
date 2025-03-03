@@ -6,18 +6,18 @@ on:
     branches: [main, dev, production]
 jobs:
   playwright-tests:
-    name: "Test on ${{ matrix.project }} (${{ matrix.shardIndex }}/${{ matrix.shardTotal }})"
+    name: "Test (${{ matrix.shardIndex }}/${{ matrix.shardTotal }})"
     strategy:
       fail-fast: false # CI won't stop other jobs if one fails
       matrix:
-        project: [chromium, firefox, webkit]
+        # project: [chromium, firefox, webkit]
         shardIndex: [1, 2, 3, 4]
         shardTotal: [4]
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    # container:
-    #   image: mcr.microsoft.com/playwright:v1.50.1-noble # Keep version in sync with package.json
-    #   options: --user 1001
+    container:
+      image: mcr.microsoft.com/playwright:v1.50.1-noble # Keep version in sync with package.json
+      options: --user 1001
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -29,17 +29,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Install ${{ matrix.project }} browser
-        run: pnpm playwright install --with-deps ${{ matrix.project}}
-
       - name: Run Playwright tests
-        run: pnpm playwright test --project=${{ matrix.project }} --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+        run: pnpm playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
       - name: Upload blob report to GitHub Actions Artifacts
         uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: blob-report-${{ matrix.project }}-${{ matrix.shardIndex }}
+          name: blob-report-${{ matrix.shardIndex }}
           path: blob-report/
           retention-days: 1
 
