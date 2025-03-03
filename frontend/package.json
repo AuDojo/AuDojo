@@ -12,7 +12,6 @@
     "format": "prettier --write --cache .",
     "preview": "vite preview",
     "test": "vitest",
-    "test:ui": "vitest --ui",
     "coverage": "vitest --coverage --ui"
   },
   "dependencies": {
