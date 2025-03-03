@@ -50,8 +50,6 @@ export class SortProcessList {
   pushMergeRange(start: number, end: number) {
     let index = this.#processList.length;
     this.#mergeRanges[index] = [start, end];
-
-    console.log("start, end: ", this.#mergeRanges[index]);
   }
 
   /**
@@ -61,8 +59,6 @@ export class SortProcessList {
   pushPivotElementBefore(pivot_index: number) {
     let index = this.#processList.length;
     this.#pivotElements[index] = [pivot_index, null];
-
-    console.log("pivot_index: ", this.#pivotElements[index][0]);
   }
 
   /**
@@ -72,8 +68,6 @@ export class SortProcessList {
   pushPivotElementAfter(pivot_index: number) {
     let index = this.#processList.length;
     this.#pivotElements[index][1] = pivot_index;
-
-    console.log("pivot_index: ", this.#pivotElements[index][1]);
   }
 
   /**
@@ -83,8 +77,6 @@ export class SortProcessList {
   pushSelectedElement(selected_index: number) {
     let index = this.#selectedElements.length;
     this.#selectedElements[index] = selected_index;
-
-    console.log("selected_items: ", this.#selectedElements[index]);
   }
 
   /**
@@ -94,8 +86,6 @@ export class SortProcessList {
   pushBubbleElement(selected_index: number) {
     let index = this.#bubbleElements.length;
     this.#bubbleElements[index] = selected_index;
-
-    console.log("bubble_elements: ", this.#bubbleElements[index]);
   }
 
   /**
