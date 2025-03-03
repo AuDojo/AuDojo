@@ -15,9 +15,9 @@ jobs:
         shardTotal: [4]
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.50.1-noble # Keep version in sync with package.json
-      options: --user 1001
+    # container:
+    #   image: mcr.microsoft.com/playwright:v1.50.1-noble # Keep version in sync with package.json
+    #   options: --user 1001
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -28,6 +28,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Install ${{ matrix.project }} browser
+        run: pnpm playwright install --with-deps ${{ matrix.project}}
 
       - name: Run Playwright tests
         run: pnpm playwright test --project=${{ matrix.project }} --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
@@ -45,9 +48,6 @@ jobs:
     if: ${{ !cancelled() }}
     needs: [playwright-tests]
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright:v1.50.1-noble
-      options: --user 1001
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
