@@ -1,10 +1,20 @@
-.svg {
-  width: 100%;
-  max-width: 500px; /* Maximum width of the SVG (adjustable*/
-  min-height: 400px; /* Minimum height of the SVG (adjustable)*/
-  margin-top: 50px;
-  overflow: visible;
+/* The outermost container that wraps everything */
+.treeTemplateContainer {
   position: relative;
+  width: 100%;
+  min-width: 600px;
+  max-width: 550px;
+  padding-top: 100%;
+  margin: 0;
+}
+
+.svg {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .node circle {
@@ -46,4 +56,33 @@
   border-radius: 50%;
   text-align: center;
   font-size: 12px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
+}
+
+.buttonContainer button {
+  font-size: 20px;
+  width: 45%; /* Nutzt die volle Breite des Containers */
+  white-space: nowrap; /* Verhindert Umbrüche */
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.buttonContainer button:active {
+  opacity: 0.8;
+}
+
+.addNodeLeft {
+  margin-right: auto;
+  order: -1;
+}
+.addNodeRight {
+  margin-left: auto;
+  order: 1;
 }

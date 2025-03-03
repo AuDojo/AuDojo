@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 // import * as matchers from "@testing-library/jest-dom/matchers";
 import "@testing-library/jest-dom/vitest";
-import { cleanup } from "@testing-library/react";
 import { afterEach } from "vitest";
 
 // expect.extend(matchers);
@@ -24,9 +23,18 @@ vi.mock("react-i18next", () => ({
   Trans: ({ children }: { children: React.ReactNode }) => children, // Mock Trans component
 }));
 
+//! Mock globals objects, API, vars
+const ResizeObserverMock = vi.fn(() => ({
+  observe: vi.fn(), // vi.fn() just tracks how the function is called,
+  unobserve: vi.fn(),
+  disconnect: vi.fn(),
+}));
+
+// change the value of global variable / replace a global variable with a mock version
+vi.stubGlobal("ResizeObserver", ResizeObserverMock);
+
 //! Cleanup after every test
 afterEach(() => {
   // screen.debug();
   vi.clearAllMocks();
-  cleanup();
 });

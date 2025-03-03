@@ -11,7 +11,6 @@ import { TutorialModal } from "@/features/sortSensei/components/tutorialModal";
 import { SortTypes } from "@/features/sortSensei/constants";
 import { TutorialModalProvider } from "@/features/sortSensei/context";
 import { SortProvider, useSortContext } from "@/features/sortSensei/context/SortContext";
-import { useSetTitle } from "@/hooks/useSetTitle";
 import styles from "./SortSensei.module.css";
 
 const SelectionSortContent = () => {
@@ -21,11 +20,11 @@ const SelectionSortContent = () => {
     return <Loading />;
   }
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div role="alert">Error: {error.message}</div>;
   }
 
   return (
-    <div className={styles["main-container"]}>
+    <section className={styles["main-container"]}>
       <SelectionSortGuide />
       <SelectionSortVisualizer />
       <div className={styles["outer-table-buttons-container"]}>
@@ -40,14 +39,14 @@ const SelectionSortContent = () => {
           </TableProvider>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
 const SelectionSort = () => {
-  useSetTitle("SelectionSort");
   return (
     <TutorialModalProvider>
+      <title>Selectionsort</title>
       <HelpIcon />
       <SideBarMenu />
       <TutorialModal />

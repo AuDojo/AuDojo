@@ -15,12 +15,6 @@
   z-index: var(--header-layer);
 }
 
-.help-tooltip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .help-icon {
   width: 70%;
   height: 70%;

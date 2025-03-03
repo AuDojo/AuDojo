@@ -1,7 +1,7 @@
 import { Layout } from "@/components/layouts/Layout";
 import { Loading } from "@/components/ui/loading";
-import { paths } from "@/config";
 import { BASE_URL } from "@/config/env";
+import { paths } from "@/config/paths";
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -45,7 +45,7 @@ export const AppRouter = () => {
   );
 };
 
-// import { paths } from "@/config";
+// import { paths } from "@/config/paths";
 // import { QueryClient } from "@tanstack/react-query";
 // import { useMemo } from "react";
 // import { createBrowserRouter, RouterProvider } from "react-router-dom";

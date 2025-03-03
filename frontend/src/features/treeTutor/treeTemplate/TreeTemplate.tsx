@@ -1,98 +1,122 @@
 import { useResizeObserver } from "@/hooks/useResizeObserver";
 import { HierarchyLink, HierarchyNode, curveLinear, hierarchy, link, select, tree } from "d3";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import styles from "./TreeTemplate.module.css";
+import { addNode, deleteNode, findNode, hasValidXY, updateNode, TreeNode } from "../utils/treeUtils";
 
-interface TreeNode {
-  value: number | null;
-  /** (Optional) Left and right child */
-  children?: [TreeNode, TreeNode];
+interface TreeTemplateProps {
+  treeData: TreeNode;
+  onTreeUpdate: (newTree: TreeNode) => void;
 }
 
-/**
- * A React component that visualizes an AVL tree using D3.js.
- * It initializes with a predefined tree structure and renders it
- * as an SVG element. The tree layout adjusts based on container size.
- * Nodes and links are dynamically filtered to exclude null values.
- */
-const TreeTemplate = () => {
-  // TODO: Split this component (data, type(TreeNode), custom hook)
-  const initialData: TreeNode = {
-    value: 10,
-    children: [
-      {
-        value: 5,
-        children: [
-          {
-            value: 3,
-            children: [
-              {
-                value: 1,
-              },
-              {
-                value: 4,
-                children: [
-                  {
-                    value: 3.5,
-                  },
-                  {
-                    value: 4.5,
-                  },
-                ],
-              },
-            ],
-          },
-          {
-            value: 8,
-          },
-        ],
-      },
-      {
-        value: 15,
-        children: [
-          {
-            value: 12,
-            children: [
-              {
-                value: 11,
-              },
-              {
-                value: null,
-              },
-            ],
-          },
-          {
-            value: 18,
-          },
-        ],
-      },
-    ],
-  };
-
-  // TODO: Later on change to [treeData, setTreeData]
-  const [treeData] = useState<TreeNode>(initialData);
+const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const dimensions = useResizeObserver(svgRef);
 
+  const handleAddNode = useCallback(
+    (nodeId: string, position: "left" | "right") => {
+      // Clone the current tree data
+      const treeDataTyped: TreeNode = treeData;
+      const clone = structuredClone(treeDataTyped);
+
+      // Find the target node using the ID
+      const foundNode = findNode(clone, nodeId);
+
+      if (!foundNode) {
+        console.warn(`Node with ID ${nodeId} not found!`);
+        return;
+      }
+
+      const newValue = 0;
+
+      // Create updated tree
+      const updatedTree = addNode(clone, nodeId, newValue, position);
+
+      // Pass the new tree to the onTreeUpdate function
+      onTreeUpdate(updatedTree);
+    },
+    [treeData, onTreeUpdate]
+  );
+
   useEffect(() => {
+    console.log("use effect fired", treeData);
     const svg = select(svgRef.current);
     if (!dimensions) return;
 
-    console.log(dimensions.x);
-    console.log(dimensions.y);
+    svg.selectAll("*").remove();
 
-    // use d3.hierarchy to create a hierarchial layout with nodes(data, children), has utilities like descendants and links
-    const root = hierarchy<TreeNode>(treeData);
-    // use d3.tree to create a tree layout. Gives us x and y coordinates of nodes
-    // TODO: calculate size of the tree based on the number of nodes and height
+    // process d3 hiearchy without null values
+    const root = hierarchy<TreeNode>(treeData, (d) => d.children?.filter((child) => child !== null));
+
+    const width = 800;
+    const height = 650;
+
+    svg.attr("width", "100%").attr("height", "100%");
+
+    // center relative to viewbox
+    const centerX = 400;
+
+    svg.attr("viewBox", `0 0 ${width} ${height}`);
+
     const treeLayout = tree<TreeNode>()
-      .separation((a, b) => (a.parent == b.parent ? 2 : 3))
-      .size([500, 400]);
+      .size([width * 0.8, height])
+      .separation((a, b) => (a.parent === b.parent ? 1.5 : 2));
+
     treeLayout(root);
 
-    // console.log("root:", root);
-    // console.log("root.descendants():", root.descendants());
-    // console.log("root.links(): ", root.links());
+    // Dann manuell korrigieren, um Links/Rechts-Positionierung zu erzwingen
+    const manualPositioning = (node: HierarchyNode<TreeNode>, level: number) => {
+      const yOffset = 160;
+      const exponentialDecrease = 0.5;
+      const horizontalSpacing = 190;
+
+      // Root node handling
+      if (!node.parent) {
+        node.x = centerX;
+        node.y = 5;
+
+        if (node.children) {
+          node.children.forEach((child) => {
+            if (typeof node.x === "number" && typeof node.y === "number") {
+              if (child.data.position === "left") {
+                // Left child
+                child.x = node.x - horizontalSpacing;
+              } else {
+                // Right child
+                child.x = node.x + horizontalSpacing;
+              }
+
+              child.y = node.y + yOffset;
+
+              manualPositioning(child, level + 1);
+            }
+          });
+        }
+      }
+      // For all other nodes with parent
+      else if (node.parent) {
+        // spacing between nodes declines exponentially
+        const levelSpacing = horizontalSpacing * Math.pow(exponentialDecrease, level);
+
+        if (node.children) {
+          node.children.forEach((child) => {
+            if (typeof node.x === "number" && typeof node.y === "number") {
+              if (child.data.position === "left") {
+                child.x = node.x - levelSpacing;
+              } else {
+                child.x = node.x + levelSpacing;
+              }
+
+              child.y = node.y + yOffset;
+
+              manualPositioning(child, level + 1);
+            }
+          });
+        }
+      }
+    };
+
+    manualPositioning(root, 0);
 
     // Filter out nodes and links with no value (and no coordinates)
     const nodes = root.descendants().filter((d) => d.data.value !== null && d.x !== undefined && d.y !== undefined);
@@ -104,7 +128,7 @@ const TreeTemplate = () => {
 
     // links (have to be rendered first, otherwise they overlap with nodes)
     svg
-      .selectAll(styles.link)
+      .selectAll("links")
       .data(links)
       .join("path")
       .attr("class", styles.link)
@@ -112,7 +136,7 @@ const TreeTemplate = () => {
 
     // nodes
     const gNodes = svg
-      .selectAll(styles.node)
+      .selectAll("nodes")
       .data(nodes)
       .join("g")
       .attr("class", styles.node)
@@ -136,15 +160,101 @@ const TreeTemplate = () => {
       .attr("transform", `translate(-18, -18)`)
       .append("xhtml:input")
       .attr("class", styles.input)
-      .attr("value", (node) => node.data.value);
+      .attr("value", (node) => node.data.value)
+      .on("blur", function (event, d) {
+        if (typeof d.data.id !== "string" || typeof d.data.value !== "number") {
+          return;
+        }
 
-    // Cleanup function: remove all elements from the svg
-    return () => {
-      svg.selectAll("*").remove();
-    };
-  }, [dimensions, treeData]);
+        const id = d.data.id;
+        const inputValue = event.target.value;
+        const treeClone = structuredClone(treeData);
 
-  return <svg className={styles.svg} ref={svgRef}></svg>;
+        if (!inputValue) {
+          onTreeUpdate(deleteNode(treeClone, id));
+        } else {
+          const newValue = Number(inputValue);
+          onTreeUpdate(updateNode(treeClone, id, newValue));
+        }
+      });
+
+    const validNodes = nodes.filter(hasValidXY);
+
+    validNodes.forEach((d) => {
+      const children = d.data.children ?? [null, null];
+      const nodeId = d.data.id;
+      const depth = d.data.depth;
+
+      if (typeof nodeId !== "string") {
+        return;
+      }
+
+      const x = d.x;
+      const y = d.y;
+
+      // Linker Button (als SVG-Kreis)
+      if ((children[0]?.value ?? null) === null && depth < 4) {
+        svg
+          .append("circle")
+          .attr("class", `btn-left-${nodeId}`)
+          .attr("cx", x - 15)
+          .attr("cy", y + 30)
+          .attr("r", 10)
+          .attr("fill", "#ecf0f1")
+          .attr("stroke", "rgb(0, 63, 87)")
+          .attr("stroke-width", 2)
+          .attr("cursor", "pointer")
+          .on("click", function (event) {
+            event.stopPropagation();
+            console.log(` ID from on click Event: ${nodeId}`);
+            handleAddNode(nodeId, "left");
+          });
+
+        svg
+          .append("text")
+          .attr("x", x - 15)
+          .attr("y", y + 34)
+          .attr("text-anchor", "middle")
+          .attr("font-size", "14px")
+          .attr("pointer-events", "none")
+          .text("+");
+      }
+      // Rechter Button (als SVG-Kreis)
+      if ((children[1]?.value ?? null) === null && depth < 4) {
+        svg
+          .append("circle")
+          .attr("class", `btn-right-${nodeId}`)
+          .attr("cx", x + 15)
+          .attr("cy", y + 30)
+          .attr("r", 10)
+          .attr("fill", "#ecf0f1")
+          .attr("stroke", "rgb(0, 63, 87)")
+          .attr("stroke-width", 2)
+          .attr("cursor", "pointer")
+          .attr("position", "right")
+          .on("click", function (event) {
+            event.stopPropagation();
+            console.log(` ID from on click Event: ${nodeId}`);
+            handleAddNode(nodeId, "right");
+          });
+
+        svg
+          .append("text")
+          .attr("x", x + 15)
+          .attr("y", y + 34)
+          .attr("text-anchor", "middle")
+          .attr("font-size", "14px")
+          .attr("pointer-events", "none")
+          .text("+");
+      }
+    });
+  }, [dimensions, treeData, onTreeUpdate, handleAddNode]);
+
+  return (
+    <div className={styles.treeTemplateContainer}>
+      <svg className={styles.svg} ref={svgRef}></svg>
+    </div>
+  );
 };
 
 export default TreeTemplate;

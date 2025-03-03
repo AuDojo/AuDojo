@@ -1,6 +1,6 @@
 import { SortTypes } from "@/features/sortSensei/constants";
 import { useSortContext } from "@/features/sortSensei/context/SortContext";
-import { mergeRefs } from "@/utils/mergeRefs";
+import { mergeRefs } from "@/utils/refUtils";
 import classNames from "classnames/bind";
 import { JSX } from "react";
 import { useTableContext } from "../context/TableContext";
@@ -61,6 +61,8 @@ const InputCell = ({ rowIndex, columnIndex }: TableCellProps): JSX.Element => {
         ref={mergeRefs(
           (el) => {
             if (tableCellsRef.current[rowIndex]) {
+              //TODO: Remove the next line later, when react-compiler doesnt complain about assigning a value to a ref from a context
+              // eslint-disable-next-line react-compiler/react-compiler
               tableCellsRef.current[rowIndex][columnIndex] = el;
             }
           },

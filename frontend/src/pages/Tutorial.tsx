@@ -6,12 +6,11 @@ import MergesortText from "@/features/tutorial/components/tutorialContent/MergeS
 import QuickSortImage from "@/features/tutorial/components/tutorialContent/QuickSortImage";
 import QuickSortText from "@/features/tutorial/components/tutorialContent/QuickSortText";
 import { bubbleSortSteps, mergeSortSteps, quickSortSteps, selectionSortSteps } from "@/features/tutorial/data";
-import { useSetTitle } from "@/hooks";
 
 const Tutorial = () => {
-  useSetTitle("Tutorial");
   return (
     <>
+      <title>Tutorial</title>
       <RickRollTroll />
 
       <TutorialSidebar

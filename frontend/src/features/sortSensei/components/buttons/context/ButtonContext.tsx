@@ -25,7 +25,7 @@ export const ButtonContextProvider = ({ children }: { children: React.ReactNode 
       value={{
         isPlaying,
         setIsPlaying,
-        timeoutRef: useRef<NodeJS.Timeout | null>(null),
+        timeoutRef,
         clearPlayBackTimer,
       }}
     >

@@ -3,9 +3,8 @@ import express, { Express, Request, Response } from "express";
 import path from "path";
 
 const app: Express = express();
-const port = 5001;
 const base_url = "/projects/audojo";
-
+const port = process.env.PORT || 5001;
 const env = process.env.NODE_ENV || "development"; // 'development' oder 'production'
 
 // make sure the right sortingRouting.* is required
@@ -17,7 +16,6 @@ if (env === "production") {
   const frontendPath = path.join(__dirname, "..", "..", "frontend");
   // console.log("produciton is true");
   app.use(base_url, express.static(path.join(frontendPath, "dist")));
-  app.use(base_url, express.static(path.join(frontendPath, "public")));
 
   app.get(`${base_url}/*`, (req: Request, res: Response) => {
     res.sendFile(path.join(frontendPath, "dist", "index.html")); //our main page frontend/index.html is loaded

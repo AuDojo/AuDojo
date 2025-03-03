@@ -1,24 +1,22 @@
-import { paths } from "@/config";
+import { paths } from "@/config/paths";
+import { renderWithRouter } from "@/testing/testUtils";
 import { screen, waitFor } from "@testing-library/react";
-import { UserEvent } from "@testing-library/user-event";
-import { renderWithRouter } from "tests/testUtils";
 import NotFound from "./NotFound";
 
 describe("<NotFound>", () => {
-  let user: UserEvent;
-
-  beforeEach(() => {
-    const renderResult = renderWithRouter(<NotFound />, { route: "/some-bad-path" });
-    user = renderResult.user;
-  });
+  const setup = () => renderWithRouter(<NotFound />, { route: "/some-bad-path" });
 
   it("renders correctly with all main elements", () => {
+    setup();
+
     // Test if header is rendered
     const header = screen.getByRole("heading", { name: /404 - Not Found/i });
     expect(header).toBeInTheDocument();
   });
 
   it("navigates to home page when 'Go to Home' is clicked", async () => {
+    const { user } = setup();
+
     // Get home link
     const homeLink = screen.getByRole("link", { name: /Go to Home/i });
     expect(homeLink).toBeInTheDocument();
@@ -27,6 +25,6 @@ describe("<NotFound>", () => {
     user.click(homeLink);
 
     // Assert that the URL has changed
-    await waitFor(() => expect(screen.getByTestId("location-display").textContent).toBe(paths.home));
+    await waitFor(() => expect(screen.getByTestId("location-display")).toHaveTextContent(paths.home));
   });
 });

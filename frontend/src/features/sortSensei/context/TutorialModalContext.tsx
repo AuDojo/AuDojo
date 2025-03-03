@@ -23,13 +23,13 @@ export const TutorialModalProvider = ({ children }: { children: ReactNode }) => 
   const [isTutorialOpen, setIsTutorialOpen] = useLocalStorage<boolean>(localStorageKeys.tutorial, true);
 
   // Refs for focusable elements
-  const highlightRefs: Record<RefKeys, React.RefObject<HTMLDivElement | null>> = {
+  const highlightRefs = {
     sortingTable: useRef<HTMLDivElement>(null),
     generateButtons: useRef<HTMLDivElement>(null),
     d3Visualizer: useRef<HTMLDivElement>(null),
     solveButtons: useRef<HTMLDivElement>(null),
     listRow: useRef<HTMLDivElement>(null),
-  };
+  } satisfies Record<RefKeys, React.RefObject<HTMLDivElement | null>>;
 
   const { clearHighlight } = useHighlight(highlightRefs); // Highlight controls
 

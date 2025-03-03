@@ -1,15 +1,9 @@
 name: Lint Commit Messages
 on:
   push:
-    branches:
-      - main
-      - dev
-      - production
+    branches: [main, dev, production]
   pull_request:
-    branches:
-      - main
-      - dev
-      - production
+    branches: [main, dev, production]
 
 permissions:
   contents: read

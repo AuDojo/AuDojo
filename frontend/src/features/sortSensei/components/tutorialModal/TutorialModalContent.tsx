@@ -26,7 +26,7 @@ const TutorialModalContent = () => {
   }
   return (
     <>
-      <dialog open={isTutorialOpen} className={cx("dialog", `step-${step}`)}>
+      <dialog open={isTutorialOpen} className={cx("dialog", `step-${step}`)} aria-label="SortSensei Tutorial">
         <h2>{t(tutorialSteps[step].title)}</h2>
         <p>{parse(t(tutorialSteps[step].content))}</p>
         <ProgressBar min={0} max={tutorialSteps.length - 1} />

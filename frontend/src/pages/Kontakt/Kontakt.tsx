@@ -1,6 +1,5 @@
 import informatikzentrumJPG from "@/assets/informatikzentrum.jpg";
 import { API_URL } from "@/config/env";
-import { useSetTitle } from "@/hooks/useSetTitle";
 import parse from "html-react-parser";
 import React from "react";
 import { useTranslation } from "react-i18next";
@@ -24,8 +23,9 @@ function Kontakt() {
     subject: true,
     error: false,
   });
-
   const [showDiv, setShowDiv] = React.useState(false);
+
+  const { t } = useTranslation("contact");
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
@@ -148,127 +148,128 @@ function Kontakt() {
       showSuccessMessage();
     }
   };
-  const { t } = useTranslation("contact");
-  useSetTitle("Kontakt");
   return (
-    <div className={kontaktStyles.generalContainer}>
-      <div className={kontaktStyles.kontaktMessageContainer}>
-        <p className={kontaktStyles.kontaktMessage}> {t("title") /* Kontakt */} </p>
-      </div>
+    <>
+      <title>{t("pageTitle")}</title>
+      <div className={kontaktStyles.generalContainer}>
+        <div className={kontaktStyles.kontaktMessageContainer}>
+          <p className={kontaktStyles.kontaktMessage}> {t("title") /* Kontakt */} </p>
+        </div>
 
-      <div className={kontaktStyles.contentContainer}>
-        <div className={kontaktStyles.leftContainer}>
-          {showDiv && (
-            <div className={successMessage ? kontaktStyles.successMessage : kontaktStyles.errorMessage}>
+        <div className={kontaktStyles.contentContainer}>
+          <div className={kontaktStyles.leftContainer}>
+            {showDiv && (
+              <div className={successMessage ? kontaktStyles.successMessage : kontaktStyles.errorMessage}>
+                {" "}
+                {successMessage ? successMessage : errorMessage}
+                <button className={kontaktStyles.closeButton} onClick={() => setShowDiv(false)}>
+                  x
+                </button>
+              </div>
+            )}
+            <div className={kontaktStyles.formHeading}>
+              <p>{t("emailField.title") /* Sende uns eine Nachricht!*/}</p>
+            </div>
+
+            <div className={kontaktStyles.namesContainer}>
+              <input
+                name="firstName"
+                placeholder={t("emailField.firstName") /* Vorname* */}
+                className={errors.firstName ? kontaktStyles.nameInput : kontaktStyles.nameInputError}
+                onChange={handleInputChange}
+                value={firstName}
+                maxLength={100}
+                required
+              />
+              <input
+                name="lastName"
+                placeholder={t("emailField.lastName") /* Nachname* */}
+                className={errors.lastName ? kontaktStyles.nameInput : kontaktStyles.nameInputError}
+                onChange={handleInputChange}
+                value={lastName}
+                maxLength={100}
+                required
+              />
+            </div>
+            <input
+              name="email"
+              placeholder={t("emailField.email") /* Email */}
+              className={errors.email ? kontaktStyles.emailInput : kontaktStyles.emailInputError}
+              onChange={handleInputChange}
+              maxLength={100}
+              value={email}
+            />
+
+            <input
+              name="subject"
+              placeholder={t("emailField.subject") /* Betreff */}
+              className={kontaktStyles.emailInput}
+              maxLength={50}
+              onChange={handleInputChange}
+              value={subject}
+            />
+
+            <textarea
+              maxLength={maxChars}
+              name="message"
+              placeholder={t("emailField.field") /* Deine Nachricht */}
+              rows={10}
+              cols={30}
+              value={message}
+              className={errors.message ? kontaktStyles.messageInput : kontaktStyles.messageInputError}
+              onChange={handleInputChange}
+            />
+            <div>
+              <p className={kontaktStyles.remainingCharacters}>
+                {message.length > 0
+                  ? `${maxChars - message.length} ` + t("emailField.charLeft") /* verbleibende Zeichen */
+                  : ""}
+              </p>
+            </div>
+            <button className={kontaktStyles.sendButton} onClick={submitContactForm}>
+              {t("emailField.sendButton") /* Nachricht senden */}
+            </button>
+            <p className={kontaktStyles.pflichtfelderHinweis}>
               {" "}
-              {successMessage ? successMessage : errorMessage}
-              <button className={kontaktStyles.closeButton} onClick={() => setShowDiv(false)}>
-                x
-              </button>
-            </div>
-          )}
-          <div className={kontaktStyles.formHeading}>
-            <p>{t("emailField.title") /* Sende uns eine Nachricht!*/}</p>
-          </div>
-
-          <div className={kontaktStyles.namesContainer}>
-            <input
-              name="firstName"
-              placeholder={t("emailField.firstName") /* Vorname* */}
-              className={errors.firstName ? kontaktStyles.nameInput : kontaktStyles.nameInputError}
-              onChange={handleInputChange}
-              value={firstName}
-              maxLength={100}
-              required
-            />
-            <input
-              name="lastName"
-              placeholder={t("emailField.lastName") /* Nachname* */}
-              className={errors.lastName ? kontaktStyles.nameInput : kontaktStyles.nameInputError}
-              onChange={handleInputChange}
-              value={lastName}
-              maxLength={100}
-              required
-            />
-          </div>
-          <input
-            name="email"
-            placeholder={t("emailField.email") /* Email */}
-            className={errors.email ? kontaktStyles.emailInput : kontaktStyles.emailInputError}
-            onChange={handleInputChange}
-            maxLength={100}
-            value={email}
-          />
-
-          <input
-            name="subject"
-            placeholder={t("emailField.subject") /* Betreff */}
-            className={kontaktStyles.emailInput}
-            maxLength={50}
-            onChange={handleInputChange}
-            value={subject}
-          />
-
-          <textarea
-            maxLength={maxChars}
-            name="message"
-            placeholder={t("emailField.field") /* Deine Nachricht */}
-            rows={10}
-            cols={30}
-            value={message}
-            className={errors.message ? kontaktStyles.messageInput : kontaktStyles.messageInputError}
-            onChange={handleInputChange}
-          />
-          <div>
-            <p className={kontaktStyles.remainingCharacters}>
-              {message.length > 0
-                ? `${maxChars - message.length} ` + t("emailField.charLeft") /* verbleibende Zeichen */
-                : ""}
+              {t("emailField.notice") /*mit * markierte Felder sind Pflichtfelder*/}{" "}
             </p>
           </div>
-          <button className={kontaktStyles.sendButton} onClick={submitContactForm}>
-            {t("emailField.sendButton") /* Nachricht senden */}
-          </button>
-          <p className={kontaktStyles.pflichtfelderHinweis}>
-            {" "}
-            {t("emailField.notice") /*mit * markierte Felder sind Pflichtfelder*/}{" "}
-          </p>
-        </div>
-        <div className={kontaktStyles.rightContainer}>
-          <div className={kontaktStyles.formHeading}>
-            <p>{t("info.title") /* Kontaktinformationen */}</p>
-          </div>
-          <div className={kontaktStyles.kontaktdetailsContainer}>
-            <p>
-              {
-                parse(
-                  t("info.sentence")
-                ) /* Feedback ist uns wichtig! Scheut euch nicht davor Verbesserungsvorschläge oder Anmerkungen zu äußern. */
-              }
-            </p>
-            <div className={kontaktStyles.addressContainer}>
-              <div>
-                <img src={informatikzentrumJPG} className={kontaktStyles.addressImage} />
-              </div>
-              <div>
-                <p className={kontaktStyles.addressInfo}>
-                  {" "}
-                  {t("info.institute") /* Institut für Betriebssysteme und Rechnerverbund */}{" "}
-                </p>
-                <p> {t("info.center") /* Informatikzentrum */} </p>
-                <p> {t("info.address1") /* Mühlenpdordstraße 23 */} </p>
-                <p> {t("info.address2") /* 38106 Braunschweig */} </p>
-                <p> {t("info.email") /* audojo@tu-bs.de */}</p>
+          <div className={kontaktStyles.rightContainer}>
+            <div className={kontaktStyles.formHeading}>
+              <p>{t("info.title") /* Kontaktinformationen */}</p>
+            </div>
+            <div className={kontaktStyles.kontaktdetailsContainer}>
+              <p>
+                {
+                  parse(
+                    t("info.sentence")
+                  ) /* Feedback ist uns wichtig! Scheut euch nicht davor Verbesserungsvorschläge oder Anmerkungen zu äußern. */
+                }
+              </p>
+              <div className={kontaktStyles.addressContainer}>
+                <div>
+                  <img src={informatikzentrumJPG} className={kontaktStyles.addressImage} />
+                </div>
+                <div>
+                  <p className={kontaktStyles.addressInfo}>
+                    {" "}
+                    {t("info.institute") /* Institut für Betriebssysteme und Rechnerverbund */}{" "}
+                  </p>
+                  <p> {t("info.center") /* Informatikzentrum */} </p>
+                  <p> {t("info.address1") /* Mühlenpdordstraße 23 */} </p>
+                  <p> {t("info.address2") /* 38106 Braunschweig */} </p>
+                  <p> {t("info.email") /* audojo@tu-bs.de */}</p>
+                </div>
               </div>
             </div>
-          </div>
 
-          <section className={kontaktStyles.credits}>
-            <i>Made with ❤️ by Maximo Strohmann, Jan Detmers, Minseo Kim, An Hoang and Thuy Trang Nguyen</i>
-          </section>
+            <section className={kontaktStyles.credits}>
+              <i>Made with ❤️ by Maximo Strohmann, Jan Detmers, Minseo Kim, An Hoang and Thuy Trang Nguyen</i>
+            </section>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -14,7 +14,7 @@ const useScales = ({
     () =>
       scaleBand<number>()
         .domain(range(sharedArray.length))
-        .range([margin.left, containerSize.width - adjustedMarginLeft])
+        .range([adjustedMarginLeft, containerSize.width - adjustedMarginLeft])
         .padding(scaleBandPadding),
     [containerSize.width, sharedArray.length]
   );

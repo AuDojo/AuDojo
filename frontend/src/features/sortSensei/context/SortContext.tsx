@@ -56,7 +56,7 @@ export const SortProvider = ({ children, sortType }: { children: ReactNode; sort
 
   const sortTypeRef = useRef<SortType>(sortType ?? SortTypes.MergeSort);
 
-  const { derivedData, isPending, error } = useSortData(sharedArray, sortTypeRef.current);
+  const { derivedData, isPending, error } = useSortData(sharedArray, sortType);
 
   return (
     <SortContext

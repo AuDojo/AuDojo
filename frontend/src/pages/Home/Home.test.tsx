@@ -1,18 +1,14 @@
-import { paths } from "@/config";
+import { paths } from "@/config/paths";
+import { renderWithRouter } from "@/testing/testUtils";
 import { screen, waitFor } from "@testing-library/react";
-import { UserEvent } from "@testing-library/user-event";
-import { renderWithRouter } from "tests/testUtils";
 import Home from "./Home";
 
 describe("<Home>", () => {
-  let user: UserEvent;
-
-  beforeEach(() => {
-    const renderResult = renderWithRouter(<Home />, { route: paths.home });
-    user = renderResult.user;
-  });
+  const setup = () => renderWithRouter(<Home />, { route: paths.home });
 
   it("renders correctly with all main elements", () => {
+    setup();
+
     // Test if header is rendered
     const header = screen.getByRole("heading", { name: /AuDojo/i });
     expect(header).toBeInTheDocument();
@@ -34,6 +30,8 @@ describe("<Home>", () => {
 
   homeButtonTests.forEach(({ name, path }) => {
     it(`navigates to ${path} when ${name} button is clicked`, async () => {
+      const { user } = setup();
+
       const homeButton = screen.getByRole("link", { name });
       expect(homeButton).toBeInTheDocument();
 

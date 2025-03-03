@@ -21,7 +21,7 @@
   "files.readonlyInclude": {
     "**/node_modules/**/*.*": true,
     "**/dist/**/*.js": true,
-    "**/package-lock.json": true
+    "**/pnpm-lock.yaml": true
   },
 
   // Editor settings
@@ -29,13 +29,14 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "eslint.workingDirectories": ["./frontend", "./e2e"],
 
   // i18n-ally settings
   "i18n-ally.localesPaths": "frontend/public/translation",
   "i18n-ally.pathMatcher": "{locale}/{namespaces}.json",
   "i18n-ally.namespace": true,
   "i18n-ally.enabledFrameworks": ["i18next", "react-i18next"],
-  "i18n-ally.keystyle": "auto",
+  "i18n-ally.keystyle": "nested",
   // Language to translate from
   "i18n-ally.sourceLanguage": "en",
 
