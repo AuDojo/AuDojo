@@ -30,36 +30,34 @@ const SideBarMenu = () => {
 
   return (
     <>
-      <div className={styles["sort-nav"]}>
-        <div className={`${styles["sort-nav-list"]}`}>
-          <NavItem
-            activeSort={activeSort === "mergesort"}
-            onClick={() => setActiveSort("mergesort")}
-            to={paths.mergeSort}
-            text="MergeSort"
-          />
+      <nav className={`${styles["sort-nav-list"]}`}>
+        <NavItem
+          activeSort={activeSort === "mergesort"}
+          onClick={() => setActiveSort("mergesort")}
+          to={paths.mergeSort}
+          text="MergeSort"
+        />
 
-          <NavItem
-            activeSort={activeSort === "quicksort"}
-            onClick={() => setActiveSort("quicksort")}
-            to={paths.quickSort}
-            text="QuickSort"
-          />
-          <NavItem
-            activeSort={activeSort === "bubblesort"}
-            onClick={() => setActiveSort("bubblesort")}
-            to={paths.bubbleSort}
-            text="BubbleSort"
-          />
+        <NavItem
+          activeSort={activeSort === "quicksort"}
+          onClick={() => setActiveSort("quicksort")}
+          to={paths.quickSort}
+          text="QuickSort"
+        />
+        <NavItem
+          activeSort={activeSort === "bubblesort"}
+          onClick={() => setActiveSort("bubblesort")}
+          to={paths.bubbleSort}
+          text="BubbleSort"
+        />
 
-          <NavItem
-            activeSort={activeSort === "selectionsort"}
-            onClick={() => setActiveSort("selectionsort")}
-            to={paths.selectionSort}
-            text="SelectionSort"
-          />
-        </div>
-      </div>
+        <NavItem
+          activeSort={activeSort === "selectionsort"}
+          onClick={() => setActiveSort("selectionsort")}
+          to={paths.selectionSort}
+          text="SelectionSort"
+        />
+      </nav>
     </>
   );
 };
