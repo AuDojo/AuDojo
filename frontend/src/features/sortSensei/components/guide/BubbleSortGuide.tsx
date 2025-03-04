@@ -1,56 +1,44 @@
 import { useSortContext } from "@/features/sortSensei/context/SortContext";
-import styles from "./SortGuide.module.css";
+import parse from "html-react-parser";
+import { useTranslation } from "react-i18next";
+import SortGuide from "./SortGuide";
 
 const BubbleSortGuide = () => {
   const { step, processList, bubbleElements } = useSortContext();
+  const { t } = useTranslation("sortsensei", { keyPrefix: "bubbleSort.guide" });
 
   const getCurrentGuideText = () => {
     if (!processList.length) {
       return "Starting Bubble Sort!";
     }
     if (step === 1) {
-      return (
-        <>
-          <b>Compare adjacents</b> elements and swap them if they are in the wrong order.
-        </>
-      );
+      return <>{parse(t("start"))}</>;
     } else if (step >= 2) {
-      const firstSwapElement = processList[step - 2][bubbleElements[step - 2]];
-      const adjacentElement = processList[step - 2][bubbleElements[step - 2] + 1];
+      const currentElement = processList[step - 2][bubbleElements[step - 2]];
+      const nextElement = processList[step - 2][bubbleElements[step - 2] + 1];
       const isElementSorted = bubbleElements[step - 2] > bubbleElements[step - 1];
       return (
         <>
-          Swap <b>{firstSwapElement}</b> with <b>{adjacentElement}</b>
-          <br />
-          <br />
-          {isElementSorted || step === processList.length ? (
+          {parse(t("swap", { currentElement, nextElement }))}
+          {(isElementSorted || step === processList.length) && (
             <>
-              Now <b>{firstSwapElement}</b> stands at the <b>right place!</b>
-              {step === processList.length ? (
-                <b>
-                  <br />
-                  Sorting is complete!
-                </b>
-              ) : (
-                ""
-              )}
+              <br />
+              <br />
+              {parse(t("sorted-element", { currentElement }))}{" "}
             </>
-          ) : (
-            <>(Bring {firstSwapElement} to the end of the array.)</>
+          )}
+          {step === processList.length && (
+            <>
+              <br />
+              <b>{t("sorted-end")}</b>
+            </>
           )}
         </>
       );
     }
   };
 
-  return (
-    <div className={styles.guide}>
-      <h3>Bubble Sort Guide</h3>
-      <div className={styles.step}>
-        <p>{getCurrentGuideText()}</p>
-      </div>
-    </div>
-  );
+  return <SortGuide heading={t("heading")} renderGuideText={getCurrentGuideText} />;
 };
 
 export default BubbleSortGuide;

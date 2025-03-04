@@ -35,12 +35,22 @@
       "end": "<b> The used pivot element {{pivot}} is marked</b> <br /> Sorting is complete!"
     }
   },
+  "bubbleSort": {
+    "guide": {
+      "heading": "Bubble Sort Guide",
+      "start": "<b>Compare adjacents</b> elements and swap them if the left element is bigger than the right one.",
+      "swap": "Swap <b>{{currentElement}}</b> with <b>{{nextElement}}</b>.",
+      "sorted-element": "Now <b>{{currentElement}}</b> stands at the <b>right place!</b>",
+      "sorted-end": "Sorting is complete!"
+    }
+  },
   "selectionSort": {
     "guide": {
-      "header": "Selection Sort Guide",
+      "heading": "Selection Sort Guide",
       "start": "Starts with the current element at <b>index 0</b>.<br /> Find the smallest from the remaining elements. <br />",
       "swap": "Swap <b>current ({{currentElement}})</b> with <b>smallest ({{smallestElement}})</b>. <br /> Move to <b>index {{move}}</b> and find the smallest in the unsorted subarray.<br />",
       "end": "Sorting is complete!"
     }
-  }
+  },
+  "current-points": "Your Points: {{currentPoints}}/{{totalPoints}}"
 }

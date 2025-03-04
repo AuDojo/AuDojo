@@ -7,6 +7,7 @@
     // Prettier support
     "esbenp.prettier-vscode",
     // i18next support
-    "lokalise.i18n-ally"
+    // "lokalise.i18n-ally"
+    "carlosmeduardo.i18n-ally-pro"
   ]
 }
