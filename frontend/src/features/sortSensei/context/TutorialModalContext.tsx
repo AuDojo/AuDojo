@@ -1,6 +1,6 @@
 import { localStorageKeys } from "@/config/localStorage";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-import React, { createContext, ReactNode, use, useCallback, useRef } from "react";
+import React, { createContext, ReactNode, use, useCallback, useMemo, useRef } from "react";
 import { useHighlight } from "../components/tutorialModal/hooks/useHighlight";
 import { RefKeys } from "../components/tutorialModal/types";
 
@@ -45,11 +45,12 @@ export const TutorialModalProvider = ({ children }: { children: ReactNode }) => 
     setIsTutorialOpen(!isTutorialOpen);
   }, [clearHighlight, isTutorialOpen, setIsTutorialOpen]);
 
-  return (
-    <TutorialModalContext value={{ highlightRefs, isTutorialOpen, setIsTutorialOpen, closeModal, toggleModal }}>
-      {children}
-    </TutorialModalContext>
+  const value = useMemo(
+    () => ({ highlightRefs, isTutorialOpen, setIsTutorialOpen, closeModal, toggleModal }),
+    [closeModal, highlightRefs, isTutorialOpen, setIsTutorialOpen, toggleModal]
   );
+
+  return <TutorialModalContext value={value}>{children}</TutorialModalContext>;
 };
 
 // Custom Hook

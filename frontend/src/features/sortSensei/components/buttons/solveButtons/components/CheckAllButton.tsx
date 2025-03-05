@@ -13,6 +13,7 @@ const CheckAllButton = ({ handleCheckAll }: { handleCheckAll: () => void }) => {
 
   return (
     <button
+      type="button"
       aria-label={`Check All [${HOTKEYS.CheckAll}]`}
       data-tooltip="top"
       onClick={handleCheckAll}

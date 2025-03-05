@@ -72,6 +72,7 @@ const RandomArrayButton = ({ setIsSubmitting }: RandomArrayButtonProps) => {
     <>
       <button
         className={buttonStyles["random-array-button"]}
+        type="button"
         aria-label={`Random [${HOTKEYS.RandomButton}]`}
         data-tooltip="top"
         onClick={handleRandomArray}

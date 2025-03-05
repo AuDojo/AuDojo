@@ -6,8 +6,10 @@ import importPlugin from "eslint-plugin-import";
 import jestDom from "eslint-plugin-jest-dom";
 import react from "eslint-plugin-react";
 import reactCompiler from "eslint-plugin-react-compiler";
+import reactDom from "eslint-plugin-react-dom";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
+import reactX from "eslint-plugin-react-x";
 import testingLibrary from "eslint-plugin-testing-library";
 import globals from "globals";
 import tseslint from "typescript-eslint";
@@ -25,6 +27,8 @@ export default tseslint.config([
       js.configs.recommended,
       ...tseslint.configs.strict, // Enable type-aware linting. If too strong, pick recommended-type-checked
       ...tseslint.configs.stylisticTypeChecked, // Enforce stylistic preferences
+      reactDom.configs.recommended,
+      reactX.configs.recommended,
     ],
     files: ["**/*.{ts,tsx}"],
     languageOptions: {
@@ -81,6 +85,7 @@ export default tseslint.config([
       // Disable specific rules
       "react/no-unescaped-entities": "off", // This rule disallows "" etc. in HTML
       "@typescript-eslint/dot-notation": "off", // This rule disallows styles["container"] instead of styles.container
+      "react-x/no-array-index-key": "off", // This rule disallows array index keys
     },
   },
   {

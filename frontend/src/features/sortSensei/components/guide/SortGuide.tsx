@@ -14,7 +14,7 @@ const SortGuide = ({ heading, guideText, hint }: SortGuideProps) => {
   return (
     <aside className={styles["guide"]} aria-labelledby="guide-heading">
       <h3 id="guide-heading">{heading}</h3>
-      <p className={styles["step"]}>{guideText}</p>
+      <div className={styles["step"]}>{guideText}</div>
       {hint && (
         <details className={styles["hint"]}>
           <summary>{t("hints")}</summary>

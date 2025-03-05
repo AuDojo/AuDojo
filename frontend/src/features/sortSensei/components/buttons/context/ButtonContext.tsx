@@ -1,4 +1,4 @@
-import React, { createContext, use, useCallback, useRef, useState } from "react";
+import React, { createContext, use, useCallback, useMemo, useRef, useState } from "react";
 
 interface ButtonContextProps {
   isPlaying: boolean;
@@ -20,18 +20,17 @@ export const ButtonContextProvider = ({ children }: { children: React.ReactNode 
     setIsPlaying(false);
   }, []);
 
-  return (
-    <ButtonContext
-      value={{
-        isPlaying,
-        setIsPlaying,
-        timeoutRef,
-        clearPlayBackTimer,
-      }}
-    >
-      {children}
-    </ButtonContext>
+  const value = useMemo(
+    () => ({
+      isPlaying,
+      setIsPlaying,
+      timeoutRef,
+      clearPlayBackTimer,
+    }),
+    [clearPlayBackTimer, isPlaying]
   );
+
+  return <ButtonContext value={value}>{children}</ButtonContext>;
 };
 
 export const useButtonContext = (): ButtonContextProps => {

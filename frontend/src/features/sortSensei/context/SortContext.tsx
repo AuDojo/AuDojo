@@ -1,6 +1,6 @@
 import { localStorageKeys } from "@/config/localStorage";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { createContext, ReactNode, use, useRef, useState } from "react";
+import { createContext, ReactNode, use, useMemo, useRef, useState } from "react";
 import { useSortData } from "../api/postArray";
 import { SortTypes } from "../constants";
 import { SortType } from "../types";
@@ -50,22 +50,21 @@ export const SortProvider = ({ children, sortType }: { children: ReactNode; sort
 
   const { derivedData, isPending, error } = useSortData(sharedArray, sortType);
 
-  return (
-    <SortContext
-      value={{
-        ...derivedData,
-        isPending,
-        error,
-        sharedArray,
-        setSharedArray,
-        sortTypeRef,
-        step,
-        setStep,
-      }}
-    >
-      {children}
-    </SortContext>
+  const value = useMemo(
+    () => ({
+      ...derivedData,
+      isPending,
+      error,
+      sharedArray,
+      setSharedArray,
+      sortTypeRef,
+      step,
+      setStep,
+    }),
+    [derivedData, error, isPending, setSharedArray, sharedArray, step]
   );
+
+  return <SortContext value={value}>{children}</SortContext>;
 };
 
 // Custom hook

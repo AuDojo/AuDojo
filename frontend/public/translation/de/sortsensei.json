@@ -47,7 +47,7 @@
       "goThroughArray": "<strong>Gehe</strong> das Array <strong>durch</strong>, Element für Element.",
       "compare": "<strong>Vergleiche</strong> jedes Element mit dem nächsten.",
       "repeat": "<strong>Wiederhole</strong> für alle Elemente.",
-      "hint": "Überspringe Schritte ohne Vertauschung."
+      "hint": "Überspringe Schritte, wo <strong>nicht</strong> vertauscht wird."
     }
   },
   "selectionSort": {

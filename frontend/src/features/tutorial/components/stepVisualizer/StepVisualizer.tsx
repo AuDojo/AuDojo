@@ -54,10 +54,20 @@ const Visualizer = ({ steps, sortType }: VisualizerProps) => {
 
         {/* Step Navigation */}
         <div>
-          <button onClick={goToFirstStep} disabled={currentStep === 0} className={tutorialContent["button-style"]}>
+          <button
+            type="button"
+            onClick={goToFirstStep}
+            disabled={currentStep === 0}
+            className={tutorialContent["button-style"]}
+          >
             {"<<"}
           </button>
-          <button onClick={goToPrevStep} disabled={currentStep === 0} className={tutorialContent["button-style"]}>
+          <button
+            type="button"
+            onClick={goToPrevStep}
+            disabled={currentStep === 0}
+            className={tutorialContent["button-style"]}
+          >
             {"<"}
           </button>
           <span style={{ margin: "0 20px" }}>
@@ -65,6 +75,7 @@ const Visualizer = ({ steps, sortType }: VisualizerProps) => {
           </span>
           <button
             onClick={goToNextStep}
+            type="button"
             disabled={currentStep === steps.length - 1}
             className={tutorialContent["button-style"]}
           >
@@ -72,6 +83,7 @@ const Visualizer = ({ steps, sortType }: VisualizerProps) => {
           </button>
           <button
             onClick={goToLaststep}
+            type="button"
             disabled={currentStep === steps.length - 1}
             className={tutorialContent["button-style"]}
           >

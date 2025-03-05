@@ -1,8 +1,8 @@
 import { TreeTemplate } from "@/features/treeTutor/treeTemplate";
-import styles from "./TreeTutor.module.css";
-import { useState } from "react";
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
-import { generateRandomAVL, generateInsertSolution, generateDeleteSolution, TreeStep } from "./utils/AVLTreeService";
+import { useState } from "react";
+import styles from "./TreeTutor.module.css";
+import { generateDeleteSolution, generateInsertSolution, generateRandomAVL, TreeStep } from "./utils/AVLTreeService";
 
 // Define exercise mode and operation types
 type OperationType = "INSERT" | "DELETE";
@@ -142,7 +142,7 @@ const TreeTutor = () => {
               </div>
               {templates.map((id) => (
                 <div key={id} className={styles.treeTemplate}>
-                  <button className={styles.closeButton} onClick={() => removeTemplate(id)}>
+                  <button type="button" className={styles.closeButton} onClick={() => removeTemplate(id)}>
                     ✖
                   </button>
                   <TreeTemplate
@@ -152,7 +152,7 @@ const TreeTutor = () => {
                 </div>
               ))}
               {templates.length < 3 && (
-                <button className={styles.addTemplate} onClick={addTemplate}>
+                <button type="button" className={styles.addTemplate} onClick={addTemplate}>
                   +
                 </button>
               )}
@@ -179,18 +179,18 @@ const TreeTutor = () => {
         </section>
 
         <div className={styles.controls}>
-          <button className={styles.practiceInsertButton} onClick={generateInsertExercise}>
+          <button type="button" className={styles.practiceInsertButton} onClick={generateInsertExercise}>
             Practice Insert
           </button>
-          <button className={styles.practiceDeleteButton} onClick={generateDeleteExercise}>
+          <button type="button" className={styles.practiceDeleteButton} onClick={generateDeleteExercise}>
             Practice Delete
           </button>
-          <button className={styles.randomModeButton} onClick={generateNewTree}>
+          <button type="button" className={styles.randomModeButton} onClick={generateNewTree}>
             New Random Tree
           </button>
 
           {targetValue !== null && (
-            <button className={styles.submit} onClick={showingSolution ? hideSolution : showSolution}>
+            <button type="button" className={styles.submit} onClick={showingSolution ? hideSolution : showSolution}>
               {showingSolution ? "Hide Solution" : "Show Solution"}
             </button>
           )}

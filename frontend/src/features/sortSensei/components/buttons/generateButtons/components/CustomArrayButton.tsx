@@ -16,6 +16,7 @@ const CustomArrayButton = ({ isSubmitting, toggleCustomArray }: CustomArrayButto
         // CUSTOM array button
         <button
           className={buttonStyles["custom-array-button"]}
+          type="button"
           aria-label={`Custom [${HOTKEYS.Custom}]`}
           data-tooltip="top"
           onClick={toggleCustomArray}
@@ -28,6 +29,7 @@ const CustomArrayButton = ({ isSubmitting, toggleCustomArray }: CustomArrayButto
         // CLOSE button
         <button
           className={buttonStyles["close-button"]}
+          type="button"
           aria-label={`Close [${HOTKEYS.Close[0]}]`}
           data-tooltip="top"
           onClick={toggleCustomArray}

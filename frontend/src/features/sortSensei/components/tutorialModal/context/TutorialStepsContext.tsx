@@ -1,5 +1,5 @@
 import { tutorialSteps } from "@/features/sortSensei/components/tutorialModal/constants";
-import { createContext, ReactNode, use, useCallback, useState } from "react";
+import { createContext, ReactNode, use, useCallback, useMemo, useState } from "react";
 
 // Define types for our context state
 interface StepsContextProps {
@@ -17,7 +17,9 @@ export const TutorialStepsProvider = ({ children }: { children: ReactNode }) => 
   const handlePrevious = useCallback(() => setStep((prev) => Math.max(0, prev - 1)), []);
   const handleNext = useCallback(() => setStep((prev) => Math.min(tutorialSteps.length - 1, prev + 1)), []);
 
-  return <TutorialStepsContext value={{ step, setStep, handleNext, handlePrevious }}>{children}</TutorialStepsContext>;
+  const value = useMemo(() => ({ step, setStep, handleNext, handlePrevious }), [handleNext, handlePrevious, step]);
+
+  return <TutorialStepsContext value={value}>{children}</TutorialStepsContext>;
 };
 
 export const useTutorialStepsContext = () => {

@@ -16,22 +16,22 @@ const NavButtons = ({ closeModal }: NavButtonsProps) => {
     <div className={cx("nav-buttons-container")}>
       {/* Buttons */}
       {step === 0 && (
-        <button className={cx("start-button")} onClick={handleNext}>
+        <button type="button" className={cx("start-button")} onClick={handleNext}>
           Start
         </button>
       )}
       {step > 0 && (
-        <button className={cx("back-button")} onClick={handlePrevious}>
+        <button type="button" className={cx("back-button")} onClick={handlePrevious}>
           Back
         </button>
       )}
       {step > 0 && step < tutorialSteps.length - 1 && (
-        <button className={cx("next-button")} onClick={handleNext}>
+        <button type="button" className={cx("next-button")} onClick={handleNext}>
           Next
         </button>
       )}
       {step === tutorialSteps.length - 1 && (
-        <button className={cx("finish-button")} onClick={closeModal}>
+        <button type="button" className={cx("finish-button")} onClick={closeModal}>
           Finish
         </button>
       )}
