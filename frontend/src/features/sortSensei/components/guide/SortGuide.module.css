@@ -1,12 +1,21 @@
 /* MergeSortGuide.module.css */
 .guide {
-  width: 230px;
+  width: 290px;
   padding: 10px;
   background-color: #e8eff5;
+  color: rgb(41, 41, 41);
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: absolute;
   right: 0;
+
+  ol {
+    padding-left: 1rem;
+    ul {
+      font-size: 0.9rem;
+      padding-left: 1.2rem;
+    }
+  }
 }
 
 @media (max-width: 1260px) {
@@ -26,17 +35,30 @@
 }
 .step {
   margin: 10px 0;
-  padding: 10px;
+  padding: 7px;
   background-color: white;
   border-left: 4px solid #74c0fc;
   border-radius: 4px;
 }
 
-/* Update existing styles */
-.sorting-container {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding: 20px;
-  gap: 20px;
+.hint {
+  overflow: hidden;
+
+  summary {
+    cursor: pointer;
+  }
+
+  *::marker {
+    font-size: 0.8rem;
+  }
+
+  ul {
+    color: rgb(53, 53, 53);
+    padding-left: 1.5rem;
+    font-size: 1rem;
+  }
+
+  /* ::details-content {
+    color: red;
+  } */
 }

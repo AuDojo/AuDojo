@@ -30,7 +30,7 @@ const QuickSortGuide = () => {
     }
   };
 
-  return <SortGuide heading={t("heading")} renderGuideText={getCurrentGuideText} />;
+  return <SortGuide heading={t("heading")} guideText={getCurrentGuideText()} />;
 };
 
 export default QuickSortGuide;

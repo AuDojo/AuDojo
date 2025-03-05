@@ -24,7 +24,7 @@ const BubbleSortGuide = () => {
             <>
               <br />
               <br />
-              {parse(t("sorted-element", { currentElement }))}{" "}
+              {parse(t("sorted-element", { currentElement }))}
             </>
           )}
           {step === processList.length && (
@@ -38,7 +38,7 @@ const BubbleSortGuide = () => {
     }
   };
 
-  return <SortGuide heading={t("heading")} renderGuideText={getCurrentGuideText} />;
+  return <SortGuide heading={t("heading")} guideText={getCurrentGuideText()} />;
 };
 
 export default BubbleSortGuide;

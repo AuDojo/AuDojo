@@ -39,7 +39,7 @@ const SelectionSortGuide = () => {
     }
   };
 
-  return <SortGuide heading={t("heading")} renderGuideText={getCurrentGuideText} />;
+  return <SortGuide heading={t("heading")} guideText={getCurrentGuideText()} />;
 };
 
 export default SelectionSortGuide;

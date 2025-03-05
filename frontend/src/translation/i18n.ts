@@ -23,6 +23,9 @@ i18n
     backend: {
       loadPath: "translation/{{lng}}/{{ns}}.json",
     },
+    react: {
+      transKeepBasicHtmlNodesFor: ["br", "strong", "i", "p", "b", "u"], // Which html tags to translate with <Trans> component
+    },
   });
 
 export default i18n;

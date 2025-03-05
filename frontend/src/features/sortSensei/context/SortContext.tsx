@@ -2,8 +2,9 @@ import { localStorageKeys } from "@/config/localStorage";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { createContext, ReactNode, use, useRef, useState } from "react";
 import { useSortData } from "../api/postArray";
-import { MAX_ARRAY_SIZE, MAX_INPUT_RANGE, MIN_ARRAY_SIZE, MIN_INPUT_RANGE, SortTypes } from "../constants";
+import { SortTypes } from "../constants";
 import { SortType } from "../types";
+import { isValidArray } from "../utils";
 
 // Define the structure of your context
 interface SortContextProps {
@@ -35,20 +36,11 @@ interface SortContextProps {
 // Create context
 export const SortContext = createContext<SortContextProps | undefined>(undefined);
 
-function isValidArray(value: unknown): value is number[] {
-  return (
-    Array.isArray(value) &&
-    value.every((item) => typeof item === "number" && item >= MIN_INPUT_RANGE && item <= MAX_INPUT_RANGE) &&
-    value.length <= MAX_ARRAY_SIZE &&
-    value.length >= MIN_ARRAY_SIZE
-  );
-}
-
 export const SortProvider = ({ children, sortType }: { children: ReactNode; sortType: SortType }) => {
   const [step, setStep] = useState<number>(1);
   const [sharedArray, setSharedArray] = useLocalStorage<number[]>(
     localStorageKeys.sharedArray,
-    [7, 13, 5, 9, 10, 12, 1, 3, 2, 6, 25, 40],
+    [7, 13, 5, 9, 10, 12, 1, 3],
     isValidArray
   );
   // Debounce setSharedArray to avoid too many requests to backend

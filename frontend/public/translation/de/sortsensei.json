@@ -19,27 +19,29 @@
   },
   "mergeSort": {
     "guide": {
-      "start": "Starte Merge Sort!",
       "heading": "Merge Sort Hilfe",
-      "splitting": "<b>Teile</b> das Array rekursiv in <b>zwei Hälften</b>, solange es in jedem Teilarray mehr als zwei Elemente gibt.",
-      "compare": "Vergleiche und sortiere zwei Elemente <br /> <b>Die sortierten Elemente wurde markiert</b>",
-      "merge": "Merge die sortierten Teilarrays. <br /> <b>Das kombinierte Array wurde markiert.</b>",
-      "end": "Das Sortieren ist abgeschlossen!"
+      "splitting": "Teile das Array rekursiv in <strong>zwei Hälften</strong>.",
+      "keep-splitting": "Teile weiter, bis jede Hälfte <strong>höchstens 2 Elemente</strong> hat.",
+      "merge": "Füge die Teilarrays <strong>von links nach rechts</strong> zusammen.",
+      "hint": [
+        "Beim Teilen von <strong>ungeraden</strong> Arrays, hat das linke Teilarray ein Element mehr.",
+        "Elemente <strong>nicht</strong> im <strong>aktuellen Teilarray</strong> werden ignoriert."
+      ]
     }
   },
   "quickSort": {
     "guide": {
       "heading": "Quick Sort Hilfe",
-      "choose": "Wähle das <b> letzte Element {{lastElement}} </b> als pivot Element.",
-      "after-partition": "Nach dem Aufteilen, sind alle Elemente, welche kleiner als das pivot Element {{pivot}} sind, auf dessem linken, und größere auf der rechten Seite. <b> Wähle {{nextPivot}} </b> als <b>das nächste</b> pivot element. <br /> <b> Das benutzte pivot Element {{pivot}} wurde markiert.</b>",
-      "end": "<b> Das benutzte pivot Element {{pivot}} wurde markiert </b> <br /> Das Sortieren ist abgeschlossen!"
+      "choose": "Wähle das <strong> letzte Element {{lastElement}} </strong> als pivot Element.",
+      "after-partition": "Nach dem Aufteilen, sind alle Elemente, welche kleiner als das pivot Element {{pivot}} sind, auf dessem linken, und größere auf der rechten Seite. <strong> Wähle {{nextPivot}} </strong> als <strong>das nächste</strong> pivot element. <br /> <strong> Das benutzte pivot Element {{pivot}} wurde markiert.</strong>",
+      "end": "<strong> Das benutzte pivot Element {{pivot}} wurde markiert </strong> <br /> Das Sortieren ist abgeschlossen!"
     }
   },
   "bubbleSort": {
     "guide": {
-      "start": "<b> Vergleiche benachbarte </b> Elemente und vertausche sie, wenn das linke Element größer ist als das rechte.",
-      "swap": "Tausche <b> {{currentElement}} </b> mit <b> {{nextElement}} </b>.",
-      "sorted-element": "Jetzt steht <b> {{currentElement}} </b> am richtigen Ort!",
+      "start": "<strong> Vergleiche benachbarte </strong> Elemente und vertausche sie, wenn das linke Element größer ist als das rechte.",
+      "swap": "Tausche <strong> {{currentElement}} </strong> mit <strong> {{nextElement}} </strong>.",
+      "sorted-element": "Jetzt steht <strong> {{currentElement}} </strong> am richtigen Ort!",
       "sorted-end": "Sortierung ist fertig!",
       "heading": "Bubble Sort Hilfe"
     }
@@ -47,10 +49,13 @@
   "selectionSort": {
     "guide": {
       "heading": "Selection Sort Hilfe",
-      "start": "Started mit dem derzeitigen Element am <b>Index 0</b>.<br /> Finde das kleinste Element im restlichen Teilarray. <br />",
-      "swap": "Tausche das <b>aktuelle Element ({{currentElement}})</b> mit dem <b>kleinsten ({{smallestElement}})</b>. <br /> Bewege zum <b>Index {{move}}</b> und finde das kleinste Element im restlichen Teilarray.<br />",
+      "start": "Started mit dem derzeitigen Element am <strong>Index 0</strong>.<br /> Finde das kleinste Element im restlichen Teilarray. <br />",
+      "swap": "Tausche das <strong>aktuelle Element ({{currentElement}})</strong> mit dem <strong>kleinsten ({{smallestElement}})</strong>. <br /> Bewege zum <strong>Index {{move}}</strong> und finde das kleinste Element im restlichen Teilarray.<br />",
       "end": "Das Sortieren ist abgeschlossen!"
     }
+  },
+  "guide": {
+    "hints": "Hinweise"
   },
   "current-points": "Deine Punkte: {{currentPoints}}/{{totalPoints}}"
 }
