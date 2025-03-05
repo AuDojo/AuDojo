@@ -34,7 +34,9 @@ const TutorialModalContent = () => {
         <CloseButton onClick={closeModal} />
       </dialog>
       {/* Overlay for transparent background */}
-      {isTutorialOpen && <div className={cx("overlay")} onClick={closeModal}></div>}
+      {isTutorialOpen && (
+        <div role="button" tabIndex={0} className={cx("overlay")} onClick={closeModal} onKeyDown={closeModal}></div>
+      )}
     </>
   );
 };

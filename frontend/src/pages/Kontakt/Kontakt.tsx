@@ -248,7 +248,7 @@ function Kontakt() {
               </p>
               <div className={kontaktStyles.addressContainer}>
                 <div>
-                  <img src={informatikzentrumJPG} className={kontaktStyles.addressImage} />
+                  <img src={informatikzentrumJPG} className={kontaktStyles.addressImage} alt="informatikzentrum" />
                 </div>
                 <div>
                   <p className={kontaktStyles.addressInfo}>
