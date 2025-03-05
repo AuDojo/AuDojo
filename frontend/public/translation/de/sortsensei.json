@@ -23,10 +23,10 @@
       "splitting": "Teile das Array rekursiv in <strong>zwei Hälften</strong>.",
       "keep-splitting": "Teile weiter, bis jede Hälfte <strong>höchstens 2 Elemente</strong> hat.",
       "merge": "Füge die Teilarrays <strong>von links nach rechts</strong> zusammen.",
-      "hint": [
-        "Beim Teilen von <strong>ungeraden</strong> Arrays, hat das linke Teilarray ein Element mehr.",
-        "Elemente <strong>nicht</strong> im <strong>aktuellen Teilarray</strong> werden ignoriert."
-      ]
+      "hint": {
+        "odd": "Beim Teilen von <strong>ungeraden</strong> Arrays, hat das linke Teilarray ein Element mehr.",
+        "ignore": "Elemente <strong>nicht</strong> im <strong>aktuellen Teilarray</strong> werden ignoriert."
+      }
     }
   },
   "quickSort": {
@@ -40,10 +40,14 @@
   "bubbleSort": {
     "guide": {
       "start": "<strong> Vergleiche benachbarte </strong> Elemente und vertausche sie, wenn das linke Element größer ist als das rechte.",
-      "swap": "Tausche <strong> {{currentElement}} </strong> mit <strong> {{nextElement}} </strong>.",
+      "swap": "<strong>Tausche</strong>, falls das linke Element größer ist.",
       "sorted-element": "Jetzt steht <strong> {{currentElement}} </strong> am richtigen Ort!",
       "sorted-end": "Sortierung ist fertig!",
-      "heading": "Bubble Sort Hilfe"
+      "heading": "Bubble Sort Hilfe",
+      "goThroughArray": "<strong>Gehe</strong> das Array <strong>durch</strong>, Element für Element.",
+      "compare": "<strong>Vergleiche</strong> jedes Element mit dem nächsten.",
+      "repeat": "<strong>Wiederhole</strong> für alle Elemente.",
+      "hint": "Überspringe Schritte ohne Vertauschung."
     }
   },
   "selectionSort": {

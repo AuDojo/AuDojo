@@ -1,44 +1,37 @@
-import { useSortContext } from "@/features/sortSensei/context/SortContext";
-import parse from "html-react-parser";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import SortGuide from "./SortGuide";
 
 const BubbleSortGuide = () => {
-  const { step, processList, bubbleElements } = useSortContext();
   const { t } = useTranslation("sortsensei", { keyPrefix: "bubbleSort.guide" });
 
   const getCurrentGuideText = () => {
-    if (!processList.length) {
-      return "Starting Bubble Sort!";
-    }
-    if (step === 1) {
-      return <>{parse(t("start"))}</>;
-    } else if (step >= 2) {
-      const currentElement = processList[step - 2][bubbleElements[step - 2]];
-      const nextElement = processList[step - 2][bubbleElements[step - 2] + 1];
-      const isElementSorted = bubbleElements[step - 2] > bubbleElements[step - 1];
-      return (
-        <>
-          {parse(t("swap", { currentElement, nextElement }))}
-          {(isElementSorted || step === processList.length) && (
-            <>
-              <br />
-              <br />
-              {parse(t("sorted-element", { currentElement }))}
-            </>
-          )}
-          {step === processList.length && (
-            <>
-              <br />
-              <b>{t("sorted-end")}</b>
-            </>
-          )}
-        </>
-      );
-    }
+    return (
+      <ol>
+        <li>
+          <Trans i18nKey="goThroughArray" t={t} />
+        </li>
+        <li>
+          <Trans i18nKey="compare" t={t} />
+        </li>
+        <li>
+          <Trans i18nKey="swap" t={t} />
+        </li>
+        <li>
+          <Trans i18nKey="repeat" t={t} />
+        </li>
+      </ol>
+    );
   };
 
-  return <SortGuide heading={t("heading")} guideText={getCurrentGuideText()} />;
+  const hint = (
+    <ul>
+      <li>
+        <Trans i18nKey="hint" t={t} />
+      </li>
+    </ul>
+  );
+
+  return <SortGuide heading={t("heading")} guideText={getCurrentGuideText()} hint={hint} />;
 };
 
 export default BubbleSortGuide;

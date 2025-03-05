@@ -23,10 +23,10 @@
       "splitting": "Split the array recursively into <strong>two halves</strong>.",
       "keep-splitting": "Keep splitting until each part has <strong>at most 2 elements</strong>.",
       "merge": "Merge the subarrays from <strong>left to right</strong>.",
-      "hint": [
-        "If splitting <strong>odd</strong> array, the left subarray will have one more element.",
-        "Elements <strong>not</strong> in the <strong>current subarray</strong> can be ignored."
-      ]
+      "hint": {
+        "odd": "If splitting an <strong>odd</strong> array, the left subarray will have one more element.",
+        "ignore": "Elements <strong>not</strong> in the <strong>current subarray</strong> can be ignored."
+      }
     }
   },
   "quickSort": {
@@ -40,10 +40,12 @@
   "bubbleSort": {
     "guide": {
       "heading": "Bubble Sort Guide",
-      "start": "<strong>Compare adjacents</strong> elements and swap them if the left element is bigger than the right one.",
-      "swap": "Swap <strong>{{currentElement}}</strong> with <strong>{{nextElement}}</strong>.",
-      "sorted-element": "Now <strong>{{currentElement}}</strong> stands at the <strong>right place!</strong>",
-      "sorted-end": "Sorting is complete!"
+      "goThroughArray": "<strong>Go through</strong> the array, one element at a time.",
+      "sorted-end": "Sorting is complete!",
+      "compare": "<strong>Compare</strong> each element with the next.",
+      "swap": "<strong>Swap</strong>, if the left element is bigger than the next one.",
+      "repeat": "<strong>Repeat</strong> for all elements.",
+      "hint": "Skip steps where no elements are swapped. "
     }
   },
   "selectionSort": {
@@ -57,6 +59,5 @@
   "guide": {
     "hints": "Hints"
   },
-
   "current-points": "Your Points: {{currentPoints}}/{{totalPoints}}"
 }

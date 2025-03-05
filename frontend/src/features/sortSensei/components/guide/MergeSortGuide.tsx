@@ -21,17 +21,14 @@ const MergeSortGuide = () => {
     );
   };
 
-  // Get hints translations as an array
-  const rawHints = t("hint", { returnObjects: true });
-  const hints = Array.isArray(rawHints) ? rawHints : [];
-
   const hint = (
     <ul>
-      {hints.map((text, index) => (
-        <li key={index}>
-          <Trans>{text}</Trans>
-        </li>
-      ))}
+      <li>
+        <Trans i18nKey="hint.odd" t={t} />
+      </li>
+      <li>
+        <Trans i18nKey="hint.ignore" t={t} />
+      </li>
     </ul>
   );
 
