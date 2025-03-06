@@ -15,7 +15,7 @@ export const demoProcess = [
 
 export const demoBubbleElements = [0, 1, 2, 4, 0, 1];
 
-export const durationSorting = 400;
+export const durationSorting = 600;
 
 /** -------------------- AVLTree -------------------- */
 // Override type TreeNode
