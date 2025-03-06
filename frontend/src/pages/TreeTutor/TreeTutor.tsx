@@ -2,7 +2,7 @@ import { TreeTemplate } from "@/features/treeTutor/treeTemplate";
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 import { useState } from "react";
 import styles from "./TreeTutor.module.css";
-import { generateDeleteSolution, generateInsertSolution, generateRandomAVL, TreeStep } from "./utils/AVLTreeService";
+import { generateDeleteSolution, generateInsertSolution, generateAVL, TreeStep } from "./utils/AVLTreeService";
 
 // Define exercise mode and operation types
 type OperationType = "INSERT" | "DELETE";
@@ -13,9 +13,10 @@ const TreeTutor = () => {
   const [targetValue, setTargetValue] = useState<number | null>(null);
   const [showingSolution, setShowingSolution] = useState(false);
   const [solutionSteps, setSolutionSteps] = useState<TreeStep[]>([]);
+  const [treeSet, setTreeSet] = useState<boolean>(false);
 
   // treeData of initial Template
-  const root: TreeNode = {
+  const defaultRoot: TreeNode = {
     value: 0,
     height: 0,
     id: crypto.randomUUID(),
@@ -25,7 +26,7 @@ const TreeTutor = () => {
     balanceFactor: 0,
   };
 
-  const sample = generateRandomAVL() ?? root;
+  const sample = defaultRoot;
   const [initialTreeData, setInitialTreeData] = useState<TreeNode>(sample);
 
   // treeData of consecutive Tree Templates
@@ -65,16 +66,43 @@ const TreeTutor = () => {
   // Create an insert exercise
   const generateInsertExercise = () => {
     // Generate a random value to insert between 1-99
+    if (!treeSet) {
+      setInitialTreeData(generateAVL(true, null) ?? defaultRoot);
+    }
     const newValue = Math.floor(Math.random() * 99) + 1;
     setTargetValue(newValue);
     setCurrentOperationType("INSERT");
     setShowingSolution(false);
     setSolutionSteps([]);
   };
-
+  /*
+  const generateInsertExerciseDEBUG = () => {
+    const newValue = 53;
+    setInitialTreeData(generateAVL(false, [55, 20, 43, 52]) ?? defaultRoot);
+    setTargetValue(newValue);
+    setCurrentOperationType("INSERT");
+    setShowingSolution(false);
+    setSolutionSteps([]);
+  };
+  */
+  /*
+  const generateDeleteExerciseDEBUG = () => {
+    const newValue = 53;
+    setInitialTreeData(generateAVL(false, [53, 20, 43, 26]) ?? defaultRoot);
+    setTargetValue(newValue);
+    setCurrentOperationType("DELETE");
+    setShowingSolution(false);
+    setSolutionSteps([]);
+  };
+  */
   // Create a delete exercise
   const generateDeleteExercise = () => {
     // Get existing values from the tree
+    if (!treeSet) {
+      setInitialTreeData(generateAVL(true, null) ?? defaultRoot);
+      setTreeSet(true);
+    }
+
     const getTreeValues = (node: TreeNode | null, values: number[] = []): number[] => {
       if (!node) return values;
       values.push(node.value);
@@ -96,8 +124,8 @@ const TreeTutor = () => {
 
   // Generate new random tree
   const generateNewTree = () => {
-    const newSample = generateRandomAVL();
-    setInitialTreeData(newSample ?? root);
+    const newSample = generateAVL(true, null);
+    setInitialTreeData(newSample ?? defaultRoot);
     setTemplates([]);
     setTemplateTree({});
     setShowingSolution(false);
