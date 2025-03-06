@@ -1,17 +1,15 @@
 import quicksortidee from "@/features/tutorial/assets/quicksortidee.png";
-import parse from "html-react-parser";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import tutorialContent from "./TutorialContent.module.css";
-
 const QuickSortText = () => {
-  const { t } = useTranslation("sortsensei-tutorial");
+  const { t } = useTranslation("sortsensei-tutorial", { keyPrefix: "quicksort" });
   return (
     <div className={tutorialContent["text-container"]}>
-      <>{parse(t("quicksort.explanation1"))}</>
+      <Trans i18nKey="explanation1" t={t} />
       <div className={tutorialContent["image-container"]}>
         <img src={quicksortidee} className={tutorialContent["image"]} alt="quicksort idee" />
       </div>
-      <>{parse(t("quicksort.explanation2"))}</>
+      <Trans i18nKey="explanation2" />
     </div>
   );
 };

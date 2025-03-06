@@ -1,10 +1,8 @@
 import informatikzentrumJPG from "@/assets/informatikzentrum.jpg";
 import { API_URL } from "@/config/env";
-import parse from "html-react-parser";
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import kontaktStyles from "./Kontakt.module.css";
-
 function Kontakt() {
   const maxChars = 1000;
 
@@ -240,11 +238,7 @@ function Kontakt() {
             </div>
             <div className={kontaktStyles.kontaktdetailsContainer}>
               <p>
-                {
-                  parse(
-                    t("info.sentence")
-                  ) /* Feedback ist uns wichtig! Scheut euch nicht davor Verbesserungsvorschläge oder Anmerkungen zu äußern. */
-                }
+                <Trans i18nKey="info.sentence" t={t} />
               </p>
               <div className={kontaktStyles.addressContainer}>
                 <div>

@@ -1,6 +1,5 @@
 import classNames from "classnames/bind";
-import parse from "html-react-parser";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import { useTutorialModalContext } from "../../context";
 import { CloseButton } from "./closeButton";
 import { tutorialSteps } from "./constants";
@@ -10,7 +9,6 @@ import { useHotkeysTutorial } from "./hooks/useHotkeysTutorial";
 import { NavButtons } from "./navButtons";
 import { ProgressBar } from "./progressBar";
 import styles from "./TutorialModalContent.module.css";
-
 // Bind styles to classNames
 const cx = classNames.bind(styles);
 
@@ -28,7 +26,9 @@ const TutorialModalContent = () => {
     <>
       <dialog open={isTutorialOpen} className={cx("dialog", `step-${step}`)} aria-label="SortSensei Tutorial">
         <h2>{t(tutorialSteps[step].title)}</h2>
-        <p>{parse(t(tutorialSteps[step].content))}</p>
+        <p>
+          <Trans i18nKey={tutorialSteps[step].content} t={t} />
+        </p>
         <ProgressBar min={0} max={tutorialSteps.length - 1} />
         <NavButtons closeModal={closeModal} />
         <CloseButton onClick={closeModal} />

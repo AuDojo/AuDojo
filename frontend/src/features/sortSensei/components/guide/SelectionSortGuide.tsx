@@ -1,6 +1,5 @@
 import { useSortContext } from "@/features/sortSensei/context/SortContext";
-import parse from "html-react-parser";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 import SortGuide from "./SortGuide";
 
 const SelectionSortGuide = () => {
@@ -18,22 +17,22 @@ const SelectionSortGuide = () => {
     const smallestElement = prevArray[selectionElements[step - 2]];
     const currentElement = prevArray[step - 2];
     if (step === 1) {
-      return <>{parse(t("start"))}</>;
+      return <Trans i18nKey="start" t={t} />;
     } else if (step >= 2) {
       if (step === processList.length) {
         return <>{t("end")}</>;
       }
 
       return (
-        <>
-          {parse(
-            t("swap", {
-              currentElement,
-              smallestElement,
-              move: step - 1,
-            })
-          )}
-        </>
+        <Trans
+          i18nKey="swap"
+          t={t}
+          values={{
+            currentElement,
+            smallestElement,
+            move: step - 1,
+          }}
+        />
       );
     }
   };
