@@ -29,9 +29,9 @@
   }
 }
 @media (max-width: 1120px) {
-  .guide {
+  /* .guide {
     display: none;
-  }
+  } */
 }
 .step {
   margin: 10px 0;

@@ -1,7 +1,6 @@
 {
   "length-input-info": "Array length: <br /> ({{min}}-{{max}})",
   "speed-info": "Animation speed",
-  "tutorialModal": {},
   "button": {
     "new-custom": "✍️  Custom Array",
     "new-random": "🎲 Random Array",
@@ -32,9 +31,11 @@
   "quickSort": {
     "guide": {
       "heading": "Quick Sort Guide",
-      "choose": "Choose <strong> last element {{lastElement}} </strong> as pivot element.",
-      "after-partition": "After partitioning, all elements smaller than {{pivot}} are on its left, and larger on the right. <strong> Choose {{nextPivot}} </strong> as <strong>next</strong> pivot element. <br /> <strong> The used pivot element {{pivot}} is marked.</strong>",
-      "end": "<strong> The used pivot element {{pivot}} is marked</strong> <br /> Sorting is complete!"
+      "choose-pivot": "Pick the <strong>last element</strong> in the (sub)array as the pivot.",
+      "partition": "Move <strong>smaller</strong> values than pivot left, <strong>larger</strong> values right.",
+      "swap": "Swap the <strong>pivot</strong> with the first higher value.",
+      "repeat": "Repeat <strong>1-3</strong> for the <strong>left</strong>, then the <strong>right</strong> subarray.",
+      "hint": "Pivot elements get marked in table"
     }
   },
   "bubbleSort": {

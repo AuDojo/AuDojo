@@ -1,7 +1,6 @@
 {
   "length-input-info": "Länge des Arrays: <br /> ({{min}}-{{max}})",
-  "speed-info": "Animations geschwindigkeit",
-  "tutorialModal": {},
+  "speed-info": "Animations-Geschwindigkeit",
   "button": {
     "new-custom": "✍️  Eigenes Array",
     "new-random": "🎲 Zufälliges Array",
@@ -19,7 +18,7 @@
   },
   "mergeSort": {
     "guide": {
-      "heading": "Merge Sort Hilfe",
+      "heading": "Merge Sort Guide",
       "splitting": "Teile das Array rekursiv in <strong>zwei Hälften</strong>.",
       "keep-splitting": "Teile weiter, bis jede Hälfte <strong>höchstens 2 Elemente</strong> hat.",
       "merge": "Füge die Teilarrays <strong>von links nach rechts</strong> zusammen.",
@@ -31,19 +30,18 @@
   },
   "quickSort": {
     "guide": {
-      "heading": "Quick Sort Hilfe",
-      "choose": "Wähle das <strong> letzte Element {{lastElement}} </strong> als pivot Element.",
-      "after-partition": "Nach dem Aufteilen, sind alle Elemente, welche kleiner als das pivot Element {{pivot}} sind, auf dessem linken, und größere auf der rechten Seite. <strong> Wähle {{nextPivot}} </strong> als <strong>das nächste</strong> pivot element. <br /> <strong> Das benutzte pivot Element {{pivot}} wurde markiert.</strong>",
-      "end": "<strong> Das benutzte pivot Element {{pivot}} wurde markiert </strong> <br /> Das Sortieren ist abgeschlossen!"
+      "heading": "Quick Sort Guide",
+      "choose-pivot": "Wähle das <strong>letzte Element</strong> im (Teil)array als Pivot.",
+      "partition": "<strong>Kleinere</strong> Werte als Pivot nach links, <strong>größere</strong> nach rechts.",
+      "swap": "Tausche das <strong>Pivot</strong> mit dem ersten größeren Element.",
+      "repeat": "Wiederhole <strong>1-3</strong> für <strong>linkes Teilarray</strong>, dann <strong>rechts</strong>.",
+      "hint": "Das letzte Pivot element wird in der Tabelle markiert"
     }
   },
   "bubbleSort": {
     "guide": {
-      "start": "<strong> Vergleiche benachbarte </strong> Elemente und vertausche sie, wenn das linke Element größer ist als das rechte.",
       "swap": "<strong>Tausche</strong>, falls das linke Element größer ist.",
-      "sorted-element": "Jetzt steht <strong> {{currentElement}} </strong> am richtigen Ort!",
-      "sorted-end": "Sortierung ist fertig!",
-      "heading": "Bubble Sort Hilfe",
+      "heading": "Bubble Sort Guide",
       "goThroughArray": "<strong>Gehe</strong> das Array <strong>durch</strong>, Element für Element.",
       "compare": "<strong>Vergleiche</strong> jedes Element mit dem nächsten.",
       "repeat": "<strong>Wiederhole</strong> für alle Elemente.",
@@ -52,7 +50,7 @@
   },
   "selectionSort": {
     "guide": {
-      "heading": "Selection Sort Hilfe",
+      "heading": "Selection Sort Guide",
       "start": "Started mit dem derzeitigen Element am <strong>Index 0</strong>.<br /> Finde das kleinste Element im restlichen Teilarray. <br />",
       "swap": "Tausche das <strong>aktuelle Element ({{currentElement}})</strong> mit dem <strong>kleinsten ({{smallestElement}})</strong>. <br /> Bewege zum <strong>Index {{move}}</strong> und finde das kleinste Element im restlichen Teilarray.<br />",
       "end": "Das Sortieren ist abgeschlossen!"

@@ -1,18 +1,18 @@
-import { useEffect, useRef, useState } from "react";
 import { useResizeObserver } from "@/hooks/useResizeObserver";
-import style from "../HomeButtons.module.css";
 import classNames from "classnames/bind";
-import { select, hierarchy, tree, link, curveLinear, HierarchyLink, HierarchyNode } from "d3";
+import { curveLinear, hierarchy, HierarchyLink, HierarchyNode, link, select, tree } from "d3";
+import { useEffect, useRef, useState } from "react";
+import style from "../HomeButtons.module.css";
 import {
-  TreeNode,
-  initialData,
+  circleRadius,
   deleteNode,
-  restructureNode,
+  durationTreeOperation,
+  initialData,
   insertFirstNode,
   insertSecondNode,
-  circleRadius,
   nodeSize,
-  durationTreeOperation,
+  restructureNode,
+  TreeNode,
 } from "./constants";
 
 const cx = classNames.bind(style);
@@ -36,6 +36,7 @@ const AVLTree = () => {
     // set treeLayout size to svg size
     const treeLayout = tree<TreeNode>()
       .size([dimensions.width, dimensions.height])
+      .separation((a, b) => (a.parent === b.parent ? 1.4 : 1.4))
       .nodeSize([nodeSize.width, nodeSize.height]); // (need to manually center root)
 
     treeLayout(root);
@@ -48,7 +49,7 @@ const AVLTree = () => {
       .x((node) => node.x ?? 0)
       .y((node) => node.y ?? 0);
 
-    const rootPosition = { x: dimensions.width / 2, y: 35 };
+    const rootPosition = { x: dimensions.width / 2, y: 28 };
 
     // move root to desired position
     const svg = select(svgRef.current).append("g").attr("transform", `translate(${rootPosition.x}, ${rootPosition.y})`);

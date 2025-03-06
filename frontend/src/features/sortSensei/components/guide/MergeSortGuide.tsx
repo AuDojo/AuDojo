@@ -1,4 +1,3 @@
-// MergeSortGuide.tsx
 import { Trans, useTranslation } from "react-i18next";
 import SortGuide from "./SortGuide";
 

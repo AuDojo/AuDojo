@@ -1,4 +1,3 @@
-// MergeSortGuide.tsx
 import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import parse from "html-react-parser";
 import { useTranslation } from "react-i18next";
