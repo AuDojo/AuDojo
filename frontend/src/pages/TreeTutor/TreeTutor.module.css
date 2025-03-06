@@ -33,7 +33,7 @@
   overflow-x: auto;
   white-space: nowrap;
   padding: 10px;
-  justify-content: center;
+  justify-content: safe center;
   width: 100%;
 
   scrollbar-width: thin;

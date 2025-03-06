@@ -12,7 +12,7 @@
   /* width: 1300px; */
   min-height: 280px;
   display: flex;
-  justify-content: center;
+  justify-content: safe center;
   overflow-x: auto; /* Enable horizontal scrolling */
   padding-bottom: 1rem;
 }
