@@ -7,7 +7,7 @@ const HeaderLogo = () => {
   return (
     <Link className={style["logo-container"]} to={paths.home}>
       <span>AuDojo</span>
-      <img src={audojoLogo} />
+      <img src={audojoLogo} alt="AuDojo Logo" />
     </Link>
   );
 };

@@ -18,7 +18,7 @@ const HelpIcon = () => {
   return (
     <div className={styles["icon-container"]} onClick={toggleModal}>
       <Tooltip content="Tutorial" position="bottom" delay={1000}>
-        <img src={helpIcon} className={styles["help-icon"]} />
+        <img src={helpIcon} className={styles["help-icon"]} alt="help icon" />
       </Tooltip>
     </div>
   );

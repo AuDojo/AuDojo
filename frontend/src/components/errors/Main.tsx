@@ -7,7 +7,9 @@ const MainErrorFallback = () => {
   return (
     <div className={styles["error-fallback"]} role="alert">
       <h2>Ooops, something went wrong :( </h2>
-      <button onClick={() => window.location.assign(window.location.origin)}>Refresh</button>
+      <button type="button" onClick={() => window.location.assign(window.location.origin)}>
+        Refresh
+      </button>
     </div>
   );
 };

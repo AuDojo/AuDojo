@@ -12,10 +12,15 @@ const BackNextButtons = ({ handleGoBack, handleGoNext }: { handleGoBack: () => v
   const { t } = useTranslation("sortsensei");
   return (
     <div className={buttonStyles["arrow-buttons-container"]}>
-      <button aria-label={`Previous line [${HOTKEYS.BackButton}]`} data-tooltip="top" onClick={handleGoBack}>
+      <button
+        type="button"
+        aria-label={`Previous line [${HOTKEYS.BackButton}]`}
+        data-tooltip="top"
+        onClick={handleGoBack}
+      >
         ← {t("button.back")}
       </button>
-      <button aria-label={`Next line [${HOTKEYS.NextButton}]`} data-tooltip="top" onClick={handleGoNext}>
+      <button type="button" aria-label={`Next line [${HOTKEYS.NextButton}]`} data-tooltip="top" onClick={handleGoNext}>
         {t("button.next")} →
       </button>
     </div>

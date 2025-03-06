@@ -1,43 +1,37 @@
-// MergeSortGuide.tsx
-import { useSortContext } from "@/features/sortSensei/context/SortContext";
-import parse from "html-react-parser";
-import { useTranslation } from "react-i18next";
-import styles from "./SortGuide.module.css";
+import { Trans, useTranslation } from "react-i18next";
+import SortGuide from "./SortGuide";
 
 const QuickSortGuide = () => {
-  const { step, processList, pivotElements } = useSortContext();
-
-  const { t } = useTranslation("sortsensei");
+  const { t } = useTranslation("sortsensei", { keyPrefix: "quickSort.guide" });
 
   const getCurrentGuideText = () => {
-    if (!processList || processList.length === 0) {
-      return "Starting Quick Sort!";
-    }
-    if (step === 1) {
-      const lastElement = processList[0][processList[0].length - 1];
-      return <>{parse(t("quickSort.guide.choose", { lastElement: lastElement }))}</>;
-    } else if (step >= 2) {
-      const prevArray = processList[step - 2];
-      const pivot = prevArray[pivotElements[step - 1][0]];
-      const currentArray = processList[step - 1];
-      const nextPivot = step !== processList.length ? currentArray[pivotElements[step][0]] : 0;
-
-      if (!nextPivot) {
-        return <>{parse(t("quickSort.guide.end", { pivot }))}</>;
-      }
-
-      return <>{parse(t("quickSort.guide.after-partition", { pivot: pivot, nextPivot: nextPivot }))}</>;
-    }
+    return (
+      <ol>
+        <li>
+          <Trans i18nKey="choose-pivot" t={t} />
+        </li>
+        <li>
+          <Trans i18nKey="partition" t={t} />
+        </li>
+        <li>
+          <Trans i18nKey="swap" t={t} />
+        </li>
+        <li>
+          <Trans i18nKey="repeat" t={t} />
+        </li>
+      </ol>
+    );
   };
 
-  return (
-    <div className={styles.guide}>
-      <h3>{t("quickSort.guide.heading")}</h3>
-      <div className={styles.step}>
-        <p>{getCurrentGuideText()}</p>
-      </div>
-    </div>
+  const hint = (
+    <ul>
+      <li>
+        <Trans i18nKey="hint" t={t} />
+      </li>
+    </ul>
   );
+
+  return <SortGuide heading={t("heading")} guideText={getCurrentGuideText()} hint={hint} />;
 };
 
 export default QuickSortGuide;

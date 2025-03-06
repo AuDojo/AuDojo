@@ -67,14 +67,14 @@
     },
 
     "selectionsort": {
-      "look_04": "Betracte Array Elemente 0...4",
+      "look_04": "Betrachte Array Elemente 0...4",
       "find_smallest_04": "Finde kleinstes Element in Array 0...4",
       "swap": "Tausche mit erstem Element",
       "look_14": "Betrachte Teilarray Elemente 1...4",
       "find_smallest_14": "Finde kleinstes Element in Array 1...4",
-      "look_24": "Betracte Teilarray Elemente 2...4",
+      "look_24": "Betrachte Teilarray Elemente 2...4",
       "find_smallest_24": "Finde kleinstes Element in Array 2...4",
-      "look_34": "Betracte Teilarray Elemente 3...4",
+      "look_34": "Betrachte Teilarray Elemente 3...4",
       "find_smallest_34": "Finde kleinstes Element in Array 3...4",
       "finish": "Fertig!"
     }

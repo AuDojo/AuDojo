@@ -1,56 +1,37 @@
-import { useSortContext } from "@/features/sortSensei/context/SortContext";
-import styles from "./SortGuide.module.css";
+import { Trans, useTranslation } from "react-i18next";
+import SortGuide from "./SortGuide";
 
 const BubbleSortGuide = () => {
-  const { step, processList, bubbleElements } = useSortContext();
+  const { t } = useTranslation("sortsensei", { keyPrefix: "bubbleSort.guide" });
 
   const getCurrentGuideText = () => {
-    if (!processList.length) {
-      return "Starting Bubble Sort!";
-    }
-    if (step === 1) {
-      return (
-        <>
-          <b>Compare adjacents</b> elements and swap them if they are in the wrong order.
-        </>
-      );
-    } else if (step >= 2) {
-      const firstSwapElement = processList[step - 2][bubbleElements[step - 2]];
-      const adjacentElement = processList[step - 2][bubbleElements[step - 2] + 1];
-      const isElementSorted = bubbleElements[step - 2] > bubbleElements[step - 1];
-      return (
-        <>
-          Swap <b>{firstSwapElement}</b> with <b>{adjacentElement}</b>
-          <br />
-          <br />
-          {isElementSorted || step === processList.length ? (
-            <>
-              Now <b>{firstSwapElement}</b> stands at the <b>right place!</b>
-              {step === processList.length ? (
-                <b>
-                  <br />
-                  Sorting is complete!
-                </b>
-              ) : (
-                ""
-              )}
-            </>
-          ) : (
-            <>(Bring {firstSwapElement} to the end of the array.)</>
-          )}
-        </>
-      );
-    }
+    return (
+      <ol>
+        <li>
+          <Trans i18nKey="goThroughArray" t={t} />
+        </li>
+        <li>
+          <Trans i18nKey="compare" t={t} />
+        </li>
+        <li>
+          <Trans i18nKey="swap" t={t} />
+        </li>
+        <li>
+          <Trans i18nKey="repeat" t={t} />
+        </li>
+      </ol>
+    );
   };
 
-  return (
-    <div className={styles.guide}>
-      <h3>Bubble Sort Guide</h3>
-      <div className={styles.step}>
-        <p>{getCurrentGuideText()}</p>
-      </div>
-    </div>
+  const hint = (
+    <ul>
+      <li>
+        <Trans i18nKey="hint" t={t} />
+      </li>
+    </ul>
   );
+
+  return <SortGuide heading={t("heading")} guideText={getCurrentGuideText()} hint={hint} />;
 };
 
 export default BubbleSortGuide;

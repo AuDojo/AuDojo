@@ -1,13 +1,12 @@
-// MergeSortGuide.tsx
 import { useSortContext } from "@/features/sortSensei/context/SortContext";
 import parse from "html-react-parser";
 import { useTranslation } from "react-i18next";
-import styles from "./SortGuide.module.css";
+import SortGuide from "./SortGuide";
 
 const SelectionSortGuide = () => {
   const { step, processList, selectionElements } = useSortContext();
 
-  const { t } = useTranslation("sortsensei");
+  const { t } = useTranslation("sortsensei", { keyPrefix: "selectionSort.guide" });
 
   const getCurrentGuideText = () => {
     if (!processList || processList.length === 0) {
@@ -19,18 +18,18 @@ const SelectionSortGuide = () => {
     const smallestElement = prevArray[selectionElements[step - 2]];
     const currentElement = prevArray[step - 2];
     if (step === 1) {
-      return <>{parse(t("selectionSort.guide.start"))}</>;
+      return <>{parse(t("start"))}</>;
     } else if (step >= 2) {
       if (step === processList.length) {
-        return <>{t("selectionSort.guide.end")}</>;
+        return <>{t("end")}</>;
       }
 
       return (
         <>
           {parse(
-            t("selectionSort.guide.swap", {
-              currentElement: currentElement,
-              smallestElement: smallestElement,
+            t("swap", {
+              currentElement,
+              smallestElement,
               move: step - 1,
             })
           )}
@@ -39,14 +38,7 @@ const SelectionSortGuide = () => {
     }
   };
 
-  return (
-    <div className={styles.guide}>
-      <h3>{t("selectionSort.guide.header")}</h3>
-      <div className={styles.step}>
-        <p>{getCurrentGuideText()}</p>
-      </div>
-    </div>
-  );
+  return <SortGuide heading={t("heading")} guideText={getCurrentGuideText()} />;
 };
 
 export default SelectionSortGuide;

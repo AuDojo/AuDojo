@@ -162,7 +162,7 @@ function Kontakt() {
               <div className={successMessage ? kontaktStyles.successMessage : kontaktStyles.errorMessage}>
                 {" "}
                 {successMessage ? successMessage : errorMessage}
-                <button className={kontaktStyles.closeButton} onClick={() => setShowDiv(false)}>
+                <button type="button" className={kontaktStyles.closeButton} onClick={() => setShowDiv(false)}>
                   x
                 </button>
               </div>
@@ -226,7 +226,7 @@ function Kontakt() {
                   : ""}
               </p>
             </div>
-            <button className={kontaktStyles.sendButton} onClick={submitContactForm}>
+            <button type="button" className={kontaktStyles.sendButton} onClick={submitContactForm}>
               {t("emailField.sendButton") /* Nachricht senden */}
             </button>
             <p className={kontaktStyles.pflichtfelderHinweis}>
@@ -248,7 +248,7 @@ function Kontakt() {
               </p>
               <div className={kontaktStyles.addressContainer}>
                 <div>
-                  <img src={informatikzentrumJPG} className={kontaktStyles.addressImage} />
+                  <img src={informatikzentrumJPG} className={kontaktStyles.addressImage} alt="informatikzentrum" />
                 </div>
                 <div>
                   <p className={kontaktStyles.addressInfo}>
