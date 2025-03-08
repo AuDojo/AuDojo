@@ -30,7 +30,7 @@ const initialID = Date.now();
 const TreeTutor = () => {
   const [templates, setTemplates] = useState<number[]>([initialID]);
   const [currentOperationType, setCurrentOperationType] = useState<OperationType>("INSERT");
-  const [currentTemplate, setCurrentTemplate] = useState<number>(0);
+  const [currentTemplate, setCurrentTemplate] = useState<number>(0); // The current (right) template shown
   const [targetValue, setTargetValue] = useState<number | null>(null);
   const [showingSolution, setShowingSolution] = useState(false);
   const [solution, setSolution] = useState<TreeStep[]>([]);
@@ -170,25 +170,44 @@ const TreeTutor = () => {
         <h2 className={styles.insertHeader}>
           {currentOperationType === "INSERT" ? `Insert ${targetValue ?? "X"}` : `Delete ${targetValue ?? "X"}`}
         </h2>
-        {/* <span>currentTemplate: {currentTemplate}</span>
-        <span>template.length: {templates.length}</span> */}
+        <span>currentTemplate: {currentTemplate}</span>
+        <span>template.length: {templates.length}</span>
         <section className={styles.treeContainer}>
           {!showingSolution ? (
             // User workspace view with templates
             <div className={styles.treeWrapper}>
               <ArrowButton
                 direction="left"
-                disabled={currentTemplate === 0}
+                disabled={templates.length === 1 ? currentTemplate === 0 : currentTemplate <= 1}
                 onClick={() => {
                   setCurrentTemplate((prev) => prev - 1);
                 }}
               />
-              {/* {currentTemplate === 0 && (
-                // Initial Template
+              {templates.length >= 2 && (
+                // First Tree Template
                 <div className={styles.treeTemplate}>
-                  <TreeTemplate treeData={initialTreeData} onTreeUpdate={updateInitialTree} />
+                  {currentTemplate > 1 && (
+                    <CloseButton
+                      onClick={() => {
+                        if (currentTemplate >= templates.length - 1) {
+                          setCurrentTemplate((prev) => prev - 1);
+                        }
+                        removeTemplate(templates[currentTemplate - 1]);
+                      }}
+                    />
+                  )}
+                  <TreeTemplate
+                    treeData={templateTree[templates[currentTemplate - 1]]}
+                    onTreeUpdate={(newTree) => {
+                      if (currentTemplate === 0) {
+                        updateInitialTree(newTree);
+                      } else {
+                        updateTemplateTree(templates[currentTemplate - 1], newTree);
+                      }
+                    }}
+                  />
                 </div>
-              )} */}
+              )}
               <div className={styles.treeTemplate}>
                 {currentTemplate > 0 && (
                   <CloseButton
@@ -196,10 +215,11 @@ const TreeTutor = () => {
                       if (currentTemplate >= templates.length - 1) {
                         setCurrentTemplate((prev) => prev - 1);
                       }
-                      removeTemplate(templates[currentTemplate - 1]);
+                      removeTemplate(templates[currentTemplate]);
                     }}
                   />
                 )}
+                {/* Second Tree Template */}
                 <TreeTemplate
                   treeData={templateTree[templates[currentTemplate]]}
                   onTreeUpdate={(newTree) => {
