@@ -8,6 +8,7 @@ import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 export interface TreeStep {
   tree: TreeNode | null;
   operation: string;
+  successorDelete: boolean;
 }
 interface BalanceIndicator {
   tree: TreeNode | null;
@@ -298,32 +299,38 @@ function addSteps(steps: TreeStep[] | null, subTree: BalanceIndicator, rootRef: 
         steps.push({
           tree: structuredClone(rootRef.current),
           operation: "LL Case: Performed right rotation",
+          successorDelete: false,
         });
         break;
       case "LR":
         steps.push({
           tree: subTree.copy,
           operation: "LR Case: Performed first left rotation",
+          successorDelete: false,
         });
         steps.push({
           tree: structuredClone(rootRef.current),
           operation: "LR Case: Performed second right rotation",
+          successorDelete: false,
         });
         break;
       case "RR":
         steps.push({
           tree: structuredClone(rootRef.current),
           operation: "RR Case: Performed left rotation",
+          successorDelete: false,
         });
         break;
       case "RL":
         steps.push({
           tree: subTree.copy,
           operation: "RL Case: Performed first right rotation",
+          successorDelete: false,
         });
         steps.push({
           tree: structuredClone(rootRef.current),
           operation: "RL Case: Performed second left rotation",
+          successorDelete: false,
         });
         break;
       default:
@@ -346,7 +353,7 @@ export function insertAVLTracker(
       rootRef.current = newNode;
 
       if (steps) {
-        steps.push({ tree: structuredClone(newNode), operation: "INSERT" });
+        steps.push({ tree: structuredClone(newNode), operation: "INSERT", successorDelete: false });
       }
       return { tree: newNode, copy: null, operation: "NO" };
     }
@@ -361,6 +368,7 @@ export function insertAVLTracker(
           steps.push({
             tree: structuredClone(rootRef.current),
             operation: `INSERT ${val} as left child of ${node.value}`,
+            successorDelete: false,
           });
         }
       } else {
@@ -387,6 +395,7 @@ export function insertAVLTracker(
           steps.push({
             tree: structuredClone(rootRef.current),
             operation: `INSERT ${val} as right child of ${node.value}`,
+            successorDelete: false,
           });
           updateAllHeightsRecursive(rootRef.current);
         }
@@ -429,11 +438,6 @@ export function deleteAVLTracker(root: TreeNode | null, value: number, steps: Tr
 
   let changeOccured = false;
 
-  //push initial tree
-  if (steps && root) {
-    steps.push({ tree: structuredClone(root), operation: "Intial Tree" });
-  }
-
   function deleteAVL(node: TreeNode | null, val: number): BalanceIndicator {
     if (!node) return { tree: null, copy: null, operation: "NO" };
 
@@ -448,6 +452,7 @@ export function deleteAVLTracker(root: TreeNode | null, value: number, steps: Tr
           steps.push({
             tree: structuredClone(rootRef.current),
             operation: `After removing ${val}`,
+            successorDelete: false,
           });
           changeOccured = false;
         }
@@ -462,11 +467,11 @@ export function deleteAVLTracker(root: TreeNode | null, value: number, steps: Tr
           steps.push({
             tree: structuredClone(rootRef.current),
             operation: `After removing ${val}`,
+            successorDelete: false,
           });
           changeOccured = false;
         }
       }
-      console.log("subtree operation", subTree.operation);
     } else {
       // Node to be deleted found
 
@@ -515,6 +520,7 @@ export function deleteAVLTracker(root: TreeNode | null, value: number, steps: Tr
         steps.push({
           tree: structuredClone(rootRef.current),
           operation: `Replace value ${oldValue} with successor ${successor.value}`,
+          successorDelete: true,
         });
       }
 
@@ -526,6 +532,7 @@ export function deleteAVLTracker(root: TreeNode | null, value: number, steps: Tr
         steps.push({
           tree: structuredClone(rootRef.current),
           operation: `After removing successor ${successor.value}`,
+          successorDelete: false,
         });
         changeOccured = false; // Reset flag
       }
