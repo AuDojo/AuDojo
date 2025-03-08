@@ -12,8 +12,8 @@
   align-items: center;
   width: 100%;
   min-width: 400px;
-  gap: 20px;
-  padding-bottom: 10px;
+  /* gap: 20px; */
+  padding: 10px;
 }
 
 .treeContainer {
@@ -29,7 +29,7 @@
 
 .treeWrapper {
   display: flex;
-  gap: 10px;
+  gap: 0 20px;
   overflow-x: auto;
   white-space: nowrap;
   padding: 10px;
@@ -118,7 +118,7 @@
 }
 
 .controls {
-  padding-top: 30px;
+  padding-top: 15px;
 }
 
 .practiceInsertButton {
