@@ -1,16 +1,23 @@
 .closeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   position: absolute;
-  top: -10px;
-  right: -15px;
+  top: 5px;
+  right: 5px;
   background: lightgray;
   border: none;
   border-radius: 50%;
   width: 25px;
   height: 25px;
   font-size: 16px;
+
   cursor: pointer;
-  opacity: 0.7;
+  opacity: 0.8;
   transition: opacity 0.2s ease-in-out;
+
+  z-index: 1;
 }
 
 .closeButton:hover {

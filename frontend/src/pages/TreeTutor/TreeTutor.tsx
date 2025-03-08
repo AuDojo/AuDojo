@@ -159,7 +159,6 @@ const TreeTutor = () => {
     setSolutionSteps(updatedSteps);
     setShowingSolution(true);
   };
-  // Hide solution
 
   const hideSolution = () => {
     setShowingSolution(false);
@@ -171,6 +170,8 @@ const TreeTutor = () => {
         <h2 className={styles.insertHeader}>
           {currentOperationType === "INSERT" ? `Insert ${targetValue ?? "X"}` : `Delete ${targetValue ?? "X"}`}
         </h2>
+        {/* <span>currentTemplate: {currentTemplate}</span>
+        <span>template.length: {templates.length}</span> */}
         <section className={styles.treeContainer}>
           {!showingSolution ? (
             // User workspace view with templates
@@ -182,29 +183,34 @@ const TreeTutor = () => {
                   setCurrentTemplate((prev) => prev - 1);
                 }}
               />
-              {currentTemplate === 0 && (
+              {/* {currentTemplate === 0 && (
                 // Initial Template
                 <div className={styles.treeTemplate}>
                   <TreeTemplate treeData={initialTreeData} onTreeUpdate={updateInitialTree} />
                 </div>
-              )}
-              {currentTemplate > 0 && (
-                // Custom Template
-                <div className={styles.treeTemplate}>
+              )} */}
+              <div className={styles.treeTemplate}>
+                {currentTemplate > 0 && (
                   <CloseButton
                     onClick={() => {
-                      if (currentTemplate >= templates.length) {
+                      if (currentTemplate >= templates.length - 1) {
                         setCurrentTemplate((prev) => prev - 1);
                       }
                       removeTemplate(templates[currentTemplate - 1]);
                     }}
                   />
-                  <TreeTemplate
-                    treeData={templateTree[templates[currentTemplate - 1]]}
-                    onTreeUpdate={(newTree) => updateTemplateTree(templates[currentTemplate - 1], newTree)}
-                  />
-                </div>
-              )}
+                )}
+                <TreeTemplate
+                  treeData={templateTree[templates[currentTemplate]]}
+                  onTreeUpdate={(newTree) => {
+                    if (currentTemplate === 0) {
+                      updateInitialTree(newTree);
+                    } else {
+                      updateTemplateTree(templates[currentTemplate], newTree);
+                    }
+                  }}
+                />
+              </div>
               <ArrowButton
                 direction="right"
                 disabled={currentTemplate >= MAX_TEMPLATES}
