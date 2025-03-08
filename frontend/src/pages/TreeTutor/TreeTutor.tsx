@@ -2,9 +2,14 @@ import { TreeTemplate } from "@/features/treeTutor/treeTemplate";
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 import { useState } from "react";
 import styles from "./TreeTutor.module.css";
-import { generateDeleteSolution, generateInsertSolution, generateAVL, TreeStep } from "./utils/AVLTreeService";
 import { useLocalStorage } from "usehooks-ts";
 import { localStorageKeys } from "@/config/localStorage";
+import { TreeStep } from "@/features/treeTutor/utils/AVLTreeService/types";
+import { generateAVL } from "@/features/treeTutor/utils/AVLTreeService/excerciseUtils";
+import {
+  generateDeleteSolution,
+  generateInsertSolution,
+} from "@/features/treeTutor/utils/AVLTreeService/excerciseUtils";
 
 const defaultRoot: TreeNode = {
   value: 0,
