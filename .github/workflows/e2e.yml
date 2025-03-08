@@ -9,7 +9,7 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.50.1-noble # Keep version in sync with package.json
+      image: mcr.microsoft.com/playwright:v1.51.0-noble # Keep version in sync with package.json
       options: --user 1001
     steps:
       - uses: actions/checkout@v4
