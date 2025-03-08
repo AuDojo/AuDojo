@@ -11,7 +11,6 @@ const QuickTutorial = () => {
       <title>Quicksort Tutorial</title>
       <TutorialNavigation />
       <TutorialSidebar
-        title="QuickSort Tutorial"
         algexp={<QuicksortText />}
         photo={<QuickSortImage />}
         sortsteps={quickSortSteps}

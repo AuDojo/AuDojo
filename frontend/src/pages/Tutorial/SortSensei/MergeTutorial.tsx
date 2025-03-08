@@ -11,7 +11,6 @@ const MergeTutorial = () => {
       <title>Mergesort Tutorial</title>
       <TutorialNavigation />
       <TutorialSidebar
-        title="Mergesort"
         algexp={<MergesortText />}
         photo={<MergeSortImage />}
         sortsteps={mergeSortSteps}

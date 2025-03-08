@@ -11,7 +11,6 @@ const SelectTutorial = () => {
       <title>Bubblesort Tutorial</title>
       <TutorialNavigation />
       <TutorialSidebar
-        title="SelectionSort Tutorial"
         algexp={<SelectionsortText />}
         photo={<SelectionSortImage />}
         sortsteps={selectionSortSteps}

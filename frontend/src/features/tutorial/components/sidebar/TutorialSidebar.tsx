@@ -4,13 +4,11 @@ import { Step } from "../../types";
 import { useTranslation } from "react-i18next";
 
 const TutorialSidebar = ({
-  title,
   algexp,
   photo,
   sortsteps,
   sortType,
 }: {
-  title: string;
   algexp: React.ReactNode;
   photo: React.ReactNode;
   sortsteps: Step[];
@@ -25,7 +23,10 @@ const TutorialSidebar = ({
 
         <StepVisualizer steps={sortsteps} sortType={sortType} />
 
-        <TutorialSubSidebar title={t("subheader1")}>{algexp}</TutorialSubSidebar>
+        <div className={tutorialsidebar["sidebar"]}>
+          <h1>{t("subheader1")}</h1>
+          <span>{algexp}</span>
+        </div>
       </div>
     </div>
   );
