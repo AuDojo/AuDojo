@@ -86,23 +86,3 @@ export function getNumberOfRotates(node: TreeNode, rootRef: TreeNode | null): nu
 
   return 0;
 }
-
-// export function getFatherNode2(root: TreeNode | null, targetId: string): TreeNode | null {
-//   let fatherNode: TreeNode | null = root;
-// }
-
-// export function getFatherNode(root: TreeNode | null, targetId: string): TreeNode | null {
-//   let fatherNode: TreeNode | null = root;
-
-//   if (!root) return null;
-
-//   if (root.id === targetId) return root;
-
-//   if (root.children) {
-//     for (const child of root.children) {
-//       const found = child ? getFatherNode(child, targetId) : null;
-//       if (found) return found;
-//     }
-//   }
-//   return null;
-// }

@@ -8,7 +8,6 @@ import {
   createCopyOfTree,
   getNumberOfRotates,
 } from "./difficultyTools";
-// import { BalanceIndicator } from "../types";
 import { updateAllHeightsRecursive } from "../updateTreeAttributes";
 
 export function createDeleteArray(node: TreeNode, difficulty_level: DifficultyTypes): number[] {
@@ -98,32 +97,3 @@ function createDifficultyArray(node: TreeNode, difficulty: number): number[] {
 
   return matchingInserts;
 }
-
-// function binaryTreeDelition(node: TreeNode | null, value: number): BalanceIndicator {
-//   if (node === null) {
-//     return { tree: null, copy: null, operation: "NO" };
-//   }
-
-//   if (value < node.value) {
-//     const oldLeft = node.children[0];
-//     const subTree = binaryTreeDelition(node.children[0], value);
-//     let changeOccured = false;
-//     node.children[0] = subTree.tree;
-
-//     if (oldLeft !== node.children[0]) {
-//       if (changeOccured && steps) {
-//         steps.push({
-//           tree: structuredClone(rootRef.current),
-//           operation: `After removing ${val}`,
-//         });
-//         changeOccured = false;
-//       }
-//     }
-//   }
-// }
-
-// function createEasyDifficultyArray(node: TreeNode): number[] {}
-
-// function createMediumDifficultyArray(node: TreeNode): number[] {}
-
-// function createHartDifficultyArray(node: TreeNode): number[] {}
