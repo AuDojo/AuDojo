@@ -124,9 +124,10 @@ const TreeTutor = () => {
   // Generate new random tree
   const generateNewTree = () => {
     const newSample = generateAVL(true, null);
+    const newID = Date.now();
     setInitialTreeData(newSample ?? defaultRoot);
-    setTemplates([]);
-    setTemplateTree({});
+    setTemplates([newID]);
+    setTemplateTree({ [newID]: newSample ?? defaultRoot });
     setShowingSolution(false);
     setSolutionSteps([]);
     setTargetValue(null);
