@@ -8,9 +8,22 @@ import {
   generateDeleteSolution,
   generateInsertSolution,
 } from "@/features/treeTutor/utils/AVLTreeService/excerciseUtils";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { localStorageKeys } from "@/config/localStorage";
 
 // Define exercise mode and operation types
 type OperationType = "INSERT" | "DELETE";
+
+// treeData of initial Template
+const defaultRoot: TreeNode = {
+  value: 0,
+  height: 0,
+  id: crypto.randomUUID(),
+  position: "root",
+  children: [null, null],
+  depth: 0,
+  balanceFactor: 0,
+};
 
 const TreeTutor = () => {
   const [templates, setTemplates] = useState<number[]>([]);
@@ -18,21 +31,11 @@ const TreeTutor = () => {
   const [targetValue, setTargetValue] = useState<number | null>(null);
   const [showingSolution, setShowingSolution] = useState(false);
   const [solutionSteps, setSolutionSteps] = useState<TreeStep[]>([]);
-  const [treeSet, setTreeSet] = useState<boolean>(false);
 
-  // treeData of initial Template
-  const defaultRoot: TreeNode = {
-    value: 0,
-    height: 0,
-    id: crypto.randomUUID(),
-    position: "root",
-    children: [null, null],
-    depth: 0,
-    balanceFactor: 0,
-  };
-
-  const sample = defaultRoot;
-  const [initialTreeData, setInitialTreeData] = useState<TreeNode>(sample);
+  const [initialTreeData, setInitialTreeData] = useLocalStorage<TreeNode>(
+    localStorageKeys.initialTreeData,
+    generateAVL(false, [1, 5, 9, 7]) ?? defaultRoot
+  );
 
   // treeData of consecutive Tree Templates
   const [templateTree, setTemplateTree] = useState<Record<number, TreeNode>>({});
@@ -71,9 +74,6 @@ const TreeTutor = () => {
   // Create an insert exercise
   const generateInsertExercise = () => {
     // Generate a random value to insert between 1-99
-    if (!treeSet) {
-      setInitialTreeData(generateAVL(true, null) ?? defaultRoot);
-    }
     const newValue = Math.floor(Math.random() * 99) + 1;
     setTargetValue(newValue);
     setCurrentOperationType("INSERT");
@@ -103,10 +103,6 @@ const TreeTutor = () => {
   // Create a delete exercise
   const generateDeleteExercise = () => {
     // Get existing values from the tree
-    if (!treeSet) {
-      setInitialTreeData(generateAVL(true, null) ?? defaultRoot);
-      setTreeSet(true);
-    }
 
     const getTreeValues = (node: TreeNode | null, values: number[] = []): number[] => {
       if (!node) return values;
