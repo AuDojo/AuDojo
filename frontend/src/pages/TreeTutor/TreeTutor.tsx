@@ -3,6 +3,8 @@ import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 import { useState } from "react";
 import styles from "./TreeTutor.module.css";
 import { generateDeleteSolution, generateInsertSolution, generateAVL, TreeStep } from "./utils/AVLTreeService";
+import { useLocalStorage } from "usehooks-ts";
+import { localStorageKeys } from "@/config/localStorage";
 
 const defaultRoot: TreeNode = {
   value: 0,
@@ -25,13 +27,13 @@ const TreeTutor = () => {
   const [solution, setSolution] = useState<TreeStep[]>([]);
   const [solutionSteps, setSolutionSteps] = useState<TreeStep[]>([]);
   const [treeSet, setTreeSet] = useState<boolean>(false);
-  const [initialTreeData, setInitialTreeData] = useState<TreeNode>(defaultRoot);
+  const [initialTreeData, setInitialTreeData] = useLocalStorage<TreeNode>(
+    localStorageKeys.initialTreeData,
+    generateAVL(false, [1, 5, 9, 7]) ?? defaultRoot
+  );
   const [templateTree, setTemplateTree] = useState<Record<number, TreeNode>>({ [initialID]: initialTreeData });
-
+  // treeData of consecutive Tree Templates
   console.log(solutionSteps);
-  console.log(templates);
-  console.log(templateTree);
-
   const addTemplate = () => {
     if (templates.length < 3) {
       const newId = Date.now();
