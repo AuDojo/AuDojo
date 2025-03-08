@@ -1,0 +1,25 @@
+.closeButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: lightgray;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  font-size: 16px;
+
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s ease-in-out;
+
+  z-index: 1;
+}
+
+.closeButton:hover {
+  opacity: 1;
+}

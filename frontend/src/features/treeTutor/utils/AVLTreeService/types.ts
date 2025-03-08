@@ -9,6 +9,7 @@ import { TreeNode } from "../treeUtils";
 export interface TreeStep {
   tree: TreeNode | null;
   operation: string;
+  successorDelete: boolean;
 }
 export interface BalanceIndicator {
   tree: TreeNode | null;

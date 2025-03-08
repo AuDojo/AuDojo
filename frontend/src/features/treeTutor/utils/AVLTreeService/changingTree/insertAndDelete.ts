@@ -39,7 +39,7 @@ export function insertAVLTracker(
       rootRef.current = newNode;
 
       if (steps) {
-        steps.push({ tree: structuredClone(newNode), operation: "INSERT" });
+        steps.push({ tree: structuredClone(newNode), operation: "INSERT", successorDelete: false });
       }
       return { tree: newNode, copy: null, operation: "NO" };
     }
@@ -54,6 +54,7 @@ export function insertAVLTracker(
           steps.push({
             tree: structuredClone(rootRef.current),
             operation: `INSERT ${val} as left child of ${node.value}`,
+            successorDelete: false,
           });
         }
       } else {
@@ -80,6 +81,7 @@ export function insertAVLTracker(
           steps.push({
             tree: structuredClone(rootRef.current),
             operation: `INSERT ${val} as right child of ${node.value}`,
+            successorDelete: false,
           });
           updateAllHeightsRecursive(rootRef.current);
         }
@@ -124,7 +126,7 @@ export function deleteAVLTracker(root: TreeNode | null, value: number, steps: Tr
 
   //push initial tree
   if (steps && root) {
-    steps.push({ tree: structuredClone(root), operation: "Intial Tree" });
+    steps.push({ tree: structuredClone(root), operation: "Intial Tree", successorDelete: false });
   }
 
   function deleteAVL(node: TreeNode | null, val: number): BalanceIndicator {
@@ -141,6 +143,7 @@ export function deleteAVLTracker(root: TreeNode | null, value: number, steps: Tr
           steps.push({
             tree: structuredClone(rootRef.current),
             operation: `After removing ${val}`,
+            successorDelete: false,
           });
           changeOccured = false;
         }
@@ -155,6 +158,7 @@ export function deleteAVLTracker(root: TreeNode | null, value: number, steps: Tr
           steps.push({
             tree: structuredClone(rootRef.current),
             operation: `After removing ${val}`,
+            successorDelete: false,
           });
           changeOccured = false;
         }
@@ -207,6 +211,7 @@ export function deleteAVLTracker(root: TreeNode | null, value: number, steps: Tr
         steps.push({
           tree: structuredClone(rootRef.current),
           operation: `Replace value ${oldValue} with successor ${successor.value}`,
+          successorDelete: true,
         });
       }
 
@@ -218,6 +223,7 @@ export function deleteAVLTracker(root: TreeNode | null, value: number, steps: Tr
         steps.push({
           tree: structuredClone(rootRef.current),
           operation: `After removing successor ${successor.value}`,
+          successorDelete: true,
         });
         changeOccured = false; // Reset flag
       }

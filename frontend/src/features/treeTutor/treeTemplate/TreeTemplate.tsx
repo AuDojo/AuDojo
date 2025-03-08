@@ -1,13 +1,19 @@
 import { useResizeObserver } from "@/hooks/useResizeObserver";
 import { HierarchyLink, HierarchyNode, curveLinear, hierarchy, link, select, tree } from "d3";
-import { useEffect, useRef, useCallback } from "react";
+import { useCallback, useEffect, useRef } from "react";
+import { TreeNode, addNode, deleteNode, findNode, hasValidXY, updateNode } from "../utils/treeUtils";
 import styles from "./TreeTemplate.module.css";
-import { addNode, deleteNode, findNode, hasValidXY, updateNode, TreeNode } from "../utils/treeUtils";
 
 interface TreeTemplateProps {
   treeData: TreeNode;
   onTreeUpdate: (newTree: TreeNode) => void;
 }
+
+const inputSize = 35;
+const addButtonRadius = 8;
+const yOffset = 115;
+const exponentialDecrease = 0.5;
+const horizontalSpacing = 150;
 
 const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
   const svgRef = useRef<SVGSVGElement>(null);
@@ -48,32 +54,28 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
     // process d3 hiearchy without null values
     const root = hierarchy<TreeNode>(treeData, (d) => d.children?.filter((child) => child !== null));
 
-    const width = 800;
-    const height = 650;
+    // const width = 800;
+    // const height = 630;
 
-    svg.attr("width", "100%").attr("height", "100%");
+    // svg.attr("width", "100%").attr("height", "100%");
 
     // center relative to viewbox
-    const centerX = 400;
+    const centerX = dimensions.width / 2;
 
-    svg.attr("viewBox", `0 0 ${width} ${height}`);
+    // svg.attr("viewBox", `0 0 ${dimensions.width} ${dimensions.height}`);
 
     const treeLayout = tree<TreeNode>()
-      .size([width * 0.8, height])
+      .size([dimensions.width * 0.8, dimensions.height])
       .separation((a, b) => (a.parent === b.parent ? 1.5 : 2));
 
     treeLayout(root);
 
     // Dann manuell korrigieren, um Links/Rechts-Positionierung zu erzwingen
     const manualPositioning = (node: HierarchyNode<TreeNode>, level: number) => {
-      const yOffset = 160;
-      const exponentialDecrease = 0.5;
-      const horizontalSpacing = 190;
-
       // Root node handling
       if (!node.parent) {
         node.x = centerX;
-        node.y = 5;
+        node.y = 35;
 
         if (node.children) {
           node.children.forEach((child) => {
@@ -143,7 +145,7 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
       .attr("transform", (d) => `translate(${d.x}, ${d.y})`);
 
     // node circles and text (remove later)
-    gNodes.append("circle").attr("r", 20);
+    // gNodes.append("circle").attr("r", 20);
     gNodes
       .append("text")
       .attr("class", styles.text)
@@ -155,9 +157,9 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
     gNodes
       .append("foreignObject")
       .attr("class", styles.inputContainer)
-      .attr("width", 36)
-      .attr("height", 36)
-      .attr("transform", `translate(-18, -18)`)
+      .attr("width", inputSize)
+      .attr("height", inputSize)
+      .attr("transform", `translate(${-inputSize / 2}, ${-inputSize / 2})`)
       .append("xhtml:input")
       .attr("class", styles.input)
       .attr("value", (node) => node.data.value)
@@ -194,15 +196,14 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
 
       // Linker Button (als SVG-Kreis)
       if ((children[0]?.value ?? null) === null && depth < 4) {
-        svg
+        const leftGroup = svg.append("g").attr("transform", `translate(${x - 12}, ${y + 24})`);
+        leftGroup
           .append("circle")
           .attr("class", `btn-left-${nodeId}`)
-          .attr("cx", x - 15)
-          .attr("cy", y + 30)
-          .attr("r", 10)
+          .attr("r", addButtonRadius)
           .attr("fill", "#ecf0f1")
-          .attr("stroke", "rgb(0, 63, 87)")
-          .attr("stroke-width", 2)
+          .attr("stroke", "rgb(0, 63, 87, 0.8)")
+          .attr("stroke-width", 1.5)
           .attr("cursor", "pointer")
           .on("click", function (event) {
             event.stopPropagation();
@@ -210,26 +211,24 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
             handleAddNode(nodeId, "left");
           });
 
-        svg
+        leftGroup
           .append("text")
-          .attr("x", x - 15)
-          .attr("y", y + 34)
           .attr("text-anchor", "middle")
+          .attr("dominant-baseline", "middle")
           .attr("font-size", "14px")
           .attr("pointer-events", "none")
           .text("+");
       }
       // Rechter Button (als SVG-Kreis)
       if ((children[1]?.value ?? null) === null && depth < 4) {
-        svg
+        const rightGroup = svg.append("g").attr("transform", `translate(${x + 12}, ${y + 24})`);
+        rightGroup
           .append("circle")
           .attr("class", `btn-right-${nodeId}`)
-          .attr("cx", x + 15)
-          .attr("cy", y + 30)
-          .attr("r", 10)
+          .attr("r", addButtonRadius)
           .attr("fill", "#ecf0f1")
-          .attr("stroke", "rgb(0, 63, 87)")
-          .attr("stroke-width", 2)
+          .attr("stroke", "rgb(0, 63, 87, 0.8)")
+          .attr("stroke-width", 1.5)
           .attr("cursor", "pointer")
           .attr("position", "right")
           .on("click", function (event) {
@@ -237,12 +236,10 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
             console.log(` ID from on click Event: ${nodeId}`);
             handleAddNode(nodeId, "right");
           });
-
-        svg
+        rightGroup
           .append("text")
-          .attr("x", x + 15)
-          .attr("y", y + 34)
           .attr("text-anchor", "middle")
+          .attr("dominant-baseline", "middle")
           .attr("font-size", "14px")
           .attr("pointer-events", "none")
           .text("+");
@@ -251,9 +248,9 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
   }, [dimensions, treeData, onTreeUpdate, handleAddNode]);
 
   return (
-    <div className={styles.treeTemplateContainer}>
-      <svg className={styles.svg} ref={svgRef}></svg>
-    </div>
+    // <div className={styles.treeTemplateContainer}>
+    <svg className={styles.svg} ref={svgRef}></svg>
+    // </div>
   );
 };
 

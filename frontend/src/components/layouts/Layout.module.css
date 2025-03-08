@@ -2,6 +2,6 @@
   display: flex;
   flex: 1; /* Take up remaining space between header and footer */
   flex-direction: column;
-  padding: calc(var(--height-header) + 40px) 0 20px 0;
+  padding: calc(var(--height-header) + 10px) 0 20px 0;
   align-items: center;
 }

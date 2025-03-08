@@ -60,6 +60,36 @@
   display: block;
 }
 
+.dropdown-menu-item {
+  background-color: var(--background-header);
+  color: var(--main-darkblue);
+  height: 100%;
+  width: 160px;
+  font-weight: 600;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+}
+.nested-dropdown {
+  position: relative;
+}
+
+.nested-dropdown-content {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%; /* Moves to the right */
+  background-color: white;
+  white-space: nowrap;
+  min-width: 160px;
+}
+
+.nested-dropdown:hover .nested-dropdown-content {
+  display: block;
+}
+
 /* Shrink the menu on smaller screens */
 @media (max-width: 1080px) {
   .menu-container {

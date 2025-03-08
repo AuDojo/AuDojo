@@ -16,8 +16,9 @@ const NavItem = ({
 }) => {
   return (
     <Link to={to} onClick={onClick}>
+      <div></div>
       <div className={`${styles["sort-nav-list-item"]} ${activeSort ? styles["sort-nav-list-item-active"] : ""}`}>
-        {text}
+        {activeSort ? "▸" : "▹"} {text}
       </div>
     </Link>
   );

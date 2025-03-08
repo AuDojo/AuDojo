@@ -1,67 +1,44 @@
-import React, { useState } from "react";
 import tutorialsidebar from "./TutorialSidebar.module.css";
 import { StepVisualizer } from "../stepVisualizer";
 import { Step } from "../../types";
 import { useTranslation } from "react-i18next";
 
 const TutorialSidebar = ({
-  title,
   algexp,
   photo,
   sortsteps,
   sortType,
 }: {
-  title: string;
   algexp: React.ReactNode;
   photo: React.ReactNode;
   sortsteps: Step[];
   sortType: string;
 }) => {
-  const [isOpen, toggle] = useState(false);
-
-  const toggleSidebar = () => {
-    toggle(!isOpen);
-  };
-
   const { t } = useTranslation("sortsensei-tutorial");
 
   return (
     <div className={tutorialsidebar["sidebar"]}>
-      <div className={tutorialsidebar["section-header"]} onClick={toggleSidebar}>
-        <span className={`${tutorialsidebar["arrow"]} ${isOpen ? tutorialsidebar["open"] : ""}`}>▶</span>
+      <div className={tutorialsidebar["section-content"]}>
+        <TutorialSubSidebar title={t("subheader2")}>{photo}</TutorialSubSidebar>
 
-        <div className={tutorialsidebar["sidebar-title"]}>{title}</div>
-      </div>
+        <StepVisualizer steps={sortsteps} sortType={sortType} />
 
-      {isOpen && (
-        <div className={tutorialsidebar["section-content"]}>
-          <TutorialSubSidebar title={t("subheader1")}>{algexp}</TutorialSubSidebar>
-
-          <TutorialSubSidebar title={t("subheader2")}>{photo}</TutorialSubSidebar>
-
-          <StepVisualizer steps={sortsteps} sortType={sortType} />
+        <div className={tutorialsidebar["sidebar"]}>
+          <h1>{t("subheader1")}</h1>
+          <span>{algexp}</span>
         </div>
-      )}
+      </div>
     </div>
   );
 };
 
 const TutorialSubSidebar = ({ title, children }: { title: string; children: React.ReactNode }) => {
-  const [isOpen, toggle] = useState(false);
-
-  const toggleSidebar = () => {
-    toggle(!isOpen);
-  };
-
   return (
     <div className={tutorialsidebar["sidebar"]}>
-      <div className={tutorialsidebar["section-header"]} onClick={toggleSidebar}>
-        <span className={`${tutorialsidebar["arrow"]} ${isOpen ? tutorialsidebar["open"] : ""}`}>▶</span>
-
-        <div className={tutorialsidebar["sidebar-subtitle"]}>{title}</div>
-      </div>
-
-      {isOpen && <div className={tutorialsidebar["section-content"]}>{children}</div>}
+      <details className={tutorialsidebar["section-header"]}>
+        <summary className={tutorialsidebar["sidebar-subtitle"]}>{title}</summary>
+        <div className={tutorialsidebar["section-content"]}>{children}</div>
+      </details>
     </div>
   );
 };
