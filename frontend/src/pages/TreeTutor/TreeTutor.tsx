@@ -70,7 +70,6 @@ const TreeTutor = () => {
 
   const updateInitialTree = (newTree: TreeNode) => {
     setInitialTreeData(newTree);
-    console.log("from initial treedata", initialTreeData);
   };
 
   // Create an insert exercise
@@ -172,10 +171,6 @@ const TreeTutor = () => {
         <h2 className={styles.insertHeader}>
           {currentOperationType === "INSERT" ? `Insert ${targetValue ?? "X"}` : `Delete ${targetValue ?? "X"}`}
         </h2>
-
-        <span>currentTemplate: {currentTemplate}</span>
-        <span>templates.length: {templates.length}</span>
-
         <section className={styles.treeContainer}>
           {!showingSolution ? (
             // User workspace view with templates
