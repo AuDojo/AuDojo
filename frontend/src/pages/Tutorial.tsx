@@ -11,7 +11,6 @@ const Tutorial = () => {
   return (
     <>
       <title>Tutorial</title>
-      <RickRollTroll />
 
       <TutorialSidebar
         title="Mergesort"

@@ -15,5 +15,9 @@ export const paths = {
   //TreeTutor
   treeTutor: "/treetutor",
 
-  tutorial: "/tutorial",
+  mergesorttutorial: "/tutorial/mergesort",
+  quicksorttutorial: "/tutorial/quicksort",
+  bubblesorttutorial: "/tutorial/bubblesort",
+  selectionsorttutorial: "/tutorial/selectionsort",
+  treetutorial: "/treetutorial",
 } as const;

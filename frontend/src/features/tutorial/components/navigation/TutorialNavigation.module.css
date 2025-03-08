@@ -1,0 +1,34 @@
+.navi-container {
+  width: 15%;
+  font-size: 22px;
+  height: 100%;
+  margin-right: 100px;
+  align-self: flex-start;
+}
+
+.navi-button {
+  font-weight: 600;
+  align-items: center;
+  justify-content: center;
+}
+
+.navi-button-active:hover {
+  text-decoration: underline;
+}
+
+.navi-button-inactive:hover {
+  text-decoration: underline;
+}
+
+.navi-button-active {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 30px;
+  color: rgb(190, 30, 60);
+}
+
+.navi-button-inactive {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: gray;
+}
