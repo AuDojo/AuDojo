@@ -1,13 +1,18 @@
+import { localStorageKeys } from "@/config/localStorage";
 import { ArrowButton } from "@/features/treeTutor/arrowButton";
 import { CloseButton } from "@/features/treeTutor/closeButton";
 import { DEFAULT_TREE, MAX_TEMPLATES } from "@/features/treeTutor/constants";
 import { TreeTemplate } from "@/features/treeTutor/treeTemplate";
+import {
+  generateAVL,
+  generateDeleteSolution,
+  generateInsertSolution,
+} from "@/features/treeTutor/utils/AVLTreeService/excerciseUtils";
+import { TreeStep } from "@/features/treeTutor/utils/AVLTreeService/types";
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 import { useState } from "react";
-import styles from "./TreeTutor.module.css";
-import { generateDeleteSolution, generateInsertSolution, generateAVL, TreeStep } from "./utils/AVLTreeService";
 import { useLocalStorage } from "usehooks-ts";
-import { localStorageKeys } from "@/config/localStorage";
+import styles from "./TreeTutor.module.css";
 
 const defaultRoot: TreeNode = {
   value: 0,
@@ -38,7 +43,7 @@ const TreeTutor = () => {
   // treeData of consecutive Tree Templates
   console.log(solutionSteps);
   const addTemplate = () => {
-    if (templates.length < MAX_TEMPLATES) {
+    if (templates.length <= MAX_TEMPLATES) {
       const newId = Date.now();
       setTemplates([...templates, newId]);
 
@@ -123,9 +128,10 @@ const TreeTutor = () => {
   // Generate new random tree
   const generateNewTree = () => {
     const newSample = generateAVL(true, null);
+    const newID = Date.now();
     setInitialTreeData(newSample ?? defaultRoot);
-    setTemplates([]);
-    setTemplateTree({});
+    setTemplates([newID]);
+    setTemplateTree({ [newID]: newSample ?? defaultRoot });
     setCurrentTemplate(0);
     setShowingSolution(false);
     setSolutionSteps([]);
@@ -208,7 +214,7 @@ const TreeTutor = () => {
                 direction="right"
                 disabled={currentTemplate >= MAX_TEMPLATES}
                 onClick={() => {
-                  if (currentTemplate === templates.length) {
+                  if (currentTemplate === templates.length - 1) {
                     addTemplate();
                   }
                   setCurrentTemplate((prev) => prev + 1);
