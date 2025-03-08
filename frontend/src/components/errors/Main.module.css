@@ -32,3 +32,10 @@
   outline: 2px solid #f87171; /* Tailwind's ring-red-300 */
   outline-offset: 2px;
 }
+
+.error-message {
+  border: 1px solid #f87171; /* Tailwind's border-red-300 */
+  font-size: 1rem;
+  margin: 15px;
+  padding: 5px;
+}
