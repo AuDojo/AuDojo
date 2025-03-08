@@ -24,7 +24,7 @@ i18n
       loadPath: "/projects/audojo/translation/{{lng}}/{{ns}}.json",
     },
     react: {
-      transKeepBasicHtmlNodesFor: ["br", "strong", "i", "p", "b", "u"], // Which html tags to translate with <Trans> component
+      transKeepBasicHtmlNodesFor: ["br", "strong", "i", "p", "b", "u", "sup"], // Which html tags to translate with <Trans> component
     },
   });
 

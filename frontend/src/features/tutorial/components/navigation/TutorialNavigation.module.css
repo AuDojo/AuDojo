@@ -2,8 +2,8 @@
   width: 15%;
   font-size: 22px;
   height: 100%;
-  border-right: 1px solid black;
   margin-right: 100px;
+  align-self: flex-start;
 }
 
 .navi-button {
