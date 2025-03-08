@@ -21,7 +21,7 @@ i18n
     load: "languageOnly",
 
     backend: {
-      loadPath: "translation/{{lng}}/{{ns}}.json",
+      loadPath: "/projects/audojo/translation/{{lng}}/{{ns}}.json",
     },
     react: {
       transKeepBasicHtmlNodesFor: ["br", "strong", "i", "p", "b", "u"], // Which html tags to translate with <Trans> component
