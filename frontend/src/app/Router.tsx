@@ -12,7 +12,6 @@ const MergeSort = lazy(() => import("@/pages/SortSensei/MergeSort"));
 const QuickSort = lazy(() => import("@/pages/SortSensei/QuickSort"));
 const BubbleSort = lazy(() => import("@/pages/SortSensei/BubbleSort"));
 const SelectionSort = lazy(() => import("@/pages/SortSensei/SelectionSort"));
-// const Tutorial = lazy(() => import("@/pages/Tutorial"));
 const MergeTutorial = lazy(() => import("@/pages/Tutorial/SortSensei/MergeTutorial"));
 const QuickTutorial = lazy(() => import("@/pages/Tutorial/SortSensei/QuickTutorial"));
 const BubbleTutorial = lazy(() => import("@/pages/Tutorial/SortSensei/BubbleTutorial"));
