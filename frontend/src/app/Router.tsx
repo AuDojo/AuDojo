@@ -12,7 +12,11 @@ const MergeSort = lazy(() => import("@/pages/SortSensei/MergeSort"));
 const QuickSort = lazy(() => import("@/pages/SortSensei/QuickSort"));
 const BubbleSort = lazy(() => import("@/pages/SortSensei/BubbleSort"));
 const SelectionSort = lazy(() => import("@/pages/SortSensei/SelectionSort"));
-const Tutorial = lazy(() => import("@/pages/Tutorial"));
+// const Tutorial = lazy(() => import("@/pages/Tutorial"));
+const MergeTutorial = lazy(() => import("@/pages/Tutorial/SortSensei/MergeTutorial"));
+const QuickTutorial = lazy(() => import("@/pages/Tutorial/SortSensei/QuickTutorial"));
+const BubbleTutorial = lazy(() => import("@/pages/Tutorial/SortSensei/BubbleTutorial"));
+const SelectTutorial = lazy(() => import("@/pages/Tutorial/SortSensei/SelectTutorial"));
 const Datenschutz = lazy(() => import("@/pages/Legal/Datenschutz"));
 const Impressum = lazy(() => import("@/pages/Legal/Impressum"));
 const NotFound = lazy(() => import("@/pages/NotFound/NotFound"));
@@ -31,7 +35,11 @@ export const AppRouter = () => {
               <Route path={paths.quickSort} element={<QuickSort />} />
               <Route path={paths.bubbleSort} element={<BubbleSort />} />
               <Route path={paths.selectionSort} element={<SelectionSort />} />
-              <Route path={paths.tutorial} element={<Tutorial />} />
+              <Route path={paths.mergesorttutorial} element={<MergeTutorial />} />
+              <Route path={paths.quicksorttutorial} element={<QuickTutorial />} />
+              <Route path={paths.bubblesorttutorial} element={<BubbleTutorial />} />
+              <Route path={paths.selectionsorttutorial} element={<SelectTutorial />} />
+              <Route path={paths.treetutorial} element={<NotFound />} />
               <Route path={paths.kontakt} element={<Kontakt />} />
               <Route path={paths.datenschutz} element={<Datenschutz />} />
               <Route path={paths.impressum} element={<Impressum />} />

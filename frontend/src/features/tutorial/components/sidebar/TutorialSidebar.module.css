@@ -1,9 +1,9 @@
 .sidebar {
-  width: 100%;
+  width: 80%;
   background-color: #fff;
-  border-right: 1px solid #ddd;
   padding: 10px;
   color: var(--main-darkblue);
+  align-self: flex-start;
 }
 
 .sidebar-section {
@@ -49,7 +49,6 @@
   margin-top: 5px;
   padding-left: 20px;
   text-align: left;
-  border-top: 1px solid #ddd;
   margin-top: 5px;
   display: flex;
   flex-direction: column;

@@ -38,7 +38,19 @@ const Header = () => {
           </nav>
         </nav>
         <LinkItem className={headerStyles["menu-item"]} to={paths.treeTutor} text="TreeTutor" />
-        <LinkItem className={headerStyles["menu-item"]} to={paths.tutorial} text={t("example")} />
+
+        <nav className={headerStyles["dropdown-container"]}>
+          <LinkItem
+            className={headerStyles["menu-item"]}
+            to={paths.mergesorttutorial}
+            text={t("example")}
+            icon={iconDropdown}
+          />
+          <nav className={headerStyles["dropdown-content"]}>
+            <LinkItem className={headerStyles["menu-item"]} to={paths.mergesorttutorial} text="SortSensei" />
+            <LinkItem className={headerStyles["menu-item"]} to={paths.treetutorial} text="TreeTutor" />
+          </nav>
+        </nav>
         <LinkItem className={headerStyles["menu-item"]} to={paths.kontakt} text={t("contact")} />
       </nav>
       {/* <HelpIcon onClick={closeModal} /> */}
