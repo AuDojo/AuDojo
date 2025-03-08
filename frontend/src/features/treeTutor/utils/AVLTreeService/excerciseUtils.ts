@@ -101,32 +101,38 @@ export function addSteps(steps: TreeStep[] | null, subTree: BalanceIndicator, ro
         steps.push({
           tree: structuredClone(rootRef.current),
           operation: "LL Case: Performed right rotation",
+          successorDelete: false,
         });
         break;
       case "LR":
         steps.push({
           tree: subTree.copy,
           operation: "LR Case: Performed first left rotation",
+          successorDelete: false,
         });
         steps.push({
           tree: structuredClone(rootRef.current),
           operation: "LR Case: Performed second right rotation",
+          successorDelete: false,
         });
         break;
       case "RR":
         steps.push({
           tree: structuredClone(rootRef.current),
           operation: "RR Case: Performed left rotation",
+          successorDelete: false,
         });
         break;
       case "RL":
         steps.push({
           tree: subTree.copy,
           operation: "RL Case: Performed first right rotation",
+          successorDelete: false,
         });
         steps.push({
           tree: structuredClone(rootRef.current),
           operation: "RL Case: Performed second left rotation",
+          successorDelete: false,
         });
         break;
       default:
