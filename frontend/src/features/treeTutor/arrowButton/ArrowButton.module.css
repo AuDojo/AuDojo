@@ -1,0 +1,27 @@
+.arrow-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: none;
+    border: 2px solid rgb(190, 190, 190);
+    border-radius: 50%;
+
+    height: 40px;
+    width: 40px;
+
+    transition: all 0.15s ease-in-out;
+  }
+  button:hover:not(:disabled) {
+    background: rgb(190, 190, 190);
+  }
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
