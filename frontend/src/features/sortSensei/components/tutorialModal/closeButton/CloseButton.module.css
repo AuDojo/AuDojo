@@ -19,7 +19,7 @@
   opacity: 0.5;
   border: none;
 
-  transition: all 0.2s ease-in-out;
+  transition: all 0.15s ease-in-out;
 }
 .close-button:hover {
   opacity: 1;

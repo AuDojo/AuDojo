@@ -1,15 +1,18 @@
+import { localStorageKeys } from "@/config/localStorage";
+import { ArrowButton } from "@/features/treeTutor/arrowButton";
+import { CloseButton } from "@/features/treeTutor/closeButton";
+import { DEFAULT_TREE, MAX_TEMPLATES } from "@/features/treeTutor/constants";
 import { TreeTemplate } from "@/features/treeTutor/treeTemplate";
-import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
-import { useState } from "react";
-import styles from "./TreeTutor.module.css";
-import { TreeStep } from "@/features/treeTutor/utils/AVLTreeService/types";
-import { generateAVL } from "@/features/treeTutor/utils/AVLTreeService/excerciseUtils";
 import {
+  generateAVL,
   generateDeleteSolution,
   generateInsertSolution,
 } from "@/features/treeTutor/utils/AVLTreeService/excerciseUtils";
+import { TreeStep } from "@/features/treeTutor/utils/AVLTreeService/types";
+import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { localStorageKeys } from "@/config/localStorage";
+import { useState } from "react";
+import styles from "./TreeTutor.module.css";
 
 // Define exercise mode and operation types
 type OperationType = "INSERT" | "DELETE";
@@ -28,20 +31,21 @@ const defaultRoot: TreeNode = {
 const TreeTutor = () => {
   const [templates, setTemplates] = useState<number[]>([]);
   const [currentOperationType, setCurrentOperationType] = useState<OperationType>("INSERT");
+  const [currentTemplate, setCurrentTemplate] = useState<number>(0);
   const [targetValue, setTargetValue] = useState<number | null>(null);
   const [showingSolution, setShowingSolution] = useState(false);
   const [solutionSteps, setSolutionSteps] = useState<TreeStep[]>([]);
 
   const [initialTreeData, setInitialTreeData] = useLocalStorage<TreeNode>(
     localStorageKeys.initialTreeData,
-    generateAVL(false, [1, 5, 9, 7]) ?? defaultRoot
+    generateAVL(false, DEFAULT_TREE) ?? defaultRoot
   );
 
   // treeData of consecutive Tree Templates
   const [templateTree, setTemplateTree] = useState<Record<number, TreeNode>>({});
 
   const addTemplate = () => {
-    if (templates.length < 3) {
+    if (templates.length < MAX_TEMPLATES) {
       const newId = Date.now();
       setTemplates([...templates, newId]);
 
@@ -129,6 +133,7 @@ const TreeTutor = () => {
     setInitialTreeData(newSample ?? defaultRoot);
     setTemplates([]);
     setTemplateTree({});
+    setCurrentTemplate(0);
     setShowingSolution(false);
     setSolutionSteps([]);
     setTargetValue(null);
@@ -162,29 +167,53 @@ const TreeTutor = () => {
           {currentOperationType === "INSERT" ? `Insert ${targetValue ?? "X"}` : `Delete ${targetValue ?? "X"}`}
         </h2>
 
+        <span>currentTemplate: {currentTemplate}</span>
+        <span>templates.length: {templates.length}</span>
+
         <section className={styles.treeContainer}>
           {!showingSolution ? (
             // User workspace view with templates
             <div className={styles.treeWrapper}>
-              <div className={styles.treeTemplate}>
-                <TreeTemplate treeData={initialTreeData} onTreeUpdate={updateInitialTree} />
-              </div>
-              {templates.map((id) => (
-                <div key={id} className={styles.treeTemplate}>
-                  <button type="button" className={styles.closeButton} onClick={() => removeTemplate(id)}>
-                    ✖
-                  </button>
+              <ArrowButton
+                direction="left"
+                disabled={currentTemplate === 0}
+                onClick={() => {
+                  setCurrentTemplate((prev) => prev - 1);
+                }}
+              />
+              {currentTemplate === 0 && (
+                // Initial Template
+                <div className={styles.treeTemplate}>
+                  <TreeTemplate treeData={initialTreeData} onTreeUpdate={updateInitialTree} />
+                </div>
+              )}
+              {currentTemplate > 0 && (
+                // Custom Template
+                <div className={styles.treeTemplate}>
+                  <CloseButton
+                    onClick={() => {
+                      if (currentTemplate >= templates.length) {
+                        setCurrentTemplate((prev) => prev - 1);
+                      }
+                      removeTemplate(templates[currentTemplate - 1]);
+                    }}
+                  />
                   <TreeTemplate
-                    treeData={templateTree[id]}
-                    onTreeUpdate={(newTree) => updateTemplateTree(id, newTree)}
+                    treeData={templateTree[templates[currentTemplate - 1]]}
+                    onTreeUpdate={(newTree) => updateTemplateTree(templates[currentTemplate - 1], newTree)}
                   />
                 </div>
-              ))}
-              {templates.length < 3 && (
-                <button type="button" className={styles.addTemplate} onClick={addTemplate}>
-                  +
-                </button>
               )}
+              <ArrowButton
+                direction="right"
+                disabled={currentTemplate >= MAX_TEMPLATES}
+                onClick={() => {
+                  if (currentTemplate === templates.length) {
+                    addTemplate();
+                  }
+                  setCurrentTemplate((prev) => prev + 1);
+                }}
+              />
             </div>
           ) : (
             // Solution view with steps displayed horizontally

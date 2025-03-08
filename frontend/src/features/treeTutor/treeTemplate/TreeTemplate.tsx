@@ -1,8 +1,8 @@
 import { useResizeObserver } from "@/hooks/useResizeObserver";
 import { HierarchyLink, HierarchyNode, curveLinear, hierarchy, link, select, tree } from "d3";
-import { useEffect, useRef, useCallback } from "react";
+import { useCallback, useEffect, useRef } from "react";
+import { TreeNode, addNode, deleteNode, findNode, hasValidXY, updateNode } from "../utils/treeUtils";
 import styles from "./TreeTemplate.module.css";
-import { addNode, deleteNode, findNode, hasValidXY, updateNode, TreeNode } from "../utils/treeUtils";
 
 interface TreeTemplateProps {
   treeData: TreeNode;
