@@ -41,7 +41,7 @@ export function createCopyOfTree(node: TreeNode | null) {
     return null;
   }
 
-  let new_node: TreeNode = {
+  const new_node: TreeNode = {
     id: node.id,
     value: node.value,
     depth: node.depth,
@@ -70,7 +70,7 @@ export function getExistingNodes(node: TreeNode | null, excistingNodes: number[]
   getExistingNodes(node.children[1], excistingNodes);
 }
 
-export function getNumberOfRotates(node: TreeNode, rootRef: TreeNode): number {
+export function getNumberOfRotates(node: TreeNode, rootRef: TreeNode | null): number {
   if (!node) return 0;
   if (!rootRef) return 0;
 
@@ -87,22 +87,22 @@ export function getNumberOfRotates(node: TreeNode, rootRef: TreeNode): number {
   return 0;
 }
 
-export function getFatherNode2(root: TreeNode | null, targetId: string): TreeNode | null {
-  let fatherNode: TreeNode | null = root;
-}
+// export function getFatherNode2(root: TreeNode | null, targetId: string): TreeNode | null {
+//   let fatherNode: TreeNode | null = root;
+// }
 
-export function getFatherNode(root: TreeNode | null, targetId: string): TreeNode | null {
-  let fatherNode: TreeNode | null = root;
+// export function getFatherNode(root: TreeNode | null, targetId: string): TreeNode | null {
+//   let fatherNode: TreeNode | null = root;
 
-  if (!root) return null;
+//   if (!root) return null;
 
-  if (root.id === targetId) return root;
+//   if (root.id === targetId) return root;
 
-  if (root.children) {
-    for (const child of root.children) {
-      const found = child ? getFatherNode(child, targetId) : null;
-      if (found) return found;
-    }
-  }
-  return null;
-}
+//   if (root.children) {
+//     for (const child of root.children) {
+//       const found = child ? getFatherNode(child, targetId) : null;
+//       if (found) return found;
+//     }
+//   }
+//   return null;
+// }

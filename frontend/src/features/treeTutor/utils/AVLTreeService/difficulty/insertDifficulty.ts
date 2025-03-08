@@ -6,25 +6,27 @@ import {
   numToDifficultyTypes,
   getExistingNodes,
   createCopyOfTree,
+  getNumberOfRotates,
 } from "./difficultyTools";
-import { getBalanceFactor } from "../getters";
+// import { getBalanceFactor } from "../getters";
 import { createNode } from "../changingTree/insertAndDelete";
+import { updateAllHeightsRecursive } from "../updateTreeAttributes";
 
 export function createInsertArray(node: TreeNode, difficulty_level: DifficultyTypes): number[] {
   if (Difficulty.random) {
-    let random_number = getRandomInt(3);
+    const random_number = getRandomInt(3);
     difficulty_level = numToDifficultyTypes(random_number);
   }
 
   switch (difficulty_level) {
     case Difficulty.easy:
-      return createEasyDifficultyArray(node);
+      return createDifficultyArray(node, 0);
       break;
     case Difficulty.medium:
-      return createMediumDifficultyArray(node);
+      return createDifficultyArray(node, 1);
       break;
     case Difficulty.hard:
-      return createHartDifficultyArray(node);
+      return createDifficultyArray(node, 2);
       break;
 
     default:
@@ -34,19 +36,19 @@ export function createInsertArray(node: TreeNode, difficulty_level: DifficultyTy
 }
 
 function arrayWithoutExistingNodes(node: TreeNode): number[] {
-  let allNumbers: number[] = Array.from({ length: 10 }, (_, i) => i + 1);
-  let excistingNodes: number[] = [];
+  const allNumbers: number[] = Array.from({ length: 10 }, (_, i) => i + 1);
+  const excistingNodes: number[] = [];
   getExistingNodes(node, excistingNodes);
 
   // Calculates the difference (A\B) allNumbers without excistingNodes
-  let diff = allNumbers.filter(function (x) {
-    return excistingNodes.indexOf(x) < 0;
+  const diff = allNumbers.filter(function (x) {
+    return !excistingNodes.includes(x);
   });
 
   return diff;
 }
 
-function removeToDeepNodes() {}
+// function removeToDeepNodes() {}
 
 function binaryTreeInsertion(
   node: TreeNode | null,
@@ -66,28 +68,48 @@ function binaryTreeInsertion(
     node.children[1] = binaryTreeInsertion(node.children[1], value, ++depth, "right");
   }
   return node;
-
-  // TODO: Update hight and Balance
 }
 
-function createEasyDifficultyArray(node: TreeNode): number[] {
-  let node_copy = createCopyOfTree(node);
-  let availableInserts: number[] = arrayWithoutExistingNodes(node);
-  let easyInserts: number[] = [];
+function createDifficultyArray(node: TreeNode, difficulty: number): number[] {
+  const availableInserts: number[] = arrayWithoutExistingNodes(node);
+  const matchingInserts: number[] = [];
 
   // let random_num: number = getRandomInt(availableInserts.length);
   // let new_node: TreeNode = createNode(availableInserts[random_num], 0, "root");
 
   availableInserts.forEach((value) => {
-    const inserted_node: TreeNode = binaryTreeInsertion(node_copy, value, 0, "root");
-    let balance_factor = getBalanceFactor(node_copy);
-    if (balance_factor >= -1 && balance_factor <= 1) {
-      easyInserts.push(value);
+    const node_copy = createCopyOfTree(node);
+    if (node_copy !== null) {
+      const inserted_node: TreeNode = binaryTreeInsertion(node_copy, value, 0, "root");
+      updateAllHeightsRecursive(node_copy);
+      // let balance_factor = getBalanceFactor(node_copy);
+      if (getNumberOfRotates(node_copy, inserted_node) === difficulty) {
+        matchingInserts.push(value);
+      }
     }
   });
 
-  return easyInserts;
+  return matchingInserts;
 }
+
+// function createEasyDifficultyArray(node: TreeNode): number[] {
+//   let node_copy = createCopyOfTree(node);
+//   let availableInserts: number[] = arrayWithoutExistingNodes(node);
+//   let easyInserts: number[] = [];
+
+//   // let random_num: number = getRandomInt(availableInserts.length);
+//   // let new_node: TreeNode = createNode(availableInserts[random_num], 0, "root");
+
+//   availableInserts.forEach((value) => {
+//     const inserted_node: TreeNode = binaryTreeInsertion(node_copy, value, 0, "root");
+//     let balance_factor = getBalanceFactor(node_copy);
+//     if (balance_factor >= -1 && balance_factor <= 1) {
+//       easyInserts.push(value);
+//     }
+//   });
+
+//   return easyInserts;
+// }
 
 // function createMediumDifficultyArray(node: TreeNode): number[] {
 //   Array.from({ length: 10 }, (_, i) => i + 1);
