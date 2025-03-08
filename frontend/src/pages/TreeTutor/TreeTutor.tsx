@@ -2,7 +2,12 @@ import { TreeTemplate } from "@/features/treeTutor/treeTemplate";
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 import { useState } from "react";
 import styles from "./TreeTutor.module.css";
-import { generateDeleteSolution, generateInsertSolution, generateAVL, TreeStep } from "./utils/AVLTreeService";
+import { TreeStep } from "@/features/treeTutor/utils/AVLTreeService/types";
+import { generateAVL } from "@/features/treeTutor/utils/AVLTreeService/excerciseUtils";
+import {
+  generateDeleteSolution,
+  generateInsertSolution,
+} from "@/features/treeTutor/utils/AVLTreeService/excerciseUtils";
 
 // Define exercise mode and operation types
 type OperationType = "INSERT" | "DELETE";
