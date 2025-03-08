@@ -2,19 +2,10 @@ import { TreeTemplate } from "@/features/treeTutor/treeTemplate";
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 import { useState } from "react";
 import styles from "./TreeTutor.module.css";
-import { TreeStep } from "@/features/treeTutor/utils/AVLTreeService/types";
-import { generateAVL } from "@/features/treeTutor/utils/AVLTreeService/excerciseUtils";
-import {
-  generateDeleteSolution,
-  generateInsertSolution,
-} from "@/features/treeTutor/utils/AVLTreeService/excerciseUtils";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { generateDeleteSolution, generateInsertSolution, generateAVL, TreeStep } from "./utils/AVLTreeService";
+import { useLocalStorage } from "usehooks-ts";
 import { localStorageKeys } from "@/config/localStorage";
 
-// Define exercise mode and operation types
-type OperationType = "INSERT" | "DELETE";
-
-// treeData of initial Template
 const defaultRoot: TreeNode = {
   value: 0,
   height: 0,
@@ -24,22 +15,24 @@ const defaultRoot: TreeNode = {
   depth: 0,
   balanceFactor: 0,
 };
+// Define exercise mode and operation types
+type OperationType = "INSERT" | "DELETE";
+const initialID = Date.now();
 
 const TreeTutor = () => {
-  const [templates, setTemplates] = useState<number[]>([]);
+  const [templates, setTemplates] = useState<number[]>([initialID]);
   const [currentOperationType, setCurrentOperationType] = useState<OperationType>("INSERT");
   const [targetValue, setTargetValue] = useState<number | null>(null);
   const [showingSolution, setShowingSolution] = useState(false);
+  const [solution, setSolution] = useState<TreeStep[]>([]);
   const [solutionSteps, setSolutionSteps] = useState<TreeStep[]>([]);
-
   const [initialTreeData, setInitialTreeData] = useLocalStorage<TreeNode>(
     localStorageKeys.initialTreeData,
     generateAVL(false, [1, 5, 9, 7]) ?? defaultRoot
   );
-
+  const [templateTree, setTemplateTree] = useState<Record<number, TreeNode>>({ [initialID]: initialTreeData });
   // treeData of consecutive Tree Templates
-  const [templateTree, setTemplateTree] = useState<Record<number, TreeNode>>({});
-
+  console.log(solutionSteps);
   const addTemplate = () => {
     if (templates.length < 3) {
       const newId = Date.now();
@@ -137,16 +130,23 @@ const TreeTutor = () => {
   // Show solution
   const showSolution = () => {
     if (targetValue === null) return;
+    let updatedSteps = [];
 
     if (currentOperationType === "INSERT") {
-      const updatedSteps = generateInsertSolution(initialTreeData, targetValue);
-      console.log("solution steps", solutionSteps);
-      setSolutionSteps(updatedSteps);
+      updatedSteps = generateInsertSolution(initialTreeData, targetValue);
     } else {
-      const updatedSteps = generateDeleteSolution(initialTreeData, targetValue);
-      setSolutionSteps(updatedSteps);
+      updatedSteps = generateDeleteSolution(initialTreeData, targetValue);
     }
-
+    const solution: TreeStep[] = [];
+    const intialStep: TreeStep = { operation: "Intial Data", tree: initialTreeData, successorDelete: false };
+    solution[0] = intialStep;
+    const extendedDelete = updatedSteps[0].successorDelete;
+    solution[1] = extendedDelete === true ? updatedSteps[1] : updatedSteps[0];
+    if (updatedSteps.length > 2) {
+      solution[2] = updatedSteps[updatedSteps.length - 1];
+    }
+    setSolution(solution);
+    setSolutionSteps(updatedSteps);
     setShowingSolution(true);
   };
   // Hide solution
@@ -166,17 +166,14 @@ const TreeTutor = () => {
           {!showingSolution ? (
             // User workspace view with templates
             <div className={styles.treeWrapper}>
-              <div className={styles.treeTemplate}>
-                <TreeTemplate treeData={initialTreeData} onTreeUpdate={updateInitialTree} />
-              </div>
-              {templates.map((id) => (
+              {templates.map((id, index) => (
                 <div key={id} className={styles.treeTemplate}>
                   <button type="button" className={styles.closeButton} onClick={() => removeTemplate(id)}>
                     ✖
                   </button>
                   <TreeTemplate
-                    treeData={templateTree[id]}
-                    onTreeUpdate={(newTree) => updateTemplateTree(id, newTree)}
+                    treeData={index === 0 ? templateTree[id] : initialTreeData}
+                    onTreeUpdate={index === 0 ? (newTree) => updateTemplateTree(id, newTree) : updateInitialTree}
                   />
                 </div>
               ))}
@@ -189,11 +186,10 @@ const TreeTutor = () => {
           ) : (
             // Solution view with steps displayed horizontally
             <div className={styles.treeWrapper}>
-              {solutionSteps.map((step, index) => (
+              {solution.map((step, index) => (
                 <div key={index} className={styles.treeTemplate}>
                   <div className={styles.stepHeader}>
                     <span className={styles.stepNumber}>Step {index + 1}</span>
-                    <span className={styles.stepDescription}>{step.operation}</span>
                   </div>
                   {step.tree && (
                     <TreeTemplate
