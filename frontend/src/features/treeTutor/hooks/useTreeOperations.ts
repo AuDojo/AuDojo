@@ -20,7 +20,7 @@ export function useTreeOperations(initialTreeData: TreeNode, resetTemplates: () 
     getTreeValues(node.children[1], values);
     return values;
   };
-  const values = getTreeValues(initialTreeData);
+  const values = getTreeValues(initialTreeData).filter((value) => value !== 0);
 
   const generateInsertExercise = (input?: number) => {
     const validInput = input && input > 0 && input < 100 && !values.includes(input);
