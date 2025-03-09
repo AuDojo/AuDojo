@@ -13,6 +13,7 @@ import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 import { useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
 import styles from "./TreeTutor.module.css";
+import { getRandomValue, resetArrays } from "@/features/treeTutor/utils/AVLTreeService/difficulty/difficultyTools";
 
 const defaultRoot: TreeNode = {
   value: 0,
@@ -75,7 +76,7 @@ const TreeTutor = () => {
   // Create an insert exercise
   const generateInsertExercise = () => {
     // Generate a random value to insert between 1-99
-    const newValue = Math.floor(Math.random() * 99) + 1;
+    const newValue = getRandomValue(initialTreeData, 0, "insertion"); // TODO: Testen und difficulty_level zu Variable ändern // Math.floor(Math.random() * 99) + 1;
     setTargetValue(newValue);
     setCurrentOperationType("INSERT");
     setShowingSolution(false);
@@ -116,7 +117,7 @@ const TreeTutor = () => {
     const values = getTreeValues(initialTreeData);
     if (values.length > 0) {
       // Choose a random value from the tree
-      const value = values[Math.floor(Math.random() * values.length)];
+      const value = getRandomValue(initialTreeData, 0, "deletion"); // TODO: Testen und difficulty_level zu Variable ändern // values[Math.floor(Math.random() * values.length)];
       setTargetValue(value);
       setCurrentOperationType("DELETE");
       setShowingSolution(false);
@@ -128,6 +129,7 @@ const TreeTutor = () => {
   const generateNewTree = () => {
     const newSample = generateAVL(true, null);
     const newID = Date.now();
+    resetArrays();
     setInitialTreeData(newSample ?? defaultRoot);
     setTemplates([newID]);
     setTemplateTree({ [newID]: newSample ?? defaultRoot });
@@ -143,8 +145,10 @@ const TreeTutor = () => {
     let updatedSteps = [];
 
     if (currentOperationType === "INSERT") {
+      //setTargetValue(getRandomValue(initialTreeData, 0, "insertion")); // TODO: Testing and changing difficulty_value to variable
       updatedSteps = generateInsertSolution(initialTreeData, targetValue);
     } else {
+      //setTargetValue(getRandomValue(initialTreeData, 0, "deletion")); // TODO: Testing and changing difficulty_value to variable
       updatedSteps = generateDeleteSolution(initialTreeData, targetValue);
     }
     const solution: TreeStep[] = [];
