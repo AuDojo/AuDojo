@@ -62,12 +62,13 @@ export function useTreeOperations(initialTreeData: TreeNode, resetTemplates: () 
     } else {
       updatedSteps = generateDeleteSolution(treeData, targetValue);
     }
+    console.log(updatedSteps);
     // Create a simplified solution array (you can adjust as needed)
     const sol: TreeStep[] = [];
     sol[0] = { operation: "Initial Data", tree: treeData, successorDelete: false };
     const extendedDelete = updatedSteps[0]?.successorDelete;
     sol[1] = extendedDelete === true ? updatedSteps[1] : updatedSteps[0];
-    if (updatedSteps.length > 2) {
+    if (updatedSteps.length >= 2) {
       sol[2] = updatedSteps[updatedSteps.length - 1];
     }
     setSolution(sol);
