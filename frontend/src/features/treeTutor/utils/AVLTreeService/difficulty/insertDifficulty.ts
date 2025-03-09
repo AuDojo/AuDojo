@@ -6,8 +6,10 @@ import { MAX_VALUE } from "@/features/treeTutor/constants";
 
 function arrayWithoutExistingNodes(node: TreeNode): number[] {
   const allNumbers: number[] = Array.from({ length: MAX_VALUE }, (_, i) => i + 1); // TODO: Test if 1-99
+  console.log("AllNumbers: ", allNumbers);
   const excistingNodes: number[] = [];
   getExistingNodes(node, excistingNodes);
+  console.log("ExistingNodes: ", excistingNodes);
 
   // Calculates the difference (A\B) allNumbers without excistingNodes
   const diff = allNumbers.filter(function (x) {
