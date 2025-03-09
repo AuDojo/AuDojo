@@ -1,0 +1,15 @@
+{
+  "header-info": "Choose one Option below!",
+  "button": {
+    "random-tree": "Random Tree",
+    "show-all-steps": "Show All Steps",
+    "show-solution": "Show Solution",
+    "hide-solution": "Hide Solution"
+  },
+  "random": "random",
+  "insert-error": "Value is already present in the tree",
+  "difficulty": "Difficulty",
+  "easy": "easy",
+  "medium": "medium",
+  "hard": "hard"
+}

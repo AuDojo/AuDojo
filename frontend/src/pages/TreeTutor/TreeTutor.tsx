@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useDebounceCallback, useLocalStorage } from "usehooks-ts";
 import styles from "./TreeTutor.module.css";
+import { useTranslation } from "react-i18next";
 
 export interface FormInput {
   insertInput: string;
@@ -25,6 +26,7 @@ const TreeTutor = () => {
     generateAVL(false, DEFAULT_TREE) ?? defaultRoot
   );
   const deleteValueRef = useRef<HTMLSelectElement>(null);
+  const { t } = useTranslation("treetutor");
 
   const {
     templates,
@@ -81,7 +83,7 @@ const TreeTutor = () => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.target.value = event.target.value.replace(/[^0-9]/g, "");
     if (getTreeValues(initialTreeData).includes(Number(event.target.value))) {
-      setError("insertInput", { message: "Value already exists" });
+      setError("insertInput", { message: t("insert-error") + "‼️" });
     }
     setValue("insertInput", event.target.value);
   };
@@ -142,7 +144,7 @@ const TreeTutor = () => {
             ? currentOperationType === "INSERT"
               ? `Insert ${targetValue ?? "X"}`
               : `Delete ${targetValue ?? "X"}`
-            : "Choose one operation!"}
+            : t("header-info")}
         </h2>
         {/* <span>currentTemplate: {currentTemplate}</span>
         <span>template.length: {templates.length}</span> */}
@@ -230,15 +232,15 @@ const TreeTutor = () => {
 
         <div className={styles.controls}>
           <label htmlFor="difficulty-select" className={styles.labelDifficulty}>
-            Difficulty:
+            {t("difficulty")}
           </label>
           <select name="difficulty" id="difficulty-select" className={styles.selectDifficulty}>
             <option selected value="random">
-              random
+              {t("random")}
             </option>
-            <option>1. easy</option>
-            <option>2. medium</option>
-            <option>3. hard</option>
+            <option>1. {t("easy")}</option>
+            <option>2. {t("medium")}</option>
+            <option>3. {t("hard")}</option>
           </select>
 
           <form onSubmit={debouncedHandleSubmit(onSubmit)} className={styles.insertForm}>
@@ -261,7 +263,7 @@ const TreeTutor = () => {
               type="text"
               {...register("insertInput", { onChange: handleInputChange })}
               maxLength={2}
-              placeholder="random"
+              placeholder={t("random")}
             />
           </form>
 
@@ -283,7 +285,7 @@ const TreeTutor = () => {
               className={styles.selectDelete}
               onChange={handlePracticeDelete}
             >
-              <option value="delete-random">random</option>
+              <option value="delete-random">{t("random")}</option>
               {getTreeValues(initialTreeData).map(
                 (value) =>
                   value !== 0 && (
@@ -302,7 +304,7 @@ const TreeTutor = () => {
             data-tooltip="top 1000"
             onClick={generateRandomTree}
           >
-            Random Tree
+            {t("button.random-tree")}
           </button>
 
           <button
@@ -313,7 +315,7 @@ const TreeTutor = () => {
             className={styles.submit}
             onClick={showingSolution ? hideSolution : () => showSolution(initialTreeData)}
           >
-            {showingSolution ? "Hide Solution" : "Show Solution"}
+            {showingSolution ? t("button.hide-solution") : t("button.show-solution")}
           </button>
           {showingSolution && (
             <button
@@ -323,7 +325,7 @@ const TreeTutor = () => {
               data-tooltip="top 1000"
               onClick={() => showAllSteps(initialTreeData)}
             >
-              Show All Steps
+              {t("button.show-all-steps")}
             </button>
           )}
         </div>

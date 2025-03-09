@@ -1,0 +1,15 @@
+{
+  "header-info": "Wählen Sie unten eine Option!",
+  "button": {
+    "random-tree": "Zufälliger Baum",
+    "show-all-steps": "Alle Schritte zeigen",
+    "show-solution": "Lösung zeigen",
+    "hide-solution": "Lösung ausblenden"
+  },
+  "random": "zufällig",
+  "insert-error": "Wert ist bereits im Baum vorhanden",
+  "difficulty": "Schwierigkeit",
+  "easy": "einfach",
+  "medium": "mittel",
+  "hard": "hart"
+}
