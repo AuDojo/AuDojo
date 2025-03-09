@@ -1,8 +1,9 @@
 /* Tooltip */
 [data-tooltip][aria-label] {
   position: relative;
+  z-index: var(--tooltip-layer);
   --tooltip-grey: #555555fb;
-  --tooltip-offset: 0.1rem;
+  --tooltip-offset: 0.15rem;
   --tooltip-arrow-size: 0.5rem;
 }
 

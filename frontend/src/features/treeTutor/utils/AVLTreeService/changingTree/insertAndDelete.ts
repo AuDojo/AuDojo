@@ -124,11 +124,6 @@ export function deleteAVLTracker(root: TreeNode | null, value: number, steps: Tr
 
   let changeOccured = false;
 
-  //push initial tree
-  if (steps && root) {
-    steps.push({ tree: structuredClone(root), operation: "Intial Tree", successorDelete: false });
-  }
-
   function deleteAVL(node: TreeNode | null, val: number): BalanceIndicator {
     if (!node) return { tree: null, copy: null, operation: "NO" };
 
