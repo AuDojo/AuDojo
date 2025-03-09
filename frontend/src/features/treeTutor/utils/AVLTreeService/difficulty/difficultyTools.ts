@@ -100,7 +100,7 @@ export function createDifficultyArray(
  * @param node root-node of tree
  * @returns root-node of the copy
  */
-export function createCopyOfTree(node: TreeNode | null) {
+export function createCopyOfTree(node: TreeNode | null): TreeNode | null {
   if (node === null) {
     return null;
   }
@@ -134,6 +134,19 @@ export function getExistingNodes(node: TreeNode | null, excistingNodes: number[]
   getExistingNodes(node.children[1], excistingNodes);
 }
 
+function findUnbalancedNode(node: TreeNode | null, unbalanced_nodes: TreeNode[]) {
+  if (node == null) {
+    return;
+  }
+
+  findUnbalancedNode(node.children[0], unbalanced_nodes);
+  const balance_factor = getBalanceFactor(node);
+  if (balance_factor <= -2 || balance_factor >= 2) {
+    unbalanced_nodes.push(node);
+  }
+  findUnbalancedNode(node.children[1], unbalanced_nodes);
+}
+
 /**
  * Gets the number of rotations needed for the tree to be balanced.
  * @param node root-node of the tree
@@ -141,18 +154,33 @@ export function getExistingNodes(node: TreeNode | null, excistingNodes: number[]
  * @returns number of rotations needed
  */
 export function getNumberOfRotations(node: TreeNode, rootRef: TreeNode | null): number {
-  if (!node) return 0; // NO
+  const unbalanced_nodes: TreeNode[] = [];
+  findUnbalancedNode(node, unbalanced_nodes);
+  console.log("Unbalanced Nodes: ", unbalanced_nodes);
+
+  let unbalanced_node: TreeNode | null = null;
+
+  let lowest_hight = 99;
+
+  for (const element of unbalanced_nodes) {
+    if (element.height < lowest_hight) {
+      lowest_hight = element.height;
+      unbalanced_node = element;
+    }
+  }
+  console.log("Unbalanced Node: ", unbalanced_node);
+
+  if (!unbalanced_node) return 0; // NO
   if (!rootRef) return 0; // NO
 
-  const balance = getBalanceFactor(node);
+  const balance = getBalanceFactor(unbalanced_node);
 
   if (balance >= -1 && balance <= 1) return 0; // NO
 
-  if (balance > 1 && node.children[0] && getBalanceFactor(node.children[0]) >= 0) return 1; // LL
-  if (balance < -1 && node.children[1] && getBalanceFactor(node.children[1]) <= 0) return 1; // RR
-
-  if (balance > 1 && node.children[0] && getBalanceFactor(node.children[0]) < 0) return 2; // LR
-  if (balance < -1 && node.children[1] && getBalanceFactor(node.children[1]) > 0) return 2; // RL
+  if (balance > 1 && unbalanced_node.children[0] && getBalanceFactor(unbalanced_node.children[0]) >= 0) return 1; // LL
+  if (balance > 1 && unbalanced_node.children[0] && getBalanceFactor(unbalanced_node.children[0]) < 0) return 2; // LR
+  if (balance < -1 && unbalanced_node.children[1] && getBalanceFactor(unbalanced_node.children[1]) <= 0) return 1; // RR
+  if (balance < -1 && unbalanced_node.children[1] && getBalanceFactor(unbalanced_node.children[1]) > 0) return 2; // RL
 
   return 0; // NO
 }
