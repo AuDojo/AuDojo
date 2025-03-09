@@ -4,21 +4,6 @@ import { createNode } from "../changingTree/insertAndDelete";
 import { updateAllHeightsRecursive } from "../updateTreeAttributes";
 import { MAX_VALUE } from "@/features/treeTutor/constants";
 
-function arrayWithoutExistingNodes(node: TreeNode): number[] {
-  const allNumbers: number[] = Array.from({ length: MAX_VALUE }, (_, i) => i + 1); // TODO: Test if 1-99
-  console.log("AllNumbers: ", allNumbers);
-  const excistingNodes: number[] = [];
-  getExistingNodes(node, excistingNodes);
-  console.log("ExistingNodes: ", excistingNodes);
-
-  // Calculates the difference (A\B) allNumbers without excistingNodes
-  const diff = allNumbers.filter(function (x) {
-    return !excistingNodes.includes(x);
-  });
-
-  return diff;
-}
-
 function binaryTreeInsertion(
   node: TreeNode | null,
   value: number,
@@ -37,6 +22,21 @@ function binaryTreeInsertion(
     node.children[1] = binaryTreeInsertion(node.children[1], value, ++depth, "right");
   }
   return node;
+}
+
+function arrayWithoutExistingNodes(node: TreeNode): number[] {
+  const allNumbers: number[] = Array.from({ length: MAX_VALUE }, (_, i) => i + 1); // TODO: Test if 1-99
+  console.log("AllNumbers: ", allNumbers);
+  const excistingNodes: number[] = [];
+  getExistingNodes(node, excistingNodes);
+  console.log("ExistingNodes: ", excistingNodes);
+
+  // Calculates the difference (A\B) allNumbers without excistingNodes
+  const diff = allNumbers.filter(function (x) {
+    return !excistingNodes.includes(x);
+  });
+
+  return diff;
 }
 
 export function createInsertionArray(node: TreeNode, difficulty_level: number): number[] {
