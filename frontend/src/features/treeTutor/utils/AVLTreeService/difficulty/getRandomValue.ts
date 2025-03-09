@@ -8,11 +8,26 @@ export let first_time_deletion = true;
 export let insertion_array: number[] = [];
 export let first_time_insertion = true;
 
+/**
+ * Gets a random value out of an array with all possible values for the wanted difficulty_level and type.
+ *
+ * ---
+ * First creates that array when it is not already existing
+ * @param node root-node of the tree
+ * @param difficulty_level Level of the difficulty
+ * - -1: random,
+ * - 0: no restructure,
+ * - 1: one restructure,
+ * - 2: two restructures
+ * @param type "deletion" or "insertion"
+ * @returns Random value with wanted characteristics
+ */
 export function getRandomValue(node: TreeNode, difficulty_level: number, type: "deletion" | "insertion"): number {
   switch (type) {
     case "deletion": {
       console.log("======== Start Deletion ========");
 
+      // Created the deletion_array when it's not already existing
       if (first_time_deletion) {
         deletion_array = createDifficultyArray(node, difficulty_level, type);
         first_time_deletion = false;
@@ -30,9 +45,11 @@ export function getRandomValue(node: TreeNode, difficulty_level: number, type: "
       return deletion_array[random_number];
       break;
     }
+
     case "insertion": {
       console.log("======== Start Insertion ========");
 
+      // Created the insertion_array when it's not already existing
       if (first_time_insertion) {
         insertion_array = createDifficultyArray(node, difficulty_level, type);
         first_time_insertion = false;
@@ -57,6 +74,14 @@ export function getRandomValue(node: TreeNode, difficulty_level: number, type: "
   }
 }
 
+/**
+ * Resets the created arrays for deletion and insertion
+ *
+ * ---
+ * Needs to be called,
+ * - when a new random tree gets created
+ * - when the difficulty level gets changed
+ */
 export function resetArrays() {
   deletion_array = [];
   first_time_deletion = true;

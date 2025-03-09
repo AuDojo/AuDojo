@@ -3,15 +3,32 @@ import { getBalanceFactor } from "../getters";
 import { createInsertionArray } from "./insertDifficulty";
 import { createDeletionArray } from "./deleteDifficulty";
 
+/**
+ * Creates a random number between 1 and max
+ * @param max Maximum possible value
+ * @returns random number
+ */
 export function getRandomInt(max: number) {
   return Math.floor(Math.random() * max);
 }
 
+/**
+ * Creates an array with all the possible values for the wanted parameters
+ * @param node root-node of tree
+ * @param difficulty_level Level of the difficulty
+ * - -1: random,
+ * - 0: no restructure,
+ * - 1: one restructure,
+ * - 2: two restructures
+ * @param type "deletion" or "insertion"
+ * @returns Array with all values for the wanted difficulty and type
+ */
 export function createDifficultyArray(
   node: TreeNode,
   difficulty_level: number,
   type: "deletion" | "insertion"
 ): number[] {
+  // Choose a randome difficulty
   if (difficulty_level == -1) {
     difficulty_level = getRandomInt(3);
   }
@@ -33,6 +50,11 @@ export function createDifficultyArray(
   return difficulty_array;
 }
 
+/**
+ * Creates a copy of the given tree
+ * @param node root-node of tree
+ * @returns root-node of the copy
+ */
 export function createCopyOfTree(node: TreeNode | null) {
   if (node === null) {
     return null;
@@ -52,10 +74,10 @@ export function createCopyOfTree(node: TreeNode | null) {
 }
 
 /**
- * Essentially Inorder
- * @param node
- * @param excistingNodes
- * @returns
+ * Puts the node values of the given tree into the given excistingNodes array.
+ * The excistingNodes array turns into an inOrder array of the given tree
+ * @param node root-node of the tree
+ * @param excistingNodes Empty array into which the algorithm can push the inOrder values
  */
 export function getExistingNodes(node: TreeNode | null, excistingNodes: number[]) {
   if (node == null) {
@@ -67,6 +89,12 @@ export function getExistingNodes(node: TreeNode | null, excistingNodes: number[]
   getExistingNodes(node.children[1], excistingNodes);
 }
 
+/**
+ * Gets the number of rotations needed for the tree to be balanced.
+ * @param node root-node of the tree
+ * @param rootRef inserted or deleted node  TODO: probably unnessecary -> Testing
+ * @returns number of rotations needed
+ */
 export function getNumberOfRotations(node: TreeNode, rootRef: TreeNode | null): number {
   if (!node) return 0; // NO
   if (!rootRef) return 0; // NO

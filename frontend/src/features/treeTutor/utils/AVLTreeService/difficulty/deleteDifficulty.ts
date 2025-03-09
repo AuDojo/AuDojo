@@ -2,7 +2,12 @@ import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 import { getExistingNodes, createCopyOfTree, getNumberOfRotations } from "./difficultyTools";
 import { updateAllHeightsRecursive } from "../updateTreeAttributes";
 
-function getSuccessor(node: TreeNode | null) {
+/**
+ * Gets the next bigger (successor) node of the given node
+ * @param node node from which the successor is wanted
+ * @returns successor node of the given node
+ */
+function getSuccessor(node: TreeNode | null): TreeNode | null {
   if (node === null) {
     return null;
   }
@@ -16,6 +21,12 @@ function getSuccessor(node: TreeNode | null) {
   return node;
 }
 
+/**
+ * Executes basic sorted bnary tree deletion on the given tree for the given node-value
+ * @param node root-node of the tree
+ * @param value value of the node that should get deleted
+ * @returns deleted node
+ */
 function binaryTreeDelition(node: TreeNode | null, value: number): TreeNode | null {
   if (node === null) {
     return null;
@@ -44,6 +55,15 @@ function binaryTreeDelition(node: TreeNode | null, value: number): TreeNode | nu
   return node;
 }
 
+/**
+ * Creates an array with all the possible deletion values for the wanted difficulty_level
+ * @param node root-node of the tree
+ * @param difficulty_level Level of the difficulty
+ * - 0: no restructure,
+ * - 1: one restructure,
+ * - 2: two restructures
+ * @returns Array with all possible deletion values for the wanted difficulty
+ */
 export function createDeletionArray(node: TreeNode, difficulty_level: number): number[] {
   const excistingNodes: number[] = [];
   getExistingNodes(node, excistingNodes);

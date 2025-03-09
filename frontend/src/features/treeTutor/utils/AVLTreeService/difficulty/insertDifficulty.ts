@@ -4,7 +4,15 @@ import { createNode } from "../changingTree/insertAndDelete";
 import { updateAllHeightsRecursive } from "../updateTreeAttributes";
 import { MAX_VALUE } from "@/features/treeTutor/constants";
 
-function binaryTreeInsertion(
+/**
+ * Executes basic sorted binary tree insertion on the given tree for the given value
+ * @param node root-node of the tree
+ * @param value value to be inserted
+ * @param depth depth of the current node (for root-node = 0)
+ * @param position positioning of the current node (for root-node = "root")
+ * @returns the inserted node
+ */
+function binaryTreeInsertion( // TODO: add default values for depth and position
   node: TreeNode | null,
   value: number,
   depth: number,
@@ -24,6 +32,11 @@ function binaryTreeInsertion(
   return node;
 }
 
+/**
+ * Creates an array without the nodes already present in the tree by using the set operator difference
+ * @param node root-node of the tree
+ * @returns array without the nodes already present in the tree
+ */
 function arrayWithoutExistingNodes(node: TreeNode): number[] {
   const allNumbers: number[] = Array.from({ length: MAX_VALUE }, (_, i) => i + 1); // TODO: Test if 1-99
   console.log("AllNumbers: ", allNumbers);
@@ -39,6 +52,15 @@ function arrayWithoutExistingNodes(node: TreeNode): number[] {
   return diff;
 }
 
+/**
+ * Creates an array with all the possible insertion values for the wanted difficulty_level
+ * @param node root-node of the tree
+ * @param difficulty_level Level of the difficulty
+ * - 0: no restructure,
+ * - 1: one restructure,
+ * - 2: two restructures
+ * @returns Array with all possible insertion values for the wanted difficulty
+ */
 export function createInsertionArray(node: TreeNode, difficulty_level: number): number[] {
   const availableInserts: number[] = arrayWithoutExistingNodes(node);
   const matchingInserts: number[] = [];
