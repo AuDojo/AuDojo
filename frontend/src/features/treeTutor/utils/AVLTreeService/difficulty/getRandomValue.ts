@@ -114,5 +114,5 @@ export function getRandomValue(node: TreeNode, difficulty_level: DifficultyLevel
 export function resetArrays() {
   deletion_arrays = [];
   insertion_arrays = [];
-  first_time = false;
+  first_time = true;
 }
