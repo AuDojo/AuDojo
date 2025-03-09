@@ -1,8 +1,8 @@
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 import { BalanceIndicator, TreeStep } from "../../../types";
-import { updateHeightAndBalanceFactor, updateDepth, updateAllHeightsRecursive } from "../updateTreeAttributes";
-import { balanceNode } from "./rotateAndBalanceNode";
 import { addSteps } from "../excerciseUtils";
+import { updateAllHeightsRecursive, updateDepth, updateHeightAndBalanceFactor } from "../updateTreeAttributes";
+import { balanceNode } from "./rotateAndBalanceNode";
 
 /**
  * Helper function that facilitates node creation required in insertAVL
@@ -143,7 +143,7 @@ export function deleteAVLTracker(root: TreeNode | null, value: number, steps: Tr
           changeOccured = false;
         }
       }
-      console.log("subtree operation", subTree.operation);
+      // console.log("subtree operation", subTree.operation);
     } else if (val > node.value) {
       const oldRight = node.children[1];
       const subTree = deleteAVL(node.children[1], val);
@@ -158,7 +158,7 @@ export function deleteAVLTracker(root: TreeNode | null, value: number, steps: Tr
           changeOccured = false;
         }
       }
-      console.log("subtree operation", subTree.operation);
+      // console.log("subtree operation", subTree.operation);
     } else {
       // Node to be deleted found
       // Case 1: Leaf node

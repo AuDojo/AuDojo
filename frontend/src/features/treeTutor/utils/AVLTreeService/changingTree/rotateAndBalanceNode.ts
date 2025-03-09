@@ -1,8 +1,8 @@
+import { BalanceIndicator } from "../../../types";
 import { TreeNode } from "../../treeUtils";
 import { getBalanceFactor } from "../getters";
-import { BalanceIndicator } from "../../../types";
 import { printTree } from "../tools";
-import { updateHeightAndBalanceFactor, updateDepth, updateAllHeightsRecursive } from "../updateTreeAttributes";
+import { updateAllHeightsRecursive, updateDepth, updateHeightAndBalanceFactor } from "../updateTreeAttributes";
 
 /**
  * Before Rotation                After Rotation
@@ -17,7 +17,7 @@ import { updateHeightAndBalanceFactor, updateDepth, updateAllHeightsRecursive } 
  * @returns  rotated subtree
  */
 function rightRotate(y: TreeNode): TreeNode {
-  console.log("======= Right rotation at", y.value, "=========");
+  // console.log("======= Right rotation at", y.value, "=========");
   if (!y.children[0]) return y;
 
   const x = y.children[0];

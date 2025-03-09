@@ -90,13 +90,13 @@ const TreeTutor = () => {
 
   // const handleDifficultyChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
   //   const userDifficulty = Number(event.target.value);
-  //   console.log("userDiff", userDifficulty);
+  //   // console.log("userDiff", userDifficulty);
 
   //   setRefValue(difficultyRef, userDifficulty);
   // };
 
   const onSubmit = useDebounceCallback((data: FormInput) => {
-    console.log("data: ", data);
+    // console.log("data: ", data);
     handlePracticeInsert(data);
   }, 100);
   const debouncedHandleSubmit = useDebounceCallback(handleSubmit, 100);

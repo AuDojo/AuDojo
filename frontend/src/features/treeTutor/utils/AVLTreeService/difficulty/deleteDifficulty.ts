@@ -1,7 +1,7 @@
-import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
-import { getExistingNodes, createCopyOfTree, getNumberOfRotations } from "./difficultyTools";
-import { updateAllHeightsRecursive } from "../updateTreeAttributes";
 import { DifficultyLevel } from "@/features/treeTutor/types";
+import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
+import { updateAllHeightsRecursive } from "../updateTreeAttributes";
+import { createCopyOfTree, getExistingNodes, getNumberOfRotations } from "./difficultyTools";
 
 /**
  * Gets the next bigger (successor) node of the given node
@@ -68,17 +68,17 @@ function binaryTreeDelition(node: TreeNode | null, value: number): TreeNode | nu
 export function createDeletionArray(node: TreeNode, difficulty_level: DifficultyLevel): number[] {
   const excistingNodes: number[] = [];
   getExistingNodes(node, excistingNodes);
-  // console.log("ExistingNodes: ", excistingNodes);
+  // // console.log("ExistingNodes: ", excistingNodes);
   const matchingDeletions: number[] = [];
 
   for (const value of excistingNodes) {
-    console.log("Value to Delete: ", value);
+    // console.log("Value to Delete: ", value);
     const node_copy = createCopyOfTree(node);
     if (node_copy !== null) {
       const deleted_node: TreeNode | null = binaryTreeDelition(node_copy, value);
       const number_rotations = getNumberOfRotations(node_copy, deleted_node);
 
-      console.log("Number Rotations: ", number_rotations);
+      // console.log("Number Rotations: ", number_rotations);
 
       updateAllHeightsRecursive(node_copy);
       if (number_rotations === difficulty_level) {

@@ -4,7 +4,7 @@ import { createMessage, sendMail } from "./mail";
 const router = Router();
 
 router.post("/", (req: Request, res: Response) => {
-  console.log("---------- Mail wird gesendet ----------");
+  // // console.log("---------- Mail wird gesendet ----------");
 
   let subject = req.body.subject;
   let text = createMessage(req);
@@ -15,7 +15,7 @@ router.post("/", (req: Request, res: Response) => {
     return;
   } else {
     sendMail(process.env.MAIL_USERNAME, process.env.MAIL_USERNAME, subject, text);
-    console.log("Geklappt!!");
+    // // console.log("Geklappt!!");
   }
 
   res.status(200).send("Geklappt"); //TODO: Error handeling if mail could not be send

@@ -132,7 +132,7 @@ export class SortProcessList implements SortingData {
       selectionElements: this.selectionElements,
     };
 
-    console.log(obj);
+    // // console.log(obj);
 
     return JSON.stringify(obj);
   }

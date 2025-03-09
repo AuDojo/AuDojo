@@ -206,7 +206,7 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
           .attr("position", "left")
           .on("click", function (event) {
             event.stopPropagation();
-            console.log(` ID from on click Event: ${nodeId}`);
+            // // console.log(` ID from on click Event: ${nodeId}`);
             handleAddNode(nodeId, "left");
           });
 
@@ -225,7 +225,7 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
           .attr("position", "right")
           .on("click", function (event) {
             event.stopPropagation();
-            console.log(` ID from on click Event: ${nodeId}`);
+            // // console.log(` ID from on click Event: ${nodeId}`);
             handleAddNode(nodeId, "right");
           });
         rightGroup.append("text").text("+");
@@ -235,7 +235,7 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
 
   return (
     // <div className={styles.treeTemplateContainer}>
-      <svg className={styles.svg} ref={svgRef}></svg>
+    <svg className={styles.svg} ref={svgRef}></svg>
     // </div>
   );
 };

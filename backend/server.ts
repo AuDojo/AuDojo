@@ -14,7 +14,7 @@ const mailRouting = require("./Mail/mailRouting");
 // make express deliver static frontend pages
 if (env === "production") {
   const frontendPath = path.join(__dirname, "..", "..", "frontend");
-  // console.log("produciton is true");
+  // // console.log("produciton is true");
   app.use(base_url, express.static(path.join(frontendPath, "dist")));
 
   app.get(`${base_url}/*`, (req: Request, res: Response) => {
@@ -30,5 +30,5 @@ app.use(`${base_url}/api/mail`, mailRouting);
 
 // Start server
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  // // console.log(`Server is running on port ${port}`);
 });

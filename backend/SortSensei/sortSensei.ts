@@ -20,7 +20,7 @@ export class SortSensei {
   static createSortProcessList(list: number[], sortType: SortType): string {
     this.#processList = new SortProcessList(list, sortType);
 
-    console.log("---------- Start with sorting ----------");
+    // // console.log("---------- Start with sorting ----------");
     switch (sortType) {
       case SortType.MergeSort:
         this.#mergeSort(list, 0, list.length - 1);
@@ -182,7 +182,7 @@ export class SortSensei {
    * Logs the sorted list to the console.
    */
   static test(list: number[], sortMode: SortType) {
-    console.log(this.createSortProcessList(list, sortMode));
+    // // console.log(this.createSortProcessList(list, sortMode));
   }
 }
 

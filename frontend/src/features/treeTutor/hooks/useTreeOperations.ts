@@ -43,7 +43,7 @@ export function useTreeOperations(initialTreeData: TreeNode, resetTemplates: () 
 
   const generateDeleteExercise = (input?: number) => {
     // helper to get all node values from the tree
-    console.log(difficultyRef);
+    // // console.log(difficultyRef);
 
     const validInput = input && values.includes(input);
     if (values.length > 0) {
@@ -72,7 +72,7 @@ export function useTreeOperations(initialTreeData: TreeNode, resetTemplates: () 
     } else {
       updatedSteps = generateDeleteSolution(treeData, targetValue);
     }
-    console.log(updatedSteps);
+    // // console.log(updatedSteps);
     // Create a simplified solution array (you can adjust as needed)
     const sol: TreeStep[] = [];
     sol[0] = { operation: "Initial Data", tree: treeData, successorDelete: false };

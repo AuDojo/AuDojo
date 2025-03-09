@@ -41,8 +41,8 @@ const AVLTree = () => {
 
     treeLayout(root);
 
-    // console.log(root.links()); // contains {source_node, target_node} pairs
-    // console.log(root.descendants()); // arrays of nodes
+    // // console.log(root.links()); // contains {source_node, target_node} pairs
+    // // console.log(root.descendants()); // arrays of nodes
 
     // function that, when called with link data, produces a valid SVG path string
     const linkGenerator = link<HierarchyLink<TreeNode>, HierarchyNode<TreeNode>>(curveLinear)

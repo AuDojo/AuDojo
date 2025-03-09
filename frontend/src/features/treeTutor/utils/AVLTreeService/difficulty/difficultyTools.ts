@@ -156,7 +156,7 @@ function findUnbalancedNode(node: TreeNode | null, unbalanced_nodes: TreeNode[])
 export function getNumberOfRotations(node: TreeNode, rootRef: TreeNode | null): number {
   const unbalanced_nodes: TreeNode[] = [];
   findUnbalancedNode(node, unbalanced_nodes);
-  // console.log("Unbalanced Nodes: ", unbalanced_nodes);
+  // // console.log("Unbalanced Nodes: ", unbalanced_nodes);
 
   let unbalanced_node: TreeNode | null = null;
 
@@ -168,7 +168,7 @@ export function getNumberOfRotations(node: TreeNode, rootRef: TreeNode | null): 
       unbalanced_node = element;
     }
   }
-  // console.log("Unbalanced Node: ", unbalanced_node);
+  // // console.log("Unbalanced Node: ", unbalanced_node);
 
   if (!unbalanced_node) return 0; // NO
   if (!rootRef) return 0; // NO

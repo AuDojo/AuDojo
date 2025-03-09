@@ -1,7 +1,7 @@
+import { BalanceIndicator, TreeStep } from "../../types";
 import { TreeNode } from "../treeUtils";
 import { deleteAVLTracker, insertAVLTracker } from "./changingTree/insertAndDelete";
 import { getBalanceFactor } from "./getters";
-import { BalanceIndicator, TreeStep } from "../../types";
 import { updateAllHeightsRecursive } from "./updateTreeAttributes";
 
 /**
@@ -74,28 +74,28 @@ export function generateDeleteSolution(root: TreeNode, value: number): TreeStep[
   const steps: TreeStep[] = [];
   const clonedRoot = structuredClone(root);
 
-  console.log("==== Starting Deletion Practive for value", value, "====");
+  // // console.log("==== Starting Deletion Practive for value", value, "====");
   deleteAVLTracker(clonedRoot, value, steps);
   /*
-  console.log(`===== PRINTING ${steps.length} SOLUTION STEPS =====`);
+  // console.log(`===== PRINTING ${steps.length} SOLUTION STEPS =====`);
   steps.forEach((step, index) => {
-    console.log(`Step ${index + 1}: ${step.operation}`);
+    // console.log(`Step ${index + 1}: ${step.operation}`);
     if (step.tree) {
-      console.log(`Tree structure at step ${index + 1}:`);
+      // console.log(`Tree structure at step ${index + 1}:`);
       printTree(step.tree);
     } else {
-      console.log(`No tree data available for step ${index + 1}`);
+      // console.log(`No tree data available for step ${index + 1}`);
     }
-    console.log("-----------------------------------");
+    // console.log("-----------------------------------");
   });
   */
-  console.log("==== Ending Deletion Practive for value", value, "====");
+  // console.log("==== Ending Deletion Practive for value", value, "====");
   return steps;
 }
 
 export function addSteps(steps: TreeStep[] | null, subTree: BalanceIndicator, rootRef: { current: TreeNode | null }) {
   if (steps) {
-    console.log("==== Hello from steps ====");
+    // console.log("==== Hello from steps ====");
     switch (subTree.operation) {
       case "LL":
         steps.push({
@@ -136,7 +136,7 @@ export function addSteps(steps: TreeStep[] | null, subTree: BalanceIndicator, ro
         });
         break;
       default:
-        console.log("default triggered");
+      // console.log("default triggered");
     }
   }
 }
