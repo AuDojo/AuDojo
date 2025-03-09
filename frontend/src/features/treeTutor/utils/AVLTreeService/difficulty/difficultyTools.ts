@@ -126,18 +126,18 @@ export function getExistingNodes(node: TreeNode | null, excistingNodes: number[]
 }
 
 export function getNumberOfRotations(node: TreeNode, rootRef: TreeNode | null): number {
-  if (!node) return 0;
-  if (!rootRef) return 0;
+  if (!node) return 0; // NO
+  if (!rootRef) return 0; // NO
 
   const balance = getBalanceFactor(node);
 
-  if (balance >= -1 && balance <= 1) return 0;
+  if (balance >= -1 && balance <= 1) return 0; // NO
 
-  if (balance > 1 && node.children[0] && getBalanceFactor(node.children[0]) >= 0) return 1;
-  if (balance < -1 && node.children[1] && getBalanceFactor(node.children[1]) <= 0) return 1;
+  if (balance > 1 && node.children[0] && getBalanceFactor(node.children[0]) >= 0) return 1; // LL
+  if (balance < -1 && node.children[1] && getBalanceFactor(node.children[1]) <= 0) return 1; // RR
 
-  if (balance > 1 && node.children[0] && getBalanceFactor(node.children[0]) < 0) return 2;
-  if (balance < -1 && node.children[1] && getBalanceFactor(node.children[1]) > 0) return 2;
+  if (balance > 1 && node.children[0] && getBalanceFactor(node.children[0]) < 0) return 2; // LR
+  if (balance < -1 && node.children[1] && getBalanceFactor(node.children[1]) > 0) return 2; // RL
 
-  return 0;
+  return 0; // NO
 }
