@@ -4,6 +4,8 @@
   align-items: center;
   flex-direction: column;
   color: var(--main-darkblue);
+
+  margin-top: 30px;
 }
 
 .generalContainer p {
