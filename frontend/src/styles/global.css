@@ -11,6 +11,7 @@
   /* z-index layers */
   --top-layer: 1000;
   --overlap-layer: calc(var(--top-layer) - 2);
+  --tooltip-layer: 200;
   --header-layer: 100;
 
   --main-red: rgb(190, 30, 60);

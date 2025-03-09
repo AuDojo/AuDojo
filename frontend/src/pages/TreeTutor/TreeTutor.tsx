@@ -64,8 +64,8 @@ const TreeTutor = () => {
   };
 
   // Hotkeys
-  useHotkeys(HOTKEYS.treeTutor.prevTemplate, goPrevTemplate);
-  useHotkeys(HOTKEYS.treeTutor.nextTemplate, goNextTemplate);
+  useHotkeys(HOTKEYS.treeTutor.prevTemplate, goPrevTemplate, { preventDefault: true });
+  useHotkeys(HOTKEYS.treeTutor.nextTemplate, goNextTemplate, { preventDefault: true });
   const insertRef = useHotkeys(HOTKEYS.treeTutor.submit, handlePracticeInsert, {
     preventDefault: true,
     enableOnFormTags: ["input"],

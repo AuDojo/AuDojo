@@ -8,9 +8,11 @@ interface ArrowButtonProps {
 }
 
 const ArrowButton = ({ direction, onClick, disabled }: ArrowButtonProps) => {
+  const tooltipContent = direction === "left" ? `Last Template [←]` : `Next Template [→]`;
+
   return (
     <div className={styles["arrow-button-container"]}>
-      <button type="button" disabled={disabled} onClick={onClick}>
+      <button type="button" disabled={disabled} onClick={onClick} aria-label={tooltipContent} data-tooltip="top 1000">
         {direction === "left" ? <FaChevronLeft /> : <FaChevronRight />}
       </button>
     </div>
