@@ -130,7 +130,7 @@
   align-items: stretch;
 
   margin-left: 20px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .submit,
