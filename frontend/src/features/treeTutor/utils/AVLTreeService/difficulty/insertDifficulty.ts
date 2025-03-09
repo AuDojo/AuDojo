@@ -5,7 +5,6 @@ import { updateAllHeightsRecursive } from "../updateTreeAttributes";
 import { MAX_VALUE } from "@/features/treeTutor/constants";
 
 function arrayWithoutExistingNodes(node: TreeNode): number[] {
-  const allNumbers: number[] = Array.from({ length: 10 }, (_, i) => i + 1);
   const allNumbers: number[] = Array.from({ length: MAX_VALUE }, (_, i) => i + 1); // TODO: Test if 1-99
   const excistingNodes: number[] = [];
   getExistingNodes(node, excistingNodes);
