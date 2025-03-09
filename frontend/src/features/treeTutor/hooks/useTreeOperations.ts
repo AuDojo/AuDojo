@@ -49,11 +49,11 @@ export function useTreeOperations(initialTreeData: TreeNode, resetTemplates: () 
   };
 
   const generateRandomTree = () => {
-    resetArrays();
     resetTemplates();
     setShowingSolution(false);
     setSolutionSteps([]);
     setTargetValue(null);
+    resetArrays();
   };
 
   const showSolution = (treeData: TreeNode) => {
