@@ -11,10 +11,10 @@ import { generateAVL } from "@/features/treeTutor/utils/AVLTreeService/excercise
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 import { mergeRefs } from "@/utils/refUtils";
 import { useRef } from "react";
+import { useForm } from "react-hook-form";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useDebounceCallback, useLocalStorage } from "usehooks-ts";
 import styles from "./TreeTutor.module.css";
-import { useForm } from "react-hook-form";
 
 export interface FormInput {
   insertInput: string;
@@ -79,7 +79,7 @@ const TreeTutor = () => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.target.value = event.target.value.replace(/[^0-9]/g, "");
     if (getTreeValues(initialTreeData).includes(Number(event.target.value))) {
-      setError("insertInput", { message: "Value already exists in the tree" });
+      setError("insertInput", { message: "Value already exists" });
     }
     setValue("insertInput", event.target.value);
   };
@@ -193,8 +193,24 @@ const TreeTutor = () => {
         </section>
 
         <div className={styles.controls}>
-          {errors.insertInput && <div className={styles.insertErrorMsg}>{errors.insertInput.message}</div>}
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <label htmlFor="difficulty-select" className={styles.labelDifficulty}>
+            Difficulty:
+          </label>
+          <select name="difficulty" id="difficulty-select" className={styles.selectDifficulty}>
+            <option selected value="random">
+              random
+            </option>
+            <option>1. easy</option>
+            <option>2. medium</option>
+            <option>3. hard</option>
+          </select>
+
+          <form onSubmit={handleSubmit(onSubmit)} className={styles.insertForm}>
+            {errors.insertInput && (
+              <div className={styles.insertErrorMsg} role="alert">
+                {errors.insertInput.message}
+              </div>
+            )}
             <button type="submit" className={styles.practiceInsertButton}>
               Insert :
             </button>
@@ -230,7 +246,7 @@ const TreeTutor = () => {
           </select>
 
           <button type="button" className={styles.randomModeButton} onClick={generateRandomTree}>
-            New Random Tree
+            Random Tree
           </button>
 
           <button

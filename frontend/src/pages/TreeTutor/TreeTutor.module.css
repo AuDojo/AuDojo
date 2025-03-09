@@ -13,7 +13,7 @@
   width: 100%;
   min-width: 400px;
   /* gap: 20px; */
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 .treeContainer {
@@ -124,16 +124,15 @@
   padding: 8px 16px;
   font-size: 16px;
   font-weight: 800;
+  color: var(--main-red);
   border: 1px solid var(--main-red);
   margin-left: 20px;
 }
 .practiceInsertButton,
 .practiceDeleteButton {
-  color: var(--main-red);
   background-color: var(--main-lightpink);
 }
 .randomModeButton {
-  color: var(--main-red);
   background-color: white;
 }
 .submit {
@@ -154,6 +153,7 @@
 }
 
 .valueInput,
+.selectDifficulty,
 .selectOption {
   margin: 0 5px;
   font-size: 13px;
@@ -166,7 +166,6 @@
   background-color: white;
   border-radius: 3px;
   color: var(--main-darkblue);
-  cursor: pointer;
 }
 
 .selectOption:hover,
@@ -188,10 +187,28 @@
 
 .selectOption {
   width: 80px;
+  cursor: pointer;
+}
+
+.insertForm {
+  position: relative;
+}
+
+.selectDifficulty {
+  width: 86px;
+  cursor: pointer;
+}
+.labelDifficulty {
+  color: var(--main-red);
+  font-weight: 600;
 }
 
 .insertErrorMsg {
+  position: absolute;
+  top: -50%;
+  left: 20%;
+  bottom: -50%;
   width: 130px;
   color: red;
-  font-size: 14px;
+  font-size: 0.8rem;
 }
