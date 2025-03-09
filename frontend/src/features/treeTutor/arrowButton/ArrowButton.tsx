@@ -12,7 +12,7 @@ const ArrowButton = ({ direction, onClick, disabled }: ArrowButtonProps) => {
 
   return (
     <div className={styles["arrow-button-container"]}>
-      <button type="button" disabled={disabled} onClick={onClick} aria-label={tooltipContent} data-tooltip="top 1000">
+      <button type="button" disabled={disabled} onClick={onClick} aria-label={tooltipContent} data-tooltip="top 500">
         {direction === "left" ? <FaChevronLeft /> : <FaChevronRight />}
       </button>
     </div>
