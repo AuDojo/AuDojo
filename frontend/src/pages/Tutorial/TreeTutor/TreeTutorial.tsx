@@ -2,18 +2,35 @@ import { TreeVisualizer } from "@/features/tutorial/components/treeVisualizer";
 import { Tree, TreeSteps } from "@/features/tutorial/types";
 import styles from "./TreeTutorial.module.css";
 
+const RED = "rgb(248, 83, 152)";
+
 const t1: Tree = {
   value: 1,
-  children: [{ value: 2, children: [null, null], color: "white", position: "left" }, null],
-  color: "white",
-  position: "root",
+  children: [{ value: 2 }, { value: null }],
+  color: RED,
+};
+
+const t3: Tree = {
+  value: 1,
+  children: [t1, { value: 3 }],
+};
+
+const t4: Tree = {
+  value: 1,
+  children: [t3, t3],
+};
+
+const t5: Tree = {
+  value: 1,
+  children: [
+    { value: 2, children: [{ value: null }, { value: 4 }] },
+    { value: 3, children: [{ value: 5 }, { value: null }] },
+  ],
 };
 
 const t2: Tree = {
   value: 1,
-  children: [null, { value: 3, children: [null, null], color: "white", position: "right" }],
-  color: "white",
-  position: "root",
+  children: [t5, t4],
 };
 
 const data: TreeSteps = {
@@ -25,6 +42,18 @@ const data: TreeSteps = {
     {
       description: "blah blah2",
       tree: t2,
+    },
+    {
+      description: "blah blah3",
+      tree: t3,
+    },
+    {
+      description: "blah blah4",
+      tree: t4,
+    },
+    {
+      description: "blah blah5",
+      tree: t5,
     },
   ],
 };

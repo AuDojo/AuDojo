@@ -4,11 +4,10 @@ export interface Step {
 }
 
 export interface Tree {
-  value: number;
-  children: [Tree | null, Tree | null];
+  value: number | null;
+  children?: [Tree, Tree];
   balanceFactor?: number;
-  color: String;
-  position: String;
+  color?: String;
 }
 
 export interface TreeSteps {
