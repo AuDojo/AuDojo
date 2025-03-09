@@ -12,6 +12,10 @@ let deletion_arrays: number[][] = [];
 let insertion_arrays: number[][] = [];
 let first_time = true;
 
+/**
+ * creates all three difficulty level array for deletion and insertion
+ * @param node root-node of the tree
+ */
 export function createAllDifficultyArrays(node: TreeNode) {
   for (let index = 0; index < 3; index++) {
     const difficulty_level: DifficultyLevel = turnNumberIntoDifficulty(index);
@@ -23,6 +27,13 @@ export function createAllDifficultyArrays(node: TreeNode) {
   }
 }
 
+/**
+ * Getter for the array with the values for the wanted difficulty_level and Operation-Type
+ * @param node root-node of the tree
+ * @param difficulty_level Level of the wanted difficulty
+ * @param type "DELETE" or "INSERT"
+ * @returns array with all values for the wanted difficulty_level and Operation-Type
+ */
 export function getDifficultyArray(node: TreeNode, difficulty_level: DifficultyLevel, type: OperationType): number[] {
   if (difficulty_level === null) {
     return [];
