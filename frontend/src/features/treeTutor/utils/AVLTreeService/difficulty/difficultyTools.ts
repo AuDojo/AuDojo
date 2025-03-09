@@ -3,11 +3,27 @@ import { getBalanceFactor } from "../getters";
 import { createInsertionArray } from "./insertDifficulty";
 import { createDeletionArray } from "./deleteDifficulty";
 
+let difficulty_array: number[] = [];
+let first_time = true;
 export function getRandomInt(max: number) {
   return Math.floor(Math.random() * max);
 }
 
 export function createArray(node: TreeNode, difficulty_level: number, type: "deletion" | "insertion"): number[] {
+  export function getRandomValue(node: TreeNode, difficulty_level: number, type: "deletion" | "insertion") {
+    if (first_time) {
+      console.log("-------- Difficulty Level Array --------");
+      console.log(difficulty_array);
+
+      difficulty_array = createArray(node, difficulty_level, type);
+      first_time = false;
+    }
+    const random_number = getRandomInt(difficulty_array.length);
+    console.log("-------- Random Number Generated --------");
+
+    console.log(difficulty_array[random_number]);
+    return difficulty_array[random_number];
+  }
   if (difficulty_level == -1) {
     difficulty_level = getRandomInt(3);
   }
