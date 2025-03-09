@@ -1,5 +1,5 @@
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
-import { BalanceIndicator, TreeStep } from "../types";
+import { BalanceIndicator, TreeStep } from "../../../types";
 import { updateHeightAndBalanceFactor, updateDepth, updateAllHeightsRecursive } from "../updateTreeAttributes";
 import { balanceNode } from "./rotateAndBalanceNode";
 import { addSteps } from "../excerciseUtils";
@@ -12,7 +12,7 @@ import { addSteps } from "../excerciseUtils";
  * @param position
  * @returns new Node with default values
  */
-function createNode(value: number, depth: number, position: "root" | "left" | "right"): TreeNode {
+export function createNode(value: number, depth: number, position: "root" | "left" | "right"): TreeNode {
   return {
     id: crypto.randomUUID(),
     value,

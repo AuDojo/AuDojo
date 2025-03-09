@@ -42,6 +42,8 @@ const TreeTutor = () => {
     targetValue,
     showingSolution,
     solution,
+    difficulty,
+    setDifficulty,
     generateInsertExercise,
     generateDeleteExercise,
     generateRandomTree,
