@@ -16,3 +16,7 @@ export interface BalanceIndicator {
   copy: TreeNode | null;
   operation: "RR" | "LL" | "RL" | "LR" | "NO";
 }
+
+export type DifficultyLevel = -1 | 0 | 1 | 2 | null;
+
+export type OperationType = "DELETE" | "INSERT";

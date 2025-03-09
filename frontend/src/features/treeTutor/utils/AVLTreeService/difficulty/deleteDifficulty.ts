@@ -1,6 +1,7 @@
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 import { getExistingNodes, createCopyOfTree, getNumberOfRotations } from "./difficultyTools";
 import { updateAllHeightsRecursive } from "../updateTreeAttributes";
+import { DifficultyLevel } from "@/features/treeTutor/types";
 
 /**
  * Gets the next bigger (successor) node of the given node
@@ -64,7 +65,7 @@ function binaryTreeDelition(node: TreeNode | null, value: number): TreeNode | nu
  * - 2: two restructures
  * @returns Array with all possible deletion values for the wanted difficulty
  */
-export function createDeletionArray(node: TreeNode, difficulty_level: number): number[] {
+export function createDeletionArray(node: TreeNode, difficulty_level: DifficultyLevel): number[] {
   const excistingNodes: number[] = [];
   getExistingNodes(node, excistingNodes);
   console.log("ExistingNodes: ", excistingNodes);

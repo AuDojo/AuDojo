@@ -3,6 +3,7 @@ import { getExistingNodes, createCopyOfTree, getNumberOfRotations } from "./diff
 import { createNode } from "../changingTree/insertAndDelete";
 import { updateAllHeightsRecursive } from "../updateTreeAttributes";
 import { MAX_VALUE } from "@/features/treeTutor/constants";
+import { DifficultyLevel } from "@/features/treeTutor/types";
 
 /**
  * Executes basic sorted binary tree insertion on the given tree for the given value
@@ -61,7 +62,7 @@ function arrayWithoutExistingNodes(node: TreeNode): number[] {
  * - 2: two restructures
  * @returns Array with all possible insertion values for the wanted difficulty
  */
-export function createInsertionArray(node: TreeNode, difficulty_level: number): number[] {
+export function createInsertionArray(node: TreeNode, difficulty_level: DifficultyLevel): number[] {
   const availableInserts: number[] = arrayWithoutExistingNodes(node);
   const matchingInserts: number[] = [];
 

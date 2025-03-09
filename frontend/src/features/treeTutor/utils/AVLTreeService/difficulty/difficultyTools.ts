@@ -2,14 +2,58 @@ import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 import { getBalanceFactor } from "../getters";
 import { createInsertionArray } from "./insertDifficulty";
 import { createDeletionArray } from "./deleteDifficulty";
+import { DifficultyLevel, OperationType } from "@/features/treeTutor/types";
 
 /**
  * Creates a random number between 1 and max
  * @param max Maximum possible value
  * @returns random number
  */
-export function getRandomInt(max: number) {
+export function getRandomInt(max: number): number {
   return Math.floor(Math.random() * max);
+}
+
+export function turnNumberIntoDifficulty(num: number): DifficultyLevel {
+  let difficulty_level: DifficultyLevel = null;
+  switch (num) {
+    // case -1:
+    //   difficulty_level = turnNumberIntoDifficulty(getRandomInt(3));
+    //   break;
+    case 0:
+      difficulty_level = 0;
+      break;
+    case 1:
+      difficulty_level = 1;
+      break;
+    case 2:
+      difficulty_level = 2;
+      break;
+
+    default:
+      difficulty_level = null;
+      break;
+  }
+  return difficulty_level;
+}
+
+export function turnDifficultyIntoNumber(difficulty_level: DifficultyLevel): number {
+  let num: number;
+  switch (difficulty_level) {
+    case 0:
+      num = 0;
+      break;
+    case 1:
+      num = 1;
+      break;
+    case 2:
+      num = 2;
+      break;
+
+    default:
+      num = -1;
+      break;
+  }
+  return num;
 }
 
 /**
@@ -20,25 +64,26 @@ export function getRandomInt(max: number) {
  * - 0: no restructure,
  * - 1: one restructure,
  * - 2: two restructures
- * @param type "deletion" or "insertion"
+ * @param type "DELETE" or "INSERT"
  * @returns Array with all values for the wanted difficulty and type
  */
 export function createDifficultyArray(
   node: TreeNode,
-  difficulty_level: number,
-  type: "deletion" | "insertion"
+  difficulty_level: DifficultyLevel,
+  type: OperationType
 ): number[] {
   // Choose a randome difficulty
   if (difficulty_level == -1) {
-    difficulty_level = getRandomInt(3);
+    difficulty_level = turnNumberIntoDifficulty(getRandomInt(3));
   }
+
   let difficulty_array: number[] = [];
 
   switch (type) {
-    case "deletion":
+    case "DELETE":
       difficulty_array = createDeletionArray(node, difficulty_level);
       break;
-    case "insertion":
+    case "INSERT":
       difficulty_array = createInsertionArray(node, difficulty_level);
       break;
 
