@@ -12,14 +12,6 @@ let deletion_arrays: number[][] = [];
 let insertion_arrays: number[][] = [];
 let first_time = true;
 
-// let current_difficulty_level: DifficultyLevel = null;
-
-// let deletion_array: number[] = [];
-// let first_time_deletion = true;
-
-// let insertion_array: number[] = [];
-// let first_time_insertion = true;
-
 export function createAllDifficultyArrays(node: TreeNode) {
   for (let index = 0; index < 3; index++) {
     const difficulty_level: DifficultyLevel = turnNumberIntoDifficulty(index);
@@ -69,16 +61,6 @@ export function getRandomValue(node: TreeNode, difficulty_level: DifficultyLevel
     case "DELETE": {
       console.log("======== Start Deletion ========");
 
-      // // Created the deletion_array when it's not already existing
-      // if (first_time_deletion || current_difficulty_level !== difficulty_level) {
-      //   deletion_array = createDifficultyArray(node, difficulty_level, type);
-      //   first_time_deletion = false;
-      //   current_difficulty_level = difficulty_level;
-
-      //   console.log("======== Difficulty Level Array ========");
-      //   console.log("Array: ", deletion_array);
-      // }
-
       const index: number = turnDifficultyIntoNumber(difficulty_level);
       const random_number = getRandomInt(deletion_arrays[index].length);
 
@@ -92,15 +74,6 @@ export function getRandomValue(node: TreeNode, difficulty_level: DifficultyLevel
 
     case "INSERT": {
       console.log("======== Start Insertion ========");
-
-      // // Created the insertion_array when it's not already existing
-      // if (first_time_insertion) {
-      //   insertion_array = createDifficultyArray(node, difficulty_level, type);
-      //   first_time_insertion = false;
-
-      //   console.log("======== Difficulty Level Array ========");
-      //   console.log("Array: ", insertion_array);
-      // }
 
       const index: number = turnDifficultyIntoNumber(difficulty_level);
       const random_number = getRandomInt(insertion_arrays[index].length);
@@ -128,11 +101,6 @@ export function getRandomValue(node: TreeNode, difficulty_level: DifficultyLevel
  * - when the difficulty level gets changed
  */
 export function resetArrays() {
-  // deletion_array = [];
-  // first_time_deletion = true;
-  // insertion_array = [];
-  // first_time_insertion = true;
-
   deletion_arrays = [];
   insertion_arrays = [];
   first_time = false;
