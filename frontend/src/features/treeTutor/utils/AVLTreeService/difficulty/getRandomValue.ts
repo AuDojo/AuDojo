@@ -16,7 +16,7 @@ let first_time = true;
  * creates all three difficulty level array for deletion and insertion
  * @param node root-node of the tree
  */
-export function createAllDifficultyArrays(node: TreeNode) {
+function createAllDifficultyArrays(node: TreeNode) {
   for (let index = 0; index < 3; index++) {
     const difficulty_level: DifficultyLevel = turnNumberIntoDifficulty(index);
     deletion_arrays[index] = createDifficultyArray(node, difficulty_level, "DELETE");
@@ -62,36 +62,39 @@ export function getDifficultyArray(node: TreeNode, difficulty_level: DifficultyL
 export function getRandomValue(node: TreeNode, difficulty_level: DifficultyLevel, type: OperationType): number {
   if (first_time) {
     createAllDifficultyArrays(node);
+    console.log("========== All Arrays ==========");
     console.log("All Deletion Arrays: ", deletion_arrays);
     console.log("All Insertion Arrays: ", insertion_arrays);
+    console.log("================================");
 
     first_time = false;
   }
 
   switch (type) {
     case "DELETE": {
-      console.log("======== Start Deletion ========");
+      // console.log("======== Start Deletion ========");
 
       const index: number = turnDifficultyIntoNumber(difficulty_level);
       const random_number = getRandomInt(deletion_arrays[index].length);
 
-      console.log("======== Random Number Generated ========");
-      console.log("value", deletion_arrays[index][random_number]);
-      console.log("================================");
+      // console.log("======== Random Number Generated ========");
+      // console.log("value", deletion_arrays[index][random_number]);
+      // console.log("================================");
 
       return deletion_arrays[index][random_number];
       break;
     }
 
     case "INSERT": {
-      console.log("======== Start Insertion ========");
+      // console.log("======== Start Insertion ========");
 
       const index: number = turnDifficultyIntoNumber(difficulty_level);
+      console.log("Index: ", index);
       const random_number = getRandomInt(insertion_arrays[index].length);
 
-      console.log("======== Random Number Generated ========");
-      console.log("value", insertion_arrays[index][random_number]);
-      console.log("================================");
+      // console.log("======== Random Number Generated ========");
+      // console.log("value", insertion_arrays[index][random_number]);
+      // console.log("================================");
 
       return insertion_arrays[index][random_number];
       break;

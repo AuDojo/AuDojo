@@ -4,6 +4,7 @@ import { createNode } from "../changingTree/insertAndDelete";
 import { updateAllHeightsRecursive } from "../updateTreeAttributes";
 import { MAX_VALUE } from "@/features/treeTutor/constants";
 import { DifficultyLevel } from "@/features/treeTutor/types";
+// import { printTree } from "../tools";
 
 /**
  * Executes basic sorted binary tree insertion on the given tree for the given value
@@ -39,11 +40,11 @@ function binaryTreeInsertion( // TODO: add default values for depth and position
  * @returns array without the nodes already present in the tree
  */
 function arrayWithoutExistingNodes(node: TreeNode): number[] {
-  const allNumbers: number[] = Array.from({ length: MAX_VALUE }, (_, i) => i + 1); // TODO: Test if 1-99
-  console.log("AllNumbers: ", allNumbers);
+  const allNumbers: number[] = Array.from({ length: MAX_VALUE }, (_, i) => i + 1);
+  // console.log("AllNumbers: ", allNumbers);
   const excistingNodes: number[] = [];
   getExistingNodes(node, excistingNodes);
-  console.log("ExistingNodes: ", excistingNodes);
+  // console.log("ExistingNodes: ", excistingNodes);
 
   // Calculates the difference (A\B) allNumbers without excistingNodes
   const diff = allNumbers.filter(function (x) {
@@ -67,12 +68,18 @@ export function createInsertionArray(node: TreeNode, difficulty_level: Difficult
   const matchingInserts: number[] = [];
 
   for (const value of availableInserts) {
-    const node_copy = createCopyOfTree(node);
+    const node_copy: TreeNode | null = createCopyOfTree(node);
     if (node_copy !== null) {
+      // console.log("Value to Insert: ", value);
       const inserted_node: TreeNode = binaryTreeInsertion(node_copy, value, 0, "root");
+      // console.log(printTree(node_copy));
+
       updateAllHeightsRecursive(node_copy);
       // let balance_factor = getBalanceFactor(node_copy);
-      if (getNumberOfRotations(node_copy, inserted_node) === difficulty_level) {
+
+      const number_rotations = getNumberOfRotations(node_copy, inserted_node);
+      // console.log("Number Rotations: ", number_rotations);
+      if (number_rotations === difficulty_level) {
         matchingInserts.push(value);
       }
     }
