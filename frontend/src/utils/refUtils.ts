@@ -30,8 +30,6 @@ export function mergeRefs<T>(...refs: React.Ref<T>[]): React.RefCallback<T> {
  * @param ref - The ref object that you want to set the value of.
  * @param newValue - The new value of the ref.
  */
-export function setRefValue<T>(ref: React.RefObject<T> | unknown, newValue: T) {
-  if (typeof ref === "object") {
-    if ("current" in ref) ref.current = newValue;
-  }
+export function setRefValue<T>(ref: React.RefObject<T>, newValue: T) {
+  ref.current = newValue;
 }

@@ -82,7 +82,6 @@ export function getRandomValue(node: TreeNode, difficulty_level: DifficultyLevel
       // console.log("================================");
 
       return deletion_arrays[index][random_number];
-      break;
     }
 
     case "INSERT": {
@@ -96,13 +95,11 @@ export function getRandomValue(node: TreeNode, difficulty_level: DifficultyLevel
       // console.log("value", insertion_arrays[index][random_number]);
       // console.log("================================");
 
-      return insertion_arrays[index][random_number];
-      break;
+      return insertion_arrays[index]?.[random_number];
     }
 
     default:
       return -1;
-      break;
   }
 }
 

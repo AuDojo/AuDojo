@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { generateDeleteSolution, generateInsertSolution } from "../utils/AVLTreeService/excerciseUtils";
-import { DifficultyLevel, TreeStep } from "../types";
-import { TreeNode } from "../utils/treeUtils";
-import { getRandomValue, resetArrays } from "../utils/AVLTreeService/difficulty/getRandomValue";
+import { useCallback, useRef, useState } from "react";
 import { difficultyObj } from "../constants";
+import { DifficultyLevel, TreeStep } from "../types";
+import { resetArrays } from "../utils/AVLTreeService/difficulty/getRandomValue";
+import { generateDeleteSolution, generateInsertSolution } from "../utils/AVLTreeService/excerciseUtils";
+import { TreeNode } from "../utils/treeUtils";
 
 // Define exercise mode and operation types
 type OperationType = "INSERT" | "DELETE";
@@ -14,7 +14,7 @@ export function useTreeOperations(initialTreeData: TreeNode, resetTemplates: () 
   const [showingSolution, setShowingSolution] = useState(false);
   const [solution, setSolution] = useState<TreeStep[]>([]);
   const [solutionSteps, setSolutionSteps] = useState<TreeStep[]>([]);
-  const [difficulty, setDifficulty] = useState<DifficultyLevel>(difficultyObj.random);
+  const difficultyRef = useRef<DifficultyLevel>(difficultyObj.random);
 
   const getTreeValues = (node: TreeNode | null, values: number[] = []): number[] => {
     if (!node) return values;
@@ -25,24 +25,30 @@ export function useTreeOperations(initialTreeData: TreeNode, resetTemplates: () 
   };
   const values = getTreeValues(initialTreeData).filter((value) => value !== 0);
 
-  const generateInsertExercise = (input?: number) => {
-    const validInput = input && input > 0 && input < 100 && !values.includes(input);
-    let newValue = validInput ? input : getRandomValue(initialTreeData, difficulty, "INSERT"); // TODO: Testen und difficulty_level zu Variable ändern
-    while (values.includes(newValue)) {
-      newValue = Math.floor(Math.random() * 99) + 1;
-    }
-    setTargetValue(newValue);
-    setCurrentOperationType("INSERT");
-    setShowingSolution(false);
-    setSolutionSteps([]);
-  };
+  const generateInsertExercise = useCallback(
+    (input?: number) => {
+      const validInput = input && input > 0 && input < 100 && !values.includes(input);
+      // let newValue = validInput ? input : getRandomValue(initialTreeData, difficultyRef.current, "INSERT"); // TODO: Testen und difficulty_level zu Variable ändern
+      let newValue = validInput ? input : Math.floor(Math.random() * 99) + 1;
+      while (values.includes(newValue)) {
+        newValue = Math.floor(Math.random() * 99) + 1;
+      }
+      setTargetValue(newValue);
+      setCurrentOperationType("INSERT");
+      setShowingSolution(false);
+      setSolutionSteps([]);
+    },
+    [values]
+  );
 
   const generateDeleteExercise = (input?: number) => {
     // helper to get all node values from the tree
+    console.log(difficultyRef);
 
     const validInput = input && values.includes(input);
     if (values.length > 0) {
-      const value = validInput ? input : getRandomValue(initialTreeData, difficulty, "DELETE"); // TODO: Testen und difficulty_level zu Variable ändern
+      // const value = validInput ? input : getRandomValue(initialTreeData, difficultyRef.current, "DELETE"); // TODO: Testen und difficulty_level zu Variable ändern
+      const value = validInput ? input : values[Math.floor(Math.random() * values.length)];
       setTargetValue(value);
       setCurrentOperationType("DELETE");
       setShowingSolution(false);
@@ -114,8 +120,7 @@ export function useTreeOperations(initialTreeData: TreeNode, resetTemplates: () 
     showingSolution,
     solution,
     solutionSteps,
-    difficulty,
-    setDifficulty,
+    difficultyRef,
     generateInsertExercise,
     generateDeleteExercise,
     generateRandomTree,
