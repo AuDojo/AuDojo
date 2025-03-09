@@ -13,7 +13,7 @@ import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 import { useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
 import styles from "./TreeTutor.module.css";
-import { getRandomValue, resetArrays } from "@/features/treeTutor/utils/AVLTreeService/difficulty/difficultyTools";
+import { getRandomValue, resetArrays } from "@/features/treeTutor/utils/AVLTreeService/difficulty/getRandomValue";
 
 const defaultRoot: TreeNode = {
   value: 0,
