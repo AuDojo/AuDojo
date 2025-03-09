@@ -9,7 +9,7 @@ const QuickSortText = () => {
       <div className={tutorialContent["image-container"]}>
         <img src={quicksortidee} className={tutorialContent["image"]} alt="quicksort idee" />
       </div>
-      <Trans i18nKey="explanation2" />
+      <Trans i18nKey="explanation2" t={t} />
     </div>
   );
 };

@@ -1,0 +1,86 @@
+.svg {
+  margin: auto;
+  top: 0;
+  left: 0;
+  width: 80%;
+  /* height: 100%; */
+  justify-content: safe center;
+  display: flex;
+  align-items: center;
+  border: 2px solid black;
+  margin: 10px;
+}
+
+.node circle {
+  fill: #ecf0f1;
+  stroke: rgb(0, 63, 87);
+  stroke-opacity: 0.8;
+  stroke-width: 3.5px;
+}
+
+.node div {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+.text {
+  fill: #247d24;
+  font-size: 1.2rem;
+  text-anchor: middle;
+}
+
+.link {
+  fill: none;
+  stroke: rgb(0, 63, 87);
+  stroke-opacity: 0.8;
+  stroke-width: 1.8px;
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 14px;
+  border: 2.8px solid rgb(0, 63, 87, 0.8);
+}
+.input:focus {
+  outline: none;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
+}
+
+.buttonContainer button {
+  font-size: 20px;
+  width: 45%; /* Nutzt die volle Breite des Containers */
+  white-space: nowrap; /* Verhindert Umbrüche */
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.buttonContainer button:active {
+  opacity: 0.8;
+}
+
+.addNodeLeft {
+  margin-right: auto;
+  order: -1;
+}
+.addNodeRight {
+  margin-left: auto;
+  order: 1;
+}

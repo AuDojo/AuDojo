@@ -16,6 +16,7 @@ const MergeTutorial = lazy(() => import("@/pages/Tutorial/SortSensei/MergeTutori
 const QuickTutorial = lazy(() => import("@/pages/Tutorial/SortSensei/QuickTutorial"));
 const BubbleTutorial = lazy(() => import("@/pages/Tutorial/SortSensei/BubbleTutorial"));
 const SelectTutorial = lazy(() => import("@/pages/Tutorial/SortSensei/SelectTutorial"));
+const TreeTutorial = lazy(() => import("@/pages/Tutorial/TreeTutor/TreeTutorial"));
 const Datenschutz = lazy(() => import("@/pages/Legal/Datenschutz"));
 const Impressum = lazy(() => import("@/pages/Legal/Impressum"));
 const NotFound = lazy(() => import("@/pages/NotFound/NotFound"));
@@ -38,7 +39,7 @@ export const AppRouter = () => {
               <Route path={paths.quicksorttutorial} element={<QuickTutorial />} />
               <Route path={paths.bubblesorttutorial} element={<BubbleTutorial />} />
               <Route path={paths.selectionsorttutorial} element={<SelectTutorial />} />
-              <Route path={paths.treetutorial} element={<NotFound />} />
+              <Route path={paths.treetutorial} element={<TreeTutorial />} />
               <Route path={paths.kontakt} element={<Kontakt />} />
               <Route path={paths.datenschutz} element={<Datenschutz />} />
               <Route path={paths.impressum} element={<Impressum />} />
