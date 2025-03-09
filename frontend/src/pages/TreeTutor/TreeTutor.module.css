@@ -173,17 +173,28 @@
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
+.selectDifficulty,
+.selectDelete {
+  background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+PC9zdmc+)
+    no-repeat 95% 50%;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 .insertInput,
 .selectDifficulty,
 .selectDelete {
   font-size: 13px;
   width: 60px;
-  padding: 5px;
-  text-align-last: center;
   border: none;
   background-color: white;
   border-radius: var(--controls-border-radius);
   color: var(--main-darkblue);
+}
+
+.insertInput {
+  text-align-last: center;
 }
 
 .selectOption:hover,
@@ -203,19 +214,24 @@
   outline: none;
 }
 
+.selectDelete,
+.selectDifficulty {
+  padding: 8px;
+}
+
 .selectDelete {
-  width: 70px;
+  width: 72px;
   cursor: pointer;
 }
 
 .selectDifficulty {
-  width: 86px;
+  width: 90px;
   cursor: pointer;
   margin-left: 5px;
   border: 1px solid var(--main-red);
   border-radius: var(--controls-border-radius);
-  padding: 9px 0;
 }
+
 .labelDifficulty {
   color: var(--main-red);
   font-weight: 600;

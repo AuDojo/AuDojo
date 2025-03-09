@@ -84,6 +84,7 @@ const TreeTutor = () => {
     event.target.value = event.target.value.replace(/[^0-9]/g, "");
     if (getTreeValues(initialTreeData).includes(Number(event.target.value))) {
       setError("insertInput", { message: t("insert-error") + "‼️" });
+      return;
     }
     setValue("insertInput", event.target.value);
   };
