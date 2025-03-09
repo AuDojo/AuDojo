@@ -8,7 +8,7 @@ import {
   generateDeleteSolution,
   generateInsertSolution,
 } from "@/features/treeTutor/utils/AVLTreeService/excerciseUtils";
-import { TreeStep } from "@/features/treeTutor/utils/AVLTreeService/types";
+import { TreeStep } from "@/features/treeTutor/types";
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 import { useState } from "react";
 import { useLocalStorage } from "usehooks-ts";

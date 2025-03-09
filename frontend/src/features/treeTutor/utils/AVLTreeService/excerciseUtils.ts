@@ -1,6 +1,6 @@
 import { TreeNode } from "../treeUtils";
 import { getBalanceFactor } from "./getters";
-import { BalanceIndicator, TreeStep } from "./types";
+import { BalanceIndicator, TreeStep } from "../../types";
 import { insertAVLTracker, deleteAVLTracker } from "./changingTree/insertAndDelete";
 import { updateAllHeightsRecursive } from "./updateTreeAttributes";
 

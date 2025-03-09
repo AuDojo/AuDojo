@@ -1,4 +1,4 @@
-import { TreeNode } from "../treeUtils";
+import { TreeNode } from "./utils/treeUtils";
 
 /**
  * Interface for each step to be recorded in the steps array for solution display

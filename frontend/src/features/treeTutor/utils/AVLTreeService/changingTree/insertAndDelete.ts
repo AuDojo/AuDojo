@@ -1,5 +1,5 @@
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
-import { BalanceIndicator, TreeStep } from "../types";
+import { BalanceIndicator, TreeStep } from "../../../types";
 import { updateHeightAndBalanceFactor, updateDepth, updateAllHeightsRecursive } from "../updateTreeAttributes";
 import { balanceNode } from "./rotateAndBalanceNode";
 import { addSteps } from "../excerciseUtils";
