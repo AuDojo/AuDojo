@@ -3,26 +3,62 @@ import { getBalanceFactor } from "../getters";
 import { createInsertionArray } from "./insertDifficulty";
 import { createDeletionArray } from "./deleteDifficulty";
 
-let difficulty_array: number[] = [];
-let first_time = true;
+let deletion_array: number[] = [];
+let first_time_deletion = true;
+
+let insertion_array: number[] = [];
+let first_time_insertion = true;
 
 export function getRandomInt(max: number) {
   return Math.floor(Math.random() * max);
 }
 
-export function getRandomValue(node: TreeNode, difficulty_level: number, type: "deletion" | "insertion") {
-  if (first_time) {
-    console.log("-------- Difficulty Level Array --------");
-    console.log(difficulty_array);
+export function getRandomValue(node: TreeNode, difficulty_level: number, type: "deletion" | "insertion"): number {
+  switch (type) {
+    case "deletion": {
+      if (first_time_deletion) {
+        deletion_array = createArray(node, difficulty_level, type);
+        first_time_deletion = false;
 
-    difficulty_array = createArray(node, difficulty_level, type);
-    first_time = false;
+        console.log("-------- Difficulty Level Array --------");
+        console.log("Array: ", deletion_array);
+      }
+
+      const random_number = getRandomInt(deletion_array.length);
+      console.log("-------- Random Number Generated --------");
+      console.log("value", deletion_array[random_number]);
+
+      return deletion_array[random_number];
+      break;
+    }
+    case "insertion": {
+      if (first_time_insertion) {
+        insertion_array = createArray(node, difficulty_level, type);
+        first_time_insertion = false;
+
+        console.log("-------- Difficulty Level Array --------");
+        console.log("Array: ", insertion_array);
+      }
+
+      const random_number = getRandomInt(insertion_array.length);
+      console.log("-------- Random Number Generated --------");
+      console.log("value", insertion_array[random_number]);
+
+      return insertion_array[random_number];
+      break;
+    }
+
+    default:
+      return -1;
+      break;
   }
-  const random_number = getRandomInt(difficulty_array.length);
-  console.log("-------- Random Number Generated --------");
+}
 
-  console.log(difficulty_array[random_number]);
-  return difficulty_array[random_number];
+export function resetArrays() {
+  deletion_array = [];
+  first_time_deletion = true;
+  insertion_array = [];
+  first_time_insertion = true;
 }
 
 export function createArray(node: TreeNode, difficulty_level: number, type: "deletion" | "insertion"): number[] {
