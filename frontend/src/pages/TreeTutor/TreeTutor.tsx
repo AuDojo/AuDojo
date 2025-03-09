@@ -41,12 +41,12 @@ const TreeTutor = () => {
 
   return (
     <>
-      <main className={styles.mainContent}>
+      <div className={styles.mainContent}>
         <h2 className={styles.insertHeader}>
           {currentOperationType === "INSERT" ? `Insert ${targetValue ?? "X"}` : `Delete ${targetValue ?? "X"}`}
         </h2>
-        <span>currentTemplate: {currentTemplate}</span>
-        <span>template.length: {templates.length}</span>
+        {/* <span>currentTemplate: {currentTemplate}</span>
+        <span>template.length: {templates.length}</span> */}
         <section className={styles.treeContainer}>
           {!showingSolution ? (
             // User workspace view with templates
@@ -111,7 +111,7 @@ const TreeTutor = () => {
                   if (currentTemplate === templates.length - 1) {
                     addTemplate();
                   }
-                  setCurrentTemplate((prev) => prev + 1);
+                  setCurrentTemplate((prev) => Math.min(prev + 1, MAX_TEMPLATES - 1));
                 }}
               />
             </div>
@@ -146,17 +146,16 @@ const TreeTutor = () => {
             New Random Tree
           </button>
 
-          {targetValue !== null && (
-            <button
-              type="button"
-              className={styles.submit}
-              onClick={showingSolution ? hideSolution : () => showSolution(initialTreeData)}
-            >
-              {showingSolution ? "Hide Solution" : "Show Solution"}
-            </button>
-          )}
+          <button
+            type="button"
+            disabled={targetValue === null}
+            className={styles.submit}
+            onClick={showingSolution ? hideSolution : () => showSolution(initialTreeData)}
+          >
+            {showingSolution ? "Hide Solution" : "Show Solution"}
+          </button>
         </div>
-      </main>
+      </div>
     </>
   );
 };

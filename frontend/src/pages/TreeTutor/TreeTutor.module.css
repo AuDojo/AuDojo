@@ -108,12 +108,16 @@
   padding: 8px 25px;
   margin-left: 40px;
 }
+.submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
 
 .submit:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-.submit:active {
+.submit:active:not(:disabled) {
   opacity: 0.8;
 }
 
