@@ -45,7 +45,7 @@ const Header = () => {
           <LinkItem
             className={headerStyles["menu-item"]}
             to={paths.mergesorttutorial}
-            text={t("example")}
+            text={t("example") + "\u00A0"}
             icon={iconDropdown}
           />
 
