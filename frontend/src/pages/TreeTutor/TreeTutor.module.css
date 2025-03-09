@@ -110,17 +110,34 @@
 }
 
 .controls {
+  --controls-border-radius: 5px;
+
   padding-top: 15px;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
+/* Controls wrappers for delete and insert */
+.deleteControls,
+.insertForm {
+  position: relative;
+  border: 1px solid var(--main-red);
+  border-radius: var(--controls-border-radius);
+
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+
+  margin-left: 20px;
+  overflow: hidden;
+}
+
 .submit,
 .practiceInsertButton,
 .practiceDeleteButton,
 .randomModeButton {
-  border-radius: 4px;
+  border-radius: var(--controls-border-radius);
   padding: 8px 16px;
   font-size: 16px;
   font-weight: 800;
@@ -131,6 +148,10 @@
 .practiceInsertButton,
 .practiceDeleteButton {
   background-color: var(--main-lightpink);
+  border: none;
+  border-right: 1px solid var(--main-red);
+  border-radius: 0;
+  margin: 0;
 }
 .randomModeButton {
   background-color: white;
@@ -152,51 +173,48 @@
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-.valueInput,
+.insertInput,
 .selectDifficulty,
-.selectOption {
-  margin: 0 5px;
+.selectDelete {
   font-size: 13px;
-  height: 30px;
   width: 60px;
   padding: 5px;
   text-align-last: center;
-  border-radius: none;
-  border: 1px solid var(--main-red);
+  border: none;
   background-color: white;
-  border-radius: 3px;
+  border-radius: var(--controls-border-radius);
   color: var(--main-darkblue);
 }
 
 .selectOption:hover,
-.valueInput:hover::placeholder {
+.insertInput:hover::placeholder {
   color: var(--main-red);
 }
 /* .valueInput:focus {
   outline: none;
 } */
-.valueInput::placeholder {
+.insertInput::placeholder {
   color: var(--main-darkblue);
 }
-.valueInput:focus::placeholder {
+.insertInput:focus::placeholder {
   color: transparent;
 }
-.valueInput:focus {
+.insertInput:focus {
   outline: none;
 }
 
-.selectOption {
-  width: 80px;
+.selectDelete {
+  width: 70px;
   cursor: pointer;
-}
-
-.insertForm {
-  position: relative;
 }
 
 .selectDifficulty {
   width: 86px;
   cursor: pointer;
+  margin-left: 5px;
+  border: 1px solid var(--main-red);
+  border-radius: var(--controls-border-radius);
+  padding: 9px 0;
 }
 .labelDifficulty {
   color: var(--main-red);

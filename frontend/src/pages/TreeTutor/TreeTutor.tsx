@@ -215,39 +215,41 @@ const TreeTutor = () => {
               </div>
             )}
             <button type="submit" className={styles.practiceInsertButton}>
-              Insert :
+              Insert
             </button>
 
             <input
-              className={styles.valueInput}
+              className={styles.insertInput}
               type="text"
               {...register("insertInput", { onChange: handleInputChange })}
               maxLength={2}
               placeholder="random"
             />
           </form>
-          <button type="button" className={styles.practiceDeleteButton} onClick={handlePracticeDelete}>
-            Delete :
-          </button>
-          <select
-            // eslint-disable-next-line react-compiler/react-compiler
-            ref={mergeRefs(deleteRef, deleteValueRef)}
-            name="delete"
-            id="delete-node"
-            className={styles.selectOption}
-            onChange={handlePracticeDelete}
-          >
-            <option value="delete-random">random</option>
-            {getTreeValues(initialTreeData).map(
-              (value) =>
-                value !== 0 && (
-                  <option key={value} value={value}>
-                    {value}
-                  </option>
-                )
-            )}
-          </select>
 
+          <div className={styles.deleteControls}>
+            <button type="button" className={styles.practiceDeleteButton} onClick={handlePracticeDelete}>
+              Delete
+            </button>
+            <select
+              // eslint-disable-next-line react-compiler/react-compiler
+              ref={mergeRefs(deleteRef, deleteValueRef)}
+              name="delete"
+              id="delete-node"
+              className={styles.selectDelete}
+              onChange={handlePracticeDelete}
+            >
+              <option value="delete-random">random</option>
+              {getTreeValues(initialTreeData).map(
+                (value) =>
+                  value !== 0 && (
+                    <option key={value} value={value}>
+                      {value}
+                    </option>
+                  )
+              )}
+            </select>
+          </div>
           <button type="button" className={styles.randomModeButton} onClick={generateRandomTree}>
             Random Tree
           </button>
