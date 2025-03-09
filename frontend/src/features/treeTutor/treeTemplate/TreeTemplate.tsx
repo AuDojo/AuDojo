@@ -11,9 +11,9 @@ interface TreeTemplateProps {
 
 const inputSize = 35;
 const addButtonRadius = 8;
-const yOffset = 115;
+const yOffset = 105;
 const exponentialDecrease = 0.5;
-const horizontalSpacing = 150;
+const horizontalSpacing = 145;
 
 const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
   const svgRef = useRef<SVGSVGElement>(null);

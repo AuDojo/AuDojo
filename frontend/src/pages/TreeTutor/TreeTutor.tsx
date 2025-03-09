@@ -5,6 +5,7 @@ import { CloseButton } from "@/features/treeTutor/closeButton";
 import { DEFAULT_TREE, defaultRoot, MAX_TEMPLATES } from "@/features/treeTutor/constants";
 import { useTreeOperations } from "@/features/treeTutor/hooks/useTreeOperations";
 import { useTreeTemplates } from "@/features/treeTutor/hooks/useTreeTemplates";
+import { TemplateIndex } from "@/features/treeTutor/pageIndex";
 import { TreeTemplate } from "@/features/treeTutor/treeTemplate";
 import { generateAVL } from "@/features/treeTutor/utils/AVLTreeService/excerciseUtils";
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
@@ -114,6 +115,7 @@ const TreeTutor = () => {
                       updateTemplateTree(templates[currentTemplate - 1], newTree);
                     }}
                   />
+                  <TemplateIndex currentTemplate={currentTemplate} totalTemplates={templates.length} />
                 </div>
               )}
               <div className={styles.treeTemplate}>
@@ -137,6 +139,7 @@ const TreeTutor = () => {
                     updateTemplateTree(templates[currentTemplate], newTree);
                   }}
                 />
+                <TemplateIndex currentTemplate={currentTemplate + 1} totalTemplates={templates.length} />
               </div>
               <ArrowButton direction="right" disabled={currentTemplate >= MAX_TEMPLATES - 1} onClick={goNextTemplate} />
             </div>
@@ -149,10 +152,13 @@ const TreeTutor = () => {
                     <span className={styles.stepNumber}>Step {index + 1}</span>
                   </div>
                   {step?.tree && (
-                    <TreeTemplate
-                      treeData={step.tree}
-                      onTreeUpdate={setInitialTreeData} // Read-only view for solution steps
-                    />
+                    <>
+                      <TreeTemplate
+                        treeData={step.tree}
+                        onTreeUpdate={setInitialTreeData} // Read-only view for solution steps
+                      />
+                      <TemplateIndex currentTemplate={index + 1} totalTemplates={solution.length} />{" "}
+                    </>
                   )}
                 </div>
               ))}
