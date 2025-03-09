@@ -16,33 +16,41 @@ export function getRandomInt(max: number) {
 export function getRandomValue(node: TreeNode, difficulty_level: number, type: "deletion" | "insertion"): number {
   switch (type) {
     case "deletion": {
+      console.log("======== Start Deletion ========");
+
       if (first_time_deletion) {
         deletion_array = createArray(node, difficulty_level, type);
         first_time_deletion = false;
 
-        console.log("-------- Difficulty Level Array --------");
+        console.log("======== Difficulty Level Array ========");
         console.log("Array: ", deletion_array);
       }
 
       const random_number = getRandomInt(deletion_array.length);
-      console.log("-------- Random Number Generated --------");
+
+      console.log("======== Random Number Generated ========");
       console.log("value", deletion_array[random_number]);
+      console.log("================================");
 
       return deletion_array[random_number];
       break;
     }
     case "insertion": {
+      console.log("======== Start Insertion ========");
+
       if (first_time_insertion) {
         insertion_array = createArray(node, difficulty_level, type);
         first_time_insertion = false;
 
-        console.log("-------- Difficulty Level Array --------");
+        console.log("======== Difficulty Level Array ========");
         console.log("Array: ", insertion_array);
       }
 
       const random_number = getRandomInt(insertion_array.length);
-      console.log("-------- Random Number Generated --------");
-      console.log("value", insertion_array[random_number]);
+
+      console.log("======== Random Number Generated ========");
+      console.log("Value", insertion_array[random_number]);
+      console.log("=================================");
 
       return insertion_array[random_number];
       break;
@@ -65,19 +73,22 @@ export function createArray(node: TreeNode, difficulty_level: number, type: "del
   if (difficulty_level == -1) {
     difficulty_level = getRandomInt(3);
   }
+  let difficulty_array: number[] = [];
 
   switch (type) {
     case "deletion":
-      return createDeletionArray(node, difficulty_level);
+      difficulty_array = createDeletionArray(node, difficulty_level);
       break;
     case "insertion":
-      return createInsertionArray(node, difficulty_level);
+      difficulty_array = createInsertionArray(node, difficulty_level);
       break;
 
     default:
-      return [];
+      difficulty_array = [];
       break;
   }
+
+  return difficulty_array;
 }
 
 export function createCopyOfTree(node: TreeNode | null) {

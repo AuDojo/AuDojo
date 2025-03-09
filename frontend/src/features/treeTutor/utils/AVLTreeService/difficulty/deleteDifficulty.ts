@@ -47,6 +47,7 @@ function binaryTreeDelition(node: TreeNode | null, value: number): TreeNode | nu
 export function createDeletionArray(node: TreeNode, difficulty_level: number): number[] {
   const excistingNodes: number[] = [];
   getExistingNodes(node, excistingNodes);
+  console.log("ExistingNodes: ", excistingNodes);
   const matchingDeletions: number[] = [];
 
   for (const value of excistingNodes) {
