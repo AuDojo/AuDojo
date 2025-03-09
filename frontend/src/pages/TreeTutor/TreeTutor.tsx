@@ -1,3 +1,4 @@
+import { HOTKEYS } from "@/config/hotkeyMap";
 import { localStorageKeys } from "@/config/localStorage";
 import { ArrowButton } from "@/features/treeTutor/arrowButton";
 import { CloseButton } from "@/features/treeTutor/closeButton";
@@ -7,6 +8,7 @@ import { useTreeTemplates } from "@/features/treeTutor/hooks/useTreeTemplates";
 import { TreeTemplate } from "@/features/treeTutor/treeTemplate";
 import { generateAVL } from "@/features/treeTutor/utils/AVLTreeService/excerciseUtils";
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
+import { useHotkeys } from "react-hotkeys-hook";
 import { useLocalStorage } from "usehooks-ts";
 import styles from "./TreeTutor.module.css";
 
@@ -39,6 +41,20 @@ const TreeTutor = () => {
     hideSolution,
   } = useTreeOperations(initialTreeData, resetTemplates);
 
+  const goPrevTemplate = () => {
+    setCurrentTemplate((prev) => Math.max(prev - 1, 1));
+  };
+  const goNextTemplate = () => {
+    if (currentTemplate === templates.length - 1) {
+      addTemplate();
+    }
+    setCurrentTemplate((prev) => Math.min(prev + 1, MAX_TEMPLATES - 1));
+  };
+
+  // Hotkeys
+  useHotkeys(HOTKEYS.treeTutor.prevTemplate, goPrevTemplate);
+  useHotkeys(HOTKEYS.treeTutor.nextTemplate, goNextTemplate);
+
   return (
     <>
       <div className={styles.mainContent}>
@@ -54,9 +70,7 @@ const TreeTutor = () => {
               <ArrowButton
                 direction="left"
                 disabled={templates.length === 1 ? currentTemplate === 0 : currentTemplate <= 1}
-                onClick={() => {
-                  setCurrentTemplate((prev) => Math.max(prev - 1, 0));
-                }}
+                onClick={goPrevTemplate}
               />
               {templates.length >= 2 && (
                 // First Tree Template
@@ -104,16 +118,7 @@ const TreeTutor = () => {
                   }}
                 />
               </div>
-              <ArrowButton
-                direction="right"
-                disabled={currentTemplate >= MAX_TEMPLATES - 1}
-                onClick={() => {
-                  if (currentTemplate === templates.length - 1) {
-                    addTemplate();
-                  }
-                  setCurrentTemplate((prev) => Math.min(prev + 1, MAX_TEMPLATES - 1));
-                }}
-              />
+              <ArrowButton direction="right" disabled={currentTemplate >= MAX_TEMPLATES - 1} onClick={goNextTemplate} />
             </div>
           ) : (
             // Solution view with steps displayed horizontally

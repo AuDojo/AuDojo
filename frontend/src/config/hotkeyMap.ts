@@ -21,4 +21,8 @@ export const HOTKEYS = {
     moveRight: "right",
     unfocus: "esc",
   },
+  treeTutor: {
+    nextTemplate: ["right"],
+    prevTemplate: ["left"],
+  },
 } as const;
