@@ -8,11 +8,11 @@ import { useTreeTemplates } from "@/features/treeTutor/hooks/useTreeTemplates";
 import { TreeTemplate } from "@/features/treeTutor/treeTemplate";
 import { generateAVL } from "@/features/treeTutor/utils/AVLTreeService/excerciseUtils";
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
+import { mergeRefs } from "@/utils/refUtils";
+import { useRef } from "react";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useLocalStorage } from "usehooks-ts";
 import styles from "./TreeTutor.module.css";
-import { useRef } from "react";
-import { mergeRefs } from "@/utils/refUtils";
 const TreeTutor = () => {
   const [initialTreeData, setInitialTreeData] = useLocalStorage<TreeNode>(
     localStorageKeys.initialTreeData,
@@ -70,7 +70,6 @@ const TreeTutor = () => {
     preventDefault: true,
     enableOnFormTags: ["input"],
   });
-
   const deleteRef = useHotkeys(HOTKEYS.treeTutor.submit, handlePracticeDelete, {
     preventDefault: true,
     enableOnFormTags: ["input"],

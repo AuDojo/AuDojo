@@ -1,7 +1,7 @@
 import { TreeNode } from "./utils/treeUtils";
 
 export const MAX_TEMPLATES = 4;
-export const DEFAULT_TREE = [1, 5, 9, 7];
+export const DEFAULT_TREE = [1, 5, 9, 7] as const;
 
 export const defaultRoot = {
   value: 0,
