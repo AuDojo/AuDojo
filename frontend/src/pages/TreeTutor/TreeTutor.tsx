@@ -87,6 +87,7 @@ const TreeTutor = () => {
   const onSubmit = useDebounceCallback((data: FormInput) => {
     handlePracticeInsert(data);
   }, 100);
+  const debouncedHandleSubmit = useDebounceCallback(handleSubmit, 100);
 
   // Hotkeys
   useHotkeys(HOTKEYS.treeTutor.prevTemplate, goPrevTemplate, { preventDefault: true });
@@ -205,7 +206,7 @@ const TreeTutor = () => {
             <option>3. hard</option>
           </select>
 
-          <form onSubmit={handleSubmit(onSubmit)} className={styles.insertForm}>
+          <form onSubmit={debouncedHandleSubmit(onSubmit)} className={styles.insertForm}>
             {errors.insertInput && (
               <div className={styles.insertErrorMsg} role="alert">
                 {errors.insertInput.message}
