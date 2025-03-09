@@ -42,13 +42,13 @@
 
 .sort-nav-list-item.sort-nav-list-item-active {
   /* background-color: rgb(58, 45, 93); */
-  color: rgb(190, 30, 60);
+  color: var(--main-red);
   font-size: 20px;
 }
 
 .restyle div {
   color: white;
-  background-color: rgb(190, 30, 60);
+  background-color: var(--main-red);
 }
 .restyle div:hover {
   background-color: rgba(190, 30, 59, 0.9);

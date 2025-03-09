@@ -92,3 +92,14 @@
   margin-left: auto;
   order: 1;
 }
+
+.addButtonText text {
+  text-anchor: middle;
+  dominant-baseline: middle;
+  font-size: 14px;
+  pointer-events: none;
+}
+
+.addButtonText:hover {
+  fill: var(--main-red);
+}

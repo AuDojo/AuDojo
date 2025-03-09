@@ -125,12 +125,12 @@
   font-size: 16px;
   font-weight: 800;
   border: 1px solid var(--main-red);
-  margin-left: 10px;
+  margin-left: 20px;
 }
 .practiceInsertButton,
 .practiceDeleteButton {
   color: var(--main-red);
-  background-color: var(--main-pink);
+  background-color: var(--main-lightpink);
 }
 .randomModeButton {
   color: var(--main-red);
@@ -153,14 +153,45 @@
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-.valueInput {
-  width: 50px;
-  height: 35px;
-  border: 1px solid var(--main-red);
-  font-size: 16px;
+.valueInput,
+.selectOption {
   margin: 0 5px;
+  font-size: 13px;
+  height: 30px;
+  width: 60px;
+  padding: 5px;
+  text-align-last: center;
+  border-radius: none;
+  border: 1px solid var(--main-red);
+  background-color: white;
+  border-radius: 3px;
+  color: var(--main-darkblue);
+  cursor: pointer;
 }
 
+.selectOption:hover,
+.valueInput:hover::placeholder {
+  color: var(--main-red);
+}
+/* .valueInput:focus {
+  outline: none;
+} */
+.valueInput::placeholder {
+  color: var(--main-darkblue);
+}
+.valueInput:focus::placeholder {
+  color: transparent;
+}
 .valueInput:focus {
   outline: none;
+}
+
+.selectOption {
+  width: 80px;
+}
+
+.insertErrorMsg {
+  width: 130px;
+  color: red;
+  font-size: 14px;
 }

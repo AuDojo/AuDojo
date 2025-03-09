@@ -116,6 +116,7 @@ export function useTreeOperations(initialTreeData: TreeNode, resetTemplates: () 
     showSolution,
     hideSolution,
     showAllSteps,
+    getTreeValues,
   };
 }
 
