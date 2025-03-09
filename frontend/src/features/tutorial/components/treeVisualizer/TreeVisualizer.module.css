@@ -33,3 +33,11 @@
   margin-bottom: 25px;
   margin-left: 25px;
 }
+
+.desc {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+}

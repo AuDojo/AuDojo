@@ -2,7 +2,7 @@ import { TreeSteps } from "../../types";
 import { useState } from "react";
 import styles from "./treeVisualizer.module.css";
 import { TutorialTreeTemplate } from "../tutorialTreeTemplate";
-const TreeVisualizer = ({ data, title }: { data: TreeSteps; title: String }) => {
+const TreeVisualizer = ({ data }: { data: TreeSteps }) => {
   const [currentStep, setCurrentStep] = useState(0);
 
   const goToNextStep = () => {
@@ -27,8 +27,6 @@ const TreeVisualizer = ({ data, title }: { data: TreeSteps; title: String }) => 
 
   return (
     <div className={styles.visualiser}>
-      <h1 className={styles.title}>{title}</h1>
-
       {/* Step Navigation */}
       <div className={styles.buttonContainer}>
         <button type="button" onClick={goToFirstStep} disabled={currentStep === 0} className={styles.buttonStyle}>
@@ -60,7 +58,7 @@ const TreeVisualizer = ({ data, title }: { data: TreeSteps; title: String }) => 
 
       {
         <div className={styles.treeContainer}>
-          <span>{data.steps[currentStep].description}</span>
+          <span className={styles.desc}>{data.steps[currentStep].description}</span>
           <TutorialTreeTemplate treeData={data.steps[currentStep].tree} />
         </div>
       }

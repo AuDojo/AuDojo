@@ -65,7 +65,7 @@ const TreeTutorial = () => {
         <a href="www.youtube.com">hi</a>
         <a href="www.youtube.com">hi2</a>
       </div>
-      <TreeVisualizer data={data} title="moin" />
+      <TreeVisualizer data={data} />
     </div>
   );
 };

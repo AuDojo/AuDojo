@@ -11,7 +11,6 @@ const BubbleTutorial = () => {
       <title>Bubblesort Tutorial</title>
       <TutorialNavigation />
       <TutorialSidebar
-        title="Bubblesort Tutorial"
         algexp={<BubblesortText />}
         photo={<BubbleSortImage />}
         sortsteps={bubbleSortSteps}
