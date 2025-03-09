@@ -203,10 +203,7 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
           .append("circle")
           .attr("class", `btn-left-${nodeId}`)
           .attr("r", addButtonRadius)
-          .attr("fill", "#ecf0f1")
-          .attr("stroke", "rgb(0, 63, 87, 0.8)")
-          .attr("stroke-width", 1.5)
-          .attr("cursor", "pointer")
+          .attr("position", "left")
           .on("click", function (event) {
             event.stopPropagation();
             console.log(` ID from on click Event: ${nodeId}`);
@@ -225,10 +222,6 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
           .append("circle")
           .attr("class", `btn-right-${nodeId}`)
           .attr("r", addButtonRadius)
-          .attr("fill", "#ecf0f1")
-          .attr("stroke", "rgb(0, 63, 87, 0.8)")
-          .attr("stroke-width", 1.5)
-          .attr("cursor", "pointer")
           .attr("position", "right")
           .on("click", function (event) {
             event.stopPropagation();
@@ -242,7 +235,7 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
 
   return (
     // <div className={styles.treeTemplateContainer}>
-    <svg className={styles.svg} ref={svgRef}></svg>
+      <svg className={styles.svg} ref={svgRef}></svg>
     // </div>
   );
 };

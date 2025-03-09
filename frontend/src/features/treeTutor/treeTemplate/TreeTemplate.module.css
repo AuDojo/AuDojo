@@ -99,7 +99,18 @@
   font-size: 14px;
   pointer-events: none;
 }
+.addButtonText circle {
+  fill: #ecf0f1;
+  stroke: rgb(0, 63, 87, 0.8);
+  stroke-width: 1.5;
+  cursor: pointer;
+}
+
+.addButtonText circle:hover {
+  stroke: var(--main-red);
+}
 
 .addButtonText:hover {
   fill: var(--main-red);
+  stroke: var(--main-red);
 }
