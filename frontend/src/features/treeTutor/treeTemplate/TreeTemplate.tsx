@@ -45,7 +45,6 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
   );
 
   useEffect(() => {
-    console.log("use effect fired", treeData);
     const svg = select(svgRef.current);
     if (!dimensions) return;
 

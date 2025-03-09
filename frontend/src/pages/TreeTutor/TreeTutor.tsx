@@ -11,12 +11,15 @@ import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 import { useHotkeys } from "react-hotkeys-hook";
 import { useLocalStorage } from "usehooks-ts";
 import styles from "./TreeTutor.module.css";
-
+import { useRef } from "react";
+import { mergeRefs } from "@/utils/refUtils";
 const TreeTutor = () => {
   const [initialTreeData, setInitialTreeData] = useLocalStorage<TreeNode>(
     localStorageKeys.initialTreeData,
     generateAVL(false, DEFAULT_TREE) ?? defaultRoot
   );
+  const deleteValueRef = useRef<HTMLInputElement>(null);
+  const insertValueRef = useRef<HTMLInputElement>(null);
 
   const {
     templates,
@@ -39,6 +42,7 @@ const TreeTutor = () => {
     generateRandomTree,
     showSolution,
     hideSolution,
+    // showAllSteps,
   } = useTreeOperations(initialTreeData, resetTemplates);
 
   const goPrevTemplate = () => {
@@ -51,9 +55,26 @@ const TreeTutor = () => {
     setCurrentTemplate((prev) => Math.min(prev + 1, MAX_TEMPLATES - 1));
   };
 
+  const handlePracticeInsert = () => {
+    generateInsertExercise(Number(insertValueRef.current?.value));
+  };
+
+  const handlePracticeDelete = () => {
+    generateDeleteExercise(Number(deleteValueRef.current?.value));
+  };
+
   // Hotkeys
   useHotkeys(HOTKEYS.treeTutor.prevTemplate, goPrevTemplate);
   useHotkeys(HOTKEYS.treeTutor.nextTemplate, goNextTemplate);
+  const insertRef = useHotkeys(HOTKEYS.treeTutor.submit, handlePracticeInsert, {
+    preventDefault: true,
+    enableOnFormTags: ["input"],
+  });
+
+  const deleteRef = useHotkeys(HOTKEYS.treeTutor.submit, handlePracticeDelete, {
+    preventDefault: true,
+    enableOnFormTags: ["input"],
+  });
 
   return (
     <>
@@ -128,7 +149,7 @@ const TreeTutor = () => {
                   <div className={styles.stepHeader}>
                     <span className={styles.stepNumber}>Step {index + 1}</span>
                   </div>
-                  {step.tree && (
+                  {step?.tree && (
                     <TreeTemplate
                       treeData={step.tree}
                       onTreeUpdate={setInitialTreeData} // Read-only view for solution steps
@@ -141,12 +162,18 @@ const TreeTutor = () => {
         </section>
 
         <div className={styles.controls}>
-          <button type="button" className={styles.practiceInsertButton} onClick={generateInsertExercise}>
+          <button type="button" className={styles.practiceInsertButton} onClick={handlePracticeInsert}>
             Practice Insert
           </button>
-          <button type="button" className={styles.practiceDeleteButton} onClick={generateDeleteExercise}>
+          {/*eslint-disable-next-line react-compiler/react-compiler*/}
+          <input ref={mergeRefs(insertRef, insertValueRef)} type="number" className={styles.valueInput} />
+
+          <button type="button" className={styles.practiceDeleteButton} onClick={handlePracticeDelete}>
             Practice Delete
           </button>
+          {/*eslint-disable-next-line react-compiler/react-compiler*/}
+          <input ref={mergeRefs(deleteRef, deleteValueRef)} type="number" className={styles.valueInput} />
+
           <button type="button" className={styles.randomModeButton} onClick={generateRandomTree}>
             New Random Tree
           </button>
@@ -159,6 +186,11 @@ const TreeTutor = () => {
           >
             {showingSolution ? "Hide Solution" : "Show Solution"}
           </button>
+          {showingSolution && (
+            <button type="button" className={styles.submit}>
+              Show All Steps
+            </button>
+          )}
         </div>
       </div>
     </>

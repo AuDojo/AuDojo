@@ -24,5 +24,6 @@ export const HOTKEYS = {
   treeTutor: {
     nextTemplate: ["right"],
     prevTemplate: ["left"],
+    submit: ["enter"],
   },
 } as const;
