@@ -1,38 +1,7 @@
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
-import {
-  DifficultyTypes,
-  Difficulty,
-  getRandomInt,
-  numToDifficultyTypes,
-  getExistingNodes,
-  createCopyOfTree,
-  getNumberOfRotates,
-} from "./difficultyTools";
+import { getExistingNodes, createCopyOfTree, getNumberOfRotations } from "./difficultyTools";
 import { createNode } from "../changingTree/insertAndDelete";
 import { updateAllHeightsRecursive } from "../updateTreeAttributes";
-
-export function createInsertArray(node: TreeNode, difficulty_level: DifficultyTypes): number[] {
-  if (Difficulty.random) {
-    const random_number = getRandomInt(3);
-    difficulty_level = numToDifficultyTypes(random_number);
-  }
-
-  switch (difficulty_level) {
-    case Difficulty.easy:
-      return createDifficultyArray(node, 0);
-      break;
-    case Difficulty.medium:
-      return createDifficultyArray(node, 1);
-      break;
-    case Difficulty.hard:
-      return createDifficultyArray(node, 2);
-      break;
-
-    default:
-      return [];
-      break;
-  }
-}
 
 function arrayWithoutExistingNodes(node: TreeNode): number[] {
   const allNumbers: number[] = Array.from({ length: 10 }, (_, i) => i + 1);
@@ -67,24 +36,21 @@ function binaryTreeInsertion(
   return node;
 }
 
-function createDifficultyArray(node: TreeNode, difficulty: number): number[] {
+export function createInsertionArray(node: TreeNode, difficulty_level: number): number[] {
   const availableInserts: number[] = arrayWithoutExistingNodes(node);
   const matchingInserts: number[] = [];
 
-  // let random_num: number = getRandomInt(availableInserts.length);
-  // let new_node: TreeNode = createNode(availableInserts[random_num], 0, "root");
-
-  availableInserts.forEach((value) => {
+  for (const value of availableInserts) {
     const node_copy = createCopyOfTree(node);
     if (node_copy !== null) {
       const inserted_node: TreeNode = binaryTreeInsertion(node_copy, value, 0, "root");
       updateAllHeightsRecursive(node_copy);
       // let balance_factor = getBalanceFactor(node_copy);
-      if (getNumberOfRotates(node_copy, inserted_node) === difficulty) {
+      if (getNumberOfRotations(node_copy, inserted_node) === difficulty_level) {
         matchingInserts.push(value);
       }
     }
-  });
+  }
 
   return matchingInserts;
 }

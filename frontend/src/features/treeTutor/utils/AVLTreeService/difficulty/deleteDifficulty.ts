@@ -1,37 +1,6 @@
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
-import {
-  DifficultyTypes,
-  Difficulty,
-  getRandomInt,
-  numToDifficultyTypes,
-  getExistingNodes,
-  createCopyOfTree,
-  getNumberOfRotates,
-} from "./difficultyTools";
+import { getExistingNodes, createCopyOfTree, getNumberOfRotations } from "./difficultyTools";
 import { updateAllHeightsRecursive } from "../updateTreeAttributes";
-
-export function createDeleteArray(node: TreeNode, difficulty_level: DifficultyTypes): number[] {
-  if (Difficulty.random) {
-    const random_number = getRandomInt(3);
-    difficulty_level = numToDifficultyTypes(random_number);
-  }
-
-  switch (difficulty_level) {
-    case Difficulty.easy:
-      return createDifficultyArray(node, 0);
-      break;
-    case Difficulty.medium:
-      return createDifficultyArray(node, 1);
-      break;
-    case Difficulty.hard:
-      return createDifficultyArray(node, 2);
-      break;
-
-    default:
-      return [];
-      break;
-  }
-}
 
 function getSuccessor(node: TreeNode | null) {
   if (node === null) {
@@ -75,25 +44,21 @@ function binaryTreeDelition(node: TreeNode | null, value: number): TreeNode | nu
   return node;
 }
 
-function createDifficultyArray(node: TreeNode, difficulty: number): number[] {
+export function createDeletionArray(node: TreeNode, difficulty_level: number): number[] {
   const excistingNodes: number[] = [];
   getExistingNodes(node, excistingNodes);
-  const matchingInserts: number[] = [];
+  const matchingDeletions: number[] = [];
 
-  // let random_num: number = getRandomInt(availableInserts.length);
-  // let new_node: TreeNode = createNode(availableInserts[random_num], 0, "root");
-
-  excistingNodes.forEach((value) => {
+  for (const value of excistingNodes) {
     const node_copy = createCopyOfTree(node);
     if (node_copy !== null) {
       const inserted_node: TreeNode | null = binaryTreeDelition(node_copy, value);
       updateAllHeightsRecursive(node_copy);
-      // let balance_factor = getBalanceFactor(node_copy);
-      if (getNumberOfRotates(node_copy, inserted_node) === difficulty) {
-        matchingInserts.push(value);
+      if (getNumberOfRotations(node_copy, inserted_node) === difficulty_level) {
+        matchingDeletions.push(value);
       }
     }
-  });
+  }
 
-  return matchingInserts;
+  return matchingDeletions;
 }

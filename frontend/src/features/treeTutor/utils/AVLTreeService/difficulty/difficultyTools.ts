@@ -1,37 +1,27 @@
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 import { getBalanceFactor } from "../getters";
-
-export type DifficultyTypes = "easy" | "middle" | "hard" | "random" | "undefined";
-
-export const Difficulty = {
-  easy: "easy",
-  medium: "middle",
-  hard: "hard",
-  random: "random",
-  undefined: "undefined",
-} as const satisfies Record<string, DifficultyTypes>;
+import { createInsertionArray } from "./insertDifficulty";
+import { createDeletionArray } from "./deleteDifficulty";
 
 export function getRandomInt(max: number) {
   return Math.floor(Math.random() * max);
 }
 
-export function numToDifficultyTypes(num: number): DifficultyTypes {
-  switch (num) {
-    case 0:
-      return Difficulty.easy;
+export function createArray(node: TreeNode, difficulty_level: number, type: "deletion" | "insertion"): number[] {
+  if (difficulty_level == -1) {
+    difficulty_level = getRandomInt(3);
+  }
+
+  switch (type) {
+    case "deletion":
+      return createDeletionArray(node, difficulty_level);
       break;
-    case 1:
-      return Difficulty.medium;
-      break;
-    case 2:
-      return Difficulty.hard;
-      break;
-    case -1:
-      return Difficulty.random;
+    case "insertion":
+      return createInsertionArray(node, difficulty_level);
       break;
 
     default:
-      return Difficulty.undefined;
+      return [];
       break;
   }
 }
@@ -70,7 +60,7 @@ export function getExistingNodes(node: TreeNode | null, excistingNodes: number[]
   getExistingNodes(node.children[1], excistingNodes);
 }
 
-export function getNumberOfRotates(node: TreeNode, rootRef: TreeNode | null): number {
+export function getNumberOfRotations(node: TreeNode, rootRef: TreeNode | null): number {
   if (!node) return 0;
   if (!rootRef) return 0;
 
