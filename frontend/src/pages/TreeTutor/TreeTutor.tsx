@@ -13,9 +13,9 @@ import { mergeRefs } from "@/utils/refUtils";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
 import { useHotkeys } from "react-hotkeys-hook";
+import { useTranslation } from "react-i18next";
 import { useDebounceCallback, useLocalStorage } from "usehooks-ts";
 import styles from "./TreeTutor.module.css";
-import { useTranslation } from "react-i18next";
 
 export interface FormInput {
   insertInput: string;
@@ -44,8 +44,7 @@ const TreeTutor = () => {
     targetValue,
     showingSolution,
     solution,
-    difficulty,
-    setDifficulty,
+    // difficultyRef,
     generateInsertExercise,
     generateDeleteExercise,
     generateRandomTree,
@@ -89,7 +88,15 @@ const TreeTutor = () => {
     setValue("insertInput", event.target.value);
   };
 
+  // const handleDifficultyChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  //   const userDifficulty = Number(event.target.value);
+  //   console.log("userDiff", userDifficulty);
+
+  //   setRefValue(difficultyRef, userDifficulty);
+  // };
+
   const onSubmit = useDebounceCallback((data: FormInput) => {
+    console.log("data: ", data);
     handlePracticeInsert(data);
   }, 100);
   const debouncedHandleSubmit = useDebounceCallback(handleSubmit, 100);
@@ -232,17 +239,21 @@ const TreeTutor = () => {
         </section>
 
         <div className={styles.controls}>
-          <label htmlFor="difficulty-select" className={styles.labelDifficulty}>
+          {/* <label htmlFor="difficulty-select" className={styles.labelDifficulty}>
             {t("difficulty")}
           </label>
-          <select name="difficulty" id="difficulty-select" className={styles.selectDifficulty}>
-            <option selected value="random">
-              {t("random")}
-            </option>
-            <option>1. {t("easy")}</option>
-            <option>2. {t("medium")}</option>
-            <option>3. {t("hard")}</option>
-          </select>
+          <select
+            name="difficulty"
+            id="difficulty-select"
+            className={styles.selectDifficulty}
+            onChange={handleDifficultyChange}
+            defaultValue={difficultyObj.random}
+          >
+            <option value={difficultyObj.random}>{t("random")}</option>
+            <option value={difficultyObj.easy}>1. {t("easy")}</option>
+            <option value={difficultyObj.medium}>2. {t("medium")}</option>
+            <option value={difficultyObj.hard}>3. {t("hard")}</option>
+          </select> */}
 
           <form onSubmit={debouncedHandleSubmit(onSubmit)} className={styles.insertForm}>
             {errors.insertInput && (

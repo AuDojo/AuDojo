@@ -1,11 +1,11 @@
+import { DifficultyLevel, OperationType } from "@/features/treeTutor/types";
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
 import { getBalanceFactor } from "../getters";
-import { createInsertionArray } from "./insertDifficulty";
 import { createDeletionArray } from "./deleteDifficulty";
-import { DifficultyLevel, OperationType } from "@/features/treeTutor/types";
+import { createInsertionArray } from "./insertDifficulty";
 
 /**
- * Creates a random number between 1 and max
+ * Creates a random number between 0 and max - 1
  * @param max Maximum possible value
  * @returns random number
  */
@@ -50,7 +50,7 @@ export function turnDifficultyIntoNumber(difficulty_level: DifficultyLevel): num
       break;
 
     default:
-      num = -1;
+      num = getRandomInt(3);
       break;
   }
   return num;
