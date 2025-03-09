@@ -50,7 +50,7 @@ const TreeTutor = () => {
     showSolution,
     hideSolution,
     getTreeValues,
-    // showAllSteps,
+    showAllSteps,
   } = useTreeOperations(initialTreeData, resetTemplates);
 
   const {
@@ -94,6 +94,39 @@ const TreeTutor = () => {
   // Hotkeys
   useHotkeys(HOTKEYS.treeTutor.prevTemplate, goPrevTemplate, { preventDefault: true });
   useHotkeys(HOTKEYS.treeTutor.nextTemplate, goNextTemplate, { preventDefault: true });
+
+  useHotkeys(
+    HOTKEYS.treeTutor.InsertRandom,
+    () => {
+      handlePracticeInsert();
+      setValue("insertInput", "");
+    },
+    { preventDefault: true }
+  );
+  useHotkeys(
+    HOTKEYS.treeTutor.DeleteRandom,
+    () => {
+      generateDeleteExercise();
+    },
+    { preventDefault: true }
+  );
+
+  useHotkeys(
+    HOTKEYS.treeTutor.RandomTree,
+    useDebounceCallback(() => {
+      generateRandomTree();
+    }, 100),
+    {
+      preventDefault: true,
+    }
+  );
+  useHotkeys(HOTKEYS.treeTutor.ShowSolution, () => targetValue && !showingSolution && showSolution(initialTreeData));
+
+  useHotkeys(HOTKEYS.treeTutor.HideSolution, () => showingSolution && hideSolution(), { preventDefault: true });
+
+  useHotkeys(HOTKEYS.treeTutor.ShowSteps, () => showingSolution && showAllSteps(initialTreeData), {
+    preventDefault: true,
+  });
 
   const deleteRef = useHotkeys(HOTKEYS.treeTutor.submit, handlePracticeDelete, {
     preventDefault: true,
@@ -214,7 +247,12 @@ const TreeTutor = () => {
                 {errors.insertInput.message}
               </div>
             )}
-            <button type="submit" className={styles.practiceInsertButton}>
+            <button
+              type="submit"
+              className={styles.practiceInsertButton}
+              aria-label="Insert (random) [I]"
+              data-tooltip="top 1000"
+            >
               Insert
             </button>
 
@@ -228,7 +266,13 @@ const TreeTutor = () => {
           </form>
 
           <div className={styles.deleteControls}>
-            <button type="button" className={styles.practiceDeleteButton} onClick={handlePracticeDelete}>
+            <button
+              type="button"
+              className={styles.practiceDeleteButton}
+              onClick={handlePracticeDelete}
+              aria-label="Delete (random) [D]"
+              data-tooltip="top 1000"
+            >
               Delete
             </button>
             <select
@@ -250,12 +294,21 @@ const TreeTutor = () => {
               )}
             </select>
           </div>
-          <button type="button" className={styles.randomModeButton} onClick={generateRandomTree}>
+
+          <button
+            type="button"
+            className={styles.randomModeButton}
+            aria-label="Random Tree [R]"
+            data-tooltip="top 1000"
+            onClick={generateRandomTree}
+          >
             Random Tree
           </button>
 
           <button
             type="button"
+            aria-label={showingSolution ? "Hide Solution [H]" : "Show Solution [S]"}
+            data-tooltip="top 1000"
             disabled={targetValue === null}
             className={styles.submit}
             onClick={showingSolution ? hideSolution : () => showSolution(initialTreeData)}
@@ -263,7 +316,13 @@ const TreeTutor = () => {
             {showingSolution ? "Hide Solution" : "Show Solution"}
           </button>
           {showingSolution && (
-            <button type="button" className={styles.submit}>
+            <button
+              type="button"
+              className={styles.submit}
+              aria-label="Show All Steps [A]"
+              data-tooltip="top 1000"
+              onClick={() => showAllSteps(initialTreeData)}
+            >
               Show All Steps
             </button>
           )}

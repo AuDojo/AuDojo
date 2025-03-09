@@ -25,5 +25,11 @@ export const HOTKEYS = {
     nextTemplate: ["right"],
     prevTemplate: ["left"],
     submit: ["enter"],
+    RandomTree: "R",
+    ShowSolution: "S",
+    HideSolution: "H",
+    ShowSteps: "A",
+    InsertRandom: "I",
+    DeleteRandom: "D",
   },
 } as const;
