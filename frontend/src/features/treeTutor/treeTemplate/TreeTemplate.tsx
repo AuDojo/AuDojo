@@ -1,5 +1,5 @@
 import { useResizeObserver } from "@/hooks/useResizeObserver";
-import { HierarchyLink, HierarchyNode, curveLinear, hierarchy, link, select, tree } from "d3";
+import { HierarchyLink, HierarchyNode, curveLinear, hierarchy, link, select, style, tree } from "d3";
 import { useCallback, useEffect, useRef } from "react";
 import { TreeNode, addNode, deleteNode, findNode, hasValidXY, updateNode } from "../utils/treeUtils";
 import styles from "./TreeTemplate.module.css";
@@ -160,7 +160,7 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
       .attr("height", inputSize)
       .attr("transform", `translate(${-inputSize / 2}, ${-inputSize / 2})`)
       .append("xhtml:input")
-      .attr("class", styles.input)
+      .attr("class", (node) => (node.data.correct === true ? styles.correctInput : styles.incorrectInput))
       .attr("value", (node) => node.data.value)
       .on("blur", function (event, d) {
         if (typeof d.data.id !== "string" || typeof d.data.value !== "number") {

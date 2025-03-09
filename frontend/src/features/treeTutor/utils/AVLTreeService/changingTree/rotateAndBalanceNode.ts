@@ -17,7 +17,6 @@ import { updateHeightAndBalanceFactor, updateDepth, updateAllHeightsRecursive } 
  * @returns  rotated subtree
  */
 function rightRotate(y: TreeNode): TreeNode {
-  console.log("======= Right rotation at", y.value, "=========");
   if (!y.children[0]) return y;
 
   const x = y.children[0];

@@ -1,7 +1,12 @@
 import { useState } from "react";
-import { generateDeleteSolution, generateInsertSolution } from "../utils/AVLTreeService/excerciseUtils";
+import {
+  generateDeleteSolution,
+  generateInsertSolution,
+  compareTreeSolutions,
+} from "../utils/AVLTreeService/excerciseUtils";
 import { TreeStep } from "../utils/AVLTreeService/types";
 import { TreeNode } from "../utils/treeUtils";
+import { useTreeTemplates } from "./useTreeTemplates";
 
 // Define exercise mode and operation types
 type OperationType = "INSERT" | "DELETE";
@@ -71,6 +76,7 @@ export function useTreeOperations(initialTreeData: TreeNode, resetTemplates: () 
     if (updatedSteps.length >= 2) {
       sol[2] = updatedSteps[updatedSteps.length - 1];
     }
+    // compare solution
     setSolution(sol);
     setSolutionSteps(updatedSteps);
     setShowingSolution(true);

@@ -10,6 +10,7 @@ export interface TreeNode {
   position: string;
   children: [TreeNode | null, TreeNode | null];
   balanceFactor: number;
+  correct: boolean;
 }
 
 /**
@@ -61,6 +62,7 @@ export function deleteNode(root: TreeNode, targetId: string): TreeNode {
       children: [null, null],
       position: "root",
       balanceFactor: 0,
+      correct: true,
     };
   }
 
@@ -126,6 +128,7 @@ export function addNode(tree: TreeNode, targetId: string, newValue: number, posi
     children: [null, null],
     position,
     balanceFactor: 0,
+    correct: true,
   };
 
   // Add the node to the tree

@@ -21,6 +21,7 @@ function createNode(value: number, depth: number, position: "root" | "left" | "r
     position,
     balanceFactor: 0,
     children: [null, null],
+    correct: true,
   };
 }
 

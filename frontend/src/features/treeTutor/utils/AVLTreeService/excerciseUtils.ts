@@ -140,3 +140,64 @@ export function addSteps(steps: TreeStep[] | null, subTree: BalanceIndicator, ro
     }
   }
 }
+
+/**
+ * Compares a submission tree against a solution tree and marks incorrect nodes
+ * @param submission - The submitted tree to be evaluated
+ * @param solution - The reference solution tree
+ * @returns The submission tree with correct flags set appropriately
+ */
+export function compareTreeSolutions(submission: TreeNode | null, solution: TreeNode | null): TreeNode | null {
+  // If submission node doesn't exist but solution does, return null
+  if (!submission && solution) {
+    return null;
+  }
+
+  // If solution node doesn't exist but submission does, mark as incorrect
+  if (submission && !solution) {
+    submission.correct = false;
+    return submission;
+  }
+
+  // If both nodes are null, nothing to compare
+  if (!submission && !solution) {
+    return null;
+  }
+
+  // At this point, we know both submission and solution are non-null
+  // TypeScript requires this check to understand both are non-null
+  if (submission && solution) {
+    // Check if values match - only comparing values as specified
+    submission.correct = submission.value === solution.value;
+
+    // Recursively check children
+    if (submission.children && solution.children) {
+      for (let i = 0; i < submission.children.length; i++) {
+        const submissionChild = submission.children[i] || null;
+        const solutionChild = i < solution.children.length ? solution.children[i] : null;
+
+        if (submissionChild) {
+          submission.children[i] = compareTreeSolutions(submissionChild, solutionChild);
+        }
+      }
+    } else if (solution.children && solution.children.length > 0) {
+      // Submission is missing children that solution has
+      submission.correct = false;
+    } else if (submission.children && submission.children.length > 0) {
+      // Submission has extra children that solution doesn't have
+      submission.correct = false;
+
+      // Mark all extra children as incorrect
+      // We've already checked that submission.children exists and has length > 0
+      const children = submission.children; // Store reference to avoid null check errors
+      for (let i = 0; i < children.length; i++) {
+        const child = children[i];
+        if (child) {
+          child.correct = false;
+        }
+      }
+    }
+  }
+
+  return submission;
+}

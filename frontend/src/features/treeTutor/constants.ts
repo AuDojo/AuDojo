@@ -11,4 +11,5 @@ export const defaultRoot = {
   children: [null, null],
   depth: 0,
   balanceFactor: 0,
+  correct: true,
 } as const satisfies TreeNode;
