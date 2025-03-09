@@ -68,15 +68,20 @@ function binaryTreeDelition(node: TreeNode | null, value: number): TreeNode | nu
 export function createDeletionArray(node: TreeNode, difficulty_level: DifficultyLevel): number[] {
   const excistingNodes: number[] = [];
   getExistingNodes(node, excistingNodes);
-  console.log("ExistingNodes: ", excistingNodes);
+  // console.log("ExistingNodes: ", excistingNodes);
   const matchingDeletions: number[] = [];
 
   for (const value of excistingNodes) {
+    console.log("Value to Delete: ", value);
     const node_copy = createCopyOfTree(node);
     if (node_copy !== null) {
-      const inserted_node: TreeNode | null = binaryTreeDelition(node_copy, value);
+      const deleted_node: TreeNode | null = binaryTreeDelition(node_copy, value);
+      const number_rotations = getNumberOfRotations(node_copy, deleted_node);
+
+      console.log("Number Rotations: ", number_rotations);
+
       updateAllHeightsRecursive(node_copy);
-      if (getNumberOfRotations(node_copy, inserted_node) === difficulty_level) {
+      if (number_rotations === difficulty_level) {
         matchingDeletions.push(value);
       }
     }
