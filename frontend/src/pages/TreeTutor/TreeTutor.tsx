@@ -107,17 +107,17 @@ const TreeTutor = () => {
 
   useHotkeys(
     HOTKEYS.treeTutor.InsertRandom,
-    () => {
+    useDebounceCallback(() => {
       handlePracticeInsert();
       setValue("insertInput", "");
-    },
+    }, 100),
     { preventDefault: true }
   );
   useHotkeys(
     HOTKEYS.treeTutor.DeleteRandom,
-    () => {
+    useDebounceCallback(() => {
       generateDeleteExercise();
-    },
+    }, 100),
     { preventDefault: true }
   );
 
