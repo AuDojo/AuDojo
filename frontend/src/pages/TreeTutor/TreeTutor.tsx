@@ -2,7 +2,7 @@ import { HOTKEYS } from "@/config/hotkeyMap";
 import { localStorageKeys } from "@/config/localStorage";
 import { ArrowButton } from "@/features/treeTutor/arrowButton";
 import { CloseButton } from "@/features/treeTutor/closeButton";
-import { DEFAULT_TREE, defaultRoot, MAX_TEMPLATES } from "@/features/treeTutor/constants";
+import { DEFAULT_TREE, defaultRoot, difficultyObj, MAX_TEMPLATES } from "@/features/treeTutor/constants";
 import { useTreeOperations } from "@/features/treeTutor/hooks/useTreeOperations";
 import { useTreeTemplates } from "@/features/treeTutor/hooks/useTreeTemplates";
 import { TemplateIndex } from "@/features/treeTutor/pageIndex";
@@ -239,21 +239,21 @@ const TreeTutor = () => {
         </section>
 
         <div className={styles.controls}>
-          {/* <label htmlFor="difficulty-select" className={styles.labelDifficulty}>
+          <label htmlFor="difficulty-select" className={styles.labelDifficulty}>
             {t("difficulty")}
           </label>
           <select
             name="difficulty"
             id="difficulty-select"
             className={styles.selectDifficulty}
-            onChange={handleDifficultyChange}
+            // onChange={handleDifficultyChange}
             defaultValue={difficultyObj.random}
           >
             <option value={difficultyObj.random}>{t("random")}</option>
             <option value={difficultyObj.easy}>1. {t("easy")}</option>
             <option value={difficultyObj.medium}>2. {t("medium")}</option>
             <option value={difficultyObj.hard}>3. {t("hard")}</option>
-          </select> */}
+          </select>
 
           <form onSubmit={debouncedHandleSubmit(onSubmit)} className={styles.insertForm}>
             {errors.insertInput && (
