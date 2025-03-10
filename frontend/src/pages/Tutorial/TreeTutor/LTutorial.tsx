@@ -69,7 +69,7 @@ const data: TreeSteps = {
       tree: s5,
     },
     {
-      description: "Rotate 15,16,17 to left",
+      description: "Rotate 10,20,30 to left",
       tree: s6,
     },
     {
