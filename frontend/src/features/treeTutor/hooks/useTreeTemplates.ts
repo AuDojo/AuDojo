@@ -17,11 +17,14 @@ export function useTreeTemplates(initialTreeData: TreeNode, setInitialTreeData: 
 
   const addTemplate = () => {
     if (templates.length < MAX_TEMPLATES) {
+      console.log("=== ADDING TREE ===");
       const newId = Date.now();
+      const lastTemplateId = templates[templates.length - 1];
+      const newTree = structuredClone(templateTree[lastTemplateId]);
       setTemplates((prev) => [...prev, newId]);
       setTemplateTree((prev) => ({
         ...prev,
-        [newId]: structuredClone(initialTreeData),
+        [newId]: newTree,
       }));
     }
   };
