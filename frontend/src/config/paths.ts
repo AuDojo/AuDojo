@@ -19,5 +19,9 @@ export const paths = {
   quicksorttutorial: "/tutorial/quicksort",
   bubblesorttutorial: "/tutorial/bubblesort",
   selectionsorttutorial: "/tutorial/selectionsort",
-  treetutorial: "/treetutorial",
+  l_rotatetutorial: "/tutorial/L",
+  lr_rotatetutorial: "/tutorial/LR",
+  rl_rotatetutorial: "/tutorial/RL",
+  r_rotatetutorial: "/tutorial/R",
+  delete_tutorial: "/tutorial/delete",
 } as const;

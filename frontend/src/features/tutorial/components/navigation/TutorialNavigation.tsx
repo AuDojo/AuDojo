@@ -1,4 +1,3 @@
-import { paths } from "@/config/paths";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./TutorialNavigation.module.css";
 import { useState } from "react";
@@ -25,15 +24,30 @@ const NavItem = ({
   );
 };
 
-const TutorialNavigation = () => {
+//defaultpath is default path, to which is nagivated upon visiting e.g. "SortSensei" or "Treetutor".
+//navipath_map is a collection of {sidebar name, its path} used in navigation sidebar.
+//e.g. {"MergeSort","/tutorial/mergesort"} : "Mergesort" navigation button leads to /tutorial/mergesort website
+const TutorialNavigation = ({
+  defaultpath,
+  navipath_map,
+}: {
+  defaultpath: string;
+  navipath_map: { title: string; path: string }[];
+}) => {
   const location = useLocation();
-  const currentSort = location.pathname.replace("/", "") || "tutorial/mergesort"; // get the current path name
-  const [activeSort, setActiveSort] = useState<string>(currentSort);
+  console.log(location.pathname);
+  const currentMode = location.pathname || defaultpath;
+  console.log("currentMode: " + currentMode); // get the current path name
+  const [activeMode, setActiveMode] = useState<string>(currentMode);
+  console.log("activeMode: " + activeMode);
 
   return (
     <aside className={styles["navi-container"]}>
       <nav className={styles["navi-button"]}>
-        <NavItem
+        {navipath_map.map(({ title, path }) => (
+          <NavItem activeTutorial={activeMode === path} onClick={() => setActiveMode(path)} to={path} text={title} />
+        ))}
+        {/* <NavItem
           activeTutorial={activeSort === "tutorial/mergesort"}
           onClick={() => setActiveSort("tutorial/mergesort")}
           to={paths.mergesorttutorial}
@@ -58,7 +72,7 @@ const TutorialNavigation = () => {
           onClick={() => setActiveSort("tutorial/selectionsort")}
           to={paths.selectionsorttutorial}
           text="SelectionSort"
-        />
+        /> */}
       </nav>
     </aside>
   );

@@ -65,7 +65,7 @@ const Header = () => {
               </nav>
             </div>
 
-            <LinkItem className={headerStyles["menu-item"]} to={paths.treetutorial} text="Tree Tutor" />
+            <LinkItem className={headerStyles["menu-item"]} to={paths.l_rotatetutorial} text="Tree Tutor" />
           </nav>
         </nav>
 
