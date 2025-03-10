@@ -16,14 +16,14 @@ export const tutorialSteps: TutorialStep[] = [
     key: "generateButtons",
   },
   {
-    title: "input.title",
-    content: "input.content",
-    key: "sortingTable",
-  },
-  {
     title: "split.title",
     content: "split.content",
     key: "listRow",
+  },
+  {
+    title: "input.title",
+    content: "input.content",
+    key: "sortingTable",
   },
   {
     title: "validate.title",

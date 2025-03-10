@@ -1,7 +1,7 @@
 import { TreeNode } from "../treeUtils";
+import { deleteAVLTracker, insertAVLTracker } from "./changingTree/insertAndDelete";
 import { getBalanceFactor } from "./getters";
-import { BalanceIndicator, TreeStep } from "./types";
-import { insertAVLTracker, deleteAVLTracker } from "./changingTree/insertAndDelete";
+import { BalanceIndicator, TreeStep } from "../../types";
 import { updateAllHeightsRecursive } from "./updateTreeAttributes";
 
 /**
@@ -9,7 +9,7 @@ import { updateAllHeightsRecursive } from "./updateTreeAttributes";
  * Tree is constructed by using consecutive insertAVL calls
  * @returns root node of randomly generated AVL Tree
  */
-export function generateAVL(random: boolean, input: number[] | null): TreeNode | null {
+export function generateAVL(random: boolean, input: readonly number[] | null): TreeNode | null {
   let root: TreeNode | null = null;
   const values = new Set<number>();
 

@@ -1,6 +1,6 @@
 import { TreeNode } from "../../treeUtils";
 import { getBalanceFactor } from "../getters";
-import { BalanceIndicator } from "../types";
+import { BalanceIndicator } from "../../../types";
 import { printTree } from "../tools";
 import { updateHeightAndBalanceFactor, updateDepth, updateAllHeightsRecursive } from "../updateTreeAttributes";
 

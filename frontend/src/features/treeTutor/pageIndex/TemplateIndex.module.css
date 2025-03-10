@@ -1,0 +1,11 @@
+.template-index {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+
+  padding: 5px 10px;
+
+  color: var(--main-darkblue);
+  border-top: 1px solid var(--main-darkblue);
+  border-left: 1px solid var(--main-darkblue);
+}

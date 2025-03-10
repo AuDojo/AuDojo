@@ -57,7 +57,7 @@
   border: none;
   border-radius: 50%;
   text-align: center;
-  font-size: 14px;
+  font-size: 1rem;
   border: 2.8px solid rgb(0, 63, 87, 0.8);
 }
 .input:focus {
@@ -91,4 +91,26 @@
 .addNodeRight {
   margin-left: auto;
   order: 1;
+}
+
+.addButtonText text {
+  text-anchor: middle;
+  dominant-baseline: middle;
+  font-size: 14px;
+  pointer-events: none;
+}
+.addButtonText circle {
+  fill: #ecf0f1;
+  stroke: rgb(0, 63, 87, 0.8);
+  stroke-width: 1.5;
+  cursor: pointer;
+}
+
+.addButtonText circle:hover {
+  stroke: var(--main-red);
+}
+
+.addButtonText:hover {
+  fill: var(--main-red);
+  stroke: var(--main-red);
 }

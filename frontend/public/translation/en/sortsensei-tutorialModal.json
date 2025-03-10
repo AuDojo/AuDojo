@@ -7,13 +7,13 @@
     "title": "1. 🚀 Create Your Array",
     "content": "Create a custom array or generate a random one."
   },
-  "input": {
-    "title": "2. ✍️ Input Your Solution",
-    "content": "Enter your sorting solution in the table."
-  },
   "split": {
-    "title": "3. 🖍️ Split the array",
+    "title": "2. 🖍️ Split the array",
     "content": "Click on the <strong>Line</strong> between numbers to split the array. <i>(MergeSort)</i>"
+  },
+  "input": {
+    "title": "3. ✍️ Input Your Solution",
+    "content": "Enter your sorting solution in the table."
   },
   "validate": {
     "title": "4. ✅ Validate Your Solution",

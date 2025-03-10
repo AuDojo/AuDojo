@@ -1,8 +1,8 @@
-import { TutorialNavigation } from "@/features/tutorial/components/navigation";
-import BubblesortText from "@/features/tutorial/components/tutorialContent/BubbleSortText";
-import BubbleSortImage from "@/features/tutorial/components/tutorialContent/BubbleSortImage";
-import { bubbleSortSteps } from "@/features/tutorial/data";
 import { TutorialSidebar } from "@/features/tutorial/components";
+import { TutorialNavigation } from "@/features/tutorial/components/navigation";
+import BubbleSortImage from "@/features/tutorial/components/tutorialContent/BubbleSortImage";
+import BubblesortText from "@/features/tutorial/components/tutorialContent/BubbleSortText";
+import { bubbleSortSteps } from "@/features/tutorial/data";
 import styles from "./SortSenseiTutorial.module.css";
 import { TUT_SORTSENSEI_PATHS, TUT_SORTSENSEI_DEFAULTPATH } from "../utilConstants";
 

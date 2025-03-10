@@ -13,27 +13,25 @@
   width: 100%;
   min-width: 400px;
   /* gap: 20px; */
-  padding: 10px;
+  padding-bottom: 20px;
 }
 
 .treeContainer {
   display: flex;
-  gap: 20px;
   overflow-x: auto;
   flex-direction: column;
   align-items: center;
   flex-grow: 1;
-  max-width: 70%;
   width: 100%;
-  height: 560px;
+  height: 550px;
 }
 
 .treeWrapper {
   display: flex;
-  gap: 0 20px;
+  gap: 0 10px;
   overflow-x: auto;
   white-space: nowrap;
-  padding: 10px;
+  padding: 10px 0;
   justify-content: safe center;
   width: 100%;
   height: 100%;
@@ -61,13 +59,13 @@
 
 .treeTemplate {
   position: relative;
-  border: 2px solid rgb(0, 63, 87);
+  border: 2px solid var(--main-darkblue);
   padding: 0;
   width: 100%;
   min-width: 600px;
   max-width: 550px;
-  display: block;
-  flex-direction: column;
+  display: flex;
+  flex-direction: row;
   align-items: center;
   background: white;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
@@ -77,10 +75,10 @@
 .addTemplate {
   font-size: 22px;
   background: white;
-  border: 1px solid rgb(0, 63, 87);
+  border: 1px solid var(--main-darkblue);
   border-radius: 50%;
   cursor: pointer;
-  color: rgb(0, 63, 87);
+  color: var(--main-darkblue);
   transition: all 0.2s ease;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -98,57 +96,71 @@
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
 }
 
-.submit {
-  flex: 1;
-  border-radius: 4px;
-  margin-bottom: 15px;
-  font-size: 14px;
-  font-weight: 800;
-  border: 1px solid rgb(190, 30, 60);
-  background-color: rgb(190, 30, 60);
-  color: white;
-  padding: 8px 25px;
-  margin-left: 40px;
+.submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .submit:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-.submit:active {
+.submit:active:not(:disabled) {
   opacity: 0.8;
 }
 
 .controls {
+  --controls-border-radius: 5px;
+
   padding-top: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-.practiceInsertButton {
-  border-radius: 4px;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 800;
-  border: 1px solid rgb(190, 30, 60);
+/* Controls wrappers for delete and insert */
+.deleteControls,
+.insertForm {
+  position: relative;
+  border: 1px solid var(--main-red);
+  border-radius: var(--controls-border-radius);
+
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+
+  margin-left: 20px;
+  /* overflow: hidden; */
 }
 
-.practiceDeleteButton {
-  border-radius: 4px;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 800;
-  border: 1px solid rgb(190, 30, 60);
-  margin-left: 10px;
-}
-
+.submit,
+.practiceInsertButton,
+.practiceDeleteButton,
 .randomModeButton {
-  border-radius: 4px;
+  border-radius: var(--controls-border-radius);
   padding: 8px 16px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 800;
-  border: 1px solid rgb(190, 30, 60);
-  margin-left: 10px;
+  color: var(--main-red);
+  border: 1px solid var(--main-red);
+  margin-left: 20px;
 }
-
+.practiceInsertButton,
+.practiceDeleteButton {
+  background-color: var(--main-lightpink);
+  border: none;
+  border-right: 1px solid var(--main-red);
+  border-radius: 0;
+  margin: 0;
+}
+.randomModeButton {
+  background-color: white;
+}
+.submit {
+  color: white;
+  background-color: var(--main-red);
+  margin-left: 40px;
+}
 .practiceDeleteButton:active,
 .practiceInsertButton:active,
 .randomModeButton:active {
@@ -159,4 +171,78 @@
 .randomModeButton:hover,
 .practiceInsertButton:hover {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.selectDifficulty,
+.selectDelete {
+  background: url(data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0Ljk1IDEwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6I2ZmZjt9LmNscy0ye2ZpbGw6IzQ0NDt9PC9zdHlsZT48L2RlZnM+PHRpdGxlPmFycm93czwvdGl0bGU+PHJlY3QgY2xhc3M9ImNscy0xIiB3aWR0aD0iNC45NSIgaGVpZ2h0PSIxMCIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxLjQxIDQuNjcgMi40OCAzLjE4IDMuNTQgNC42NyAxLjQxIDQuNjciLz48cG9seWdvbiBjbGFzcz0iY2xzLTIiIHBvaW50cz0iMy41NCA1LjMzIDIuNDggNi44MiAxLjQxIDUuMzMgMy41NCA1LjMzIi8+PC9zdmc+)
+    no-repeat 95% 50%;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.insertInput,
+.selectDifficulty,
+.selectDelete {
+  font-size: 13px;
+  width: 60px;
+  border: none;
+  background-color: white;
+  border-radius: var(--controls-border-radius);
+  color: var(--main-darkblue);
+}
+
+.insertInput {
+  text-align-last: center;
+}
+
+.selectOption:hover,
+.insertInput:hover::placeholder {
+  color: var(--main-red);
+}
+/* .valueInput:focus {
+  outline: none;
+} */
+.insertInput::placeholder {
+  color: var(--main-darkblue);
+}
+.insertInput:focus::placeholder {
+  color: transparent;
+}
+.insertInput:focus {
+  outline: none;
+}
+
+.selectDelete,
+.selectDifficulty {
+  padding: 8px;
+}
+
+.selectDelete {
+  width: 72px;
+  cursor: pointer;
+}
+
+.selectDifficulty {
+  width: 90px;
+  cursor: pointer;
+  margin-left: 5px;
+  border: 1px solid var(--main-red);
+  border-radius: var(--controls-border-radius);
+}
+
+.labelDifficulty {
+  color: var(--main-red);
+  font-weight: 600;
+}
+
+.insertErrorMsg {
+  position: absolute;
+  top: -50%;
+  left: 20%;
+  bottom: -50%;
+  width: 130px;
+  color: red;
+  font-size: 0.8rem;
 }

@@ -1,174 +1,158 @@
+import { HOTKEYS } from "@/config/hotkeyMap";
 import { localStorageKeys } from "@/config/localStorage";
 import { ArrowButton } from "@/features/treeTutor/arrowButton";
 import { CloseButton } from "@/features/treeTutor/closeButton";
-import { DEFAULT_TREE, MAX_TEMPLATES } from "@/features/treeTutor/constants";
+import { DEFAULT_TREE, defaultRoot, difficultyObj, MAX_TEMPLATES } from "@/features/treeTutor/constants";
+import { useTreeOperations } from "@/features/treeTutor/hooks/useTreeOperations";
+import { useTreeTemplates } from "@/features/treeTutor/hooks/useTreeTemplates";
+import { TemplateIndex } from "@/features/treeTutor/pageIndex";
 import { TreeTemplate } from "@/features/treeTutor/treeTemplate";
-import {
-  generateAVL,
-  generateDeleteSolution,
-  generateInsertSolution,
-} from "@/features/treeTutor/utils/AVLTreeService/excerciseUtils";
-import { TreeStep } from "@/features/treeTutor/utils/AVLTreeService/types";
+import { generateAVL } from "@/features/treeTutor/utils/AVLTreeService/excerciseUtils";
 import { TreeNode } from "@/features/treeTutor/utils/treeUtils";
-import { useState } from "react";
-import { useLocalStorage } from "usehooks-ts";
+import { mergeRefs } from "@/utils/refUtils";
+import { useRef } from "react";
+import { useForm } from "react-hook-form";
+import { useHotkeys } from "react-hotkeys-hook";
+import { useTranslation } from "react-i18next";
+import { useDebounceCallback, useLocalStorage } from "usehooks-ts";
 import styles from "./TreeTutor.module.css";
 
-const defaultRoot: TreeNode = {
-  value: 0,
-  height: 0,
-  id: crypto.randomUUID(),
-  position: "root",
-  children: [null, null],
-  depth: 0,
-  balanceFactor: 0,
-};
-// Define exercise mode and operation types
-type OperationType = "INSERT" | "DELETE";
-const initialID = Date.now();
-
+export interface FormInput {
+  insertInput: string;
+}
 const TreeTutor = () => {
-  const [templates, setTemplates] = useState<number[]>([initialID]);
-  const [currentOperationType, setCurrentOperationType] = useState<OperationType>("INSERT");
-  const [currentTemplate, setCurrentTemplate] = useState<number>(0);
-  const [targetValue, setTargetValue] = useState<number | null>(null);
-  const [showingSolution, setShowingSolution] = useState(false);
-  const [solution, setSolution] = useState<TreeStep[]>([]);
-  const [solutionSteps, setSolutionSteps] = useState<TreeStep[]>([]);
   const [initialTreeData, setInitialTreeData] = useLocalStorage<TreeNode>(
     localStorageKeys.initialTreeData,
     generateAVL(false, DEFAULT_TREE) ?? defaultRoot
   );
-  const [templateTree, setTemplateTree] = useState<Record<number, TreeNode>>({ [initialID]: initialTreeData });
-  // treeData of consecutive Tree Templates
-  console.log(solutionSteps);
-  const addTemplate = () => {
-    if (templates.length <= MAX_TEMPLATES) {
-      const newId = Date.now();
-      setTemplates([...templates, newId]);
+  const deleteValueRef = useRef<HTMLSelectElement>(null);
+  const { t } = useTranslation("treetutor");
 
-      setTemplateTree({
-        ...templateTree,
-        [newId]: structuredClone(initialTreeData),
-      });
+  const {
+    templates,
+    currentTemplate,
+    setCurrentTemplate,
+    templateTree,
+    addTemplate,
+    removeTemplate,
+    updateTemplateTree,
+    resetTemplates,
+  } = useTreeTemplates(initialTreeData, setInitialTreeData);
+
+  const {
+    currentOperationType,
+    targetValue,
+    showingSolution,
+    solution,
+    // difficultyRef,
+    generateInsertExercise,
+    generateDeleteExercise,
+    generateRandomTree,
+    showSolution,
+    hideSolution,
+    getTreeValues,
+    showAllSteps,
+  } = useTreeOperations(initialTreeData, resetTemplates);
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    setError,
+    formState: { errors },
+  } = useForm<FormInput>({ mode: "onChange" });
+
+  const goPrevTemplate = () => {
+    setCurrentTemplate((prev) => Math.max(prev - 1, 1));
+  };
+  const goNextTemplate = () => {
+    if (currentTemplate === templates.length - 1) {
+      addTemplate();
     }
+    setCurrentTemplate((prev) => Math.min(prev + 1, MAX_TEMPLATES - 1));
   };
 
-  const removeTemplate = (id: number) => {
-    setTemplates(templates.filter((templateId) => templateId !== id));
-
-    const { [id]: _, ...restOfTemplates } = templateTree;
-    setTemplateTree(restOfTemplates);
+  const handlePracticeInsert = (data?: FormInput) => {
+    generateInsertExercise(Number(data?.insertInput));
   };
 
-  const updateTemplateTree = (id: number, newTree: TreeNode) => {
-    setTemplateTree({
-      ...templateTree,
-      [id]: newTree,
-    });
+  const handlePracticeDelete = () => {
+    generateDeleteExercise(Number(deleteValueRef.current?.value));
   };
-
-  const updateInitialTree = (newTree: TreeNode) => {
-    setInitialTreeData(newTree);
-  };
-
-  // Create an insert exercise
-  const generateInsertExercise = () => {
-    // Generate a random value to insert between 1-99
-    const newValue = Math.floor(Math.random() * 99) + 1;
-    setTargetValue(newValue);
-    setCurrentOperationType("INSERT");
-    setShowingSolution(false);
-    setSolutionSteps([]);
-  };
-  /*
-  const generateInsertExerciseDEBUG = () => {
-    const newValue = 53;
-    setInitialTreeData(generateAVL(false, [55, 20, 43, 52]) ?? defaultRoot);
-    setTargetValue(newValue);
-    setCurrentOperationType("INSERT");
-    setShowingSolution(false);
-    setSolutionSteps([]);
-  };
-  */
-  /*
-  const generateDeleteExerciseDEBUG = () => {
-    const newValue = 53;
-    setInitialTreeData(generateAVL(false, [53, 20, 43, 26]) ?? defaultRoot);
-    setTargetValue(newValue);
-    setCurrentOperationType("DELETE");
-    setShowingSolution(false);
-    setSolutionSteps([]);
-  };
-  */
-  // Create a delete exercise
-  const generateDeleteExercise = () => {
-    // Get existing values from the tree
-
-    const getTreeValues = (node: TreeNode | null, values: number[] = []): number[] => {
-      if (!node) return values;
-      values.push(node.value);
-      getTreeValues(node.children[0], values);
-      getTreeValues(node.children[1], values);
-      return values;
-    };
-
-    const values = getTreeValues(initialTreeData);
-    if (values.length > 0) {
-      // Choose a random value from the tree
-      const value = values[Math.floor(Math.random() * values.length)];
-      setTargetValue(value);
-      setCurrentOperationType("DELETE");
-      setShowingSolution(false);
-      setSolutionSteps([]);
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.target.value = event.target.value.replace(/[^0-9]/g, "");
+    if (getTreeValues(initialTreeData).includes(Number(event.target.value))) {
+      setError("insertInput", { message: t("insert-error") + "‼️" });
+      return;
     }
+    setValue("insertInput", event.target.value);
   };
 
-  // Generate new random tree
-  const generateNewTree = () => {
-    const newSample = generateAVL(true, null);
-    const newID = Date.now();
-    setInitialTreeData(newSample ?? defaultRoot);
-    setTemplates([newID]);
-    setTemplateTree({ [newID]: newSample ?? defaultRoot });
-    setCurrentTemplate(0);
-    setShowingSolution(false);
-    setSolutionSteps([]);
-    setTargetValue(null);
-  };
+  // const handleDifficultyChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  //   const userDifficulty = Number(event.target.value);
+  //   console.log("userDiff", userDifficulty);
 
-  // Show solution
-  const showSolution = () => {
-    if (targetValue === null) return;
-    let updatedSteps = [];
+  //   setRefValue(difficultyRef, userDifficulty);
+  // };
 
-    if (currentOperationType === "INSERT") {
-      updatedSteps = generateInsertSolution(initialTreeData, targetValue);
-    } else {
-      updatedSteps = generateDeleteSolution(initialTreeData, targetValue);
+  const onSubmit = useDebounceCallback((data: FormInput) => {
+    console.log("data: ", data);
+    handlePracticeInsert(data);
+  }, 100);
+  const debouncedHandleSubmit = useDebounceCallback(handleSubmit, 100);
+
+  // Hotkeys
+  useHotkeys(HOTKEYS.treeTutor.prevTemplate, goPrevTemplate, { preventDefault: true });
+  useHotkeys(HOTKEYS.treeTutor.nextTemplate, goNextTemplate, { preventDefault: true });
+
+  useHotkeys(
+    HOTKEYS.treeTutor.InsertRandom,
+    useDebounceCallback(() => {
+      handlePracticeInsert();
+      setValue("insertInput", "");
+    }, 100),
+    { preventDefault: true }
+  );
+  useHotkeys(
+    HOTKEYS.treeTutor.DeleteRandom,
+    useDebounceCallback(() => {
+      generateDeleteExercise();
+    }, 100),
+    { preventDefault: true }
+  );
+
+  useHotkeys(
+    HOTKEYS.treeTutor.RandomTree,
+    useDebounceCallback(() => {
+      generateRandomTree();
+    }, 100),
+    {
+      preventDefault: true,
     }
-    const solution: TreeStep[] = [];
-    const intialStep: TreeStep = { operation: "Intial Data", tree: initialTreeData, successorDelete: false };
-    solution[0] = intialStep;
-    const extendedDelete = updatedSteps[0].successorDelete;
-    solution[1] = extendedDelete === true ? updatedSteps[1] : updatedSteps[0];
-    if (updatedSteps.length > 2) {
-      solution[2] = updatedSteps[updatedSteps.length - 1];
-    }
-    setSolution(solution);
-    setSolutionSteps(updatedSteps);
-    setShowingSolution(true);
-  };
+  );
+  useHotkeys(HOTKEYS.treeTutor.ShowSolution, () => targetValue && !showingSolution && showSolution(initialTreeData));
 
-  const hideSolution = () => {
-    setShowingSolution(false);
-  };
+  useHotkeys(HOTKEYS.treeTutor.HideSolution, () => showingSolution && hideSolution(), { preventDefault: true });
+
+  useHotkeys(HOTKEYS.treeTutor.ShowSteps, () => showingSolution && showAllSteps(initialTreeData), {
+    preventDefault: true,
+  });
+
+  const deleteRef = useHotkeys(HOTKEYS.treeTutor.submit, handlePracticeDelete, {
+    preventDefault: true,
+    enableOnFormTags: ["select"],
+  });
 
   return (
     <>
-      <main className={styles.mainContent}>
+      <div className={styles.mainContent}>
         <h2 className={styles.insertHeader}>
-          {currentOperationType === "INSERT" ? `Insert ${targetValue ?? "X"}` : `Delete ${targetValue ?? "X"}`}
+          {/* {currentOperationType === "INSERT" ? `Insert ${targetValue ?? "X"}` : `Delete ${targetValue ?? "X"}`} */}
+          {targetValue
+            ? currentOperationType === "INSERT"
+              ? `Insert ${targetValue ?? "X"}`
+              : `Delete ${targetValue ?? "X"}`
+            : t("header-info")}
         </h2>
         {/* <span>currentTemplate: {currentTemplate}</span>
         <span>template.length: {templates.length}</span> */}
@@ -178,17 +162,34 @@ const TreeTutor = () => {
             <div className={styles.treeWrapper}>
               <ArrowButton
                 direction="left"
-                disabled={currentTemplate === 0}
-                onClick={() => {
-                  setCurrentTemplate((prev) => prev - 1);
-                }}
+                disabled={templates.length === 1 ? currentTemplate === 0 : currentTemplate <= 1}
+                onClick={goPrevTemplate}
               />
-              {/* {currentTemplate === 0 && (
-                // Initial Template
+              {templates.length >= 2 && (
+                // First Tree Template
                 <div className={styles.treeTemplate}>
-                  <TreeTemplate treeData={initialTreeData} onTreeUpdate={updateInitialTree} />
+                  {currentTemplate > 1 && (
+                    <CloseButton
+                      onClick={() => {
+                        if (currentTemplate >= templates.length - 1) {
+                          setCurrentTemplate((prev) => prev - 1);
+                        }
+                        removeTemplate(templates[currentTemplate - 1]);
+                      }}
+                    />
+                  )}
+                  <TreeTemplate
+                    treeData={templateTree[templates[currentTemplate - 1]]}
+                    onTreeUpdate={(newTree) => {
+                      if (currentTemplate === 1) {
+                        setInitialTreeData(newTree);
+                      }
+                      updateTemplateTree(templates[currentTemplate - 1], newTree);
+                    }}
+                  />
+                  <TemplateIndex currentTemplate={currentTemplate} totalTemplates={templates.length} />
                 </div>
-              )} */}
+              )}
               <div className={styles.treeTemplate}>
                 {currentTemplate > 0 && (
                   <CloseButton
@@ -196,31 +197,23 @@ const TreeTutor = () => {
                       if (currentTemplate >= templates.length - 1) {
                         setCurrentTemplate((prev) => prev - 1);
                       }
-                      removeTemplate(templates[currentTemplate - 1]);
+                      removeTemplate(templates[currentTemplate]);
                     }}
                   />
                 )}
+                {/* Second Tree Template */}
                 <TreeTemplate
                   treeData={templateTree[templates[currentTemplate]]}
                   onTreeUpdate={(newTree) => {
-                    if (currentTemplate === 0) {
-                      updateInitialTree(newTree);
-                    } else {
-                      updateTemplateTree(templates[currentTemplate], newTree);
+                    if (currentTemplate === 0 && templates.length === 1) {
+                      setInitialTreeData(newTree);
                     }
+                    updateTemplateTree(templates[currentTemplate], newTree);
                   }}
                 />
+                <TemplateIndex currentTemplate={currentTemplate + 1} totalTemplates={templates.length} />
               </div>
-              <ArrowButton
-                direction="right"
-                disabled={currentTemplate >= MAX_TEMPLATES}
-                onClick={() => {
-                  if (currentTemplate === templates.length - 1) {
-                    addTemplate();
-                  }
-                  setCurrentTemplate((prev) => prev + 1);
-                }}
-              />
+              <ArrowButton direction="right" disabled={currentTemplate >= MAX_TEMPLATES - 1} onClick={goNextTemplate} />
             </div>
           ) : (
             // Solution view with steps displayed horizontally
@@ -230,11 +223,14 @@ const TreeTutor = () => {
                   <div className={styles.stepHeader}>
                     <span className={styles.stepNumber}>Step {index + 1}</span>
                   </div>
-                  {step.tree && (
-                    <TreeTemplate
-                      treeData={step.tree}
-                      onTreeUpdate={updateInitialTree} // Read-only view for solution steps
-                    />
+                  {step?.tree && (
+                    <>
+                      <TreeTemplate
+                        treeData={step.tree}
+                        onTreeUpdate={setInitialTreeData} // Read-only view for solution steps
+                      />
+                      <TemplateIndex currentTemplate={index + 1} totalTemplates={solution.length} />{" "}
+                    </>
                   )}
                 </div>
               ))}
@@ -243,23 +239,109 @@ const TreeTutor = () => {
         </section>
 
         <div className={styles.controls}>
-          <button type="button" className={styles.practiceInsertButton} onClick={generateInsertExercise}>
-            Practice Insert
-          </button>
-          <button type="button" className={styles.practiceDeleteButton} onClick={generateDeleteExercise}>
-            Practice Delete
-          </button>
-          <button type="button" className={styles.randomModeButton} onClick={generateNewTree}>
-            New Random Tree
+          <label htmlFor="difficulty-select" className={styles.labelDifficulty}>
+            {t("difficulty")}
+          </label>
+          <select
+            name="difficulty"
+            id="difficulty-select"
+            className={styles.selectDifficulty}
+            // onChange={handleDifficultyChange}
+            defaultValue={difficultyObj.random}
+          >
+            <option value={difficultyObj.random}>{t("random")}</option>
+            <option value={difficultyObj.easy}>1. {t("easy")}</option>
+            <option value={difficultyObj.medium}>2. {t("medium")}</option>
+            <option value={difficultyObj.hard}>3. {t("hard")}</option>
+          </select>
+
+          <form onSubmit={debouncedHandleSubmit(onSubmit)} className={styles.insertForm}>
+            {errors.insertInput && (
+              <div className={styles.insertErrorMsg} role="alert">
+                {errors.insertInput.message}
+              </div>
+            )}
+            <button
+              type="submit"
+              className={styles.practiceInsertButton}
+              aria-label="Insert (random) [I]"
+              data-tooltip="top 1000"
+            >
+              Insert
+            </button>
+
+            <input
+              className={styles.insertInput}
+              type="text"
+              {...register("insertInput", { onChange: handleInputChange })}
+              maxLength={2}
+              placeholder={t("random")}
+            />
+          </form>
+
+          <div className={styles.deleteControls}>
+            <button
+              type="button"
+              className={styles.practiceDeleteButton}
+              onClick={handlePracticeDelete}
+              aria-label="Delete (random) [D]"
+              data-tooltip="top 1000"
+            >
+              Delete
+            </button>
+            <select
+              // eslint-disable-next-line react-compiler/react-compiler
+              ref={mergeRefs(deleteRef, deleteValueRef)}
+              name="delete"
+              id="delete-node"
+              className={styles.selectDelete}
+              onChange={handlePracticeDelete}
+            >
+              <option value="delete-random">{t("random")}</option>
+              {getTreeValues(initialTreeData).map(
+                (value) =>
+                  value !== 0 && (
+                    <option key={value} value={value}>
+                      {value}
+                    </option>
+                  )
+              )}
+            </select>
+          </div>
+
+          <button
+            type="button"
+            className={styles.randomModeButton}
+            aria-label="Random Tree [R]"
+            data-tooltip="top 1000"
+            onClick={generateRandomTree}
+          >
+            {t("button.random-tree")}
           </button>
 
-          {targetValue !== null && (
-            <button type="button" className={styles.submit} onClick={showingSolution ? hideSolution : showSolution}>
-              {showingSolution ? "Hide Solution" : "Show Solution"}
+          <button
+            type="button"
+            aria-label={showingSolution ? "Hide Solution [H]" : "Show Solution [S]"}
+            data-tooltip="top 1000"
+            disabled={targetValue === null}
+            className={styles.submit}
+            onClick={showingSolution ? hideSolution : () => showSolution(initialTreeData)}
+          >
+            {showingSolution ? t("button.hide-solution") : t("button.show-solution")}
+          </button>
+          {showingSolution && (
+            <button
+              type="button"
+              className={styles.submit}
+              aria-label="Show All Steps [A]"
+              data-tooltip="top 1000"
+              onClick={() => showAllSteps(initialTreeData)}
+            >
+              {t("button.show-all-steps")}
             </button>
           )}
         </div>
-      </main>
+      </div>
     </>
   );
 };

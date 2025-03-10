@@ -11,9 +11,9 @@ interface TreeTemplateProps {
 
 const inputSize = 35;
 const addButtonRadius = 8;
-const yOffset = 115;
+const yOffset = 105;
 const exponentialDecrease = 0.5;
-const horizontalSpacing = 150;
+const horizontalSpacing = 145;
 
 const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
   const svgRef = useRef<SVGSVGElement>(null);
@@ -45,7 +45,6 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
   );
 
   useEffect(() => {
-    console.log("use effect fired", treeData);
     const svg = select(svgRef.current);
     if (!dimensions) return;
 
@@ -196,60 +195,47 @@ const TreeTemplate = ({ treeData, onTreeUpdate }: TreeTemplateProps) => {
 
       // Linker Button (als SVG-Kreis)
       if ((children[0]?.value ?? null) === null && depth < 4) {
-        const leftGroup = svg.append("g").attr("transform", `translate(${x - 12}, ${y + 24})`);
+        const leftGroup = svg
+          .append("g")
+          .attr("transform", `translate(${x - 12}, ${y + 24})`)
+          .attr("class", styles.addButtonText);
         leftGroup
           .append("circle")
           .attr("class", `btn-left-${nodeId}`)
           .attr("r", addButtonRadius)
-          .attr("fill", "#ecf0f1")
-          .attr("stroke", "rgb(0, 63, 87, 0.8)")
-          .attr("stroke-width", 1.5)
-          .attr("cursor", "pointer")
+          .attr("position", "left")
           .on("click", function (event) {
             event.stopPropagation();
             console.log(` ID from on click Event: ${nodeId}`);
             handleAddNode(nodeId, "left");
           });
 
-        leftGroup
-          .append("text")
-          .attr("text-anchor", "middle")
-          .attr("dominant-baseline", "middle")
-          .attr("font-size", "14px")
-          .attr("pointer-events", "none")
-          .text("+");
+        leftGroup.append("text").text("+");
       }
       // Rechter Button (als SVG-Kreis)
       if ((children[1]?.value ?? null) === null && depth < 4) {
-        const rightGroup = svg.append("g").attr("transform", `translate(${x + 12}, ${y + 24})`);
+        const rightGroup = svg
+          .append("g")
+          .attr("transform", `translate(${x + 12}, ${y + 24})`)
+          .attr("class", styles.addButtonText);
         rightGroup
           .append("circle")
           .attr("class", `btn-right-${nodeId}`)
           .attr("r", addButtonRadius)
-          .attr("fill", "#ecf0f1")
-          .attr("stroke", "rgb(0, 63, 87, 0.8)")
-          .attr("stroke-width", 1.5)
-          .attr("cursor", "pointer")
           .attr("position", "right")
           .on("click", function (event) {
             event.stopPropagation();
             console.log(` ID from on click Event: ${nodeId}`);
             handleAddNode(nodeId, "right");
           });
-        rightGroup
-          .append("text")
-          .attr("text-anchor", "middle")
-          .attr("dominant-baseline", "middle")
-          .attr("font-size", "14px")
-          .attr("pointer-events", "none")
-          .text("+");
+        rightGroup.append("text").text("+");
       }
     });
   }, [dimensions, treeData, onTreeUpdate, handleAddNode]);
 
   return (
     // <div className={styles.treeTemplateContainer}>
-    <svg className={styles.svg} ref={svgRef}></svg>
+      <svg className={styles.svg} ref={svgRef}></svg>
     // </div>
   );
 };

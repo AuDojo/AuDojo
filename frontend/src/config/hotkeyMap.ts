@@ -21,4 +21,15 @@ export const HOTKEYS = {
     moveRight: "right",
     unfocus: "esc",
   },
+  treeTutor: {
+    nextTemplate: ["right"],
+    prevTemplate: ["left"],
+    submit: ["enter"],
+    RandomTree: "R",
+    ShowSolution: "S",
+    HideSolution: "H",
+    ShowSteps: "A",
+    InsertRandom: "I",
+    DeleteRandom: "D",
+  },
 } as const;

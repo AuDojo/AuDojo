@@ -7,13 +7,13 @@
     "title": "1. 🚀 Erstelle Dein Array",
     "content": "Erstelle ein eigenes Array oder generiere ein zufälliges."
   },
-  "input": {
-    "title": "2. ✍️ Füge Deine Lösungen Ein",
-    "content": "Füge deine sortierte Lösung in die Tabelle ein."
-  },
   "split": {
-    "title": "3. 🖍️ Teile Das Array",
+    "title": "2. 🖍️ Teile Das Array",
     "content": "Klicke auf die <strong>Linie</strong> zwischen den Nummern, um das Array zu teilen. <i>(MergeSort)</i>"
+  },
+  "input": {
+    "title": "3. ✍️ Füge Deine Lösungen Ein",
+    "content": "Füge deine sortierte Lösung in die Tabelle ein."
   },
   "validate": {
     "title": "4. ✅ Validiere Deine Lösung",

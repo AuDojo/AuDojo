@@ -13,10 +13,25 @@
   </tr>
   <tr>
     <td>
-      <img src="frontend/src/assets/homepage-new.png" />
+      <img src="frontend/src/assets/homepage-new-new.png" />
     </td>
     <td>
-      <img src="frontend/src/assets/sortsensei-page-new.png" />
+      <img src="frontend/src/assets/sortsensei-page-new-new.png" />
+    </td>
+  </tr>
+</table>
+
+<table style="">
+  <tr>
+    <th>TreeTutor</th>
+    <th>Examples-SortSensei</th>
+  </tr>
+  <tr>
+    <td>
+      <img src="frontend/src/assets/treetutor-page.png" />
+    </td>
+    <td>
+      <img src="frontend/src/assets/examples-page.png" />
     </td>
   </tr>
 </table>
