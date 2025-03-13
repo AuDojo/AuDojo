@@ -17,8 +17,6 @@ const QuickTutorial = lazy(() => import("@/pages/Tutorial/SortSensei/QuickTutori
 const BubbleTutorial = lazy(() => import("@/pages/Tutorial/SortSensei/BubbleTutorial"));
 const SelectTutorial = lazy(() => import("@/pages/Tutorial/SortSensei/SelectTutorial"));
 const L_RotateTutorial = lazy(() => import("@/pages/Tutorial/TreeTutor/LTutorial"));
-const Datenschutz = lazy(() => import("@/pages/Legal/Datenschutz"));
-const Impressum = lazy(() => import("@/pages/Legal/Impressum"));
 const NotFound = lazy(() => import("@/pages/NotFound/NotFound"));
 const TreeTutor = lazy(() => import("@/pages/TreeTutor/TreeTutor"));
 
@@ -35,14 +33,14 @@ export const AppRouter = () => {
               <Route path={paths.quickSort} element={<QuickSort />} />
               <Route path={paths.bubbleSort} element={<BubbleSort />} />
               <Route path={paths.selectionSort} element={<SelectionSort />} />
-              <Route path={paths.mergesorttutorial} element={<MergeTutorial />} />
-              <Route path={paths.quicksorttutorial} element={<QuickTutorial />} />
-              <Route path={paths.bubblesorttutorial} element={<BubbleTutorial />} />
-              <Route path={paths.selectionsorttutorial} element={<SelectTutorial />} />
-              <Route path={paths.l_rotatetutorial} element={<L_RotateTutorial />} />
+              <Route path={paths.tutorial.mergesort} element={<MergeTutorial />} />
+              <Route path={paths.tutorial.quicksort} element={<QuickTutorial />} />
+              <Route path={paths.tutorial.bubblesort} element={<BubbleTutorial />} />
+              <Route path={paths.tutorial.selectionsort} element={<SelectTutorial />} />
+              <Route path={paths.tutorial.l_rotate} element={<L_RotateTutorial />} />
               <Route path={paths.kontakt} element={<Kontakt />} />
-              <Route path={paths.datenschutz} element={<Datenschutz />} />
-              <Route path={paths.impressum} element={<Impressum />} />
+              {/* <Route path={paths.datenschutz} element={<Datenschutz />} />
+              <Route path={paths.impressum} element={<Impressum />} /> */}
               <Route path={paths.treeTutor} element={<TreeTutor />} />
               <Route path="*" element={<NotFound />} /> {/* Invalid route*/}
             </Routes>

@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import styles from "./TutorialNavigation.module.css";
-import { useState } from "react";
 
 const NavItem = ({
   to,
@@ -15,11 +15,7 @@ const NavItem = ({
 }) => {
   return (
     <Link to={to} onClick={onClick}>
-      <div
-        className={`${styles[""]} ${activeTutorial ? styles["navi-button-active"] : styles["navi-button-inactive"]}`}
-      >
-        {text}
-      </div>
+      <div className={`${activeTutorial ? styles["navi-button-active"] : styles["navi-button-inactive"]}`}>{text}</div>
     </Link>
   );
 };
@@ -45,7 +41,13 @@ const TutorialNavigation = ({
     <aside className={styles["navi-container"]}>
       <nav className={styles["navi-button"]}>
         {navipath_map.map(({ title, path }) => (
-          <NavItem activeTutorial={activeMode === path} onClick={() => setActiveMode(path)} to={path} text={title} />
+          <NavItem
+            key={title}
+            activeTutorial={activeMode === path}
+            onClick={() => setActiveMode(path)}
+            to={path}
+            text={title}
+          />
         ))}
         {/* <NavItem
           activeTutorial={activeSort === "tutorial/mergesort"}

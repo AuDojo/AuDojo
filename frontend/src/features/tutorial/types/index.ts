@@ -7,7 +7,7 @@ export interface Tree {
   value: number | null;
   children?: [Tree, Tree];
   balanceFactor?: number;
-  color?: String;
+  color?: string;
 }
 
 export interface TreeSteps {

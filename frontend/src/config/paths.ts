@@ -15,13 +15,19 @@ export const paths = {
   //TreeTutor
   treeTutor: "/treetutor",
 
-  mergesorttutorial: "/tutorial/mergesort",
-  quicksorttutorial: "/tutorial/quicksort",
-  bubblesorttutorial: "/tutorial/bubblesort",
-  selectionsorttutorial: "/tutorial/selectionsort",
-  l_rotatetutorial: "/tutorial/L",
-  lr_rotatetutorial: "/tutorial/LR",
-  rl_rotatetutorial: "/tutorial/RL",
-  r_rotatetutorial: "/tutorial/R",
-  delete_tutorial: "/tutorial/delete",
+  // Tutorial
+  tutorial: {
+    mergesort: "/tutorial/mergesort",
+    quicksort: "/tutorial/quicksort",
+    bubblesort: "/tutorial/bubblesort",
+    selectionsort: "/tutorial/selectionsort",
+    l_rotate: "/tutorial/L",
+    lr_rotate: "/tutorial/LR",
+    rl_rotate: "/tutorial/RL",
+    r_rotate: "/tutorial/R",
+    delete: "/tutorial/delete",
+  },
 } as const;
+
+//TODO Path type for key
+// export type Path = typeof paths key;

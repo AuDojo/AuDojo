@@ -1,7 +1,7 @@
-import { HierarchyLink, HierarchyNode, curveLinear, hierarchy, link, select, tree } from "d3";
-import { Tree } from "../../types";
-import { useEffect, useRef } from "react";
 import { useResizeObserver } from "@/hooks/useResizeObserver";
+import { HierarchyLink, HierarchyNode, curveLinear, hierarchy, link, select, tree } from "d3";
+import { useEffect, useRef } from "react";
+import { Tree } from "../../types";
 import styles from "./TutorialTreeTemplate.module.css";
 
 const width = 400;
@@ -25,7 +25,7 @@ const TutorialTreeTemplate = ({ treeData }: { treeData: Tree }) => {
     treeLayout(root);
 
     // function that, when called with link data, produces a valid SVG path string
-    const linkGenerator = link<HierarchyLink<TreeNode>, HierarchyNode<TreeNode>>(curveLinear)
+    const linkGenerator = link<HierarchyLink<Tree>, HierarchyNode<Tree>>(curveLinear)
       .x((node) => node.x ?? 0)
       .y((node) => node.y ?? 0);
 
@@ -36,7 +36,9 @@ const TutorialTreeTemplate = ({ treeData }: { treeData: Tree }) => {
       .attr("class", "link")
       .attr("fill", "none")
       .attr("stroke", "black")
-      .attr("d", (link) => linkGenerator(link) ?? "");
+      .attr("d", (link) => {
+        return linkGenerator(link) ?? "";
+      });
 
     const gNode = svg
       .selectAll(".node")
@@ -48,7 +50,9 @@ const TutorialTreeTemplate = ({ treeData }: { treeData: Tree }) => {
     gNode
       .append("circle")
       .attr("r", 20)
-      .attr("fill", (node) => (node.data.color ? node.data.color : "#ecf0f1"));
+      .attr("fill", (node) => {
+        return node.data.color ?? "#ecf0f1";
+      });
 
     gNode
       .append("text")

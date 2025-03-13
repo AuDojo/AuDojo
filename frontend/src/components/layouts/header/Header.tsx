@@ -44,7 +44,7 @@ const Header = () => {
         <nav className={headerStyles["dropdown-container"]}>
           <LinkItem
             className={headerStyles["menu-item"]}
-            to={paths.mergesorttutorial}
+            to={paths.tutorial.mergesort}
             text={t("example") + "\u00A0"}
             icon={iconDropdown}
           />
@@ -53,19 +53,23 @@ const Header = () => {
             <div className={headerStyles["nested-dropdown"]}>
               <LinkItem
                 className={headerStyles["dropdown-menu-item"]}
-                to={paths.mergesorttutorial}
+                to={paths.tutorial.mergesort}
                 text="SortSensei"
                 icon={iconSide}
               />
               <nav className={headerStyles["nested-dropdown-content"]}>
-                <LinkItem className={headerStyles["menu-item"]} to={paths.mergesorttutorial} text="MergeSort" />
-                <LinkItem className={headerStyles["menu-item"]} to={paths.bubblesorttutorial} text="BubbleSort" />
-                <LinkItem className={headerStyles["menu-item"]} to={paths.selectionsorttutorial} text="SelectionSort" />
-                <LinkItem className={headerStyles["menu-item"]} to={paths.quicksorttutorial} text="QuickSort" />
+                <LinkItem className={headerStyles["menu-item"]} to={paths.tutorial.mergesort} text="MergeSort" />
+                <LinkItem className={headerStyles["menu-item"]} to={paths.tutorial.bubblesort} text="BubbleSort" />
+                <LinkItem
+                  className={headerStyles["menu-item"]}
+                  to={paths.tutorial.selectionsort}
+                  text="SelectionSort"
+                />
+                <LinkItem className={headerStyles["menu-item"]} to={paths.tutorial.quicksort} text="QuickSort" />
               </nav>
             </div>
 
-            <LinkItem className={headerStyles["menu-item"]} to={paths.l_rotatetutorial} text="Tree Tutor" />
+            <LinkItem className={headerStyles["menu-item"]} to={paths.tutorial.l_rotate} text="Tree Tutor" />
           </nav>
         </nav>
 
