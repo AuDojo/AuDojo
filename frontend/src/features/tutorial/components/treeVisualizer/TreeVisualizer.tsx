@@ -1,7 +1,7 @@
-import { TreeSteps } from "../../types";
 import { useState } from "react";
-import styles from "./treeVisualizer.module.css";
+import { TreeSteps } from "../../types";
 import { TutorialTreeTemplate } from "../tutorialTreeTemplate";
+import styles from "./TreeVisualizer.module.css";
 const TreeVisualizer = ({ data }: { data: TreeSteps }) => {
   const [currentStep, setCurrentStep] = useState(0);
 
