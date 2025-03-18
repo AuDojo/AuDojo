@@ -1,10 +1,10 @@
 ---
 name: "Feature request \U0001F4A1"
 about: Suggest a new feature for AuDojo
-title: ''
-labels: ''
-assignees: ''
-
+type: Feature
+title: ""
+labels: ""
+assignees: ""
 ---
 
 **Is your feature request related to a problem? Please describe.**
