@@ -1,6 +1,5 @@
 name: "🐛 Bug Report"
-about: Create a bug report for AuDojo
-title: ""
+description: Create a bug report for AuDojo
 labels: []
 assignees: []
 body:
