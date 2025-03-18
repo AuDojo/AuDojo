@@ -1,7 +1,6 @@
 name: "🐛 Bug Report"
 description: Create a bug report for AuDojo
-labels: []
-assignees: []
+type: Bug
 body:
   - type: textarea
     id: actual_behavior
