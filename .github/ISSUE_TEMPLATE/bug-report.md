@@ -1,30 +1,31 @@
 ---
-name: "\U0001F41B Bug Report"
+name: "🐛 Bug Report"
 about: Create a bug report for AuDojo
-type: Bug
 title: ""
-labels: ""
-assignees: ""
+labels: []
+assignees: []
 body:
   - type: textarea
     id: actual_behavior
     attributes:
-      label: 🙁 Actual behavior
+      label: "🙁 Actual behavior"
       description: "What happened, and why it was wrong."
     validations:
       required: true
+
   - type: textarea
     id: expected_behavior
     attributes:
-      label: 🙂 Expected behavior
-      description: What you expected to happen instead, and why
+      label: "🙂 Expected behavior"
+      description: "What you expected to happen instead, and why."
     validations:
       required: true
+
   - type: textarea
     id: reprod
     attributes:
-      label: "Reproduction steps"
-      description: Please enter an explicit description of your issue
+      label: "🛠 Reproduction steps"
+      description: "Please enter an explicit description of your issue."
       placeholder: |
         1. Go to '...'
         2. Click on '....'
@@ -32,11 +33,12 @@ body:
         4. See error
     validations:
       required: true
+
   - type: dropdown
     id: browsers
     attributes:
-      label: "Browsers"
-      description: What browsers are you seeing the problem on ?
+      label: "🌐 Browsers"
+      description: "What browsers are you seeing the problem on?"
       multiple: true
       options:
         - Firefox
@@ -44,27 +46,26 @@ body:
         - Safari
         - Microsoft Edge
         - Opera
-    validations:
-      required: false
+
   - type: dropdown
     id: os
     attributes:
-      label: "OS"
-      description: What is the impacted environment ?
+      label: "💻 OS"
+      description: "What is the impacted environment?"
       multiple: true
       options:
         - Windows
         - Linux
         - Mac
+
+  - type: textarea
+    id: anything_else
+    attributes:
+      label: "📎 Anything else?"
+      description: |
+        Links? References? Anything that will give us more context about the issue you are encountering!
+
+        Tip: You can attach images or log files by clicking this area to highlight it and then dragging files in.
     validations:
       required: false
-  - type: textarea
-    attributes:
-    label: Anything else?
-    description: |
-      Links? References? Anything that will give us more context about the issue you are encountering!
-
-      Tip: You can attach images or log files by clicking this area to highlight it and then dragging files in.
-    validations:
-    required: false
 ---
