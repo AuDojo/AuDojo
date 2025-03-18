@@ -19,10 +19,7 @@
       <img src="frontend/src/assets/sortsensei-page-new-new.png" />
     </td>
   </tr>
-</table>
-
-<table style="">
-  <tr>
+    <tr>
     <th>TreeTutor</th>
     <th>Examples-SortSensei</th>
   </tr>
