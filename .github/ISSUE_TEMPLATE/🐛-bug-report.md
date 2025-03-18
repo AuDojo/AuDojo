@@ -1,10 +1,10 @@
 ---
-name: "Bug report \U0001F41B"
+name: "\U0001F41B Bug Report"
 about: Create a bug report for AuDojo
-type: Bug
-title: ""
-labels: ""
-assignees: ""
+title: ''
+labels: ''
+assignees: ''
+
 ---
 
 **Describe the bug**
