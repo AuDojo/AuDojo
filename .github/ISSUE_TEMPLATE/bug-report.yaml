@@ -1,9 +1,6 @@
----
 name: "🐛 Bug Report"
-about: Create a bug report for AuDojo
-title: ""
-labels: []
-assignees: []
+description: Create a bug report for AuDojo
+type: Bug
 body:
   - type: textarea
     id: actual_behavior
@@ -68,4 +65,3 @@ body:
         Tip: You can attach images or log files by clicking this area to highlight it and then dragging files in.
     validations:
       required: false
----
