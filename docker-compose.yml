@@ -26,6 +26,12 @@ services:
     volumes:
       - ./certbot/www/:/var/www/certbot/:rw # Webroot for challenges
       - ./certbot/conf/:/etc/letsencrypt/:rw # Store SSL certificates
-    command: certonly --webroot -w /var/www/certbot --keep-until-expiring --email audojo8@gmail.com -d audojo.org --agree-tos # Get SSL certificate for audojo.org (for HTTPS)
+    command: > # Get SSL certificate for audojo.org (for HTTPS)
+      "certbot certonly --webroot -w /var/www/certbot
+      --email audojo8@gmail.com
+      --agree-tos
+      --keep-until-expiring
+      -d audojo.org
+      --webroot-path /var/www/certbot"
     profiles:
       - production
