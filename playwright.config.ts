@@ -1,7 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
 const FRONTEND_PORT = 5180;
-const BACKEND_PORT = 5002;
+const BACKEND_PORT = 5001;
 
 /**
  * Read environment variables from file.
