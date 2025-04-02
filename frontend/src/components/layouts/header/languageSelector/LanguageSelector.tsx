@@ -1,7 +1,7 @@
 import deFlag from "@/assets/de.png";
 import enFlag from "@/assets/gb.png";
 import globeIcon from "@/assets/globeicon.png"; // Globus-Icon importieren
-import { useRef } from "react";
+import { useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import menuStyles from "./LanguageSelector.module.css";
 
@@ -18,9 +18,12 @@ function LanguageSelector() {
     i18n.changeLanguage(code);
   };
 
-  const isLanguageSelected = (code: string) => {
-    return i18n.resolvedLanguage === code;
-  };
+  const isLanguageSelected = useCallback(
+    (code: string) => {
+      return i18n.resolvedLanguage === code;
+    },
+    [i18n.resolvedLanguage]
+  );
 
   return (
     <div className={menuStyles.languageSelector} ref={dropdownRef}>
