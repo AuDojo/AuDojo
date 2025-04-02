@@ -1,6 +1,5 @@
 import { Layout } from "@/components/layouts/Layout";
 import { Loading } from "@/components/ui/loading";
-import { BASE_URL } from "@/config/env";
 import { paths } from "@/config/paths";
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -23,7 +22,7 @@ const TreeTutor = lazy(() => import("@/pages/TreeTutor/TreeTutor"));
 export const AppRouter = () => {
   return (
     <>
-      <BrowserRouter basename={BASE_URL}>
+      <BrowserRouter>
         <Layout>
           <Suspense fallback={<Loading />}>
             <Routes>

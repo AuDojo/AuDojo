@@ -1,6 +1,0 @@
-services:
-  webapp:
-    build: .
-    container_name: webapp
-    ports:
-      - "5001:5001"

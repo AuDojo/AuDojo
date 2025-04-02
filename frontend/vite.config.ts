@@ -6,7 +6,6 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/projects/audojo/",
   plugins: [
     react({
       babel: {
@@ -19,7 +18,7 @@ export default defineConfig({
     open: true,
     proxy: {
       "/api": {
-        target: "http://localhost:5002/projects/audojo",
+        target: "http://localhost:5002",
         changeOrigin: true,
       },
     },
