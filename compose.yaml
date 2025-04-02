@@ -1,8 +1,14 @@
 # For Development
 
 services:
-  audojo:
-    build: .
-    container_name: audojo
+  frontend:
+    build:
+      target: frontend
+    container_name: frontend
     ports:
-      - "5001:5001"
+      - "8080:80"
+
+  backend:
+    build:
+      target: backend
+    container_name: backend
