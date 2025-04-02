@@ -92,7 +92,7 @@ export default defineConfig({
     },
   ],
   use: {
-    baseURL: `http://localhost:${FRONTEND_PORT}/projects/audojo/`,
+    baseURL: `http://localhost:${FRONTEND_PORT}`,
     trace: "on-first-retry",
   },
 });

@@ -2,7 +2,6 @@ import bodyParser from "body-parser";
 import express, { Express } from "express";
 
 const app: Express = express();
-const base_url = "";
 const port = process.env.PORT || 5001;
 const env = process.env.NODE_ENV || "development"; // 'development' oder 'production'
 
@@ -13,8 +12,8 @@ const mailRouting = require("./Mail/mailRouting");
 app.use(bodyParser.json());
 
 // API Routes
-app.use(`${base_url}/api/sorting`, sortingRouting);
-app.use(`${base_url}/api/mail`, mailRouting);
+app.use("/api/sorting", sortingRouting);
+app.use("/api/mail", mailRouting);
 
 // Start server
 app.listen(port, () => {
