@@ -1,4 +1,4 @@
-# For Server
+# For Server: `docker compose -f compose.prod.yaml up -d`
 
 services:
   audojo:
