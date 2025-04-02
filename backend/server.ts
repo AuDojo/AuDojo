@@ -1,6 +1,5 @@
 import bodyParser from "body-parser";
-import express, { Express, Request, Response } from "express";
-import path from "path";
+import express, { Express } from "express";
 
 const app: Express = express();
 const base_url = "";
@@ -10,17 +9,6 @@ const env = process.env.NODE_ENV || "development"; // 'development' oder 'produc
 // make sure the right sortingRouting.* is required
 const sortingRouting = require(`./SortSensei/sortingRouting.${env === "development" ? "ts" : "js"}`);
 const mailRouting = require("./Mail/mailRouting");
-
-// make express deliver static frontend pages
-if (env === "production") {
-  const frontendPath = path.join(__dirname, "..", "..", "frontend");
-  // console.log("produciton is true");
-  app.use(base_url, express.static(path.join(frontendPath, "dist")));
-
-  app.get(`${base_url}/*`, (req: Request, res: Response) => {
-    res.sendFile(path.join(frontendPath, "dist", "index.html")); //our main page frontend/index.html is loaded
-  });
-}
 
 app.use(bodyParser.json());
 

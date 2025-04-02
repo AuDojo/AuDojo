@@ -3,3 +3,6 @@ packages:
   - backend
 onlyBuiltDependencies:
   - esbuild
+syncInjectedDepsAfterScripts:
+  - build
+injectWorkspacePackages: true

@@ -1,11 +1,17 @@
 # For Server: `docker compose -f compose.prod.yaml up -d`
 
 services:
-  audojo:
-    build: .
+  frontend:
+    build:
+      target: frontend
     deploy:
       mode: replicated
       replicas: 3
+
+  backend:
+    build:
+      target: backend
+    container_name: backend
 
   reverse-proxy:
     image: nginx:latest
@@ -18,4 +24,5 @@ services:
       - "443:443" # HTTPS Port
       # - "80:80" # HTTP Port
     depends_on:
-      - audojo
+      - frontend
+      - backend
