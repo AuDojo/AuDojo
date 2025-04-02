@@ -1,0 +1,6 @@
+services:
+  audojo:
+    build: .
+    container_name: audojo
+    ports:
+      - "5001:5001"

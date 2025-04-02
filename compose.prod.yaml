@@ -1,7 +1,6 @@
 services:
   audojo:
     build: .
-    container_name: audojo
     deploy:
       mode: replicated
       replicas: 3
@@ -15,8 +14,6 @@ services:
       - /etc/ssl/cloudflare:/etc/ssl/cloudflare # Cloudfare origin cert/key
     ports:
       - "443:443" # HTTPS Port
-      - "80:80" # HTTP Port
+      # - "80:80" # HTTP Port
     depends_on:
       - audojo
-    profiles:
-      - production # Only starts with `docker compose --profile production up`
