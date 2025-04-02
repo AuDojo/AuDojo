@@ -14,7 +14,7 @@ services:
     container_name: backend
 
   reverse-proxy:
-    image: nginx:1.27.4-alpine-slim 
+    image: nginx:1.27.4-alpine-slim
     container_name: reverse-proxy
     restart: unless-stopped
     volumes:
@@ -22,7 +22,6 @@ services:
       - /etc/ssl/cloudflare:/etc/ssl/cloudflare # Cloudfare origin cert/key
     ports:
       - "443:443" # HTTPS Port
-      # - "80:80" # HTTP Port
     depends_on:
       - frontend
       - backend
