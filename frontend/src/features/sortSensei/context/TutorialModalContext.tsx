@@ -19,6 +19,10 @@ interface ModalContextProps {
 const TutorialModalContext = createContext<ModalContextProps | undefined>(undefined);
 
 export const TutorialModalProvider = ({ children }: { children: ReactNode }) => {
+  // TODO: Temporarily disable react compiler for this one
+  // eslint-disable-next-line react-compiler/react-compiler
+  "use no memo";
+
   // State to control the visibility of the modal
   const [isTutorialOpen, setIsTutorialOpen] = useLocalStorage<boolean>(localStorageKeys.tutorial, true);
 
@@ -42,8 +46,8 @@ export const TutorialModalProvider = ({ children }: { children: ReactNode }) => 
   // Function to toggle the modal
   const toggleModal = useCallback(() => {
     clearHighlight();
-    setIsTutorialOpen(!isTutorialOpen);
-  }, [clearHighlight, isTutorialOpen, setIsTutorialOpen]);
+    setIsTutorialOpen((prev) => !prev);
+  }, [clearHighlight, setIsTutorialOpen]);
 
   const value = useMemo(
     () => ({ highlightRefs, isTutorialOpen, setIsTutorialOpen, closeModal, toggleModal }),
