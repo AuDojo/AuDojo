@@ -2,15 +2,13 @@
 
 services:
   frontend:
-    build:
-      target: frontend
+    image: ghcr.io/audojo/audojo/frontend:latest
     deploy:
       mode: replicated
       replicas: 3
 
   backend:
-    build:
-      target: backend
+    image: ghcr.io/audojo/audojo/backend:latest
     container_name: backend
 
   reverse-proxy:
