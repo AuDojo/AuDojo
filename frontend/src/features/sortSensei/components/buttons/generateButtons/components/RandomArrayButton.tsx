@@ -61,7 +61,7 @@ const RandomArrayButton = ({ setIsSubmitting }: RandomArrayButtonProps) => {
   useHotkeys(HOTKEYS.RandomButton, handleRandomArray, { preventDefault: true, enabled: !isTutorialOpen });
 
   // only allow enter key when the input is focused
-  const ref = useHotkeys(HOTKEYS.RandomInput, handleRandomArray, {
+  const ref = useHotkeys<HTMLInputElement>(HOTKEYS.RandomInput, handleRandomArray, {
     preventDefault: true,
     enableOnFormTags: ["input"],
     enabled: !isTutorialOpen,
