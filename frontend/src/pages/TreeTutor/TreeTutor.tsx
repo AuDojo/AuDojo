@@ -290,7 +290,6 @@ const TreeTutor = () => {
               Delete
             </button>
             <select
-              // eslint-disable-next-line react-compiler/react-compiler
               ref={mergeRefs(deleteRef, deleteValueRef)}
               name="delete"
               id="delete-node"
