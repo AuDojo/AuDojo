@@ -1,7 +1,7 @@
 # From https://pnpm.io/docker
 
 # 1. Use base image with minimal node.js
-FROM node:23-slim AS base
+FROM node:24-slim AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
