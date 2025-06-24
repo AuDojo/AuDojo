@@ -19,7 +19,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/express": "^5.0.2",
+    "@types/express": "^5.0.3",
     "@types/nodemailer": "^6.4.17",
     "body-parser": "^2.2.0",
     "dotenv": "^16.5.0",
@@ -28,7 +28,7 @@
     "winston": "^3.17.0"
   },
   "devDependencies": {
-    "@types/body-parser": "^1.19.5",
+    "@types/body-parser": "^1.19.6",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"

@@ -24,18 +24,18 @@
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
     "@commitlint/types": "^19.8.1",
-    "@playwright/test": "^1.52.0",
-    "@types/node": "^22.15.21",
-    "@typescript-eslint/eslint-plugin": "^8.32.1",
-    "@typescript-eslint/parser": "^8.32.1",
-    "eslint": "^9.27.0",
+    "@playwright/test": "^1.53.1",
+    "@types/node": "^24.0.4",
+    "@typescript-eslint/eslint-plugin": "^8.35.0",
+    "@typescript-eslint/parser": "^8.35.0",
+    "eslint": "^9.29.0",
     "eslint-plugin-playwright": "^2.2.0",
     "rimraf": "^6.0.1",
-    "typescript-eslint": "^8.32.1"
+    "typescript-eslint": "^8.35.0"
   },
   "optionalDependencies": {
     "husky": "^9.1.7"
   },
   "type": "module",
-  "packageManager": "pnpm@10.9.0"
+  "packageManager": "pnpm@10.12.3"
 }
