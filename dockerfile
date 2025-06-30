@@ -1,7 +1,7 @@
 # From https://pnpm.io/docker
 
 # 1. Use base image with minimal node.js
-FROM node:23-slim AS base
+FROM node:24-slim AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
@@ -17,7 +17,7 @@ RUN pnpm deploy --filter=frontend --prod /prod/frontend
 RUN pnpm deploy --filter=backend --prod /prod/backend
 
 # 4.a) Frontend served by nginx
-FROM nginx:1.27.5-alpine-slim AS frontend
+FROM nginx:1.29.0-alpine-slim AS frontend
 # FROM nginx:latest AS frontend
 
 COPY --from=build /prod/frontend/dist /usr/share/nginx/html
