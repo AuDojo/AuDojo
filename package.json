@@ -26,12 +26,12 @@
     "@commitlint/types": "^19.8.1",
     "@playwright/test": "^1.55.0",
     "@types/node": "^24.3.0",
-    "@typescript-eslint/eslint-plugin": "^8.40.0",
-    "@typescript-eslint/parser": "^8.40.0",
+    "@typescript-eslint/eslint-plugin": "^8.41.0",
+    "@typescript-eslint/parser": "^8.41.0",
     "eslint": "^9.34.0",
     "eslint-plugin-playwright": "^2.2.2",
     "rimraf": "^6.0.1",
-    "typescript-eslint": "^8.40.0"
+    "typescript-eslint": "^8.41.0"
   },
   "optionalDependencies": {
     "husky": "^9.1.7"
