@@ -14,7 +14,7 @@ services:
     container_name: backend
 
   reverse-proxy:
-    image: nginx:1.29.0-alpine-slim
+    image: nginx:1.29.1-alpine-slim
     container_name: reverse-proxy
     restart: unless-stopped
     volumes:
