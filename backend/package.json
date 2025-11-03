@@ -19,12 +19,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/express": "^5.0.3",
-    "@types/nodemailer": "^7.0.2",
+    "@types/express": "^5.0.5",
+    "@types/nodemailer": "^7.0.3",
     "body-parser": "^2.2.0",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
-    "nodemailer": "^7.0.9",
+    "nodemailer": "^7.0.10",
     "winston": "^3.18.3"
   },
   "devDependencies": {
