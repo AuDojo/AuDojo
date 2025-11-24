@@ -19,13 +19,13 @@
     "coverage": "vitest --coverage --ui"
   },
   "dependencies": {
-    "@tanstack/query-sync-storage-persister": "^5.90.7",
-    "@tanstack/react-query": "^5.90.5",
-    "@tanstack/react-query-devtools": "^5.90.2",
-    "@tanstack/react-query-persist-client": "^5.90.7",
+    "@tanstack/query-sync-storage-persister": "^5.90.12",
+    "@tanstack/react-query": "^5.90.10",
+    "@tanstack/react-query-devtools": "^5.91.0",
+    "@tanstack/react-query-persist-client": "^5.90.12",
     "classnames": "^2.5.1",
     "d3": "^7.9.0",
-    "i18next": "^25.6.0",
+    "i18next": "^25.6.3",
     "i18next-browser-languagedetector": "^8.2.0",
     "i18next-http-backend": "^3.0.2",
     "lz-string": "^1.5.0",
@@ -33,11 +33,11 @@
     "react-compiler-runtime": "19.1.0-rc.3",
     "react-dom": "^19.2.0",
     "react-error-boundary": "^6.0.0",
-    "react-hook-form": "^7.65.0",
+    "react-hook-form": "^7.66.1",
     "react-hotkeys-hook": "^5.2.1",
-    "react-i18next": "^16.0.1",
+    "react-i18next": "^16.3.5",
     "react-icons": "^5.5.0",
-    "react-router-dom": "^7.9.4",
+    "react-router-dom": "^7.9.6",
     "usehooks-ts": "^3.1.1"
   },
   "devDependencies": {
