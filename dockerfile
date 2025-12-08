@@ -17,7 +17,7 @@ RUN pnpm deploy --filter=frontend --prod /prod/frontend
 RUN pnpm deploy --filter=backend --prod /prod/backend
 
 # 4.a) Frontend served by nginx
-FROM nginx:1.29.2-alpine-slim AS frontend
+FROM nginx:1.29.3-alpine-slim AS frontend
 # FROM nginx:latest AS frontend
 
 COPY --from=build /prod/frontend/dist /usr/share/nginx/html
