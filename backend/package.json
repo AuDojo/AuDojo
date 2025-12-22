@@ -24,8 +24,8 @@
     "body-parser": "^2.2.1",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
-    "nodemailer": "^7.0.11",
-    "winston": "^3.18.3"
+    "nodemailer": "^7.0.12",
+    "winston": "^3.19.0"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.6",
