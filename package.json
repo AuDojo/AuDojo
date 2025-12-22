@@ -21,17 +21,17 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@commitlint/cli": "^20.1.0",
-    "@commitlint/config-conventional": "^20.0.0",
-    "@commitlint/types": "^20.0.0",
-    "@playwright/test": "^1.56.1",
-    "@types/node": "^24.8.1",
-    "@typescript-eslint/eslint-plugin": "^8.46.1",
-    "@typescript-eslint/parser": "^8.46.1",
-    "eslint": "^9.37.0",
-    "eslint-plugin-playwright": "^2.2.2",
-    "rimraf": "^6.0.1",
-    "typescript-eslint": "^8.46.1"
+    "@commitlint/cli": "^20.2.0",
+    "@commitlint/config-conventional": "^20.2.0",
+    "@commitlint/types": "^20.2.0",
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^25.0.3",
+    "@typescript-eslint/eslint-plugin": "^8.50.0",
+    "@typescript-eslint/parser": "^8.50.0",
+    "eslint": "^9.39.2",
+    "eslint-plugin-playwright": "^2.4.0",
+    "rimraf": "^6.1.2",
+    "typescript-eslint": "^8.50.0"
   },
   "optionalDependencies": {
     "husky": "^9.1.7"
