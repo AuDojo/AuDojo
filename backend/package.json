@@ -20,16 +20,16 @@
   "license": "ISC",
   "dependencies": {
     "@types/express": "^5.0.6",
-    "@types/nodemailer": "^7.0.4",
-    "body-parser": "^2.2.1",
-    "dotenv": "^17.2.3",
+    "@types/nodemailer": "^7.0.11",
+    "body-parser": "^2.2.2",
+    "dotenv": "^17.3.1",
     "express": "^5.2.1",
-    "nodemailer": "^7.0.11",
-    "winston": "^3.18.3"
+    "nodemailer": "^8.0.1",
+    "winston": "^3.19.0"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.6",
-    "nodemon": "^3.1.10",
+    "nodemon": "^3.1.14",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
   }
