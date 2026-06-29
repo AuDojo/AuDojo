@@ -12,9 +12,9 @@ jobs:
       image: mcr.microsoft.com/playwright:v1.52.0-noble # Keep version in sync with package.json
       options: --user 1001
     steps:
-      - uses: actions/checkout@v5
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v5
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: lts/*
           cache: pnpm
@@ -25,7 +25,7 @@ jobs:
       - name: Run Playwright tests
         run: pnpm playwright test --project=chromium
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: ${{ !cancelled() }}
         with:
           name: blob-report
@@ -53,9 +53,9 @@ jobs:
 #       image: mcr.microsoft.com/playwright:v1.50.1-noble # Keep version in sync with package.json
 #       options: --user 1001
 #     steps:
-#       - uses: actions/checkout@v5
-#       - uses: pnpm/action-setup@v4
-#       - uses: actions/setup-node@v5
+#       - uses: actions/checkout@v7
+#       - uses: pnpm/action-setup@v6
+#       - uses: actions/setup-node@v6
 #         with:
 #           node-version: lts/*
 #           cache: pnpm
@@ -67,7 +67,7 @@ jobs:
 #         run: pnpm playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
 #       - name: Upload blob report to GitHub Actions Artifacts
-#         uses: actions/upload-artifact@v4
+#         uses: actions/upload-artifact@v7
 #         if: ${{ !cancelled() }}
 #         with:
 #           name: blob-report-${{ matrix.shardIndex }}
@@ -80,9 +80,9 @@ jobs:
 #     needs: [playwright-tests]
 #     runs-on: ubuntu-latest
 #     steps:
-#       - uses: actions/checkout@v5
-#       - uses: pnpm/action-setup@v4
-#       - uses: actions/setup-node@v5
+#       - uses: actions/checkout@v7
+#       - uses: pnpm/action-setup@v6
+#       - uses: actions/setup-node@v6
 #         with:
 #           node-version: lts/*
 #           cache: pnpm
@@ -101,7 +101,7 @@ jobs:
 #         run: pnpm playwright merge-reports --reporter html ./all-blob-reports
 
 #       - name: Upload HTML report
-#         uses: actions/upload-artifact@v4
+#         uses: actions/upload-artifact@v7
 #         with:
 #           name: html-report--attempt-${{ github.run_attempt }}
 #           path: playwright-report
